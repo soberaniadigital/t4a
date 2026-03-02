@@ -1,0 +1,759 @@
+{
+    "job_info": {
+        "input_file": "/home/vinicius/TCC/data/translations_filtered/sed_v4.8.44/sed-4.8.44.fr.po",
+        "output_file": "/home/vinicius/TCC/resultados/context_levels_filtered/sed_v4.8.44/sed-4.8.44.pt_BR.llama.ctx-1.vi.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-18T12:41:02.691955",
+        "duration_seconds": 54.55,
+        "reference_file": "/home/vinicius/TCC/data/translations_filtered/sed_v4.8.44/sed-4.8.44.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": -3702852175432789557
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "VI"
+        ],
+        "context_sentences_sample": {
+            "write error": {
+                "VI": "lỗi ghi"
+            },
+            "preserving permissions for %s": {
+                "VI": "giữ nguyên quyền hạn cho %s"
+            },
+            "unbalanced [": {
+                "VI": "thiếu dấu ngoặc vuông mở ["
+            },
+            "invalid character class": {
+                "VI": "sai lớp ký tự"
+            },
+            "character class syntax is [[:space:]], not [:space:]": {
+                "VI": "cú pháp lớp ký tự là [[:space:]], không phải [:space:]"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 140,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct 10 2025, 08:54:03) [GCC 11.4.0]"
+    },
+    "translations": [
+        {
+            "original": "write error",
+            "translated": "erro de escrita",
+            "reference": "erro de escrita"
+        },
+        {
+            "original": "preserving permissions for %s",
+            "translated": "preservar as permissões de %s",
+            "reference": "preservando permissões de %s"
+        },
+        {
+            "original": "unbalanced [",
+            "translated": "opção não aplicável para a linha %<PRIuMAX> em relação ao valor esperado de %d campos.",
+            "reference": "[ sem correspondente"
+        },
+        {
+            "original": "invalid character class",
+            "translated": "cadeia de caracteres inválida",
+            "reference": "classe de caracteres inválida"
+        },
+        {
+            "original": "character class syntax is [[:space:]], not [:space:]",
+            "translated": "A sintaxe de uma classe de caracteres é [[:space:]], e não [:space:].",
+            "reference": "a sintaxe de classe de caracteres é [[:space:]], e não [:space:]"
+        },
+        {
+            "original": "unfinished \\ escape",
+            "translated": "sequência de escape não concluída",
+            "reference": "escape \\ não terminado"
+        },
+        {
+            "original": "? at start of expression",
+            "translated": "no biomarcador identificado para a expressão inicialmente apresentada.",
+            "reference": "? no início da expressão"
+        },
+        {
+            "original": "* at start of expression",
+            "translated": "no biomarcador identificado para a expressão inicial do ciclo de vida da planta",
+            "reference": "* no início da expressão"
+        },
+        {
+            "original": "+ at start of expression",
+            "translated": "+ au début de l'expression",
+            "reference": "+ no início da expressão"
+        },
+        {
+            "original": "invalid content of \\{\\}",
+            "translated": "conteúdo inválido de \\\"{\\",
+            "reference": "conteúdo inválido de \\{\\}"
+        },
+        {
+            "original": "regular expression too big",
+            "translated": "expressão regular muito grande",
+            "reference": "expressão regular grande demais"
+        },
+        {
+            "original": "unbalanced (",
+            "translated": "thiếu dấu ngoặc đơn mở (",
+            "reference": "( sem correspondente"
+        },
+        {
+            "original": "no syntax specified",
+            "translated": "nenhuma sintaxe especificada",
+            "reference": "nenhuma sintaxe especificada"
+        },
+        {
+            "original": "unbalanced )",
+            "translated": "nível não correspondente",
+            "reference": ") sem correspondente"
+        },
+        {
+            "original": "Unknown system error",
+            "translated": "Erro do sistema desconhecido",
+            "reference": "Erro desconhecido de sistema"
+        },
+        {
+            "original": "memory exhausted",
+            "translated": "memória esgotada",
+            "reference": "memória esgotada"
+        },
+        {
+            "original": "`",
+            "translated": "« ",
+            "reference": "“"
+        },
+        {
+            "original": "'",
+            "translated": "»",
+            "reference": "”"
+        },
+        {
+            "original": "Success",
+            "translated": "Sucesso",
+            "reference": "Sucesso"
+        },
+        {
+            "original": "No match",
+            "translated": "não há concordância",
+            "reference": "Nenhuma ocorrência do padrão"
+        },
+        {
+            "original": "Invalid regular expression",
+            "translated": "Ex Expressão regular inválida",
+            "reference": "Expressão regular inválida"
+        },
+        {
+            "original": "Invalid collation character",
+            "translated": "Caractere de agrupamento inválido",
+            "reference": "Caractere de combinação inválido"
+        },
+        {
+            "original": "Invalid character class name",
+            "translated": "Nome de classe de caractères inválido",
+            "reference": "Nome inválido de classe de caracteres"
+        },
+        {
+            "original": "Trailing backslash",
+            "translated": "barra oblíqua invertida sozinha no final",
+            "reference": "Barra invertida no final"
+        },
+        {
+            "original": "Invalid back reference",
+            "translated": "referência de retorno inválida",
+            "reference": "Retrorreferência inválida"
+        },
+        {
+            "original": "Unmatched [, [^, [:, [., or [=",
+            "translated": "não foi possível obter estado (stat) do arquivo %s",
+            "reference": "[, [^, [:, [. ou [= sem correspondente"
+        },
+        {
+            "original": "Unmatched ( or \\(",
+            "translated": "Chão ou não apáreio \"( \") ou \"(\\)",
+            "reference": "( ou \\( sem correspondente"
+        },
+        {
+            "original": "Unmatched \\{",
+            "translated": "Chave não encontrada para o par »{ non appariçéd }",
+            "reference": "\\{ sem correspondente"
+        },
+        {
+            "original": "Invalid content of \\{\\}",
+            "translated": "Contém conteúdo inválido \\\"{\\}\\\".",
+            "reference": "Conteúdo inválido no \\{\\}"
+        },
+        {
+            "original": "Invalid range end",
+            "translated": "Fim de intervalo inválido",
+            "reference": "Fim de intervalo inválido"
+        },
+        {
+            "original": "Memory exhausted",
+            "translated": "Memória esgotada",
+            "reference": "Memória esgotada"
+        },
+        {
+            "original": "Invalid preceding regular expression",
+            "translated": "A expressão regular anterior é inválida",
+            "reference": "A expressão regular precedente é inválida"
+        },
+        {
+            "original": "Premature end of regular expression",
+            "translated": "pré-maturação de uma expressão regular",
+            "reference": "Fim prematuro da expressão regular"
+        },
+        {
+            "original": "Regular expression too big",
+            "translated": "Ex Expressão regular muito grande",
+            "reference": "Expressão regular grande demais"
+        },
+        {
+            "original": "Unmatched ) or \\)",
+            "translated": "Có dấu ngoặc đơn đóng “)” hay “\\)” lẻ đôi.",
+            "reference": ") ou \\) sem correspondente"
+        },
+        {
+            "original": "No previous regular expression",
+            "translated": "Não há nenhuma expressão regular anteriormente definida.",
+            "reference": "Nenhuma expressão regular anterior"
+        },
+        {
+            "original": "setting permissions for %s",
+            "translated": "defini as permissões para %s",
+            "reference": "definindo permissões de %s"
+        },
+        {
+            "original": "Packaged by %s (%s)\n",
+            "translated": "Empacotado por %s (%s) \n",
+            "reference": "Empacotado por %s (%s)\n"
+        },
+        {
+            "original": "Packaged by %s\n",
+            "translated": "Empacotado por %s",
+            "reference": "Empacotado por %s\n"
+        },
+        {
+            "original": "(C)",
+            "translated": "©",
+            "reference": "(C)"
+        },
+        {
+            "original": "License GPLv3+: GNU GPL version 3 or later <%s>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n",
+            "translated": "Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>. Este é um software livre: você tem permissão de modificá-lo e redistribuí-lo. Não há garantias, exceto as expressas por esta licença.",
+            "reference": "Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>\nEste é um software livre: você é livre para alterá-lo e redistribuí-lo.\nNÃO HÁ QUALQUER GARANTIA, na máxima extensão permitida em lei.\n"
+        },
+        {
+            "original": "Written by %s.\n",
+            "translated": "Escrito por %s. \n",
+            "reference": "Escrito por %s.\n"
+        },
+        {
+            "original": "Written by %s and %s.\n",
+            "translated": "Escrito por %s e %s. \n",
+            "reference": "Escrito por %s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, and %s.\n",
+            "translated": "Escrito por %s, %s e %s. \n\t(C) Copyright (c) %d.",
+            "reference": "Escrito por %s, %s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\nand %s.\n",
+            "translated": "Escrito por %s, %s, %s e %s. \n",
+            "reference": "Escrito por %s, %s, %s\ne %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, and %s.\n",
+            "translated": "Escrito por %s, %s, %s, %s e %s. \n",
+            "reference": "Escrito por %s, %s, %s,\n%s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, and %s.\n",
+            "translated": "Escrito por %s, %s, %s, %s, %s e %s. \n",
+            "reference": "Escrito por %s, %s, %s,\n%s, %s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, and %s.\n",
+            "translated": "Escrito por %s, %s, %s, %s, %s, %s e %s. \n",
+            "reference": "Escrito por %s, %s, %s,\n%s, %s, %s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, %s,\nand %s.\n",
+            "translated": "Escrito por %s, %s, %s, \n%s, %s, %s, %s\n e %s. \n",
+            "reference": "Escrito por %s, %s, %s,\n%s, %s, %s, %s\ne %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, %s,\n%s, and %s.\n",
+            "translated": "Escrito por %s, %s, %s, %d, %<PRIuMAX>, %s, %s, %s e %s. \n",
+            "reference": "Escrito por %s, %s, %s,\n%s, %s, %s, %s,\n%s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, %s,\n%s, %s, and others.\n",
+            "translated": "Escrito por %s, %s, %s, %s, %s, %s, %s, %s, %s e outros.",
+            "reference": "Escrito por %s, %s, %s,\n%s, %s, %s, %s,\n%s, %s e outros.\n"
+        },
+        {
+            "original": "Report bugs to: %s\n",
+            "translated": "Rapportez as anomalies para: %s\n",
+            "reference": "Relate erros para: %s\nRelate erros de tradução para <https://translationproject.org/team/pt_BR.html>\n"
+        },
+        {
+            "original": "Report %s bugs to: %s\n",
+            "translated": "Relate os bugs %s para: %s",
+            "reference": "Relate erros do %s para: %s\n"
+        },
+        {
+            "original": "%s home page: <%s>\n",
+            "translated": "Página inicial de %s: <%s>",
+            "reference": "Página do %s: <%s>\n"
+        },
+        {
+            "original": "General help using GNU software: <%s>\n",
+            "translated": "Ajuda geral sobre o uso dos softwares GNU/Linux: <%s>",
+            "reference": "Ajuda geral no uso de software GNU: <%s>\n"
+        },
+        {
+            "original": "multiple `!'s",
+            "translated": "có nhiều dấu cảm \"!\"",
+            "reference": "exclamações `!' múltiplas"
+        },
+        {
+            "original": "unexpected `,'",
+            "translated": "acidente de viagem com o caractere ',' inesperado",
+            "reference": "vírgula `,' inesperada"
+        },
+        {
+            "original": "invalid usage of +N or ~N as first address",
+            "translated": "utilização inválida de +N ou ~N como primeira adresa.",
+            "reference": "não use +N ou ~N como o primeiro endereço"
+        },
+        {
+            "original": "unmatched `{'",
+            "translated": "{ não está associada a nenhum valor ou estado.",
+            "reference": "`{' sem correspondente"
+        },
+        {
+            "original": "unexpected `}'",
+            "translated": "encontro inesperado",
+            "reference": "`}' inesperada"
+        },
+        {
+            "original": "extra characters after command",
+            "translated": "caracteres desnecessários após a comando",
+            "reference": "há caracteres sobrando após o comando"
+        },
+        {
+            "original": "expected \\ after `a', `c' or `i'",
+            "translated": "cần “©” nằm sau “a”, “c” ou “i”.",
+            "reference": "deve haver um escape \\ depois dos comandos `a', `c' e `i'"
+        },
+        {
+            "original": "`}' doesn't want any addresses",
+            "translated": "{ } não precisa de nenhuma endereço.",
+            "reference": "`}' não recebe endereços"
+        },
+        {
+            "original": ": doesn't want any addresses",
+            "translated": ": n'a besoin d'aucune adresse",
+            "reference": "`:' não recebe endereços"
+        },
+        {
+            "original": "comments don't accept any addresses",
+            "translated": "os comentários não aceitam nenhuma endereço (%s)",
+            "reference": "comentários não aceitam endereços"
+        },
+        {
+            "original": "missing command",
+            "translated": "comando ausente",
+            "reference": "falta especificar um comando"
+        },
+        {
+            "original": "command only uses one address",
+            "translated": "a comando utiliza apenas uma endereço único.",
+            "reference": "este comando usa apenas um endereço"
+        },
+        {
+            "original": "unterminated address regex",
+            "translated": "expressão regular de endereço não concluída",
+            "reference": "a expressão regular do endereço está inacabada (falta a /)"
+        },
+        {
+            "original": "unterminated `s' command",
+            "translated": "comando “s” não concluído",
+            "reference": "comando `s' inacabado (s/// - faltou delimitador)"
+        },
+        {
+            "original": "unterminated `y' command",
+            "translated": "comando não concluído 'y'",
+            "reference": "comando `y' inacabado (y/// - faltou delimitador)"
+        },
+        {
+            "original": "unknown option to `s'",
+            "translated": "opção desconhecida para 's'",
+            "reference": "opção desconhecida para o comando `s' (s///?)"
+        },
+        {
+            "original": "multiple `p' options to `s' command",
+            "translated": "múltiplas opções 'p' disponíveis para a comando 's'",
+            "reference": "opções `p' múltiplas para o comando `s'"
+        },
+        {
+            "original": "multiple `g' options to `s' command",
+            "translated": "a comando 's' possui várias opções do tipo 'g'",
+            "reference": "opções `g' múltiplas para o comando `s'"
+        },
+        {
+            "original": "multiple number options to `s' command",
+            "translated": "a comando «s» possui várias opções numéricas",
+            "reference": "opções numéricas múltiplas para o comando `s' (s///n)"
+        },
+        {
+            "original": "number option to `s' command may not be zero",
+            "translated": "A opção numérica da comando 's' não pode ser nula",
+            "reference": "a opção numérica para o comando `s' não pode ser zero (s///0)"
+        },
+        {
+            "original": "strings for `y' command are different lengths",
+            "translated": "As strings destinadas à comando 'y' possuem comprimentos diferentes",
+            "reference": "os textos para o comando `y' têm tamanhos diferentes (y/abc/z/)"
+        },
+        {
+            "original": "delimiter character is not a single-byte character",
+            "translated": "O caractere de delimitação não é um único byte de limite de caracteres",
+            "reference": "o delimitador deve ser um caractere normal, ASCII"
+        },
+        {
+            "original": "expected newer version of sed",
+            "translated": "é esperado uma versão mais recente do sed.",
+            "reference": "esperada uma versão mais recente do sed"
+        },
+        {
+            "original": "invalid usage of line address 0",
+            "translated": "utilização inválida da linha de endereço %s",
+            "reference": "uso incorreto do endereço de linha 0"
+        },
+        {
+            "original": "unknown command: `%c'",
+            "translated": "comando desconhecido: “%c”",
+            "reference": "comando desconhecido: `%c'"
+        },
+        {
+            "original": "incomplete command",
+            "translated": "comando inválido ou parcialmente preenchido",
+            "reference": "comando incompleto"
+        },
+        {
+            "original": "\":\" lacks a label",
+            "translated": "uma etiqueta está faltando para ':'",
+            "reference": "\":\" carece de uma marcação"
+        },
+        {
+            "original": "recursive escaping after \\c not allowed",
+            "translated": "um árvazio recursivo após o sinal de parada não é permitido",
+            "reference": "escape recursivo após \\c não permitido"
+        },
+        {
+            "original": "e/r/w commands disabled in sandbox mode",
+            "translated": "As comandas de leitura/escrita e/r/w estão desabilitadas no ambiente seguro do bac a areia.",
+            "reference": "comandos e/r/w desabilitados no modo sandbox"
+        },
+        {
+            "original": "%s: file %s line %lu: %s\n",
+            "translated": "%s: ficheiro %s linha %lu: %s\n",
+            "reference": "%s: arquivo %s linha %lu: %s\n"
+        },
+        {
+            "original": "%s: -e expression #%lu, char %lu: %s\n",
+            "translated": "%s: -e expressão n°%lu, carácter %lu: %s\n",
+            "reference": "%s: -e expressão #%lu, caractere %lu: %s\n"
+        },
+        {
+            "original": "can't find label for jump to `%s'",
+            "translated": "não foi possível encontrar a etiqueta para saltar em direção à “%s”",
+            "reference": "não foi possível encontrar a marcação \"%s\""
+        },
+        {
+            "original": "case conversion produced an invalid character",
+            "translated": "a conversão de caixa para o produto resultou em um caractere inválido",
+            "reference": "conversão maiúsculo/minúsculo produziu um caractere inválido"
+        },
+        {
+            "original": "%s: can't read %s: %s\n",
+            "translated": "%s: impossível ler %s: %s",
+            "reference": "%s: não foi possível ler %s: %s\n"
+        },
+        {
+            "original": "couldn't edit %s: is a terminal",
+            "translated": "impossível editar %s: é um terminal",
+            "reference": "não foi possível editar %s, pois é um terminal"
+        },
+        {
+            "original": "couldn't edit %s: not a regular file",
+            "translated": "impossível de editar %s: não é um arquivo regular",
+            "reference": "não foi possível editar %s, pois não é um arquivo comum"
+        },
+        {
+            "original": "%s: warning: failed to set default file creation context to %s: %s",
+            "translated": "%s: aviso: não é possível alterar o contexto de criação do arquivo padrão para %s: %s",
+            "reference": "%s: aviso: falha ao definir o contexto de criação do arquivo padrão para %s: %s"
+        },
+        {
+            "original": "%s: warning: failed to get security context of %s: %s",
+            "translated": "%s: aviso de segurança: não é possível obter o contexto de segurança do %s: %s",
+            "reference": "%s: aviso: falha ao obter o contexto de segurança de %s: %s"
+        },
+        {
+            "original": "couldn't open temporary file %s: %s",
+            "translated": "não foi possível abrir o arquivo temporário %s: %s",
+            "reference": "não foi possível abrir o arquivo temporário %s: %s"
+        },
+        {
+            "original": "error in subprocess",
+            "translated": "erro no subprocesso",
+            "reference": "erro no subprocesso"
+        },
+        {
+            "original": "option `e' not supported",
+            "translated": "a opção 'e' não é suportada.",
+            "reference": "sem suporte à opção `e'"
+        },
+        {
+            "original": "`e' command not supported",
+            "translated": "a comando 'e' não é suportado.",
+            "reference": "sem suporte ao comando `e'"
+        },
+        {
+            "original": "no input files",
+            "translated": "não foi possível encontrar o arquivo de entrada",
+            "reference": "nenhum arquivo de entrada"
+        },
+        {
+            "original": "no previous regular expression",
+            "translated": "não há expressões regulares anteriores",
+            "reference": "não há expressão regular anterior"
+        },
+        {
+            "original": "invalid reference \\%d on `s' command's RHS",
+            "translated": "referência \\\\%d inválida no membro direito da instrução \"s\".",
+            "reference": "referência inválida \\%d na segunda parte do comando `s'"
+        },
+        {
+            "original": "regex input buffer length larger than INT_MAX",
+            "translated": "A tamanho do buffer de entrada da expressão regular é maior que INT_MAX",
+            "reference": "tamanho do buffer de entrada da expressão regular maior que INT_MAX"
+        },
+        {
+            "original": "Jay Fenlason",
+            "translated": "Jay Fenlason",
+            "reference": "Jay Fenlason"
+        },
+        {
+            "original": "Tom Lord",
+            "translated": "Tom Lord",
+            "reference": "Tom Lord"
+        },
+        {
+            "original": "Ken Pizzini",
+            "translated": "Ken Pizzini",
+            "reference": "Ken Pizzini"
+        },
+        {
+            "original": "Paolo Bonzini",
+            "translated": "Paolo Bonzini",
+            "reference": "Paolo Bonzini"
+        },
+        {
+            "original": "Jim Meyering",
+            "translated": "Jim Meyering",
+            "reference": "Jim Meyering"
+        },
+        {
+            "original": "Assaf Gordon",
+            "translated": "Assaf Gordon",
+            "reference": "Assaf Gordon"
+        },
+        {
+            "original": "GNU sed home page: <https://www.gnu.org/software/sed/>.\nGeneral help using GNU software: <https://www.gnu.org/gethelp/>.\n",
+            "translated": "Página inicial do GNU sed: <https://www.gnu.org/software/sed/>.\nAjuda geral para o uso dos programas GNU: <https://www.gnu.org/help/gethelp.fr.html>.",
+            "reference": "Página do GNU sed: <https://www.gnu.org/software/sed/>.\nAjuda sobre softwares GNU: <https://www.gnu.org/gethelp/>.\n"
+        },
+        {
+            "original": "E-mail bug reports to: <%s>.\n",
+            "translated": "Envie os relatórios de anomalias por e-mail para: <%s>.",
+            "reference": "Envie relatórios de erros para: <%s>.\n"
+        },
+        {
+            "original": "This sed program was built with SELinux support.",
+            "translated": "Este programa foi compilado para suportar SELinux.",
+            "reference": "Este programa sed foi compilado com suporte a SELinux."
+        },
+        {
+            "original": "SELinux is enabled on this system.",
+            "translated": "SELinux está ativado neste sistema.",
+            "reference": "SELinux está habilitado neste sistema."
+        },
+        {
+            "original": "SELinux is disabled on this system.",
+            "translated": "SELinux está desativado neste sistema.",
+            "reference": "SELinux está desabilitado neste sistema."
+        },
+        {
+            "original": "This sed program was built without SELinux support.",
+            "translated": "Esse programa foi compilado sem suporte de SELinux.",
+            "reference": "Este programa sed foi compilado sem suporte a SELinux."
+        },
+        {
+            "original": "Usage: %s [OPTION]... {script-only-if-no-other-script} [input-file]...\n\n",
+            "translated": "Utilização: %s [TÙY_CHỌN]… {bó-văn-lệnh-nếu-không-có-bó-văn-lệnh-khác} [tập-tin-đầu-vào]…",
+            "reference": "Uso: %s [OPÇÃO]... {script-apenas-se-for-único} [arquivo-entrada]...\n\n"
+        },
+        {
+            "original": "  -n, --quiet, --silent\n                 suppress automatic printing of pattern space\n",
+            "translated": " -n --quiet, --silent\nsupomover a escrita automatizada do espaço de motivos sem saída ao usuário.",
+            "reference": "  -n, --quiet, --silent\n                 suprime a impressão automática do buffer padrão\n"
+        },
+        {
+            "original": "      --debug\n                 annotate program execution\n",
+            "translated": "      --debug\n                 anotar a execução do programa",
+            "reference": "      --debug\n                 anota a execução do programa\n"
+        },
+        {
+            "original": "  -e script, --expression=script\n                 add the script to the commands to be executed\n",
+            "translated": "  -e script, --expression=script\n                 adicionar o script às comandas a serem executadas.",
+            "reference": "  -e script, --expression=script\n                 adiciona o script aos comandos a serem executados\n"
+        },
+        {
+            "original": "  -f script-file, --file=script-file\n                 add the contents of script-file to the commands to be executed\n",
+            "translated": "  -f fichier_script, --file=fichier-script\n                 adicionar o conteúdo do ficheiro-script às comandas a serem executadas.",
+            "reference": "  -f arquivo-script, --file=arquivo-script\n                 adiciona o conteúdo do arquivo-script aos comandos\n                 a serem executados\n"
+        },
+        {
+            "original": "  --follow-symlinks\n                 follow symlinks when processing in place\n",
+            "translated": "--follow-symlinks\n                 seguir links simbólicos durante o processamento.",
+            "reference": "  --follow-symlinks\n                 segue links simbólicos ao editar o próprio arquivo original\n"
+        },
+        {
+            "original": "  -i[SUFFIX], --in-place[=SUFFIX]\n                 edit files in place (makes backup if SUFFIX supplied)\n",
+            "translated": "  -i[SUFFIXE], --in-place[=SUFFIXE] \n                 editar os arquivos em seu lugar (faz uma cópia de segurança se o SUFFIXE for aplicado) \n",
+            "reference": "  -i[SUFIXO], --in-place[=SUFIXO]\n                 edita o arquivo original (faz backup se usado SUFIXO)\n"
+        },
+        {
+            "original": "  -b, --binary\n                 open files in binary mode (CR+LFs are not processed specially)\n",
+            "translated": "  -b, --binary\n                 abrir os arquivos em modo binário (CR+LF não são processados de forma especial) \n",
+            "reference": "  -b, --binary\n                 abre os arquivos em modo binário (CR+LFs não são especiais)\n"
+        },
+        {
+            "original": "  -l N, --line-length=N\n                 specify the desired line-wrap length for the `l' command\n",
+            "translated": "chamada -l N, --line-length=N\n                 especificar a extensão desejada da linha para o comando \"l\".",
+            "reference": "  -l N, --line-length=N\n                 determina comprimento da quebra de linha para comando `l'\n"
+        },
+        {
+            "original": "  --posix\n                 disable all GNU extensions.\n",
+            "translated": "--posix\n                 desativar todas as extensões GNU.",
+            "reference": "  --posix\n                 desativa todas as extensões GNU.\n"
+        },
+        {
+            "original": "  -E, -r, --regexp-extended\n                 use extended regular expressions in the script\n                 (for portability use POSIX -E).\n",
+            "translated": " -E, --regexp-extended\n                 utilizar a sintaxe das expressões regulares estendidas no script. (use -E para compatibilidade)\n",
+            "reference": "  -E, -r, --regexp-extended\n                 usa sintaxe moderna de expressões regulares, sem escapes.\n                 (para portabilidade, use POSIX -E).\n"
+        },
+        {
+            "original": "  -s, --separate\n                 consider files as separate rather than as a single,\n                 continuous long stream.\n",
+            "translated": "considere os arquivos como separados, em vez de um fluxo contínuo único. Para mais informações, tente `--help`.",
+            "reference": "  -s, --separate\n                 considera arquivos como entidades separadas, e não\n                 como um longo e único fluxo de dados.\n"
+        },
+        {
+            "original": "      --sandbox\n                 operate in sandbox mode (disable e/r/w commands).\n",
+            "translated": "      --sandbox\n                 operar no modo sandbox (desabilitar comandos e/w).\n",
+            "reference": "      --sandbox\n                 opera em modo sandbox (desabilita comandos e/r/w).\n"
+        },
+        {
+            "original": "  -u, --unbuffered\n                 load minimal amounts of data from the input files and flush\n                 the output buffers more often\n",
+            "translated": " -u, --unbuffered\n                 carregar quantidades mínimas de dados dos arquivos de entrada e escrever os buffers de saída mais frequentemente no disco.",
+            "reference": "  -u, --unbuffered\n                 carrega uma quantidade mínima de dados dos arquivos de entrada\n                 e descarrega os buffers de saída com mais frequência\n"
+        },
+        {
+            "original": "  -z, --null-data\n                 separate lines by NUL characters\n",
+            "translated": "  -z, --null-data\n                 separar linhas com caractere NUL",
+            "reference": "  -z, --null-data\n                 separa linhas por caracteres NULOs\n"
+        },
+        {
+            "original": "      --help     display this help and exit\n",
+            "translated": "Tente `%s --help' para mais informações.\n",
+            "reference": "      --help     mostra esta ajuda e sai\n"
+        },
+        {
+            "original": "      --version  output version information and exit\n",
+            "translated": "      --version apresentar as informações de versão do software e sair\n",
+            "reference": "      --version  mostra informações sobre a versão e sai\n"
+        },
+        {
+            "original": "\nIf no -e, --expression, -f, or --file option is given, then the first\nnon-option argument is taken as the sed script to interpret.  All\nremaining arguments are names of input files; if no input files are\nspecified, then the standard input is read.\n\n",
+            "translated": "Se nenhum dos tuns -e, --expression (expressão), ou --file/--filename fornecido, o primeiro argumento que não é uma opção será considerado como sendo um script sed para interpretar. Todos os outros argumentos restantes são nomes de arquivos de entrada; se nenhum desses arquivos estiver especificado, a entrada padrão é lida.",
+            "reference": "\nSe nenhuma opção -e, --expression, -f, ou --file é dada, o primeiro\nargumento que não seja uma opção é considerado como o script sed a\nser interpretado. Todos os argumentos restantes são considerados\ncomo nomes de arquivos de entrada. Caso nenhum arquivo de entrada\nseja especificado, então a entrada padrão será lida.\n\n"
+        },
+        {
+            "original": "failed to set binary mode on STDIN",
+            "translated": "não é possível entrar em modo binário no STDIN.",
+            "reference": "falha ao definir modo binário na STDIN"
+        },
+        {
+            "original": "failed to set binary mode on STDOUT",
+            "translated": "não é possível passar em modo binário no STDOUT",
+            "reference": "falha ao definir modo binário na STDOUT"
+        },
+        {
+            "original": "couldn't open file %s: %s",
+            "translated": "não foi possível abrir o arquivo %s: %s",
+            "reference": "não foi possível abrir o arquivo %s: %s"
+        },
+        {
+            "original": "couldn't attach to %s: %s",
+            "translated": "não é possível anexar a %s: %s",
+            "reference": "não foi possível anexar ao %s: %s"
+        },
+        {
+            "original": "failed to set binary mode on '%s'",
+            "translated": "não foi possível passar em modo binário no dispositivo de entrada/saída padrão (%s)",
+            "reference": "falha ao definir modo binário em \"%s\""
+        },
+        {
+            "original": "read error on %s: %s",
+            "translated": "erro de leitura no %s: %s",
+            "reference": "erro de leitura em %s: %s"
+        },
+        {
+            "original": "couldn't readlink %s: %s",
+            "translated": "não é possível executar readlink %s: %s",
+            "reference": "não foi possível ler o link %s: %s"
+        },
+        {
+            "original": "couldn't follow symlink %s: %s",
+            "translated": "não foi possível seguir o link simbólico %s: %s",
+            "reference": "não foi possível seguir o link %s: %s"
+        },
+        {
+            "original": "cannot rename %s: %s",
+            "translated": "não é possível renomear %s: %s",
+            "reference": "não foi possível renomear %s: %s"
+        }
+    ]
+}

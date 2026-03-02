@@ -1,0 +1,117 @@
+original,translated,reference,context_languages,strategy,comet,chrf,bleu,ter,bertscore
+Usage: iconv [-c] [-s] [-f fromcode] [-t tocode] [file ...],Uso: iconv [-c] [-s] [-f codificação de entrada] [-t codificação de saída] [arquivo(s)],Uso: iconv [-c] [-s] [-f fromcode] [-t tocode] [arquivo ...],,LLAMA,80.51243424415588,57.374631496646955,47.901455811287484,70.0,85.33647656440735
+or:    iconv -l,"ou:
+iconv -l
+",ou:  iconv -l,,LLAMA,98.44396710395813,100.0,100.00000000000004,0.0,99.99999403953552
+"Try '%s --help' for more information.
+",Tente '%s --help' para mais informações.,"Tente ""%s --help"" para mais informações.
+",,LLAMA,96.79723978042603,74.35736293539898,33.010083098515025,33.33333333333333,97.45575189590454
+"Usage: %s [OPTION...] [-f ENCODING] [-t ENCODING] [INPUTFILE...]
+","Uso: %s [opção...] [-f ENCODING] [-t ENCODING] [entrada/saída padrão ...]
+","Uso: %s [OPÇÃO...] [-f CODIFICAÇÃO] [-t CODIFICAÇÃO] [ENTRADA...]
+",,LLAMA,75.86000561714172,36.300734966815774,45.466972369917116,62.5,84.35857892036438
+"or:    %s -l
+","ou seja, %s -l","ou:    %s -l
+",,LLAMA,88.58643174171448,41.451121172801194,32.46679154750991,66.66666666666666,86.27771735191345
+"Converts text from one encoding to another encoding.
+",Converta o texto de um código para outro.,"Converte texto de uma codificação para outra.
+",,LLAMA,89.08982276916504,46.75034559180667,11.339582221952005,71.42857142857143,91.51641130447388
+"Options controlling the input and output format:
+","Opções de configuração do formato de entrada/saída: 
+	'--input=<format>': Define o tipo de arquivo para a entrada (por exemplo, 'json', 'csv').
+	'--output=<format>': Defina o tipo de saída desejado. Por exemplo, se você quiser salvar em um formato legível por humanos como JSON ou CSV.
+	'--verbose': Ative a opção verbose para obter mais informações detalhadas sobre os processos do sistema.","Opções para controlar os formatos de entrada e saída:
+",,LLAMA,69.36414241790771,22.916949976121177,1.4113761507673406,100.0,67.06331968307495
+"  -f ENCODING, --from-code=ENCODING
+                              the encoding of the input
+","-f ENCODING --from-code=ENCODING
+                           Entrada em código","  -f CODIFICAÇÃO, --from-code=CODIFICAÇÃO
+                              a codificação de entrada
+",,LLAMA,74.88906979560852,30.290505041305988,9.51934081834847,85.71428571428571,79.89872097969055
+"  -t ENCODING, --to-code=ENCODING
+                              the encoding of the output
+","-t ENCODING --to-code=ENCODING
+                              Saída de codificação","  -t CODIFICAÇÃO, --to-code=CODIFICAÇÃO
+                              a codificação da saída
+",,LLAMA,70.60511112213135,38.82280822749634,10.229197414177778,71.42857142857143,80.00544309616089
+"Options controlling conversion problems:
+","Opções de conversão de caracteres: 
+""%s"": ""Converte os símbolos para letras""; 
+""%d"": ""Exibe o número total de alterações feitas"";","Opções para controlar problemas de conversão:
+",,LLAMA,56.96874260902405,35.733410974559234,2.7374353552268276,100.0,70.97200751304626
+"  -c                          discard unconvertible characters
+",-c                           Ignorar caracteres que não podem ser convertidos,"  -c                          descarta caracteres não conversíveis
+",,LLAMA,81.01575374603271,40.80394702637123,7.267884212102741,100.0,81.19331002235413
+"  --unicode-subst=FORMATSTRING
+                              substitution for unconvertible Unicode characters
+","--unicode-subst=FORMATSTRING
+Substitui caracteres Unicode que não podem ser convertidos.","  --unicode-subst=TEXTOFORMATO
+                              substituição de caracteres Unicode no conversíveis
+",,LLAMA,78.65521311759949,50.81601621281385,9.578464408619821,100.0,82.68672823905945
+"  --byte-subst=FORMATSTRING   substitution for unconvertible bytes
+",--byte-subst=FORMATSTRING    Substitui bytes não convertíveis para caracteres,"  --byte-subst=TEXTOFORMATO   substituição para bytes não conversíveis
+",,LLAMA,86.25089526176453,53.072416851063174,14.25876976452075,83.33333333333334,85.4917824268341
+"  --widechar-subst=FORMATSTRING
+                              substitution for unconvertible wide characters
+","--widechar-subst=FORMATSTRING
+Substitui caracteres não convertíveis para formato de largura fixa.","  --widechar-subst=TEXTOFORMATO
+                              substituição para caracteres amplos não conversíveis
+",,LLAMA,78.63288521766663,48.45872505604177,7.768562846380176,100.0,83.1283688545227
+"Options controlling error output:
+","Opções de erro para saída do controle: 'Verificar permissões', 'Reiniciar sistema'.","Opções para controlar saída de erro:
+",,LLAMA,69.28686499595642,44.925565580853416,7.474875887495341,100.0,75.6457507610321
+"  -s, --silent                suppress error messages about conversion problems
+"," -s, --silent                 Não exibir informações relacionadas aos erros de conversão.","  -s, --silent                suprime mensagens de erro sobre problemas de conversão
+",,LLAMA,79.76647019386292,42.74628884344078,15.851165692617148,70.0,84.73083972930908
+"Informative output:
+","Informações de saída: 
+","Saída informativa:
+",,LLAMA,83.40983986854553,29.901114235599657,15.97357760615681,100.0,76.46653652191162
+"  -l, --list                  list the supported encodings
+","-l, --list                   Lista de codificações suportadas.","  -l, --list                  lista das codificações com suporte
+",,LLAMA,91.36635065078735,59.62418016500835,22.089591134157878,42.857142857142854,91.90093278884888
+"  --help                      display this help and exit
+","--ajuda                       Mostra este ajuda e sai
+","  --help                      exibe esta ajuda e sai
+",,LLAMA,72.4553108215332,39.00255505719188,30.213753973567677,50.0,84.06765460968018
+"  --version                   output version information and exit
+","--versão                    Mostra informações de versão e sai do programa
+","  --version                   exibe informação da versão e sai
+",,LLAMA,79.67551350593567,46.18826182513636,17.747405280050266,85.71428571428571,84.3484878540039
+"License GPLv3+: GNU GPL version 3 or later <%s>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+","Autorização GPLv3+: GNU GPL 3ª Edição ou versões subsequentes <%s> 
+
+Este software é de código aberto, você pode modificá-lo livremente e reemiti-lo. 
+Dentro dos limites legais permitidos, não fazer nenhum acordo contratual.
+","Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>
+Este é um software livre: você é livre para alterá-lo e redistribuí-lo.
+NÃO HÁ QUALQUER GARANTIA, na máxima extensão permitida em lei.
+",,LLAMA,77.35440731048584,31.463794581354023,19.418711990577716,77.41935483870968,80.73707222938538
+"Written by %s.
+",Escrito por %s.,"Escrito por %s.
+",,LLAMA,98.86448979377747,100.0,100.00000000000004,0.0,100.00001192092896
+%s argument: A format directive with a variable width is not allowed here.,%s: parâmetro - não é permitido o uso de formatos com variáveis de comprimento.,argumento de %s: Uma diretiva de formato com uma variável de largura não permitida aqui.,,LLAMA,74.42496418952942,32.6529045653504,10.25719738163393,86.66666666666667,76.73636674880981
+%s argument: A format directive with a variable precision is not allowed here.,%s: a opção '%s' não permite argumento com variáveis de precisão móvel.,argumento de %s: Uma diretiva de formato com uma variável de precisão não permitida aqui.,,LLAMA,65.8267080783844,39.722455106882904,11.690676908006303,80.0,81.41330480575562
+%s argument: A format directive with a size is not allowed here.,%s: parâmetro: neste local não é permitido o uso de comandos grandes utilizando caracteres e números.,argumento de %s: Uma diretiva de formato com um tamanho não permitida aqui.,,LLAMA,69.61726546287537,23.56096422624741,8.475426399505569,100.0,72.68565893173218
+%s argument: The string ends in the middle of a directive.,"%s parâmetro: a string termina o comando em seu final.
+",argumento de %s: A string termina no meio de uma diretiva.,,LLAMA,75.53741931915283,30.83062143845843,8.953363688807181,72.72727272727273,81.24717473983765
+%s argument: The character '%c' is not a valid conversion specifier.,%s parâmetro: o caractere '\x%c' não é um símbolo de escape válido.,"argumento de %s: O caractere ""%c"" não é uma especificação de conversão válida.",,LLAMA,69.01499629020691,27.68979174378765,7.012887580040735,61.53846153846154,86.0504686832428
+%s argument: The character that terminates the format directive is not a valid conversion specifier.,"%s parâmetro: utilizado para indicar o fim de uma sequência de comandos, caracteres que não são reconhecidos como símbolo de escape válido.",argumento de %s: O caractere que termina a diretiva de formato não é uma especificação de conversão válida.,,LLAMA,68.45106482505798,27.31058183039041,4.320304869998879,100.0,75.20947456359863
+cannot convert byte substitution to Unicode: %s,não foi possível converter os bytes para Unicode: %s,não foi possível converter substituição de bytes para Unicode: %s,,LLAMA,89.2060935497284,74.57187136542395,64.07117598241614,20.0,96.09947204589844
+cannot convert unicode substitution to target encoding: %s,Não foi possível converter os caracteres Unicode para a codificação alvo: %s,não foi possível converter unicode para codificação desejada: %s,,LLAMA,87.81512379646301,65.53985321049217,19.104081613647544,44.44444444444444,85.18493175506592
+cannot convert byte substitution to wide string: %s,Não foi possível converter os bytes para uma string ancho de %s,não foi possível converter substituição de bytes para texto amplo: %s,,LLAMA,78.38498950004578,51.30909830094698,17.474335703431752,45.45454545454545,86.1189603805542
+cannot convert widechar substitution to target encoding: %s,Não foi possível converter o caractere de largura especificada (%s) para a codificação alvo.,não foi possível converter widechar para codificação desejada: %s,,LLAMA,74.37023520469666,51.116799098568045,10.934883431625593,100.0,79.05247211456299
+cannot convert byte substitution to target encoding: %s,Não foi possível converter os bytes para a codificação alvo: %s,não foi possível converter substituição de bytes para codificação desejada: %s,,LLAMA,89.39932584762573,58.16928586536548,22.62944003945279,36.36363636363637,89.23332095146179
+%s:%u:%u: cannot convert,%s:%d:%d: não é possível converter,%s:%u:%u: impossível converter,,LLAMA,91.99404716491699,53.96595485629307,24.71244254525359,100.0,88.09772729873657
+%s:%u:%u: incomplete character or shift sequence,%s:%d:%d: sequência de caracteres ou substituição inválida,%s:%u:%u: sequência de caracteres ou deslocamentos incompleta,,LLAMA,85.93314290046692,52.009498001574215,44.80304273880272,42.857142857142854,89.66336250305176
+%s:%u:%u,%s:%d:%d,%s:%u:%u,,LLAMA,95.73054909706116,29.434523809523803,41.11336169005198,100.0,93.84612441062927
+%s: I/O error,%s: Erro de entrada/saída,%s: erro de E/S,,LLAMA,74.00960326194763,34.562116410242865,23.356898886410015,25.0,83.3725094795227
+conversion from %s unsupported,não é suportado a conversão do arquivo %s para outro formato,não há suporte à conversão de %s,,LLAMA,74.71092343330383,39.824194889286474,8.054496384843702,100.0,83.01505446434021
+conversion to %s unsupported,não é suportado o conversor para %s,não há suporte à conversão para %s,,LLAMA,86.75017952919006,45.70089715028741,22.089591134157878,57.14285714285714,89.55565690994263
+conversion from %s to %s unsupported,não é suportado converter do %s para o %s,não há suporte à conversão de %s para %s,,LLAMA,82.92089104652405,41.96058012974888,18.36028134946796,66.66666666666666,86.18539571762085
+try '%s -l' to get the list of supported encodings,Tente usar ‘%s -l’ para obter a lista de codificações suportadas.,"tente ""%s -l"" para obter a lista de codificações sem suporte",,LLAMA,89.26176428794861,63.80618525410614,39.34995962231127,45.45454545454545,87.09845542907715
+(stdin),(Entrada padrão),(stdin),,LLAMA,53.37684154510498,12.479026845637584,18.99589214128981,100.0,73.12273383140564
+%s,%s,%s,,LLAMA,99.3385374546051,100.0,100.00000000000004,0.0,99.99998211860657
+I/O error,Erro de entrada/saída,erro de E/S,,LLAMA,72.5534737110138,27.978255957530035,12.703318703865365,33.33333333333333,77.98287868499756

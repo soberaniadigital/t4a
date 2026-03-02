@@ -1,0 +1,570 @@
+original,translated,reference,context_languages,strategy,comet,chrf,bleu,ter,bertscore
+invalid argument %s for %s,argumento %s para %s inválido,argumento inválido para %s: %s,"VI,RU",LLAMA,89.90623354911804,61.430691692871655,28.98580955281284,60.0,82.93809294700623
+ambiguous argument %s for %s,argumento ambiguo %s para %s,argumento ambíguo %s para %s,"VI,RU",LLAMA,94.60604786872864,81.2819629359961,64.34588841607616,20.0,94.76176500320435
+Valid arguments are:,Os argumentos válidos são:,Argumentos válidos são:,"VI,RU",LLAMA,98.43652844429016,86.19589689046727,39.76353643835252,33.33333333333333,88.09451460838318
+regular empty file,arquivo regular vazio,arquivo comum vazio,"VI,RU",LLAMA,92.22962260246277,42.76230065906964,34.66806371753173,33.33333333333333,92.98838973045349
+regular file,arquivo regular,arquivo comum,"VI,RU",LLAMA,88.75276446342468,40.10318686471661,49.99999999999999,50.0,92.16135144233704
+directory,diretório,diretório,"VI,RU",LLAMA,98.74995946884155,100.0,100.00000000000004,0.0,99.99997019767761
+symbolic link,simbolo tautológico,link simbólico,"VI,RU",LLAMA,70.62272429466248,17.999630158156656,0.0,100.0,77.87867784500122
+message queue,fila de mensagens,fila de mensagem,"VI,RU",LLAMA,93.05689334869385,81.73693554483714,55.03212081491043,33.33333333333333,93.34294199943542
+semaphore,semafor,semáforo,"VI,RU",LLAMA,91.90605282783508,24.319684583790227,0.0,100.0,82.66353607177734
+shared memory object,objeto de memória compartilhada,objeto em memória compartilhada,"VI,RU",LLAMA,93.33181977272034,75.81688742014828,35.35533905932737,25.0,96.33073806762695
+typed memory object,objeto de memória tipeada,objeto de memória tipificada,"VI,RU",LLAMA,84.14751887321472,73.86149547743236,59.460355750136046,25.0,91.84916019439697
+block special file,arquivo especial bloco de blocos,arquivo especial de bloco,"VI,RU",LLAMA,89.53821063041687,76.80512149265965,25.40663740773074,50.0,89.95108604431152
+character special file,arquivo de caracteres especiais,arquivo especial de caractere,"VI,RU",LLAMA,94.26860809326172,60.29647095703816,18.99589214128981,75.0,87.33718395233154
+contiguous data,dados em sequência,dados contíguos,"VI,RU",LLAMA,62.54952549934387,23.697749463749062,27.516060407455225,100.0,75.45660138130188
+fifo,"FIFO (primeiro a entrar, primeiro a sair)",fifo,"VI,RU",LLAMA,42.62551963329315,3.9215686274509802,0.0,100.0,67.13296175003052
+door,porta,porta,"VI,RU",LLAMA,98.45393300056458,100.0,100.00000000000004,0.0,100.00004768371582
+multiplexed block special file,bloco especial de arquivo com múltiplas versões,arquivo multiplexado especial de bloco,"VI,RU",LLAMA,79.62743043899536,53.8989443109718,15.619699684601283,100.0,75.29604434967041
+multiplexed character special file,arquivo especial com caracteres múltiplos e flexíveis,arquivo multiplexado especial de caractere,"VI,RU",LLAMA,74.57934021949768,46.86142884873871,7.809849842300637,100.0,76.71465873718262
+multiplexed file,arquivo de múltiplos tipos,arquivo multiplexado,"VI,RU",LLAMA,65.69021344184875,37.094019106769274,15.97357760615681,100.0,78.40785384178162
+named file,arquivo de nome,arquivo nomeado,"VI,RU",LLAMA,84.02426242828369,45.403445841975504,27.516060407455225,100.0,90.46522378921509
+network special file,arquivo especial de rede,arquivo especial de rede,"VI,RU",LLAMA,98.93332123756409,100.0,100.00000000000004,0.0,99.99997019767761
+migrated file with data,migração de arquivo com dados,arquivo migrado com dados,"VI,RU",LLAMA,89.61524963378906,62.50622898429976,23.643540225079384,75.0,85.86971759796143
+migrated file without data,arquivo termigrasi sem dados,arquivo migrado sem dados,"VI,RU",LLAMA,93.57326626777649,58.91525904248559,35.35533905932737,25.0,88.71204257011414
+port,porta,porta,"VI,RU",LLAMA,98.39172959327698,100.0,100.00000000000004,0.0,100.00004768371582
+socket,soquete,soquete,"VI,RU",LLAMA,98.11129570007324,100.0,100.00000000000004,0.0,100.0
+whiteout,branqueamento,whiteout,"VI,RU",LLAMA,47.269728779792786,6.349206349206351,0.0,100.0,80.04624843597412
+weird file,arquivo desconhecido,arquivo estranho,"VI,RU",LLAMA,85.47056317329407,36.500605694385186,49.99999999999999,50.0,78.59992980957031
+program error,Erro do programa,erro do programa,"VI,RU",LLAMA,71.8631386756897,82.91201853701854,55.03212081491043,0.0,94.65303421020508
+stack overflow,stack de sobrecarga,estouro de pilha,"VI,RU",LLAMA,55.91877102851868,13.793154274772348,27.516060407455225,66.66666666666666,78.29532027244568
+Try '%s --help' for more information.,Copie '%s --help' para obter informações adicionais.,"Tente ""%s --help"" para mais informações.","VI,RU",LLAMA,87.82761693000793,46.2079350552574,10.552670315936318,100.0,86.01120710372925
+Unknown system error,Erro do sistema desconhecido,Erro desconhecido de sistema,"VI,RU",LLAMA,94.79896426200867,63.385693111236584,21.02241038134286,50.0,90.22597670555115
+"%s: option '%s%s' is ambiguous
+",%s: pilihan '%s%s' ambiguo.,"%s: a opção ""%s%s"" é ambígua
+","VI,RU",LLAMA,87.44286894798279,20.628010175226454,19.561803044642364,83.33333333333334,74.8816728591919
+%s: option '%s%s' is ambiguous; possibilities:,%s: opção '%s%s' ambígua; possibilidades:,"%s: a opção ""%s%s"" é ambígua; possibilidades:","VI,RU",LLAMA,93.5679018497467,66.36073013259269,29.059394092519575,42.857142857142854,85.91348528862
+"%s: unrecognized option '%s%s'
+","%s: pilihan tidak dikenal “%s%s”
+","%s: opção desconhecida ""%s%s""
+","VI,RU",LLAMA,89.41304087638855,19.801432911603175,23.462350320527996,100.0,82.41823315620422
+"%s: option '%s%s' doesn't allow an argument
+","%s: opção '%s%s' não permite argumento
+","%s: a opção ""%s%s"" não permite argumento
+","VI,RU",LLAMA,96.97599411010742,64.63815616453475,24.973194725900544,28.57142857142857,89.64297771453857
+"%s: option '%s%s' requires an argument
+","%s: opção '%s%s' requer um argumento
+","%s: a opção ""%s%s"" exige um argumento
+","VI,RU",LLAMA,95.60449719429016,46.28833196365148,20.999869922442727,42.857142857142854,87.89058327674866
+"%s: invalid option -- '%c'
+",%s: opção -- '%c' inválida,"%s: opção inválida -- ""%c""
+","VI,RU",LLAMA,94.87003684043884,59.6658563744477,30.719343730842187,40.0,90.695059299469
+"%s: option requires an argument -- '%c'
+",%s: opção -- '%c' requer um argumento,"%s: a opção exige um argumento -- ""%c""
+","VI,RU",LLAMA,90.87520241737366,47.02644687638377,16.44945005613896,62.5,88.06549906730652
+`,‘’,“,"VI,RU",LLAMA,92.87307858467102,0.0,0.0,100.0,94.80136036872864
+',',”,"VI,RU",LLAMA,92.98041462898254,0.0,0.0,100.0,68.19586753845215
+Success,Thành công,Sucesso,"VI,RU",LLAMA,76.15479826927185,1.9305019305019304,0.0,100.0,74.49727058410645
+No match,Não é apropriado.,Nenhuma ocorrência do padrão,"VI,RU",LLAMA,58.06317925453186,11.179042425113103,0.0,100.0,70.47423124313354
+Invalid regular expression,Expresi%s reguler tidonot valid,Expressão regular inválida,"VI,RU",LLAMA,49.2328017950058,26.049559055123822,0.0,100.0,68.24056506156921
+Invalid collation character,Caracter colasi não é válido.,caractere de combinação inválido,"VI,RU",LLAMA,60.177141427993774,27.2646251567217,0.0,100.0,70.01672387123108
+Invalid character class name,Nome do curso de caracteres inválido,Nome inválido da classe de caracteres,"VI,RU",LLAMA,74.19310808181763,54.90318314438595,19.304869754804482,50.0,88.30597400665283
+Trailing backslash,Akhiran backslash,Barra invertida no final,"VI,RU",LLAMA,46.87181115150452,5.690823108384457,0.0,100.0,67.79927015304565
+Invalid back reference,Referência de volta não é válida,Retrorreferência inválida,"VI,RU",LLAMA,68.32039952278137,36.307146966013335,0.0,100.0,74.37100410461426
+"Unmatched [, [^, [:, [., or [=","Chave [, Chaves ^, [:, . ou =] sem parâmetro","[, [^, [:, [. ou [= sem correspondente","VI,RU",LLAMA,59.03621315956116,29.138330075842454,33.15796151992084,75.0,80.91210722923279
+Unmatched ( or \(,"Chão ( ou 
+)",( ou \( sem correspondente,"VI,RU",LLAMA,59.08805727958679,11.99833381628513,19.37692912686648,80.0,69.39741969108582
+Unmatched \{,{ tanpa pasangan,\{ sem correspondente,"VI,RU",LLAMA,71.55610918998718,7.456216403676088,19.716118825581447,100.0,73.73942732810974
+Invalid content of \{\},O conteúdo do \\{\} não é válido.,Conteúdo inválido de \{\},"VI,RU",LLAMA,79.1241466999054,38.571816778527406,21.200626759025184,100.0,73.59727621078491
+Invalid range end,Kết thúc vùng không hợp lệ,Fim do intervalo inválido,"VI,RU",LLAMA,46.4589387178421,2.86697247706422,0.0,100.0,69.50917840003967
+Memory exhausted,Memória de trabalho esgotada,Memória esgotada,"VI,RU",LLAMA,71.54231667518616,60.804864609112705,18.99589214128981,100.0,92.26046800613403
+Invalid preceding regular expression,Expressão regular que impede operações inválidas não está em conformidade com os padrões de segurança do sistema.,A expressão regular precedente é inválida,"VI,RU",LLAMA,50.98491907119751,35.05289422487085,2.1476912089159055,100.0,68.10868382453918
+Premature end of regular expression,O final do padrão regular é prematuro.,Fim prematuro da expressão regular,"VI,RU",LLAMA,68.88917088508606,41.14272553753224,6.567274736060395,100.0,76.3957142829895
+Regular expression too big,Expressão regular é muito grande,Expressão regular grande demais,"VI,RU",LLAMA,85.81059575080872,63.37705190724061,23.643540225079384,75.0,88.90188336372375
+Unmatched ) or \),ou sem vínculo,) ou \) sem correspondente,"VI,RU",LLAMA,62.13339567184448,12.299754397421282,12.753667906901528,60.0,72.54095673561096
+No previous regular expression,Não há expressões regulares definidas anteriormente.,Nenhuma expressão regular anterior,"VI,RU",LLAMA,77.1322250366211,37.429803694352465,0.0,100.0,77.99607515335083
+"Packaged by %s (%s)
+",Dipaketkan oleh %s (%s),"Empacotado por %s (%s)
+","VI,RU",LLAMA,73.45588207244873,34.866959969710024,68.037493331712,50.0,90.33644199371338
+"Packaged by %s
+",Goiando bô de %s,"Empacotado por %s
+","VI,RU",LLAMA,56.55295252799988,16.942621601279516,21.3643503198117,100.0,76.59998536109924
+(C),(C),(C),"VI,RU",LLAMA,99.15798306465149,100.0,100.00000000000004,0.0,100.0
+"License GPLv3+: GNU GPL version 3 or later <%s>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+","Lisensi GPLv3+: GNU GPL versi 3 ou posterior <%s>. Início é software livre, você pode modificar e distribuir. Não há nenhum acordo de licenciamento além do que está permitido pela lei vigente.","Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>.
+Este é um software livre: você é livre para alterá-lo e redistribuí-lo.
+NÃO HÁ QUALQUER GARANTIA, na máxima extensão permitida em lei.
+","VI,RU",LLAMA,74.73451495170593,41.72973654919958,28.761604244499797,70.96774193548387,78.45293283462524
+"Written by %s.
+",Ditulis oleh %s.,"Escrito por %s.
+","VI,RU",LLAMA,93.57376098632812,21.240498449516135,39.76353643835252,66.66666666666666,89.56480026245117
+"Written by %s and %s.
+","Ditulis oleh %s dan %s. 
+","Escrito por %s e %s.
+","VI,RU",LLAMA,90.66513180732727,22.93105534391604,25.848657697858535,60.0,91.77953004837036
+"Written by %s, %s, and %s.
+","Tác giả: %s, %s e %s.","Escrito por %s, %s e %s.
+","VI,RU",LLAMA,88.0203127861023,50.32799972242583,71.02992180127417,33.33333333333333,79.06164526939392
+"Written by %s, %s, %s,
+and %s.
+","Tác giả: %s, %s, %s, e %s. 
+","Escrito por %s, %s, %s
+e %s.
+","VI,RU",LLAMA,88.67378830909729,42.40033869906151,60.26080978557135,42.857142857142854,83.41782093048096
+"Written by %s, %s, %s,
+%s, and %s.
+","Ditulis por %s, %s, %s, %s, dan %s. 
+","Escrito por %s, %s, %s
+%s e %s.
+","VI,RU",LLAMA,90.21532535552979,46.97678007323516,56.32579400090421,50.0,90.26370644569397
+"Written by %s, %s, %s,
+%s, %s, and %s.
+","Tác giả: %s, %s, %s, 
+%s, %s e v.c.","Escrito por %s, %s, %s
+%s, %s e %s.
+","VI,RU",LLAMA,81.30021691322327,43.79436632846159,53.51607207631774,44.44444444444444,82.57080912590027
+"Written by %s, %s, %s,
+%s, %s, %s, and %s.
+","Tác giả: %s, %s, %s, 
+%s, %s, %s e v&a %s. 
+","Escrito por %s, %s, %s
+%s, %s, %s e %s.
+","VI,RU",LLAMA,84.13349390029907,52.383254250684,59.378308100734984,40.0,85.44249534606934
+"Written by %s, %s, %s,
+%s, %s, %s, %s,
+and %s.
+","Tác giả: %s, %s, %s, %s, %s, %s, %s, dan %s.","Escrito por %s, %s, %s
+%s, %s, %s, %s
+e %s.
+","VI,RU",LLAMA,91.52650237083435,50.895786392264164,64.85614278660147,45.45454545454545,89.70004320144653
+"Written by %s, %s, %s,
+%s, %s, %s, %s,
+%s, and %s.
+","Ditulis oleh %s, %s, %s, %d, %d, %d, %d, %d, %d, dan %s. 
+","Escrito por %s, %s, %s
+%s, %s, %s, %s
+%s e %s.
+","VI,RU",LLAMA,87.85834312438965,32.65802699134501,35.479105265934486,83.33333333333334,90.21545052528381
+"Written by %s, %s, %s,
+%s, %s, %s, %s,
+%s, %s, and others.
+","Ditulis oleh %s, %s, %s, %s, %s, %s, %s, %s, %s e outros.","Escrito por %s, %s, %s
+%s, %s, %s, %s,
+%s, %s e outros.
+","VI,RU",LLAMA,93.92541646957397,72.60977053673125,84.46593249975186,23.076923076923077,96.41967415809631
+"Report bugs to: %s
+","Laporkan kutu ke: %s
+","Relate erros para: %s
+Relate erros de tradução para <http://translationproject.org/team/pt_BR.html>
+","VI,RU",LLAMA,47.71914780139923,8.522460700906702,0.7723098754885949,90.0,63.73857259750366
+"Report %s bugs to: %s
+","Laporkan kutu %s ke: %s
+","Relate os erros do %s para: %s
+","VI,RU",LLAMA,75.85469484329224,19.692757102815182,20.130954856436926,71.42857142857143,71.35412096977234
+"%s home page: <%s>
+",%s halaman rumah: <%s>,"Página do %s: <%s>
+","VI,RU",LLAMA,89.01695609092712,27.9405551775562,51.33450480401705,75.0,86.65432929992676
+"General help using GNU software: <%s>
+",Ajuda geral para o uso de software GNU: <%s>,"Ajuda em geral no uso de software GNU: <%s>
+","VI,RU",LLAMA,96.69369459152222,73.45929935987773,68.12455364200612,33.33333333333333,95.03099322319031
+memory exhausted,memória esgotada,memória esgotada,"VI,RU",LLAMA,99.05358552932739,100.0,100.00000000000004,0.0,100.00002384185791
+stdin,entrada padrão,entrada padrão (stdin),"VI,RU",LLAMA,80.852609872818,60.56139623226653,22.31301601484299,33.33333333333333,87.039315700531
+stdout,stdout,saída padrão (stdout),"VI,RU",LLAMA,63.780033588409424,20.750009437005197,1.8315638888734187,100.0,80.98940253257751
+stderr,stderr,erro padrão (stderr),"VI,RU",LLAMA,65.22449254989624,21.976959622423653,1.8315638888734187,100.0,81.60281181335449
+unknown stream,fluxo desconhecido,fluxo desconhecido,"VI,RU",LLAMA,99.14684295654297,100.0,100.00000000000004,0.0,100.00002384185791
+failed to reopen %s with mode %s,falha ao tentar reabrir %s com modo %s,falha ao reabrir %s com modo %s,"VI,RU",LLAMA,92.821204662323,85.7856660025064,70.71067811865478,14.285714285714285,97.0133125782013
+"Files %s and %s differ
+",Berkas %s dan %s berbeda.,"Os arquivos %s e %s são diferentes
+","VI,RU",LLAMA,76.5849232673645,17.474777427869803,13.784336590962209,71.42857142857143,84.52157378196716
+"Binary files %s and %s differ
+","Berkas biner %s dan %s berbeda
+","Os arquivos binários %s e %s são diferentes
+","VI,RU",LLAMA,68.19925308227539,18.262279827688236,12.164634345707649,75.0,82.28224515914917
+No newline at end of file,Não há mais linhas a serem adicionadas ao final do arquivo.,Nenhum caractere de nova linha no final do arquivo,"VI,RU",LLAMA,77.76466012001038,38.7609194378382,12.605968092174914,100.0,78.4734308719635
+Torbjorn Granlund,Torbjörn Granlund,Torbjorn Granlund,"VI,RU",LLAMA,95.60715556144714,60.2508429070929,49.99999999999999,50.0,92.68086552619934
+David MacKenzie,David MacKenzie,David MacKenzie,"VI,RU",LLAMA,99.05179738998413,100.0,100.00000000000004,0.0,100.00002384185791
+invalid --ignore-initial value %s,o valor `%s' para o tùy chọn `--ignore-initial` não é válido.,valor inválido --ignore-initial %s,"VI,RU",LLAMA,65.09490609169006,47.62447488512995,3.21858262703621,100.0,72.75887131690979
+options -l and -s are incompatible,A opção '-l' e a opção '-s' não são compatíveis entre si.,as opções -l e -s são incompatíveis,"VI,RU",LLAMA,81.63009285926819,33.38182406860108,3.673526562988939,100.0,80.2118718624115
+write failed,falha na escrita,erro de escrita,"VI,RU",LLAMA,85.67606806755066,34.55608991211193,27.516060407455225,66.66666666666666,83.13207030296326
+standard output,thiết bị xuất chuẩn,saída padrão,"VI,RU",LLAMA,56.53635859489441,0.0,0.0,100.0,75.78317523002625
+"-b, --print-bytes          print differing bytes","-b, --print-bytes          exibir bytes diferentes.","-b, --print-bytes          imprime os bytes diferentes","VI,RU",LLAMA,86.43359541893005,70.13982598815545,30.739407647563215,50.0,91.15111231803894
+"-i, --ignore-initial=SKIP         skip first SKIP bytes of both inputs","-i, --ignore-initial=SKIP         lewati SKIP byte awal dari kedua masukan","-i, --ignore-initial=SALTO        ignora os primeiros SALTO bytes da entrada","VI,RU",LLAMA,72.78369069099426,35.667574391195735,21.200626759025184,88.88888888888889,84.35227870941162
+"-i, --ignore-initial=SKIP1:SKIP2  skip first SKIP1 bytes of FILE1 and
+                                      first SKIP2 bytes of FILE2","-i, --ignore-initial=SỐ1:SỐ2      bỏ qua SỐ1 byte đầu của TẬP-TIN1 và SỐ2 byte đầu của TẬP-TIN2.","-i, --ignore-initial=SALTO1:SALTO2
+                                  ignora os primeiros SALTO1 bytes do ARQUIVO1
+                                    e os primeiros SALTO2 bytes do ARQUIVO2","VI,RU",LLAMA,71.9232976436615,24.155049140934143,12.021577610863728,93.75,79.35704588890076
+"-l, --verbose              output byte numbers and differing byte values","-l, --verbose              exibe bytes e valores de todos os bytes diferentes","-l, --verbose              emite os números de bytes e os valores de
+                             todos os bytes diferentes","VI,RU",LLAMA,81.65355920791626,69.43461807694239,41.36895450425725,33.33333333333333,94.6340799331665
+"-n, --bytes=LIMIT          compare at most LIMIT bytes","-n, --bytes=%s          bandar o máximo %s byte","-n, --bytes=LIMITE         compara no máximo LIMITE bytes","VI,RU",LLAMA,62.354493141174316,39.16085027780083,22.416933501922287,71.42857142857143,80.6993842124939
+"-s, --quiet, --silent      suppress all normal output","-s, --quiet, --silent      cegah semua keluaran normal","-s, --quiet, --silent      suprime todas saídas normais","VI,RU",LLAMA,79.21055555343628,51.03406736086578,44.63236137853326,57.14285714285714,89.50696587562561
+    --help                 display this help and exit,    --help                 hiêln thị trọ̀i này rồi thoát,    --help                 mostra esta ajuda e sai,"VI,RU",LLAMA,45.33136188983917,19.224492663509963,6.567274736060395,100.0,73.24826717376709
+"-v, --version              output version information and exit","-v, --version               mostra informações de versão e sai.","-v, --version              mostra informação sobre a versão e sai","VI,RU",LLAMA,90.34897685050964,73.57676443262856,37.99178428257963,44.44444444444444,93.60974431037903
+"Usage: %s [OPTION]... FILE1 [FILE2 [SKIP1 [SKIP2]]]
+",CÓPIA DE UTILIZAR: %s [CHOEI]... BERKAS1 [BERKAS2 [SKIP_LINE1 [SKIP_LINE2]]],"Uso: %s [OPÇÃO]... ARQUIVO1 [ARQUIVO2 [SALTO1 [SALTO2]]]
+","VI,RU",LLAMA,57.58569836616516,22.74576894726238,23.636947852983194,100.0,82.43470191955566
+Compare two files byte by byte.,Bandingkan dua berkas byte per byte.,Compara dois arquivos byte por byte.,"VI,RU",LLAMA,81.45511150360107,28.208670783754208,14.535768424205482,66.66666666666666,85.34154295921326
+"The optional SKIP1 and SKIP2 specify the number of bytes to skip
+at the beginning of each file (zero by default).",SKIP1 e SKIP2 representam o número de bytes que devem ser pulados no início de cada arquivo (valor padrão é zero).,"Os argumentos opcionais SALTO1 e SALTO2 especificam o número de
+bytes para ignorar no começo de cada arquivo (zero por padrão).","VI,RU",LLAMA,81.49160742759705,39.39239684429418,23.546900700701926,71.42857142857143,85.91524362564087
+"Mandatory arguments to long options are mandatory for short options too.
+",Os argumentos obrigatórios para opções de comprimento também são necessários para as menores.,"Argumentos obrigatórios para opções longas também o são para opções curtas.
+","VI,RU",LLAMA,64.17366862297058,52.35985073226951,13.06511329838856,63.63636363636363,84.59612727165222
+"SKIP values may be followed by the following multiplicative suffixes:
+kB 1000, K 1024, MB 1,000,000, M 1,048,576,
+GB 1,000,000,000, G 1,073,741,824, and so on for T, P, E, Z, Y.","Nilai SKIP dapat diikuti oleh suffiks perkalian berikut:
+kB x 1000	K x 1024
+MB x 1,000,000	M x 1,048,576
+GB x 1,000,000,000	G x 1,073,741,824
+Dan seterusnya untuk T, P, E, Z, Y.","Os valores do SALTO podem ser seguidos por sufixos multiplicativos a seguir:
+kB 1000, K 1024, MB 1,000,000, M 1,048,576,
+GB 1,000,000,000, G 1,073,741,824,
+e assim por diante para T, P, E, Z, Y.","VI,RU",LLAMA,75.74838399887085,37.17230430730425,23.826338840817705,82.35294117647058,85.38649082183838
+"If a FILE is '-' or missing, read standard input.","Se o arquivo TIN for '-' ou não existir, lêm-o do padrão.","Se ARQUIVO for igual a ""-"" ou for omitido, ler da entrada padrão.","VI,RU",LLAMA,68.95197629928589,20.666145011922328,6.033104985460151,76.92307692307693,77.41008996963501
+"Exit status is 0 if inputs are the same, 1 if different, 2 if trouble.","Status de saída é 0 se as entradas forem idênticas, 1 caso contrário e 2 em caso de erro.","Status de saída é 0 se as entradas forem iguais, 1 se diferente e 2 se problema.","VI,RU",LLAMA,85.96237301826477,58.10780624665553,44.980624668364484,41.17647058823529,88.68451118469238
+invalid --bytes value %s,valor não é válido para --bytes %s,valor inválido de --bytes %s,"VI,RU",LLAMA,87.97202706336975,55.78607544616814,22.089591134157878,80.0,85.55652499198914
+missing operand after %s,thiếu toán hạng sau “%s”,faltando operando após %s,"VI,RU",LLAMA,47.876960039138794,5.23642758988453,6.567274736060395,100.0,74.29748773574829
+extra operand %s,operando extra '%s',operando extra %s,"VI,RU",LLAMA,85.05808115005493,73.74095266501716,23.643540225079384,33.33333333333333,92.02949404716492
+"%s %s differ: byte %<PRIdMAX>, line %<PRIdMAX>
+","%s %s diferente: byte %<PRIuMAX>, linha %<PRIuMAX>","%s e %s são diferentes: byte %<PRIdMAX>, linha %<PRIdMAX>
+","VI,RU",LLAMA,88.72696161270142,59.903114701682966,37.91621112953304,55.55555555555556,91.62490963935852
+"%s %s differ: byte %<PRIdMAX>, line %<PRIdMAX> is %3o %s %3o %s
+","%s %s diferente: byte %<PRIdMAX>, linha %<PRIuMAX> é de %3o bits e %3o bits 
+","%s e %s são diferentes: byte %<PRIdMAX>, linha %<PRIdMAX> é %3o %s %3o %s
+","VI,RU",LLAMA,84.12551283836365,62.831559127249506,45.63516028834353,50.0,86.27223372459412
+"cmp: EOF on %s which is empty
+","cmp: EOF na %s, que está vazia","cmp: Fim de arquivo (EOF) em %s que está vazio
+","VI,RU",LLAMA,57.02422261238098,33.59812183039048,10.126442477235686,70.0,84.51600074768066
+"cmp: EOF on %s after byte %<PRIdMAX>
+",cmp: EOF na linha %s após byte %<PRIdMAX>,"cmp: Fim de arquivo (EOF) em %s após byte %<PRIdMAX>
+","VI,RU",LLAMA,78.16541790962219,52.91567447620275,46.040771186435805,50.0,89.66431617736816
+"cmp: EOF on %s after byte %<PRIdMAX>, line %<PRIdMAX>
+","cmp: EOF na pasta %s após byte %<PRIdMAX>, linha %<PRIuMAX>","cmp: Fim de arquivo (EOF) em %s após byte %<PRIdMAX>, linha %<PRIdMAX>
+","VI,RU",LLAMA,75.75117349624634,58.56062194222612,53.187155538382186,50.0,88.45670223236084
+"cmp: EOF on %s after byte %<PRIdMAX>, in line %<PRIdMAX>
+","cmp: EOF na pasta %s após byte %<PRIdMAX> em linha %<PRIuMAX>, 
+","cmp: Fim de arquivo (EOF) em %s após byte %<PRIdMAX>, na linha %<PRIdMAX>
+","VI,RU",LLAMA,73.05247187614441,53.76308649659347,40.452759870690194,61.53846153846154,86.8318498134613
+Paul Eggert,Paul Eggert,Paul Eggert,"VI,RU",LLAMA,98.89376163482666,100.0,100.00000000000004,0.0,99.99995231628418
+Mike Haertel,Mike Haertel,Mike Haertel,"VI,RU",LLAMA,99.2086112499237,100.0,100.00000000000004,0.0,99.99995231628418
+David Hayes,David Hayes,David Hayes,"VI,RU",LLAMA,98.90812635421753,100.0,100.00000000000004,0.0,100.00003576278687
+Richard Stallman,Richard Stallman,Richard Stallman,"VI,RU",LLAMA,99.33696389198303,100.0,100.00000000000004,0.0,100.0
+Len Tower,Torre de Len (Len Tower),Len Tower,"VI,RU",LLAMA,88.56796622276306,66.83683444206063,13.134549472120788,100.0,78.1361997127533
+invalid context length %s,a extensão do contexto %s não é válida,o comprimento do contexto não é válido %s,"VI,RU",LLAMA,78.0676543712616,52.52136242964332,16.51582159006904,50.0,91.40488505363464
+pagination not supported on this host,não há suporte para paginamento neste host,sem suporte a paginação neste computador,"VI,RU",LLAMA,85.77735424041748,36.08968758470924,7.809849842300637,83.33333333333334,81.76659345626831
+too many file label options,terlalu banyak opsi label berkas,número excessivo de opções de rótulo de arquivo,"VI,RU",LLAMA,72.58972525596619,6.352838914839151,0.0,100.0,70.18446326255798
+invalid width %s,a largura do campo %s não é válida,largura inválida %s,"VI,RU",LLAMA,51.671433448791504,48.66658994893094,10.552670315936318,100.0,74.34666752815247
+conflicting width options,opções conflitantes,opções de largura conflitantes,"VI,RU",LLAMA,85.20781397819519,49.33131318380899,26.013004751144457,50.0,90.43797254562378
+invalid horizon length %s,o horizonte %s não é válido,comprimento do horizonte inválido %s,"VI,RU",LLAMA,63.597482442855835,40.37722598894569,14.535768424205482,100.0,79.47110533714294
+invalid tabsize %s,cỡ ký tự tab %s không hợp lệ,tamanho de tabulação inválido %s,"VI,RU",LLAMA,56.439560651779175,12.488043655805201,9.535414040914192,100.0,72.75580763816833
+conflicting tabsize options,conflicto de opções tabsize,opções de tamanho de tabulação conflitantes,"VI,RU",LLAMA,53.540974855422974,25.567564428698326,11.521590992286539,83.33333333333334,74.29547905921936
+--from-file and --to-file both specified,--from-file dan --to-file keduanya disebutkan,ambos --from-file e --to-file especificados,"VI,RU",LLAMA,91.94123148918152,44.40783808590126,12.703318703865365,80.0,85.78488826751709
+    --normal                  output a normal diff (the default),    --normal                  sair com o diff padrão (básico),    --normal                  cria um diff no formato normal (padrão),"VI,RU",LLAMA,76.61120295524597,31.163156244795342,6.379653897348568,87.5,84.45643782615662
+"-q, --brief                   report only when files differ","-q, --brief                   chama apenas quando houver arquivos diferentes.","-q, --brief                   indica apenas se os arquivos forem diferentes","VI,RU",LLAMA,71.0186779499054,53.449729832862644,18.575057999133595,55.55555555555556,86.18999123573303
+"-s, --report-identical-files  report when two files are the same","-s, --report-identical-files  báo cáo khi có hai tập tin bằng nhau","-s, --report-identical-files  indica quando dois arquivos forem o idênticos","VI,RU",LLAMA,83.17109942436218,41.39959563273056,12.605968092174914,100.0,83.91757607460022
+"-c, -C NUM, --context[=NUM]   output NUM (default 3) lines of copied context","-c, -C %s, --context[=%s]     xuất ra SỐ (mặc định là %d) dòng của ngữ cảnh","-c, -C NÚM, --context[=NÚM]   cria NÚM (padrão 3) linhas de contexto copiado","VI,RU",LLAMA,63.51023316383362,26.475478816547366,14.299133016633656,100.0,78.80659103393555
+"-u, -U NUM, --unified[=NUM]   output NUM (default 3) lines of unified context","-u, -U UF, --unified[=UF]     xuất ra UF (mặc định là 3) dòng của ngữ cảnh hợp nhất","-u, -U NÚM, --unified[=NÚM]   cria NÚM (padrão 3) linhas de contexto unificado","VI,RU",LLAMA,57.62168765068054,27.623544485215046,15.980518115118317,100.0,84.98761653900146
+"-e, --ed                      output an ed script","-e, --ed                      excluir um script ed","-e, --ed                      cria um script para o editor ed","VI,RU",LLAMA,65.64038395881653,43.04518924996713,20.95871245288356,44.44444444444444,87.89342045783997
+"-n, --rcs                     output an RCS format diff","-n, --rcs                     keluaran dalam format RCS diff","-n, --rcs                     cria um diff no formato RCS","VI,RU",LLAMA,81.59709572792053,44.10791777882179,20.612390921238426,62.5,88.47342133522034
+"-y, --side-by-side            output in two columns","-y, --side-by-side            keluaran dalam dua kolom","-y, --side-by-side            cria em duas colunas","VI,RU",LLAMA,71.35792374610901,52.496145857539545,24.446151121745054,66.66666666666666,90.11542797088623
+"-W, --width=NUM               output at most NUM (default 130) print columns","-W, --width=NUM               keluarkan paling banyak NUM (baku 130) kolom cetak.","-W, --width=NÚM               limita a saída a NÚM colunas por linha (padrão 130)","VI,RU",LLAMA,58.49093794822693,29.828083403274302,17.775955083125037,91.66666666666666,80.15961050987244
+    --left-column             output only the left column of common lines,    --left-column             kết xuất chỉ cột bên trái của các dòng chung,"    --left-column             emite apenas a coluna da esquerda das linhas
+                                idênticas","VI,RU",LLAMA,62.75128126144409,22.58890543881547,3.7477767366779213,100.0,81.30807876586914
+    --suppress-common-lines   do not output common lines,    --suppress-common-lines   não exibir linhas comuns,    --suppress-common-lines   não exibe as linhas idênticas,"VI,RU",LLAMA,84.98108386993408,64.6006533283666,19.3576934939088,50.0,87.99498677253723
+"-p, --show-c-function         show which C function each change is in","-p, --show-c-function         hiển thị cái mà từng hàm C thay đổi ở trong đó.","-p, --show-c-function         mostra em qual função C está cada alteração","VI,RU",LLAMA,76.00182890892029,35.45320830529741,9.782375748961453,100.0,86.33076548576355
+"-F, --show-function-line=RE   show the most recent line matching RE","-F, --show-function-line=RE   exibe a linha de função atual que corresponde à expressão RE.","-F, --show-function-line=ER   mostra a linha mais recente correspondendo à ER","VI,RU",LLAMA,83.56944918632507,51.80552056833518,17.694975149532556,90.0,88.38796615600586
+"    --label LABEL             use LABEL instead of file name and timestamp
+                                (can be repeated)","    --label LABEL             pakai LABEL bukan nama berkas dan stempel waktu
+                                (dapat diulang)","    --label RÓTULO            usa RÓTULO ao invés do nome do arquivo e
+                                carimbo de tempo (pode ser repetido)","VI,RU",LLAMA,55.05768060684204,14.801492321154724,2.6149826893840222,94.11764705882352,75.87859630584717
+"-t, --expand-tabs             expand tabs to spaces in output","-t, --expand-tabs             mở rộng ký tự tab ra ký tự khoảng cách khi kết xuất
+","-t, --expand-tabs             expande as tabulações para espaços na saída","VI,RU",LLAMA,68.50963830947876,30.743238231069864,9.103526405546068,100.0,80.38841485977173
+"-T, --initial-tab             make tabs line up by prepending a tab","-T, --inicial-tab             alinhar linhas adicionando um taboáro no início
+","-T, --initial-tab             alinha tabulações introduzindo uma
+                                tabulação no início","VI,RU",LLAMA,73.46881031990051,44.2420619972818,11.868405219520975,66.66666666666666,87.51111030578613
+    --tabsize=NUM             tab stops every NUM (default 8) print columns,    --tabsize=Só               🙌 cách tab sai mỗi Só coluna (baku 8),"    --tabsize=NÚM             paradas de tabulação a cada NÚM colunas
+                                (padrão=8)","VI,RU",LLAMA,40.90593755245209,22.002041608612025,7.907608126112009,100.0,76.14838480949402
+    --suppress-blank-empty    suppress space or tab before empty output lines,"    --suppress-blank-empty    cegah spazi ou tab antes de linha em branco
+","    --suppress-blank-empty    suprime espaço ou tabulação antes de linhas
+                                vazias na saída","VI,RU",LLAMA,68.78348588943481,46.49697813248459,9.030367376343264,63.63636363636363,81.18640780448914
+"-l, --paginate                pass output through 'pr' to paginate it","-l, --paginate          enviar saída para 'pr' para paginação","-l, --paginate                passa a saída por meio de ""pr"" para paginá-la","VI,RU",LLAMA,60.07533073425293,44.51790355917266,11.56970650765539,63.63636363636363,85.1108193397522
+"-r, --recursive                 recursively compare any subdirectories found","-r, --recursive                 recursivamente sincronizar subdiretórios e seus conteúdos.","-r, --recursive                 compara recursivamente os subdiretórios
+                                  encontrados","VI,RU",LLAMA,66.29880666732788,60.734622530312166,17.747405280050266,71.42857142857143,85.96336841583252
+    --no-dereference            don't follow symbolic links,    --no-dereference            não aceitar link simbólico,    --no-dereference            não interpreta links simbólicos,"VI,RU",LLAMA,87.88005709648132,59.6380526439833,21.3643503198117,60.0,93.16515922546387
+"-N, --new-file                  treat absent files as empty",-N --novo-arquivo                    considerar arquivos inexistentes como vazios.,"-N, --new-file                  considera os arquivos ausentes como vazios","VI,RU",LLAMA,67.18910932540894,47.91766606177782,11.59119922599073,75.0,83.5056483745575
+    --unidirectional-new-file   treat absent first files as empty,"    --unidirectional-new-file   coi tập tin yang mới không có trong file system
+","    --unidirectional-new-file   considera os primeiros arquivos ausentes
+                                  como vazios","VI,RU",LLAMA,63.863927125930786,35.56509650064216,3.7477767366779213,100.0,78.22831273078918
+    --ignore-file-name-case     ignore case when comparing file names,    --ignore-file-name-case     bỏ qua chữ HOA/thường khi so sánh các tên tập tin,"    --ignore-file-name-case     não faz distinção entre letras maiúsculas e
+                                  minúsculas nos nomes dos arquivos","VI,RU",LLAMA,51.985615491867065,25.35264575121378,2.8398387225677895,92.3076923076923,77.52993106842041
+    --no-ignore-file-name-case  consider case when comparing file names,    --no-ignore-file-name-case  considerar pequeno/grande ao comparar o nome do arquivo,"    --no-ignore-file-name-case  faz distinção entre letras maiúsculas e
+                                  minúsculas nos nomes dos arquivos","VI,RU",LLAMA,59.86859202384949,33.90563553343585,3.42209762272661,91.66666666666666,80.411297082901
+"-x, --exclude=PAT               exclude files that match PAT","-x, --exclude=PAT               tanpa berkas yang cocok dengan PAT","-x, --exclude=PADRÃO            exclui arquivos correspondendo a PADRÃO","VI,RU",LLAMA,58.66890549659729,31.05257179282387,23.462350320528007,100.0,79.72422242164612
+"-X, --exclude-from=FILE         exclude files that match any pattern in FILE","-X, --exclude-from=FILE         minta para baixar berkas yang cocok dengan pola dalam FILE","-X, --exclude-from=ARQUIVO      exclui arquivos com correspondam a qualquer
+                                  padrão contido em ARQUIVO","VI,RU",LLAMA,58.05480480194092,26.047929804599047,16.451929399933107,91.66666666666666,81.55837059020996
+"-S, --starting-file=FILE        start with FILE when comparing directories","-S, --starting-file=FILE        mulai dende com FILE ketika membandungkan direktori.","-S, --starting-file=ARQUIVO     inicia por ARQUIVO ao comparar diretórios","VI,RU",LLAMA,68.35595369338989,32.91165523174403,19.338531381761726,100.0,82.87283778190613
+"    --from-file=FILE1           compare FILE1 to all operands;
+                                  FILE1 can be a directory","    --from-file=FILE1           bandar FILE1 para todos os operandos; 
+                                  FILE1 pode ser um diretório","    --from-file=ARQUIVO1        compara ARQUIVO1 com todos os operandos;
+                                  ARQUIVO1 pode ser um diretório","VI,RU",LLAMA,70.51742672920227,55.72636769703958,36.15855225145533,41.66666666666667,88.19283246994019
+"    --to-file=FILE2             compare all operands to FILE2;
+                                  FILE2 can be a directory","    --to-file=FILE2             bandar sempre os operandos com FILE2; 
+                                  FILE2 pode ser um diretório","    --to-file=ARQUIVO2          compara todos os operandos com ARQUIVO2;
+                                  ARQUIVO2 pode ser um diretório","VI,RU",LLAMA,68.28801035881042,51.006564586823885,27.22589423069701,41.66666666666667,89.56092596054077
+"-i, --ignore-case               ignore case differences in file contents","-i, --ignore-case               desconsiderar diferenças entre letras maiúsculas e minúsculas no conteúdo do arquivo.","-i, --ignore-case               não faz distinção entre letras maiúsculas e
+                                  minúsculas no conteúdo do arquivo","VI,RU",LLAMA,79.5458972454071,78.75769202572938,64.75445426291287,28.57142857142857,91.98989868164062
+"-E, --ignore-tab-expansion      ignore changes due to tab expansion","-E, --ignore-tab-expansion      ignoreie o módulo de expansão do tabulador
+","-E, --ignore-tab-expansion      ignora as diferenças causadas pela expansão
+                                  da tabulação","VI,RU",LLAMA,58.14555287361145,51.594077191219355,15.187207110382285,70.0,85.09023189544678
+"-Z, --ignore-trailing-space     ignore white space at line end","-Z, --ignore-trailing-space     bỏ qua tất cả dấu cách ở cuối dòng.","-Z, --ignore-trailing-space     ignora espaços em branco no fim das linhas","VI,RU",LLAMA,72.24538922309875,40.02642075867631,11.498759556447217,90.0,79.70795631408691
+"-b, --ignore-space-change       ignore changes in the amount of white space","-b, --ignore-space-change       bỏ qua thay đổi gây ra bởi nhóm dấu cách","-b, --ignore-space-change       ignora as diferenças na quantidade de espaços
+                                  em branco","VI,RU",LLAMA,71.02200388908386,35.316386631304944,11.498759556447217,90.9090909090909,79.9886703491211
+"-w, --ignore-all-space          ignore all white space","-w, --ignore-all-space          bora qua tato cahir","-w, --ignore-all-space          ignora todos os espaços em branco","VI,RU",LLAMA,45.67733705043793,45.57834567238188,18.370727471078336,75.0,76.77976489067078
+"-B, --ignore-blank-lines        ignore changes where lines are all blank","-B, --ignore-blank-lines        bỏ qua thay đổi do dòng trống","-B, --ignore-blank-lines        ignora diferenças onde as linhas estão vazias","VI,RU",LLAMA,69.21355724334717,38.41502585581749,15.619699684601283,77.77777777777779,81.51052594184875
+"-I, --ignore-matching-lines=RE  ignore changes where all lines match RE","-I, --ignore-matching-lines=RE  bora quitar linhas que coçam com RE","-I, --ignore-matching-lines=ER  ignora as diferenças nas linhas que
+                                  correspondem à expressão regular ER","VI,RU",LLAMA,62.16786503791809,40.72184246524726,18.065141676274923,76.92307692307693,84.66342687606812
+"-a, --text                      treat all files as text","-a, --text                      xử lý mọi tập tin là văn bản thường (opção para tratamento de todos os arquivos como texto)","-a, --text                      trata todos os arquivos como texto","VI,RU",LLAMA,67.07015037536621,67.65856067498342,20.617350508583826,100.0,77.86776423454285
+    --strip-trailing-cr         strip trailing carriage return on input,    --strip-trailing-cr         apagar o retorno de carro da linha final do input após a digitação,"    --strip-trailing-cr         remove o caractere de retorno de carro
+                                  (CR) ao final da linha na entrada","VI,RU",LLAMA,72.41495251655579,48.85561369360507,12.066209970920308,66.66666666666666,86.24218106269836
+    --binary                    read and write data in binary mode,    --binary                    ônibus binário para leitura e escrita de dados em modo binário,    --binary                    lê e escreve os dados em modo binário,"VI,RU",LLAMA,72.96637892723083,58.8703110596628,23.462350320527996,66.66666666666666,83.20364952087402
+"-D, --ifdef=NAME                output merged file with '#ifdef NAME' diffs","-D, --ifdef=NAME                keluarkan berkas yang tergabung dengan diff '#ifdef NAME'","-D, --ifdef=NOME                exibe o arquivo mesclado incluindo
+                                  ""#ifndef NOME"" nas diferenças","VI,RU",LLAMA,74.16676878929138,24.99046728332857,15.224337726639417,90.9090909090909,81.90103769302368
+    --GTYPE-group-format=GFMT   format GTYPE input groups with GFMT,    --GTYPE-group-format=GFMT   format grup masukan GTYPE dengan GFMT,    --GTYPE-group-format=GFMT   formata grupos de entrada GTYPE com GFMT,"VI,RU",LLAMA,88.78341317176819,55.116808364765426,18.04438612975343,62.5,92.05652475357056
+    --line-format=LFMT          format all input lines with LFMT,"    --line-format=LFMT          Định dạng tất cả các dòng vào, mở rộng chân trời LFMT.",    --line-format=LFMT          formata todas as linhas de entrada com LFMT,"VI,RU",LLAMA,63.19827437400818,32.96306886719327,9.147827112247603,100.0,83.93911719322205
+    --LTYPE-line-format=LFMT    format LTYPE input lines with LFMT,    --LTYPE-line-format=LFMT    định dạng cổng masukan LTYPE với LFMT,    --LTYPE-line-format=LFMT    formata linhas de entrada LTYPE com LFMT,"VI,RU",LLAMA,84.27206873893738,44.85378956572537,17.747405280050266,62.5,91.75143837928772
+"  These format options provide fine-grained control over the output
+    of diff, generalizing -D/--ifdef.","Opsi format inicial oferece controle suave sobre diferenças difíceis de serem geradas, simplificando -D/--ifdef.","  Essa opções de formatação fornece um controle refinado sobre a saída
+    das diferenças, generalizando -D/--ifdef.","VI,RU",LLAMA,74.92079138755798,39.99577755418656,15.577142816907841,80.0,84.10916328430176
+"  LTYPE is 'old', 'new', or 'unchanged'.  GTYPE is LTYPE or 'changed'.","LTYPE é 'antigo', 'novo' ou 'sem alteração'. GTYPE é LTYPE ou 'alterado'.","  LTYPE pode ser ""old"", ""new"" ou ""unchanged"". GTYPE é LTYPE ou ""changed"".","VI,RU",LLAMA,80.41661381721497,32.82157280896123,16.716822873683913,58.333333333333336,88.34192156791687
+"  GFMT (only) may contain:
+    %<  lines from FILE1
+    %>  lines from FILE2
+    %=  lines common to FILE1 and FILE2
+    %[-][WIDTH][.[PREC]]{doxX}LETTER  printf-style spec for LETTER
+      LETTERs are as follows for new group, lower case for old group:
+        F  first line number
+        L  last line number
+        N  number of lines = L-F+1
+        E  F-1
+        M  L+1
+    %(A=B?T:E)  if A equals B then T else E","GFMT pode conter o seguinte:
+    %<  linhas do arquivo TP_TIN1
+    %>  linhas do arquivo TP_TIN2
+    %=  linhas comuns entre os arquivos TP_TIN1 e TP03
+    %[-][LARGURA][.[PRECISÃO]]{doxX}LETRA  especificador de formato printf para LETRA, que é o seguinte:
+      Para novos grupos: F - número da primeira linha;
+                     L - número da última linha;
+                     N - total de linhas = L-F+1;
+                     E - (F-1);
+                     M - (L+1)
+    %(A=B?T:E)  se A for igual a B, então T; caso contrário, E","  GFMT pode conter (apenas):
+    %<  linhas do ARQUIVO1
+    %>  linhas do ARQUIVO2
+    %=  linhas idênticas em ARQUIVO1 e ARQUIVO2
+    %[-][LARGURA][.[PREC]]{doxX}LETRA  especificação para LETRA
+        utilizando a mesma notação do comando printf(). 
+        Os códigos permitidos para LETRA são,
+        em maiúsculas para grupos novos,
+        em minúsculas para grupos antigos:
+        F  número da primeira linha
+        L  número da última linha
+        N  número de linhas = L-F+1
+        E  F-1
+        M  L+1
+    %(A=B?T:E)  se A igual B, então T; senão E","VI,RU",LLAMA,76.29812359809875,47.95474262630408,38.60934082475756,66.66666666666666,84.11680459976196
+"  LFMT (only) may contain:
+    %L  contents of line
+    %l  contents of line, excluding any trailing newline
+    %[-][WIDTH][.[PREC]]{doxX}n  printf-style spec for input line number","  LFMT dapat berisi:
+    %L  isi baris
+    %l  isi baris, tanpa baris baru
+    %[-][WIDTH][.[PREC]]{doxX}n  printf-style spec untuk nomor baris masukan","  LFMT pode conter (apenas):
+    %L  conteúdo da linha
+    %l  conteúdo da linha, excluindo o caractere final de nova linha
+    %[-][LARGURA][.[PREC]]{doxX}n  especificação estilo printf() do número
+                                   da linha da utilizando","VI,RU",LLAMA,65.94628691673279,20.605692112901615,27.976368323916116,89.65517241379311,80.72695136070251
+"  Both GFMT and LFMT may contain:
+    %%  %
+    %c'C'  the single character C
+    %c'\OOO'  the character with octal code OOO
+    C    the character C (other characters represent themselves)","GFMT ou LFMT podem conter: 
+%%
+%c'C'
+caracter único C
+caractere com código octal OOO
+c (caracteres representando caracteres em si)","  GFMT ou LFMT pode conter:
+    %%  %
+    %c'C'  o caractere C
+    %c'\OOO'  o caractere com código octal OOO
+    C    o caractere C (outros caracteres representam a si próprios)","VI,RU",LLAMA,77.3283302783966,60.314458640552516,26.595130246842615,50.0,88.3695662021637
+"-d, --minimal            try hard to find a smaller set of changes","-d, --minimal            tenta encontrar o conjunto de alterações mínimas para Keras","-d, --minimal            se esforça para localizar o menor conjunto
+                           de diferenças","VI,RU",LLAMA,67.96855926513672,43.05220987346316,17.242221289766636,72.72727272727273,83.94115567207336
+    --horizon-lines=NUM  keep NUM lines of the common prefix and suffix,    --horizon-lines=NUM  manter NUM linhas de prefijo e sufex comuns,    --horizon-lines=NÚM  mantém NÚM linhas de prefixo e sufixo idênticos,"VI,RU",LLAMA,70.32445073127747,49.61373747789032,11.208466750961147,66.66666666666666,86.72711253166199
+    --speed-large-files  assume large files and many scattered small changes,    --speed-large-files assume that large and numerous small changes are dispersed in the file,"    --speed-large-files  assume arquivos grandes e muitas alterações
+                           pequenas espalhadas","VI,RU",LLAMA,67.80786514282227,37.795490969815276,6.178110636313396,100.0,79.19794917106628
+"    --color[=WHEN]       color output; WHEN is 'never', 'always', or 'auto';
+                           plain --color means --color='auto'","    --color[=WHEN]       cor do resultado; Quando pode ser 'sempre', 'nunca' ou 'auto'; 
+                           --color polos significa que o valor por padrão é 'auto'","    --color[=QUANDO]     colore a saída; QUANDO pode ser ""never"", ""always"",
+                           ou ""auto""; só --color resulta em --color=""auto""","VI,RU",LLAMA,79.72039580345154,29.257491458974982,6.143970117600236,100.0,81.2420666217804
+"    --palette=PALETTE    the colors to use when --color is active; PALETTE is
+                           a colon-separated list of terminfo capabilities",    --palette=PALETTE    cromas utilizadas quando o --color está ativo; PALETTE é um conjunto de capacidades terminfo separados por pontos duplos.,"    --palette=PALETA     as cores para usar quando --color está ativa;
+                           PALETA é uma lista de capacidades de terminfo
+                           separadas por caractere de dois pontos","VI,RU",LLAMA,76.13701224327087,48.878689674747875,5.953962161489615,69.56521739130434,86.76557540893555
+    --help               display this help and exit,    --help               Mostrar ajuda deste assistente e sair,    --help               mostra esta ajuda e sai,"VI,RU",LLAMA,71.58017754554749,41.50093474703224,8.643019616048525,83.33333333333334,83.75862836837769
+"-v, --version            output version information and exit","-v, --version             mostra informações de versão e sai.","-v, --version            mostra as informações da versão e sai","VI,RU",LLAMA,90.64980149269104,77.9161267991207,39.281465090051285,33.33333333333333,94.26487684249878
+FILES are 'FILE1 FILE2' or 'DIR1 DIR2' or 'DIR FILE' or 'FILE DIR'.,FILES é 'FILE1 FILE2' ou 'DIR1 DIR2' ou 'DIR FILE' ou 'FILE DIR'.,"ARQUIVOS são ""ARQUIVO1 ARQUIVO2"", ""DIR1 DIR2"", ""DIR ARQUIVO"" ou ""ARQUIVO DIR"".","VI,RU",LLAMA,70.29200196266174,13.998969199250194,1.9071414280313312,100.0,84.59380269050598
+"If --from-file or --to-file is given, there are no restrictions on FILE(s).","Seja utilizado o --from-file (de um arquivo) ou --to-file (para salvar em um arquivo), sem limite para a quantidade de TÁPIS.","Se --from-file ou --to-file for especificado, não há restrição em ARQUIVO(s).","VI,RU",LLAMA,72.28829860687256,31.469219710844555,3.9253456897493937,100.0,77.06407904624939
+"If a FILE is '-', read standard input.","Se o arquivo TIN for definido como '-', lêm a entrada padrão.","Se um ARQUIVO for igual a ""-"", lê da entrada padrão.","VI,RU",LLAMA,77.86891460418701,37.77998824746967,12.164440704745648,63.63636363636363,84.62514281272888
+"Usage: %s [OPTION]... FILES
+","Cách dùng: %s [OPTION]... BERKAS
+","Uso: %s [OPÇÃO]... ARQUIVOS
+","VI,RU",LLAMA,61.74265742301941,30.156271510521215,42.40125351805035,100.0,86.87366843223572
+Compare FILES line by line.,Bandingkan FILE baris per baris.,Compara ARQUIVOS linha por linha.,"VI,RU",LLAMA,59.25121307373047,8.625284626572414,8.116697886877475,100.0,70.70590853691101
+conflicting %s option value %s,"valor nulo para a opção %s, conflito",opção %s com valor conflitante %s,"VI,RU",LLAMA,78.6961317062378,36.90944488894886,19.070828081828378,100.0,77.90132761001587
+conflicting output style options,conflicto de opções guia do jogo com o resultado da loteria,opções conflitantes de estilo de saída,"VI,RU",LLAMA,46.39842212200165,27.204954317303287,4.456882760699063,100.0,74.47741627693176
+invalid color %s,cor de %s não é válido,cor inválida %s,"VI,RU",LLAMA,53.274041414260864,36.41122249748636,14.535768424205482,100.0,72.64462113380432
+-D option not supported with directories,-D option not supported with directory,Sem suporte à opção -D com diretórios,"VI,RU",LLAMA,67.7684485912323,23.090219385971853,6.870636427700047,100.0,75.93286633491516
+"Common subdirectories: %s and %s
+","Subdiretórios sama: %s e %s
+","Subdiretórios idênticos: %s e %s
+","VI,RU",LLAMA,84.97095704078674,62.755448983523635,70.71067811865478,20.0,92.54522323608398
+"Only in %s: %s
+","Chinês apenas em %s: %s
+","Somente em %s: %s
+","VI,RU",LLAMA,75.96219182014465,48.412939471451104,68.037493331712,50.0,89.41900134086609
+"File %s is a %s while file %s is a %s
+","Arquivo %s é um %s, enquanto arquivo %s ? outro %s.","O arquivo %s é %s, enquanto o arquivo %s é %s
+","VI,RU",LLAMA,83.25899243354797,63.57654163711965,28.63424630911014,54.54545454545454,86.45408153533936
+"Symbolic links %s -> %s and %s -> %s differ
+",Taut simbolis %s -> %s dan %s -> %s berbeda.,"Os links simbólicos %s -> %s e %s -> %s são diferentes
+","VI,RU",LLAMA,82.98383355140686,37.49605907229769,53.13269403996457,50.0,89.89400863647461
+cannot compare '-' to a directory,não é possível comparar o sinal de menos '-' com um diretório,"não é possível comparar ""-"" com um diretório","VI,RU",LLAMA,72.01246619224548,74.79090614720828,30.66148710292676,62.5,92.19109416007996
+"Files %s and %s are identical
+",Berkas %s dan %s identik,"Os aquivos %s e %s são idênticos
+","VI,RU",LLAMA,72.0226526260376,19.40005283232811,13.958734303905356,71.42857142857143,82.95351266860962
+Randy Smith,Randy Smith,Randy Smith,"VI,RU",LLAMA,98.84700179100037,100.0,100.00000000000004,0.0,100.0
+incompatible options,opções não compatíveis,opções incompatíveis,"VI,RU",LLAMA,91.76064133644104,59.30695843238932,27.516060407455225,100.0,92.8620457649231
+'-' specified for more than one input file,Disponibiliza mais de um arquivo para entrada.,"""-"" especificado para mais de um arquivo de entrada","VI,RU",LLAMA,61.12974286079407,51.879930832131926,26.295889981470573,55.55555555555556,82.04424977302551
+read failed,falha na leitura do arquivo,falha de leitura,"VI,RU",LLAMA,77.28593349456787,46.61640835699377,12.703318703865365,100.0,83.38273763656616
+"-A, --show-all              output all changes, bracketing conflicts","-A, --show-all              exibir todas as alterações e conflitos no certificado de envelope","-A, --show-all              exibe todas as diferenças, com os conflitos
+                              entre parênteses","VI,RU",LLAMA,59.87704396247864,46.27495735471517,15.133218633429316,72.72727272727273,82.85291790962219
+"-e, --ed                    output ed script incorporating changes
+                                from OLDFILE to YOURFILE into MYFILE","--ed                    excluir script ed que contém alterações de OLDFILE para YOURFILE e coloca no MYFILE
+","-e, --ed                    cria um script de ed para incorporar as
+                              diferenças entre ARQUIVO1 e ARQUIVO2
+                              em ARQUIVO3","VI,RU",LLAMA,52.39186882972717,18.32375779859545,3.367425136798256,76.47058823529412,71.90338373184204
+"-E, --show-overlap          like -e, but bracket conflicts","-E, --show-overlap          seperti -e, nhưng apit konflik dalam kuark","-E, --show-overlap          similar a -e, mas exibe conflitos entre parênteses","VI,RU",LLAMA,54.17874455451965,40.05250287816605,16.01779399560403,70.0,81.74902200698853
+"-3, --easy-only             like -e, but incorporate only nonoverlapping changes","-3, --easy-only             semelhante a -e, mas apenas envolve alterações que não se intersectam","-3, --easy-only             similar a -e, mas incorpora apenas as alterações
+                              que não se sobreponham","VI,RU",LLAMA,84.1205894947052,57.74705106605427,38.70605144677149,28.57142857142857,93.09666156768799
+"-x, --overlap-only          like -e, but incorporate only overlapping changes","-x, --overlap-only          semelhante ao -e, mas apenas considera as alterações que se sobrepõem","-x, --overlap-only          similar a -e, mas incorpora apenas as alterações
+                              que se sobrepõem","VI,RU",LLAMA,87.23815083503723,69.70245221411788,41.374412020518825,30.76923076923077,96.08214497566223
+"-X                          like -x, but bracket conflicts","-X                          seperati -x, tapi apit konflik dalam kurung","-X                          similar a -x, mas exibe conflitos entre parentes","VI,RU",LLAMA,48.01240265369415,22.23461795979341,9.442944296079734,77.77777777777779,72.52668142318726
+-i                          append 'w' and 'q' commands to ed scripts,-i                          nóvele os comandos 'w' e 'q' para o script ed,"-i                          anexa os comandos ""w"" e ""q"" aos scripts de ed","VI,RU",LLAMA,74.22402501106262,36.55713860628721,6.551842408522355,54.54545454545454,81.89799189567566
+"-m, --merge                 output actual merged file, according to
+                                -A if no other options are given","-m, --merge                 keluar file yang telah diambil dan tergabung secara efektif, sesuai dengan -A jika tidak ada pilihan lain","-m, --merge                 emite arquivo mesclado atual, conforme
+                              -A se nenhuma outra opções for fornecida","VI,RU",LLAMA,62.37669587135315,24.173953103720226,7.681104116622756,100.0,78.33181619644165
+"-a, --text                  treat all files as text","-a, --text                  considerar todos os arquivos como texto padrão","-a, --text                  trata todos os arquivos como texto","VI,RU",LLAMA,87.67910599708557,77.38061650290734,52.53819788848316,25.0,93.06740760803223
+    --strip-trailing-cr     strip trailing carriage return on input,"    --strip-trailing-cr     apagar o retorno de carro da entrada ao final
+","    --strip-trailing-cr     remove o caractere de retorno de carro
+                              (CR) ao final da linha na entrada","VI,RU",LLAMA,71.06860876083374,52.77222778812261,11.297170171811539,46.666666666666664,87.0111882686615
+"-T, --initial-tab           make tabs line up by prepending a tab","-T, --initial-tab           criar tabulação horizontal com inserção de um caractere de tabulação no início da linha
+","-T, --initial-tab           alinha tabulações introduzindo uma
+                              tabulação no início.","VI,RU",LLAMA,78.537118434906,55.1804947257005,14.317123154555068,100.0,82.92401432991028
+    --diff-program=PROGRAM  use PROGRAM to compare files,"    --diff-program=PROGRAM  utilizar PROGRAM para comparar arquivos
+",    --diff-program=PROGRAMA  usa o PROGRAMA para comparar os arquivos,"VI,RU",LLAMA,90.28482437133789,61.39435900240804,12.862534787413374,62.5,93.9079761505127
+"-L, --label=LABEL           use LABEL instead of file name
+                                (can be repeated up to three times)","-L, --label=LABEL           pakai LABEL sebagai pengganti nama berkas
+                                (dapat diulang sampai dengan tiga kali)","-L, --label RÓTULO          usa RÓTULO ao invés do nome do arquivo
+                                (pode ser repetido até três vezes)","VI,RU",LLAMA,70.67478895187378,18.240884977661317,8.123368307125363,94.11764705882352,78.46510410308838
+    --help                  display this help and exit,    --help                  mostrar ajuda deste e sair,    --help                  mostra esta ajuda e sai,"VI,RU",LLAMA,62.78290152549744,55.6954625206365,10.682175159905853,66.66666666666666,83.57337713241577
+"-v, --version               output version information and exit","-v, --version               mostra informações de versão e sai.","-v, --version               mostra informação da versão e sai","VI,RU",LLAMA,91.49523377418518,79.43593817015358,37.99178428257963,37.5,94.80659365653992
+"Usage: %s [OPTION]... MYFILE OLDFILE YOURFILE
+",CÓPIA DE UTILIZAMENTO: %s [OPÇÕES]... TIN_TÔI TIN_CŨ TIN_BẠN,"Uso: %s [OPÇÃO]... ARQUIVO1 ARQUIVO2 ARQUIVO3
+","VI,RU",LLAMA,55.385857820510864,21.65800748593427,22.73861230490963,100.0,76.65951251983643
+Compare three files line by line.,Bandingkan tiga berkas baris per baris.,Compara três arquivos linha por linha.,"VI,RU",LLAMA,70.50328254699707,10.104139731213971,6.567274736060395,100.0,77.11600065231323
+"
+The default output format is a somewhat human-readable representation of
+the changes.
+
+The -e, -E, -x, -X (and corresponding long) options cause an ed script
+to be output instead of the default.
+
+Finally, the -m (--merge) option causes diff3 to do the merge internally
+and output the actual merged file.  For unusual input, this is more
+robust than using ed.
+","O padrão de saída do resultado é uma representação que pode ser lida por humanos. Os parâmetros -e, -E, -x e -X (além das suas versões longas) fazem com que o script ed seja usado em vez da forma padrão para a saída de resultados. O uso do parâmetro -m (--merge) permite ao diff3 realizar um merge interno e exportar um arquivo realmente combinado. Para entradas incomuns, isso é mais lógico do que usar ed.","
+O formato padrão de saída é uma forma legível por humanos de representação
+das alterações.
+
+As opções -e, -E, -x, -X (e opções extensas correspondentes) fazem com que
+um script de ed seja criado, ao invés do padrão.
+
+Finalmente, a opção -m (--merge) faz com que diff3 faça a mesclagem
+internalmente e emite o arquivo mesclado atual. Para entradas incomuns,
+isto é mais robusto do que usar o ed.
+","VI,RU",LLAMA,77.73215174674988,47.85941127632915,20.78059211625351,66.66666666666666,85.21992564201355
+"Exit status is 0 if successful, 1 if conflicts, 2 if trouble.","Status de saída é 0 se tudo correu bem, 1 em caso de conflito e 2 quando houve algum erro.","Status de saída é 0 se houver sucesso, 1 se conflitos e 2 se problema.","VI,RU",LLAMA,88.75992894172668,49.122845024399496,26.934666326316563,73.33333333333333,86.55219078063965
+internal error: screwup in format of diff blocks,Erro interno de sintonia do bloco diferencial: não há uma definição adequada para o formato desse khối.,erro interno: confusão no formato dos blocos diff,"VI,RU",LLAMA,58.87466073036194,34.60179935769404,2.6643211213888947,100.0,71.73039317131042
+%s: diff failed: ,%s: falha ao comparar diferenças: ,%s: diff falhou: ,"VI,RU",LLAMA,59.61201786994934,28.539490182311518,22.089591134157878,100.0,76.57524347305298
+internal error: invalid diff type in process_diff,Erro interno do sistema: tipo de diferença não é válido no processamento_diff (revisão de diferenças),erro interno: tipo de diff inválido em process_diff,"VI,RU",LLAMA,63.56719732284546,46.87743688203666,9.379601158083608,100.0,78.49932312965393
+invalid diff format; invalid change separator,formato difícil de ser validado; separador para alteração inválido,formato de diff inválido; separador de diferença inválido,"VI,RU",LLAMA,63.87569308280945,44.77713553911487,10.552670315936318,62.5,80.13301491737366
+invalid diff format; incomplete last line,formato de diferença não é válido; a linha final está incompleta,formato de diff inválido; última linha incompleta,"VI,RU",LLAMA,68.02840828895569,54.48597041145633,8.516593018819643,100.0,75.5858838558197
+subsidiary program %s could not be invoked,programa de suporte não pode ser chamado,o programa subsidiário %s não pôde ser invocado,"VI,RU",LLAMA,74.95350241661072,28.459156398076384,6.495032985064742,62.5,76.94396376609802
+invalid diff format; incorrect leading line chars,formato de diferença tid^nv; caracteres líderes da linha nt^p,formato de diff inválido; caracteres incorretos na linha de início,"VI,RU",LLAMA,43.67964267730713,42.41113381471309,8.493098745313148,60.0,74.78956580162048
+internal error: invalid diff type passed to output,Erro interno de processamento: tipo diff inválido para transmissão até o resultado finalizado.,erro interno: tipo de diff inválido passado para a saída,"VI,RU",LLAMA,75.1019537448883,51.42732096407546,8.549161846379198,90.0,83.52126479148865
+input file shrank,o arquivo de entrada diminuiu em tamanho,o arquivo de entrada diminuiu,"VI,RU",LLAMA,93.19564700126648,92.36974774330137,61.47881529512643,40.0,93.11965107917786
+cannot compare file names %s and %s,não é possível comparar o nome do arquivo %s e %s,não foi possível comparar os nomes dos arquivos %s e %s,"VI,RU",LLAMA,93.04817318916321,57.18360582227705,34.38931217657843,45.45454545454545,96.22438549995422
+%s: recursive directory loop,%s: loop diretório recursivo,%s: loop de diretório recursivo,"VI,RU",LLAMA,95.77715992927551,83.07204435309653,51.15078115793242,20.0,95.98791599273682
+Thomas Lord,Thomas Lord,Thomas Lord,"VI,RU",LLAMA,99.14027452468872,100.0,100.00000000000004,0.0,100.00002384185791
+"-o, --output=FILE            operate interactively, sending output to FILE","-o, --output=FILE            operar de forma interativa, enviando saída para FILE","-o, --output=ARQUIVO         age interativamente, enviando a saída para ARQUIVO","VI,RU",LLAMA,80.17107248306274,50.27872166544923,24.022110864391543,77.77777777777779,90.38285613059998
+"-i, --ignore-case            consider upper- and lower-case to be the same","-i, --ignore-case            ignorar maiúsculas e minúsculas semelhantes","-i, --ignore-case            não faz distinção entre letras maiúsculas
+                              e minúsculas","VI,RU",LLAMA,60.70597767829895,58.053592892610304,23.76101887396088,60.0,83.98813009262085
+"-E, --ignore-tab-expansion   ignore changes due to tab expansion","-E, --ignore-tab-expansion   ignoreie o módulo de expansão do tabulador
+","-E, --ignore-tab-expansion   ignorar as diferenças causadas pela expansão
+                               da tabulação","VI,RU",LLAMA,58.144110441207886,51.10769766615025,15.187207110382285,70.0,84.31447744369507
+"-Z, --ignore-trailing-space  ignore white space at line end","-Z, --ignore-trailing-space  bỏ qua tất cả dấu cách ở cuối dòng","-Z, --ignore-trailing-space  ignora espaços em branco no fim das linhas","VI,RU",LLAMA,72.64247536659241,40.23700571195087,12.605968092174914,90.0,82.06321001052856
+"-b, --ignore-space-change    ignore changes in the amount of white space","-b, --ignore-space-change    bora quitar o que se refere a mudanças causadas por um grupo de caracteres espaciais.","-b, --ignore-space-change    ignora as diferenças na quantidade de espaços
+                               em branco","VI,RU",LLAMA,58.23821425437927,41.10617108629899,8.097785064266205,100.0,78.82134318351746
+"-W, --ignore-all-space       ignore all white space","-W, --ignore-all-space       bora qua tato cahir acais sem nenhum espaço em branco","-W, --ignore-all-space       ignora todos os espaços em branco","VI,RU",LLAMA,57.74615406990051,57.45815579869353,14.458924666162856,100.0,81.98792338371277
+"-B, --ignore-blank-lines     ignore changes whose lines are all blank","-B, --ignore-blank-lines     bỏ qua thay đổi do đó là dòng trống","-B, --ignore-blank-lines     ignora diferenças onde as linhas estão vazias","VI,RU",LLAMA,72.57058620452881,37.96238229653843,12.605968092174914,100.0,79.06429171562195
+"-I, --ignore-matching-lines=RE  ignore changes all whose lines match RE","-I, --ignore-matching-lines=RE  bora quitar as linhas que coçam com RE","-I, --ignore-matching-lines=ER  ignora as diferenças em linhas que correspondem
+                                  à Expressão Regular","VI,RU",LLAMA,60.627347230911255,43.459551420280526,20.492887230352256,75.0,84.61982011795044
+    --strip-trailing-cr      strip trailing carriage return on input,    --strip-trailing-cr      apagar o retorno de carro da linha final do input após digitação,"    --strip-trailing-cr      remove o caractere de retorno de carro
+                               (CR) ao final da linha na entrada","VI,RU",LLAMA,72.24358916282654,48.76821765813992,11.954651475848706,60.0,86.20186448097229
+"-a, --text                   treat all files as text","-a, --text                   considerar todos os arquivos como texto padrão","-a, --text                   trata todos os arquivos como texto","VI,RU",LLAMA,87.67910599708557,77.38061650290734,52.53819788848316,25.0,93.06740760803223
+"-w, --width=NUM              output at most NUM (default 130) print columns","-w, --width=NUM              keluarkan paling banyak NUM (baku 130) kolom cetak.","-w, --width=NÚM              emite no máximo NÚM (padrão 130) colunas linhas","VI,RU",LLAMA,60.74162721633911,31.11411300035389,18.92240568795936,80.0,83.14388394355774
+"-l, --left-column            output only the left column of common lines","-l, --left-column            kết xuất chỉ cột bên trái của các dòng chung nhau.","-l, --left-column            emite apenas a coluna da esquerda das linhas
+                               idênticas","VI,RU",LLAMA,61.81510090827942,29.436510631102657,9.78237574896145,100.0,82.07243084907532
+"-s, --suppress-common-lines  do not output common lines","-s, --suppress-common-lines  não exibir linhas comuns","-s, --suppress-common-lines  não emite as linhas idênticas","VI,RU",LLAMA,82.51339197158813,65.04187317288435,37.68499164492418,42.857142857142854,91.00247025489807
+"-t, --expand-tabs            expand tabs to spaces in output","-t, --expand-tabs            ekspansi tab ke spasi dalam keluaran","-t, --expand-tabs            expande as tabulações para espaços na saída","VI,RU",LLAMA,76.85335874557495,40.96325171734956,15.881076016027917,77.77777777777779,79.01502847671509
+    --tabsize=NUM            tab stops at every NUM (default 8) print columns,    --tabsize=NUM            tab stop adalah setiap NUM (baku 8) kolom cetak,"    --tabsize=NÚM            paradas de tabulação a cada NÚM colunas
+                               (padrão=8)","VI,RU",LLAMA,56.042832136154175,23.597957429476836,7.907608126112009,100.0,79.62291836738586
+"-d, --minimal                try hard to find a smaller set of changes","-d, --minimal                tenta encontrar o conjunto de alterações mínimas para Keras","-d, --minimal                se esforça para localizar o menor conjunto
+                               de diferenças","VI,RU",LLAMA,67.96855926513672,43.05220987346316,17.242221289766636,72.72727272727273,83.94115567207336
+"-H, --speed-large-files      assume large files, many scattered small changes","-H, --speed-large-files      assume that large files with small scattered changes are being processed.","-H, --speed-large-files      assume arquivos grandes e muitas alterações
+                               pequenas espalhadas","VI,RU",LLAMA,69.0184235572815,41.91972927694306,16.451929399933107,100.0,80.40049076080322
+    --diff-program=PROGRAM   use PROGRAM to compare files,"    --diff-program=PROGRAM   utilizar PROGRAM para comparar arquivos
+",    --diff-program=PROGRAMA  usa o PROGRAMA para comparar os arquivos,"VI,RU",LLAMA,90.28482437133789,61.39435900240804,12.862534787413374,62.5,93.9079761505127
+    --help                   display this help and exit,    --help                   mostra ajuda deste assistente e sai,    --help                   mostra esta ajuda e sai,"VI,RU",LLAMA,83.45911502838135,63.16442067396365,19.64073254502566,50.0,92.50842928886414
+"-v, --version                output version information and exit","-v, --version                mostrar informações sobre a versão e sair.","-v, --version                mostra informação da versão e sai","VI,RU",LLAMA,86.39315962791443,69.09530970155429,17.542198478193427,62.5,90.70910215377808
+"Usage: %s [OPTION]... FILE1 FILE2
+","CÓPIA DÚZIAS DE ARQUIVOS para processamento
+","Uso: %s [OPÇÃO]... ARQUIVO1 ARQUIVO2
+","VI,RU",LLAMA,43.40296685695648,13.053571090246537,0.0,100.0,64.78822827339172
+Side-by-side merge of differences between FILE1 and FILE2.,Fusão de diferenças entre o arquivo %s e o arquivo %s.,Mesclagem lado a lado das diferenças entre ARQUIVO1 e ARQUIVO2.,"VI,RU",LLAMA,50.81475377082825,27.45175623565685,6.754312828675707,100.0,74.00972843170166
+cannot interactively merge standard input,não é possível combinar o input padrão de forma interativa,não foi possível mesclar interativamente a entrada padrão,"VI,RU",LLAMA,87.7174973487854,36.46524403648859,5.522397783539471,100.0,86.60171627998352
+both files to be compared are directories,Dois arquivos de comparação devem ser diretórios.,os dois arquivos a serem comparados são diretórios,"VI,RU",LLAMA,80.9653639793396,46.07097656686985,6.567274736060395,75.0,83.3788275718689
+"ed:	Edit then use both versions, each decorated with a header.
+eb:	Edit then use both versions.
+el or e1:	Edit then use the left version.
+er or e2:	Edit then use the right version.
+e:	Discard both versions then edit a new one.
+l or 1:	Use the left version.
+r or 2:	Use the right version.
+s:	Silently include common lines.
+v:	Verbosely include common lines.
+q:	Quit.
+","ed: Siga e utilize ambas as versões, cada uma com seu respectivo cabeçalho. eb: Siga e utilize ambas as versões. el ou e1: Siga utilizando a versão esquerda. er ou e2: Siga utilizando a versão direita. e: Descarte ambas as versões e crie uma nova. l ou 1: Utilize a versão esquerda. r ou 2: Utilize a versão direita. s: Inclua linhas comuns, sem mensagens exibidas. v: Inclua linhas comuns, apresentando as mensagens. q: Sair.","ed:	Edita e, então, usa ambas as versões, cada uma com seu cabeçalho.
+eb:	Edita e, então, usa ambas as versões.
+el ou e1:	Edita e, então, usa a versão da esquerda.
+er ou e2:	Edita e, então, usa a versão da direita.
+e:	Edita uma nova versão.
+l ou 1:	Usa a versão da esquerda.
+r ou 2:	Usa a versão da direita.
+s:	Inclui silenciosamente as linhas idênticas.
+v:	Inclui verbosamente as linhas idênticas.
+q:	Sai.
+","VI,RU",LLAMA,75.21554827690125,53.661496347307335,36.5483754362882,55.12820512820513,86.65679097175598
+unrecognized prefix: %s,prefiks tidak dikenal: %s,prefixo desconhecido: %s,"VI,RU",LLAMA,90.06428718566895,29.846211752877227,30.213753973567677,100.0,88.65441083908081
+unparsable value for --palette,não é possível dividir o valor para --palette,valor não analisável para --palette,"VI,RU",LLAMA,75.01665949821472,51.74546850338187,13.134549472120788,100.0,83.2283616065979

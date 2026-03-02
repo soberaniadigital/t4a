@@ -1,0 +1,1390 @@
+{
+    "job_info": {
+        "input_file": "/home/vinicius/TCC/data/translations_download/diffutils_v3.10.242/diffutils-3.10.242.id.po",
+        "output_file": "/home/vinicius/TCC/resultados/context_levels_download/diffutils_v3.10.242/diffutils-3.10.242.pt_BR.llama.ctx-2.de-zh_CN.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-14T12:57:55.717427",
+        "duration_seconds": 124.61,
+        "reference_file": "/home/vinicius/TCC/data/translations_download/diffutils_v3.10.242/diffutils-3.10.242.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": -1036301405146011111
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "DE",
+            "ZH_CN"
+        ],
+        "context_sentences_sample": {
+            "invalid argument %s for %s": {
+                "DE": "ungültiges Argument %s für %s",
+                "ZH_CN": "%2$s 的参数 %1$s 无效"
+            },
+            "ambiguous argument %s for %s": {
+                "DE": "Argument %s für %s ist mehrdeutig",
+                "ZH_CN": "%2$s 的参数 %1$s 有歧义"
+            },
+            "Valid arguments are:": {
+                "DE": "Gültige Argumente sind:",
+                "ZH_CN": "有效的参数为："
+            },
+            "regular empty file": {
+                "DE": "normale leere Datei",
+                "ZH_CN": "普通空文件"
+            },
+            "regular file": {
+                "DE": "normale Datei",
+                "ZH_CN": "普通文件"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 265,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct 10 2025, 08:54:03) [GCC 11.4.0]"
+    },
+    "translations": [
+        {
+            "original": "invalid argument %s for %s",
+            "translated": "argumento %s para %s não é válido",
+            "reference": "argumento inválido para %s: %s"
+        },
+        {
+            "original": "ambiguous argument %s for %s",
+            "translated": "O argumento '%s' para a opção '%s' é ambíguo.",
+            "reference": "argumento ambíguo %s para %s"
+        },
+        {
+            "original": "Valid arguments are:",
+            "translated": "argumentos válidos são:",
+            "reference": "Argumentos válidos são:"
+        },
+        {
+            "original": "regular empty file",
+            "translated": "ficheiro regular sem conteúdo",
+            "reference": "arquivo comum vazio"
+        },
+        {
+            "original": "regular file",
+            "translated": "arquivo regular",
+            "reference": "arquivo comum"
+        },
+        {
+            "original": "directory",
+            "translated": "diretório",
+            "reference": "diretório"
+        },
+        {
+            "original": "symbolic link",
+            "translated": "simbolica associação tautológica",
+            "reference": "link simbólico"
+        },
+        {
+            "original": "message queue",
+            "translated": "fila de mensagens do antrian pesan",
+            "reference": "fila de mensagem"
+        },
+        {
+            "original": "semaphore",
+            "translated": "Semáforo",
+            "reference": "semáforo"
+        },
+        {
+            "original": "shared memory object",
+            "translated": "objeto de memória compartilhada",
+            "reference": "objeto em memória compartilhada"
+        },
+        {
+            "original": "typed memory object",
+            "translated": "objeto de memória tipificado",
+            "reference": "objeto de memória tipificada"
+        },
+        {
+            "original": "block special file",
+            "translated": "dispositivo especial de bloco",
+            "reference": "arquivo especial de bloco"
+        },
+        {
+            "original": "character special file",
+            "translated": "conjunto de caracteres especiais para texto básico em alfabeto latino",
+            "reference": "arquivo especial de caractere"
+        },
+        {
+            "original": "contiguous data",
+            "translated": "dados que seguem uma sequência",
+            "reference": "dados contíguos"
+        },
+        {
+            "original": "fifo",
+            "translated": "FIFO",
+            "reference": "fifo"
+        },
+        {
+            "original": "door",
+            "translated": "Porta",
+            "reference": "porta"
+        },
+        {
+            "original": "multiplexed block special file",
+            "translated": "bloco especial de armazenamento multiplamente utilizável",
+            "reference": "arquivo multiplexado especial de bloco"
+        },
+        {
+            "original": "multiplexed character special file",
+            "translated": "arquivo especial com caracteres especiais multiplos",
+            "reference": "arquivo multiplexado especial de caractere"
+        },
+        {
+            "original": "multiplexed file",
+            "translated": "arquivo multiplesso",
+            "reference": "arquivo multiplexado"
+        },
+        {
+            "original": "named file",
+            "translated": "ficheiro com nome",
+            "reference": "arquivo nomeado"
+        },
+        {
+            "original": "network special file",
+            "translated": "Arquivo especial de rede",
+            "reference": "arquivo especial de rede"
+        },
+        {
+            "original": "migrated file with data",
+            "translated": "arquivo de termigração com dados",
+            "reference": "arquivo migrado com dados"
+        },
+        {
+            "original": "migrated file without data",
+            "translated": "arquivo termigrasi sem data",
+            "reference": "arquivo migrado sem dados"
+        },
+        {
+            "original": "port",
+            "translated": "Porta de rede",
+            "reference": "porta"
+        },
+        {
+            "original": "socket",
+            "translated": "soquete",
+            "reference": "soquete"
+        },
+        {
+            "original": "whiteout",
+            "translated": "desenvolvimento do sistema operacional GNU/Linux utilizando o CLI e ferramentas nativas.",
+            "reference": "whiteout"
+        },
+        {
+            "original": "weird file",
+            "translated": "arquivo anônimo",
+            "reference": "arquivo estranho"
+        },
+        {
+            "original": "program error",
+            "translated": "Erro do programa",
+            "reference": "erro do programa"
+        },
+        {
+            "original": "stack overflow",
+            "translated": "estoução de pilha",
+            "reference": "estouro de pilha"
+        },
+        {
+            "original": "Try '%s --help' for more information.",
+            "translated": "Coba '%s --help' para mais informações.",
+            "reference": "Tente \"%s --help\" para mais informações."
+        },
+        {
+            "original": "Unknown system error",
+            "translated": "Erro do sistema desconhecido",
+            "reference": "Erro desconhecido de sistema"
+        },
+        {
+            "original": "%s: option '%s%s' is ambiguous\n",
+            "translated": "%s: opção '%s%s' é ambígua\n",
+            "reference": "%s: a opção \"%s%s\" é ambígua\n"
+        },
+        {
+            "original": "%s: option '%s%s' is ambiguous; possibilities:",
+            "translated": "%s: opção '%s%s' é ambígua; possíveis:",
+            "reference": "%s: a opção \"%s%s\" é ambígua; possibilidades:"
+        },
+        {
+            "original": "%s: unrecognized option '%s%s'\n",
+            "translated": "%s: Opção desconhecida '%s%s'.",
+            "reference": "%s: opção desconhecida \"%s%s\"\n"
+        },
+        {
+            "original": "%s: option '%s%s' doesn't allow an argument\n",
+            "translated": "%s: opção '%s%s' não permite argumento.\"\n",
+            "reference": "%s: a opção \"%s%s\" não permite argumento\n"
+        },
+        {
+            "original": "%s: option '%s%s' requires an argument\n",
+            "translated": "%s: opção '%s%s' requer um argumento.",
+            "reference": "%s: a opção \"%s%s\" exige um argumento\n"
+        },
+        {
+            "original": "%s: invalid option -- '%c'\n",
+            "translated": "%s: opção -- '%c' não é válida",
+            "reference": "%s: opção inválida -- \"%c\"\n"
+        },
+        {
+            "original": "%s: option requires an argument -- '%c'\n",
+            "translated": "%s: opção -- '%c' requer um argumento\n",
+            "reference": "%s: a opção exige um argumento -- \"%c\"\n"
+        },
+        {
+            "original": "unable to record current working directory",
+            "translated": "não foi possível obter estado (stat) do diretório de trabalho atual",
+            "reference": "não foi possível gravar o diretório de trabalho atual"
+        },
+        {
+            "original": "failed to return to initial working directory",
+            "translated": "falha ao retornar para o diretório de trabalho original",
+            "reference": "falha ao retornar o diretório de trabalho inicial"
+        },
+        {
+            "original": "`",
+            "translated": "'",
+            "reference": "“"
+        },
+        {
+            "original": "'",
+            "translated": "'",
+            "reference": "”"
+        },
+        {
+            "original": "Success",
+            "translated": "Sucesso.",
+            "reference": "Sucesso"
+        },
+        {
+            "original": "No match",
+            "translated": "Não é apropriado.",
+            "reference": "Nenhuma ocorrência do padrão"
+        },
+        {
+            "original": "Invalid regular expression",
+            "translated": "expressão regular inválida.",
+            "reference": "Expressão regular inválida"
+        },
+        {
+            "original": "Invalid collation character",
+            "translated": "Caracter de colação não é válido.",
+            "reference": "caractere de combinação inválido"
+        },
+        {
+            "original": "Invalid character class name",
+            "translated": "Nome da classe de caracteres inválido",
+            "reference": "Nome inválido da classe de caracteres"
+        },
+        {
+            "original": "Trailing backslash",
+            "translated": "Akhiran backslash.",
+            "reference": "Barra invertida no final"
+        },
+        {
+            "original": "Invalid back reference",
+            "translated": "Referência de volta inválida.",
+            "reference": "Retrorreferência inválida"
+        },
+        {
+            "original": "Unmatched [, [^, [:, [., or [=",
+            "translated": "DE ou ZH_CN, seja [,] como também ^[, [:,] ou . ou = sem sinal de igual.",
+            "reference": "[, [^, [:, [. ou [= sem correspondente"
+        },
+        {
+            "original": "Unmatched ( or \\(",
+            "translated": "( ou \\( tanhao para a frase em português.",
+            "reference": "( ou \\( sem correspondente"
+        },
+        {
+            "original": "Unmatched \\{",
+            "translated": "sem par de chaves » sem fechamento",
+            "reference": "\\{ sem correspondente"
+        },
+        {
+            "original": "Invalid content of \\{\\}",
+            "translated": "Contido em \\{\\} não é válido.",
+            "reference": "Conteúdo inválido de \\{\\}"
+        },
+        {
+            "original": "Invalid range end",
+            "translated": "Fechamento de período não válido.",
+            "reference": "Fim do intervalo inválido"
+        },
+        {
+            "original": "Memory exhausted",
+            "translated": "Memória esgotada.",
+            "reference": "Memória esgotada"
+        },
+        {
+            "original": "Invalid preceding regular expression",
+            "translated": "Expressão regular que impede a validade não cumpre os critérios.",
+            "reference": "A expressão regular precedente é inválida"
+        },
+        {
+            "original": "Premature end of regular expression",
+            "translated": "O regulador de expressões regulares termina prematuramente.",
+            "reference": "Fim prematuro da expressão regular"
+        },
+        {
+            "original": "Regular expression too big",
+            "translated": "Expressão regular é muito grande.",
+            "reference": "Expressão regular grande demais"
+        },
+        {
+            "original": "Unmatched ) or \\)",
+            "translated": "ou sem parênteses",
+            "reference": ") ou \\) sem correspondente"
+        },
+        {
+            "original": "No previous regular expression",
+            "translated": "Não há expressões regulares prévias.",
+            "reference": "Nenhuma expressão regular anterior"
+        },
+        {
+            "original": "Packaged by %s (%s)\n",
+            "translated": "Pacote preparado por %s (%s)",
+            "reference": "Empacotado por %s (%s)\n"
+        },
+        {
+            "original": "Packaged by %s\n",
+            "translated": "Paket erstellt von %s",
+            "reference": "Empacotado por %s\n"
+        },
+        {
+            "original": "(C)",
+            "translated": "(C)",
+            "reference": "(C)"
+        },
+        {
+            "original": "License GPLv3+: GNU GPL version 3 or later <%s>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n",
+            "translated": "Lizenz GPLv3+: GNU GPL versi 3 ou posterior <%s>. Início de um software livre que você pode modificar e distribuir. Não há garantia, exceto o que é legalmente permitido.",
+            "reference": "Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>.\nEste é um software livre: você é livre para alterá-lo e redistribuí-lo.\nNÃO HÁ QUALQUER GARANTIA, na máxima extensão permitida em lei.\n"
+        },
+        {
+            "original": "Written by %s.\n",
+            "translated": "Escrito por %s.",
+            "reference": "Escrito por %s.\n"
+        },
+        {
+            "original": "Written by %s and %s.\n",
+            "translated": "Escrita por %s e %s.",
+            "reference": "Escrito por %s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, and %s.\n",
+            "translated": "Escrito por %s, %s e %s.",
+            "reference": "Escrito por %s, %s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\nand %s.\n",
+            "translated": "Escrita por %s, %s, %s, e %s. \n",
+            "reference": "Escrito por %s, %s, %s\ne %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, and %s.\n",
+            "translated": "Escrita por %s, %s, %s, %s, e %s. \n",
+            "reference": "Escrito por %s, %s, %s\n%s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, and %s.\n",
+            "translated": "Escrita por %s, %s, %s, %s, %s e %s. \n",
+            "reference": "Escrito por %s, %s, %s\n%s, %s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, and %s.\n",
+            "translated": "Escrita por %s, %s, %s, %s, %s, %s e %s. \n",
+            "reference": "Escrito por %s, %s, %s\n%s, %s, %s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, %s,\nand %s.\n",
+            "translated": "Escrita por %s, %s, %s, %d, %<PRIuMAX>, %s, %s, %s e %s.",
+            "reference": "Escrito por %s, %s, %s\n%s, %s, %s, %s\ne %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, %s,\n%s, and %s.\n",
+            "translated": "Escrita por %s, %s, %s, %d, %d, %d, %d, %d, %d e %s. \n",
+            "reference": "Escrito por %s, %s, %s\n%s, %s, %s, %s\n%s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, %s,\n%s, %s, and others.\n",
+            "translated": "Escrita por %s, %s, %s, %s, %s, %s, %s, %s, %s e outros.",
+            "reference": "Escrito por %s, %s, %s\n%s, %s, %s, %s,\n%s, %s e outros.\n"
+        },
+        {
+            "original": "Report bugs to: %s\n",
+            "translated": "Laporkan kutu ke: %s.",
+            "reference": "Relate erros para: %s\nRelate erros de tradução para <http://translationproject.org/team/pt_BR.html>\n"
+        },
+        {
+            "original": "Report %s bugs to: %s\n",
+            "translated": "Laporkan kutu %s ke: %s.",
+            "reference": "Relate os erros do %s para: %s\n"
+        },
+        {
+            "original": "%s home page: <%s>\n",
+            "translated": "%s casa de apartamento: <%s>.",
+            "reference": "Página do %s: <%s>\n"
+        },
+        {
+            "original": "General help using GNU software: <%s>\n",
+            "translated": "Ajudas gerais para uso de software GNU: <%s>",
+            "reference": "Ajuda em geral no uso de software GNU: <%s>\n"
+        },
+        {
+            "original": "memory exhausted",
+            "translated": "Memória consumida por memórias",
+            "reference": "memória esgotada"
+        },
+        {
+            "original": "stdin",
+            "translated": "Entrada padrão",
+            "reference": "entrada padrão (stdin)"
+        },
+        {
+            "original": "stdout",
+            "translated": "Saída padrão",
+            "reference": "saída padrão (stdout)"
+        },
+        {
+            "original": "stderr",
+            "translated": "saída de erro padrão",
+            "reference": "erro padrão (stderr)"
+        },
+        {
+            "original": "unknown stream",
+            "translated": "fluxo desconhecido",
+            "reference": "fluxo desconhecido"
+        },
+        {
+            "original": "failed to reopen %s with mode %s",
+            "translated": "falha ao reabrir %s com modo %s",
+            "reference": "falha ao reabrir %s com modo %s"
+        },
+        {
+            "original": "failed to open all three standard file descriptors; maybe %s or %s are not working right?",
+            "translated": "falha ao abrir todos os três descriptores de arquivo padrão; talvez %s ou %s não estejam funcionando corretamente?",
+            "reference": "falha ao abrir todos os três descritores de arquivo padrão; talvez %s ou %s não estejam funcionando corretamente?"
+        },
+        {
+            "original": "Files %s and %s differ\n",
+            "translated": "As pastas %s e %s contêm arquivos diferentes.",
+            "reference": "Os arquivos %s e %s são diferentes\n"
+        },
+        {
+            "original": "Binary files %s and %s differ\n",
+            "translated": "Berkas biner %s dan %s berbeda.",
+            "reference": "Os arquivos binários %s e %s são diferentes\n"
+        },
+        {
+            "original": "No newline at end of file",
+            "translated": "Não há linhas novas no final do arquivo.",
+            "reference": "Nenhum caractere de nova linha no final do arquivo"
+        },
+        {
+            "original": "Torbjorn Granlund",
+            "translated": "Torbjörn Granlund",
+            "reference": "Torbjorn Granlund"
+        },
+        {
+            "original": "David MacKenzie",
+            "translated": "David MacKenzie",
+            "reference": "David MacKenzie"
+        },
+        {
+            "original": "invalid --ignore-initial value %s",
+            "translated": "valor %s --ignore-initial inválido",
+            "reference": "valor inválido --ignore-initial %s"
+        },
+        {
+            "original": "options -l and -s are incompatible",
+            "translated": "As opções -l e -s não são compatíveis.",
+            "reference": "as opções -l e -s são incompatíveis"
+        },
+        {
+            "original": "write failed",
+            "translated": "erros de digitação.",
+            "reference": "erro de escrita"
+        },
+        {
+            "original": "standard output",
+            "translated": "saída padrão do keluaran",
+            "reference": "saída padrão"
+        },
+        {
+            "original": "-b, --print-bytes          print differing bytes",
+            "translated": "-b, --print-bytes          tampilkan byte yang berbeda.",
+            "reference": "-b, --print-bytes          imprime os bytes diferentes"
+        },
+        {
+            "original": "-i, --ignore-initial=SKIP         skip first SKIP bytes of both inputs",
+            "translated": "-i, --ignore-initial=%s\nSkip the first %s byte(s) of each input.",
+            "reference": "-i, --ignore-initial=SALTO        ignora os primeiros SALTO bytes da entrada"
+        },
+        {
+            "original": "-i, --ignore-initial=SKIP1:SKIP2  skip first SKIP1 bytes of FILE1 and\n                                      first SKIP2 bytes of FILE2",
+            "translated": "-i, --ignore-initial=SKIP1:SKIP2\n         Ignorar as primeiras SKIP1 bytes de FILE1 e as primeiras SKIP2 bytes de FILE2.",
+            "reference": "-i, --ignore-initial=SALTO1:SALTO2\n                                  ignora os primeiros SALTO1 bytes do ARQUIVO1\n                                    e os primeiros SALTO2 bytes do ARQUIVO2"
+        },
+        {
+            "original": "-l, --verbose              output byte numbers and differing byte values",
+            "translated": "-l, --verbose          Exibe todos os bytes e seus valores distintos.",
+            "reference": "-l, --verbose              emite os números de bytes e os valores de\n                             todos os bytes diferentes"
+        },
+        {
+            "original": "-n, --bytes=LIMIT          compare at most LIMIT bytes",
+            "translated": "-n, --bytes=LIMIT      Comparar até o máximo de LIMIT bytes.",
+            "reference": "-n, --bytes=LIMITE         compara no máximo LIMITE bytes"
+        },
+        {
+            "original": "-s, --quiet, --silent      suppress all normal output",
+            "translated": "-s, --quiet, --silent       Cegue-se a todos os resultados normais.",
+            "reference": "-s, --quiet, --silent      suprime todas saídas normais"
+        },
+        {
+            "original": "    --help                 display this help and exit",
+            "translated": "    --help                 Mostrar ajuda e sair.",
+            "reference": "    --help                 mostra esta ajuda e sai"
+        },
+        {
+            "original": "-v, --version              output version information and exit",
+            "translated": "-v, --version               Mostrar informações de versão e sair.",
+            "reference": "-v, --version              mostra informação sobre a versão e sai"
+        },
+        {
+            "original": "Usage: %s [OPTION]... FILE1 [FILE2 [SKIP1 [SKIP2]]]\n",
+            "translated": "Uso: %s [PILIHAN]... BERKAS1 [BERKAS2 [SKIP1 [SKIP2]]]",
+            "reference": "Uso: %s [OPÇÃO]... ARQUIVO1 [ARQUIVO2 [SALTO1 [SALTO2]]]\n"
+        },
+        {
+            "original": "Compare two files byte by byte.",
+            "translated": "Bandar dua berkas byte per byte.",
+            "reference": "Compara dois arquivos byte por byte."
+        },
+        {
+            "original": "The optional SKIP1 and SKIP2 specify the number of bytes to skip\nat the beginning of each file (zero by default).",
+            "translated": "SKIP1 e SKIP2 são o número de bytes que devem ser pulados no início de cada arquivo (valor padrão é zero).",
+            "reference": "Os argumentos opcionais SALTO1 e SALTO2 especificam o número de\nbytes para ignorar no começo de cada arquivo (zero por padrão)."
+        },
+        {
+            "original": "Mandatory arguments to long options are mandatory for short options too.\n",
+            "translated": "Os argumentos obrigatórios para opções de comprimento também são necessários para as opções menores.",
+            "reference": "Argumentos obrigatórios para opções longas também o são para opções curtas.\n"
+        },
+        {
+            "original": "SKIP values may be followed by the following multiplicative suffixes:\nkB 1000, K 1024, MB 1,000,000, M 1,048,576,\nGB 1,000,000,000, G 1,073,741,824, and so on for T, P, E, Z, Y.",
+            "translated": "Os valores SKIP podem ser acompanhados pelos seguintes sufixos multiplicativos subsequentes:\nKB=1000, KB=1024, MB=1.000.000, MB=1.048.576,\nGB=1.000.000.000, GB=1.073.741.824 e assim por diante para T, P, E, Z, Y.",
+            "reference": "Os valores do SALTO podem ser seguidos por sufixos multiplicativos a seguir:\nkB 1000, K 1024, MB 1,000,000, M 1,048,576,\nGB 1,000,000,000, G 1,073,741,824,\ne assim por diante para T, P, E, Z, Y."
+        },
+        {
+            "original": "If a FILE is '-' or missing, read standard input.",
+            "translated": "Se o arquivo for '-' ou não existir, lê da entrada padrão.",
+            "reference": "Se ARQUIVO for igual a \"-\" ou for omitido, ler da entrada padrão."
+        },
+        {
+            "original": "Exit status is 0 if inputs are the same, 1 if different, 2 if trouble.",
+            "translated": "O status de saída é 0 se as entradas forem idênticas, 1 caso contrário e 2 em caso de erro.",
+            "reference": "Status de saída é 0 se as entradas forem iguais, 1 se diferente e 2 se problema."
+        },
+        {
+            "original": "invalid --bytes value %s",
+            "translated": "valor de byte %s --bytes inválido",
+            "reference": "valor inválido de --bytes %s"
+        },
+        {
+            "original": "missing operand after %s",
+            "translated": "não há operando após %s",
+            "reference": "faltando operando após %s"
+        },
+        {
+            "original": "extra operand %s",
+            "translated": "operando extra %s",
+            "reference": "operando extra %s"
+        },
+        {
+            "original": "%s %s differ: byte %<PRIdMAX>, line %<PRIdMAX>\n",
+            "translated": "%s %s são diferentes: byte %<PRIdMAX>, linha %<PRIdMAX>",
+            "reference": "%s e %s são diferentes: byte %<PRIdMAX>, linha %<PRIdMAX>\n"
+        },
+        {
+            "original": "%s %s differ: byte %<PRIdMAX>, line %<PRIdMAX> is %3o %s %3o %s\n",
+            "translated": "%s %s são diferentes: byte %<PRIdMAX>, linha %<PRIdMAX> é de %3o e %3o respectivamente.",
+            "reference": "%s e %s são diferentes: byte %<PRIdMAX>, linha %<PRIdMAX> é %3o %s %3o %s\n"
+        },
+        {
+            "original": "cmp: EOF on %s which is empty\n",
+            "translated": "cmp: EOF pada %s que está vazia.",
+            "reference": "cmp: Fim de arquivo (EOF) em %s que está vazio\n"
+        },
+        {
+            "original": "cmp: EOF on %s after byte %<PRIdMAX>\n",
+            "translated": "cmp: EOF em %s após byte %<PRIdMAX>",
+            "reference": "cmp: Fim de arquivo (EOF) em %s após byte %<PRIdMAX>\n"
+        },
+        {
+            "original": "cmp: EOF on %s after byte %<PRIdMAX>, line %<PRIdMAX>\n",
+            "translated": "cmp: EOF após byte %<PRIdMAX> em campo '%s', linha %<PRIuMAX>",
+            "reference": "cmp: Fim de arquivo (EOF) em %s após byte %<PRIdMAX>, linha %<PRIdMAX>\n"
+        },
+        {
+            "original": "cmp: EOF on %s after byte %<PRIdMAX>, in line %<PRIdMAX>\n",
+            "translated": "cmp: EOF após byte %<PRIdMAX> em campo %s, linha %<PRIdMAX>",
+            "reference": "cmp: Fim de arquivo (EOF) em %s após byte %<PRIdMAX>, na linha %<PRIdMAX>\n"
+        },
+        {
+            "original": "Paul Eggert",
+            "translated": "Paul Eggert",
+            "reference": "Paul Eggert"
+        },
+        {
+            "original": "Mike Haertel",
+            "translated": "Mike Haertel",
+            "reference": "Mike Haertel"
+        },
+        {
+            "original": "David Hayes",
+            "translated": "David Hayes",
+            "reference": "David Hayes"
+        },
+        {
+            "original": "Richard Stallman",
+            "translated": "Richard Stallman",
+            "reference": "Richard Stallman"
+        },
+        {
+            "original": "Len Tower",
+            "translated": "Torre de Len",
+            "reference": "Len Tower"
+        },
+        {
+            "original": "invalid context length %s",
+            "translated": "a long context '%s' is not valid",
+            "reference": "o comprimento do contexto não é válido %s"
+        },
+        {
+            "original": "pagination not supported on this host",
+            "translated": "paginasi não é suportada neste sistema.",
+            "reference": "sem suporte a paginação neste computador"
+        },
+        {
+            "original": "too many file label options",
+            "translated": "Existe um excesso de opções para labels com arquivos.",
+            "reference": "número excessivo de opções de rótulo de arquivo"
+        },
+        {
+            "original": "invalid width %s",
+            "translated": "a largura %s não é válida",
+            "reference": "largura inválida %s"
+        },
+        {
+            "original": "conflicting width options",
+            "translated": "opções de largura conflitantes",
+            "reference": "opções de largura conflitantes"
+        },
+        {
+            "original": "invalid horizon length %s",
+            "translated": "a panjang do horizonte %s não é válido",
+            "reference": "comprimento do horizonte inválido %s"
+        },
+        {
+            "original": "invalid tabsize %s",
+            "translated": "largura tabular %s não é válida",
+            "reference": "tamanho de tabulação inválido %s"
+        },
+        {
+            "original": "conflicting tabsize options",
+            "translated": "opções de tabulação com conflitos em relação ao tamanho do campo (tabsize)",
+            "reference": "opções de tamanho de tabulação conflitantes"
+        },
+        {
+            "original": "--from-file and --to-file both specified",
+            "translated": "--from-file dan --to-file keduanya disebutkan.",
+            "reference": "ambos --from-file e --to-file especificados"
+        },
+        {
+            "original": "    --normal                  output a normal diff (the default)",
+            "translated": "    --normal                      Exibir diff normal (padrão)",
+            "reference": "    --normal                  cria um diff no formato normal (padrão)"
+        },
+        {
+            "original": "-q, --brief                   report only when files differ",
+            "translated": "-q, --brief                    Nur auszugeben, ob die Dateien verschieden sind.",
+            "reference": "-q, --brief                   indica apenas se os arquivos forem diferentes"
+        },
+        {
+            "original": "-s, --report-identical-files  report when two files are the same",
+            "translated": "-s, --report-identical-files    Indicar quando duas cópias do mesmo arquivo são encontradas.",
+            "reference": "-s, --report-identical-files  indica quando dois arquivos forem o idênticos"
+        },
+        {
+            "original": "-c, -C NUM, --context[=NUM]   output NUM (default 3) lines of copied context",
+            "translated": "-c NUM --context=NUM   ZAHL linhas do contexto copiado exibidas (válido por padrão para 3)",
+            "reference": "-c, -C NÚM, --context[=NÚM]   cria NÚM (padrão 3) linhas de contexto copiado"
+        },
+        {
+            "original": "-u, -U NUM, --unified[=NUM]   output NUM (default 3) lines of unified context",
+            "translated": "-u, -U NUM, --unified[=NUM]   ZAHL linhas do contexto unificado\n                        exibir (padrão: %<PRIuMAX>)\n",
+            "reference": "-u, -U NÚM, --unified[=NÚM]   cria NÚM (padrão 3) linhas de contexto unificado"
+        },
+        {
+            "original": "-e, --ed                      output an ed script",
+            "translated": "-e, --ed                      exportar um script ed.",
+            "reference": "-e, --ed                      cria um script para o editor ed"
+        },
+        {
+            "original": "-n, --rcs                     output an RCS format diff",
+            "translated": "-n, --rcs                     keluaran dalam format RCS diff\n",
+            "reference": "-n, --rcs                     cria um diff no formato RCS"
+        },
+        {
+            "original": "-y, --side-by-side            output in two columns",
+            "translated": "-y, --side-by-side             Em duas colunas",
+            "reference": "-y, --side-by-side            cria em duas colunas"
+        },
+        {
+            "original": "-W, --width=NUM               output at most NUM (default 130) print columns",
+            "translated": "-W, --width=NUM               keluarkan paling banyak NUM (baku 130) kolom cetak.",
+            "reference": "-W, --width=NÚM               limita a saída a NÚM colunas por linha (padrão 130)"
+        },
+        {
+            "original": "    --left-column             output only the left column of common lines",
+            "translated": "    --left-column             nur linke Spalte der gemeinsamen Zeilen ausgeben.",
+            "reference": "    --left-column             emite apenas a coluna da esquerda das linhas\n                                idênticas"
+        },
+        {
+            "original": "    --suppress-common-lines   do not output common lines",
+            "translated": "    --suppress-common-lines     Não seja exibido o conteúdo das linhas comuns.",
+            "reference": "    --suppress-common-lines   não exibe as linhas idênticas"
+        },
+        {
+            "original": "-p, --show-c-function         show which C function each change is in",
+            "translated": "-p, --show-c-function         mençar em função C qual a alteração está localizada.",
+            "reference": "-p, --show-c-function         mostra em qual função C está cada alteração"
+        },
+        {
+            "original": "-F, --show-function-line=RE   show the most recent line matching RE",
+            "translated": "-F, --show-function-line=RE     Mostrar a linha de código que corresponde exatamente ao padrão RE.",
+            "reference": "-F, --show-function-line=ER   mostra a linha mais recente correspondendo à ER"
+        },
+        {
+            "original": "    --label LABEL             use LABEL instead of file name and timestamp\n                                (can be repeated)",
+            "translated": "    --label LABEL             pakai LABEL bukan nama berkas dan stempel waktu\n                                (dapat diulang)",
+            "reference": "    --label RÓTULO            usa RÓTULO ao invés do nome do arquivo e\n                                carimbo de tempo (pode ser repetido)"
+        },
+        {
+            "original": "-t, --expand-tabs             expand tabs to spaces in output",
+            "translated": "-t, --expand-tabs              Expande os tabuladores em espaços na saída.",
+            "reference": "-t, --expand-tabs             expande as tabulações para espaços na saída"
+        },
+        {
+            "original": "-T, --initial-tab             make tabs line up by prepending a tab",
+            "translated": "-T, --initial-tab              Cria uma tabulação horizontal com um espaço antes do primeiro caractere de tabulador.",
+            "reference": "-T, --initial-tab             alinha tabulações introduzindo uma\n                                tabulação no início"
+        },
+        {
+            "original": "    --tabsize=NUM             tab stops every NUM (default 8) print columns",
+            "translated": "    --tabsize=NUM             tab stop adalah setiap NUM (baku 8) kolom cetak\n",
+            "reference": "    --tabsize=NÚM             paradas de tabulação a cada NÚM colunas\n                                (padrão=8)"
+        },
+        {
+            "original": "    --suppress-blank-empty    suppress space or tab before empty output lines",
+            "translated": "    --suppress-blank-empty      Espaços em branco ou tabulação antes de linhas vazias impedem.",
+            "reference": "    --suppress-blank-empty    suprime espaço ou tabulação antes de linhas\n                                vazias na saída"
+        },
+        {
+            "original": "-l, --paginate                pass output through 'pr' to paginate it",
+            "translated": "-l, --paginate                        Enviar resultados para o comando 'pr' para paginação.",
+            "reference": "-l, --paginate                passa a saída por meio de \"pr\" para paginá-la"
+        },
+        {
+            "original": "-r, --recursive                 recursively compare any subdirectories found",
+            "translated": "-r, --recursive                 membandação recursiva de subdiretórios e arquivos.",
+            "reference": "-r, --recursive                 compara recursivamente os subdiretórios\n                                  encontrados"
+        },
+        {
+            "original": "    --no-dereference            don't follow symbolic links",
+            "translated": "    --no-dereference            Não siga as ligações simbólicas.",
+            "reference": "    --no-dereference            não interpreta links simbólicos"
+        },
+        {
+            "original": "-N, --new-file                  treat absent files as empty",
+            "translated": "-N, --new-file                   Não fazer upload de arquivos que não existem.",
+            "reference": "-N, --new-file                  considera os arquivos ausentes como vazios"
+        },
+        {
+            "original": "    --unidirectional-new-file   treat absent first files as empty",
+            "translated": "    --unidirectional-new-file   arquivo sem conteúdo inicial que não existe como vazio.",
+            "reference": "    --unidirectional-new-file   considera os primeiros arquivos ausentes\n                                  como vazios"
+        },
+        {
+            "original": "    --ignore-file-name-case     ignore case when comparing file names",
+            "translated": "    --ignore-file-name-case     Ignorar diferenças entre maiúsculas e minúsculas nos nomes dos arquivos.",
+            "reference": "    --ignore-file-name-case     não faz distinção entre letras maiúsculas e\n                                  minúsculas nos nomes dos arquivos"
+        },
+        {
+            "original": "    --no-ignore-file-name-case  consider case when comparing file names",
+            "translated": "    --no-ignore-file-name-case  Considere diferenças entre maiúsculas e minúsculas nos nomes de arquivos.",
+            "reference": "    --no-ignore-file-name-case  faz distinção entre letras maiúsculas e\n                                  minúsculas nos nomes dos arquivos"
+        },
+        {
+            "original": "-x, --exclude=PAT               exclude files that match PAT",
+            "translated": "-x, --exclude=PAT               tanha blocos de dados que se encaixam com PAT.",
+            "reference": "-x, --exclude=PADRÃO            exclui arquivos correspondendo a PADRÃO"
+        },
+        {
+            "original": "-X, --exclude-from=FILE         exclude files that match any pattern in FILE",
+            "translated": "-X, --exclude-from=FILE         excluir arquivos que correspondam aos padrões listados no FILE.",
+            "reference": "-X, --exclude-from=ARQUIVO      exclui arquivos com correspondam a qualquer\n                                  padrão contido em ARQUIVO"
+        },
+        {
+            "original": "-S, --starting-file=FILE        start with FILE when comparing directories",
+            "translated": "-S, --starting-file=FILE        iniciar comparando diretórios com FILE quando disponível.",
+            "reference": "-S, --starting-file=ARQUIVO     inicia por ARQUIVO ao comparar diretórios"
+        },
+        {
+            "original": "    --from-file=FILE1           compare FILE1 to all operands;\n                                  FILE1 can be a directory",
+            "translated": "    --from-file=FILE1           bandar FILE1 para todos os operandos; \n                                  FILE1 pode ser um diretório.",
+            "reference": "    --from-file=ARQUIVO1        compara ARQUIVO1 com todos os operandos;\n                                  ARQUIVO1 pode ser um diretório"
+        },
+        {
+            "original": "    --to-file=FILE2             compare all operands to FILE2;\n                                  FILE2 can be a directory",
+            "translated": "    --to-file=ARQUIVO2             comparando todos os operandos com ARQUIVO2; \n                                  ARQUIVO2 pode ser um diretório.",
+            "reference": "    --to-file=ARQUIVO2          compara todos os operandos com ARQUIVO2;\n                                  ARQUIVO2 pode ser um diretório"
+        },
+        {
+            "original": "-i, --ignore-case               ignore case differences in file contents",
+            "translated": "-i, --ignore-case               Ignorar diferenças entre letras maiúsculas e minúsculas no conteúdo da pasta.",
+            "reference": "-i, --ignore-case               não faz distinção entre letras maiúsculas e\n                                  minúsculas no conteúdo do arquivo"
+        },
+        {
+            "original": "-E, --ignore-tab-expansion      ignore changes due to tab expansion",
+            "translated": "-E, --ignore-tab-expansion      ignorar as alterações decorrentes da expansão de tabulação.",
+            "reference": "-E, --ignore-tab-expansion      ignora as diferenças causadas pela expansão\n                                  da tabulação"
+        },
+        {
+            "original": "-Z, --ignore-trailing-space     ignore white space at line end",
+            "translated": "-Z, --ignore-trailing-space     Ignore white space at the end of a line.",
+            "reference": "-Z, --ignore-trailing-space     ignora espaços em branco no fim das linhas"
+        },
+        {
+            "original": "-b, --ignore-space-change       ignore changes in the amount of white space",
+            "translated": "-b, --ignore-space-change       Ignore changes in the amount of white space.",
+            "reference": "-b, --ignore-space-change       ignora as diferenças na quantidade de espaços\n                                  em branco"
+        },
+        {
+            "original": "-w, --ignore-all-space          ignore all white space",
+            "translated": "-w, --ignore-all-space          Ignorar todos os espaços em branco.",
+            "reference": "-w, --ignore-all-space          ignora todos os espaços em branco"
+        },
+        {
+            "original": "-B, --ignore-blank-lines        ignore changes where lines are all blank",
+            "translated": "-B, --ignore-blank-lines        ignorar alterações em que todas as linhas são vazias.",
+            "reference": "-B, --ignore-blank-lines        ignora diferenças onde as linhas estão vazias"
+        },
+        {
+            "original": "-I, --ignore-matching-lines=RE  ignore changes where all lines match RE",
+            "translated": "-I, --ignore-matching-lines=RE Ignore changes in lines that match the pattern RE.",
+            "reference": "-I, --ignore-matching-lines=ER  ignora as diferenças nas linhas que\n                                  correspondem à expressão regular ER"
+        },
+        {
+            "original": "-a, --text                      treat all files as text",
+            "translated": "-a, --text                      Aplicação de todos os arquivos como texto.",
+            "reference": "-a, --text                      trata todos os arquivos como texto"
+        },
+        {
+            "original": "    --strip-trailing-cr         strip trailing carriage return on input",
+            "translated": "    --strip-trailing-cr         apagar o retorno de carro no final da linha ao inserir.",
+            "reference": "    --strip-trailing-cr         remove o caractere de retorno de carro\n                                  (CR) ao final da linha na entrada"
+        },
+        {
+            "original": "    --binary                    read and write data in binary mode",
+            "translated": "    --binary                    escrever e ler dados no modo binário.",
+            "reference": "    --binary                    lê e escreve os dados em modo binário"
+        },
+        {
+            "original": "-D, --ifdef=NAME                output merged file with '#ifdef NAME' diffs",
+            "translated": "-D, --ifdef=NAME                Zusammengefügte Datei mit »#ifdef NAME« in die Ausgabe mischen.",
+            "reference": "-D, --ifdef=NOME                exibe o arquivo mesclado incluindo\n                                  \"#ifndef NOME\" nas diferenças"
+        },
+        {
+            "original": "    --GTYPE-group-format=GFMT   format GTYPE input groups with GFMT",
+            "translated": "    --GTYPE-group-format=GFMT   format grup masukan GTYPE dengan GFMT.",
+            "reference": "    --GTYPE-group-format=GFMT   formata grupos de entrada GTYPE com GFMT"
+        },
+        {
+            "original": "    --line-format=LFMT          format all input lines with LFMT",
+            "translated": "    --line-format=LFMT          Formatar todas as linhas de entrada com LFMT.",
+            "reference": "    --line-format=LFMT          formata todas as linhas de entrada com LFMT"
+        },
+        {
+            "original": "    --LTYPE-line-format=LFMT    format LTYPE input lines with LFMT",
+            "translated": "    --LTYPE-line-format=LFMT    formatar linha LTYPE com o formato LFMT.",
+            "reference": "    --LTYPE-line-format=LFMT    formata linhas de entrada LTYPE com LFMT"
+        },
+        {
+            "original": "  These format options provide fine-grained control over the output\n    of diff, generalizing -D/--ifdef.",
+            "translated": "As opções de formato fornecem controle preciso sobre a saída diferencial, generalizando o -D/--ifdef.",
+            "reference": "  Essa opções de formatação fornece um controle refinado sobre a saída\n    das diferenças, generalizando -D/--ifdef."
+        },
+        {
+            "original": "  LTYPE is 'old', 'new', or 'unchanged'.  GTYPE is LTYPE or 'changed'.",
+            "translated": "LTYPE pode ser 'antigo', 'novo' ou 'sem alterações'. GTYPE é LTYPE ou 'alterado'.",
+            "reference": "  LTYPE pode ser \"old\", \"new\" ou \"unchanged\". GTYPE é LTYPE ou \"changed\"."
+        },
+        {
+            "original": "  GFMT (only) may contain:\n    %<  lines from FILE1\n    %>  lines from FILE2\n    %=  lines common to FILE1 and FILE2\n    %[-][WIDTH][.[PREC]]{doxX}LETTER  printf-style spec for LETTER\n      LETTERs are as follows for new group, lower case for old group:\n        F  first line number\n        L  last line number\n        N  number of lines = L-F+1\n        E  F-1\n        M  L+1\n    %(A=B?T:E)  if A equals B then T else E",
+            "translated": "GFMT pode conter as seguints informações:\n    %< linhas da FILE1.\n    %> linhas da FILE2.\n    %= linhas que pertencem tanto a FILE1 quanto a FILE2.\n    %[-][largura][.[precisão]]{doxX}caracter  para imprimir o caractere com base nas regras printf:\n        F  primeira linha da nova sequência de caracteres\n        L  última linha da nova sequência de caracteres\n        N  quantidade total de linhas = L-F+1\n        E  (F)-1\n        M  (L)+1\n    %(A=B?T:E) se A for igual a B, então T, caso contrário E",
+            "reference": "  GFMT pode conter (apenas):\n    %<  linhas do ARQUIVO1\n    %>  linhas do ARQUIVO2\n    %=  linhas idênticas em ARQUIVO1 e ARQUIVO2\n    %[-][LARGURA][.[PREC]]{doxX}LETRA  especificação para LETRA\n        utilizando a mesma notação do comando printf(). \n        Os códigos permitidos para LETRA são,\n        em maiúsculas para grupos novos,\n        em minúsculas para grupos antigos:\n        F  número da primeira linha\n        L  número da última linha\n        N  número de linhas = L-F+1\n        E  F-1\n        M  L+1\n    %(A=B?T:E)  se A igual B, então T; senão E"
+        },
+        {
+            "original": "  LFMT (only) may contain:\n    %L  contents of line\n    %l  contents of line, excluding any trailing newline\n    %[-][WIDTH][.[PREC]]{doxX}n  printf-style spec for input line number",
+            "translated": "LFMT pode conter apenas: \n    %L conteúdo da linha.\n    %l conteúdo da linha, sem novo carro-linha no final.\n    %[-][BREITE][.[PREC]]{doxX}n  número de linhas em estilo printf.",
+            "reference": "  LFMT pode conter (apenas):\n    %L  conteúdo da linha\n    %l  conteúdo da linha, excluindo o caractere final de nova linha\n    %[-][LARGURA][.[PREC]]{doxX}n  especificação estilo printf() do número\n                                   da linha da utilizando"
+        },
+        {
+            "original": "  Both GFMT and LFMT may contain:\n    %%  %\n    %c'C'  the single character C\n    %c'\\OOO'  the character with octal code OOO\n    C    the character C (other characters represent themselves)",
+            "translated": "GFMT ou LFMT podem conter: \n    %%\n    %c'C'\nde caracter único C\n    %c'^'ΨOOOO'＞o código octal OOO  que representa o caractere}\n",
+            "reference": "  GFMT ou LFMT pode conter:\n    %%  %\n    %c'C'  o caractere C\n    %c'\\OOO'  o caractere com código octal OOO\n    C    o caractere C (outros caracteres representam a si próprios)"
+        },
+        {
+            "original": "-d, --minimal            try hard to find a smaller set of changes",
+            "translated": "-d, --minimal             Intensificar na busca por pequenas alterações para otimizar o desempenho do Keras.",
+            "reference": "-d, --minimal            se esforça para localizar o menor conjunto\n                           de diferenças"
+        },
+        {
+            "original": "    --horizon-lines=NUM  keep NUM lines of the common prefix and suffix",
+            "translated": "    --horizon-lines=NUM  NUM linhas com prefíxo e sufixo comuns\n            manter.",
+            "reference": "    --horizon-lines=NÚM  mantém NÚM linhas de prefixo e sufixo idênticos"
+        },
+        {
+            "original": "    --speed-large-files  assume large files and many scattered small changes",
+            "translated": "    --speed-large-files   Assumindo que grandes e muitas arquivos tenham pequenas alterações dispersas.",
+            "reference": "    --speed-large-files  assume arquivos grandes e muitas alterações\n                           pequenas espalhadas"
+        },
+        {
+            "original": "    --color[=WHEN]       color output; WHEN is 'never', 'always', or 'auto';\n                           plain --color means --color='auto'",
+            "translated": "    --color[=WANN]        Warnei a saída com cores; WANN pode ser 'sempre', 'nunca' ou 'automático' (por padrão); apenas especificar o --color é equivalente ao --color='automático'",
+            "reference": "    --color[=QUANDO]     colore a saída; QUANDO pode ser \"never\", \"always\",\n                           ou \"auto\"; só --color resulta em --color=\"auto\""
+        },
+        {
+            "original": "    --palette=PALETTE    the colors to use when --color is active; PALETTE is\n                           a colon-separated list of terminfo capabilities",
+            "translated": "    --palette=PALETTE    Cores utilizadas quando o --color está ativo; PALETTE é uma lista separada por dois pontos de capacidades terminfo.",
+            "reference": "    --palette=PALETA     as cores para usar quando --color está ativa;\n                           PALETA é uma lista de capacidades de terminfo\n                           separadas por caractere de dois pontos"
+        },
+        {
+            "original": "    --help               display this help and exit",
+            "translated": "    --help                Mostrar ajuda desta interface e sair.",
+            "reference": "    --help               mostra esta ajuda e sai"
+        },
+        {
+            "original": "-v, --version            output version information and exit",
+            "translated": "-v, --version            mostra informações de versão e sai da aplicação.",
+            "reference": "-v, --version            mostra as informações da versão e sai"
+        },
+        {
+            "original": "FILES are 'FILE1 FILE2' or 'DIR1 DIR2' or 'DIR FILE' or 'FILE DIR'.",
+            "translated": "FILES são 'FILE1 FILE2' ou 'DIR1 DIR2' ou 'DIR FILE' ou 'FILE DIR'.",
+            "reference": "ARQUIVOS são \"ARQUIVO1 ARQUIVO2\", \"DIR1 DIR2\", \"DIR ARQUIVO\" ou \"ARQUIVO DIR\"."
+        },
+        {
+            "original": "If --from-file or --to-file is given, there are no restrictions on FILE(s).",
+            "translated": "Se --from-file ou --to-file fornecer, não há limites para o número de arquivos.",
+            "reference": "Se --from-file ou --to-file for especificado, não há restrição em ARQUIVO(s)."
+        },
+        {
+            "original": "If a FILE is '-', read standard input.",
+            "translated": "Se o arquivo for '-', ler de entrada padrão.",
+            "reference": "Se um ARQUIVO for igual a \"-\", lê da entrada padrão."
+        },
+        {
+            "original": "Usage: %s [OPTION]... FILES\n",
+            "translated": "Acesso: %s [OPÇÃO]... ARQUIVOS",
+            "reference": "Uso: %s [OPÇÃO]... ARQUIVOS\n"
+        },
+        {
+            "original": "Compare FILES line by line.",
+            "translated": "Bandar FILE baris per baris.",
+            "reference": "Compara ARQUIVOS linha por linha."
+        },
+        {
+            "original": "conflicting %s option value %s",
+            "translated": "Valor inválido para a opção %s, pois há conflito com o valor padrão.",
+            "reference": "opção %s com valor conflitante %s"
+        },
+        {
+            "original": "conflicting output style options",
+            "translated": "Opcões conflitantes para o estilo de saída.",
+            "reference": "opções conflitantes de estilo de saída"
+        },
+        {
+            "original": "invalid color %s",
+            "translated": "A cor %s não é válida",
+            "reference": "cor inválida %s"
+        },
+        {
+            "original": "-D option not supported with directories",
+            "translated": "A opção -D não é suportada em diretórios.",
+            "reference": "Sem suporte à opção -D com diretórios"
+        },
+        {
+            "original": "Common subdirectories: %s and %s\n",
+            "translated": "Subdiretórios idênticos: %s e %s.",
+            "reference": "Subdiretórios idênticos: %s e %s\n"
+        },
+        {
+            "original": "Only in %s: %s\n",
+            "translated": "Nur em %s há a presença de :%s.",
+            "reference": "Somente em %s: %s\n"
+        },
+        {
+            "original": "File %s is a %s while file %s is a %s\n",
+            "translated": "Berkas %s adalah %s sementara berkas %s adalah %s\n",
+            "reference": "O arquivo %s é %s, enquanto o arquivo %s é %s\n"
+        },
+        {
+            "original": "Symbolic links %s -> %s and %s -> %s differ\n",
+            "translated": "A simbolica conexao %s -> %s e %s -> %s apresentam resultados diferentes.",
+            "reference": "Os links simbólicos %s -> %s e %s -> %s são diferentes\n"
+        },
+        {
+            "original": "cannot compare '-' to a directory",
+            "translated": "não é possível comparar o sinal negativo (-) com diretório.",
+            "reference": "não é possível comparar \"-\" com um diretório"
+        },
+        {
+            "original": "Files %s and %s are identical\n",
+            "translated": "Berkas %s dan %s identik.",
+            "reference": "Os aquivos %s e %s são idênticos\n"
+        },
+        {
+            "original": "Randy Smith",
+            "translated": "Randy Smith",
+            "reference": "Randy Smith"
+        },
+        {
+            "original": "incompatible options",
+            "translated": "opção não compatível.",
+            "reference": "opções incompatíveis"
+        },
+        {
+            "original": "'-' specified for more than one input file",
+            "translated": "'--' especifica mais de uma pasta de entrada.",
+            "reference": "\"-\" especificado para mais de um arquivo de entrada"
+        },
+        {
+            "original": "read failed",
+            "translated": "falha na leitura",
+            "reference": "falha de leitura"
+        },
+        {
+            "original": "-A, --show-all              output all changes, bracketing conflicts",
+            "translated": "-A, --show-all               Todos os alterações exibidos, conflitos em ( )",
+            "reference": "-A, --show-all              exibe todas as diferenças, com os conflitos\n                              entre parênteses"
+        },
+        {
+            "original": "-e, --ed                    output ed script incorporating changes\n                                from OLDFILE to YOURFILE into MYFILE",
+            "translated": "-e, --ed                    exibe o script ed que inclui as alterações da data OLDFILE para YOURDATEI e coloca em MYFILE\n",
+            "reference": "-e, --ed                    cria um script de ed para incorporar as\n                              diferenças entre ARQUIVO1 e ARQUIVO2\n                              em ARQUIVO3"
+        },
+        {
+            "original": "-E, --show-overlap          like -e, but bracket conflicts",
+            "translated": "-E, --show-overlap           Wie -e, mas com conflitos em parênteses.",
+            "reference": "-E, --show-overlap          similar a -e, mas exibe conflitos entre parênteses"
+        },
+        {
+            "original": "-3, --easy-only             like -e, but incorporate only nonoverlapping changes",
+            "translated": "-3, --easy-only              Semelhante a -e, mas apenas envolve alterações que não se sobrepõem",
+            "reference": "-3, --easy-only             similar a -e, mas incorpora apenas as alterações\n                              que não se sobreponham"
+        },
+        {
+            "original": "-x, --overlap-only          like -e, but incorporate only overlapping changes",
+            "translated": "-x, --overlap-only           Wie -e, aber nur überlappende Änderungen\n                               integrieren.",
+            "reference": "-x, --overlap-only          similar a -e, mas incorpora apenas as alterações\n                              que se sobrepõem"
+        },
+        {
+            "original": "-X                          like -x, but bracket conflicts",
+            "translated": "-X                          Wie -x, mas com conflitos em colchetes.",
+            "reference": "-X                          similar a -x, mas exibe conflitos entre parentes"
+        },
+        {
+            "original": "-i                          append 'w' and 'q' commands to ed scripts",
+            "translated": "-i                          imbuhkan perintah 'w' dan 'q' ke skrip ed.",
+            "reference": "-i                          anexa os comandos \"w\" e \"q\" aos scripts de ed"
+        },
+        {
+            "original": "-m, --merge                 output actual merged file, according to\n                                -A if no other options are given",
+            "translated": "-m, --merge                    Exibir a verdadeira mensagem de merge do arquivo que corresponde ao -A, se nenhuma outra opção for dada.",
+            "reference": "-m, --merge                 emite arquivo mesclado atual, conforme\n                              -A se nenhuma outra opções for fornecida"
+        },
+        {
+            "original": "-a, --text                  treat all files as text",
+            "translated": "-a, --text                   Aplicação de todos os arquivos como texto.",
+            "reference": "-a, --text                  trata todos os arquivos como texto"
+        },
+        {
+            "original": "    --strip-trailing-cr     strip trailing carriage return on input",
+            "translated": "    --strip-trailing-cr      Remover carro-retorno (CR) no final da linha ao inserir\n",
+            "reference": "    --strip-trailing-cr     remove o caractere de retorno de carro\n                              (CR) ao final da linha na entrada"
+        },
+        {
+            "original": "-T, --initial-tab           make tabs line up by prepending a tab",
+            "translated": "-T, --initial-tab            Cria uma tabulação horizontal com espaços preenchidos na frente da primeira tabulação.",
+            "reference": "-T, --initial-tab           alinha tabulações introduzindo uma\n                              tabulação no início."
+        },
+        {
+            "original": "    --diff-program=PROGRAM  use PROGRAM to compare files",
+            "translated": "    --diff-program=PROGRAM  utilizar PROGRAM para comparar arquivos\n",
+            "reference": "    --diff-program=PROGRAMA  usa o PROGRAMA para comparar os arquivos"
+        },
+        {
+            "original": "-L, --label=LABEL           use LABEL instead of file name\n                                (can be repeated up to three times)",
+            "translated": "-L, --label=LABEL            LABEL em vez do nome de arquivo utilizar (pode ser repetido até três vezes)",
+            "reference": "-L, --label RÓTULO          usa RÓTULO ao invés do nome do arquivo\n                                (pode ser repetido até três vezes)"
+        },
+        {
+            "original": "    --help                  display this help and exit",
+            "translated": "    --help                  Mostrar ajuda deste menu e sair.",
+            "reference": "    --help                  mostra esta ajuda e sai"
+        },
+        {
+            "original": "-v, --version               output version information and exit",
+            "translated": "-v, --version               Mostrar informações de versão e sair.",
+            "reference": "-v, --version               mostra informação da versão e sai"
+        },
+        {
+            "original": "Usage: %s [OPTION]... MYFILE OLDFILE YOURFILE\n",
+            "translated": "Pemakaian: %s [OPTION]... MEUARQUIVO ANTIGO YOURFILE} ✅ 🎉  # Translated using the latest GPT models. AIMS for perfection! ⚡️",
+            "reference": "Uso: %s [OPÇÃO]... ARQUIVO1 ARQUIVO2 ARQUIVO3\n"
+        },
+        {
+            "original": "Compare three files line by line.",
+            "translated": "Bandar atau comparar três berkas baris per baris.",
+            "reference": "Compara três arquivos linha por linha."
+        },
+        {
+            "original": "\nThe default output format is a somewhat human-readable representation of\nthe changes.\n\nThe -e, -E, -x, -X (and corresponding long) options cause an ed script\nto be output instead of the default.\n\nFinally, the -m (--merge) option causes diff3 to do the merge internally\nand output the actual merged file.  For unusual input, this is more\nrobust than using ed.\n",
+            "translated": "O padrão de saída é uma representação das alterações que pode ser ligeiramente compreendida por humanos. As opções -e, -E, -x e -X (além de suas versões longas relacionadas) resultam na substituição da saída padrão por um script em ed formatado como uma solução alternativa. Finalmente, a escolha do parâmetro -m (--merge) faz com que o diff3 realize internamente a fusão das alterações e gere realmente a fonte de dados combinada.",
+            "reference": "\nO formato padrão de saída é uma forma legível por humanos de representação\ndas alterações.\n\nAs opções -e, -E, -x, -X (e opções extensas correspondentes) fazem com que\num script de ed seja criado, ao invés do padrão.\n\nFinalmente, a opção -m (--merge) faz com que diff3 faça a mesclagem\ninternalmente e emite o arquivo mesclado atual. Para entradas incomuns,\nisto é mais robusto do que usar o ed.\n"
+        },
+        {
+            "original": "Exit status is 0 if successful, 1 if conflicts, 2 if trouble.",
+            "translated": "O status do keluaran é 0 se tudo correu bem, 1 em caso de conflito e 2 quando houve algum problema.",
+            "reference": "Status de saída é 0 se houver sucesso, 1 se conflitos e 2 se problema."
+        },
+        {
+            "original": "internal error: screwup in format of diff blocks",
+            "translated": "Erro interno de sintaxe: o formato do bloco diff não está correto.",
+            "reference": "erro interno: confusão no formato dos blocos diff"
+        },
+        {
+            "original": "%s: diff failed: ",
+            "translated": "%s: diff gagal: ",
+            "reference": "%s: diff falhou: "
+        },
+        {
+            "original": "internal error: invalid diff type in process_diff",
+            "translated": "Erro interno: tipo de diferença não é válido no processamento_diff.",
+            "reference": "erro interno: tipo de diff inválido em process_diff"
+        },
+        {
+            "original": "invalid diff format; invalid change separator",
+            "translated": "O formato de diferença (diff) não é válido; o separador para alterações (change delimiter) também não é válido.",
+            "reference": "formato de diff inválido; separador de diferença inválido"
+        },
+        {
+            "original": "invalid diff format; incomplete last line",
+            "translated": "formato de diferença inválido; linha final incompleta.",
+            "reference": "formato de diff inválido; última linha incompleta"
+        },
+        {
+            "original": "subsidiary program %s could not be invoked",
+            "translated": "programa subordinado %s não pode ser chamado.",
+            "reference": "o programa subsidiário %s não pôde ser invocado"
+        },
+        {
+            "original": "invalid diff format; incorrect leading line chars",
+            "translated": "formato de diferença (diff) inválido; caractere líder na linha não correto.",
+            "reference": "formato de diff inválido; caracteres incorretos na linha de início"
+        },
+        {
+            "original": "internal error: invalid diff type passed to output",
+            "translated": "Erro interno: tipo de diferença não é válido para ser inserido na saída",
+            "reference": "erro interno: tipo de diff inválido passado para a saída"
+        },
+        {
+            "original": "input file shrank",
+            "translated": "o arquivo de entrada se reduziu inesperadamente.",
+            "reference": "o arquivo de entrada diminuiu"
+        },
+        {
+            "original": "cannot compare file names %s and %s",
+            "translated": "Os nomes dos arquivos %s e %s não podem ser comparados.",
+            "reference": "não foi possível comparar os nomes dos arquivos %s e %s"
+        },
+        {
+            "original": "%s: recursive directory loop",
+            "translated": "%s: Loop recursivo no diretório",
+            "reference": "%s: loop de diretório recursivo"
+        },
+        {
+            "original": "Thomas Lord",
+            "translated": "Senhor Thomas Lord",
+            "reference": "Thomas Lord"
+        },
+        {
+            "original": "-o, --output=FILE            operate interactively, sending output to FILE",
+            "translated": "-o --output=FILE            operação interativa, enviar saída para FILE.",
+            "reference": "-o, --output=ARQUIVO         age interativamente, enviando a saída para ARQUIVO"
+        },
+        {
+            "original": "-i, --ignore-case            consider upper- and lower-case to be the same",
+            "translated": "-i, --ignore-case            Não distingue entre maiúsculas e minúsculas.",
+            "reference": "-i, --ignore-case            não faz distinção entre letras maiúsculas\n                              e minúsculas"
+        },
+        {
+            "original": "-E, --ignore-tab-expansion   ignore changes due to tab expansion",
+            "translated": "-E, --ignore-tab-expansion   ignorar alterações devido a expansão de tabulação.",
+            "reference": "-E, --ignore-tab-expansion   ignorar as diferenças causadas pela expansão\n                               da tabulação"
+        },
+        {
+            "original": "-Z, --ignore-trailing-space  ignore white space at line end",
+            "translated": "-Z, --ignore-trailing-space abaixo de cada linha ignorar espaços em branco ao final.",
+            "reference": "-Z, --ignore-trailing-space  ignora espaços em branco no fim das linhas"
+        },
+        {
+            "original": "-b, --ignore-space-change    ignore changes in the amount of white space",
+            "translated": "-b, --ignore-space-change    Ignorar as alterações na quantidade de espaços em branco.",
+            "reference": "-b, --ignore-space-change    ignora as diferenças na quantidade de espaços\n                               em branco"
+        },
+        {
+            "original": "-W, --ignore-all-space       ignore all white space",
+            "translated": "-W, --ignore-all-space        Ignorar todos os espaços em branco.",
+            "reference": "-W, --ignore-all-space       ignora todos os espaços em branco"
+        },
+        {
+            "original": "-B, --ignore-blank-lines     ignore changes whose lines are all blank",
+            "translated": "-B, --ignore-blank-lines     ignorar alterações em que todas as linhas são vazias.",
+            "reference": "-B, --ignore-blank-lines     ignora diferenças onde as linhas estão vazias"
+        },
+        {
+            "original": "-I, --ignore-matching-lines=RE  ignore changes all whose lines match RE",
+            "translated": "-I, --ignore-matching-lines=RE Ignorar as alterações em todas as linhas que correspondam ao padrão RE.",
+            "reference": "-I, --ignore-matching-lines=ER  ignora as diferenças em linhas que correspondem\n                                  à Expressão Regular"
+        },
+        {
+            "original": "    --strip-trailing-cr      strip trailing carriage return on input",
+            "translated": "    --strip-trailing-cr      apagar o retorno de carro no final da linha ao inserir.",
+            "reference": "    --strip-trailing-cr      remove o caractere de retorno de carro\n                               (CR) ao final da linha na entrada"
+        },
+        {
+            "original": "-a, --text                   treat all files as text",
+            "translated": "-a, --text                   Aplica-se a todas as pastas como texto.",
+            "reference": "-a, --text                   trata todos os arquivos como texto"
+        },
+        {
+            "original": "-w, --width=NUM              output at most NUM (default 130) print columns",
+            "translated": "-w, --width=NUM              Keliberar o número máximo de NUM (valor padrão 130) colunas impressas.",
+            "reference": "-w, --width=NÚM              emite no máximo NÚM (padrão 130) colunas linhas"
+        },
+        {
+            "original": "-l, --left-column            output only the left column of common lines",
+            "translated": "-l, --left-column            Nur linke Spalte der gemeinsamen Zeilen ausgeben.",
+            "reference": "-l, --left-column            emite apenas a coluna da esquerda das linhas\n                               idênticas"
+        },
+        {
+            "original": "-s, --suppress-common-lines  do not output common lines",
+            "translated": "-s, --suppress-common-lines   Não seja exibido o conteúdo das linhas comuns.",
+            "reference": "-s, --suppress-common-lines  não emite as linhas idênticas"
+        },
+        {
+            "original": "-t, --expand-tabs            expand tabs to spaces in output",
+            "translated": "-t, --expand-tabs            Tabulação de caracteres em § para espaços na saída.",
+            "reference": "-t, --expand-tabs            expande as tabulações para espaços na saída"
+        },
+        {
+            "original": "    --tabsize=NUM            tab stops at every NUM (default 8) print columns",
+            "translated": "    --tabsize=NUM            tab stop adalah setiap NUM (baku 8) kolom cetak",
+            "reference": "    --tabsize=NÚM            paradas de tabulação a cada NÚM colunas\n                               (padrão=8)"
+        },
+        {
+            "original": "-d, --minimal                try hard to find a smaller set of changes",
+            "translated": "-d, --minimal                Intensiv após uma pequena quantidade de alterações procurar.",
+            "reference": "-d, --minimal                se esforça para localizar o menor conjunto\n                               de diferenças"
+        },
+        {
+            "original": "-H, --speed-large-files      assume large files, many scattered small changes",
+            "translated": "-H, --speed-large-files      Assumindo arquivos grandes com muitas pequenas alterações dispersas.",
+            "reference": "-H, --speed-large-files      assume arquivos grandes e muitas alterações\n                               pequenas espalhadas"
+        },
+        {
+            "original": "    --diff-program=PROGRAM   use PROGRAM to compare files",
+            "translated": "    --diff-program=PROGRAM   utilize PROGRAM para comparar arquivos",
+            "reference": "    --diff-program=PROGRAMA  usa o PROGRAMA para comparar os arquivos"
+        },
+        {
+            "original": "    --help                   display this help and exit",
+            "translated": "    --help                   Mostrar ajuda deste menu e sair.",
+            "reference": "    --help                   mostra esta ajuda e sai"
+        },
+        {
+            "original": "-v, --version                output version information and exit",
+            "translated": "-v --versão                 Exibir informações de versão e sair.",
+            "reference": "-v, --version                mostra informação da versão e sai"
+        },
+        {
+            "original": "Usage: %s [OPTION]... FILE1 FILE2\n",
+            "translated": "Acesso: %s [OPÇÃO]... ARQUIVO1 ARQUIVO2\n",
+            "reference": "Uso: %s [OPÇÃO]... ARQUIVO1 ARQUIVO2\n"
+        },
+        {
+            "original": "Side-by-side merge of differences between FILE1 and FILE2.",
+            "translated": "Conjunto diferenciado de FILE1 e FILE2.",
+            "reference": "Mesclagem lado a lado das diferenças entre ARQUIVO1 e ARQUIVO2."
+        },
+        {
+            "original": "cannot interactively merge standard input",
+            "translated": "não é possível juntar a entrada padrão de forma interativa.",
+            "reference": "não foi possível mesclar interativamente a entrada padrão"
+        },
+        {
+            "original": "both files to be compared are directories",
+            "translated": "As duas pastas a serem comparadas são diretórios.",
+            "reference": "os dois arquivos a serem comparados são diretórios"
+        },
+        {
+            "original": "ed:\tEdit then use both versions, each decorated with a header.\neb:\tEdit then use both versions.\nel or e1:\tEdit then use the left version.\ner or e2:\tEdit then use the right version.\ne:\tDiscard both versions then edit a new one.\nl or 1:\tUse the left version.\nr or 2:\tUse the right version.\ns:\tSilently include common lines.\nv:\tVerbosely include common lines.\nq:\tQuit.\n",
+            "translated": "[{'original_language': 'en', 'po_code': 'ed: Editieren, dann beide Versionen benutzen, jede mit einem Kopf dekoriert.', 'pt-BR': 'ed: Editar e utilizar ambas as versões. Cada uma com um cabeçalho decorado.'}, {'original_language': 'en', 'po_code': 'eb: Editieren, dann beide Versionen benutzen.', 'pt-BR': 'editar e utilizar ambas as versões sem alterações adicionais.'}, {'original_language': 'en', 'po_code': 'el ou e1: Editieren, dann linke Version benutzen.', 'pt-BR': 'editar a versão esquerda para utilizá-la posteriormente.'}, {'original_language': 'en', 'po_code': 'er ou e2: Editieren, dann rechte Version benutzen.', 'pt-BR': 'editar a versão direita para utilizá-la após as alterações.'}, {'original_language': 'en', 'po_code': 'e: Drop both versions and edit a new one.', 'pt-BR': 'Descartar ambas as versões e criar uma nova para editar.'}, {'original_language': 'en', 'po_code': 'l  ou e1: Use the left version.', 'pt-BR': 'utilizar a versão esquerda sem alterações adicionais.'}, {'original_language': 'en', 'po_code': 'r  ou e2: Use the right version.', 'pt-BR': 'utilizar a versão direita após as edições necessárias.'}, {'original_language': 'en', 'po_code': 's: Silently copy common lines together. (Diamond join).', 'pt-BR': 'copiar linhas comuns sem nenhuma mensagem de saída.'}, {'original_language': 'en', 'po_code': 'v: Verbosely copy common lines together. (Verbose join).', 'pt-BR': 'copiar linhas comuns juntas, exibindo detalhes adicionais.'}, {'original_language': 'en', 'po_code': 'q: Quit.', 'pt-BR': 'Sair.'}]",
+            "reference": "ed:\tEdita e, então, usa ambas as versões, cada uma com seu cabeçalho.\neb:\tEdita e, então, usa ambas as versões.\nel ou e1:\tEdita e, então, usa a versão da esquerda.\ner ou e2:\tEdita e, então, usa a versão da direita.\ne:\tEdita uma nova versão.\nl ou 1:\tUsa a versão da esquerda.\nr ou 2:\tUsa a versão da direita.\ns:\tInclui silenciosamente as linhas idênticas.\nv:\tInclui verbosamente as linhas idênticas.\nq:\tSai.\n"
+        },
+        {
+            "original": "unrecognized prefix: %s",
+            "translated": "Préfixo não reconhecido: %s",
+            "reference": "prefixo desconhecido: %s"
+        },
+        {
+            "original": "unparsable value for --palette",
+            "translated": "valor não pode ser calculado para --palette",
+            "reference": "valor não analisável para --palette"
+        }
+    ]
+}

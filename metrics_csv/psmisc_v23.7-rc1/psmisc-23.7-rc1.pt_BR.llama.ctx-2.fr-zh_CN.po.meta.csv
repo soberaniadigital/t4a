@@ -1,0 +1,518 @@
+original,translated,reference,context_languages,strategy,comet,chrf,bleu,ter,bertscore
+"Usage: fuser [-fIMuvw] [-a|-s] [-4|-6] [-c|-m|-n SPACE]
+             [-k [-i] [-SIGNAL]] NAME...
+       fuser -l
+       fuser -V
+Show which processes use the named files, sockets, or filesystems.
+
+  -a,--all              display unused files too
+  -i,--interactive      ask before killing (ignored without -k)
+  -I,--inode            use always inodes to compare files
+  -k,--kill             kill processes accessing the named file
+  -l,--list-signals     list available signal names
+  -m,--mount            show all processes using the named filesystems or
+                        block device
+  -M,--ismountpoint     fulfill request only if NAME is a mount point
+  -n,--namespace SPACE  search in this name space (file, udp, or tcp)
+  -s,--silent           silent operation
+  -SIGNAL               send this signal instead of SIGKILL
+  -u,--user             display user IDs
+  -v,--verbose          verbose output
+  -w,--writeonly        kill only processes with write access
+  -V,--version          display version information
+","Utilização : fuser [-fIMuvw] [-a|-s] [-4|-6] [-c|-m|-n DIREtóRIO] \
+                        [-k [-i] [-SIGNAL]] NOM...
+              fuser -l
+              fuser -V","Uso:   fuser [-fMuv] [-a|-s] [-4|-6] [-c|-m|-n ESPAÇO]
+             [-k [-i] [-SINAL]] NOME...
+       fuser -l
+       fuser -V
+Mostra quais processos usam os arquivos, sockets ou sistema de arquivos especificados.
+
+  -a,--all              exibe também arquivos sem uso
+  -i,--interactive      pergunta antes de matar (ignorado sem -k)
+  -k,--kill             mata processos acessando o arquivo especificado
+  -l,--list-signals     lista os nomes de sinal disponíveis
+  -m,--mount            mostra todos processos usando o sistema de arquivos
+                        ou dispositivo de bloco especificado
+  -M,--ismountpoint     realiza solicitação apenas se NOME for um ponto
+                        de montagem
+  -n,--namespace ESPAÇO pesquisa neste espaço de nome (file, udp ou tcp)
+  -s,--silent           operação silenciosa
+  -SINAL                envia este sinal em vez de SIGKILL
+  -u,--user             exibe IDs de usuário
+  -v,--verbose          saída detalhada
+  -w,--writeonly        mata apenas processos com acesso de gravação
+  -V,--version          exibe informações de versão
+","FR,ZH_CN",LLAMA,48.02444279193878,11.489461954043458,2.5359386626834586,97.5609756097561,69.8106050491333
+"  -4,--ipv4             search IPv4 sockets only
+  -6,--ipv6             search IPv6 sockets only
+","[{'key': '-4,--ipv4', 'value': 'chave IPv4'}, {'key': 'checa soquetes IPv4 apenas', 'value': 'cherche des sockets IPv4 seulement'}]","  -4,--ipv4             pesquisa apenas sockets IPv4
+  -6,--ipv6             pesquisa apenas sockets IPv6
+","FR,ZH_CN",LLAMA,55.255699157714844,28.127239139134595,2.8525466573456515,100.0,67.42412447929382
+"  udp/tcp names: [local_port][,[rmt_host][,[rmt_port]]]
+
+",CÁLCULO DE TRANLATORAÇÃO NECESITADA PARA O IDIOMA BRASILEIRO (PT-BR) ABAIXO DOS STRINGS TEXTUALS FORMED EM ENGLES,"  -                     redefine opções
+
+  nomes udp/tcp: [porta_local][,[maq_rmt][,[porta_rmt]]]
+
+","FR,ZH_CN",LLAMA,31.123563647270203,0.17076502732240434,0.0,100.0,53.712475299835205
+"fuser (PSmisc) %s
+",fuser (PSmisc) %s,"fuser (PSmisc) %s
+","FR,ZH_CN",LLAMA,97.82289266586304,100.0,100.00000000000004,0.0,100.0
+"Copyright (C) 1993-2024 Werner Almesberger and Craig Small
+
+","Privacidade reservada por Werner Almesberger e Craig Small © Todos os direitos reservados, 1993-2024.","Copyright (C) 1993-2020 Werner Almesberger and Craig Small
+
+","FR,ZH_CN",LLAMA,75.31225085258484,45.90782697411927,7.439820585622744,100.0,77.71196365356445
+"PSmisc comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it under
+the terms of the GNU General Public License.
+For more information about these matters, see the files named COPYING.
+","PSmisc NÃO ESTÁ COVERDOS POR ANY GARANTIA. Este é um software livre, e você pode redistribuí-lo em conformidade com os termos da Licença GNU General Public License (GPL). Para mais informações sobre isso, consulte o arquivo COPYING.","PSmisc vem com ABSOLUTAMENTE NENHUMA GARANTIA.
+Este é um software livre, e você é bem-vindo em redistribuí-lo dentro
+dos termos da Licença Pública Geral GNU (GPL).
+Para mais informações a respeito, veja os arquivos com o nome COPYING.
+","FR,ZH_CN",LLAMA,81.19069933891296,55.77267446700013,39.07236697280981,55.26315789473685,86.83152794837952
+"Cannot open /proc directory: %s
+",Não é possível abrir o diretório /proc: %s,"Não foi possível abrir o diretório /proc: %s
+","FR,ZH_CN",LLAMA,94.89278197288513,85.72148431768495,80.70557274927978,12.5,98.9594578742981
+"Cannot allocate memory for matched proc: %s
+",Não é possível alocar memória para o processo associado a esta linha de comando: %s,"Não foi possível alocar memória ao proc equiparado: %s
+","FR,ZH_CN",LLAMA,78.88876795768738,56.44077373895745,14.879641171245488,100.0,85.2691650390625
+"Specified filename %s does not exist.
+",O nome do arquivo %s não existe.,"O nome de arquivo especificado %s não existe.
+","FR,ZH_CN",LLAMA,94.86939907073975,59.24064445413596,47.49549533009781,25.0,92.81150698661804
+"Cannot stat %s: %s
+",Não é possível obter as estatísticas do campo %s: %s,"Não foi possível analisar %s: %s
+","FR,ZH_CN",LLAMA,86.94120049476624,39.95115044393304,31.455601883230702,100.0,87.91654109954834
+"Cannot resolve local port %s: %s
+",Não foi possível encontrar o nome do módulo de unidade %s: %s,"Não foi possível resolver a porta local %s: %s
+","FR,ZH_CN",LLAMA,71.55293822288513,45.24553336195096,32.90385879986622,77.77777777777779,86.72404885292053
+"Unknown local port AF %d
+","Não é possível identificar o AF local %d
+","Família de endereços da porta local %d desconhecida
+","FR,ZH_CN",LLAMA,61.29276156425476,23.336202909779193,17.747405280050266,87.5,72.47073650360107
+"Cannot open protocol file ""%s"": %s
+",Não é possível abrir o arquivo de protocolo '%s': %s,"Não foi possível abrir o arquivo de protocolo ""%s"": %s
+","FR,ZH_CN",LLAMA,95.34719586372375,75.15516598184038,43.59765514726487,20.0,96.10559940338135
+"Specified filename %s is not a mountpoint.
+",O nome do arquivo %s não é um ponto de montagem.,"O nome de arquivo especificado %s não é um ponto de montagem.
+","FR,ZH_CN",LLAMA,91.04891419410706,70.48713925432965,66.3944339660576,16.666666666666664,94.75017786026001
+"%s: Invalid option %s
+","%s: Opção %s inválida
+","%s: Opção inválida %s
+","FR,ZH_CN",LLAMA,97.13265895843506,74.14983301012713,50.81327481546149,25.0,89.28118944168091
+Namespace option requires an argument.,Escolha um dos nomes de região para continuar.,"A opção de ""--namespace"" requer um argumento.","FR,ZH_CN",LLAMA,44.864603877067566,16.78520625889047,5.61480827173619,100.0,73.5158920288086
+Invalid namespace name,O nome do namespace fornecido não é válido.,Nome de espaço de nomes inválido,"FR,ZH_CN",LLAMA,69.30752396583557,24.933279900777478,0.0,100.0,71.2353765964508
+You can only use files with mountpoint options,Você pode utilizar apenas arquivos com opções de montagem específicas.,Você pode apenas usar arquivos com opções de pontos de montagem,"FR,ZH_CN",LLAMA,89.27132487297058,65.67366702982221,31.7023313852343,45.45454545454545,91.56723022460938
+No process specification given,Não foi possível inserir o título do processo.,Nenhuma especificação de processo fornecida,"FR,ZH_CN",LLAMA,67.90265440940857,20.210893459752064,4.767707020457095,100.0,72.16362357139587
+all option cannot be used with silent option.,Todos os campos de seleção não podem ser utilizados com o campo 'im lặng'.,"a opção ""--all"" não pode ser usada com a opção ""--silent"".","FR,ZH_CN",LLAMA,65.55888652801514,22.61275845299095,3.4768108606699193,100.0,76.97750926017761
+You cannot search for only IPv4 and only IPv6 sockets at the same time,Não é permitido procurar simultaneamente e exclusivamente os soquetes IPv4 lẫn IPv6.,Você não pode pesquisar apenas por sockets IPv4 e IPv6 ao mesmo tempo,"FR,ZH_CN",LLAMA,80.74273467063904,19.057400007443317,4.065425428798724,92.3076923076923,80.79205751419067
+"%*s USER        PID ACCESS COMMAND
+","%*s NGƯỞI_DÙNG PID TRUY_CẦN LỆNH
+","%*s USUÁRIO     PID ACESSO COMANDO
+","FR,ZH_CN",LLAMA,60.105252265930176,17.428976137814704,14.991106946711685,60.0,81.24057650566101
+(unknown),(desconhecido),(desconhecido),"FR,ZH_CN",LLAMA,99.26608204841614,100.0,100.00000000000004,0.0,100.00001192092896
+"Cannot stat file %s: %s
+",Não é possível obter as estatísticas do arquivo %s: %s,"Não foi possível analisar o arquivo %s: %s
+","FR,ZH_CN",LLAMA,88.06641697883606,52.673634810903295,40.89601472043678,62.5,90.9303605556488
+"Cannot open /proc/net/unix: %s
+",Não é possível abrir o diretório /proc/net/unix : %s,"Não foi possível abrir /proc/net/unix: %s
+","FR,ZH_CN",LLAMA,94.66908574104309,69.57102757455502,61.000344570143675,83.33333333333334,94.74772214889526
+Kill process %d ? (y/N) ,Você quer encerrar o processo %d? (s/N) ,Matar o processo %d? (y/N) ,"FR,ZH_CN",LLAMA,66.40393137931824,60.57907754826506,48.44273237963865,80.0,87.331622838974
+"Could not kill process %d: %s
+",Não é possível encerrar o processo %d : %s,"Não foi possível matar o processo %d: %s
+","FR,ZH_CN",LLAMA,87.75154948234558,61.063095823239685,60.767958081376904,50.0,94.02621984481812
+"Cannot open a network socket.
+",Não é possível abrir um soquete de rede.,"Não foi possível abrir um socket de rede.
+","FR,ZH_CN",LLAMA,88.1657361984253,64.57418969656644,31.02016197007,25.0,94.97589468955994
+"Cannot find socket's device number.
+",Não foi possível encontrar o número do soquete de armazenamento.,"Não foi possível localizar o número de dispositivo do socket.
+","FR,ZH_CN",LLAMA,76.78952217102051,47.43056219508951,19.72940627795883,50.0,89.54987525939941
+Kill %s(%s%d) ? (y/N) ,Você quer encerrar o processo %s(%d)? (c/K) (y/N) ,Matar %s(%s%d)? (y/N) ,"FR,ZH_CN",LLAMA,69.95441317558289,31.988799327585156,41.643966418296905,100.0,85.02578735351562
+Signal %s(%s%d) ? (y/N) ,Olá! O sinal %s(%s%d) não foi recebido? (sim/não) [y/N] (c/K),Enviar sinal para %s(%s%d)? (y/N) ,"FR,ZH_CN",LLAMA,79.28641438484192,28.092713088644693,28.875537786443697,100.0,83.65072011947632
+"killall: Cannot get UID from process status
+","killall: impossível obter UID a partir do estado do processo
+","killall: Não foi possível obter UID do status do processo
+","FR,ZH_CN",LLAMA,86.25548481941223,57.687017234523985,13.492767333412544,50.0,88.53564262390137
+"killall: Bad regular expression: %s
+","killall: Expressão regular inválida : %s
+","killall: Expressão regular inválida: %s
+","FR,ZH_CN",LLAMA,92.97921061515808,100.0,100.00000000000004,40.0,100.0
+"killall: skipping partial match %s(%d)
+","killall: Ignore a correspondência parcial %s(%d) 
+","killall: ignorando ocorrência parcial %s(%d)
+","FR,ZH_CN",LLAMA,70.26165723800659,63.72144995274912,57.067457770559976,60.0,90.13575315475464
+"Killed %s(%s%d) with signal %d
+",Máximo de %s(%d) foi encerrado com o sinal %d.,"%s(%s%d) morto com o sinal %d
+","FR,ZH_CN",LLAMA,57.61122107505798,47.38564422189826,44.94240069752791,100.0,81.26833438873291
+"%s: no process found
+",%s: nenhum processo encontrado,"%s: nenhum processo localizado
+","FR,ZH_CN",LLAMA,98.69816303253174,67.38909721518417,75.98356856515926,25.0,98.1546700000763
+"Usage: killall [OPTION]... [--] NAME...
+",CÓDIGO DE UTILIZAÇÃO: killall [OPÇÂO]... [--] NOMÉRUS...,"Uso:   killall [OPÇÃO]... [--] NOME...
+","FR,ZH_CN",LLAMA,73.10274839401245,59.64592657096487,47.18372009351201,100.0,85.39890050888062
+"       killall -l, --list
+       killall -V, --version
+
+  -e,--exact          require exact match for very long names
+  -I,--ignore-case    case insensitive process name match
+  -g,--process-group  kill process group instead of process
+  -y,--younger-than   kill processes younger than TIME
+  -o,--older-than     kill processes older than TIME
+  -i,--interactive    ask for confirmation before killing
+  -l,--list           list all known signal names
+  -q,--quiet          don't print complaints
+  -r,--regexp         interpret NAME as an extended regular expression
+  -s,--signal SIGNAL  send this signal instead of SIGTERM
+  -u,--user USER      kill only process(es) running as USER
+  -v,--verbose        report if the signal was successfully sent
+  -V,--version        display version information
+  -w,--wait           wait for processes to die
+  -n,--ns PID         match processes that belong to the same namespaces
+                      as PID
+","           killall -l, --list
+           killall -V, --version
+  -e,--exact          yêu cầu khớp chính xác với mọi tên rất dài
+  -I,--ignore-case    không phân biệt HOA/thường khi khớp tên tiến trình
+  -g,--process-group  buộc kết thúc nhóm tiến trình thay thế tiến trình
+  -y,--younger-than   buộc kết thúc mỗi tiến trình mới hơn THỜI_GIAN
+  -o,--older-than     buộc kết thúc mỗi tiến trình cũ hơn THỜI_GIAN
+  -i,--interactive    xin xác nhận trước khi buộc kết thúc
+  -l,--list           liệt kê mọi tên tín hiệu đã biết
+  -q,--quiet          không hiển thị lời than phiền (_im_)
+  -r,--regexp         giải thích TÊN là biểu thức chính quy mở rộng
+  -s,--signal TÍN_HIỆU gửi tín hiệu này thay thế SIGTERM
+  -u,--user NG_DÙNG   buộc kết thúc chỉ những tiến trình đang chạy
+                        dưới tư cách người dùng này
+  -v,--verbose        thông báo khi đã gửi tín hiệu thành công
+  -V,--version        hiện thông tin phiên bản của chương trình
+  -w,--wait           đợi tiến trình kết thúc
+  -n,--ns PID         khớp mẫu tiết trình cái mà thuộc về cùng một không
+                        gian tên với PID
+","       killall -l, --list
+       killall -V, --version
+
+  -e,--exact          exige ocorrência exata para nomes muito longos
+  -I,--ignore-case    ignora maiusculização nos nomes de processo
+  -g,--process-group  mata o grupo de processo em vez do processo
+  -y,--younger-than   mata processos mais novos que TEMPO
+  -o,--older-than     mata processos mais velhos que TEMPO
+  -i,--interactive    exibe confirmação antes de matar
+  -l,--list           lista todos os nomes de sinal conhecidos
+  -q,--quiet          não exibe avisos
+  -r,--regexp         interpreta NOME como uma expressão regular estendida
+  -s,--signal SINAL   envia este sinal em vez de SIGTERM
+  -u,--user USUÁRIO   mata apenas processos sendo executados pelo USUÁRIO
+  -v,--verbose        relata se o sinal foi enviado com sucesso
+  -V,--version        exibe informações de versão
+  -w,--wait           espera que os processos morram
+  -n,--ns PID         corresponde processos que pertencem aos mesmos
+                      espaços de nomes que o PID
+","FR,ZH_CN",LLAMA,63.63486647605896,28.40333255725201,13.183636193443247,100.0,78.25570106506348
+"  -Z,--context REGEXP kill only process(es) having context
+                      (must precede other arguments)
+","  -Z,--context BIỂU_THỈC_CHÍNH _QUY chỉ buộc kết thúc những tiến trình có ngữ cảnh (phải đi trước các đối số khác) 
+","  -Z,--context EXPREG mata apenas processo(s) tendo contexto
+                      (precisa preceder outros argumentos)
+","FR,ZH_CN",LLAMA,52.37666964530945,16.04728739901664,5.442133807846854,100.0,76.62118077278137
+Invalid time format,Formato de tempo inválido,Formato de tempo inválido,"FR,ZH_CN",LLAMA,97.18210101127625,100.0,100.00000000000004,0.0,99.99998807907104
+"Cannot find user %s
+",Utilizador %s introuvable,"Não foi possível localizar o usuário %s
+","FR,ZH_CN",LLAMA,56.552308797836304,16.64744438786565,11.752701606523267,100.0,71.63771390914917
+Invalid namespace PID,processo IID possui espaço de nomes inválido.,PID de espaço de nomes inválido,"FR,ZH_CN",LLAMA,74.84579086303711,69.63582641848635,34.57207846419409,66.66666666666666,86.64873242378235
+"Bad regular expression: %s
+",Biểu thức chính quy sai: %s,"Expressão regular inválida: %s
+","FR,ZH_CN",LLAMA,67.63913035392761,16.510733803862607,20.556680845025987,100.0,79.54601049423218
+"killall: Maximum number of names is %d
+","killall: Nome máximo de tamanho é %d
+","killall: O número máximo de nomes é %d
+","FR,ZH_CN",LLAMA,77.17459797859192,49.527055697175804,23.341653606491416,37.5,88.89386653900146
+"killall: %s lacks process entries (not mounted ?)
+",killall: %s nenhum processo encontrado (não montado?),"killall: %s não possui entradas de processos (não montado?)
+","FR,ZH_CN",LLAMA,78.99995446205139,58.0359565486664,44.95431954509448,55.55555555555556,91.26890301704407
+"Error attaching to pid %i
+",Erro ao conectar a processo com PID %i,"Erro ao anexar ao PID %i
+","FR,ZH_CN",LLAMA,78.07002067565918,43.19050925992205,22.31618068926665,66.66666666666666,89.34932947158813
+"peekfd (PSmisc) %s
+","peekfd (PSmisc) %s
+","peekfd (PSmisc) %s
+","FR,ZH_CN",LLAMA,97.98155426979065,100.0,100.00000000000004,0.0,100.0
+"Copyright (C) 2007 Trent Waddington
+
+","Técnica de localização eficiente para o GNU/Linux, criada por Trent Waddington em 2007.","Copyright (C) 2007 Trent Waddington
+
+","FR,ZH_CN",LLAMA,52.85325050354004,36.80545667019316,5.061867434834413,100.0,69.60466504096985
+"Usage: peekfd [-8] [-n] [-c] [-d] [-V] [-h] <pid> [<fd> ..]
+    -8, --eight-bit-clean        output 8 bit clean streams.
+    -n, --no-headers             don't display read/write from fd headers.
+    -c, --follow                 peek at any new child processes too.
+    -t, --tgid                   peek at all threads where tgid equals <pid>.
+    -d, --duplicates-removed     remove duplicate read/writes from the output.
+    -V, --version                prints version info.
+    -h, --help                   prints this help.
+
+  Press CTRL-C to end output.
+","Utilização do peekfd [-8] [-n] [-c] [-d] [-V] [-h] <pid> [<fd> ..]
+    -8, --eight-bit-clean        lê dados sem o bit de paridade.
+    -n, --no-headers             não exibe informações sobre leitura/gravação no cabeçalho do fd.
+    -c, --follow                  também observa novos processos filhos criados.
+    -t, --tgid                    observa todos os threads cujo tgid é igual ao <pid>.
+    -d, --duplicates-removed     ignora leituras/gravações duplicadas na saída.
+    -V, --version               exibe a versão do programa.
+    -h, --help                   exibe esta mensagem de ajuda. 
+
+Pressione CTRL+C para interromper.","Uso: peekfd [-8] [-n] [-c] [-d] [-V] [-h] <pid> [<fd> ..]
+    -8, --eight-bit-clean        saída limpa com fluxos de 8 bits.
+    -n, --no-headers             não exibe leitura/gravação dos cabeçalhos fd.
+    -c, --follow                 espia qualquer novo processo filho também.
+    -t, --tgid                   espia threads em que tgid é igual a <pid>.
+    -d, --duplicates-removed     remove leitura/gravação duplicados da saída.
+    -V, --version                exibe informações de versão.
+    -h, --help                   exibe esta ajuda.
+
+  Pressione CTRL+C para finalizar a saída.
+","FR,ZH_CN",LLAMA,83.86147022247314,70.54423174534305,55.28903322984387,53.52112676056338,93.1235671043396
+"Usage: prtstat [options] PID ...
+       prtstat -V
+Print information about a process
+    -r,--raw       Raw display of information
+    -V,--version   Display version information and exit
+","Usos do prtstat [opções] PID ...
+       prtstat -V
+Exibe informações sobre um processo específico.
+    -r,--raw        Exibe as informações brutas (sem formatação)
+    -V,--version   Mostra a versão e sai imediatamente.","Uso:   prtstat [opções] PID ...
+       prtstat -V
+Exibe informações sobre um processo
+    -r,--raw       Exibe informações sem utilizar formatação
+    -V,--version   Exibe informações de versão e sai
+","FR,ZH_CN",LLAMA,81.05389475822449,70.27619486208444,49.33611186947953,44.0,88.68990540504456
+"prtstat (PSmisc) %s
+",prtstat (PSmisc) %s,"prtstat (PSmisc) %s
+","FR,ZH_CN",LLAMA,98.80942106246948,100.0,100.00000000000004,0.0,99.99998807907104
+"Copyright (C) 2009-2024 Craig Small
+
+","Técnica de localização eficiente para o GNU/Linux, criada por Craig Small. Copyright (C) 2009-2024.","Copyright (C) 2009-2020 Craig Small
+
+","FR,ZH_CN",LLAMA,67.20123291015625,59.827684340725284,22.816849039973945,100.0,76.32341384887695
+running,executando,executando,"FR,ZH_CN",LLAMA,98.39062094688416,100.0,100.00000000000004,0.0,100.0
+sleeping,estou dormindo,suspenso,"FR,ZH_CN",LLAMA,63.22681903839111,7.936507936507936,0.0,100.0,68.29045414924622
+disk sleep,disque para dormir,suspenso por disco,"FR,ZH_CN",LLAMA,46.24226987361908,9.642857142857142,0.0,100.0,73.71110916137695
+zombie,homem,zumbi,"FR,ZH_CN",LLAMA,61.80585026741028,3.3333333333333335,0.0,100.0,79.51781749725342
+traced,sob respetiva supervisão,interrompido,"FR,ZH_CN",LLAMA,58.51593613624573,10.28292194620795,0.0,100.0,67.38191843032837
+paging,nao foi possível obter estado (stat) do arquivo %s,paginado,"FR,ZH_CN",LLAMA,49.82847273349762,10.994847496500407,0.0,100.0,66.9823408126831
+unknown,desconhecido,desconhecido,"FR,ZH_CN",LLAMA,99.39248561859131,100.0,100.00000000000004,0.0,100.00007152557373
+"Process: %-14s		State: %c (%s)
+  CPU#:  %-3d		TTY: %s	Threads: %ld
+","Tiến trình: %-14s		Estado: %c (%s)
+CPU#:  %-3d	TTY: %s	Threads: %ld","Processo: %-14s		Estado:  %c (%s)
+   CPU#:  %-3d		TTY: %s	Threads: %ld
+","FR,ZH_CN",LLAMA,90.41655659675598,86.70964811854279,91.81891462193897,18.181818181818183,97.81444668769836
+"Process, Group and Session IDs
+  Process ID: %d		  Parent ID: %d
+    Group ID: %d		 Session ID: %d
+  T Group ID: %d
+
+","Mã số cho tiến trình, nhóm và phiên làm việc
+        Mã số tiến trình: %d
+      Mã số cha mẹ: %d
+     Mã số nhóm: %d
+    Mã số phiên làm việc: %d
+   ID groupe T: %d","IDs de processos, grupos e sessões
+ ID processo: %d		     ID pai: %d
+    ID grupo: %d		  ID sessão: %d
+  ID grupo T: %d
+
+","FR,ZH_CN",LLAMA,72.06918597221375,21.962269715176266,17.05295761594312,100.0,82.49124884605408
+"Page Faults
+  This Process    (minor major): %8lu  %8lu
+  Child Processes (minor major): %8lu  %8lu
+","Sai trang
+    Tiến trình này (très petit): %8lu  %8lu
+    Tiến trình con (très petit): %8lu  %8lu","Faltas de página
+  Este processo   (menor maior): %8lu  %8lu
+  Processos filho (menor maior): %8lu  %8lu
+","FR,ZH_CN",LLAMA,66.99090600013733,29.98672614226374,36.993822604700384,80.0,84.72073078155518
+"CPU Times
+  This Process    (user system guest blkio): %6.2f %6.2f %6.2f %6.2f
+  Child processes (user system guest):       %6.2f %6.2f %6.2f
+","Tempo de uso da CPU
+    Processo (usuário sistema invitado blkio): %6.2f %6.2f %6.2f %6.2f
+    Filho do processo (usuário sistema invitado):       %6.2f %6.2f %6.2f","Tempo de CPU
+  Este processo   (usu. sist. conv. blkio):  %6.2f %6.2f %6.2f %6.2f
+  Processos filho (usu. sist. conv.):        %6.2f %6.2f %6.2f
+","FR,ZH_CN",LLAMA,83.15631747245789,60.03410261203,45.27268606520423,57.14285714285714,87.7500593662262
+"Memory
+  Vsize:       %-10s
+  RSS:         %-10s 		 RSS Limit: %s
+  Code Start:  %#-10lx		 Code Stop:  %#-10lx
+  Stack Start: %#-10lx
+  Stack Pointer (ESP): %#10lx	 Inst Pointer (EIP): %#10lx
+","Memória de acesso aleatório (RAM) 
+ Vsize:      %-10s
+ RSS:        %-10s   	Limite RSS: %s
+ Início código: %#-10lx  	Fim código:  %#-10lx
+ Ponto de entrada (ESP): %#-10lx
+ Pointeur inst. (EIP): %#-10lx","Memória
+  Vsize:       %-10s
+  RSS:         %-10s 		Limite RSS: %s
+  Início cód.: %#-10lx		 Fim cód. :  %#-10lx
+  Início stack:%#-10lx
+  Pont. stack (ESP): %#10lx		 Pont. Instr. (EIP): %#10lx
+","FR,ZH_CN",LLAMA,78.37216258049011,63.910247810882396,54.50541530114989,60.0,88.54981064796448
+"Scheduling
+  Policy: %s
+  Nice:   %ld 		 RT Priority: %ld %s
+","Dinâmica de Tempo
+   Política de Ordenação:
+    Custo:%s
+     Amigável:%ld 	 Prioridade RT:%ld %s","Agendamento
+  Política: %s
+  Nice:     %ld 		Prioridade RT: %ld %s
+","FR,ZH_CN",LLAMA,64.20320868492126,49.002614157293806,48.48517020603451,100.0,86.37064695358276
+"asprintf in print_stat failed.
+",falha ao usar asprintf dentro de print_stat.,"asprintf em print_stat falhou.
+","FR,ZH_CN",LLAMA,86.26440167427063,49.35568989727717,17.747405280050266,100.0,84.01672840118408
+"Process with pid %d does not exist.
+",O processo com o PID %d não existe.,"O processo com PID %d não existe.
+","FR,ZH_CN",LLAMA,93.67803931236267,89.31406239062973,65.80370064762461,14.285714285714285,97.78252840042114
+"Unable to open stat file for pid %d (%s)
+",Não é possível abrir o arquivo de estatísticas do PID %d (%s),"Não foi possível abrir o arquivo de análise para PID %d (%s)
+","FR,ZH_CN",LLAMA,90.7514214515686,63.80368712452561,61.47881529512643,25.0,93.29414367675781
+"Unable to allocate memory for proc_info
+",Não é possível alocar memória para proc_info,"Não foi possível alocar memória para proc_info
+","FR,ZH_CN",LLAMA,97.25508093833923,84.6368595549836,75.06238537503395,14.285714285714285,99.08192157745361
+Unable to scan stat file,Não é possível abrir o arquivo de estatísticas para análise.,Não foi possível verificar arquivo de estado,"FR,ZH_CN",LLAMA,80.70982098579407,46.41548507478192,8.913765521398126,85.71428571428571,83.27510356903076
+Invalid option,Opção inválida,Opção inválida,"FR,ZH_CN",LLAMA,99.29124712944031,100.0,100.00000000000004,0.0,99.99999403953552
+You must provide at least one PID.,É necessário fornecer ao menos um PID (mãe sinal).,Você precisa fornecer ao menos um PID.,"FR,ZH_CN",LLAMA,69.0122902393341,60.195199374461694,33.18077402843942,71.42857142857143,88.9915406703949
+"/proc is not mounted, cannot stat /proc/self/stat.
+","não é possível obter o estado (stat) do arquivo %s, pois /proc não está montado.","/proc não está montado, impossível analisar /proc/self/stat.
+","FR,ZH_CN",LLAMA,84.40834283828735,48.93315950874758,19.1208175750425,100.0,78.99556159973145
+"%s is empty (not mounted ?)
+",%s vazio (não montado?),"%s está vazio (não montado?)
+","FR,ZH_CN",LLAMA,92.52544045448303,78.09116696721975,67.5291821812656,20.0,96.30041718482971
+"Usage: pstree [-acglpsStTuZ] [ -h | -H PID ] [ -n | -N type ]
+              [ -A | -G | -U ] [ PID | USER ]
+   or: pstree -V
+","Utilização: pstree [-acglpsStTuZ] [ -h | -H PID ] [ -n | -N tipo ]  [ -A | -G | -U ] [ PID | USERORQUALDAEMODODECARREGAMENTODOSUSUARIOS ]
+ou: pstree -V","Uso: pstree [-acglpsStTuZ] [ -h | -H PID ] [ -n | -N tipo ]
+            [ -A | -G | -U ] [ PID | USUÁRIO ]
+ ou: pstree -V
+","FR,ZH_CN",LLAMA,81.17358088493347,84.66262037634306,89.01732118131126,6.666666666666667,92.3901379108429
+"
+Display a tree of processes.
+
+",Exibir um diagrama de fluxo dos processos.,"
+Exibe uma árvore de processos.
+
+","FR,ZH_CN",LLAMA,80.12192249298096,39.595989196918815,12.22307556087252,100.0,83.71397256851196
+"  -a, --arguments     show command line arguments
+  -A, --ascii         use ASCII line drawing characters
+  -c, --compact-not   don't compact identical subtrees
+","  -a, --arguments     mostrar os argumentos da linha de comando
+","  -a, --arguments     mostra argumentos de linha de comando
+  -A, --ascii         usa caracteres ASCII no desenho de linhas
+  -c, --compact-not   não comprime subárvores idênticas
+","FR,ZH_CN",LLAMA,55.82161545753479,31.147639601251853,5.5120189588552515,78.26086956521739,79.10634279251099
+"  -C, --color=TYPE    color process by attribute
+                      (age)
+","  -C, --color=KIỂU    colorize os processos de acordo com o atributo (idade)
+","  -C, --color=TIPO    colore processo por atributo
+                      (age)
+","FR,ZH_CN",LLAMA,69.0045177936554,48.064439587780306,18.92240568795936,100.0,82.6825201511383
+"  -g, --show-pgids    show process group ids; implies -c
+  -G, --vt100         use VT100 line drawing characters
+","  -g, --show-pgids    exibir os IDs dos grupos de processos; implica o uso do opção -c
+","  -g, --show-pgids    mostra ids de grupo de processos; implica em -c
+  -G, --vt100         usa caracteres VT100 no desenho de linhas
+","FR,ZH_CN",LLAMA,75.53628087043762,38.195735901748165,15.042425056154377,75.0,82.10798501968384
+"  -h, --highlight-all highlight current process and its ancestors
+  -H PID, --highlight-pid=PID
+                      highlight this process and its ancestors
+  -l, --long          don't truncate long lines
+","  -h, --highlight-all mostrar o processo atual e seus ancestrais
+  -H PID, --highlight-pid=PID
+                      destacar este processo específico e todos os seus ancestrais
+  -l, --long          não cortar linhas longas","  -h, --highlight-all realça o processo atual e seus ancestrais
+  -H PID, --highlight-pid=PID
+                      realça este processo e seus ancestrais
+  -l, --long          não trunca linhas longas
+","FR,ZH_CN",LLAMA,81.67915940284729,79.82851932907052,57.386697286239084,25.0,94.67547535896301
+"  -n, --numeric-sort  sort output by PID
+  -N TYPE, --ns-sort=TYPE
+                      sort output by this namespace type
+                              (cgroup, ipc, mnt, net, pid, time, user, uts)
+  -p, --show-pids     show PIDs; implies -c
+","  -n, --numeric-sort  ordenar a saída por PID
+  -N TIPO, --ns-sort=TIPO
+                      ordenar a saída pelo tipo desse espaço de nomes específico (cgroup, ipc, mnt, net, pid, time, user, uts)
+  -p, --show-pids      exibir PID; implica o uso do opção '-c'
+","  -n, --numeric-sort  ordena saída pelo PID
+  -N TIPO, --ns-sort=TIPO
+                      ordena por este tipo de espaço de nomes
+                              (cgroup, ipc, mnt, net, pid, time, user, uts)
+  -p, --show-pids     mostra PIDs; implica em -c
+","FR,ZH_CN",LLAMA,86.19036674499512,77.07735291452525,54.820318277267376,50.0,93.97609829902649
+"  -s, --show-parents  show parents of the selected process
+  -S, --ns-changes    show namespace transitions
+  -t, --thread-names  show full thread names
+  -T, --hide-threads  hide threads, show only processes
+","[{'option': '-s, --show-parents', 'description': 'mostrar os pais do processo selecionado'}, {'option': '-S, --ns-changes', 'description': 'exibir as alterações nos nomes de espaço de nome (namespace)'}, {'option': '-t, --thread-names', 'description': 'mostrar os nomes completos dos threads'}, {'option': '-T, --hide-threads', 'description': 'ocultar as threads e mostrar apenas o processo em execu endereço de memória.'}]","  -s, --show-parents  mostra os pais do processo selecionado
+  -S, --ns-changes    mostra transições de espaço de nomes
+  -t, --thread-names  mostra nomes completos de threads
+  -T, --hide-threads  oculta threads, mostra apenas processos
+","FR,ZH_CN",LLAMA,63.617777824401855,54.13339005961391,5.081462365238677,100.0,70.70584297180176
+"  -u, --uid-changes   show uid transitions
+  -U, --unicode       use UTF-8 (Unicode) line drawing characters
+  -V, --version       display version information
+","  -u, --uid-changes   mostrar as alterações de UID
+  -U, --unicode       utilizar UTF-8 (Unicode) para desenhar a linha do caractere
+  -V, --version       exibir informações da versão","  -u, --uid-changes   mostra transições de uid
+  -U, --unicode       usa caracteres UTF-8 (Unicode) no desenho de linhas
+  -V, --version       exibe informações da versão
+","FR,ZH_CN",LLAMA,83.9604139328003,65.92204160575139,21.06322800312565,54.54545454545454,90.41772484779358
+"  -Z, --security-context
+                      show security attributes
+","  -Z, --security-context
+                      mostra atributos de segurança","  -Z, --security-context
+                      mostra atributos de segurança
+","FR,ZH_CN",LLAMA,97.26852774620056,100.0,100.00000000000004,0.0,99.99997615814209
+"
+  PID    start at this PID; default is 1 (init)
+  USER   show only trees rooted at processes of this user
+
+","PID    iniciou neste PID; o padrão é 1 (init)
+	Ngưỡi_dùng   mostra apenas os ramos que têm raízes nos processos deste usuário","
+  PID    inicia deste PID; predefinido como 1 (init)
+  USR    mostra apenas árvores originadas de processos deste usuário
+
+","FR,ZH_CN",LLAMA,68.59944462776184,49.34926972475481,16.279348731624783,70.58823529411765,83.81960391998291
+"pstree (PSmisc) %s
+",pstree (PSmisc) %s,"pstree (PSmisc) %s
+","FR,ZH_CN",LLAMA,98.09841513633728,100.0,100.00000000000004,0.0,99.99999403953552
+"TERM is not set
+",Não foi possível definir a variável de ambiente TERM.,"TERM não está definido
+","FR,ZH_CN",LLAMA,56.36317729949951,24.70563664904637,4.196114906296549,100.0,77.81001329421997
+"Can't get terminal capabilities
+",Não é possível obter as especificações do dispositivo final,"Não foi possível obter as habilidades do terminal
+","FR,ZH_CN",LLAMA,79.78199124336243,44.15829688168397,20.164945583740657,50.0,88.78985643386841
+"procfs file for %s namespace not available
+",ficheiro procfs indisponível para o espaço de nomes %s,"O arquivo procfs para o espaço de nomes %s não está disponível
+","FR,ZH_CN",LLAMA,86.3905668258667,62.03641601919491,48.94088625380656,50.0,86.7405116558075
+"No such user name: %s
+",Não há nenhum utilizador com esse nome: %s,"Nome de usuário inexistente: %s
+","FR,ZH_CN",LLAMA,76.91623568534851,23.857582330607265,15.619699684601283,100.0,75.66895484924316
+"Process %d not found.
+",Processo %d não encontrado.,"Nenhum processo localizado.
+","FR,ZH_CN",LLAMA,68.9430296421051,25.506407588002368,8.116697886877475,100.0,74.18926358222961
+"No processes found.
+",Não foi possível encontrar o processo.,"Nenhum processo localizado.
+","FR,ZH_CN",LLAMA,85.11569499969482,27.99431717047987,7.809849842300637,100.0,78.48840951919556
+"Press return to close
+",Pressione Enter para fechar.,"Pressione Enter para fechar
+","FR,ZH_CN",LLAMA,96.01426720619202,98.06551543417444,66.87403049764218,25.0,91.31760597229004
+"%s: unknown signal; %s -l lists signals.
+",%s: sinal desconhecido; %s -l lista os sinais.,"%s: sinal desconhecido; %s -l lista os sinais.
+","FR,ZH_CN",LLAMA,96.89317345619202,100.0,100.00000000000004,0.0,100.00001192092896

@@ -1,0 +1,4532 @@
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/run_context_levels.py
+================================================================================
+
+# =============================================================================
+# SISTEMA DE CHECKPOINT E NOVA VISUALIZAÇÃO
+# =============================================================================
+
+import sys
+import logging
+import time
+import argparse
+import json
+from pathlib import Path
+from typing import List, Dict, Set
+from datetime import datetime
+
+# Imports do Rich para UI
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TimeRemainingColumn
+from rich.live import Live
+from rich.layout import Layout
+from rich import box
+
+# Setup de Path
+ROOT_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(str(ROOT_DIR))
+
+# Imports Aplicação
+from src.application.builders.experiment_builder import ExperimentBuilder
+from src.application.runners.parallel_runner import ParallelRunner
+from src.application.dto.translation_job import TranslationJob
+
+# Log
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    filename='context_levels_execution.log',
+    filemode='w'
+)
+
+console = Console()
+
+# --- CONFIGURAÇÃO ---
+CONTEXT_LEVELS = [0, 1, 2]
+PROVIDER = "LLAMA"
+
+
+class CheckpointManager:
+    """Gerencia o registro de execuções já completadas"""
+
+    def __init__(self, checkpoint_file: Path):
+        self.checkpoint_file = checkpoint_file
+        self.completed_jobs: Set[str] = set()
+        self.execution_times: Dict[str, float] = {}
+        self._load_checkpoint()
+
+    def _load_checkpoint(self):
+        """Carrega o checkpoint existente"""
+        if self.checkpoint_file.exists():
+            try:
+                with open(self.checkpoint_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    self.completed_jobs = set(data.get('completed_jobs', []))
+                    self.execution_times = data.get('execution_times', {})
+                console.print(f"[cyan]✓ Checkpoint carregado: {len(self.completed_jobs)} execuções completadas[/]")
+            except Exception as e:
+                console.print(f"[yellow]⚠ Erro ao carregar checkpoint: {e}[/]")
+
+    def _save_checkpoint(self):
+        """Salva o checkpoint atual"""
+        try:
+            self.checkpoint_file.parent.mkdir(parents=True, exist_ok=True)
+            data = {
+                'completed_jobs': list(self.completed_jobs),
+                'execution_times': self.execution_times,
+                'last_update': datetime.now().isoformat()
+            }
+            with open(self.checkpoint_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+        except Exception as e:
+            console.print(f"[red]✗ Erro ao salvar checkpoint: {e}[/]")
+
+    def is_completed(self, job: TranslationJob) -> bool:
+        """Verifica se um job já foi completado"""
+        job_id = self._get_job_id(job)
+        return job_id in self.completed_jobs
+
+    def mark_completed(self, job: TranslationJob, execution_time: float):
+        """Marca um job como completado"""
+        job_id = self._get_job_id(job)
+        self.completed_jobs.add(job_id)
+        self.execution_times[job_id] = execution_time
+        self._save_checkpoint()
+
+    def _get_job_id(self, job: TranslationJob) -> str:
+        """Gera um ID único para o job baseado em seus parâmetros"""
+        # Cria um identificador único baseado no arquivo de saída
+        return str(Path(job.arquivo_saida).relative_to(ROOT_DIR))
+
+    def get_statistics(self) -> Dict:
+        """Retorna estatísticas do checkpoint"""
+        if not self.execution_times:
+            return {
+                'total_completed': len(self.completed_jobs),
+                'avg_time': 0,
+                'total_time': 0
+            }
+
+        times = list(self.execution_times.values())
+        return {
+            'total_completed': len(self.completed_jobs),
+            'avg_time': sum(times) / len(times),
+            'total_time': sum(times),
+            'min_time': min(times),
+            'max_time': max(times)
+        }
+
+
+class ExecutionTracker:
+    """Rastreia o progresso da execução em tempo real"""
+
+    def __init__(self, total_jobs: int):
+        self.total_jobs = total_jobs
+        self.current_job = 0
+        self.completed = 0
+        self.failed = 0
+        self.skipped = 0
+        self.start_time = time.time()
+        self.current_job_name = ""
+        self.current_job_start = None
+
+    def start_job(self, job_name: str):
+        """Marca o início de um novo job"""
+        self.current_job += 1
+        self.current_job_name = job_name
+        self.current_job_start = time.time()
+
+    def finish_job(self, success: bool):
+        """Marca o fim de um job"""
+        if success:
+            self.completed += 1
+        else:
+            self.failed += 1
+
+    def skip_job(self):
+        """Marca um job como pulado"""
+        self.skipped += 1
+
+    def get_elapsed_time(self) -> float:
+        """Retorna tempo decorrido total"""
+        return time.time() - self.start_time
+
+    def get_current_job_time(self) -> float:
+        """Retorna tempo do job atual"""
+        if self.current_job_start:
+            return time.time() - self.current_job_start
+        return 0
+
+    def get_eta(self) -> float:
+        """Calcula tempo estimado restante"""
+        if self.completed == 0:
+            return 0
+        avg_time = self.get_elapsed_time() / self.completed
+        remaining = self.total_jobs - self.completed - self.skipped
+        return avg_time * remaining
+
+    def generate_status_table(self) -> Table:
+        """Gera tabela de status atual"""
+        table = Table(show_header=False, box=box.SIMPLE, padding=(0, 1))
+        table.add_column("Label", style="cyan")
+        table.add_column("Value", style="white bold")
+
+        # Progresso geral
+        progress_pct = ((self.completed + self.skipped) / self.total_jobs * 100) if self.total_jobs > 0 else 0
+        table.add_row("Progresso Geral", f"{self.current_job}/{self.total_jobs} ({progress_pct:.1f}%)")
+
+        # Estatísticas
+        table.add_row("Completadas", f"[green]{self.completed}[/]")
+        if self.skipped > 0:
+            table.add_row("Puladas (checkpoint)", f"[yellow]{self.skipped}[/]")
+        if self.failed > 0:
+            table.add_row("Falhas", f"[red]{self.failed}[/]")
+
+        # Tempos
+        elapsed = self.get_elapsed_time()
+        table.add_row("Tempo Decorrido", f"{self._format_time(elapsed)}")
+
+        eta = self.get_eta()
+        if eta > 0:
+            table.add_row("Tempo Estimado", f"{self._format_time(eta)}")
+
+        return table
+
+    def _format_time(self, seconds: float) -> str:
+        """Formata segundos em HH:MM:SS"""
+        h, remainder = divmod(int(seconds), 3600)
+        m, s = divmod(remainder, 60)
+        if h > 0:
+            return f"{h}h {m}m {s}s"
+        elif m > 0:
+            return f"{m}m {s}s"
+        else:
+            return f"{s}s"
+
+
+def setup_arguments():
+    parser = argparse.ArgumentParser(description="Executor de Traduções com Níveis de Contexto (TCC)")
+    parser.add_argument(
+        '--origem', type=str, required=True, choices=['aurora', 'macbook', 'extracted'],
+        help="Nome da pasta de origem dentro de data/"
+    )
+    parser.add_argument(
+        '--projeto', type=str, required=False,
+        help="Nome específico do projeto a processar (opcional)"
+    )
+    parser.add_argument(
+        '--workers', type=int, default=1,
+        help="Número de threads simultâneas"
+    )
+    parser.add_argument(
+        '--reset-checkpoint', action='store_true',
+        help="Ignora checkpoint e executa tudo novamente"
+    )
+    return parser.parse_args()
+
+
+def calcular_combinacoes(builder: ExperimentBuilder, projetos: List[Path]) -> Dict:
+    """Calcula todas as combinações possíveis"""
+    console.print("\n[bold yellow]🔄 Calculando combinações de contexto...[/]")
+
+    totais_por_nivel = {nivel: 0 for nivel in CONTEXT_LEVELS}
+    detalhes_por_projeto = {}
+
+    for projeto in projetos:
+        _, mapa_ctx = builder._identificar_arquivos(projeto)
+        qtd_ctx = len(mapa_ctx)
+
+        combinacoes_projeto = {}
+        for nivel in CONTEXT_LEVELS:
+            jobs = builder.construir_jobs_para_nivel(projeto, nivel)
+            qtd = len(jobs)
+            combinacoes_projeto[nivel] = qtd
+            totais_por_nivel[nivel] += qtd
+
+        detalhes_por_projeto[projeto.name] = {
+            'contextos_disponiveis': qtd_ctx,
+            'combinacoes': combinacoes_projeto,
+            'total': sum(combinacoes_projeto.values())
+        }
+
+    return {
+        'totais_por_nivel': totais_por_nivel,
+        'total_geral': sum(totais_por_nivel.values()),
+        'detalhes': detalhes_por_projeto
+    }
+
+
+def exibir_planejamento(estatisticas: Dict, checkpoint_stats: Dict):
+    """Exibe planejamento detalhado da execução"""
+
+    # Tabela principal
+    table = Table(
+        title="📊 Planejamento de Execução - Níveis de Contexto",
+        box=box.ROUNDED,
+        show_lines=True
+    )
+    table.add_column("Projeto", style="cyan", no_wrap=True)
+    table.add_column("Ctx", justify="center", style="magenta")
+
+    for nivel in CONTEXT_LEVELS:
+        table.add_column(f"Nv {nivel}", justify="right", style="yellow")
+
+    table.add_column("Total", justify="right", style="green bold")
+
+    # Linhas de projetos
+    for projeto, dados in estatisticas['detalhes'].items():
+        row = [
+            projeto,
+            str(dados['contextos_disponiveis'])
+        ]
+        for nivel in CONTEXT_LEVELS:
+            row.append(str(dados['combinacoes'][nivel]))
+        row.append(str(dados['total']))
+        table.add_row(*row)
+
+    # Linha de totais
+    totais_row = ["TOTAL", "-"]
+    for nivel in CONTEXT_LEVELS:
+        totais_row.append(str(estatisticas['totais_por_nivel'][nivel]))
+    totais_row.append(str(estatisticas['total_geral']))
+    table.add_row(*totais_row, style="bold white on blue")
+
+    console.print(table)
+
+    # Resumo
+    console.print("\n[bold cyan]📈 Resumo por Nível:[/]")
+    descricoes = {
+        0: "Tradução Direta (sem contexto)",
+        1: "Contexto de 1 idioma",
+        2: "Contexto de 2 idiomas"
+    }
+    for nivel in CONTEXT_LEVELS:
+        qtd = estatisticas['totais_por_nivel'][nivel]
+        console.print(f"  • Nível {nivel} ({descricoes[nivel]}): [green]{qtd}[/] execuções")
+
+    console.print(f"\n[bold white on blue] 🚀 TOTAL: {estatisticas['total_geral']} execuções [/]")
+
+    # Estatísticas de checkpoint
+    if checkpoint_stats['total_completed'] > 0:
+        console.print(f"\n[bold yellow]📋 Checkpoint Existente:[/]")
+        console.print(f"  • Execuções completadas: [green]{checkpoint_stats['total_completed']}[/]")
+        console.print(f"  • Tempo médio: [cyan]{checkpoint_stats['avg_time']:.1f}s[/]")
+        console.print(f"  • Tempo total acumulado: [cyan]{checkpoint_stats['total_time']/60:.1f} minutos[/]")
+
+        restantes = estatisticas['total_geral'] - checkpoint_stats['total_completed']
+        if restantes > 0:
+            console.print(f"  • [yellow]Restam {restantes} execuções[/]")
+        else:
+            console.print(f"  • [green]✓ Todas as execuções já foram completadas![/]")
+
+
+def executar_jobs_com_checkpoint(
+    jobs: List[TranslationJob],
+    runner: ParallelRunner,
+    checkpoint: CheckpointManager,
+    tracker: ExecutionTracker
+):
+    """Executa jobs com checkpoint e visualização melhorada"""
+
+    for job in jobs:
+        # Verifica checkpoint
+        if checkpoint.is_completed(job):
+            tracker.skip_job()
+            continue
+
+        # Nome amigável do job
+        job_name = Path(job.arquivo_saida).name
+        tracker.start_job(job_name)
+
+        # Atualiza display
+        console.print(f"\n[bold cyan]▶ [{tracker.current_job}/{tracker.total_jobs}][/] {job_name}")
+
+        # Executa job
+        start_time = time.time()
+        try:
+            resultado = runner.processar_batch([job])
+            execution_time = time.time() - start_time
+
+            if resultado and resultado[0].sucesso:
+                checkpoint.mark_completed(job, execution_time)
+                tracker.finish_job(True)
+                console.print(f"  [green]✓ Concluído em {execution_time:.1f}s[/]")
+            else:
+                tracker.finish_job(False)
+                erro = resultado[0].erro if resultado else "Erro desconhecido"
+                console.print(f"  [red]✗ Falhou: {erro}[/]")
+
+        except Exception as e:
+            execution_time = time.time() - start_time
+            tracker.finish_job(False)
+            console.print(f"  [red]✗ Exceção: {e}[/]")
+
+
+def main():
+    args = setup_arguments()
+
+    input_dir = ROOT_DIR / "data" / args.origem
+    output_dir = ROOT_DIR / "resultados" / f"context_levels_{args.origem}"
+    checkpoint_file = output_dir / ".checkpoint.json"
+
+    if not input_dir.exists():
+        console.print(f"[bold red]❌ Erro: Diretório não encontrado: {input_dir}[/]")
+        return
+
+    # Banner inicial
+    console.print(Panel.fit(
+        f"[bold magenta]🎯 Executor de Níveis de Contexto[/]\n"
+        f"[cyan]Origem:[/] {args.origem}\n"
+        f"[cyan]Provedor:[/] {PROVIDER}\n"
+        f"[cyan]Níveis:[/] {CONTEXT_LEVELS}\n"
+        f"[dim]Workers: {args.workers}[/]",
+        border_style="magenta"
+    ))
+
+    # Setup
+    builder = ExperimentBuilder(input_dir, output_dir)
+    runner = ParallelRunner(max_workers=args.workers)
+
+    # Lista projetos
+    projetos = builder.listar_projetos()
+    if args.projeto:
+        projetos = [p for p in projetos if p.name == args.projeto]
+        if not projetos:
+            console.print(f"[bold red]❌ Projeto '{args.projeto}' não encontrado![/]")
+            return
+
+    if not projetos:
+        console.print("[yellow]⚠️ Nenhum projeto encontrado.[/]")
+        return
+
+    # Calcula combinações
+    estatisticas = calcular_combinacoes(builder, projetos)
+
+    if estatisticas['total_geral'] == 0:
+        console.print("[red]Nenhum job gerado. Verifique os arquivos de entrada.[/]")
+        return
+
+    # Checkpoint
+    if args.reset_checkpoint and checkpoint_file.exists():
+        checkpoint_file.unlink()
+        console.print("[yellow]✓ Checkpoint resetado[/]")
+
+    checkpoint = CheckpointManager(checkpoint_file)
+    checkpoint_stats = checkpoint.get_statistics()
+
+    # Exibe planejamento
+    exibir_planejamento(estatisticas, checkpoint_stats)
+
+    # Verifica se há trabalho a fazer
+    restantes = estatisticas['total_geral'] - checkpoint_stats['total_completed']
+    if restantes == 0:
+        console.print("\n[bold green]✓ Todas as execuções já foram completadas![/]")
+        console.print("[dim]Use --reset-checkpoint para executar novamente[/]")
+        return
+
+    console.print(f"\n[bold green]Iniciando {restantes} execução(ões) em 3 segundos...[/]")
+    console.print("[dim](Ctrl+C para pausar - o checkpoint será salvo)[/]")
+    time.sleep(3)
+
+    # Execução
+    print("\n" + "=" * 60)
+    print("▶️  INICIANDO EXECUÇÃO")
+    print("=" * 60)
+
+    tracker = ExecutionTracker(estatisticas['total_geral'])
+
+    try:
+        for i, projeto in enumerate(projetos, 1):
+            console.print(f"\n[bold magenta]📦 PROJETO [{i}/{len(projetos)}]: {projeto.name.upper()}[/]")
+            print("-" * 60)
+
+            for nivel in CONTEXT_LEVELS:
+                jobs_batch = builder.construir_jobs_para_nivel(projeto, nivel)
+
+                if not jobs_batch:
+                    continue
+
+                console.print(f"\n[bold yellow]  📍 Nível {nivel}:[/] {len(jobs_batch)} job(s)")
+
+                executar_jobs_com_checkpoint(jobs_batch, runner, checkpoint, tracker)
+
+        # Relatório final
+        console.print("\n" + "=" * 60)
+        console.print("[bold green]🏁 EXECUÇÃO CONCLUÍDA![/]")
+        console.print("=" * 60)
+
+        final_stats = checkpoint.get_statistics()
+        console.print(f"✓ Total executado: {final_stats['total_completed']}")
+        console.print(f"✓ Tempo total: {final_stats['total_time']/60:.1f} minutos")
+        console.print(f"✓ Tempo médio por execução: {final_stats['avg_time']:.1f}s")
+        console.print(f"📁 Resultados em: [cyan]{output_dir}[/]")
+
+    except KeyboardInterrupt:
+        console.print("\n\n[yellow]⏸️  Execução pausada pelo usuário[/]")
+        console.print(f"✓ Checkpoint salvo: {checkpoint_stats['total_completed']} execuções completadas")
+        console.print("[dim]Execute novamente para continuar de onde parou[/]")
+
+
+if __name__ == "__main__":
+    main()
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/run.py
+================================================================================
+# =============================================================================
+# EXECUTOR DE NÍVEIS DE CONTEXTO - VERSÃO ADAPTADA PARA DADOS MULTILÍNGUES
+# =============================================================================
+
+import sys
+import logging
+import time
+import argparse
+import json
+from pathlib import Path
+from typing import List, Dict, Set, Tuple, Optional
+from datetime import datetime
+from itertools import combinations
+
+# Imports do Rich para UI
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TimeRemainingColumn
+from rich import box
+
+# Setup de Path
+ROOT_DIR = Path( __file__ ).resolve().parent.parent
+sys.path.append( str( ROOT_DIR ) )
+
+# Imports Aplicação
+from src.application.runners.parallel_runner import ParallelRunner
+from src.application.dto.translation_job import TranslationJob
+from src.application.dto.translation_context import ContextoTraducao
+
+# Log
+logging.basicConfig(
+    level = logging.INFO,
+    format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    filename = 'context_levels_execution.log',
+    filemode = 'w'
+)
+
+console = Console()
+
+# --- CONFIGURAÇÃO ---
+CONTEXT_LEVELS = [ 0, 1, 2 ]
+PROVIDER = "LLAMA"
+
+# Idiomas disponíveis (pt_BR é o alvo, os outros são contextos)
+LANGUAGES = {
+    'pt_BR': { 'name': 'Português (BR)', 'family': 'Românica' },
+    'es': { 'name': 'Espanhol', 'family': 'Românica' },
+    'fr': { 'name': 'Francês', 'family': 'Românica' },
+    'de': { 'name': 'Alemão', 'family': 'Germânica' },
+    'ru': { 'name': 'Russo', 'family': 'Eslava' },
+    'zh_CN': { 'name': 'Chinês', 'family': 'Sino-Tibetana' },
+    'vi': { 'name': 'Vietnamita', 'family': 'Austroasiática' },
+    'id': { 'name': 'Indonésio', 'family': 'Austronésia' }
+}
+
+TARGET_LANGUAGE = 'pt_BR'
+CONTEXT_LANGUAGES = [ lang for lang in LANGUAGES.keys() if lang != TARGET_LANGUAGE ]
+
+
+class CheckpointManager:
+    """Gerencia o registro de execuções já completadas"""
+
+    def __init__( self, checkpoint_file: Path ):
+        self.checkpoint_file = checkpoint_file
+        self.completed_jobs: Set[ str ] = set()
+        self.execution_times: Dict[ str, float ] = { }
+        self._load_checkpoint()
+
+    def _load_checkpoint( self ):
+        """Carrega o checkpoint existente"""
+        if self.checkpoint_file.exists():
+            try:
+                with open( self.checkpoint_file, 'r', encoding = 'utf-8' ) as f:
+                    data = json.load( f )
+                    self.completed_jobs = set( data.get( 'completed_jobs', [ ] ) )
+                    self.execution_times = data.get( 'execution_times', { } )
+                console.print( f"[cyan]✓ Checkpoint carregado: {len( self.completed_jobs )} execuções completadas[/]" )
+            except Exception as e:
+                console.print( f"[yellow]⚠ Erro ao carregar checkpoint: {e}[/]" )
+
+    def _save_checkpoint( self ):
+        """Salva o checkpoint atual"""
+        try:
+            self.checkpoint_file.parent.mkdir( parents = True, exist_ok = True )
+            data = {
+                'completed_jobs': list( self.completed_jobs ),
+                'execution_times': self.execution_times,
+                'last_update': datetime.now().isoformat()
+            }
+            with open( self.checkpoint_file, 'w', encoding = 'utf-8' ) as f:
+                json.dump( data, f, indent = 2, ensure_ascii = False )
+        except Exception as e:
+            console.print( f"[red]✗ Erro ao salvar checkpoint: {e}[/]" )
+
+    def is_completed( self, job: TranslationJob ) -> bool:
+        """Verifica se um job já foi completado"""
+        job_id = self._get_job_id( job )
+        return job_id in self.completed_jobs
+
+    def mark_completed( self, job: TranslationJob, execution_time: float ):
+        """Marca um job como completado"""
+        job_id = self._get_job_id( job )
+        self.completed_jobs.add( job_id )
+        self.execution_times[ job_id ] = execution_time
+        self._save_checkpoint()
+
+    def _get_job_id( self, job: TranslationJob ) -> str:
+        """Gera um ID único para o job baseado em seus parâmetros"""
+        return str( Path( job.arquivo_saida ).relative_to( ROOT_DIR ) )
+
+    def get_statistics( self ) -> Dict:
+        """Retorna estatísticas do checkpoint"""
+        if not self.execution_times:
+            return {
+                'total_completed': len( self.completed_jobs ),
+                'avg_time': 0,
+                'total_time': 0,
+                'min_time': 0,
+                'max_time': 0
+            }
+
+        times = list( self.execution_times.values() )
+        return {
+            'total_completed': len( self.completed_jobs ),
+            'avg_time': sum( times ) / len( times ),
+            'total_time': sum( times ),
+            'min_time': min( times ),
+            'max_time': max( times )
+        }
+
+
+class ExecutionTracker:
+    """Rastreia o progresso da execução em tempo real"""
+
+    def __init__( self, total_jobs: int ):
+        self.total_jobs = total_jobs
+        self.current_job = 0
+        self.completed = 0
+        self.failed = 0
+        self.skipped = 0
+        self.start_time = time.time()
+        self.current_job_name = ""
+        self.current_job_start = None
+
+    def start_job( self, job_name: str ):
+        """Marca o início de um novo job"""
+        self.current_job += 1
+        self.current_job_name = job_name
+        self.current_job_start = time.time()
+
+    def finish_job( self, success: bool ):
+        """Marca o fim de um job"""
+        if success:
+            self.completed += 1
+        else:
+            self.failed += 1
+
+    def skip_job( self ):
+        """Marca um job como pulado"""
+        self.skipped += 1
+        self.current_job += 1
+
+    def get_elapsed_time( self ) -> float:
+        """Retorna tempo decorrido total"""
+        return time.time() - self.start_time
+
+    def get_current_job_time( self ) -> float:
+        """Retorna tempo do job atual"""
+        if self.current_job_start:
+            return time.time() - self.current_job_start
+        return 0
+
+    def get_eta( self ) -> float:
+        """Calcula tempo estimado restante"""
+        if self.completed == 0:
+            return 0
+        avg_time = self.get_elapsed_time() / self.completed
+        remaining = self.total_jobs - self.completed - self.skipped
+        return avg_time * remaining
+
+    def _format_time( self, seconds: float ) -> str:
+        """Formata segundos em HH:MM:SS"""
+        h, remainder = divmod( int( seconds ), 3600 )
+        m, s = divmod( remainder, 60 )
+        if h > 0:
+            return f"{h}h {m}m {s}s"
+        elif m > 0:
+            return f"{m}m {s}s"
+        else:
+            return f"{s}s"
+
+
+class MultilingualExperimentBuilder:
+    """Builder adaptado para trabalhar com arquivos .po multilíngues"""
+
+    def __init__( self, base_input_dir: Path, base_output_dir: Path ):
+        self.input_dir = base_input_dir
+        self.output_dir = base_output_dir
+        self.output_dir.mkdir( parents = True, exist_ok = True )
+
+    def listar_projetos( self ) -> List[ Path ]:
+        """Lista pastas de projetos no diretório de entrada"""
+        if not self.input_dir.exists():
+            return [ ]
+
+        projetos = [
+            p for p in self.input_dir.iterdir()
+            if p.is_dir() and not p.name.startswith( '.' )
+        ]
+
+        return sorted( projetos )
+
+    def _identificar_arquivos( self, projeto_dir: Path ) -> Tuple[ Optional[ Path ], Dict[ str, Path ] ]:
+        """
+        Identifica arquivos .po de cada idioma no projeto
+        Retorna: (arquivo_alvo_pt_BR, mapa_contextos_outros_idiomas)
+        """
+        arquivos_po = { }
+
+        for po_file in projeto_dir.glob( '*.po' ):
+            filename = po_file.name
+
+            # Identifica qual idioma é cada arquivo
+            for lang_code in LANGUAGES.keys():
+                if f'.{lang_code}.po' in filename:
+                    arquivos_po[ lang_code ] = po_file
+                    break
+
+        if not arquivos_po:
+            return None, { }
+
+        # Arquivo alvo (pt_BR)
+        arquivo_alvo = arquivos_po.get( TARGET_LANGUAGE )
+
+        # Contextos são os outros idiomas
+        mapa_contextos = {
+            lang: path for lang, path in arquivos_po.items()
+            if lang != TARGET_LANGUAGE
+        }
+
+        return arquivo_alvo, mapa_contextos
+
+    def construir_jobs_para_nivel( self, projeto_dir: Path, nivel_contexto: int ) -> List[ TranslationJob ]:
+        """
+        Constrói jobs para um nível de contexto específico
+
+        Nível 0: Sem contexto (tradução direta)
+        Nível 1: Um idioma de contexto
+        Nível 2: Dois idiomas de contexto
+        """
+        arquivo_alvo, mapa_contextos = self._identificar_arquivos( projeto_dir )
+
+        if not arquivo_alvo or not arquivo_alvo.exists():
+            console.print( f"[yellow]⚠ {projeto_dir.name}: Arquivo pt_BR não encontrado[/]" )
+            return [ ]
+
+        # Usa o arquivo em inglês como entrada (se existir, senão usa primeiro disponível)
+        arquivo_entrada = self._encontrar_arquivo_origem( projeto_dir )
+        if not arquivo_entrada:
+            console.print( f"[yellow]⚠ {projeto_dir.name}: Nenhum arquivo de origem encontrado[/]" )
+            return [ ]
+
+        idiomas_disponiveis = list( mapa_contextos.keys() )
+        jobs = [ ]
+
+        if nivel_contexto == 0:
+            # Nível 0: Sem contexto
+            output_path = self._gerar_caminho_saida(
+                projeto_dir.name,
+                arquivo_entrada.name,
+                PROVIDER,
+                [ ]
+            )
+            output_path.parent.mkdir( parents = True, exist_ok = True )
+
+            job = TranslationJob(
+                nome_estrategia = PROVIDER,
+                arquivo_entrada = str( arquivo_entrada ),
+                arquivo_saida = str( output_path ),
+                contextos = [ ]
+            )
+            jobs.append( job )
+
+        elif nivel_contexto == 1:
+            # Nível 1: Um idioma de contexto por vez
+            for idioma_ctx in idiomas_disponiveis:
+                ctx_path = mapa_contextos[ idioma_ctx ]
+                output_path = self._gerar_caminho_saida(
+                    projeto_dir.name,
+                    arquivo_entrada.name,
+                    PROVIDER,
+                    [ idioma_ctx ]
+                )
+                output_path.parent.mkdir( parents = True, exist_ok = True )
+
+                job = TranslationJob(
+                    nome_estrategia = PROVIDER,
+                    arquivo_entrada = str( arquivo_entrada ),
+                    arquivo_saida = str( output_path ),
+                    contextos = [ ContextoTraducao( str( ctx_path ), idioma_ctx.upper() ) ]
+                )
+                jobs.append( job )
+
+        elif nivel_contexto == 2:
+            # Nível 2: Pares de idiomas de contexto
+            for combo in combinations( idiomas_disponiveis, 2 ):
+                idioma1, idioma2 = combo
+                output_path = self._gerar_caminho_saida(
+                    projeto_dir.name,
+                    arquivo_entrada.name,
+                    PROVIDER,
+                    list( combo )
+                )
+                output_path.parent.mkdir( parents = True, exist_ok = True )
+
+                contextos = [
+                    ContextoTraducao( str( mapa_contextos[ idioma1 ] ), idioma1.upper() ),
+                    ContextoTraducao( str( mapa_contextos[ idioma2 ] ), idioma2.upper() )
+                ]
+
+                job = TranslationJob(
+                    nome_estrategia = PROVIDER,
+                    arquivo_entrada = str( arquivo_entrada ),
+                    arquivo_saida = str( output_path ),
+                    contextos = contextos
+                )
+                jobs.append( job )
+
+        return jobs
+
+    def _encontrar_arquivo_origem( self, projeto_dir: Path ) -> Optional[ Path ]:
+        """
+        Tenta encontrar o arquivo de origem (inglês preferencialmente)
+        Fallback: usa primeiro arquivo .po disponível
+        """
+        # Tenta encontrar arquivo em inglês
+        arquivos_en = list( projeto_dir.glob( '*.en.po' ) )
+        if arquivos_en:
+            return arquivos_en[ 0 ]
+
+        # Fallback: qualquer .po que não seja pt_BR
+        for po_file in projeto_dir.glob( '*.po' ):
+            if '.pt_BR.po' not in po_file.name:
+                return po_file
+
+        return None
+
+    def _gerar_caminho_saida(
+            self,
+            projeto_nome: str,
+            arquivo_origem_nome: str,
+            estrategia: str,
+            idiomas_contexto: List[ str ]
+    ) -> Path:
+        """
+        Gera caminho de saída padronizado
+        Formato: projeto/arquivo.pt_BR.llama.ctx-N.langs.po
+        """
+        # Remove extensão e idioma original
+        stem = arquivo_origem_nome.replace( '.po', '' ).replace( '.pot', '' )
+
+        # Remove códigos de idioma conhecidos
+        for lang in LANGUAGES.keys():
+            stem = stem.replace( f'.{lang}', '' )
+
+        # Monta sufixo de contexto
+        n_ctx = len( idiomas_contexto )
+        if n_ctx == 0:
+            sufixo_ctx = "ctx-0"
+        else:
+            langs_str = "-".join( sorted( idiomas_contexto ) )
+            sufixo_ctx = f"ctx-{n_ctx}.{langs_str}"
+
+        # Nome final
+        nome_final = f"{stem}.pt_BR.{estrategia.lower()}.{sufixo_ctx}.po"
+
+        return self.output_dir / projeto_nome / nome_final
+
+
+def setup_arguments():
+    parser = argparse.ArgumentParser( description = "Executor de Traduções com Níveis de Contexto (TCC)" )
+    parser.add_argument(
+        '--origem', type = str, required = True,
+        choices = [ 'filtered', 'sample', 'download' ],
+        help = "Fonte dos dados: filtered (interseção), sample (10%), ou download (completo)"
+    )
+    parser.add_argument(
+        '--projeto', type = str, required = False,
+        help = "Nome específico do projeto a processar (opcional)"
+    )
+    parser.add_argument(
+        '--workers', type = int, default = 1,
+        help = "Número de threads simultâneas"
+    )
+    parser.add_argument(
+        '--reset-checkpoint', action = 'store_true',
+        help = "Ignora checkpoint e executa tudo novamente"
+    )
+    parser.add_argument(
+        '--max-projetos', type = int, default = None,
+        help = "Limita o número de projetos a processar (útil para testes)"
+    )
+    return parser.parse_args()
+
+
+def calcular_combinacoes( builder: MultilingualExperimentBuilder, projetos: List[ Path ] ) -> Dict:
+    """Calcula todas as combinações possíveis"""
+    console.print( "\n[bold yellow]🔄 Calculando combinações de contexto...[/]" )
+
+    totais_por_nivel = { nivel: 0 for nivel in CONTEXT_LEVELS }
+    detalhes_por_projeto = { }
+
+    for projeto in projetos:
+        _, mapa_ctx = builder._identificar_arquivos( projeto )
+        qtd_ctx = len( mapa_ctx )
+
+        if qtd_ctx == 0:
+            console.print( f"[dim]  ⚠ {projeto.name}: Sem arquivos de contexto[/]" )
+            continue
+
+        combinacoes_projeto = { }
+        for nivel in CONTEXT_LEVELS:
+            jobs = builder.construir_jobs_para_nivel( projeto, nivel )
+            qtd = len( jobs )
+            combinacoes_projeto[ nivel ] = qtd
+            totais_por_nivel[ nivel ] += qtd
+
+        detalhes_por_projeto[ projeto.name ] = {
+            'contextos_disponiveis': qtd_ctx,
+            'combinacoes': combinacoes_projeto,
+            'total': sum( combinacoes_projeto.values() )
+        }
+
+    return {
+        'totais_por_nivel': totais_por_nivel,
+        'total_geral': sum( totais_por_nivel.values() ),
+        'detalhes': detalhes_por_projeto
+    }
+
+
+def exibir_planejamento( estatisticas: Dict, checkpoint_stats: Dict ):
+    """Exibe planejamento detalhado da execução"""
+
+    table = Table(
+        title = "📊 Planejamento de Execução - Níveis de Contexto",
+        box = box.ROUNDED,
+        show_lines = True
+    )
+    table.add_column( "Projeto", style = "cyan", max_width = 40 )
+    table.add_column( "Ctx", justify = "center", style = "magenta" )
+
+    for nivel in CONTEXT_LEVELS:
+        table.add_column( f"Nv {nivel}", justify = "right", style = "yellow" )
+
+    table.add_column( "Total", justify = "right", style = "green bold" )
+
+    # Linhas de projetos
+    for projeto, dados in sorted( estatisticas[ 'detalhes' ].items() ):
+        row = [
+            projeto[ :37 ] + "..." if len( projeto ) > 40 else projeto,
+            str( dados[ 'contextos_disponiveis' ] )
+        ]
+        for nivel in CONTEXT_LEVELS:
+            row.append( str( dados[ 'combinacoes' ][ nivel ] ) )
+        row.append( str( dados[ 'total' ] ) )
+        table.add_row( *row )
+
+    # Linha de totais
+    totais_row = [ "TOTAL", "-" ]
+    for nivel in CONTEXT_LEVELS:
+        totais_row.append( str( estatisticas[ 'totais_por_nivel' ][ nivel ] ) )
+    totais_row.append( str( estatisticas[ 'total_geral' ] ) )
+    table.add_row( *totais_row, style = "bold white on blue" )
+
+    console.print( table )
+
+    # Resumo
+    console.print( "\n[bold cyan]📈 Resumo por Nível:[/]" )
+    descricoes = {
+        0: "Tradução Direta (sem contexto)",
+        1: "Contexto de 1 idioma",
+        2: "Contexto de 2 idiomas"
+    }
+    for nivel in CONTEXT_LEVELS:
+        qtd = estatisticas[ 'totais_por_nivel' ][ nivel ]
+        console.print( f"  • Nível {nivel} ({descricoes[ nivel ]}): [green]{qtd}[/] execuções" )
+
+    console.print( f"\n[bold white on blue] 🚀 TOTAL: {estatisticas[ 'total_geral' ]} execuções [/]" )
+
+    # Estatísticas de checkpoint
+    if checkpoint_stats[ 'total_completed' ] > 0:
+        console.print( f"\n[bold yellow]📋 Checkpoint Existente:[/]" )
+        console.print( f"  • Execuções completadas: [green]{checkpoint_stats[ 'total_completed' ]}[/]" )
+        console.print( f"  • Tempo médio: [cyan]{checkpoint_stats[ 'avg_time' ]:.1f}s[/]" )
+        console.print( f"  • Tempo total acumulado: [cyan]{checkpoint_stats[ 'total_time' ] / 60:.1f} minutos[/]" )
+
+        restantes = estatisticas[ 'total_geral' ] - checkpoint_stats[ 'total_completed' ]
+        if restantes > 0:
+            console.print( f"  • [yellow]Restam {restantes} execuções[/]" )
+        else:
+            console.print( f"  • [green]✓ Todas as execuções já foram completadas![/]" )
+
+
+def executar_jobs_com_checkpoint(
+        jobs: List[ TranslationJob ],
+        runner: ParallelRunner,
+        checkpoint: CheckpointManager,
+        tracker: ExecutionTracker
+):
+    """Executa jobs com checkpoint e visualização melhorada"""
+
+    for job in jobs:
+        # Verifica checkpoint
+        if checkpoint.is_completed( job ):
+            tracker.skip_job()
+            continue
+
+        # Nome amigável do job
+        job_name = Path( job.arquivo_saida ).name
+        tracker.start_job( job_name )
+
+        # Atualiza display
+        console.print( f"\n[bold cyan]▶ [{tracker.current_job}/{tracker.total_jobs}][/] {job_name}" )
+
+        # Executa job
+        start_time = time.time()
+        try:
+            resultado = runner.processar_batch( [ job ] )
+            execution_time = time.time() - start_time
+
+            if resultado and resultado[ 0 ].sucesso:
+                checkpoint.mark_completed( job, execution_time )
+                tracker.finish_job( True )
+                console.print( f"  [green]✓ Concluído em {execution_time:.1f}s[/]" )
+            else:
+                tracker.finish_job( False )
+                erro = resultado[ 0 ].erro if resultado else "Erro desconhecido"
+                console.print( f"  [red]✗ Falhou: {erro}[/]" )
+
+        except Exception as e:
+            execution_time = time.time() - start_time
+            tracker.finish_job( False )
+            console.print( f"  [red]✗ Exceção: {e}[/]" )
+
+
+def main():
+    args = setup_arguments()
+
+    # Mapeia origem para pasta correta
+    origem_map = {
+        'filtered': 'translations_filtered',
+        'sample': 'translations_sample',
+        'download': 'translations_download'
+    }
+
+    input_dir = ROOT_DIR / "data" / origem_map[ args.origem ]
+    output_dir = ROOT_DIR / "resultados" / f"context_levels_{args.origem}"
+    checkpoint_file = output_dir / ".checkpoint.json"
+
+    if not input_dir.exists():
+        console.print( f"[bold red]❌ Erro: Diretório não encontrado: {input_dir}[/]" )
+        console.print( f"[yellow]Execute primeiro os scripts de download/filtragem/amostragem![/]" )
+        return
+
+    # Banner inicial
+    console.print( Panel.fit(
+        f"[bold magenta]🎯 Executor de Níveis de Contexto[/]\n"
+        f"[cyan]Origem:[/] {args.origem} ({origem_map[ args.origem ]})\n"
+        f"[cyan]Provedor:[/] {PROVIDER}\n"
+        f"[cyan]Níveis:[/] {CONTEXT_LEVELS}\n"
+        f"[cyan]Idioma Alvo:[/] {TARGET_LANGUAGE}\n"
+        f"[cyan]Idiomas Contexto:[/] {len( CONTEXT_LANGUAGES )}\n"
+        f"[dim]Workers: {args.workers}[/]",
+        border_style = "magenta"
+    ) )
+
+    # Setup
+    builder = MultilingualExperimentBuilder( input_dir, output_dir )
+    runner = ParallelRunner( max_workers = args.workers )
+
+    # Lista projetos
+    projetos = builder.listar_projetos()
+
+    if args.projeto:
+        projetos = [ p for p in projetos if p.name == args.projeto ]
+        if not projetos:
+            console.print( f"[bold red]❌ Projeto '{args.projeto}' não encontrado![/]" )
+            return
+
+    if args.max_projetos:
+        projetos = projetos[ :args.max_projetos ]
+        console.print( f"[yellow]⚠ Limitado a {args.max_projetos} projeto(s)[/]" )
+
+    if not projetos:
+        console.print( "[yellow]⚠️ Nenhum projeto encontrado.[/]" )
+        return
+
+    console.print( f"\n[cyan]📁 Encontrados {len( projetos )} projeto(s)[/]" )
+
+    # Calcula combinações
+    estatisticas = calcular_combinacoes( builder, projetos )
+
+    if estatisticas[ 'total_geral' ] == 0:
+        console.print( "[red]Nenhum job gerado. Verifique os arquivos de entrada.[/]" )
+        return
+
+    # Checkpoint
+    if args.reset_checkpoint and checkpoint_file.exists():
+        checkpoint_file.unlink()
+        console.print( "[yellow]✓ Checkpoint resetado[/]" )
+
+    checkpoint = CheckpointManager( checkpoint_file )
+    checkpoint_stats = checkpoint.get_statistics()
+
+    # Exibe planejamento
+    exibir_planejamento( estatisticas, checkpoint_stats )
+
+    # Verifica se há trabalho a fazer
+    restantes = estatisticas[ 'total_geral' ] - checkpoint_stats[ 'total_completed' ]
+    if restantes == 0:
+        console.print( "\n[bold green]✓ Todas as execuções já foram completadas![/]" )
+        console.print( "[dim]Use --reset-checkpoint para executar novamente[/]" )
+        return
+
+    console.print( f"\n[bold green]Iniciando {restantes} execução(ões) em 3 segundos...[/]" )
+    console.print( "[dim](Ctrl+C para pausar - o checkpoint será salvo)[/]" )
+    time.sleep( 3 )
+
+    # Execução
+    print( "\n" + "=" * 60 )
+    print( "▶️  INICIANDO EXECUÇÃO" )
+    print( "=" * 60 )
+
+    tracker = ExecutionTracker( estatisticas[ 'total_geral' ] )
+
+    try:
+        for i, projeto in enumerate( projetos, 1 ):
+            console.print( f"\n[bold magenta]📦 PROJETO [{i}/{len( projetos )}]: {projeto.name.upper()}[/]" )
+            print( "-" * 60 )
+
+            for nivel in CONTEXT_LEVELS:
+                jobs_batch = builder.construir_jobs_para_nivel( projeto, nivel )
+
+                if not jobs_batch:
+                    continue
+
+                console.print( f"\n[bold yellow]  📍 Nível {nivel}:[/] {len( jobs_batch )} job(s)" )
+
+                executar_jobs_com_checkpoint( jobs_batch, runner, checkpoint, tracker )
+
+        # Relatório final
+        console.print( "\n" + "=" * 60 )
+        console.print( "[bold green]🏁 EXECUÇÃO CONCLUÍDA![/]" )
+        console.print( "=" * 60 )
+
+        final_stats = checkpoint.get_statistics()
+        console.print( f"✓ Total executado: {final_stats[ 'total_completed' ]}" )
+        console.print( f"✓ Tempo total: {final_stats[ 'total_time' ] / 60:.1f} minutos" )
+        console.print( f"✓ Tempo médio por execução: {final_stats[ 'avg_time' ]:.1f}s" )
+        console.print( f"📁 Resultados em: [cyan]{output_dir}[/]" )
+
+    except KeyboardInterrupt:
+        console.print( "\n\n[yellow]⏸️  Execução pausada pelo usuário[/]" )
+        current_stats = checkpoint.get_statistics()
+        console.print( f"✓ Checkpoint salvo: {current_stats[ 'total_completed' ]} execuções completadas" )
+        console.print( "[dim]Execute novamente para continuar de onde parou[/]" )
+
+
+if __name__ == "__main__":
+    main()
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/run_metrics.py
+================================================================================
+#!/usr/bin/env python3
+
+import os
+
+os.environ[ 'PYTORCH_MPS_HIGH_WATERMARK_RATIO' ] = '0.0'  # Desabilita MPS logs
+os.environ[ 'MALLOC_STACK_LOGGING_NO_COMPACT' ] = '1'  # Fix macOS
+
+import logging
+
+logging.getLogger( "lightning" ).propagate = False
+logging.getLogger( "lightning.pytorch" ).propagate = False
+logging.getLogger( "pytorch_lightning" ).propagate = False
+logging.getLogger( "lightning.pytorch" ).setLevel( logging.ERROR )
+logging.getLogger( "lightning.pytorch.utilities.rank_zero" ).setLevel( logging.ERROR )
+logging.getLogger( "lightning.pytorch.accelerators.mps" ).setLevel( logging.ERROR )
+logging.getLogger( "pytorch_lightning" ).setLevel( logging.ERROR )
+logging.getLogger( "Foundation" ).setLevel( logging.ERROR )
+
+import argparse
+import sys
+from pathlib import Path
+from tqdm import tqdm
+from rich.console import Console
+from rich.table import Table
+
+# Setup de Path
+ROOT_DIR = Path( __file__ ).resolve().parent.parent
+sys.path.append( str( ROOT_DIR ) )
+
+import warnings
+
+warnings.filterwarnings( "ignore", message = "litmodels" )
+
+from src.application.orchestrator.metrics_orchestrator import MetricsOrchestrator
+from src.application.pipelines.comet_pipeline import CometPipeline
+from src.application.pipelines.chrf_pipeline import ChrfPipeline
+from src.application.pipelines.bleu_pipeline import BleuPipeline
+from src.application.pipelines.ter_pipeline import TerPipeline
+from src.application.pipelines.bertscore_pipeline import BertscorePipeline
+
+logging.basicConfig( level = logging.INFO, format = '%(message)s' )
+console = Console()
+
+
+def main():
+    parser = argparse.ArgumentParser( description = "Avaliação de traduções com COMET" )
+    parser.add_argument( "input_dir", type = Path, help = "Pasta com arquivos .json" )
+    parser.add_argument( "--output-dir", type = Path, default = Path( "metrics_csv" ),
+                         help = "Pasta de saída dos CSVs" )
+    args = parser.parse_args()
+
+    # Configuração
+    output_dir = args.output_dir
+    output_dir.mkdir( exist_ok = True )
+
+    # Inicializa orquestrador
+    pipelines = [
+        CometPipeline(),
+        ChrfPipeline(),
+        BleuPipeline(),
+        TerPipeline(),
+        BertscorePipeline()
+    ]
+    orchestrator = MetricsOrchestrator( pipelines )
+
+    # Busca arquivos JSON
+    json_files = list( args.input_dir.rglob( "*.json" ) )
+    if not json_files:
+        console.print( "[red]❌ Nenhum arquivo JSON encontrado[/red]" )
+        sys.exit( 1 )
+
+    console.print( f"📂 Encontrados {len( json_files )} arquivos JSON" )
+
+    # Processa arquivos
+    results = [ ]
+    for json_file in tqdm( json_files, desc = "Avaliando arquivos" ):
+        try:
+            result = orchestrator.evaluate_file( json_file )
+            csv_path = orchestrator.export_csv( result, output_dir, json_file )
+            results.append( result )
+        except Exception as e:
+            console.print( f"[red]❌ Erro em {json_file.name}: {e}[/red]" )
+            continue
+
+    # Resumo final
+    if results:
+        show_summary( results )
+
+
+def show_summary( results ):
+    """Tabela resumo no terminal."""
+    table = Table( title = "📊 RESUMO FINAL" )
+    table.add_column( "Arquivo" )
+    table.add_column( "Segmentos" )
+    table.add_column( "Contexto" )
+    table.add_column( "COMET", justify = "right" )
+    table.add_column( "chrF++", justify = "right" )
+    table.add_column( "BLEU", justify = "right" )
+    table.add_column( "TER ↓", justify = "right" )
+    table.add_column( "BERTScore", justify = "right" )
+
+    for result in results:
+        contexto = ",".join( result.input_data.context_languages )[ :20 ]
+        comet_score = result.pipeline_results[ 0 ].corpus_score
+        chrf_score = result.pipeline_results[ 1 ].corpus_score
+        bleu_score = result.pipeline_results[ 2 ].corpus_score
+        ter_score = result.pipeline_results[ 3 ].corpus_score
+        bert_score = result.pipeline_results[ 4 ].corpus_score
+
+        table.add_row(
+            result.input_data.file_name[ :30 ],
+            str( len( result.input_data.segments ) ),
+            contexto,
+            f"{comet_score:.2f}",
+            f"{chrf_score:.2f}",
+            f"{bleu_score:.2f}",
+            f"{ter_score:.2f}",
+            f"{bert_score:.2f}"
+        )
+
+    console.print( table )
+
+    # Estatísticas agregadas
+    comet_scores = [ r.pipeline_results[ 0 ].corpus_score for r in results ]
+    chrf_scores = [ r.pipeline_results[ 1 ].corpus_score for r in results ]
+    bleu_scores = [ r.pipeline_results[ 2 ].corpus_score for r in results ]
+    ter_scores = [ r.pipeline_results[ 3 ].corpus_score for r in results ]
+    bert_scores = [ r.pipeline_results[ 4 ].corpus_score for r in results ]
+
+    console.print( f"\n📈 COMET médio: {sum( comet_scores ) / len( comet_scores ):.2f}" )
+    console.print( f"📈 chrF++ médio: {sum( chrf_scores ) / len( chrf_scores ):.2f}" )
+    console.print( f"📈 BLEU médio: {sum( bleu_scores ) / len( bleu_scores ):.2f}" )
+    console.print( f"📈 TER médio: {sum( ter_scores ) / len( ter_scores ):.2f} (↓ menor = melhor)" )
+    console.print( f"📈 BERTScore médio: {sum( bert_scores ) / len( bert_scores ):.2f}" )
+
+
+def calculate_std( values ):
+    """Desvio padrão simples."""
+    from statistics import stdev
+    return stdev( values ) if len( values ) > 1 else 0.0
+
+
+if __name__ == "__main__":
+    main()
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/main.py
+================================================================================
+import sys
+import logging
+from pathlib import Path
+
+# --- 1. SETUP DE AMBIENTE ---
+# Garante que o Python encontre a pasta 'src' independente de onde o script seja chamado.
+ROOT_DIR = Path( __file__ ).resolve().parent.parent
+sys.path.append( str( ROOT_DIR ) )
+
+# Configuração de Logs
+logging.basicConfig(
+    level = logging.INFO,
+    format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    filename = 'execucao.log',  # <--- MUDANÇA AQUI
+    filemode = 'w'
+)
+console_handler = logging.StreamHandler()
+console_handler.setLevel( logging.ERROR )
+logging.getLogger().addHandler( console_handler )
+logger = logging.getLogger( __name__ )
+
+# --- IMPORTS DA APLICAÇÃO ---
+# DTOs
+from src.application.dto.translation_job import TranslationJob
+from src.application.dto.translation_context import ContextoTraducao
+
+# Runners e Pipelines
+from src.application.runners.parallel_runner import ParallelRunner
+from src.application.pipelines.evaluation_pipeline import EvaluationPipeline
+
+# Utils e Configs
+from src.shared.utils.path_helper import construir_caminho_saida
+from src.core.config.settings import LLAMA_NOME, GEMINI_NOME, MISTRAL_NOME, DEEPL_NOME
+
+# --- 2. CONFIGURAÇÃO DE EXECUÇÃO (USER INPUT) ---
+
+# Escolha o modo: "TRADUZIR" ou "AVALIAR"
+MODO_OPERACAO = "TRADUZIR"
+
+# Configurações de Arquivos
+BASE_INPUT_DIR = ROOT_DIR / "data" / "extracted"
+BASE_OUTPUT_DIR = ROOT_DIR / "resultados"
+
+# Arquivo que será processado (deve estar na pasta data/input)
+NOME_ARQUIVO_ALVO = "sed/sed-4.8.44.de.po"
+
+# Lista de provedores que serão executados no modo TRADUZIR
+# PROVEDORES_ATIVOS = [
+#     LLAMA_NOME,
+#     GEMINI_NOME,
+#     MISTRAL_NOME,
+#     DEEPL_NOME
+# ]
+
+PROVEDORES_ATIVOS = [
+    LLAMA_NOME,
+]
+
+# Provedor específico que será analisado no modo AVALIAR
+PROVEDOR_PARA_AVALIACAO = LLAMA_NOME
+
+
+# --- 3. MÉTODOS AUXILIARES (FACTORIES & LOGIC) ---
+
+def criar_jobs_traducao( arquivo_entrada: Path ) -> list[ TranslationJob ]:
+    """
+    Fábrica de Jobs: Prepara todas as configurações necessárias para
+    que o Runner possa executar as threads.
+    """
+    jobs = [ ]
+
+    # Prepara contextos (se existirem)
+    contextos = [ ]
+    path_ctx_de = BASE_INPUT_DIR / "file_en_de.po"
+    path_ctx_fr = BASE_INPUT_DIR / "file_en_fr.po"
+
+    if path_ctx_de.exists(): contextos.append( ContextoTraducao( str( path_ctx_de ), "DE" ) )
+    if path_ctx_fr.exists(): contextos.append( ContextoTraducao( str( path_ctx_fr ), "FR" ) )
+
+    # Cria um Job para cada estratégia configurada
+    for estrategia in PROVEDORES_ATIVOS:
+        # Gera o caminho de saída padronizado
+        caminho_saida = construir_caminho_saida(
+            arquivo_entrada = str( arquivo_entrada ),
+            diretorio_base_saida = str( BASE_OUTPUT_DIR ),
+            nome_estrategia = estrategia
+        )
+
+        job = TranslationJob(
+            nome_estrategia = estrategia,
+            arquivo_entrada = str( arquivo_entrada ),
+            arquivo_saida = caminho_saida,
+            contextos = contextos
+        )
+        jobs.append( job )
+
+    return jobs
+
+
+def executar_modo_traducao( arquivo_entrada: Path ):
+    """Orquestra a execução paralela de traduções."""
+    print( "=" * 60 )
+    print( f"🚀 MODO TRADUÇÃO ATIVO" )
+    print( f"📄 Arquivo Alvo: {arquivo_entrada.name}" )
+    print( f"🧵 Estratégias: {', '.join( PROVEDORES_ATIVOS )}" )
+    print( "=" * 60 )
+
+    # 1. Preparar o Trabalho
+    jobs = criar_jobs_traducao( arquivo_entrada )
+
+    # 2. Executar em Paralelo (Gerenciamento de Threads oculto no Runner)
+    runner = ParallelRunner( max_workers = 4 )
+    resultados = runner.processar_batch( jobs )
+
+    # 3. Relatório Simplificado
+    print( "\n🏁 RESUMO DA OPERAÇÃO:" )
+    for res in resultados:
+        status = "✅ SUCESSO" if res.sucesso else "❌ FALHA"
+        nome_arquivo = Path( res.caminho_saida_gerado ).name if res.caminho_saida_gerado else "N/A"
+        print( f"   • {status} -> {nome_arquivo}" )
+        if not res.sucesso:
+            print( f"     Erro: {res.erro}" )
+
+
+def executar_modo_avaliacao( arquivo_referencia: Path ):
+    """Orquestra a avaliação de uma tradução específica."""
+    print( "=" * 60 )
+    print( f"⚖️  MODO AVALIAÇÃO ATIVO" )
+    print( f"🔍 Analisando Estratégia: {PROVEDOR_PARA_AVALIACAO}" )
+    print( "=" * 60 )
+
+    # 1. Determinar onde está o arquivo traduzido (Hipótese)
+    # Usamos o mesmo utilitário para garantir que vamos buscar no lugar certo
+    caminho_hipotese = construir_caminho_saida(
+        arquivo_entrada = str( arquivo_referencia ),
+        diretorio_base_saida = str( BASE_OUTPUT_DIR ),
+        nome_estrategia = PROVEDOR_PARA_AVALIACAO
+    )
+
+    if not Path( caminho_hipotese ).exists():
+        print( f"❌ Erro: Arquivo traduzido não encontrado." )
+        print( f"   Caminho esperado: {caminho_hipotese}" )
+        print( "   Dica: Rode o modo TRADUZIR para esta estratégia antes." )
+        return
+
+    # 2. Executar Pipeline de Avaliação
+    pipeline = EvaluationPipeline()
+    metricas = pipeline.run(
+        arquivo_referencia = str( arquivo_referencia ),
+        arquivo_traduzido = caminho_hipotese
+    )
+
+    # 3. Exibir Resultados
+    if metricas:
+        print( "\n📊 RESULTADOS DAS MÉTRICAS:" )
+        print( "-" * 30 )
+        for m in metricas:
+            print( f"   • {m.nome.ljust( 15 )}: {m.score:.4f}" )
+            print( f"     Desc: {m.descricao}" )
+            print( "-" * 30 )
+    else:
+        print( "\n⚠️ Nenhuma métrica gerada. Verifique os logs." )
+
+
+# --- 4. BLOCO PRINCIPAL (ENTRY POINT) ---
+
+def main():
+    # Validação inicial do arquivo de entrada
+    arquivo_entrada = BASE_INPUT_DIR / NOME_ARQUIVO_ALVO
+
+    if not arquivo_entrada.exists():
+        logger.error( f"Arquivo de entrada não encontrado: {arquivo_entrada}" )
+        return
+
+    # Seletor de Fluxo
+    if MODO_OPERACAO == "TRADUZIR":
+        executar_modo_traducao( arquivo_entrada )
+
+    elif MODO_OPERACAO == "AVALIAR":
+        executar_modo_avaliacao( arquivo_entrada )
+
+    else:
+        print( f"Modo '{MODO_OPERACAO}' inválido. Use 'TRADUZIR' ou 'AVALIAR'." )
+
+
+if __name__ == "__main__":
+    main()
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/run_experiments.py
+================================================================================
+import sys
+import logging
+import time
+import argparse
+from pathlib import Path
+
+# Imports do Rich para UI
+from rich.console import Console
+from rich.table import Table
+from rich import box
+
+# Setup de Path
+ROOT_DIR = Path( __file__ ).resolve().parent.parent
+sys.path.append( str( ROOT_DIR ) )
+
+# Imports Aplicação
+from src.application.builders.experiment_builder import ExperimentBuilder
+from src.application.runners.parallel_runner import ParallelRunner
+
+# Log
+logging.basicConfig(
+    level = logging.INFO,
+    format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    filename = 'experimento_sequencial.log',
+    filemode = 'w'
+)
+
+console = Console()
+
+# --- CONSTANTE DE CONFIGURAÇÃO ---
+MAX_CONTEXT_LEVEL = 4  # Isso irá gerar os níveis: 0, 1, 2 e 3 (range é exclusivo no final)
+
+
+def setup_arguments():
+    parser = argparse.ArgumentParser( description = "Executor de Experimentos de Tradução (TCC)" )
+    parser.add_argument(
+        '--origem', type = str, required = True, choices = [ 'aurora', 'macbook', 'extracted' ],
+        help = "Nome da pasta de origem dentro de data/ (ex: aurora, macbook)"
+    )
+    parser.add_argument(
+        '--workers', type = int, default = 1,
+        help = "Número de threads simultâneas (Padrão: 1 para execução sequencial)"
+    )
+    return parser.parse_args()
+
+
+def exibir_estimativa_execucao( builder: ExperimentBuilder, projetos: list ) -> int:
+    """
+    Calcula e exibe uma tabela com o total de jobs que serão criados.
+    Retorna o total geral de jobs.
+    """
+    total_geral = 0
+
+    table = Table( title = f"📊 Planejamento de Execução (Até Nível {MAX_CONTEXT_LEVEL - 1})", box = box.ROUNDED )
+    table.add_column( "Projeto", style = "cyan", no_wrap = True )
+    table.add_column( "Ctx Disp.", justify = "center", style = "magenta" )
+
+    # Cria colunas dinamicamente baseado no MAX_CONTEXT_LEVEL
+    for i in range( MAX_CONTEXT_LEVEL ):
+        table.add_column( f"Lvl {i}", justify = "right" )
+
+    table.add_column( "Total", justify = "right", style = "green bold" )
+
+    console.print( "\n[bold yellow]🔄 Calculando combinações possíveis... Aguarde...[/]" )
+
+    for projeto in projetos:
+        # Pega info básica
+        _, mapa_ctx = builder._identificar_arquivos( projeto )
+        qtd_ctx = len( mapa_ctx )
+
+        row_counts = [ ]
+        total_projeto = 0
+
+        # Calcula jobs apenas até o nível definido (0, 1, 2, 3)
+        for nivel in range( MAX_CONTEXT_LEVEL ):
+            jobs = builder.construir_jobs_para_nivel( projeto, nivel )
+            qtd = len( jobs )
+            row_counts.append( str( qtd ) if qtd > 0 else "-" )
+            total_projeto += qtd
+
+        total_geral += total_projeto
+
+        # Monta a linha da tabela
+        row_data = [ projeto.name, str( qtd_ctx ) ] + row_counts + [ str( total_projeto ) ]
+        table.add_row( *row_data )
+
+    console.print( table )
+    console.print( f"\n[bold white on blue] 🚀 TOTAL GERAL DE EXECUÇÕES: {total_geral} [/]\n" )
+
+    return total_geral
+
+
+def main():
+    args = setup_arguments()
+
+    input_dir = ROOT_DIR / "data" / args.origem
+    output_dir = ROOT_DIR / "resultados" / f"experimentos_{args.origem}"
+
+    if not input_dir.exists():
+        console.print( f"[bold red]❌ Erro: Diretório não encontrado: {input_dir}[/]" )
+        return
+
+    # Instancia Builder e Runner
+    builder = ExperimentBuilder( input_dir, output_dir )
+    runner = ParallelRunner( max_workers = args.workers )
+    projetos = builder.listar_projetos()
+
+    if not projetos:
+        console.print( "[yellow]⚠️ Nenhum projeto encontrado.[/]" )
+        return
+
+    # --- EXIBIR ESTIMATIVA ---
+    total_jobs = exibir_estimativa_execucao( builder, projetos )
+
+    if total_jobs == 0:
+        console.print( "[red]Nenhum job gerado. Verifique os arquivos de entrada.[/]" )
+        return
+
+    console.print( "Iniciando processamento em 3 segundos... (Ctrl+C para cancelar)" )
+    time.sleep( 3 )
+
+    # --- LOOP DE EXECUÇÃO ---
+    print( "=" * 60 )
+    print( "▶️  INICIANDO EXECUÇÃO" )
+    print( "=" * 60 )
+
+    for i, projeto in enumerate( projetos, 1 ):
+        console.print( f"\n[bold cyan]🔷 PROJETO [{i}/{len( projetos )}]: {projeto.name.upper()}[/]" )
+        print( "-" * 60 )
+
+        # Loop controlado pela constante (0, 1, 2, 3)
+        for nivel in range( MAX_CONTEXT_LEVEL ):
+            jobs_batch = builder.construir_jobs_para_nivel( projeto, nivel )
+
+            if not jobs_batch:
+                continue
+
+            print( f"\n   📍 Nível {nivel}: Processando {len( jobs_batch )} jobs..." )
+
+            runner.processar_batch( jobs_batch )
+
+            time.sleep( 0.5 )
+
+    console.print( "\n[bold green]🏁 TODOS OS EXPERIMENTOS CONCLUÍDOS.[/]" )
+
+
+if __name__ == "__main__":
+    main()
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/dto/evaluation_input.py
+================================================================================
+from dataclasses import dataclass
+from typing import List
+from src.core.dto.segment_translation import SegmentTranslation
+
+
+@dataclass( frozen = True )
+class EvaluationInput:
+    """Dados completos parseados de um arquivo JSON."""
+    file_name: str
+    segments: List[ SegmentTranslation ]
+    context_languages: List[ str ]  # ex: ["DE"]
+    strategy_name: str
+
+    def __post_init__( self ):
+        if len( self.segments ) == 0:
+            raise ValueError( "Deve ter pelo menos um segmento" )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/dto/pipeline_result.py
+================================================================================
+from dataclasses import dataclass
+from typing import List, Dict, Any
+
+
+@dataclass( frozen = True )
+class PipelineResult:
+    """Resultado de uma métrica para todo o arquivo."""
+    metric_name: str
+    corpus_score: float  # score agregado
+    segment_scores: List[ float ]  # um por segmento
+    metadata: Dict[ str, Any ] = None  # stats extras
+
+    def __post_init__( self ):
+        if len( self.segment_scores ) == 0:
+            raise ValueError( "Deve ter segment_scores" )
+        if self.corpus_score < 0 or self.corpus_score > 100:
+            raise ValueError( "corpus_score deve estar entre 0-100" )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/dto/execution_metadata.py
+================================================================================
+from dataclasses import dataclass, field
+from typing import Dict, Any, List
+
+
+@dataclass
+class ExecutionMetadata:
+    """
+    DTO que representa a 'Receita' utilizada para gerar a tradução.
+    Garante rastreabilidade e reprodutibilidade científica.
+    """
+    # Identificação
+    strategy_name: str
+    model_name: str
+    timestamp: str
+
+    # Ambiente
+    library_versions: Dict[ str, str ]  # Ex: {"google-generativeai": "0.3.0"}
+
+    # Configuração da IA
+    parameters: Dict[ str, Any ]  # temperature, top_p, seeds...
+    prompt_template: str  # O texto exato do prompt (sem o conteúdo do arquivo)
+
+    # Contexto de Entrada
+    input_files_context: List[ str ]  # Quais idiomas foram usados de base
+
+    # Métricas de Execução (Opcional)
+    execution_time_seconds: float = 0.0
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/dto/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/dto/segment_result.py
+================================================================================
+from dataclasses import dataclass
+
+
+@dataclass( frozen = True )
+class SegmentResult:
+    """Score de um segmento individual."""
+    segment_index: int
+    metric_name: str
+    score: float
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/dto/evaluation_result.py
+================================================================================
+from dataclasses import dataclass
+from typing import List
+from src.core.dto.evaluation_input import EvaluationInput
+from src.core.dto.pipeline_result import PipelineResult
+
+
+@dataclass( frozen = True )
+class EvaluationResult:
+    """Resultado final de todas as métricas para um arquivo."""
+    input_data: EvaluationInput
+    pipeline_results: List[ PipelineResult ]
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/dto/segment_translation.py
+================================================================================
+from dataclasses import dataclass
+
+
+@dataclass( frozen = True )
+class SegmentTranslation:
+    """Triplet individual: original + tradução + referência."""
+    original: str
+    translated: str
+    reference: str
+
+    def __post_init__( self ):
+        if not all( [ self.original, self.translated, self.reference ] ):
+            raise ValueError( "Todos os campos devem ser não-vazios" )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/config/env.py
+================================================================================
+"""
+    Definição da classe que contém as variáveis de ambiente.
+"""
+
+import os
+from dataclasses import dataclass
+from dotenv import load_dotenv, find_dotenv
+
+# Procurando e carregando o .env
+load_dotenv( find_dotenv() )
+
+
+@dataclass
+class AppConfig:
+    # Chaves
+    deepl_api_key: str = os.getenv( "DEEPL_API_KEY" )
+    gemini_api_key: str = os.getenv( "GEMINI_API_KEY" )
+    mistral_api_key: str = os.getenv( "MISTRAL_API_KEY" )
+    llama_url: str = os.getenv( "LLAMA_URL" )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/config/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/config/settings.py
+================================================================================
+"""
+Contém as configurações estáticas e de comportamento da aplicação.
+Estes valores não são segredos e definem a lógica de negócio.
+"""
+
+from string import Template
+
+# Configurações do Gemini
+GEMINI_MODEL_NAME = 'gemini-2.5-flash'
+GEMINI_GENERATION_CONFIG = {
+    "temperature": 0.1,
+    "top_p": 1,
+    "top_k": 1,
+    "max_output_tokens": 2048,
+    "safety_settings": [
+        { "category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE" },
+        { "category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE" },
+        { "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE" },
+        { "category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE" },
+    ]
+}
+
+# Configurações do Mistral
+MISTRAL_MODEL_NAME: str = "mistral-small-latest"
+MISTRAL_GENERATION_CONFIG = {
+    "temperature": 0.1,
+    "top_p": 1,
+    "max_tokens": 2048,
+    "safe_prompt": False,
+    "random_seed": 42
+}
+
+# Configurações do Llama
+LLAMA_MODEL_NAME: str = "phi3"
+# LLAMA_MODEL_NAME = "llama3.2:3b"
+LLAMA_URL: str = "http://localhost:11434"
+LLAMA_GENERATION_CONFIG = {
+    "temperature": 0.1,  # Baixa temperatura para tradução
+    "top_p": 0.1,
+    "top_k": 20,
+    "max_output_tokens": 2048,  # Será convertido para 'num_predict' no código
+    "repeat_penalty": 1.2,  # Penaliza repetições (evita loop de texto)
+    "seed": 42  # Garante reprodutibilidade
+}
+
+# Configuração do DeepL
+DEEP_L_LANGUAGE: str = "PT-BR"
+
+# Nomes das estratégias
+DEEPL_NOME: str = "DeepL"
+GEMINI_NOME: str = "Gemini"
+MISTRAL_NOME: str = "Mistral"
+LLAMA_NOME: str = "LLAMA"
+
+# gemma4 ou 3 (mais nova), granity, qwen (chinês)
+
+SYSTEM_INSTRUCTION = """
+### ROLE & OBJECTIVE
+You are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.
+Your task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.
+
+### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)
+* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.
+    * *Reasoning:* Altering these causes software crashes (segmentation faults).
+    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).
+* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.
+* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).
+
+### 2. LINGUISTIC STYLE GUIDE (pt-BR)
+* **Tone:** Formal, concise, and impersonal (Standard Technical).
+    * *Bad:* "Você não tem permissão" (Too personal)
+    * *Good:* "Permissão negada" (Passive/State-based)
+* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.
+    * "Edit" -> "Editar"
+    * "File not found" -> "Arquivo não encontrado"
+* **Terminology Glossary (Strict Adherence):**
+    * "field" -> "campo"
+    * "line" -> "linha"
+    * "option" -> "opção"
+    * "socket" -> "soquete" (or keep "socket" if context implies low-level networking)
+    * "thread" -> "thread" (do not use "fio" or "linha de execução" unless extremely formal context)
+    * "directory" -> "diretório" (not "pasta")
+    * "standard input/output" -> "entrada/saída padrão" (stdin/stdout)
+    * "parse/parsing" -> "análise/analisando"
+    * "deprecated" -> "obsoleto"
+
+### 3. FORMATTING & QUOTING RULES
+* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.
+* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.
+    * Input: `"  Error "` -> Output: `"  Erro "`
+
+### 4. OUTPUT PROTOCOL
+* **Format:** STRICT valid JSON only. No markdown, no conversational filler.
+* **Schema:** `{"translation": "YOUR_TRANSLATION_HERE"}`
+* **CRITICAL JSON RULES:**
+    * **Escape Double Quotes:** You MUST escape double quotes `"` inside the value with `\"`. 
+      Example: `Press "Enter"` becomes `Press \"Enter\"`.
+    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.
+    * **Backslashes:** A literal backslash `\` must be escaped as `\\`.
+
+### 5. EDGE CASE HANDLING (Chain of Thought)
+Before generating output, verify:
+1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*
+2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*
+3.  Is the grammar natural for a native Brazilian developer?
+
+---
+
+### EXAMPLES (Few-Shot Learning)
+
+Input: "check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)"
+Output: {"translation": "falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)"}
+
+Input: "invalid option -- '%c'"
+Output: {"translation": "opção inválida -- '%c'"}
+
+Input: "%s: option '%s%s' doesn't allow an argument\\n"
+Output: {"translation": "%s: a opção '%s%s' não permite argumento\\n"}
+
+Input: "Try `%s --help' for more information.\\n"
+Output: {"translation": "Tente `%s --help' para mais informações.\\n"}
+
+Input: "_Cancel"
+Output: {"translation": "_Cancelar"}
+
+Input: "unable to stat file %s"
+Output: {"translation": "não foi possível obter estado (stat) do arquivo %s"}
+"""
+
+PROMPT_USER_TEMPLATE = Template( """
+TRANSLATION TASK:
+Original (English): "$original_text"
+
+$context_section
+
+CRITICAL REMINDERS:
+- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form
+- Use formal Brazilian Portuguese
+- Maintain technical terminology consistency
+- Output ONLY: {"translation": "your translation here"}
+
+JSON Response:
+""" )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/domain/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/domain/exceptions.py
+================================================================================
+class ErroBase( Exception ):
+    """
+        Exceção base para todos os erros.
+    """
+
+    def __init__( self, mensagem: str = "Erro na aplicação.", detalhe: str = '' ):
+        self.mensagem = mensagem
+
+        # Garante que o Exception seja inicializada corretamente com a mensagem de erro
+        super().__init__( mensagem )
+
+    # Controla como a sua exceção é exibida como texto para o usuário final
+    def __str__( self ):
+        return self.mensagem
+
+
+class ErroCriarCliente( ErroBase ):
+    def __init__( self, mensagem: str = 'Erro ao criar o cliente.', detalhe: str = '' ):
+        super().__init__( mensagem )
+        self.detalhe = detalhe
+
+    def __str__( self ):
+        if self.detalhe:
+            return f'[Provedor: {self.detalhe}] {self.mensagem}'
+        return f'{self.mensagem}'
+
+
+class ErroChaveProvedor( ErroBase ):
+    def __init__( self, mensagem: str = 'Erro ao buscar chave da API.', detalhe: str = '' ):
+        super().__init__( mensagem )
+        self.detalhe = detalhe
+
+    def __str__( self ):
+        if self.detalhe:
+            return f'[Provedor: {self.detalhe}] {self.mensagem}'
+        return f'{self.mensagem}'
+
+
+class ErroNomeProvedor( ErroBase ):
+    def __init__( self, mensagem: str = 'Erro ao buscar provedor no dicionário.', detalhe: str = '' ):
+        super().__init__( mensagem )
+        self.detalhe = detalhe
+
+
+class ErroCarregarArquivo( ErroBase ):
+    def __init__( self, mensagem: str = 'Erro ao carregar arquivo.', detalhe: str = '' ):
+        super().__init__( mensagem )
+        self.detalhe = detalhe
+
+
+class ErroSalvarArquivo( ErroBase ):
+    def __init__( self, mensagem: str = 'Erro ao salvar arquivo.', detalhe: str = '' ):
+        super().__init__( mensagem )
+        self.detalhe = detalhe
+
+
+class ErroFormatoResposta( ErroBase ):
+    """
+    Levantada quando a resposta (JSON) não segue o formato esperado estrito.
+    """
+
+    def __init__( self, mensagem: str = 'Formato de resposta inválido.', detalhe: str = '' ):
+        super().__init__( mensagem, detalhe )
+        self.detalhe = detalhe
+
+    def __str__( self ):
+        if self.detalhe:
+            return f'[Validação] {self.mensagem} Detalhe: {self.detalhe}'
+        return self.mensagem
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/ioc/bootstrap.py
+================================================================================
+# Dependências usadas
+from src.core.ioc.registry import StrategyRegistry
+from src.infrastructure.io.po_file_adapter import PoFileAdapter
+from src.infrastructure.providers.common.llm_prompt import LlmPrompt
+
+from src.application.services.translator_service import TranslatorService
+
+# Importamos as fábricas concretas AQUI, e não no serviço
+from src.infrastructure.providers.deepl.factory import DeepLStrategyFactory
+from src.infrastructure.providers.gemini.factory import GeminiStrategyFactory
+from src.infrastructure.providers.mistral.factory import MistralStrategyFactory
+from src.infrastructure.providers.llama.factory import LlamaStrategyFactory
+from src.core.config.settings import DEEPL_NOME, GEMINI_NOME, MISTRAL_NOME, LLAMA_NOME, PROMPT_USER_TEMPLATE
+
+
+def build_translator_service() -> TranslatorService:
+    """
+    Factory Method do Sistema: Constrói o TranslatorService com todas
+    as suas dependências configuradas.
+    """
+
+    # 1. Cria as dependências
+    registry = StrategyRegistry()
+    po_file_adapter = PoFileAdapter()
+    prompt_build = LlmPrompt( PROMPT_USER_TEMPLATE )
+
+    # 2. Registra as estratégias (A "configuração" acontece aqui)
+    # Se amanhã você criar 'ClaudeStrategy', só mexe neste arquivo.
+    registry.registrar( DEEPL_NOME, DeepLStrategyFactory() )
+    registry.registrar( GEMINI_NOME, GeminiStrategyFactory() )
+    registry.registrar( MISTRAL_NOME, MistralStrategyFactory() )
+    registry.registrar( LLAMA_NOME, LlamaStrategyFactory() )
+
+    # 3. Injeta o registry no serviço
+    service = TranslatorService(
+        registry = registry,
+        po_adapter = po_file_adapter,
+        prompt_builder = prompt_build
+    )
+
+    return service
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/ioc/registry.py
+================================================================================
+# Core
+from src.core.domain.exceptions import ErroNomeProvedor
+from src.core.interfaces.strategy_factory import StrategyFactory
+
+"""
+    O fluxo de uso será:
+    
+        - No início da execução, irá criar uma instância de cada implementação de 
+        StrategyFactory e adicionar ao dicionário.
+        - Quando o provedor for escolhido, utilizar método 'buscar_fabrica' passando
+        o nome do provedor, para obter a instância dele.
+"""
+
+
+class StrategyRegistry:
+    """
+        Classe para registrar as fábricas de estratégias.
+        Mapeia o nome do provedor (‘string’) para uma InterfaceFabricaEstrategia.
+    """
+
+    def __init__( self ):
+        self.fabricas: dict[ str, StrategyFactory ] = { }
+
+    def registrar( self, nome_fabrica: str, fabrica: StrategyFactory ):
+        """
+        Registrar no dicionário a implementação da fábrica de InterfaceFabricaEstrategia.
+
+        :param nome_fabrica: Nome do provedor da fábrica.
+        :param fabrica: Instância da fábrica.
+        """
+
+        self.fabricas[ nome_fabrica ] = fabrica
+
+    def buscar_fabrica( self, nome_fabrica: str ) -> StrategyFactory:
+        """
+        Busca uma fábrica cadastrada no dicionário.
+        """
+
+        try:
+            return self.fabricas.get( nome_fabrica )
+        except KeyError:
+            raise ErroNomeProvedor(
+                mensagem = f'Erro ao buscar {nome_fabrica} no dicionário. Necessário registrar a fábrica.' )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/ioc/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/interfaces/translation_strategy.py
+================================================================================
+"""
+Uso do Design Pattern Strategy.
+
+Todos os serviços de tradução serão implementados seguindo a 'interface' TranslationStrategy.
+"""
+
+from abc import ABC, abstractmethod
+from typing import Any
+
+
+class TranslationStrategy( ABC ):
+    """
+    ‘Interface’ para as estratégias de tradução:
+        - Gemini
+        - Mistral
+        - DeepL
+        - Llama
+        - ...
+    """
+
+    @abstractmethod
+    def traduzir( self, mensagem: str ) -> str:
+        """
+        Realizar a tradução de um texto num determinado idioma.
+        :param mensagem: Mensagem a ser enviado.
+        :return: Texto traduzido para o idioma configurado.
+        """
+        pass
+
+    @abstractmethod
+    def obter_configuracao( self ) -> dict[ str, Any ]:
+        """
+        Retorna os metadados técnicos da estratégia.
+        Ex: Nome do modelo, temperatura, top_p, versão da lib.
+        """
+        pass
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/interfaces/prompt_strategy.py
+================================================================================
+"""
+Uso do Design Pattern 'Strategy'.
+
+Todos os serviços de prompt serão implementados seguindo a 'interface' PromptStrategy.
+"""
+
+from abc import ABC, abstractmethod
+from string import Template
+
+
+class PromptStrategy( ABC ):
+    """
+    'Interface' para prompt direto ou com contexto.
+    """
+
+    def __init__( self, template: Template ):
+        self.template: Template = template
+
+    @abstractmethod
+    def construir_prompt( self, texto_original: str, contexto: dict[ str, str ] = None ) -> str:
+        """
+        Realizar a criação do prompt utilizando o texto que deseja traduzir e o contexto
+        (se disponível).
+        :param texto_original: Texto do arquivo que deseja traduzir.
+        :param contexto: Traduções em outros idiomas do arquivo que deseja traduzir.
+        :return: Prompt criado.
+        """
+        pass
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/interfaces/strategy_factory.py
+================================================================================
+from abc import ABC, abstractmethod
+
+from src.core.interfaces.translation_strategy import TranslationStrategy
+
+
+class StrategyFactory( ABC ):
+    """
+        Classe que representa uma ‘interface’ para as fábricas de estratégias.
+    """
+
+    @abstractmethod
+    def criar_estrategia( self ) -> TranslationStrategy:
+        """
+            Método que retorna uma instância da estratégia.
+        """
+        pass
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/interfaces/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/core/interfaces/metrics_pipeline.py
+================================================================================
+from abc import ABC, abstractmethod
+from typing import List
+from src.core.dto.evaluation_input import EvaluationInput
+from src.core.dto.pipeline_result import PipelineResult
+
+
+class MetricsPipeline( ABC ):
+    """Interface para pipelines de métricas."""
+
+    @abstractmethod
+    def compute( self, input_data: EvaluationInput ) -> PipelineResult:
+        """Calcula a métrica para todos os segmentos."""
+        pass
+
+    @abstractmethod
+    def metric_name( self ) -> str:
+        """Nome da métrica (para CSV/colunas)."""
+        pass
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/shared/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/shared/utils/sync_batch_executor.py
+================================================================================
+from typing import Callable, Any, List, Tuple, Optional
+
+from src.application.dto.translation_job import TranslationJob
+
+
+class BatchExecutor:
+    """
+    Executor síncrono. Processa itens sequencialmente.
+    """
+
+    def __init__( self, nome_estrategia: str ) -> None:
+        self.nome_estrategia: str = nome_estrategia
+
+    def execute(
+            self,
+            items: dict,
+            processor_func: Callable[ [ str, Any ], Any ],
+            on_progress: Optional[ Callable[ [ ], None ] ] = None
+    ) -> List[ Tuple[ str, Any ] ]:
+
+        resultados = [ ]
+
+        for key, value in items.items():
+            try:
+                result = processor_func( key, value )
+                resultados.append( (key, result) )
+            except Exception as e:
+                print( f"[{self.nome_estrategia}] \nErro ao processar [{key}]: {e}" )
+                resultados.append( (key, value) )
+            finally:
+                # O Padrão Observer: Notifica quem estiver ouvindo que um item terminou
+                if on_progress:
+                    on_progress()
+
+        return resultados
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/shared/utils/console_progress.py
+================================================================================
+# ARQUIVO: src/shared/utils/console_progress.py
+import sys
+import time
+
+
+class ConsoleProgressBar:
+    """
+    Gerencia a exibição visual de progresso no terminal.
+    Agora com contador (x/y) e estimativa de tempo (ETA).
+    """
+
+    def __init__( self, total: int, prefixo: str = 'Progresso', tamanho_barra: int = 30 ):
+        self.total = total
+        self.prefixo = prefixo
+        self.tamanho_barra = tamanho_barra
+        self.atual = 0
+        self.inicio = time.time()  # Marca o timestamp inicial
+
+    def incrementar( self ):
+        """Avança uma unidade e atualiza a tela."""
+        self.atual += 1
+        self._atualizar_tela()
+
+    def _formatar_tempo( self, segundos: float ) -> str:
+        """Converte segundos em formato MM:SS."""
+        if segundos < 0:
+            return "00:00"
+        m, s = divmod( int( segundos ), 60 )
+        return f"{m:02d}:{s:02d}"
+
+    def _atualizar_tela( self ):
+        if self.total == 0:
+            return
+
+        # 1. Cálculos Básicos
+        percentual = 100 * (self.atual / self.total)
+        preenchido = int( self.tamanho_barra * self.atual // self.total )
+
+        # 2. Construção da Barra
+        barra = '\033[32m█\033[0m' * preenchido + '-' * (self.tamanho_barra - preenchido)
+
+        # 3. Cálculo do ETA (Tempo Estimado)
+        agora = time.time()
+        decorrido = agora - self.inicio
+
+        # Evita divisão por zero no primeiro milissegundo
+        if self.atual > 0 and decorrido > 0:
+            velocidade_media = self.atual / decorrido  # itens por segundo
+            itens_restantes = self.total - self.atual
+            eta_segundos = itens_restantes / velocidade_media
+            eta_str = self._formatar_tempo( eta_segundos )
+        else:
+            eta_str = "--:--"
+
+        # 4. Formatação Final
+        # Layout: Progresso: |████------| 40.0% [20/50] ETA: 00:15
+        contador_str = f"[{self.atual}/{self.total}]"
+
+        msg = (
+            f"\r{self.prefixo}: |{barra}| "
+            f"{percentual:.1f}% {contador_str} "
+            f"ETA: {eta_str}"
+        )
+
+        sys.stdout.write( msg )
+        sys.stdout.flush()
+
+    def finalizar( self ):
+        """Pula para a próxima linha e exibe tempo total."""
+        tempo_total = time.time() - self.inicio
+        sys.stdout.write( f" - Concluído em {self._formatar_tempo( tempo_total )}\n" )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/shared/utils/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/shared/utils/cli_renderer.py
+================================================================================
+# ARQUIVO: src/shared/utils/cli_renderer.py
+import os
+from src.application.dto.translation_job import TranslationJob
+
+LARGURA_BARRA: int = 100
+
+
+def exibir_resumo_requisicao( requisicao: TranslationJob ):
+    """
+    Renderiza um cartão visual no terminal com os detalhes da requisição.
+    Não retorna nada, apenas imprime (Side Effect intencional de UI).
+    """
+    # Limpa um pouco a visualização pegando apenas o nome do arquivo, não o caminho todo
+    nome_arquivo_entrada = os.path.basename( requisicao.arquivo_entrada )
+    nome_arquivo_saida = os.path.basename( requisicao.arquivo_saida )
+
+    print( "\n" + "=" * LARGURA_BARRA )
+    print( f"📋 RESUMO DA OPERAÇÃO DE TRADUÇÃO" )
+    print( "=" * LARGURA_BARRA )
+
+    # Seção Principal
+    print( f"🧠  Estratégia          : {requisicao.nome_estrategia.upper()}" )
+    print( f"📄  Arquivo de Entrada  : {nome_arquivo_entrada}" )
+    print( f"💾  Arquivo de Saída    : {nome_arquivo_saida}" )
+
+    # Seção de Contexto (Condicional)
+    print( "-" * LARGURA_BARRA )
+    if requisicao.contextos:
+        print( f"📚  Contexto Carregado ({len( requisicao.contextos )} arquivos):" )
+        for ctx in requisicao.contextos:
+            nome_ctx = os.path.basename( ctx.caminho )
+            print( f"    • [{ctx.idioma}] {nome_ctx}" )
+    else:
+        print( "📚  Contexto            : Nenhum (Zero-shot)" )
+
+    print( "=" * LARGURA_BARRA + "\n" )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/shared/utils/path_helper.py
+================================================================================
+from pathlib import Path
+
+
+def construir_caminho_saida( arquivo_entrada: str, diretorio_base_saida: str, nome_estrategia: str ) -> str:
+    """
+    Gera o caminho completo de saída padronizado conforme regras de negócio.
+
+    Regras:
+    1. Pasta do Projeto: Extraída do nome do arquivo (ex: 'datamash' de 'datamash-1.4.12.1.de')
+    2. Nome do Arquivo: Remove idioma original, adiciona pt_BR e a estratégia.
+
+    Exemplo:
+    Entrada: .../datamash-1.4.12.1.de.po
+    Estratégia: LLAMA
+    Saída: .../resultados/datamash/datamash-1.4.12.1.pt_BR-llama.po
+    """
+    path_entrada = Path( arquivo_entrada )
+    # stem pega o nome sem a extensão .po (ex: datamash-1.4.12.1.de)
+    nome_bruto = path_entrada.stem
+
+    # --- 1. Definir Nome da Pasta (Projeto) ---
+    # Pega tudo antes do primeiro hífen. Se não houver hífen, usa o nome todo.
+    nome_projeto = nome_bruto.split( '-' )[ 0 ]
+
+    # --- 2. Limpar código de idioma original ---
+    # Se o nome termina com ponto e duas letras (ex: .de, .en, .fr), removemos.
+    partes = nome_bruto.split( '.' )
+    if len( partes ) > 1 and len( partes[ -1 ] ) == 2:
+        # Reconstrói sem a última parte (remove o .de)
+        nome_base = ".".join( partes[ :-1 ] )
+    else:
+        nome_base = nome_bruto
+
+    # --- 3. Montar nome final ---
+    # Ex: datamash-1.4.12.1 + .pt_BR-llama + .po
+    nome_arquivo_final = f"{nome_base}.pt_BR-{nome_estrategia.lower()}{path_entrada.suffix}"
+
+    # --- 4. Montar caminho completo ---
+    # O PoFileAdapter já cuida de criar as pastas (makedirs),
+    # então só precisamos retornar a string do caminho.
+    caminho_completo = Path( diretorio_base_saida ) / nome_projeto / nome_arquivo_final
+
+    return str( caminho_completo )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/shared/utils/text_parser.py
+================================================================================
+import json
+import re
+from typing import Dict, Any
+import logging
+from src.core.domain.exceptions import ErroFormatoResposta
+
+logger = logging.getLogger( __name__ )
+
+
+def extrair_traducao_estrita( json_str: str ) -> str:
+    """
+    Converte uma string JSON e retorna o valor da chave 'translation'.
+    Tenta parse nativo primeiro. Se falhar, tenta recuperação via Regex.
+    """
+
+    # 1. Pré-processamento: Limpeza de Artefatos de LLM (Markdown)
+    padrao_markdown = r"```(?:json)?\s*(.*?)\s*```"
+    match = re.search( padrao_markdown, json_str, re.DOTALL )
+
+    if match:
+        conteudo_limpo = match.group( 1 ).strip()
+    else:
+        conteudo_limpo = json_str.strip()
+
+    # 2. Tentativa 1: Parse JSON Padrão (Caminho Feliz)
+    try:
+        # strict=False ajuda com alguns caracteres de controle, mas não todos
+        dados = json.loads( conteudo_limpo, strict = False )
+        return _validar_e_extrair( dados )
+    except json.JSONDecodeError:
+        logger.warning(
+            f"Falha no JSON parse nativo. Tentando recuperação via Regex. Conteúdo: {conteudo_limpo[ :50 ]}..." )
+
+    # 3. Tentativa 2: Fallback via Regex (Caminho de Recuperação)
+    # Isso resolve casos onde o LLM esqueceu de escapar uma aspa interna ou usou newlines reais.
+    # Padrão busca: "translation" : "CONTEUDO" (ignorando espaços e quebras)
+    # O [^"]* não funciona bem se tiver aspas escapadas dentro.
+    # Usamos uma estratégia de capturar tudo entre a primeira aspa do valor e a última aspa antes do fecha chaves.
+
+    try:
+        # Regex explica: Procure "translation" seguido de :
+        # Capture o grupo (.*?) que é o conteúdo, de forma 'não gulosa',
+        # até encontrar o fechamento de aspas seguido de fecha chaves ou vírgula
+        padrao_regex = r'"translation"\s*:\s*"(.*)"\s*}'
+        match_fallback = re.search( padrao_regex, conteudo_limpo, re.DOTALL )
+
+        if match_fallback:
+            texto_extraido = match_fallback.group( 1 )
+            # LLMs às vezes escapam duplamente no texto bruto (ex: \\n), precisamos desescapar
+            # para ter o texto real, mas com cuidado para não quebrar C-strings.
+            # Neste caso, retornamos o texto bruto recuperado.
+
+            # Pequeno fix: Regex pode capturar escapes de JSON como literais (ex: \" vira \")
+            # Vamos remover o escape da aspa gerado pelo JSON se existir
+            texto_final = texto_extraido.replace( '\\"', '"' )
+            return texto_final
+
+    except Exception as e:
+        logger.error( f"Falha também no Regex: {e}" )
+
+    # Se tudo falhar, lançamos o erro original
+    raise ErroFormatoResposta(
+        mensagem = "Não foi possível extrair a tradução (JSON inválido e Regex falhou).",
+        detalhe = f"Conteúdo recebido: {conteudo_limpo}"
+    )
+
+
+def _validar_e_extrair( dados: Any ) -> str:
+    """Validações estruturais extraídas para função auxiliar."""
+    if not isinstance( dados, dict ):
+        raise ErroFormatoResposta( mensagem = "O JSON não é um objeto." )
+
+    val = dados.get( "translation" )
+    if val is None:  # Aceita string vazia, mas não None
+        raise ErroFormatoResposta( mensagem = "Chave 'translation' ausente." )
+
+    return str( val )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/po_translator.egg-info/PKG-INFO
+================================================================================
+Metadata-Version: 2.4
+Name: po_translator
+Version: 0.1.0
+Summary: Sistema de tradução automática para arquivos .po com avaliação de qualidade
+Author: Vinicius Candeia
+Requires-Python: >=3.11
+Requires-Dist: polib>=1.2.0
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: rich>=13.0.0
+Requires-Dist: beautifulsoup4>=4.12.0
+Requires-Dist: packaging>=23.0
+Requires-Dist: deepl>=1.17.0
+Requires-Dist: google-genai>=0.3.0
+Requires-Dist: mistralai>=1.0.0
+Requires-Dist: ollama>=0.6.0
+Requires-Dist: openai>=1.0.0
+Provides-Extra: test
+Requires-Dist: pytest>=8.0.0; extra == "test"
+Requires-Dist: pytest-asyncio>=0.23.0; extra == "test"
+Requires-Dist: pytest-cov>=4.1.0; extra == "test"
+Provides-Extra: eval
+Requires-Dist: torch<2.4.0,>=2.0.0; extra == "eval"
+Requires-Dist: transformers>=4.43.0; extra == "eval"
+Requires-Dist: sentencepiece>=0.1.99; extra == "eval"
+Requires-Dist: pydantic<3.0.0,>=2.0.0; extra == "eval"
+Requires-Dist: unbabel-comet>=2.2.2; extra == "eval"
+Requires-Dist: sacrebleu<3.0.0,>=2.3.0; extra == "eval"
+Requires-Dist: bert-score>=0.3.13; extra == "eval"
+Requires-Dist: scipy>=1.11.0; extra == "eval"
+Requires-Dist: numpy>=1.24.0; extra == "eval"
+Requires-Dist: pytorch-lightning<2.5.0,>=2.0.0; extra == "eval"
+Provides-Extra: dev
+Requires-Dist: po-translator[test]; extra == "dev"
+Requires-Dist: po-translator[eval]; extra == "dev"
+Requires-Dist: ipython>=8.12.0; extra == "dev"
+Requires-Dist: black>=24.0.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+Requires-Dist: mypy>=1.7.0; extra == "dev"
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/po_translator.egg-info/SOURCES.txt
+================================================================================
+README.md
+pyproject.toml
+src/__init__.py
+src/main.py
+src/run.py
+src/run_context_levels.py
+src/run_experiments.py
+src/run_metrics.py
+src/application/__init__.py
+src/application/builders/__init__.py
+src/application/builders/experiment_builder.py
+src/application/dto/__init__.py
+src/application/dto/pipeline_result.py
+src/application/dto/translation_context.py
+src/application/dto/translation_job.py
+src/application/pipelines/__init__.py
+src/application/pipelines/bertscore_pipeline.py
+src/application/pipelines/bleu_pipeline.py
+src/application/pipelines/chrf_pipeline.py
+src/application/pipelines/comet_pipeline.py
+src/application/pipelines/ter_pipeline.py
+src/application/pipelines/translation_pipeline.py
+src/application/reporters/__init__.py
+src/application/reporters/csv_reporter.py
+src/application/runners/__init__.py
+src/application/runners/metrics_runner.py
+src/application/runners/parallel_runner.py
+src/application/services/__init__.py
+src/application/services/context_service.py
+src/application/services/metrics_service.py
+src/application/services/translation_unit_processor.py
+src/application/services/translator_service.py
+src/application/workers/__init__.py
+src/application/workers/translation_worker.py
+src/core/__init__.py
+src/core/config/__init__.py
+src/core/config/env.py
+src/core/config/settings.py
+src/core/domain/__init__.py
+src/core/domain/exceptions.py
+src/core/dto/__init__.py
+src/core/dto/execution_metadata.py
+src/core/dto/metric_input.py
+src/core/dto/metric_result.py
+src/core/dto/segment_translation.py
+src/core/interfaces/__init__.py
+src/core/interfaces/metric_strategy.py
+src/core/interfaces/metrics_pipeline.py
+src/core/interfaces/prompt_strategy.py
+src/core/interfaces/strategy_factory.py
+src/core/interfaces/translation_strategy.py
+src/core/ioc/__init__.py
+src/core/ioc/bootstrap.py
+src/core/ioc/registry.py
+src/infrastructure/__init__.py
+src/infrastructure/io/__init__.py
+src/infrastructure/io/po_file_adapter.py
+src/infrastructure/metrics/__init__.py
+src/infrastructure/metrics/bertscore_metric.py
+src/infrastructure/metrics/bleu_metric.py
+src/infrastructure/metrics/chrf_metric.py
+src/infrastructure/metrics/comet_metric.py
+src/infrastructure/metrics/ter_metric.py
+src/infrastructure/providers/__init__.py
+src/infrastructure/providers/common/__init__.py
+src/infrastructure/providers/common/llm_prompt.py
+src/infrastructure/providers/deepl/__init__.py
+src/infrastructure/providers/deepl/factory.py
+src/infrastructure/providers/deepl/strategy.py
+src/infrastructure/providers/gemini/__init__.py
+src/infrastructure/providers/gemini/factory.py
+src/infrastructure/providers/gemini/strategy.py
+src/infrastructure/providers/llama/__init__.py
+src/infrastructure/providers/llama/factory.py
+src/infrastructure/providers/llama/strategy.py
+src/infrastructure/providers/mistral/__init__.py
+src/infrastructure/providers/mistral/factory.py
+src/infrastructure/providers/mistral/strategy.py
+src/po_translator.egg-info/PKG-INFO
+src/po_translator.egg-info/SOURCES.txt
+src/po_translator.egg-info/dependency_links.txt
+src/po_translator.egg-info/requires.txt
+src/po_translator.egg-info/top_level.txt
+src/shared/__init__.py
+src/shared/utils/__init__.py
+src/shared/utils/cli_renderer.py
+src/shared/utils/console_progress.py
+src/shared/utils/path_helper.py
+src/shared/utils/sync_batch_executor.py
+src/shared/utils/text_parser.py
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/po_translator.egg-info/requires.txt
+================================================================================
+polib>=1.2.0
+python-dotenv>=1.0.0
+rich>=13.0.0
+beautifulsoup4>=4.12.0
+packaging>=23.0
+deepl>=1.17.0
+google-genai>=0.3.0
+mistralai>=1.0.0
+ollama>=0.6.0
+openai>=1.0.0
+
+[dev]
+po-translator[test]
+po-translator[eval]
+ipython>=8.12.0
+black>=24.0.0
+ruff>=0.1.0
+mypy>=1.7.0
+
+[eval]
+torch<2.4.0,>=2.0.0
+transformers>=4.43.0
+sentencepiece>=0.1.99
+pydantic<3.0.0,>=2.0.0
+unbabel-comet>=2.2.2
+sacrebleu<3.0.0,>=2.3.0
+bert-score>=0.3.13
+scipy>=1.11.0
+numpy>=1.24.0
+pytorch-lightning<2.5.0,>=2.0.0
+
+[test]
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/po_translator.egg-info/top_level.txt
+================================================================================
+__init__
+application
+core
+infrastructure
+main
+run
+run_context_levels
+run_experiments
+run_metrics
+shared
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/po_translator.egg-info/dependency_links.txt
+================================================================================
+
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/dto/translation_context.py
+================================================================================
+from dataclasses import dataclass
+
+
+@dataclass
+class ContextoTraducao:
+    caminho: str
+    idioma: str
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/dto/translation_job.py
+================================================================================
+from dataclasses import dataclass, field
+from typing import Optional, Callable
+
+from src.application.dto.translation_context import ContextoTraducao
+
+
+@dataclass
+class TranslationJob:
+    """
+    Representa uma 'Ordem de Serviço' unitária.
+    Contém tudo que o Pipeline precisa para rodar UMA vez.
+    """
+    nome_estrategia: str  # Qual IA usar (Llama, Gemini...)
+    arquivo_entrada: str  # Onde ler
+    arquivo_saida: str  # Onde salvar
+    contextos: list[ ContextoTraducao ] = field( default_factory = list )
+
+    # Campo transiente (não persistido) para auxiliar na UI
+    # Armazena a função que deve ser chamada a cada tradução concluída
+    progress_callback: Optional[ Callable[ [ ], None ] ] = None
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/dto/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/parsers/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/parsers/json_parser.py
+================================================================================
+import json
+from pathlib import Path
+from src.core.dto.evaluation_input import EvaluationInput
+from src.core.dto.segment_translation import SegmentTranslation
+
+
+class JsonEvaluationParser:
+
+    @staticmethod
+    def _fix_encoding( text: str ) -> str:
+        """Corrige texto corrompido Latin-1 lido como UTF-8."""
+        if not text:
+            return text
+        try:
+            # Encode como Latin-1 (volta ao bytes original) → decode como UTF-8
+            return text.encode( 'latin-1' ).decode( 'utf-8' )
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            # Texto já está correto, retorna sem alterar
+            return text
+
+    @staticmethod
+    def parse( file_path: Path ) -> EvaluationInput:
+        with open( file_path, 'r', encoding = 'utf-8' ) as f:
+            data = json.load( f )
+
+        job_info = data[ 'job_info' ]
+        translations = data[ 'translations' ]
+        prompt_info = data.get( 'prompt_info', { } )
+        context_files = prompt_info.get( 'context_files', [ ] )
+
+        segments = [ ]
+        for trans in translations:
+            segments.append( SegmentTranslation(
+                original = trans[ 'original' ],
+                translated = trans[ 'translated' ],
+                reference = JsonEvaluationParser._fix_encoding( trans[ 'reference' ] )
+            ) )
+
+        return EvaluationInput(
+            file_name = file_path.stem,
+            segments = segments,
+            context_languages = context_files,
+            strategy_name = job_info[ 'strategy_name' ]
+        )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/builders/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/builders/experiment_builder.py
+================================================================================
+import itertools
+import re
+from pathlib import Path
+from typing import List, Dict, Optional, Tuple
+
+from src.application.dto.translation_job import TranslationJob
+from src.application.dto.translation_context import ContextoTraducao
+from src.core.config.settings import LLAMA_NOME, GEMINI_NOME, MISTRAL_NOME, DEEPL_NOME
+
+# Configuração das estratégias
+# ESTRATEGIAS_ATIVAS = [ GEMINI_NOME, MISTRAL_NOME, LLAMA_NOME, DEEPL_NOME ]
+ESTRATEGIAS_ATIVAS = [ LLAMA_NOME ]
+
+
+class ExperimentBuilder:
+    """
+    Builder granular. Permite solicitar jobs por partes (por projeto/nível).
+    """
+
+    def __init__( self, base_input_dir: Path, base_output_dir: Path ):
+        self.input_dir = base_input_dir
+        self.output_dir = base_output_dir
+        self.regex_filename = re.compile( r"^(.+)\.([a-z]{2,3}(?:_[A-Z]{2})?)\.po$" )
+
+    def listar_projetos( self ) -> List[ Path ]:
+        """Retorna a lista de pastas (projetos) disponíveis."""
+        if not self.input_dir.exists():
+            return [ ]
+        # Retorna apenas diretórios, ordenados alfabeticamente para consistência
+        return sorted( [ f for f in self.input_dir.iterdir() if f.is_dir() ] )
+
+    def construir_jobs_para_nivel( self, projeto_path: Path, nivel_contexto: int ) -> List[ TranslationJob ]:
+        """
+        Gera os jobs APENAS para aquele projeto e aquele nível específico (0, 1, 2...).
+        """
+        # 1. Identificação dos Arquivos (Source vs Contextos)
+        arquivo_source, arquivos_contexto_map = self._identificar_arquivos( projeto_path )
+
+        if not arquivo_source:
+            return [ ]
+
+        jobs = [ ]
+        idiomas_disponiveis = list( arquivos_contexto_map.keys() )
+
+        # Filtra para garantir que o source não esteja na lista de contextos
+        idiomas_disponiveis = [
+            lang for lang in idiomas_disponiveis
+            if arquivos_contexto_map[ lang ] != arquivo_source
+        ]
+
+        # Validação: Se pedimos 4 contextos e só existem 2, retornamos lista vazia
+        if nivel_contexto > len( idiomas_disponiveis ):
+            return [ ]
+
+        # 2. Geração das Combinações para este Nível
+        combinacoes = itertools.combinations( idiomas_disponiveis, nivel_contexto )
+
+        for combo_idiomas in combinacoes:
+            # Para cada combinação (ex: 'de' + 'fr'), geramos jobs para TODOS os provedores
+            objs_contexto = [ ]
+            for lang in combo_idiomas:
+                path_ctx = arquivos_contexto_map[ lang ]
+                objs_contexto.append( ContextoTraducao( str( path_ctx ), lang.upper() ) )
+
+            for estrategia in ESTRATEGIAS_ATIVAS:
+                path_saida = self._gerar_caminho_saida(
+                    projeto_path.name,
+                    arquivo_source.name,
+                    estrategia,
+                    combo_idiomas
+                )
+
+                job = TranslationJob(
+                    nome_estrategia = estrategia,
+                    arquivo_entrada = str( arquivo_source ),
+                    arquivo_saida = str( path_saida ),
+                    contextos = objs_contexto
+                )
+                jobs.append( job )
+
+        return jobs
+
+    def _identificar_arquivos( self, projeto_path: Path ) -> Tuple[ Optional[ Path ], Dict[ str, Path ] ]:
+        """Lógica encapsulada para achar source e mapear contextos."""
+        arquivo_source: Optional[ Path ] = None
+        arquivos_contexto_map: Dict[ str, Path ] = { }
+        todos_po = list( projeto_path.glob( "*.po" ) )
+
+        for arquivo in todos_po:
+            nome_base, idioma = self._analisar_arquivo( arquivo.name )
+            if not idioma: continue
+
+            if idioma == 'en':
+                arquivo_source = arquivo
+            elif idioma == 'pt_BR':
+                continue
+            else:
+                arquivos_contexto_map[ idioma ] = arquivo
+
+        # Fallback Logic (se não achar en.po)
+        if not arquivo_source:
+            pot_files = list( projeto_path.glob( "*.pot" ) )
+            if pot_files:
+                arquivo_source = pot_files[ 0 ]
+            elif arquivos_contexto_map:
+                primeiro_ctx = list( arquivos_contexto_map.values() )[ 0 ]
+                arquivo_source = primeiro_ctx
+                print( f"      ℹ️  [Fallback] Usando '{primeiro_ctx.name}' como source." )
+            else:
+                print( f"      ⚠️  [Erro] Pasta vazia ou inválida: {projeto_path.name}" )
+
+        return arquivo_source, arquivos_contexto_map
+
+    def _analisar_arquivo( self, nome_arquivo: str ) -> Tuple[ Optional[ str ], Optional[ str ] ]:
+        match = self.regex_filename.match( nome_arquivo )
+        if match:
+            return match.group( 1 ), match.group( 2 )
+        return None, None
+
+    def _gerar_caminho_saida( self, projeto: str, nome_source: str, estrategia: str, combo_idiomas: tuple ) -> Path:
+        stem = nome_source.replace( '.en.po', '' ).replace( '.pot', '' ).replace( '.po', '' )
+        n = len( combo_idiomas )
+        sulfixo_ctx = f"ctx-{n}"
+        if n > 0:
+            langs_str = "-".join( sorted( combo_idiomas ) )
+            sulfixo_ctx += f".{langs_str}"
+        nome_final = f"{stem}.pt_BR.{estrategia.lower()}.{sulfixo_ctx}.po"
+        return self.output_dir / projeto / nome_final
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/pipelines/bertscore_pipeline.py
+================================================================================
+import logging
+import torch
+from bert_score import score as bert_score_compute
+from src.core.interfaces.metrics_pipeline import MetricsPipeline
+from src.core.dto.evaluation_input import EvaluationInput
+from src.core.dto.pipeline_result import PipelineResult
+
+logger = logging.getLogger( __name__ )
+
+
+class BertscorePipeline( MetricsPipeline ):
+    """Pipeline BERTScore: embeddings contextuais (sinônimos, paráfrases)."""
+
+    def __init__( self ):
+        # MPS (Mac M1) ou CPU
+        if torch.backends.mps.is_available():
+            self.device = "mps"
+        elif torch.cuda.is_available():
+            self.device = "cuda"
+        else:
+            self.device = "cpu"
+
+    def compute( self, input_data: EvaluationInput ) -> PipelineResult:
+        """Calcula BERTScore para todos os segmentos."""
+        hyps = [ seg.translated for seg in input_data.segments ]
+        refs = [ seg.reference for seg in input_data.segments ]
+
+        # Calcula BERTScore (F1 = balanço entre Precision e Recall)
+        P, R, F1 = bert_score_compute(
+            cands = hyps,
+            refs = refs,
+            model_type = "bert-base-multilingual-cased",  # ✅ Multilingual (PT-BR)
+            device = self.device,
+            verbose = False
+        )
+
+        # F1 retorna tensor 0-1, normaliza para 0-100
+        segment_scores = [ float( f ) * 100 for f in F1.tolist() ]
+
+        return PipelineResult(
+            metric_name = "bertscore",
+            corpus_score = sum( segment_scores ) / len( segment_scores ),
+            segment_scores = segment_scores,
+            metadata = {
+                "type": "BERTScore F1 (multilingual)",
+                "model": "neuralmind/bert-base-portuguese-cased",
+                "device": self.device
+            }
+        )
+
+    def metric_name( self ) -> str:
+        return "bertscore"
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/pipelines/bleu_pipeline.py
+================================================================================
+import logging
+from typing import List
+from sacrebleu import sentence_bleu
+from src.core.interfaces.metrics_pipeline import MetricsPipeline
+from src.core.dto.evaluation_input import EvaluationInput
+from src.core.dto.pipeline_result import PipelineResult
+
+logger = logging.getLogger( __name__ )
+
+
+class BleuPipeline( MetricsPipeline ):
+    """Pipeline BLEU: Baseline universal de MT."""
+
+    def compute( self, input_data: EvaluationInput ) -> PipelineResult:
+        """Calcula BLEU para todos os segmentos."""
+        segment_scores = [ ]
+
+        for seg in input_data.segments:
+            # BLEU: hypothesis vs reference (n-gram precision)
+            score = sentence_bleu( seg.translated, [ seg.reference ] ).score
+            segment_scores.append( score )
+
+        return PipelineResult(
+            metric_name = "bleu",
+            corpus_score = sum( segment_scores ) / len( segment_scores ),
+            segment_scores = segment_scores,
+            metadata = { "type": "BLEU (n-gram precision, 1-4 grams)" }
+        )
+
+    def metric_name( self ) -> str:
+        return "bleu"
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/pipelines/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/pipelines/chrf_pipeline.py
+================================================================================
+import logging
+from typing import List
+from sacrebleu import sentence_chrf, CHRF
+from src.core.interfaces.metrics_pipeline import MetricsPipeline
+from src.core.dto.evaluation_input import EvaluationInput
+from src.core.dto.pipeline_result import PipelineResult
+
+logger = logging.getLogger( __name__ )
+
+
+class ChrfPipeline( MetricsPipeline ):
+    """Pipeline chrF++: Character n-gram F-score (rápida, morfologia PT-BR)."""
+
+    def compute( self, input_data: EvaluationInput ) -> PipelineResult:
+        """Calcula chrF++ para todos os segmentos."""
+        segment_scores = [ ]
+
+        for seg in input_data.segments:
+            chrf = CHRF( word_order = 2 )  # chrF++
+            score = chrf.sentence_score( seg.translated, [ seg.reference ] )
+            segment_scores.append( score.score )
+
+        return PipelineResult(
+            metric_name = "chrf",
+            corpus_score = sum( segment_scores ) / len( segment_scores ),
+            segment_scores = segment_scores,
+            metadata = { "type": "chrF++ (char n-grams + word order)" }
+        )
+
+    def metric_name( self ) -> str:
+        return "chrf"
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/pipelines/ter_pipeline.py
+================================================================================
+import logging
+from sacrebleu import TER
+from src.core.interfaces.metrics_pipeline import MetricsPipeline
+from src.core.dto.evaluation_input import EvaluationInput
+from src.core.dto.pipeline_result import PipelineResult
+
+logger = logging.getLogger( __name__ )
+
+
+class TerPipeline( MetricsPipeline ):
+    """Pipeline TER: Translation Edit Rate (esforço de pós-edição)."""
+
+    def compute( self, input_data: EvaluationInput ) -> PipelineResult:
+        """Calcula TER para todos os segmentos."""
+        ter = TER()
+        segment_scores = [ ]
+
+        for seg in input_data.segments:
+            try:
+                raw = ter.sentence_score( seg.translated, [ seg.reference ] ).score
+                # TER: quanto menor, melhor (0=perfeito, 100=máximo esforço)
+                # Clip para 0-100 (edge cases podem ultrapassar)
+                clipped = min( max( float( raw ), 0.0 ), 100.0 )
+                segment_scores.append( clipped )
+            except Exception as e:
+                logger.warning( f"⚠️ TER falhou no segmento (usando 100.0): {e}" )
+                segment_scores.append( 100.0 )  # Fallback: pior score
+
+        return PipelineResult(
+            metric_name = "ter",
+            corpus_score = sum( segment_scores ) / len( segment_scores ),
+            segment_scores = segment_scores,
+            metadata = { "type": "TER (edit rate)", "note": "menor = melhor" }
+        )
+
+    def metric_name( self ) -> str:
+        return "ter"
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/pipelines/comet_pipeline.py
+================================================================================
+import logging
+import torch
+from typing import List, Dict, Any
+from comet import download_model, load_from_checkpoint
+from src.core.interfaces.metrics_pipeline import MetricsPipeline
+from src.core.dto.evaluation_input import EvaluationInput
+from src.core.dto.pipeline_result import PipelineResult
+from src.core.dto.segment_translation import SegmentTranslation
+
+logger = logging.getLogger( __name__ )
+
+
+class CometPipeline( MetricsPipeline ):
+    """Pipeline COMET-22 com suporte MPS (Mac M1)."""
+
+    def __init__( self ):
+        # Detecta MPS (Mac) ou CPU
+        self.device = "mps" if torch.backends.mps.is_available() else "cpu"
+        self.model = None
+        self._load_model()
+
+    def _load_model( self ):
+        """Lazy load do modelo COMET."""
+        model_name = "Unbabel/wmt22-comet-da"
+        try:
+            self.model = load_from_checkpoint( download_model( model_name ) )
+            self.model.to( self.device )
+            self.model.eval()
+            logger.info( f"COMET carregado em {self.device}" )
+        except Exception as e:
+            logger.error( f"Erro carregando COMET: {e}" )
+            raise
+
+    def compute( self, input_data: EvaluationInput ) -> PipelineResult:
+        """Calcula COMET com API correta."""
+        # COMET espera lista de dicts: [{"src": "...", "mt": "...", "ref": "..."}]
+        data = [ ]
+        for seg in input_data.segments:
+            data.append( {
+                "src": seg.original,  # ✅ source
+                "mt": seg.translated,  # ✅ hypothesis (machine translation)
+                "ref": seg.reference  # ✅ reference
+            } )
+
+        # Chama predict com dados no formato correto
+        with torch.no_grad():
+            model_output = self.model.predict(
+                samples = data,
+                gpus = 1 if self.device != "cpu" else 0,
+                accelerator = "mps" if self.device == "mps" else None
+            )
+
+        # Normaliza 0-1 -> 0-100
+        segment_scores_raw = model_output.scores  # Lista: [0.45, 0.72, ...]
+        segment_scores = [ float( s ) * 100 for s in segment_scores_raw ]  # 0-100
+
+        return PipelineResult(
+            metric_name = "comet",
+            corpus_score = sum( segment_scores ) / len( segment_scores ),
+            segment_scores = segment_scores,
+            metadata = { "device": self.device, "n_segments": len( segment_scores ) }
+        )
+
+    def metric_name( self ) -> str:
+        return "comet"
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/pipelines/translation_pipeline.py
+================================================================================
+import logging
+from src.core.ioc.bootstrap import build_translator_service
+from src.application.dto.pipeline_result import PipelineResult
+from src.application.dto.translation_job import TranslationJob
+from src.application.services.translator_service import TranslatorService
+
+logger = logging.getLogger( __name__ )
+
+
+class TranslationPipeline:
+    """
+    Responsabilidade: Executar a lógica de tradução de ponta a ponta para UM job.
+    Não sabe nada sobre threads.
+    """
+
+    def run( self, job: TranslationJob ) -> PipelineResult:
+        logger.info( f"▶️  [Pipeline] Iniciando: {job.nome_estrategia}" )
+
+        try:
+            service: TranslatorService = build_translator_service()
+            service.executar_traducao( job )
+
+            return PipelineResult(
+                sucesso = True,
+                caminho_saida_gerado = job.arquivo_saida,
+                erro = None
+            )
+
+        except Exception as e:
+            logger.error( f"❌ [Pipeline] Falha em {job.nome_estrategia}: {e}" )
+            return PipelineResult(
+                sucesso = False,
+                caminho_saida_gerado = "",
+                erro = str( e )
+            )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/workers/translation_worker.py
+================================================================================
+from src.application.dto.translation_job import TranslationJob
+from src.application.dto.pipeline_result import PipelineResult
+from src.core.ioc.bootstrap import build_translator_service
+from src.application.pipelines.translation_pipeline import TranslationPipeline
+
+
+class TranslationWorker:
+    """
+    Responsável por instanciar e executar o pipeline para um único Job.
+    """
+
+    @staticmethod
+    def execute( job: TranslationJob ) -> tuple[ str, PipelineResult ]:
+        pipeline = TranslationPipeline()
+        resultado = pipeline.run( job )
+
+        return job.nome_estrategia, resultado
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/workers/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/runners/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/runners/parallel_runner.py
+================================================================================
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from typing import List
+
+# IMPORTS DO RICH
+from rich.progress import (
+    Progress,
+    SpinnerColumn,
+    BarColumn,
+    TextColumn,
+    TimeRemainingColumn,
+    MofNCompleteColumn
+)
+from rich.console import Console
+
+from src.application.dto.translation_job import TranslationJob
+from src.application.pipelines.translation_pipeline import TranslationPipeline
+from src.application.dto.pipeline_result import PipelineResult
+
+from src.infrastructure.io.po_file_adapter import PoFileAdapter
+
+
+class ParallelRunner:
+    def __init__( self, max_workers: int = 4 ):
+        self.max_workers = max_workers
+        self._po_reader = PoFileAdapter()
+
+    def processar_batch( self, jobs: List[ TranslationJob ] ) -> List[ PipelineResult ]:
+        console = Console()
+        console.print( f"\n[bold green]🚀  Iniciando Batch Paralelo com {len( jobs )} estratégias...[/]\n" )
+
+        resultados = [ ]
+
+        # Configuração das Colunas da Barra
+        progress_columns = [
+            SpinnerColumn(),
+            TextColumn( "[bold blue]{task.description}" ),
+            BarColumn( bar_width = None ),  # Ocupa o espaço disponível
+            TextColumn( "[progress.percentage]{task.percentage:>3.0f}%" ),
+            MofNCompleteColumn(),  # Mostra (15/150)
+            TimeRemainingColumn(),  # ETA
+        ]
+
+        # O Context Manager do Rich gerencia a tela
+        with Progress( *progress_columns, console = console ) as progress:
+
+            futures_map = { }
+            with ThreadPoolExecutor( max_workers = self.max_workers ) as executor:
+
+                # 1. Configurar as Barras ANTES de rodar
+                for job in jobs:
+                    # Lemos o arquivo rapidinho só pra saber o tamanho total da barra
+                    try:
+                        dados = self._po_reader.carregar_arquivo( job.arquivo_entrada )
+                        total_items = len( dados )
+                    except:
+                        total_items = 100
+
+                    # Adiciona a tarefa visual
+                    task_id = progress.add_task(
+                        description = f"{job.nome_estrategia.ljust( 10 )}",
+                        total = total_items
+                    )
+
+                    # Cria a função que será chamada lá no fundo do BatchExecutor
+                    # O 'advance=1' move a barra um passo
+                    def update_ui( tid = task_id ):
+                        progress.update( tid, advance = 1 )
+
+                    # Injeta no Job
+                    job.progress_callback = update_ui
+
+                    # Inicia a Thread
+                    future = executor.submit( self._worker_wrapper, job )
+                    futures_map[ future ] = job
+
+                # 2. Monitorar Finalização
+                for future in as_completed( futures_map ):
+                    job = futures_map[ future ]
+                    try:
+                        res = future.result()
+                        resultados.append( res )
+                    except Exception as exc:
+                        console.print( f"[red]❌ Erro crítico em {job.nome_estrategia}: {exc}[/]" )
+
+        return resultados
+
+    @staticmethod
+    def _worker_wrapper( job: TranslationJob ) -> PipelineResult:
+        pipeline = TranslationPipeline()
+        return pipeline.run( job )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/services/translator_service.py
+================================================================================
+from pathlib import Path
+from typing import Optional
+
+from src.core.ioc.registry import StrategyRegistry
+from src.infrastructure.providers.common.llm_prompt import LlmPrompt
+from src.infrastructure.io.po_file_adapter import PoFileAdapter
+from src.application.services.context_service import ContextService
+from src.shared.utils.sync_batch_executor import BatchExecutor
+from src.application.services.translation_unit_processor import TranslationUnitProcessor
+from src.application.dto.translation_job import TranslationJob
+
+import json
+import time
+from datetime import datetime
+import importlib.metadata
+
+from rich.console import Console
+
+console = Console()
+
+
+class TranslatorService:
+    def __init__( self,
+                  registry: StrategyRegistry,
+                  po_adapter: PoFileAdapter,
+                  prompt_builder: LlmPrompt
+                  ):
+        self._registry = registry
+        self._po_adapter = po_adapter
+        self._prompt_builder = prompt_builder
+
+    def executar_traducao( self, job: TranslationJob ):
+        """
+        Método Orquestrador: Agora ele lê como uma história linear.
+        """
+        start_time = time.time()
+
+        # 1. Preparação (Setup)
+        # Ocultamos a complexidade de criar os objetos
+        processador = self._construir_processador( job )
+        executor = BatchExecutor( job.nome_estrategia )
+        dados_entrada = self._po_adapter.carregar_arquivo( job.arquivo_entrada )
+
+        # 2. Execução (Action)
+        resultados_tuplas = executor.execute(
+            items = dados_entrada,
+            processor_func = processador.processar_item,
+            on_progress = job.progress_callback
+        )
+
+        # 3. Finalização e Metadados
+        tempo_total = time.time() - start_time
+
+        # Salva o PO
+        dict_resultados = dict( resultados_tuplas )
+        self._salvar_resultados( dict_resultados, job.arquivo_saida )
+
+        self.gerar_arquivo_metadados( job, processador, tempo_total, dict_resultados )
+
+    def _construir_processador( self, job: TranslationJob ) -> TranslationUnitProcessor:
+        """
+        Encapsula a lógica de 'montagem' das dependências de tradução.
+        """
+        # 1. Cria a Estratégia
+        fabrica = self._registry.buscar_fabrica( job.nome_estrategia )
+        estrategia = fabrica.criar_estrategia()
+
+        # 2. Cria o Contexto (se necessário)
+        servico_contexto = self._criar_servico_contexto( job.contextos )
+
+        # 3. Monta o Processador
+        return TranslationUnitProcessor(
+            strategy = estrategia,
+            strategy_name = job.nome_estrategia,
+            prompt_builder = self._prompt_builder,
+            context_service = servico_contexto
+        )
+
+    def _criar_servico_contexto( self, arquivos_contexto: list ) -> Optional[ ContextService ]:
+        """
+        Trata a conversão de DTO para o formato esperado pelo ContextService.
+        """
+        if not arquivos_contexto:
+            return None
+
+        # Adapter: Converte lista de objetos para lista de listas (compatibilidade legado)
+        lista_formatada = [ [ ctx.caminho, ctx.idioma ] for ctx in arquivos_contexto ]
+        return ContextService( lista_formatada, self._po_adapter )
+
+    def _salvar_resultados( self, dados: dict, caminho: str ):
+        """
+        Abstrai o salvamento.
+        """
+        self._po_adapter.salvar_arquivo( dados, caminho )
+        print( f"💾 Arquivo salvo com sucesso em: {caminho}" )
+
+    def gerar_arquivo_metadados( self, job: TranslationJob, processador: TranslationUnitProcessor,
+                                 duration: float, dados_traduzidos: dict ):
+        """
+        Compila e salva o JSON de metadados.
+        NOVO: Inclui tradução de referência (pt_BR) nas amostras.
+        """
+        estrategia = processador.obter_estrategia()
+        config_estrategia = estrategia.obter_configuracao()
+
+        reference_translations = { }
+
+        # Tenta localizar o arquivo pt_BR de referência
+        arquivo_entrada_path = Path( job.arquivo_entrada )
+        projeto_dir = arquivo_entrada_path.parent
+
+        # Procura por arquivo .pt_BR.po na mesma pasta
+        arquivos_ptbr = list( projeto_dir.glob( "*.pt_BR.po" ) )
+
+        if arquivos_ptbr:
+            try:
+                # Carrega o primeiro arquivo pt_BR encontrado
+                reference_translations = self._po_adapter.carregar_arquivo( str( arquivos_ptbr[ 0 ] ) )
+                console.print( f"[dim]  ✓ Referência pt_BR carregada: {arquivos_ptbr[ 0 ].name}[/]" )
+            except Exception as e:
+                console.print( f"[yellow]  ⚠ Erro ao carregar referência pt_BR: {e}[/]" )
+
+        context_sentences = { }
+        if processador.context_service:
+            sample_keys = list( dados_traduzidos.keys() )[ :5 ]
+
+            for key in sample_keys:
+                contexto = processador.context_service.obter_contexto( key )
+                if contexto:
+                    context_sentences[ key ] = contexto
+
+        from src.core.config.settings import SYSTEM_INSTRUCTION, PROMPT_USER_TEMPLATE
+
+        prompt_templates = {
+            "system_instruction": SYSTEM_INSTRUCTION,
+            "user_template": PROMPT_USER_TEMPLATE.template,
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        }
+
+        all_translations = [ ]
+
+        # Itera sobre TODAS as traduções
+        for key, translated_value in dados_traduzidos.items():
+            translation_entry = {
+                "original": key,
+                "translated": translated_value
+            }
+
+            # Adiciona referência se existir
+            if key in reference_translations:
+                translation_entry[ "reference" ] = reference_translations[ key ]
+
+            all_translations.append( translation_entry )
+
+        metadados = {
+            "job_info": {
+                "input_file": job.arquivo_entrada,
+                "output_file": job.arquivo_saida,
+                "strategy_name": job.nome_estrategia,
+                "execution_date": datetime.now().isoformat(),
+                "duration_seconds": round( duration, 2 ),
+                "reference_file": str( arquivos_ptbr[ 0 ] ) if arquivos_ptbr else None
+            },
+            "model_config": config_estrategia,
+            "prompt_info": {
+                "templates": prompt_templates,
+                "context_files": [ ctx.idioma for ctx in job.contextos ],
+                "context_sentences_sample": context_sentences
+            },
+            "translation_stats": {
+                "total_entries": len( dados_traduzidos ),
+                "reference_available": bool( arquivos_ptbr )
+            },
+            "environment": {
+                "python_version": importlib.metadata.sys.version
+            },
+            "translations": all_translations
+        }
+
+        # Salva arquivo .meta.json
+        caminho_meta = job.arquivo_saida + ".meta.json"
+        try:
+            with open( caminho_meta, 'w', encoding = 'utf-8' ) as f:
+                json.dump( metadados, f, indent = 4, ensure_ascii = False )
+            print( f"✓ Metadados salvos em: {caminho_meta}" )
+        except Exception as e:
+            print( f"✗ Erro ao salvar metadados: {e}" )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/services/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/services/context_service.py
+================================================================================
+from src.infrastructure.io.po_file_adapter import PoFileAdapter
+
+
+class ContextService:
+    """
+    Classe responsável por manipular as informações dos arquivos de contexto.
+    """
+
+    def __init__( self, caminhos_arquivos: list[ list[ str ] ], po_handler: PoFileAdapter ):
+        """
+        Necessário passar caminhos_arquivos e po_handler.
+
+        :param caminhos_arquivos: Lista contendo uma lista com as informações: caminho do arquivo de
+            contexto e o seu idioma.
+        :param po_handler: Instância do PoHandler.
+        """
+        self.contexto = None
+        self.dicionario: dict[ str, dict ] = { }
+        self.caminhos_arquivos: list[ list[ str ] ] = caminhos_arquivos
+        self.po_handler: PoFileAdapter = po_handler
+        self._preparar_dicionario()
+
+    def _preparar_dicionario( self ):
+        """
+        Método privado para criar um dicionário onde as chaves são os idiomas e os valores as informações
+        dos arquivos de contexto em lista.
+        """
+        for item in self.caminhos_arquivos:
+            caminho: str = item[ 0 ]
+            idioma: str = item[ 1 ]
+            self.dicionario[ idioma ] = self.po_handler.carregar_arquivo( caminho )
+
+    def obter_contexto( self, chave: str ) -> dict[ str, str ]:
+        """
+        Método para obter as traduções do conteúdo de chave nos demais idiomas.
+        :param chave: Qual a chave para buscar nos itens do dicionário.
+        :return: Dicionário contendo idioma na chave e conteúdo no valor.
+        """
+        self.contexto: dict[ str, str ] = { }
+        for idioma, conteudo in self.dicionario.items():
+            self.contexto[ idioma ] = conteudo[ chave ]
+        return self.contexto
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/services/translation_unit_processor.py
+================================================================================
+from src.core.interfaces.translation_strategy import TranslationStrategy
+from src.infrastructure.providers.common.llm_prompt import LlmPrompt
+from src.application.services.context_service import ContextService
+from src.shared.utils.text_parser import extrair_traducao_estrita
+from src.core.config.settings import DEEPL_NOME
+
+
+class TranslationUnitProcessor:
+    """
+    Encapsula a complexidade de traduzir UM único item.
+    Decide se usa Prompt (LLM) ou chamada direta (DeepL).
+    """
+
+    def __init__(
+            self,
+            strategy: TranslationStrategy,
+            strategy_name: str,
+            prompt_builder: LlmPrompt,
+            context_service: ContextService = None
+    ):
+        self._strategy = strategy
+        self._strategy_name = strategy_name
+        self._prompt_builder = prompt_builder
+        self.context_service = context_service
+
+    def processar_item( self, chave: str, texto_original: str ) -> str:
+        # Padrão Strategy aplicado corretamente: O processador decide o fluxo
+        if self._strategy_name == DEEPL_NOME:
+            return self._processar_direto( texto_original )
+        else:
+            return self._processar_llm( chave, texto_original )
+
+    def _processar_direto( self, texto: str ) -> str:
+        return self._strategy.traduzir( texto )
+
+    def _processar_llm( self, chave: str, texto_original: str ) -> str:
+        contexto_dados = { }
+        if self.context_service:
+            contexto_dados = self.context_service.obter_contexto( chave )
+
+        prompt = self._prompt_builder.construir_prompt( texto_original, contexto_dados )
+        resultado_bruto = self._strategy.traduzir( prompt )
+
+        # A lógica de limpeza também pertence a este fluxo específico
+        return extrair_traducao_estrita( resultado_bruto )
+
+    def obter_estrategia( self ) -> TranslationStrategy:
+        """
+        Expõe a estratégia utilizada para que o serviço possa coletar metadados.
+        """
+        return self._strategy
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/orchestrator/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/application/orchestrator/metrics_orchestrator.py
+================================================================================
+import csv
+import logging
+from pathlib import Path
+from typing import List, Dict, Any
+from contextlib import contextmanager
+import sys
+from src.core.dto.evaluation_input import EvaluationInput
+from src.core.dto.evaluation_result import EvaluationResult
+from src.core.dto.pipeline_result import PipelineResult
+from src.core.interfaces.metrics_pipeline import MetricsPipeline
+from src.application.pipelines.comet_pipeline import CometPipeline
+from src.application.pipelines.chrf_pipeline import ChrfPipeline
+
+from src.application.parsers.json_parser import JsonEvaluationParser
+
+logger = logging.getLogger( __name__ )
+
+
+class MetricsOrchestrator:
+    """Orquestra execução de pipelines e gera CSVs."""
+
+    def __init__( self, pipelines: List[ MetricsPipeline ] ):
+        self.pipelines = { p.metric_name(): p for p in pipelines }
+
+    @contextmanager
+    def _suppress_output( self ):
+        """Suprime TODO output interno dos pipelines."""
+        old_stdout, old_stderr = sys.stdout, sys.stderr
+        sys.stdout = open( '/dev/null', 'w' )
+        sys.stderr = open( '/dev/null', 'w' )
+        try:
+            yield
+        finally:
+            sys.stdout.close()
+            sys.stderr.close()
+            sys.stdout, sys.stderr = old_stdout, old_stderr
+
+    def evaluate_file( self, json_file: Path ) -> EvaluationResult:
+        """Avalia um arquivo JSON completo."""
+        # Parse
+        input_data = JsonEvaluationParser.parse( json_file )
+        logger.info(
+            f"📄 {json_file.name}: {len( input_data.segments )} segmentos, contexto: {input_data.context_languages}" )
+
+        # Executa pipelines com output suprimido
+        pipeline_results = [ ]
+        with self._suppress_output():
+            for pipeline in self.pipelines.values():
+                logger.debug( f"🔢 {pipeline.metric_name().upper()}: {len( input_data.segments )} segmentos" )
+                result = pipeline.compute( input_data )
+                pipeline_results.append( result )
+                logger.info( f"✅ {pipeline.metric_name().upper()}: {result.corpus_score:.2f}/100" )
+
+        return EvaluationResult( input_data = input_data, pipeline_results = pipeline_results )
+
+    def export_csv( self, result: EvaluationResult, output_dir: Path, source_file: Path ):
+        """Gera CSV com pasta por projeto."""
+        project_name = source_file.parent.name
+
+        # Cria pasta específica do projeto
+        project_dir = output_dir / project_name
+        project_dir.mkdir( exist_ok = True )
+
+        # CSV dentro da pasta do projeto
+        csv_path = project_dir / f"{result.input_data.file_name}.csv"
+
+        # Resto igual (headers, rows...)
+        headers = [ "original", "translated", "reference", "context_languages", "strategy" ]
+        for pipeline_result in result.pipeline_results:
+            headers.append( pipeline_result.metric_name )
+
+        rows = [ ]
+        n_segments = len( result.input_data.segments )
+
+        for i in range( n_segments ):
+            row = {
+                "original": result.input_data.segments[ i ].original,
+                "translated": result.input_data.segments[ i ].translated,
+                "reference": result.input_data.segments[ i ].reference,
+                "context_languages": ",".join( result.input_data.context_languages ),
+                "strategy": result.input_data.strategy_name
+            }
+
+            for pipeline_result in result.pipeline_results:
+                row[ pipeline_result.metric_name ] = pipeline_result.segment_scores[ i ]
+
+            rows.append( row )
+
+        # Escreve CSV
+        with open( csv_path, 'w', newline = '', encoding = 'utf-8' ) as f:
+            writer = csv.DictWriter( f, fieldnames = headers )
+            writer.writeheader()
+            writer.writerows( rows )
+
+        logger.info( f"📝 CSV gerado: {csv_path}" )
+        return csv_path
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/metrics/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/gemini/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/gemini/strategy.py
+================================================================================
+# Interfaces
+from src.core.interfaces.translation_strategy import TranslationStrategy
+
+# Bibliotecas
+from google import genai
+from google.genai import types
+
+# Core
+from src.core.config.settings import GEMINI_MODEL_NAME, GEMINI_GENERATION_CONFIG, SYSTEM_INSTRUCTION
+
+import importlib.metadata
+from typing import Any
+
+
+class GeminiStrategy( TranslationStrategy ):
+    """
+        Estratégia de tradução usando a API do Google Gemini.
+        Este serviço consegue realizar tradução direta e usando contexto.
+    """
+
+    def __init__( self, cliente: genai.Client ):
+        self.cliente = cliente
+
+    def traduzir( self, mensagem: str ) -> str:
+        try:
+            response = self.cliente.models.generate_content(
+                model = GEMINI_MODEL_NAME,
+                contents = mensagem,
+                config = types.GenerateContentConfig(
+                    system_instruction = SYSTEM_INSTRUCTION,
+                    response_mime_type = "application/json",
+                    temperature = GEMINI_GENERATION_CONFIG.get( "temperature", 0.2 ),
+                    top_p = GEMINI_GENERATION_CONFIG.get( "top_p", 1 ),
+                    top_k = GEMINI_GENERATION_CONFIG.get( "top_k", 1 ),
+                    max_output_tokens = GEMINI_GENERATION_CONFIG.get( "max_output_tokens", 2048 ),
+
+                    safety_settings = GEMINI_GENERATION_CONFIG.get( "safety_settings" )
+                )
+            )
+            return response.parts[ 0 ].text
+        except Exception as error:
+            print( f'Erro: {error}' )
+            raise error
+
+    def obter_configuracao( self ) -> dict[ str, Any ]:
+        """
+        Retorna metadados para reprodutibilidade científica.
+        """
+        try:
+            # O nome do pacote no PIP é google-generativeai
+            version = importlib.metadata.version( "google-generativeai" )
+        except importlib.metadata.PackageNotFoundError:
+            version = "unknown"
+
+        return {
+            "provider": "Google Gemini",
+            "model_name": GEMINI_MODEL_NAME,
+            "library_version": version,
+            "generation_config": GEMINI_GENERATION_CONFIG,
+            "api_endpoint": "google.genai.Client"
+        }
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/gemini/factory.py
+================================================================================
+# Biblioteca
+from google import genai
+
+# Core
+from src.core.interfaces.strategy_factory import StrategyFactory
+from src.core.config.settings import GEMINI_NOME
+from src.core.config.env import AppConfig
+from src.core.domain.exceptions import ErroChaveProvedor, ErroCriarCliente
+
+# Estratégia
+from src.infrastructure.providers.gemini.strategy import GeminiStrategy
+
+
+class GeminiStrategyFactory( StrategyFactory ):
+    """
+        Classe para criar uma estratégia para o Gemini.
+        Lida com validação da chave usada, configuração e conexão.
+    """
+
+    @staticmethod
+    def _validar_chave():
+        """
+            Método privado para verificar se localiza a chave da API.
+        """
+        if AppConfig.gemini_api_key is None:
+            raise ErroChaveProvedor( detalhe = GEMINI_NOME )
+
+    @staticmethod
+    def _conectar_cliente():
+        """
+            Método privado para conectar o cliente.
+        """
+        try:
+            cliente = genai.Client( api_key = AppConfig.gemini_api_key )
+            return cliente
+
+        except Exception as error:
+            raise ErroCriarCliente( detalhe = GEMINI_NOME ) from error
+
+    def criar_estrategia( self ) -> GeminiStrategy:
+        """
+            Método que retorna uma instância da estratégia do Gemini.
+        """
+        self._validar_chave()
+        cliente: genai.Client = self._conectar_cliente()
+
+        return GeminiStrategy(
+            cliente = cliente,
+        )
+
+
+if __name__ == "__main__":
+    fabrica = GeminiStrategyFactory()
+    estrategia = fabrica.criar_estrategia()
+
+    mensagem: str = "Traduza 'I love You!' para a Língua Português do Brasil."
+    result = estrategia.traduzir( mensagem )
+    print( result )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/common/llm_prompt.py
+================================================================================
+# Interface
+from src.core.interfaces.prompt_strategy import PromptStrategy
+
+# Texto usado para construir o prompt
+from src.core.config.settings import PROMPT_USER_TEMPLATE
+
+
+class LlmPrompt( PromptStrategy ):
+
+    def construir_prompt( self, texto_original: str, contexto: dict[ str, str ] = None ) -> str:
+        secao_contexto: str = LlmPrompt._criar_secao_contexto( contexto )
+        return self._substituir_conteudo( texto_original, secao_contexto )
+
+    @staticmethod
+    def _criar_secao_contexto( contexto: dict[ str, str ] ) -> str:
+        """
+        Método privado para criar o texto contendo as informações contextuais usadas na tradução.
+
+        :param contexto: Dicionário onde chave é o idioma e o valor é o texto traduzido no idioma da chave.
+        :return: Texto contendo todas as traduções para outros idiomas.
+        """
+        secao_contexto: str = ""
+        if contexto:
+            header = "## CONTEXT (Previous Translations for Consistency)\n"
+            linhas = [ f'- English: "{en}"\n- Portuguese: "{pt}"' for en, pt in contexto.items() ]
+            secao_contexto = header + "\n".join( linhas )
+        return secao_contexto
+
+    def _substituir_conteudo( self, texto_original: str, secao_contexto: str ) -> str:
+        """
+        Método privado para realizar a substituição do conteúdo dentro de PROMPT_USER_TEMPLATE.
+
+        :param texto_original: Texto do arquivo que deseja traduzir.
+        :param secao_contexto: Texto contendo todas as traduções para outros idiomas.
+        :return: Texto contendo o prompt que será passado para a LLM.
+        """
+        prompt: str = self.template.safe_substitute(
+            context_section = secao_contexto,
+            original_text = texto_original
+        )
+        return prompt
+
+
+if __name__ == "__main__":
+    objeto = LlmPrompt( PROMPT_USER_TEMPLATE )
+    texto: str = objeto.construir_prompt( 'I Love You' )
+    print( texto )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/common/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/deepl/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/deepl/strategy.py
+================================================================================
+# Interface
+from src.core.interfaces.translation_strategy import TranslationStrategy
+
+# Biblioteca
+from deepl import Translator
+
+# Core
+from src.core.config.settings import DEEP_L_LANGUAGE
+
+import importlib.metadata
+from typing import Dict, Any
+
+
+class DeepLStrategy( TranslationStrategy ):
+    """
+        Estratégia de tradução usando a API do DeepL.
+        Este serviço consegue realizar tradução direta e usando contexto.
+    """
+
+    def __init__( self, cliente: Translator ):
+        self.cliente = cliente
+        self.idioma_alvo: str = DEEP_L_LANGUAGE
+
+    def traduzir( self, mensagem: str ) -> str:
+        """
+        Realizar a tradução de um texto num determinado idioma.
+
+        :param mensagem: Mensagem a ser enviado.
+        :return: Texto traduzido para o idioma configurado.
+        """
+        try:
+            response = self.cliente.translate_text(
+                text = mensagem,
+                target_lang = self.idioma_alvo
+            )
+            return response.text
+        except Exception as error:
+            raise error
+
+    def obter_configuracao( self ) -> Dict[ str, Any ]:
+        try:
+            version = importlib.metadata.version( "deepl" )
+        except importlib.metadata.PackageNotFoundError:
+            version = "unknown"
+
+        return {
+            "provider": "DeepL",
+            "model_name": "DeepL Standard (API)",
+            "library_version": version,
+            "target_language": self.idioma_alvo,
+            "generation_config": {
+                "type": "NMT (Neural Machine Translation)",
+                "context_aware": True
+            }
+        }
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/deepl/factory.py
+================================================================================
+# Biblioteca
+from deepl import Translator
+
+# Core
+from src.core.interfaces.strategy_factory import StrategyFactory
+from src.core.config.settings import DEEPL_NOME
+from src.core.config.env import AppConfig
+from src.core.domain.exceptions import ErroChaveProvedor, ErroCriarCliente
+
+# Estratégia
+from src.infrastructure.providers.deepl.strategy import DeepLStrategy
+
+
+class DeepLStrategyFactory( StrategyFactory ):
+    """
+        Classe para criar uma estratégia para o DeepL.
+        Lida com validação da chave usada, configuração e conexão.
+    """
+
+    @staticmethod
+    def _validar_chave():
+        """
+            Método privado para verificar se localiza a chave da API.
+        """
+        if AppConfig.deepl_api_key is None:
+            raise ErroChaveProvedor( detalhe = DEEPL_NOME )
+
+    @staticmethod
+    def _conectar_cliente():
+        """
+            Método privado para conectar o cliente.
+        """
+        try:
+            cliente = Translator( auth_key = AppConfig.deepl_api_key, )
+            return cliente
+
+        except Exception as error:
+            raise ErroCriarCliente( detalhe = DEEPL_NOME ) from error
+
+    def criar_estrategia( self ) -> DeepLStrategy:
+        """
+            Método que retorna uma instância da estratégia do DeepL.
+        """
+        self._validar_chave()
+        cliente: Translator = self._conectar_cliente()
+
+        return DeepLStrategy(
+            cliente = cliente,
+        )
+
+
+if __name__ == "__main__":
+    fabrica = DeepLStrategyFactory()
+    estrategia = fabrica.criar_estrategia()
+
+    mensagem: str = "I love You!"
+    result = estrategia.traduzir( mensagem )
+    print( result )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/mistral/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/mistral/strategy.py
+================================================================================
+# Interface
+from src.core.interfaces.translation_strategy import TranslationStrategy
+
+# Biblioteca
+from mistralai import Mistral
+from mistralai.models import ResponseFormat, UserMessage, SystemMessage
+
+# Core
+from src.core.config.settings import MISTRAL_MODEL_NAME, MISTRAL_GENERATION_CONFIG, SYSTEM_INSTRUCTION
+
+import importlib.metadata
+from typing import Any
+
+
+class MistralStrategy( TranslationStrategy ):
+    """
+        Estratégia de tradução usando a API do Mistral.
+        Este serviço consegue realizar tradução direta e usando contexto.
+    """
+
+    def __init__( self, cliente: Mistral ):
+        self.cliente = cliente
+
+    def traduzir( self, mensagem: str ) -> str:
+        """
+        Realizar a tradução de um texto num determinado idioma.
+
+        Para o Mistral, é necessário que a mensagem esteja formatada usando "role: user".
+        :param mensagem: Mensagem a ser enviado.
+        :return: Texto traduzido para o idioma configurado.
+        """
+        try:
+            response = self.cliente.chat.complete(
+                model = MISTRAL_MODEL_NAME,
+                messages = [
+                    SystemMessage( content = SYSTEM_INSTRUCTION ),
+                    UserMessage( content = mensagem )
+                ],
+                response_format = ResponseFormat( type = "json_object" ),
+                temperature = MISTRAL_GENERATION_CONFIG.get( "temperature", 0.2 ),
+                top_p = MISTRAL_GENERATION_CONFIG.get( "top_p", 1 ),
+                max_tokens = MISTRAL_GENERATION_CONFIG.get( "max_tokens", 2048 ),
+                safe_prompt = MISTRAL_GENERATION_CONFIG.get( "safe_prompt", False ),
+                random_seed = MISTRAL_GENERATION_CONFIG.get( "random_seed", None )
+            )
+            return response.choices[ 0 ].message.content
+        except Exception as error:
+            raise error
+
+    def obter_configuracao( self ) -> dict[ str, Any ]:
+        try:
+            version = importlib.metadata.version( "mistralai" )
+        except importlib.metadata.PackageNotFoundError:
+            version = "unknown"
+
+        return {
+            "provider": "Mistral AI",
+            "model_name": MISTRAL_MODEL_NAME,
+            "library_version": version,
+            "generation_config": MISTRAL_GENERATION_CONFIG
+        }
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/mistral/factory.py
+================================================================================
+# Biblioteca
+from mistralai import Mistral
+
+# Core
+from src.core.interfaces.strategy_factory import StrategyFactory
+from src.core.config.settings import MISTRAL_NOME
+from src.core.config.env import AppConfig
+from src.core.domain.exceptions import ErroChaveProvedor, ErroCriarCliente
+
+# Estratégia
+from src.infrastructure.providers.mistral.strategy import MistralStrategy
+
+
+class MistralStrategyFactory( StrategyFactory ):
+    """
+        Classe para criar uma estratégia para o Mistral.
+        Lida com validação da chave usada, configuração e conexão.
+    """
+
+    @staticmethod
+    def _validar_chave():
+        """
+            Método privado para verificar se localiza a chave da API.
+        """
+        if AppConfig.mistral_api_key is None:
+            raise ErroChaveProvedor( detalhe = MISTRAL_NOME )
+
+    @staticmethod
+    def _conectar_cliente():
+        """
+            Método privado para conectar o cliente.
+        """
+        # GeminiTexts.connecting_to_client()
+        try:
+            cliente = Mistral( api_key = AppConfig.mistral_api_key )
+            # GeminiTexts.connected_to_client()
+            return cliente
+
+        except Exception as error:
+            raise ErroCriarCliente( detalhe = MISTRAL_NOME ) from error
+
+    def criar_estrategia( self ) -> MistralStrategy:
+        """
+            Método que retorna uma instância da estratégia do Mistral.
+        """
+        self._validar_chave()
+        cliente: Mistral.Client = self._conectar_cliente()
+
+        return MistralStrategy(
+            cliente = cliente,
+        )
+
+
+if __name__ == '__main__':
+    fabrica: MistralStrategyFactory = MistralStrategyFactory()
+    estrategia: MistralStrategy = fabrica.criar_estrategia()
+
+    mensagem: str = "Traduza 'I love You!' para a Língua Português do Brasil."
+    result = estrategia.traduzir( mensagem )
+    print( result )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/llama/__init__.py
+================================================================================
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/llama/strategy.py
+================================================================================
+# Interface
+from src.core.interfaces.translation_strategy import TranslationStrategy
+
+# Biblioteca
+from ollama import Client
+
+# Core
+from src.core.config.settings import LLAMA_MODEL_NAME, LLAMA_GENERATION_CONFIG, SYSTEM_INSTRUCTION
+
+# Para pegar versão da lib dinamicamente
+import importlib.metadata
+
+
+class LlamaStrategy( TranslationStrategy ):
+    """
+        Estratégia de tradução usando a API do Llama.
+        Este serviço consegue realizar tradução direta e usando contexto.
+    """
+
+    def __init__( self, cliente: Client ):
+        self.cliente = cliente
+        self.opcoes: dict = { "temperature": LLAMA_GENERATION_CONFIG.get( "temperature", 0.2 ),
+                              "top_p": LLAMA_GENERATION_CONFIG.get( "top_p", 1 ),
+                              "top_k": LLAMA_GENERATION_CONFIG.get( "top_k", 40 ),
+                              "num_predict": LLAMA_GENERATION_CONFIG.get( "max_output_tokens", 2048 ),
+                              "seed": 42
+                              }
+
+    def traduzir( self, mensagem: str ) -> str:
+        """
+        Realizar a tradução de um texto num determinado idioma.
+
+        Para o Ollama, é necessário que a mensagem esteja formatada usando "role: user".
+        :param mensagem: Mensagem a ser enviado.
+        :return: Texto traduzido para o idioma configurado.
+        """
+        try:
+            response = self.cliente.chat(
+                model = LLAMA_MODEL_NAME,
+                messages = [
+                    { "role": "system", "content": SYSTEM_INSTRUCTION },
+                    { "role": "user", "content": mensagem }
+                ],
+                format = "json",
+                options = self.opcoes
+            )
+            return response[ "message" ][ 'content' ]
+        except Exception as error:
+            raise error
+
+    def obter_configuracao( self ) -> dict:
+        """
+        Retorna a configuração exata usada nesta instância.
+        """
+        try:
+            version = importlib.metadata.version( "ollama" )
+        except:
+            version = "unknown"
+
+        return {
+            "provider": "Ollama (Local)",
+            "model": LLAMA_MODEL_NAME,
+            "library_version": version,
+            "generation_config": self.opcoes,
+            "system_instruction_hash": hash( SYSTEM_INSTRUCTION )
+        }
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/providers/llama/factory.py
+================================================================================
+# Biblioteca
+from ollama import Client
+
+# Core
+from src.core.interfaces.strategy_factory import StrategyFactory
+from src.core.config.settings import LLAMA_NOME
+from src.core.config.env import AppConfig
+from src.core.domain.exceptions import ErroChaveProvedor, ErroCriarCliente
+
+# Estratégia
+from src.infrastructure.providers.llama.strategy import LlamaStrategy
+
+
+class LlamaStrategyFactory( StrategyFactory ):
+    """
+        Classe para criar uma estratégia para o Llama.
+        Lida com validação da chave usada, configuração e conexão.
+    """
+
+    @staticmethod
+    def _validar_host():
+        """
+            Método privado para verificar se localiza a URL do Llama.
+        """
+        if AppConfig.llama_url is None:
+            raise ErroChaveProvedor( mensagem = "Erro ao localizar URL.", detalhe = LLAMA_NOME )
+
+    @staticmethod
+    def _conectar_cliente():
+        """
+            Método privado para conectar o cliente.
+        """
+        try:
+            cliente = Client( host = AppConfig.llama_url )
+            return cliente
+        except Exception as error:
+            raise ErroCriarCliente( detalhe = LLAMA_NOME ) from error
+
+    def criar_estrategia( self ) -> LlamaStrategy:
+        """
+            Método que retorna uma instância da estratégia do Llama.
+        """
+        self._validar_host()
+        cliente: Client = self._conectar_cliente()
+
+        return LlamaStrategy(
+            cliente = cliente,
+        )
+
+
+if __name__ == "__main__":
+    fabrica = LlamaStrategyFactory()
+    estrategia = fabrica.criar_estrategia()
+
+    mensagem: str = "Traduza 'I love You!' para a Língua Português do Brasil."
+    result = estrategia.traduzir( mensagem )
+    print( result )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/io/po_file_adapter.py
+================================================================================
+# Biblioteca
+import os
+
+from polib import pofile, POFile, POEntry
+
+from src.core.domain.exceptions import ErroCarregarArquivo, ErroSalvarArquivo
+
+
+def _garantir_diretorio( caminho_arquivo: str ):
+    """
+    Função auxiliar para garantir que a pasta de destino exista.
+    Isso evita o erro comum 'FileNotFoundError' ao tentar salvar em uma pasta nova.
+    """
+    diretorio = os.path.dirname( caminho_arquivo )
+    if diretorio and not os.path.exists( diretorio ):
+        os.makedirs( diretorio, exist_ok = True )
+
+
+def _carregar_arquivo_bruto( caminho_arquivo: str ):
+    """
+    Carregar arquivo .po
+    :param caminho_arquivo: Caminho do arquivo po.
+    :return: Instância de um POFile.
+    """
+
+    try:
+        return pofile( caminho_arquivo )
+    except Exception:
+        raise ErroCarregarArquivo( mensagem = f'Erro ao carregar arquivo: {caminho_arquivo}.' )
+
+
+class PoFileAdapter:
+    """
+        Classe responsável por manipular arquivos .po.
+    """
+
+    def carregar_arquivo( self, caminho_arquivo: str ) -> dict:
+        """
+        Carrega o arquivo .po e retorna um dicionário.
+        :param caminho_arquivo: Caminho do arquivo po.
+        :return: Dicionário onde a chave é o termo original e o valor é a tradução.
+        """
+        arquivo = _carregar_arquivo_bruto( caminho_arquivo )
+
+        dicionario: dict = {
+            entrada.msgid: entrada.msgstr
+            for entrada in arquivo
+            if entrada.msgid
+        }
+
+        return dicionario
+
+    def salvar_arquivo( self, dados: dict, caminho_saida: str, metadados: dict = None ) -> None:
+        """
+        Criar um arquivo contendo a tradução feita.
+        :param dados: Dicionário contendo o valor traduzido para cada chave.
+        :param caminho_saida: Caminho que irá salvar o arquivo.
+        :param metadados: Metadados do arquivo .po.
+        :return: Sem retorno.
+        """
+
+        try:
+            po = POFile()
+            po.metadata = {
+                'Project-Id-Version': '1.0',
+                'Report-Msgid-Bugs-To': 'suporte@exemplo.com',
+                'POT-Creation-Date': '2023-10-27 12:00+0000',
+                'PO-Revision-Date': '2023-10-27 12:00+0000',
+                'MIME-Version': '1.0',
+                'Content-Type': 'text/plain; charset=utf-8',
+                'Content-Transfer-Encoding': '8bit'
+            }
+
+            if metadados:
+                po.metadata.update( metadados )
+
+            for original, traduzido in dados.items():
+                entry = POEntry(
+                    msgid = original,
+                    msgstr = traduzido
+                )
+                po.append( entry )
+
+                # 4. Garante que o diretório existe antes de salvar
+            _garantir_diretorio( caminho_saida )
+
+            # 5. Salva o arquivo
+            po.save( caminho_saida )
+
+        except Exception:
+            raise ErroSalvarArquivo( mensagem = f"Erro ao salvar arquivo .po em {caminho_saida}." )
+
+
+if __name__ == "__main__":
+    objeto = PoFileAdapter()
+
+    caminho: str = '/Users/viniciuscandeia/development/TCC/data/input/datamash/datamash-1.4.12.1.de.po'
+    dicionario = objeto.carregar_arquivo( caminho )
+
+    print( dicionario )
+
+
+================================================================================
+ARQUIVO: /Users/viniciuscandeia/development/TCC/src/infrastructure/io/__init__.py
+================================================================================
+

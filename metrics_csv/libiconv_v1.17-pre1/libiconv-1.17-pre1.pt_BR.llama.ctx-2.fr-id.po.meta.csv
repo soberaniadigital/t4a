@@ -1,0 +1,110 @@
+original,translated,reference,context_languages,strategy,comet,chrf,bleu,ter,bertscore
+Usage: iconv [-c] [-s] [-f fromcode] [-t tocode] [file ...],Usagem: iconv [-c] [-s] [-f codificação_entrada] [-t codificação_saída] [arquivo ...],Uso: iconv [-c] [-s] [-f fromcode] [-t tocode] [arquivo ...],"FR,ID",LLAMA,83.51117968559265,62.3559512513598,59.378308100734984,30.0,88.27771544456482
+or:    iconv -l,"ou:
+iconv -l",ou:  iconv -l,"FR,ID",LLAMA,98.44397902488708,100.0,100.00000000000004,0.0,99.99999403953552
+"Try '%s --help' for more information.
+",Tente '%s --help' para mais informações.,"Tente ""%s --help"" para mais informações.
+","FR,ID",LLAMA,96.7972457408905,74.35736293539898,33.010083098515025,33.33333333333333,97.45575189590454
+"Usage: %s [OPTION...] [-f ENCODING] [-t ENCODING] [INPUTFILE...]
+","Utilização: %s [OPSI...] [-f CODEANCAR] [-e CODEANCAR] [BERKAS MASCUNOLA...]
+","Uso: %s [OPÇÃO...] [-f CODIFICAÇÃO] [-t CODIFICAÇÃO] [ENTRADA...]
+","FR,ID",LLAMA,52.93794274330139,36.49475875417678,41.902845957302084,87.5,86.49876713752747
+"or:    %s -l
+","ou:    %s -l
+","ou:    %s -l
+","FR,ID",LLAMA,98.4620213508606,100.0,100.00000000000004,0.0,100.00001192092896
+"Converts text from one encoding to another encoding.
+",Converta o texto de um código para outro código.,"Converte texto de uma codificação para outra.
+","FR,ID",LLAMA,85.36004424095154,45.91506779638595,9.980099403873663,85.71428571428571,89.83181118965149
+"Options controlling the input and output format:
+",Opções para controlar o formato de entrada e saída do sistema:,"Opções para controlar os formatos de entrada e saída:
+","FR,ID",LLAMA,94.7979748249054,76.31576393831871,31.702331385234313,55.55555555555556,93.95738244056702
+"  -f ENCODING, --from-code=ENCODING
+                              the encoding of the input
+","  -f ENCODING, --from-code=ENCODING
+                               Codificação de entrada","  -f CODIFICAÇÃO, --from-code=CODIFICAÇÃO
+                              a codificação de entrada
+","FR,ID",LLAMA,79.81602549552917,54.61896874414746,20.90067144241745,42.857142857142854,82.75381326675415
+"  -t ENCODING, --to-code=ENCODING
+                              the encoding of the output
+","  -t ENCODING, --to_code=ENCODING
+                              codificação de saída","  -t CODIFICAÇÃO, --to-code=CODIFICAÇÃO
+                              a codificação da saída
+","FR,ID",LLAMA,73.29020500183105,41.189293934981364,5.604233375480572,57.14285714285714,82.9018235206604
+"Options controlling conversion problems:
+","Opções para controle de problemas de conversão:
+","Opções para controlar problemas de conversão:
+","FR,ID",LLAMA,96.91746830940247,83.98980607303673,41.11336169005198,33.33333333333333,96.27102613449097
+"  -c                          discard unconvertible characters
+", -c                           esquecer caracteres não convertíveis,"  -c                          descarta caracteres não conversíveis
+","FR,ID",LLAMA,80.67329525947571,60.48789218766686,23.643540225079384,40.0,88.62047791481018
+"  --unicode-subst=FORMATSTRING
+                              substitution for unconvertible Unicode characters
+","--unicode-subst=FORMATSTRING
+                              Substituição para caracteres Unicode não convertíveis.","  --unicode-subst=TEXTOFORMATO
+                              substituição de caracteres Unicode no conversíveis
+","FR,ID",LLAMA,80.183345079422,56.74436803811251,11.868405219520975,57.14285714285714,86.11752390861511
+"  --byte-subst=FORMATSTRING   substitution for unconvertible bytes
+",--byte-subst=FORMATSTRING    Substitui bytes não convertíveis para uma string formatada,"  --byte-subst=TEXTOFORMATO   substituição para bytes não conversíveis
+","FR,ID",LLAMA,84.68230366706848,51.66585616918699,11.208466750961147,100.0,84.34187769889832
+"  --widechar-subst=FORMATSTRING
+                              substitution for unconvertible wide characters
+","--widechar-subst=FORMATSTRING
+                              substituição para caracteres aninhados não convertíveis","  --widechar-subst=TEXTOFORMATO
+                              substituição para caracteres amplos não conversíveis
+","FR,ID",LLAMA,82.86216855049133,65.52877238662657,23.356898886410015,42.857142857142854,89.42797183990479
+"Options controlling error output:
+",Opções para controlar o output de erros:,"Opções para controlar saída de erro:
+","FR,ID",LLAMA,90.9680962562561,64.71253566387746,23.356898886410015,50.0,93.28979849815369
+"  -s, --silent                suppress error messages about conversion problems
+"," -s, --silent                 não exibir mensagens relacionadas aos erros de conversão
+","  -s, --silent                suprime mensagens de erro sobre problemas de conversão
+","FR,ID",LLAMA,83.64371061325073,50.82177959625205,18.36028134946796,60.0,89.1501784324646
+"Informative output:
+",Informações de saída:,"Saída informativa:
+","FR,ID",LLAMA,83.40989351272583,29.901114235599657,15.97357760615681,100.0,76.46653652191162
+"  -l, --list                  list the supported encodings
+","  -l, --list                   lista de codificações suportadas","  -l, --list                  lista das codificações com suporte
+","FR,ID",LLAMA,93.52040886878967,70.61814345782493,37.68499164492418,42.857142857142854,95.79730033874512
+"  --help                      display this help and exit
+"," --help                       Mostra este mensagem de ajuda e sai
+","  --help                      exibe esta ajuda e sai
+","FR,ID",LLAMA,86.70921921730042,49.745175686268325,22.089591134157878,66.66666666666666,86.23906373977661
+"  --version                   output version information and exit
+","--versao                    Mostrar versão e sair
+","  --version                   exibe informação da versão e sai
+","FR,ID",LLAMA,69.47453022003174,34.49461573683249,14.320952289897704,71.42857142857143,76.80496573448181
+"License GPLv3+: GNU GPL version 3 or later <%s>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+","Licença GPLv3+: GNU GPL versão 3 ou posterior <%s> 
+Este software é livre: você pode modificá-lo e redistribuí-lo. 
+Não há garantia, dentro dos limites legais permitidos.","Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>
+Este é um software livre: você é livre para alterá-lo e redistribuí-lo.
+NÃO HÁ QUALQUER GARANTIA, na máxima extensão permitida em lei.
+","FR,ID",LLAMA,87.8459632396698,57.240444822789925,44.273793992004656,41.935483870967744,86.79419755935669
+"Written by %s.
+",Escrito por %s.,"Escrito por %s.
+","FR,ID",LLAMA,98.86450171470642,100.0,100.00000000000004,0.0,100.00001192092896
+%s argument: A format directive with a variable width is not allowed here.,%s argumento: Uma diretiva de format com uma largura variável não é permitida aqui.,argumento de %s: Uma diretiva de formato com uma variável de largura não permitida aqui.,"FR,ID",LLAMA,84.04583930969238,68.43927530968222,25.694126297110607,46.666666666666664,90.70419669151306
+%s argument: A format directive with a variable precision is not allowed here.,%s argumento: Uma diretiva de format com precisão variável não é permitida aqui.,argumento de %s: Uma diretiva de formato com uma variável de precisão não permitida aqui.,"FR,ID",LLAMA,81.66722059249878,64.31784354614902,24.321629449915534,53.333333333333336,89.47899341583252
+%s argument: A format directive with a size is not allowed here.,%s argumento: Uma diretiva de formato com um tamanho não é permitida aqui.,argumento de %s: Uma diretiva de formato com um tamanho não permitida aqui.,"FR,ID",LLAMA,86.70563697814941,84.03603099055267,65.25452579142075,30.76923076923077,92.01731085777283
+%s argument: The string ends in the middle of a directive.,%s argumento: A string termina no meio de uma instrução.,argumento de %s: A string termina no meio de uma diretiva.,"FR,ID",LLAMA,88.45698237419128,68.27009766289895,59.26680740592497,36.36363636363637,90.96920490264893
+%s argument: The character '%c' is not a valid conversion specifier.,%s argumento: Caracter '%c' não é um especificador de conversão válido.,"argumento de %s: O caractere ""%c"" não é uma especificação de conversão válida.","FR,ID",LLAMA,90.73113799095154,51.50801427139178,7.980074469047184,69.23076923076923,91.47523045539856
+%s argument: The character that terminates the format directive is not a valid conversion specifier.,%s argumento: Caractere que termina o formato não é um especificador de conversão válido.,argumento de %s: O caractere que termina a diretiva de formato não é uma especificação de conversão válida.,"FR,ID",LLAMA,89.04820084571838,57.69414201928696,11.964548845960273,55.55555555555556,90.49030542373657
+cannot convert byte substitution to Unicode: %s,não pode converter os bytes de substituição para Unicode: %s,não foi possível converter substituição de bytes para Unicode: %s,"FR,ID",LLAMA,87.58463263511658,61.69645963275272,37.70063804549471,50.0,92.43893027305603
+cannot convert unicode substitution to target encoding: %s,não pode converter a substituição Unicode no codificador de saída desejado: %s,não foi possível converter unicode para codificação desejada: %s,"FR,ID",LLAMA,76.49544477462769,42.22415775288485,12.011055432195764,100.0,85.85611581802368
+cannot convert byte substitution to wide string: %s,não pode converter os bytes de substituição em uma string ancha: %s,não foi possível converter substituição de bytes para texto amplo: %s,"FR,ID",LLAMA,75.43832659721375,41.39433298197932,13.508625657351418,81.81818181818183,86.43922209739685
+cannot convert widechar substitution to target encoding: %s,não pode converter os caracteres anchos para o codificação alvo: %s,não foi possível converter widechar para codificação desejada: %s,"FR,ID",LLAMA,73.68257641792297,42.39667516540666,14.211672443220438,77.77777777777779,82.245534658432
+cannot convert byte substitution to target encoding: %s,não pode converter os bytes de substituição para o codificador alvo: %s,não foi possível converter substituição de bytes para codificação desejada: %s,"FR,ID",LLAMA,83.58559608459473,46.96589014924291,13.912311644176565,72.72727272727273,85.56157350540161
+%s:%u:%u: cannot convert,%s:%d:%d: não pode converter,%s:%u:%u: impossível converter,"FR,ID",LLAMA,91.41289591789246,33.78441242114269,27.09198854675628,100.0,87.33775615692139
+%s:%u:%u: incomplete character or shift sequence,%s:%d:%d: caractere incompleto ou sequência de deslocamento,%s:%u:%u: sequência de caracteres ou deslocamentos incompleta,"FR,ID",LLAMA,85.05985736846924,56.33215496896867,23.505204106959603,85.71428571428571,86.37079000473022
+%s:%u:%u,%s:%u:%u,%s:%u:%u,"FR,ID",LLAMA,99.44339394569397,100.0,100.00000000000004,0.0,99.99999403953552
+%s: I/O error,%s: erro de entrada/saída,%s: erro de E/S,"FR,ID",LLAMA,75.73988437652588,63.41556277848808,54.10822690539397,25.0,84.69858169555664
+conversion from %s unsupported,a conversão a partir de %s não é suportada,não há suporte à conversão de %s,"FR,ID",LLAMA,85.44545769691467,47.6385451208787,17.747405280050266,100.0,86.84924840927124
+conversion to %s unsupported,não é suportada a conversão para %s,não há suporte à conversão para %s,"FR,ID",LLAMA,92.80427098274231,62.13104525071203,36.55552228545123,42.857142857142854,94.90957856178284
+conversion from %s to %s unsupported,conversão não suportada de %s para %s,não há suporte à conversão de %s para %s,"FR,ID",LLAMA,87.7351701259613,62.59047050432086,50.54229726989799,44.44444444444444,89.2007052898407
+try '%s -l' to get the list of supported encodings,Tente usar ‘%s -l’ para obter a lista de codificações suportadas.,"tente ""%s -l"" para obter a lista de codificações sem suporte","FR,ID",LLAMA,89.26176428794861,63.80618525410614,39.34995962231127,45.45454545454545,87.09845542907715
+(stdin),(entrada padrão),(stdin),"FR,ID",LLAMA,57.71077275276184,12.479026845637584,18.99589214128981,100.0,79.0259599685669
+%s,%s,%s,"FR,ID",LLAMA,99.3385374546051,100.0,100.00000000000004,0.0,99.99998211860657
+I/O error,erro de entrada/saída,erro de E/S,"FR,ID",LLAMA,68.12064051628113,46.573095580880455,23.643540225079384,33.33333333333333,79.1016161441803

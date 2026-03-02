@@ -1,0 +1,350 @@
+{
+    "job_info": {
+        "input_file": "/Users/viniciuscandeia/development/TCC/data/translations_sample/man-db_v2.13.1-pre1/man-db-2.13.1-pre1.vi.po",
+        "output_file": "/Users/viniciuscandeia/development/TCC/resultados/context_levels_sample/man-db_v2.13.1-pre1/man-db-2.13.1-pre1.pt_BR.llama.ctx-2.id-ru.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-10T12:03:54.471041",
+        "duration_seconds": 169.22,
+        "reference_file": "/Users/viniciuscandeia/development/TCC/data/translations_sample/man-db_v2.13.1-pre1/man-db-2.13.1-pre1.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": 8504559443697029588
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "RU",
+            "ID"
+        ],
+        "context_sentences_sample": {
+            "warning: %s: ignoring bogus filename": {
+                "RU": "предупреждение: %s: игнорируется фальшивое имя файла",
+                "ID": "peringatan: %s: mengabaikan nama berkas palsu"
+            },
+            "the setuid man user \"%s\" does not exist": {
+                "RU": "setuid man пользователь \"%s\" не существует",
+                "ID": "setuid pengguna man \"%s\" tidak ada"
+            },
+            "Database %s corrupted; rebuild with mandb --create": {
+                "RU": "База данных %s повреждена; пересборка командой mandb --create",
+                "ID": "Basis data %s terkorupsi; membangun ulang dengan mandb --create"
+            },
+            "warning: %s is version %s, expecting %s\n": {
+                "RU": "предупреждение: %s имеет версию %s, а ожидается %s\n",
+                "ID": "peringatan: %s adalah versi %s, mengharapkan %s\n"
+            },
+            "[MAN DATABASE]": {
+                "RU": "[БАЗА ДАННЫХ MAN]",
+                "ID": "[MAN BASIS_DATA]"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 57,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct  9 2025, 16:16:55) [Clang 17.0.0 (clang-1700.6.3.2)]"
+    },
+    "translations": [
+        {
+            "original": "warning: %s: ignoring bogus filename",
+            "translated": "peringatan: %s: ignorando nome falso de arquivo",
+            "reference": "aviso: %s: ignorando nome de arquivo inválido"
+        },
+        {
+            "original": "the setuid man user \"%s\" does not exist",
+            "translated": "não há usuário '%s' com a capacidade de 'setuid'",
+            "reference": "o usuário man setuid \"%s\" não existe"
+        },
+        {
+            "original": "Database %s corrupted; rebuild with mandb --create",
+            "translated": "Caminho de dados %s danificado; reestruturando utilizando a linha de comando 'mandb -- create'",
+            "reference": "Banco de dados %s corrompido; reconstrua-o com mandb --create"
+        },
+        {
+            "original": "warning: %s is version %s, expecting %s\n",
+            "translated": "peringatan: %s possui versão %s, e espera-se que ocorra uma atualização para a próxima versão (nova).\n",
+            "reference": "aviso: %s é versão %s, esperava-se %s\n"
+        },
+        {
+            "original": "[MAN DATABASE]",
+            "translated": "[CƠ SỞ DỮ LIỆU MAN]",
+            "reference": "[BANDO-DE-DADOS MAN]"
+        },
+        {
+            "original": "The man database defaults to %s%s.",
+            "translated": "A base de dados principal tem o valor padrão como %s%s.",
+            "reference": "O banco de dados man tem como padrão %s%s."
+        },
+        {
+            "original": "can't open %s for reading",
+            "translated": "não foi possível abrir %s para leitura",
+            "reference": "não foi possível abrir %s para leitura"
+        },
+        {
+            "original": "set search path for manual pages to PATH",
+            "translated": "instalar o caminho de pesquisa para diretórios de guias de referência no valor PATH_DRIVE_PATH",
+            "reference": "define o caminho de pesquisa por páginas de manual com CAMINHO"
+        },
+        {
+            "original": "man command failed with exit status %d",
+            "translated": "comando 'man' falhou ao sair com código de status %d",
+            "reference": "o comando man falhou com estado de saída %d"
+        },
+        {
+            "original": "can't update index cache %s",
+            "translated": "não foi possível atualizar o cache de memória do local %s",
+            "reference": "não foi possível atualizar cache de índice %s"
+        },
+        {
+            "original": "can't create index cache %s",
+            "translated": "não foi possível criar um cache de memória para o local %s",
+            "reference": "não foi possível criar cache de índice %s"
+        },
+        {
+            "original": "Updating index cache for path `%s/%s'. Wait...",
+            "translated": "Estamos atualizando o cache de memória para caminho `%s/%s'. Por favor, espere...",
+            "reference": "Atualizando o cache de índice para o caminho \"%s/%s\". Aguarde..."
+        },
+        {
+            "original": "Purging old database entries in %s...\n",
+            "translated": "Ao tentação cargas de mensagens antigas do sistema de dados em %s...\n",
+            "reference": "Descartando entradas antigas de banco de dados em %s...\n"
+        },
+        {
+            "original": "look for pages case-insensitively (default)",
+            "translated": "não é permitido fazer distinção entre as letras maiúsculas e minúsculas ao procurar (padrão)",
+            "reference": "procura por páginas sem diferenciar maiúsculo de minúsculo (padrão)"
+        },
+        {
+            "original": "look for pages case-sensitively",
+            "translated": "falta de consideração ao registrar durante a pesquisa.",
+            "reference": "procura por páginas diferenciando maiúsculo de minúsculo"
+        },
+        {
+            "original": "FILE...",
+            "translated": "Título do arquivo...",
+            "reference": "ARQUIVO..."
+        },
+        {
+            "original": "parse as man page",
+            "translated": "analisar a interface da página do usuário com foco em design visualmente atraente.",
+            "reference": "analisa como uma página man"
+        },
+        {
+            "original": "parse as cat page",
+            "translated": "fazer análise da página cat",
+            "reference": "analisa como uma página cat"
+        },
+        {
+            "original": "%s: incompatible options",
+            "translated": "%s: các tùy chọn không tương thích với nhau",
+            "reference": "%s: opções incompatíveis"
+        },
+        {
+            "original": "reset all options to their default values",
+            "translated": "redefinir todos os valores padrão para as configurações selecionadas",
+            "reference": "redefine todas opções para seus valores padrão"
+        },
+        {
+            "original": "Main modes of operation:",
+            "translated": "modos de operação principais:",
+            "reference": "Modos principais de operação:"
+        },
+        {
+            "original": "equivalent to whatis",
+            "translated": "equivalente a whatis",
+            "reference": "equivalente a whatis"
+        },
+        {
+            "original": "used by catman to reformat out of date cat pages",
+            "translated": "utilizado o catman para reformatar as páginas cat antigas.",
+            "reference": "usado por catman para reformatar páginas cat desatualizadas"
+        },
+        {
+            "original": "Finding manual pages:",
+            "translated": "Em busca de guias de ajuda:",
+            "reference": "Localizando as páginas de manual:"
+        },
+        {
+            "original": "LIST",
+            "translated": "DANH_SÁCH",
+            "reference": "LISTA"
+        },
+        {
+            "original": "use %s to format pages",
+            "translated": "utilize %s para formatar a página.",
+            "reference": "usa %s para formatar páginas"
+        },
+        {
+            "original": "use %s with selected device",
+            "translated": "utilize %s com o dispositivo selecionado",
+            "reference": "usa %s com o dispositivo selecionado"
+        },
+        {
+            "original": "RESOLUTION",
+            "translated": "Solução para o problema proposto.",
+            "reference": "RESOLUÇÃO"
+        },
+        {
+            "original": "use groff and display through gxditview (X11):\n-X = -TX75, -X100 = -TX100, -X100-12 = -TX100-12",
+            "translated": "utilize o groff e exiba através do gxditview (X11):\n-X = -TX75, -X100 = -TX100, -X100-12 = -TX100-12",
+            "reference": "usa groff e exibe por meio de gxditview (X11):\n-X = -TX75, -X100 = -TX100, -X100-12 = -TX100-12"
+        },
+        {
+            "original": "use groff and force it to produce ditroff",
+            "translated": "utilize o groff e impeça que ele gere ditroff",
+            "reference": "usa groff e força-o a produzir ditroff"
+        },
+        {
+            "original": "What manual page do you want?\n",
+            "translated": "Qual guia de ajuda você precisa?",
+            "reference": "Qual a página de manual desejada?\n"
+        },
+        {
+            "original": "No manual entry for %s in section %s\n",
+            "translated": "Não há guia de referência para %s no subsector %s\n",
+            "reference": "Nenhuma entrada de manual para %s na seção %s\n"
+        },
+        {
+            "original": "can't open temporary file %s",
+            "translated": "não foi possível abrir o arquivo temporário %s",
+            "reference": "não foi possível abrir o arquivo temporário %s"
+        },
+        {
+            "original": "mandb command failed with exit status %d",
+            "translated": "comando 'mandb' (sistema de gerenciamento do banco de dados) falhou ao sair com status %d",
+            "reference": "o comando mandb falhou com status de saída %d"
+        },
+        {
+            "original": "internal error: candidate type %d out of range",
+            "translated": "erro de nível interno: tipo de candidato %d está fora do alcance",
+            "reference": "erro interno: tipo de candidato %d fora da faixa"
+        },
+        {
+            "original": " Manual page ",
+            "translated": "Trang hướng dẫn",
+            "reference": " Página de manual "
+        },
+        {
+            "original": "must specify an output encoding",
+            "translated": "deve ser indicada a codificação de saída do programa",
+            "reference": "deve-se especificar uma codificação de saída"
+        },
+        {
+            "original": "can't write to standard output",
+            "translated": "não foi possível gastar no fluxo padrão de saída",
+            "reference": "não foi possível escrever para a saída padrão"
+        },
+        {
+            "original": "CODE[:...]",
+            "translated": "Código de Autorização[:...]",
+            "reference": "CÓDIGO[:...]"
+        },
+        {
+            "original": "[MANPATH]",
+            "translated": "[MAN_CAMINHO]",
+            "reference": "[CAMINHO-MAN]"
+        },
+        {
+            "original": "work quietly, except for 'bogus' warning",
+            "translated": "chute im, exclua avisos 'fictícios' em alertas de segurança.",
+            "reference": "trabalha silenciosamente, exceto para aviso de erro"
+        },
+        {
+            "original": "don't purge obsolete entries from the dbs",
+            "translated": "não deve parar de sair do local dos dados antigos das mensagens caduquadas da base de dados.",
+            "reference": "não descarta entradas obsoletas dos bancos de dados"
+        },
+        {
+            "original": "FILENAME",
+            "translated": "Nome do Arquivo",
+            "reference": "NOME-DE-ARQUIVO"
+        },
+        {
+            "original": "Processing manual pages under %s...\n",
+            "translated": "Em processo de tratamento das páginas guias do manual em %s...\n",
+            "reference": "Processando as páginas de manual sob %s...\n"
+        },
+        {
+            "original": "warning: no MANDB_MAP directives in %s, using your manpath",
+            "translated": "aviso: não há a diretiva 'MANDB_MAP' no %s, portanto será utilizado o caminho de saída do seu manpath.",
+            "reference": "aviso: nenhuma diretiva MANDB_MAP em %s, usando o seu caminho man"
+        },
+        {
+            "original": "No databases created.",
+            "translated": "As bases de dados ainda não foram criadas.",
+            "reference": "Nenhum banco de dados criado."
+        },
+        {
+            "original": "warning: $MANPATH set, inserting %s",
+            "translated": "peringuidas: encontrada variável de ambiente $MANPATH, inserindo em %s",
+            "reference": "aviso: $MANPATH definido, inserindo %s"
+        },
+        {
+            "original": "warning: $MANPATH set, ignoring %s",
+            "translated": "aviso de segurança: encontrada a variável $MANPATH, ignorando %s",
+            "reference": "aviso: $MANPATH definido, ignorando %s"
+        },
+        {
+            "original": "warning: mandatory directory %s doesn't exist",
+            "translated": "aviso de erro: o diretório %s não existe",
+            "reference": "aviso: diretório obrigatório %s não existe"
+        },
+        {
+            "original": "warning: %s does not begin with %s",
+            "translated": "peringuidela linha %s não começa com o caractere '%c' (%d)",
+            "reference": "aviso: %s não começa com %s"
+        },
+        {
+            "original": "Checking for stray cats under %s...\n",
+            "translated": "Fazendo verificação de cat em %s...\n",
+            "reference": "Verificando por cats errantes sob %s...\n"
+        },
+        {
+            "original": "do not trim output to terminal width",
+            "translated": "não obre o xen ket keu chung cau rai cua thiet bia co che",
+            "reference": "não corta a saída para a largura do terminal"
+        },
+        {
+            "original": "warning: %s contains a pointer loop",
+            "translated": "cão de guarda: %s contém um vórtice (pointer loop)",
+            "reference": "aviso: %s contém um laço de ponteiros"
+        },
+        {
+            "original": "%s: nothing appropriate.\n",
+            "translated": "%s: não há nada adequado para ele.",
+            "reference": "%s: nada apropriado.\n"
+        },
+        {
+            "original": "%s:%d: .so requests nested too deeply or are recursive",
+            "translated": "%s:%d: các requisições .so simultâneas ou recursivas excessivas",
+            "reference": "%s:%d: requisições de .so aninhadas com muita profundidade ou são recursivas"
+        },
+        {
+            "original": "%s:%d: warning: newline in .lf request, ignoring",
+            "translated": "%s:%d: aviso: nova linha em .lf solicitação, ignorada",
+            "reference": "%s:%d: aviso: nova-linha na requisição de .lf, ignorando"
+        },
+        {
+            "original": "compatibility switch (ignored)",
+            "translated": "các tùy chọn dùng cho mục đích tương thịch (bị bỏ qua)",
+            "reference": "troca de compatibilidade (ignorado)"
+        }
+    ]
+}

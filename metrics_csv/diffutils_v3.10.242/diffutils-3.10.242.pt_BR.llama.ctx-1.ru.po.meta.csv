@@ -1,0 +1,571 @@
+original,translated,reference,context_languages,strategy,comet,chrf,bleu,ter,bertscore
+invalid argument %s for %s,argumento inválido %s para %s,argumento inválido para %s: %s,RU,LLAMA,91.59385561943054,72.01216989888066,31.14727939501627,40.0,92.60210394859314
+ambiguous argument %s for %s,argumento ambiguo %s para %s,argumento ambíguo %s para %s,RU,LLAMA,94.60605978965759,81.2819629359961,64.34588841607616,20.0,94.76176500320435
+Valid arguments are:,Argumentos aceitos:,Argumentos válidos são:,RU,LLAMA,85.8150064945221,40.70740294065332,24.840753130578644,66.66666666666666,85.17561554908752
+regular empty file,arquivo regular vazio,arquivo comum vazio,RU,LLAMA,92.22962856292725,42.76230065906964,34.66806371753173,33.33333333333333,92.98838973045349
+regular file,arquivo regular,arquivo comum,RU,LLAMA,88.75275254249573,40.10318686471661,49.99999999999999,50.0,92.16135144233704
+directory,diretório,diretório,RU,LLAMA,98.74996542930603,100.0,100.00000000000004,0.0,99.99997019767761
+symbolic link,simbolo tautológico,link simbólico,RU,LLAMA,70.62271237373352,17.999630158156656,0.0,100.0,77.87867784500122
+message queue,fila de mensagens,fila de mensagem,RU,LLAMA,93.05689930915833,81.73693554483714,55.03212081491043,33.33333333333333,93.34294199943542
+semaphore,semáforo,semáforo,RU,LLAMA,99.19132590293884,100.0,100.00000000000004,0.0,99.99998807907104
+shared memory object,objeto de memória compartilhado,objeto em memória compartilhada,RU,LLAMA,92.91791319847107,65.57074839411796,18.99589214128981,50.0,94.30363178253174
+typed memory object,objeto de memória tipificada,objeto de memória tipificada,RU,LLAMA,98.44145178794861,100.0,100.00000000000004,0.0,99.99997615814209
+block special file,arquivo especial com bloqueio de região,arquivo especial de bloco,RU,LLAMA,85.53352952003479,61.11047194119654,17.965205598154213,75.0,88.85598182678223
+character special file,ficheiro de caracteres especiais,arquivo especial de caractere,RU,LLAMA,83.50276350975037,44.44373281011771,15.97357760615681,100.0,77.92795896530151
+contiguous data,dados que se seguem uma sequência,dados contíguos,RU,LLAMA,46.55620753765106,21.2995710803238,8.116697886877475,100.0,68.72965097427368
+fifo,fila de entrada/saída,fifo,RU,LLAMA,46.30633294582367,9.075907590759076,0.0,100.0,66.21952652931213
+door,porta,porta,RU,LLAMA,98.45395088195801,100.0,100.00000000000004,0.0,100.00004768371582
+multiplexed block special file,bloco especial de arquivo multiplesso e bloqueante,arquivo multiplexado especial de bloco,RU,LLAMA,74.65218305587769,65.7279078580759,15.619699684601283,100.0,79.67028021812439
+multiplexed character special file,arquivo especial com caracteres múltiplos e polifônicos,arquivo multiplexado especial de caractere,RU,LLAMA,76.36743783950806,44.82692658376166,7.809849842300637,100.0,76.08978748321533
+multiplexed file,arquivo multiplesso,arquivo multiplexado,RU,LLAMA,82.60424137115479,64.23843238580001,49.99999999999999,50.0,84.96502637863159
+named file,nome do arquivo,arquivo nomeado,RU,LLAMA,89.67036008834839,47.286392355848264,27.516060407455225,100.0,81.14919662475586
+network special file,arquivo especial de rede,arquivo especial de rede,RU,LLAMA,98.93330931663513,100.0,100.00000000000004,0.0,99.99997019767761
+migrated file with data,arquivo termigravado com dados,arquivo migrado com dados,RU,LLAMA,76.9146978855133,68.62402040004402,35.35533905932737,25.0,91.25425219535828
+migrated file without data,ficheiro termigrasi sem dados,arquivo migrado sem dados,RU,LLAMA,78.59516739845276,40.80021086227156,31.947155212313625,50.0,79.59331274032593
+port,porta de rede,porta,RU,LLAMA,77.61262059211731,70.08020034235719,27.516060407455225,100.0,83.85031819343567
+socket,soquete,soquete,RU,LLAMA,98.11129570007324,100.0,100.00000000000004,0.0,100.0
+whiteout,desenvolvimento em branco,whiteout,RU,LLAMA,54.55308556556702,5.194805194805194,0.0,100.0,78.91062498092651
+weird file,arquivo anônimo,arquivo estranho,RU,LLAMA,74.94133114814758,36.185626207391444,49.99999999999999,50.0,85.3665828704834
+program error,Erro de programa,erro do programa,RU,LLAMA,89.24409747123718,49.70737595737595,27.516060407455225,33.33333333333333,89.69545364379883
+stack overflow,estoução de pilha em overflow,estouro de pilha,RU,LLAMA,66.59347414970398,55.50649134992748,21.3643503198117,100.0,82.66646265983582
+Try '%s --help' for more information.,Tente `%s --help' para mais informações.,"Tente ""%s --help"" para mais informações.",RU,LLAMA,96.02932929992676,74.35736293539898,33.010083098515025,33.33333333333333,90.98200798034668
+Unknown system error,Erro do sistema desconhecido,Erro desconhecido de sistema,RU,LLAMA,94.79895234107971,63.385693111236584,21.02241038134286,50.0,90.22597670555115
+"%s: option '%s%s' is ambiguous
+",%s: ambiguo parâmetro '%s%s',"%s: a opção ""%s%s"" é ambígua
+",RU,LLAMA,83.70036482810974,23.556940627512457,19.46062713878504,83.33333333333334,72.61467576026917
+%s: option '%s%s' is ambiguous; possibilities:,%s: ambiguo para o parâmetro '%%c%d'; possíveis alternativas:,"%s: a opção ""%s%s"" é ambígua; possibilidades:",RU,LLAMA,84.14075970649719,22.85526996592777,10.521495173810226,100.0,73.06274771690369
+"%s: unrecognized option '%s%s'
+","%s: parâmetro não reconhecido ""%s%s""
+","%s: opção desconhecida ""%s%s""
+",RU,LLAMA,88.51112127304077,45.67896188460445,53.107253497886994,75.0,90.10024070739746
+"%s: option '%s%s' doesn't allow an argument
+","%s: para o parâmetro '%%c%s' não é permitido utilizar argumento
+","%s: a opção ""%s%s"" não permite argumento
+",RU,LLAMA,91.21517539024353,35.541521663657996,10.521495173810226,100.0,78.67271900177002
+"%s: option '%s%s' requires an argument
+","%s: para o parâmetro '%%c%d' é necessário um argumento
+","%s: a opção ""%s%s"" exige um argumento
+",RU,LLAMA,87.30630278587341,35.870371784443044,12.451643194233869,85.71428571428571,77.94687151908875
+"%s: invalid option -- '%c'
+",%s: o parâmetro '--%c' não é válido,"%s: opção inválida -- ""%c""
+",RU,LLAMA,79.91398572921753,27.8043492228794,14.991106946711685,100.0,78.08056473731995
+"%s: option requires an argument -- '%c'
+",%s: para o parâmetro '%c' é necessário um argumento.,"%s: a opção exige um argumento -- ""%c""
+",RU,LLAMA,85.90628504753113,34.504718713131076,13.912311644176565,100.0,81.03247284889221
+`,"""",“,RU,LLAMA,97.25895524024963,0.0,0.0,100.0,69.69509720802307
+',"""",”,RU,LLAMA,96.30374908447266,0.0,0.0,100.0,69.69509720802307
+Success,Sucesso completo,Sucesso,RU,LLAMA,93.98453831672668,74.54927711537354,49.99999999999999,100.0,87.01395392417908
+No match,Não é apropriado.,Nenhuma ocorrência do padrão,RU,LLAMA,58.063167333602905,11.179042425113103,0.0,100.0,70.47423124313354
+Invalid regular expression,expressão regular inválida,Expressão regular inválida,RU,LLAMA,91.11608862876892,86.07270708886843,55.03212081491043,0.0,82.11775422096252
+Invalid collation character,Caracter não é válido para colação,caractere de combinação inválido,RU,LLAMA,56.68845176696777,28.318364665347424,0.0,100.0,74.73376989364624
+Invalid character class name,Nome do curso de caracteres inválido,Nome inválido da classe de caracteres,RU,LLAMA,74.19312596321106,54.90318314438595,19.304869754804482,50.0,88.30597400665283
+Trailing backslash,Akhiran backslash está na extremidade direita.,Barra invertida no final,RU,LLAMA,43.127766251564026,11.148119899362266,0.0,100.0,68.08474659919739
+Invalid back reference,Referência de volta não é válida,Retrorreferência inválida,RU,LLAMA,68.32044124603271,36.307146966013335,0.0,100.0,74.37100410461426
+"Unmatched [, [^, [:, [., or [=","Não paralela [, [^, [:, . ou = sem sinal de vinculação","[, [^, [:, [. ou [= sem correspondente",RU,LLAMA,67.37721562385559,40.269919341261875,48.80217780091717,87.5,85.8019232749939
+Unmatched ( or \(,£e ou §( sem parª)aldade,( ou \( sem correspondente,RU,LLAMA,55.23039698600769,20.104749206380482,12.22307556087252,60.0,71.73556089401245
+Unmatched \{,"sem parceiro \""{\",\{ sem correspondente,RU,LLAMA,78.02624702453613,16.06253509017856,10.682175159905853,100.0,78.55121493339539
+Invalid content of \{\},Contêiner {} não é válido,Conteúdo inválido de \{\},RU,LLAMA,57.10601210594177,25.60137364389732,8.170609724417774,100.0,67.99209117889404
+Invalid range end,O limite inferior do período final não é válido.,Fim do intervalo inválido,RU,LLAMA,59.42391753196716,23.855106211038084,4.196114906296549,100.0,70.30097842216492
+Memory exhausted,Memória de trabalho esgotada,Memória esgotada,RU,LLAMA,71.54231667518616,60.804864609112705,18.99589214128981,100.0,92.26046800613403
+Invalid preceding regular expression,Expressão regular inválida que impede a validade,A expressão regular precedente é inválida,RU,LLAMA,69.2303478717804,45.72925590714589,7.809849842300637,83.33333333333334,72.67679572105408
+Premature end of regular expression,o final do padrão regular é prematuramente concluído com a expressão ekspresi,Fim prematuro da expressão regular,RU,LLAMA,61.672741174697876,45.948354584223075,4.02724819242185,100.0,74.02515411376953
+Regular expression too big,Expressão regular é muito grande,Expressão regular grande demais,RU,LLAMA,85.81058979034424,63.37705190724061,23.643540225079384,75.0,88.90188336372375
+Unmatched ) or \),ou sem parênteses,) ou \) sem correspondente,RU,LLAMA,60.25165915489197,17.11708274607549,12.753667906901528,60.0,71.81552648544312
+No previous regular expression,Não há expressões regulares definidas anteriormente.,Nenhuma expressão regular anterior,RU,LLAMA,77.1322250366211,37.429803694352465,0.0,100.0,77.99607515335083
+"Packaged by %s (%s)
+",Embalado por %s (%s),"Empacotado por %s (%s)
+",RU,LLAMA,78.45812439918518,67.08198361085593,84.08964152537145,25.0,95.61264514923096
+"Packaged by %s
+",Embalado por %s,"Empacotado por %s
+",RU,LLAMA,77.7675449848175,54.4983270998222,59.460355750136046,33.33333333333333,93.48092675209045
+(C),(C),(C),RU,LLAMA,99.15797710418701,100.0,100.00000000000004,0.0,100.0
+"License GPLv3+: GNU GPL version 3 or later <%s>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+",Lisensi GPLv3+: GNU GPL versão 3 ou posterior <%s>. Este é software livre que você pode modificar e distribuir. Não há restrições de licenciamento dentro do alcance da lei vigente.,"Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>.
+Este é um software livre: você é livre para alterá-lo e redistribuí-lo.
+NÃO HÁ QUALQUER GARANTIA, na máxima extensão permitida em lei.
+",RU,LLAMA,80.44362664222717,45.403555727047454,40.747824664651475,54.83870967741935,79.08737063407898
+"Written by %s.
+","Olha, %s. 
+","Escrito por %s.
+",RU,LLAMA,54.969555139541626,17.224247412982123,39.76353643835252,66.66666666666666,76.62050127983093
+"Written by %s and %s.
+",Ditulis por %s e %s.,"Escrito por %s e %s.
+",RU,LLAMA,93.16658973693848,59.77897102897103,84.08964152537145,20.0,88.59131932258606
+"Written by %s, %s, and %s.
+","Ditulis por %s, %s e %s. 
+","Escrito por %s, %s e %s.
+",RU,LLAMA,91.76979064941406,67.55122334021328,89.31539818068698,16.666666666666664,89.83813524246216
+"Written by %s, %s, %s,
+and %s.
+","Ditulis por %s, %s, %s, e %s. 
+","Escrito por %s, %s, %s
+e %s.
+",RU,LLAMA,92.34926700592041,56.81997137670216,72.41577342575832,28.57142857142857,89.61904048919678
+"Written by %s, %s, %s,
+%s, and %s.
+","Ditulis por %s, %s, %s, %s, e %s. 
+","Escrito por %s, %s, %s
+%s e %s.
+",RU,LLAMA,93.14517974853516,51.76476302818617,62.685933350049744,37.5,89.94899392127991
+"Written by %s, %s, %s,
+%s, %s, and %s.
+","Ditulis por %s, %s, %s, %s, %s e %s. 
+","Escrito por %s, %s, %s
+%s, %s e %s.
+",RU,LLAMA,93.44607591629028,65.83087215572915,80.3154665668484,22.22222222222222,92.01726913452148
+"Written by %s, %s, %s,
+%s, %s, %s, and %s.
+","Ditulis por %s, %s, %s, %s, %s, %s e %s. 
+","Escrito por %s, %s, %s
+%s, %s, %s e %s.
+",RU,LLAMA,94.0034568309784,69.69082806710757,83.18180062062373,20.0,92.33633279800415
+"Written by %s, %s, %s,
+%s, %s, %s, %s,
+and %s.
+","Ditulis por %s, %s, %s, %s, %s, %s, %s, e %s. 
+","Escrito por %s, %s, %s
+%s, %s, %s, %s
+e %s.
+",RU,LLAMA,93.91464591026306,63.156067279059855,75.39221180326287,27.27272727272727,91.72789454460144
+"Written by %s, %s, %s,
+%s, %s, %s, %s,
+%s, and %s.
+","Ditulis por %s, %s, %s, %s, %s, %s, %s, %s, e %s. 
+","Escrito por %s, %s, %s
+%s, %s, %s, %s
+%s e %s.
+",RU,LLAMA,93.507319688797,59.53826413881041,69.61129068195326,33.33333333333333,91.76515936851501
+"Written by %s, %s, %s,
+%s, %s, %s, %s,
+%s, %s, and others.
+","Ditulis oleh %s, %s, %s, %d, %s, %s, %s, %<PRIuMAX>, %s, %s e outros.","Escrito por %s, %s, %s
+%s, %s, %s, %s,
+%s, %s e outros.
+",RU,LLAMA,84.17040705680847,66.70445545079498,69.19033001383555,38.46153846153847,89.95617628097534
+"Report bugs to: %s
+",Laporkan kutu ke: %s,"Relate erros para: %s
+Relate erros de tradução para <http://translationproject.org/team/pt_BR.html>
+",RU,LLAMA,47.71908223628998,8.522460700906702,0.7723098754885949,90.0,63.73857259750366
+"Report %s bugs to: %s
+",Laporkan kutu %s ke: %s,"Relate os erros do %s para: %s
+",RU,LLAMA,75.85468292236328,19.692757102815182,20.130954856436926,71.42857142857143,71.35412096977234
+"%s home page: <%s>
+",%s página da casa: <%s>,"Página do %s: <%s>
+",RU,LLAMA,93.4175968170166,44.787439470407,45.180100180492246,75.0,88.76855373382568
+"General help using GNU software: <%s>
+",Ajuda geral utilizando software GNU: <%s>,"Ajuda em geral no uso de software GNU: <%s>
+",RU,LLAMA,94.19126510620117,57.2977247416539,50.403414749643126,44.44444444444444,93.5312271118164
+memory exhausted,memória esgotada,memória esgotada,RU,LLAMA,99.05358552932739,100.0,100.00000000000004,0.0,100.00002384185791
+stdin,entrada padrão,entrada padrão (stdin),RU,LLAMA,80.85261583328247,60.56139623226653,22.31301601484299,33.33333333333333,87.039315700531
+stdout,stdout,saída padrão (stdout),RU,LLAMA,63.78002166748047,20.750009437005197,1.8315638888734187,100.0,80.98939061164856
+stderr,stderr,erro padrão (stderr),RU,LLAMA,65.22446870803833,21.976959622423653,1.8315638888734187,100.0,81.60281181335449
+unknown stream,fluxo desconhecido,fluxo desconhecido,RU,LLAMA,99.14682507514954,100.0,100.00000000000004,0.0,100.00002384185791
+failed to reopen %s with mode %s,não foi possível restaurar %s no modo %s,falha ao reabrir %s com modo %s,RU,LLAMA,78.9158284664154,30.546865562581228,19.64073254502565,71.42857142857143,82.90822505950928
+"Files %s and %s differ
+",Bilhas %s e %s são diferentes,"Os arquivos %s e %s são diferentes
+",RU,LLAMA,72.18586802482605,70.46442451054381,74.20884818558928,28.57142857142857,88.5144293308258
+"Binary files %s and %s differ
+",Bilhas binárias %s e %s apresentam diferenças distintas,"Os arquivos binários %s e %s são diferentes
+",RU,LLAMA,71.97481393814087,41.55659634236995,39.281465090051306,75.0,85.49230098724365
+No newline at end of file,Não há mais linhas no final do arquivo.,Nenhum caractere de nova linha no final do arquivo,RU,LLAMA,80.13961911201477,43.65225737935111,29.84745896009822,66.66666666666666,81.57129287719727
+Torbjorn Granlund,Torbjörn Granlund,Torbjorn Granlund,RU,LLAMA,95.60715556144714,60.2508429070929,49.99999999999999,50.0,92.68086552619934
+David MacKenzie,David MacKenzie (David MacKenzie),David MacKenzie,RU,LLAMA,84.9793553352356,75.28704343310353,16.233395773754953,100.0,83.73578786849976
+invalid --ignore-initial value %s,valor não aceito %s para --ignore-initial,valor inválido --ignore-initial %s,RU,LLAMA,83.75181555747986,57.10249497546318,15.619699684601283,100.0,80.25392293930054
+options -l and -s are incompatible,pilihan -l dan -s não são compatíveis,as opções -l e -s são incompatíveis,RU,LLAMA,73.87394905090332,40.885368248313995,8.643019616048525,71.42857142857143,79.40043807029724
+write failed,falha ao escrever,erro de escrita,RU,LLAMA,75.48859715461731,15.823085002845403,0.0,100.0,76.89791321754456
+standard output,saída padrão do RU,saída padrão,RU,LLAMA,88.12552094459534,88.64318748637982,31.947155212313625,100.0,86.65742874145508
+"-b, --print-bytes          print differing bytes","-b, --print-bytes       exibir bytes diferentes","-b, --print-bytes          imprime os bytes diferentes",RU,LLAMA,87.52134442329407,70.88125261933864,32.159351091190125,33.33333333333333,93.48940849304199
+"-i, --ignore-initial=SKIP         skip first SKIP bytes of both inputs","-i, --ignore-initial=%s  pulverizar os primeiros %s bytes de entrada","-i, --ignore-initial=SALTO        ignora os primeiros SALTO bytes da entrada",RU,LLAMA,74.19129014015198,55.79847558654129,22.718709780542323,44.44444444444444,85.38641333580017
+"-i, --ignore-initial=SKIP1:SKIP2  skip first SKIP1 bytes of FILE1 and
+                                      first SKIP2 bytes of FILE2","-i, --ignore-initial=%<PRIuMAX>1:%<PRIuMAX>2
+proximeiros %<PRIuMAX>1 bytes do arquivo FILE1 e proximos %<PRIuMAX>2 bytes do arquivo FILE2","-i, --ignore-initial=SALTO1:SALTO2
+                                  ignora os primeiros SALTO1 bytes do ARQUIVO1
+                                    e os primeiros SALTO2 bytes do ARQUIVO2",RU,LLAMA,65.50132632255554,36.37787693478194,9.170840695622617,75.0,74.72275495529175
+"-l, --verbose              output byte numbers and differing byte values","-l, --verbose          exibir todos os bytes e seus valores distintos.","-l, --verbose              emite os números de bytes e os valores de
+                             todos os bytes diferentes",RU,LLAMA,67.22076535224915,48.81200888176348,17.260209404747588,60.0,88.5729193687439
+"-n, --bytes=LIMIT          compare at most LIMIT bytes","-n, --bytes=%s          limitar o número de bytes para %s byte","-n, --bytes=LIMITE         compara no máximo LIMITE bytes",RU,LLAMA,67.22331047058105,33.112355760743895,17.395797375642243,100.0,79.68882322311401
+"-s, --quiet, --silent      suppress all normal output","-s --quiet, -silente   não exibir mensagens normais","-s, --quiet, --silent      suprime todas saídas normais",RU,LLAMA,73.59229922294617,40.566816026051754,11.59119922599073,71.42857142857143,81.63527846336365
+    --help                 display this help and exit,    --help              Mostrar esta ajuda e sair.,    --help                 mostra esta ajuda e sai,RU,LLAMA,76.89980864524841,67.35599017939437,26.269098944241588,33.33333333333333,86.15047335624695
+"-v, --version              output version information and exit","-v, --version           Mostrar informações sobre a versão e sair.","-v, --version              mostra informação sobre a versão e sai",RU,LLAMA,86.9303047657013,70.84565928302918,33.932513407933634,33.33333333333333,90.0179922580719
+"Usage: %s [OPTION]... FILE1 [FILE2 [SKIP1 [SKIP2]]]
+",Utilização: %s [PESQUISAR]... BERKAS1 [BERKAS2 [IGORAR]? SKIP1 [SKIP2]],"Uso: %s [OPÇÃO]... ARQUIVO1 [ARQUIVO2 [SALTO1 [SALTO2]]]
+",RU,LLAMA,53.93539071083069,23.129583264299843,25.85071874780497,100.0,84.37137007713318
+Compare two files byte by byte.,Bandando dois arquivos byte por byte.,Compara dois arquivos byte por byte.,RU,LLAMA,83.84604454040527,78.45353393342151,80.91067115702207,16.666666666666664,92.77815818786621
+"The optional SKIP1 and SKIP2 specify the number of bytes to skip
+at the beginning of each file (zero by default).",SKIP1 e SKIP2 representam o número de bytes que devem ser pulados no início de cada arquivo (valor padrão é zero).,"Os argumentos opcionais SALTO1 e SALTO2 especificam o número de
+bytes para ignorar no começo de cada arquivo (zero por padrão).",RU,LLAMA,81.49160742759705,39.39239684429418,23.546900700701926,71.42857142857143,85.91524362564087
+"Mandatory arguments to long options are mandatory for short options too.
+",Os argumentos obrigatórios também devem ser fornecidos para opções curtas.,"Argumentos obrigatórios para opções longas também o são para opções curtas.
+",RU,LLAMA,68.49891543388367,58.45504694884944,23.708987804092644,63.63636363636363,85.36127805709839
+"SKIP values may be followed by the following multiplicative suffixes:
+kB 1000, K 1024, MB 1,000,000, M 1,048,576,
+GB 1,000,000,000, G 1,073,741,824, and so on for T, P, E, Z, Y.","Valores SKIP podem ser multiplicados pelos seguintes sufixos de unidade:
+KB 1000, KB 1024, MB 1,000,000, MB 1,048,576,
+GB 1,000,000,000, GB 1,073,741,824, e assim por diante para TB, PB, EB, ZB, YB.","Os valores do SALTO podem ser seguidos por sufixos multiplicativos a seguir:
+kB 1000, K 1024, MB 1,000,000, M 1,048,576,
+GB 1,000,000,000, G 1,073,741,824,
+e assim por diante para T, P, E, Z, Y.",RU,LLAMA,78.23027968406677,61.68630901960013,31.692824335612578,50.0,90.52915573120117
+"If a FILE is '-' or missing, read standard input.","Se o arquivo for '-' ou não existir, lê a entrada padrão.","Se ARQUIVO for igual a ""-"" ou for omitido, ler da entrada padrão.",RU,LLAMA,74.32597279548645,34.114061117771456,10.903051505700674,61.53846153846154,80.61764240264893
+"Exit status is 0 if inputs are the same, 1 if different, 2 if trouble.","O status de saída é 0 se os arquivos de entrada forem idênticos, 1 caso contrário e 2 em caso de falha.","Status de saída é 0 se as entradas forem iguais, 1 se diferente e 2 se problema.",RU,LLAMA,82.16847777366638,42.51191062343554,19.850823739068115,70.58823529411765,83.93328189849854
+invalid --bytes value %s,valor %s --bytes inválido,valor inválido de --bytes %s,RU,LLAMA,93.34099292755127,60.195279470426364,21.994586237921105,60.0,85.53183674812317
+missing operand after %s,não há operando após %s,faltando operando após %s,RU,LLAMA,79.98104691505432,65.38594837454168,50.81327481546149,50.0,90.96258878707886
+extra operand %s,operando extra %s,operando extra %s,RU,LLAMA,98.5830545425415,100.0,100.00000000000004,0.0,99.99998807907104
+"%s %s differ: byte %<PRIdMAX>, line %<PRIdMAX>
+","%s %s diferem: byte %<PRIdMAX>, linha %<PRIdMAX>","%s e %s são diferentes: byte %<PRIdMAX>, linha %<PRIdMAX>
+",RU,LLAMA,86.41977906227112,72.71011137797115,67.26450382031888,33.33333333333333,91.4005696773529
+"%s %s differ: byte %<PRIdMAX>, line %<PRIdMAX> is %3o %s %3o %s
+","%s %s diferem: byte %<PRIdMAX>, linha %<PRIdMAX>: %3o %s %3o %s","%s e %s são diferentes: byte %<PRIdMAX>, linha %<PRIdMAX> é %3o %s %3o %s
+",RU,LLAMA,88.8143241405487,71.01549217680362,68.50967976430171,35.714285714285715,91.35454893112183
+"cmp: EOF on %s which is empty
+","cmp: EOF em %s, que está vazio","cmp: Fim de arquivo (EOF) em %s que está vazio
+",RU,LLAMA,70.07563710212708,41.40516588743666,20.60524114942286,50.0,86.89756393432617
+"cmp: EOF on %s after byte %<PRIdMAX>
+",cmp: EOF em %s após byte %<PRIdMAX>,"cmp: Fim de arquivo (EOF) em %s após byte %<PRIdMAX>
+",RU,LLAMA,76.87236666679382,59.512443217756974,51.82127775756747,40.0,91.01128578186035
+"cmp: EOF on %s after byte %<PRIdMAX>, line %<PRIdMAX>
+","cmp: EOF em %s após byte %<PRIdMAX>, linha %<PRIdMAX>","cmp: Fim de arquivo (EOF) em %s após byte %<PRIdMAX>, linha %<PRIdMAX>
+",RU,LLAMA,79.57196831703186,70.65523596391694,65.91762744000306,33.33333333333333,93.15606355667114
+"cmp: EOF on %s after byte %<PRIdMAX>, in line %<PRIdMAX>
+",cmp: EOF em %s após byte %<PRIdMAX> na linha %<PRIdMAX>,"cmp: Fim de arquivo (EOF) em %s após byte %<PRIdMAX>, na linha %<PRIdMAX>
+",RU,LLAMA,77.9702365398407,63.51906264338446,54.702974191770494,38.46153846153847,91.81826710700989
+Paul Eggert,Paul Eggert,Paul Eggert,RU,LLAMA,98.89376163482666,100.0,100.00000000000004,0.0,99.99995231628418
+Mike Haertel,Mike Haertel,Mike Haertel,RU,LLAMA,99.20860528945923,100.0,100.00000000000004,0.0,99.99995231628418
+David Hayes,Dávid Hays (David Hayes),David Hayes,RU,LLAMA,85.30677556991577,74.34047895889694,16.233395773754953,100.0,73.44200611114502
+Richard Stallman,Richard Stallman (Richard Stallman),Richard Stallman,RU,LLAMA,77.3855984210968,75.63240078799127,16.233395773754953,100.0,84.57998037338257
+Len Tower,Len Tower (Len Taower),Len Tower,RU,LLAMA,76.63203477859497,69.31660044759612,16.233395773754953,100.0,82.06092715263367
+invalid context length %s,a dificuldade de interpretar o contexto %s é inválida,o comprimento do contexto não é válido %s,RU,LLAMA,67.44558811187744,33.9821367949658,10.552670315936318,100.0,79.42823767662048
+pagination not supported on this host,o paginamento não é suportado neste host,sem suporte a paginação neste computador,RU,LLAMA,84.71818566322327,31.7108739878402,6.567274736060395,100.0,77.97114849090576
+too many file label options,ter muito mais opções de rótulo para arquivos,número excessivo de opções de rótulo de arquivo,RU,LLAMA,75.72914958000183,42.890233507570755,20.556680845025987,62.5,82.99406170845032
+invalid width %s,a largura %s não é válida,largura inválida %s,RU,LLAMA,63.1065309047699,54.66426007713532,14.535768424205482,100.0,76.60778164863586
+conflicting width options,opções de largura conflitantes,opções de largura conflitantes,RU,LLAMA,97.56914377212524,100.0,100.00000000000004,0.0,99.99996423721313
+invalid horizon length %s,o número de linhas do horizonte %s não é válido,comprimento do horizonte inválido %s,RU,LLAMA,66.60606265068054,45.90767297597901,10.600313379512592,100.0,81.61126375198364
+invalid tabsize %s,A largura do tabulador %s não é válida,tamanho de tabulação inválido %s,RU,LLAMA,64.55629467964172,28.506962028908745,9.535414040914192,100.0,77.0986020565033
+conflicting tabsize options,conflicting options for tab size,opções de tamanho de tabulação conflitantes,RU,LLAMA,67.82388091087341,13.961060031920006,0.0,100.0,78.9864718914032
+--from-file and --to-file both specified,--from-file dan --to-file precisam ser especificados como opções.,ambos --from-file e --to-file especificados,RU,LLAMA,90.49904942512512,60.59508262579426,6.27465531099474,100.0,84.39802527427673
+    --normal                  output a normal diff (the default),    --normal            exibir diferenças em formato padrão (básico),    --normal                  cria um diff no formato normal (padrão),RU,LLAMA,71.18584513664246,36.784923080466,6.379653897348568,75.0,85.28174757957458
+"-q, --brief                   report only when files differ","-q, --brief             apresentar somente quando os arquivos são diferentes.","-q, --brief                   indica apenas se os arquivos forem diferentes",RU,LLAMA,67.47055053710938,52.78304042381211,18.36028134946796,55.55555555555556,87.8427267074585
+"-s, --report-identical-files  report when two files are the same","-s, --report-identical-files  relatar quando dois arquivos são idênticos","-s, --report-identical-files  indica quando dois arquivos forem o idênticos",RU,LLAMA,89.53638672828674,72.74509721049344,27.75806054476853,33.33333333333333,92.92659163475037
+"-c, -C NUM, --context[=NUM]   output NUM (default 3) lines of copied context","-c, -C %s, --context[=%s] exibir por %d (padrão 3) linhas do contexto copiado.","-c, -C NÚM, --context[=NÚM]   cria NÚM (padrão 3) linhas de contexto copiado",RU,LLAMA,72.35241532325745,61.67326663709276,30.708987612633805,58.333333333333336,82.44097828865051
+"-u, -U NUM, --unified[=NUM]   output NUM (default 3) lines of unified context","-u, -U %s, --unified[=%s] exibir por %s (padrão 3) linhas do contexto unificado.","-u, -U NÚM, --unified[=NÚM]   cria NÚM (padrão 3) linhas de contexto unificado",RU,LLAMA,67.88457036018372,62.561758509222855,30.708987612633805,58.333333333333336,82.74639844894409
+"-e, --ed                      output an ed script","-e, --ed                      exibir como um script de edição (editor)","-e, --ed                      cria um script para o editor ed",RU,LLAMA,79.33998703956604,46.017018383382435,16.59038701421971,66.66666666666666,83.38602781295776
+"-n, --rcs                     output an RCS format diff","-n, --rcs                     keluaran RCS diff
+","-n, --rcs                     cria um diff no formato RCS",RU,LLAMA,72.47588038444519,37.41051529735048,20.82186541080652,62.5,86.03329062461853
+"-y, --side-by-side            output in two columns","-y, --side-by-side      exibir em duas colunas","-y, --side-by-side            cria em duas colunas",RU,LLAMA,79.21441793441772,79.11680431582782,41.11336169005196,16.666666666666664,95.17329931259155
+"-W, --width=NUM               output at most NUM (default 130) print columns","-W, --width=NUM               keluarkan paling banyak NUM (baku 130) kolom cetak.","-W, --width=NÚM               limita a saída a NÚM colunas por linha (padrão 130)",RU,LLAMA,58.49093794822693,29.828083403274302,17.775955083125037,91.66666666666666,80.15961050987244
+    --left-column             output only the left column of common lines,    --left-column       exibir apenas a coluna esquerda das linhas comuns,"    --left-column             emite apenas a coluna da esquerda das linhas
+                                idênticas",RU,LLAMA,82.02981352806091,67.04144395078056,27.75806054476853,30.0,90.44480323791504
+    --suppress-common-lines   do not output common lines,    --suppress-common-lines   não exibir linhas comuns,    --suppress-common-lines   não exibe as linhas idênticas,RU,LLAMA,84.98108386993408,64.6006533283666,19.3576934939088,50.0,87.99498677253723
+"-p, --show-c-function         show which C function each change is in","-p, --show-c-function   exibir em qual função C está localizado cada um dos alterações","-p, --show-c-function         mostra em qual função C está cada alteração",RU,LLAMA,90.14703631401062,69.21653684682073,36.6192636299943,50.0,93.642258644104
+"-F, --show-function-line=RE   show the most recent line matching RE","-F, --show-function-line=RE
+        Mostrar a linha de função mais recente que corresponde à RE.","-F, --show-function-line=ER   mostra a linha mais recente correspondendo à ER",RU,LLAMA,87.55217790603638,65.25543540038474,19.923405658137927,70.0,90.01474380493164
+"    --label LABEL             use LABEL instead of file name and timestamp
+                                (can be repeated)","    --label LABEL             utilizar LABEL em vez de nome do arquivo e da data/hora
+                        (possível repetição)","    --label RÓTULO            usa RÓTULO ao invés do nome do arquivo e
+                                carimbo de tempo (pode ser repetido)",RU,LLAMA,72.42738604545593,34.00075859983299,15.071676257541073,70.58823529411765,82.75978565216064
+"-t, --expand-tabs             expand tabs to spaces in output","-t, --expand-tabs       expandindo tabuletas em espaços ao gerar saída","-t, --expand-tabs             expande as tabulações para espaços na saída",RU,LLAMA,74.09055829048157,55.42691222510141,17.747405280050266,66.66666666666666,90.39720296859741
+"-T, --initial-tab             make tabs line up by prepending a tab","-T, --inicial-tab       alinhar linhas adicionando tabulação no início da primeira coluna.","-T, --initial-tab             alinha tabulações introduzindo uma
+                                tabulação no início",RU,LLAMA,79.41847443580627,51.26936598920444,14.458924666162856,88.88888888888889,85.53664088249207
+    --tabsize=NUM             tab stops every NUM (default 8) print columns,    --tabsize=NUM             tab stop adalah setiap NUM (baku 8) kolom cetak,"    --tabsize=NÚM             paradas de tabulação a cada NÚM colunas
+                                (padrão=8)",RU,LLAMA,55.857670307159424,23.597957429476836,7.907608126112009,100.0,79.62291836738586
+    --suppress-blank-empty    suppress space or tab before empty output lines,"    --suppress-blank-empty
+                        não incentive espaços ou tabulações antes de imprimir linhas em branco","    --suppress-blank-empty    suprime espaço ou tabulação antes de linhas
+                                vazias na saída",RU,LLAMA,80.22204041481018,51.982997476509006,8.516593018819643,72.72727272727273,84.9955677986145
+"-l, --paginate                pass output through 'pr' to paginate it","-l, --paginate          direcionar a saída para 'pr' para paginação","-l, --paginate                passa a saída por meio de ""pr"" para paginá-la",RU,LLAMA,64.73717093467712,47.64953570795093,13.779555250377765,54.54545454545454,84.71065759658813
+"-r, --recursive                 recursively compare any subdirectories found","-r, --recursive         recursivamente comparando subdiretórios e arquivos","-r, --recursive                 compara recursivamente os subdiretórios
+                                  encontrados",RU,LLAMA,77.97086834907532,66.54796193105177,23.356898886410015,57.14285714285714,89.077228307724
+    --no-dereference            don't follow symbolic links,    --no-dereference    não deve seguir símbolos de referência,    --no-dereference            não interpreta links simbólicos,RU,LLAMA,72.92477488517761,45.16888155597004,13.134549472120788,100.0,88.80309462547302
+"-N, --new-file                  treat absent files as empty","-N, --new-file          considerar arquivos não existentes como vazios.","-N, --new-file                  considera os arquivos ausentes como vazios",RU,LLAMA,88.54759931564331,72.28574383234857,20.556680845025987,62.5,91.52944087982178
+    --unidirectional-new-file   treat absent first files as empty,    --unidirectional-new-file   tratar o primeiro arquivo não existente como vazio,"    --unidirectional-new-file   considera os primeiros arquivos ausentes
+                                  como vazios",RU,LLAMA,82.34601616859436,52.657011567940884,5.669791110976001,87.5,89.20935988426208
+    --ignore-file-name-case     ignore case when comparing file names,    --ignore-file-case     desconsidere o caso das palavras em nomes de arquivos,"    --ignore-file-name-case     não faz distinção entre letras maiúsculas e
+                                  minúsculas nos nomes dos arquivos",RU,LLAMA,57.128626108169556,30.370370904519383,3.696719741302181,84.61538461538461,81.60480260848999
+    --no-ignore-file-name-case  consider case when comparing file names,"    --no-ignore-file-name-case
+                        considerar pequeno/grande ao comparar o nome do arquivo","    --no-ignore-file-name-case  faz distinção entre letras maiúsculas e
+                                  minúsculas nos nomes dos arquivos",RU,LLAMA,59.86859202384949,33.90563553343585,3.42209762272661,91.66666666666666,80.411297082901
+"-x, --exclude=PAT               exclude files that match PAT","-x, --exclude=PAT               tanpa berkas yang cocok dengan PAT","-x, --exclude=PADRÃO            exclui arquivos correspondendo a PADRÃO",RU,LLAMA,58.66890549659729,31.05257179282387,23.462350320528007,100.0,79.72422242164612
+"-X, --exclude-from=FILE         exclude files that match any pattern in FILE","-X, --exclude-from=FILE         excluir arquivos cujos nomes coincidam com qualquer padrão listado no FILE.","-X, --exclude-from=ARQUIVO      exclui arquivos com correspondam a qualquer
+                                  padrão contido em ARQUIVO",RU,LLAMA,79.88675236701965,47.69795771158176,18.295654224495205,75.0,87.50625848770142
+"-S, --starting-file=FILE        start with FILE when comparing directories","-S, --starting-file=FILE        começa com FILE ao comparar diretórios
+","-S, --starting-file=ARQUIVO     inicia por ARQUIVO ao comparar diretórios",RU,LLAMA,79.45631146430969,57.74884291980628,33.932513407933634,50.0,92.46057271957397
+"    --from-file=FILE1           compare FILE1 to all operands;
+                                  FILE1 can be a directory","    --from-file=FILE1   comparar FILE1 com todos os operandos; 
+                        FILE1 pode ser um diretório","    --from-file=ARQUIVO1        compara ARQUIVO1 com todos os operandos;
+                                  ARQUIVO1 pode ser um diretório",RU,LLAMA,79.32048439979553,64.79307532783534,44.80304273880272,33.33333333333333,92.4437165260315
+"    --to-file=FILE2             compare all operands to FILE2;
+                                  FILE2 can be a directory","    --to-file=FILE2     comparar todos os operandos com FILE2; 
+                        FILE2 pode ser um diretório","    --to-file=ARQUIVO2          compara todos os operandos com ARQUIVO2;
+                                  ARQUIVO2 pode ser um diretório",RU,LLAMA,79.47673201560974,61.61885999134207,37.0304683381906,33.33333333333333,92.70585775375366
+"-i, --ignore-case               ignore case differences in file contents","-i, --ignore-case       ignorar diferenças entre letras maiúsculas e minúsculas no conteúdo do arquivo.","-i, --ignore-case               não faz distinção entre letras maiúsculas e
+                                  minúsculas no conteúdo do arquivo",RU,LLAMA,81.22866153717041,79.62178277727047,64.75445426291287,28.57142857142857,91.34591221809387
+"-E, --ignore-tab-expansion      ignore changes due to tab expansion","-E, --ignore-tab-expansion      ignorar alterações causadas pela expansão da tabulação
+","-E, --ignore-tab-expansion      ignora as diferenças causadas pela expansão
+                                  da tabulação",RU,LLAMA,84.8631501197815,79.795181480749,47.53852732567741,30.0,94.69732642173767
+"-Z, --ignore-trailing-space     ignore white space at line end","-Z, --ignore-trailing-space    abaixa os espaços em branco no final da linha","-Z, --ignore-trailing-space     ignora espaços em branco no fim das linhas",RU,LLAMA,83.50844979286194,70.50325222574575,30.66148710292676,50.0,92.68486499786377
+"-b, --ignore-space-change       ignore changes in the amount of white space","-b, --ignore-space-change       ignorar alterações no número de espaços em branco
+","-b, --ignore-space-change       ignora as diferenças na quantidade de espaços
+                                  em branco",RU,LLAMA,87.0566189289093,63.09563278956354,30.983802298041674,45.45454545454545,94.24277544021606
+"-w, --ignore-all-space          ignore all white space","-w, --ignore-all-space  ignorar todos os espaços em branco","-w, --ignore-all-space          ignora todos os espaços em branco",RU,LLAMA,91.14537239074707,91.53087425607416,59.694917920196445,12.5,98.16580414772034
+"-B, --ignore-blank-lines        ignore changes where lines are all blank","-B, --ignore-blank-lines        ignorar alterações no número de linhas em branco","-B, --ignore-blank-lines        ignora diferenças onde as linhas estão vazias",RU,LLAMA,73.68596196174622,51.80429327884713,14.991106946711685,77.77777777777779,87.68646717071533
+"-I, --ignore-matching-lines=RE  ignore changes where all lines match RE","-I, --ignore-matching-lines=RE
+        Ignorar alterações em linhas que correspondam ao RE","-I, --ignore-matching-lines=ER  ignora as diferenças nas linhas que
+                                  correspondem à expressão regular ER",RU,LLAMA,79.65419888496399,49.03771132766261,18.258251497328285,76.92307692307693,87.95910477638245
+"-a, --text                      treat all files as text","-a, --text                      aplica todos os arquivos como texto","-a, --text                      trata todos os arquivos como texto",RU,LLAMA,91.07922911643982,82.35714272528813,59.694917920196445,12.5,96.87362909317017
+    --strip-trailing-cr         strip trailing carriage return on input,    --strip-trailing-cr apagar o retorno de carro da entrada final,"    --strip-trailing-cr         remove o caractere de retorno de carro
+                                  (CR) ao final da linha na entrada",RU,LLAMA,72.73064255714417,49.386613177197546,9.323683241322543,53.333333333333336,86.43587827682495
+    --binary                    read and write data in binary mode,    --binary            escrever e ler arquivos no modo binário,    --binary                    lê e escreve os dados em modo binário,RU,LLAMA,81.15324378013611,49.87793237890899,11.59119922599073,55.55555555555556,86.86398267745972
+"-D, --ifdef=NAME                output merged file with '#ifdef NAME' diffs","-D, --ifdef=NAME         ignorar o conteúdo do arquivo com a inclusão '#ifdef NAME'","-D, --ifdef=NOME                exibe o arquivo mesclado incluindo
+                                  ""#ifndef NOME"" nas diferenças",RU,LLAMA,75.42538046836853,32.375911293024636,16.467029855845905,90.9090909090909,86.37234568595886
+    --GTYPE-group-format=GFMT   format GTYPE input groups with GFMT,"    --GTYPE-group-format=GFMT   format grup masukan GTYPE dengan GFMT
+",    --GTYPE-group-format=GFMT   formata grupos de entrada GTYPE com GFMT,RU,LLAMA,88.78341317176819,55.116808364765426,18.04438612975343,62.5,92.05652475357056
+    --line-format=LFMT          format all input lines with LFMT,    --line-format=LFMT  formatar todas as linhas de entrada em LFMT,    --line-format=LFMT          formata todas as linhas de entrada com LFMT,RU,LLAMA,92.03162789344788,81.57376875923728,48.326978309062206,22.22222222222222,95.6109344959259
+    --LTYPE-line-format=LFMT    format LTYPE input lines with LFMT,"    --LTYPE-line-format=LFMT
+                        Formatar as linhas de entrada do tipo LTYPE em conformidade com o formato LFMT.",    --LTYPE-line-format=LFMT    formata linhas de entrada LTYPE com LFMT,RU,LLAMA,86.99129223823547,66.065846731005,14.879641171245488,100.0,86.27567887306213
+"  These format options provide fine-grained control over the output
+    of diff, generalizing -D/--ifdef.","Opsi format inicial oferece controle fino sobre o diferencial diff, generalizando -D/--ifdef.","  Essa opções de formatação fornece um controle refinado sobre a saída
+    das diferenças, generalizando -D/--ifdef.",RU,LLAMA,69.74148750305176,43.60216596716949,26.841664057917857,73.33333333333333,84.22056436538696
+"  LTYPE is 'old', 'new', or 'unchanged'.  GTYPE is LTYPE or 'changed'.","O LTYPE pode ser 'antigo', 'novo' ou 'inalterado'. O GTYPE é o mesmo que o LTYPE, a menos que seja 'modificado'.","  LTYPE pode ser ""old"", ""new"" ou ""unchanged"". GTYPE é LTYPE ou ""changed"".",RU,LLAMA,76.21941566467285,32.09988885407877,8.383924775392588,100.0,84.14650559425354
+"  GFMT (only) may contain:
+    %<  lines from FILE1
+    %>  lines from FILE2
+    %=  lines common to FILE1 and FILE2
+    %[-][WIDTH][.[PREC]]{doxX}LETTER  printf-style spec for LETTER
+      LETTERs are as follows for new group, lower case for old group:
+        F  first line number
+        L  last line number
+        N  number of lines = L-F+1
+        E  F-1
+        M  L+1
+    %(A=B?T:E)  if A equals B then T else E","GFMT pode conter (só):
+    %<  linhas do arquivo FILE1
+    %>  linhas do arquivo FILE2
+    %=  linhas comuns aos arquivos FILE1 e FILE2
+    %[-][LARANJA][.[DECIMAL]]{doxX}LETRA  formato para LETRAS em estilo printf, a seguir: 
+        F  primeira letra do grupo (novos) - 'F'
+        L  última letra do grupo (novos) - 'L'
+        N  número de linhas = L-F+1
+        E  antecessora da primeira letra do grupo (antigos) - F-1
+        M  sucessora da última letra do grupo (antigos) - L+1
+    %(A=B?T:E)  se A for igual a B, então T, caso contrário E","  GFMT pode conter (apenas):
+    %<  linhas do ARQUIVO1
+    %>  linhas do ARQUIVO2
+    %=  linhas idênticas em ARQUIVO1 e ARQUIVO2
+    %[-][LARGURA][.[PREC]]{doxX}LETRA  especificação para LETRA
+        utilizando a mesma notação do comando printf(). 
+        Os códigos permitidos para LETRA são,
+        em maiúsculas para grupos novos,
+        em minúsculas para grupos antigos:
+        F  número da primeira linha
+        L  número da última linha
+        N  número de linhas = L-F+1
+        E  F-1
+        M  L+1
+    %(A=B?T:E)  se A igual B, então T; senão E",RU,LLAMA,75.66145658493042,44.023438710250176,36.903597273112254,70.66666666666667,83.20092558860779
+"  LFMT (only) may contain:
+    %L  contents of line
+    %l  contents of line, excluding any trailing newline
+    %[-][WIDTH][.[PREC]]{doxX}n  printf-style spec for input line number","  LFMT dapat berisi:
+    %L  isi baris
+    %l  isi baris, tanpa baris baru
+    %[-][WIDTH][.[PREC]]{doxX}n  printf-style spec untuk nomor baris masukan","  LFMT pode conter (apenas):
+    %L  conteúdo da linha
+    %l  conteúdo da linha, excluindo o caractere final de nova linha
+    %[-][LARGURA][.[PREC]]{doxX}n  especificação estilo printf() do número
+                                   da linha da utilizando",RU,LLAMA,65.94628691673279,20.605692112901615,27.976368323916116,89.65517241379311,80.72695136070251
+"  Both GFMT and LFMT may contain:
+    %%  %
+    %c'C'  the single character C
+    %c'\OOO'  the character with octal code OOO
+    C    the character C (other characters represent themselves)","GFMT ou LFMT podem conter: 
+%%
+%c'C'	umor um caractere C (caracteres, representando a si mesmos)
+%c'^'	umor com o código octal 128
+","  GFMT ou LFMT pode conter:
+    %%  %
+    %c'C'  o caractere C
+    %c'\OOO'  o caractere com código octal OOO
+    C    o caractere C (outros caracteres representam a si próprios)",RU,LLAMA,71.41677141189575,48.710616625923215,24.03945217907577,64.28571428571429,84.84086394309998
+"-d, --minimal            try hard to find a smaller set of changes","-d, --minimal           tenta encontrar o conjunto de alterações mínimos mais pequeno possível para Keras","-d, --minimal            se esforça para localizar o menor conjunto
+                           de diferenças",RU,LLAMA,76.131671667099,41.81176224681924,13.380161378318954,100.0,82.79064297676086
+    --horizon-lines=NUM  keep NUM lines of the common prefix and suffix,"    --horizon-lines=NUM mantendo NUM linhas antes e depois das distintas
+",    --horizon-lines=NÚM  mantém NÚM linhas de prefixo e sufixo idênticos,RU,LLAMA,61.41001582145691,37.32958906811521,8.913765521398126,88.88888888888889,80.23621439933777
+    --speed-large-files  assume large files and many scattered small changes,    --speed-large-files assume that large and numerous small changes are dispersed in the files,"    --speed-large-files  assume arquivos grandes e muitas alterações
+                           pequenas espalhadas",RU,LLAMA,67.80034899711609,38.03553073198505,6.178110636313396,100.0,79.24332022666931
+"    --color[=WHEN]       color output; WHEN is 'never', 'always', or 'auto';
+                           plain --color means --color='auto'","    --color[=QUALIDADE]     cor de exibição; QUALIDADE pode ser 'sem', 'sócrono' ou 'automático'; sem especificar usa-se o valor automático.","    --color[=QUANDO]     colore a saída; QUANDO pode ser ""never"", ""always"",
+                           ou ""auto""; só --color resulta em --color=""auto""",RU,LLAMA,74.90113973617554,25.36853996215135,5.849265835351795,87.5,78.9016604423523
+"    --palette=PALETTE    the colors to use when --color is active; PALETTE is
+                           a colon-separated list of terminfo capabilities",    --palette=PALETTE   paleta de cores utilizada quando o --color está ativo; PALETTE é um conjunto que representa propriedades terminfo separadas por vírgula.,"    --palette=PALETA     as cores para usar quando --color está ativa;
+                           PALETA é uma lista de capacidades de terminfo
+                           separadas por caractere de dois pontos",RU,LLAMA,78.67769598960876,47.48005831601061,9.059528370368303,69.56521739130434,84.34709906578064
+    --help               display this help and exit,    --help              Mostrar esta ajuda e sair,    --help               mostra esta ajuda e sai,RU,LLAMA,79.64205741882324,68.2719574864116,32.46679154750991,33.33333333333333,87.62895464897156
+"-v, --version            output version information and exit","-v, --version           Mostrar informações sobre a versão e sair.","-v, --version            mostra as informações da versão e sai",RU,LLAMA,85.39925217628479,64.98900453170239,18.36028134946796,55.55555555555556,88.28606605529785
+FILES are 'FILE1 FILE2' or 'DIR1 DIR2' or 'DIR FILE' or 'FILE DIR'.,FILES é 'FILE1 FILE2' ou 'DIR1 DIR2' ou 'DIR FILER' ou 'FIL ER DIR'.,"ARQUIVOS são ""ARQUIVO1 ARQUIVO2"", ""DIR1 DIR2"", ""DIR ARQUIVO"" ou ""ARQUIVO DIR"".",RU,LLAMA,65.13321995735168,14.286479743559205,1.9597730174832821,100.0,83.96435379981995
+"If --from-file or --to-file is given, there are no restrictions on FILE(s).","Se --from-file ou --to-file fora, não há limites para arquivos.","Se --from-file ou --to-file for especificado, não há restrição em ARQUIVO(s).",RU,LLAMA,71.90105319023132,51.97129204805435,22.715713055706516,45.45454545454545,85.99842190742493
+"If a FILE is '-', read standard input.","Se o arquivo for '-', lê a entrada padrão.","Se um ARQUIVO for igual a ""-"", lê da entrada padrão.",RU,LLAMA,76.41773819923401,41.75690296965017,13.714776985037803,45.45454545454545,84.92265939712524
+"Usage: %s [OPTION]... FILES
+","Utilização: %s [OPÇÃO]? Arquivos
+","Uso: %s [OPÇÃO]... ARQUIVOS
+",RU,LLAMA,83.56896042823792,39.140976435038205,47.034907429549826,50.0,83.56096744537354
+Compare FILES line by line.,Bandando o arquivo linha por linha.,Compara ARQUIVOS linha por linha.,RU,LLAMA,54.91655468940735,49.58982299897542,41.11336169005198,60.0,76.10300183296204
+conflicting %s option value %s,valor inválido %s opção %s,opção %s com valor conflitante %s,RU,LLAMA,76.59105062484741,39.88215629283561,27.890014303843827,50.0,85.78714728355408
+conflicting output style options,opções conflitantes para a gaya de saída do keluaran,opções conflitantes de estilo de saída,RU,LLAMA,67.559415102005,59.07875026369583,13.485111859503691,83.33333333333334,88.13878893852234
+invalid color %s,o código de cor %s não é válido,cor inválida %s,RU,LLAMA,59.22002196311951,33.70470447182507,10.552670315936318,100.0,70.5556869506836
+-D option not supported with directories,-D opção não suportada para diretórios.,Sem suporte à opção -D com diretórios,RU,LLAMA,82.60605931282043,43.776472269500346,8.643019616048525,100.0,83.00977945327759
+"Common subdirectories: %s and %s
+","Subdiretórios sama: %s e %s
+","Subdiretórios idênticos: %s e %s
+",RU,LLAMA,84.97095704078674,62.755448983523635,70.71067811865478,20.0,92.54522323608398
+"Only in %s: %s
+","Tinha apenas em %s: %s
+","Somente em %s: %s
+",RU,LLAMA,86.62076592445374,48.82126318082749,68.037493331712,50.0,90.18450975418091
+"File %s is a %s while file %s is a %s
+","Berkas %s adalah %s sementara berkas %s adalah %s
+","O arquivo %s é %s, enquanto o arquivo %s é %s
+",RU,LLAMA,79.26501631736755,15.965064716052193,9.809884033350574,72.72727272727273,85.62217354774475
+"Symbolic links %s -> %s and %s -> %s differ
+",Taut simbolis %s -> %s dan %s -> %s berbeda.,"Os links simbólicos %s -> %s e %s -> %s são diferentes
+",RU,LLAMA,82.9838752746582,37.49605907229769,53.13269403996457,50.0,89.89400863647461
+cannot compare '-' to a directory,não é possível comparar o sinal negativo (-) com diretório,"não é possível comparar ""-"" com um diretório",RU,LLAMA,69.17850375175476,64.99645216587886,24.384183193426086,62.5,87.95085549354553
+"Files %s and %s are identical
+",Bilhas %s e %s idênticas,"Os aquivos %s e %s são idênticos
+",RU,LLAMA,63.338297605514526,41.53785055763608,46.19993369945709,57.14285714285714,81.02532029151917
+Randy Smith,Randy Smith,Randy Smith,RU,LLAMA,98.84698987007141,100.0,100.00000000000004,0.0,100.0
+incompatible options,opções não compatíveis,opções incompatíveis,RU,LLAMA,91.76066517829895,59.30695843238932,27.516060407455225,100.0,92.86203384399414
+'-' specified for more than one input file,- dispesifikasikan lebih dari satu berkas masukan,"""-"" especificado para mais de um arquivo de entrada",RU,LLAMA,46.394649147987366,11.427862409853336,3.708659055657029,100.0,75.79898238182068
+read failed,falha na leitura do arquivo,falha de leitura,RU,LLAMA,77.2859275341034,46.61640835699377,12.703318703865365,100.0,83.38273763656616
+"-A, --show-all              output all changes, bracketing conflicts","-A, --show-all          exibir todas as alterações e conflitos no documento
+","-A, --show-all              exibe todas as diferenças, com os conflitos
+                              entre parênteses",RU,LLAMA,64.50213193893433,47.20666239923368,15.307938151800226,54.54545454545454,85.41257381439209
+"-e, --ed                    output ed script incorporating changes
+                                from OLDFILE to YOURFILE into MYFILE","-e, --ed                exibe o script ed que contém alterações do OLDFILE para YOURFILE e coloca no MYFILE.","-e, --ed                    cria um script de ed para incorporar as
+                              diferenças entre ARQUIVO1 e ARQUIVO2
+                              em ARQUIVO3",RU,LLAMA,55.98871111869812,22.601206595760697,9.313775329024091,76.47058823529412,76.23487114906311
+"-E, --show-overlap          like -e, but bracket conflicts","-E, --show-overlap      como -e mais conflitos em parênteses.","-E, --show-overlap          similar a -e, mas exibe conflitos entre parênteses",RU,LLAMA,66.40402674674988,50.84143733564007,15.20797122409784,70.0,84.57976579666138
+"-3, --easy-only             like -e, but incorporate only nonoverlapping changes","-3, --easy-only         como -e, mas apenas não sobreponha mudanças","-3, --easy-only             similar a -e, mas incorpora apenas as alterações
+                              que não se sobreponham",RU,LLAMA,67.94207096099854,45.47510167021444,16.002934088205123,57.14285714285714,86.8282675743103
+"-x, --overlap-only          like -e, but incorporate only overlapping changes","-x, --overlap-only      como -e, mas apenas as alterações que se sobrepõem","-x, --overlap-only          similar a -e, mas incorpora apenas as alterações
+                              que se sobrepõem",RU,LLAMA,77.09890007972717,73.0303455770615,49.74279779258904,23.076923076923077,93.25699806213379
+"-X                          like -x, but bracket conflicts","-X                      como -x, mas com conflitos de API dentro das chaves","-X                          similar a -x, mas exibe conflitos entre parentes",RU,LLAMA,62.19409704208374,34.566706033269604,14.323145079400492,88.88888888888889,81.32994174957275
+-i                          append 'w' and 'q' commands to ed scripts,-i                      adicionar comandos 'w' e 'q' ao script ed,"-i                          anexa os comandos ""w"" e ""q"" aos scripts de ed",RU,LLAMA,85.36106944084167,32.29121286308028,3.461743640369311,63.63636363636363,86.66370511054993
+"-m, --merge                 output actual merged file, according to
+                                -A if no other options are given","-m, --merge                 descargar arquivo realmente unido de acordo com -A, sem parâmetros adicionais
+","-m, --merge                 emite arquivo mesclado atual, conforme
+                              -A se nenhuma outra opções for fornecida",RU,LLAMA,66.60428643226624,29.86842144852129,10.883006131731655,78.57142857142857,79.83222603797913
+"-a, --text                  treat all files as text","-a, --text                   aplique a conversão de todos os arquivos para texto","-a, --text                  trata todos os arquivos como texto",RU,LLAMA,78.42652201652527,61.107134593427126,22.03359678996931,62.5,89.2866313457489
+    --strip-trailing-cr     strip trailing carriage return on input,    --strip-trailing-cr remove o retorno de carro da entrada final,"    --strip-trailing-cr     remove o caractere de retorno de carro
+                              (CR) ao final da linha na entrada",RU,LLAMA,73.68050813674927,58.13754537083362,13.579714487002688,46.666666666666664,90.18352031707764
+"-T, --initial-tab           make tabs line up by prepending a tab","-T, --inicial-tab       alinhar linhas adicionando tabulação no início da primeira coluna.","-T, --initial-tab           alinha tabulações introduzindo uma
+                              tabulação no início.",RU,LLAMA,79.55630421638489,51.20624860692865,15.133218633429316,100.0,87.19925880432129
+    --diff-program=PROGRAM  use PROGRAM to compare files,"    --diff-program=PROGRAM
+        para comparar arquivos utilize o PROGRAMA",    --diff-program=PROGRAMA  usa o PROGRAMA para comparar os arquivos,RU,LLAMA,92.30299592018127,67.95459040095716,15.359671865421094,62.5,87.84491419792175
+"-L, --label=LABEL           use LABEL instead of file name
+                                (can be repeated up to three times)","-L, --label=LABEL           pakai LABEL sebagai pengganti nama berkas
+                        (dapat diulang sampai dengan tiga kali)","-L, --label RÓTULO          usa RÓTULO ao invés do nome do arquivo
+                                (pode ser repetido até três vezes)",RU,LLAMA,70.67478895187378,18.240884977661317,8.123368307125363,94.11764705882352,78.46510410308838
+    --help                  display this help and exit,    --help              Mostrar esta ajuda e sair.,    --help                  mostra esta ajuda e sai,RU,LLAMA,76.89980864524841,67.35599017939437,26.269098944241588,33.33333333333333,86.15047335624695
+"-v, --version               output version information and exit","-v, --version           Mostrar informações sobre a versão e sair.","-v, --version               mostra informação da versão e sai",RU,LLAMA,85.34790873527527,62.22523776666616,17.542198478193427,62.5,88.29465508460999
+"Usage: %s [OPTION]... MYFILE OLDFILE YOURFILE
+",Utilização: %s [OPÇÃO]? MEU_ARQUIVO ANTIGO_ARQUIVO SEUS_ARQUIVOS,"Uso: %s [OPÇÃO]... ARQUIVO1 ARQUIVO2 ARQUIVO3
+",RU,LLAMA,74.85213875770569,47.28142821943589,28.175950490399515,83.33333333333334,80.21765351295471
+Compare three files line by line.,"Bandando em linhas, três arquivos por linha.",Compara três arquivos linha por linha.,RU,LLAMA,50.072020292282104,59.31610679099041,22.31618068926665,66.66666666666666,82.92130827903748
+"
+The default output format is a somewhat human-readable representation of
+the changes.
+
+The -e, -E, -x, -X (and corresponding long) options cause an ed script
+to be output instead of the default.
+
+Finally, the -m (--merge) option causes diff3 to do the merge internally
+and output the actual merged file.  For unusual input, this is more
+robust than using ed.
+","O padrão de saída para o keluaran baku é uma representação que pode ser lida por humanos. Os parâmetros -e, -E, -x e -X (além dos seus equivalentes mais longos) causam a saída em um script ed como substituto do padrão fixo. Por fim, o parâmetro -m (--merge) faz com que diff3 realize uma fusão interna e envie realmente o arquivo combinado. Para entradas incomuns, isso é mais lógico em vez de usar ed.","
+O formato padrão de saída é uma forma legível por humanos de representação
+das alterações.
+
+As opções -e, -E, -x, -X (e opções extensas correspondentes) fazem com que
+um script de ed seja criado, ao invés do padrão.
+
+Finalmente, a opção -m (--merge) faz com que diff3 faça a mesclagem
+internalmente e emite o arquivo mesclado atual. Para entradas incomuns,
+isto é mais robusto do que usar o ed.
+",RU,LLAMA,75.18501281738281,47.860385081092474,23.259765008877665,71.01449275362319,81.13610744476318
+"Exit status is 0 if successful, 1 if conflicts, 2 if trouble.","Status de resultado é 0 se tiver sucesso, 1 em caso de conflito e 2 quando houver erro.","Status de saída é 0 se houver sucesso, 1 se conflitos e 2 se problema.",RU,LLAMA,88.11138272285461,51.03309727657487,15.77454598068419,60.0,88.99833559989929
+internal error: screwup in format of diff blocks,Erro interno: format bloco difido,erro interno: confusão no formato dos blocos diff,RU,LLAMA,72.72552847862244,36.94189843268282,9.846052248031867,75.0,79.82646822929382
+%s: diff failed: ,%s: falha ao encontrar diferenças: ,%s: diff falhou: ,RU,LLAMA,64.23811316490173,28.355306971732908,22.089591134157878,100.0,78.52550745010376
+internal error: invalid diff type in process_diff,Erro interno: tipo de diferença não é válido no processamento da função process_diff,erro interno: tipo de diff inválido em process_diff,RU,LLAMA,78.74200940132141,60.277347095662556,22.14250071345737,100.0,80.44293522834778
+invalid diff format; invalid change separator,formato de diferença não é válido; separador para alteração não é válido,formato de diff inválido; separador de diferença inválido,RU,LLAMA,61.38216853141785,60.243732918632574,10.224003680109194,100.0,77.56065130233765
+invalid diff format; incomplete last line,formato de diferença entre pagamentos não é válido; a última linha da tabela está incompleta.,formato de diff inválido; última linha incompleta,RU,LLAMA,61.65606379508972,57.63171838663419,7.158561577277536,100.0,74.93941187858582
+subsidiary program %s could not be invoked,programa subordinado %s não pode ser chamado,o programa subsidiário %s não pôde ser invocado,RU,LLAMA,79.31392788887024,46.020009530531894,20.612390921238426,50.0,83.70908498764038
+invalid diff format; incorrect leading line chars,formato de diferença não é válido; caracteres líderes das linhas estão incorretos,formato de diff inválido; caracteres incorretos na linha de início,RU,LLAMA,69.20449733734131,53.99986267337634,9.238430210261097,90.0,79.74432110786438
+internal error: invalid diff type passed to output,Erro interno: tipo de pagamento diferente não é um valor válido para saída,erro interno: tipo de diff inválido passado para a saída,RU,LLAMA,66.30693078041077,53.28341495856533,19.67497981115564,80.0,80.47980070114136
+input file shrank,o arquivo de entrada foi reduzido em tamanho.,o arquivo de entrada diminuiu,RU,LLAMA,83.0562174320221,62.4312817080773,29.84745896009822,80.0,85.30183434486389
+cannot compare file names %s and %s,não é possível comparar o nome do arquivo %s e %s,não foi possível comparar os nomes dos arquivos %s e %s,RU,LLAMA,93.04817318916321,57.18360582227705,34.38931217657843,45.45454545454545,96.22438549995422
+%s: recursive directory loop,%s: loop diretório recursivo,%s: loop de diretório recursivo,RU,LLAMA,95.77714800834656,83.07204435309653,51.15078115793242,20.0,95.98791599273682
+Thomas Lord,Thomas Lord,Thomas Lord,RU,LLAMA,99.1402804851532,100.0,100.00000000000004,0.0,100.00002384185791
+"-o, --output=FILE            operate interactively, sending output to FILE","-o --output=FILE    operar de forma interativa, escrevendo saída em FILE","-o, --output=ARQUIVO         age interativamente, enviando a saída para ARQUIVO",RU,LLAMA,77.26128697395325,28.81196984763982,7.768562846380176,100.0,85.78670024871826
+"-i, --ignore-case            consider upper- and lower-case to be the same","-i, --ignore-case       ignorar diferenças de maiúsculas e minúsculas entre caracteres","-i, --ignore-case            não faz distinção entre letras maiúsculas
+                              e minúsculas",RU,LLAMA,74.90425705909729,59.858558657405325,24.384183193426086,60.0,86.77840828895569
+"-E, --ignore-tab-expansion   ignore changes due to tab expansion","-E, --ignore-tab-expansion   ignorar alterações causadas pela expansão da tabulação
+","-E, --ignore-tab-expansion   ignorar as diferenças causadas pela expansão
+                               da tabulação",RU,LLAMA,84.59633588790894,83.2336328236461,59.54165059120785,20.0,96.46497368812561
+"-Z, --ignore-trailing-space  ignore white space at line end","-Z, --ignore-trailing-space
+                        abaixa espaços em branco no final da linha.","-Z, --ignore-trailing-space  ignora espaços em branco no fim das linhas",RU,LLAMA,81.71489834785461,71.36184637588836,30.66148710292676,40.0,88.87852430343628
+"-b, --ignore-space-change    ignore changes in the amount of white space","-b, --ignore-space-change    ignorar mudanças no número de espaços em branco
+","-b, --ignore-space-change    ignora as diferenças na quantidade de espaços
+                               em branco",RU,LLAMA,86.98071837425232,65.41927502313024,30.983802298041674,45.45454545454545,94.4155752658844
+"-W, --ignore-all-space       ignore all white space","-W, --ignore-all-space  ignorar todos os espaços em branco","-W, --ignore-all-space       ignora todos os espaços em branco",RU,LLAMA,90.28425812721252,91.53087425607416,59.694917920196445,12.5,97.9138970375061
+"-B, --ignore-blank-lines     ignore changes whose lines are all blank","-B, --ignore-blank-lines     ignorar alterações no número de linhas em branco
+","-B, --ignore-blank-lines     ignora diferenças onde as linhas estão vazias",RU,LLAMA,73.28343987464905,51.80429327884713,14.991106946711685,77.77777777777779,87.68646717071533
+"-I, --ignore-matching-lines=RE  ignore changes all whose lines match RE","-I, --ignore-matching-lines=RE
+        Ignore changes in lines that match the regular expression RE.","-I, --ignore-matching-lines=ER  ignora as diferenças em linhas que correspondem
+                                  à Expressão Regular",RU,LLAMA,68.30069422721863,39.71349296177548,15.310245441182444,91.66666666666666,82.53362774848938
+    --strip-trailing-cr      strip trailing carriage return on input,    --strip-trailing-cr      apagar o retorno de carro da linha final do input,"    --strip-trailing-cr      remove o caractere de retorno de carro
+                               (CR) ao final da linha na entrada",RU,LLAMA,72.27210998535156,49.56728051664129,11.434735332025594,53.333333333333336,87.46711611747742
+"-a, --text                   treat all files as text","-a, --text                   aplica todos os arquivos como texto","-a, --text                   trata todos os arquivos como texto",RU,LLAMA,91.07922911643982,82.35714272528813,59.694917920196445,12.5,96.87362909317017
+"-w, --width=NUM              output at most NUM (default 130) print columns","-w, --width=NUM              Kelihatan keluarkan paling banyak NUM (baku 130) kolom cetak.","-w, --width=NÚM              emite no máximo NÚM (padrão 130) colunas linhas",RU,LLAMA,60.86626648902893,30.92058915685992,17.694975149532556,90.0,81.06657266616821
+"-l, --left-column            output only the left column of common lines",--left-column           exibir apenas a coluna esquerda das linhas comuns,"-l, --left-column            emite apenas a coluna da esquerda das linhas
+                               idênticas",RU,LLAMA,77.00477242469788,62.86756040909957,22.226917310625474,36.36363636363637,85.9329104423523
+"-s, --suppress-common-lines  do not output common lines","--supress-common-lines
+        não exibir linhas comuns.","-s, --suppress-common-lines  não emite as linhas idênticas",RU,LLAMA,75.67194700241089,45.988164562048794,6.916271812933183,71.42857142857143,79.9328863620758
+"-t, --expand-tabs            expand tabs to spaces in output","-t, --expand-tabs       expandindo tabuletas em espaços ao gerar saída","-t, --expand-tabs            expande as tabulações para espaços na saída",RU,LLAMA,74.09055829048157,55.42691222510141,17.747405280050266,66.66666666666666,90.39720296859741
+    --tabsize=NUM            tab stops at every NUM (default 8) print columns,    --tabsize=NUM            tab stop adalah setiap NUM (baku 8) kolom cetak,"    --tabsize=NÚM            paradas de tabulação a cada NÚM colunas
+                               (padrão=8)",RU,LLAMA,56.042832136154175,23.597957429476836,7.907608126112009,100.0,79.62291836738586
+"-d, --minimal                try hard to find a smaller set of changes","-d, --minimal           tenta encontrar o conjunto de alterações mínimos mais pequeno possível para Keras","-d, --minimal                se esforça para localizar o menor conjunto
+                               de diferenças",RU,LLAMA,76.131671667099,41.81176224681924,13.380161378318954,100.0,82.79064297676086
+"-H, --speed-large-files      assume large files, many scattered small changes","-H, --speed-large-files assume that large files with many small dispersed changes are being processed.","-H, --speed-large-files      assume arquivos grandes e muitas alterações
+                               pequenas espalhadas",RU,LLAMA,69.74291205406189,42.076069284793,15.310245441182444,100.0,80.5968165397644
+    --diff-program=PROGRAM   use PROGRAM to compare files,    --diff-program=PROGRAM   para comparar arquivos utilize PROGRAM,    --diff-program=PROGRAMA  usa o PROGRAMA para comparar os arquivos,RU,LLAMA,89.89628553390503,61.36177677366048,12.862534787413374,87.5,89.11632895469666
+    --help                   display this help and exit,    --help              Mostrar esta ajuda e sair.,    --help                   mostra esta ajuda e sai,RU,LLAMA,76.89980864524841,67.35599017939437,26.269098944241588,33.33333333333333,86.15047335624695
+"-v, --version                output version information and exit","-v, --version           Mostrar informações sobre a versão e sair.","-v, --version                mostra informação da versão e sai",RU,LLAMA,85.34790873527527,62.22523776666616,17.542198478193427,62.5,88.29465508460999
+"Usage: %s [OPTION]... FILE1 FILE2
+",Utilização: %s [OPÇÃO]? FIFO1 FIFO2,"Uso: %s [OPÇÃO]... ARQUIVO1 ARQUIVO2
+",RU,LLAMA,74.77193474769592,33.3990569322912,42.326181966045375,80.0,85.16987562179565
+Side-by-side merge of differences between FILE1 and FILE2.,Fusão bersisiana de diferenças entre FILE1 e FILE2.,Mesclagem lado a lado das diferenças entre ARQUIVO1 e ARQUIVO2.,RU,LLAMA,55.737775564193726,28.992596203454763,9.080027618567454,70.0,82.22992420196533
+cannot interactively merge standard input,não é possível unir o input padrão de forma interativa,não foi possível mesclar interativamente a entrada padrão,RU,LLAMA,87.65365481376648,36.0099544093732,5.522397783539471,100.0,85.85426211357117
+both files to be compared are directories,ambos os arquivos comparados? diretórios,os dois arquivos a serem comparados são diretórios,RU,LLAMA,68.18808913230896,49.60200363626493,8.22487964923291,75.0,84.79844927787781
+"ed:	Edit then use both versions, each decorated with a header.
+eb:	Edit then use both versions.
+el or e1:	Edit then use the left version.
+er or e2:	Edit then use the right version.
+e:	Discard both versions then edit a new one.
+l or 1:	Use the left version.
+r or 2:	Use the right version.
+s:	Silently include common lines.
+v:	Verbosely include common lines.
+q:	Quit.
+","[{'original_command': 'ed', 'portuguese_translation': 'редактировать и использовать обе версии, включив в каждую заголовок.'}, {'original_command': 'eb', 'portuguese_translation': 'редактировать и использовать обе версии.'}, {'originalterminal command': 'el atau e1', 'portuguese_translation': 'редактировать и использовать левую версию.'}, {'originalterminal command': 'er atau e2', 'portuguese_translation': 'редактировать и использовать правую версию.'}, {'originalcommand': 'e', 'portuguese_translation': 'отбросить обе и редактировать новую версию.'}, {'originalterminal command': 'l atau e1', 'portuguese_translation': 'использовать левую версию.'}, {'originalterminal command': 'r atau e2', 'portuguese_translation': 'использовать правую версию.'}, {'originalcommand': 's', 'portuguese_translation': 'включать общие строки, не выдавая сообщения.'}, {'originalterminal command': 'v', 'portuguese_translation': 'включать общие строки, выдавая сообщение.'}, {'originalcommand': 'q', 'portuguese_translation': 'выйти.'}]","ed:	Edita e, então, usa ambas as versões, cada uma com seu cabeçalho.
+eb:	Edita e, então, usa ambas as versões.
+el ou e1:	Edita e, então, usa a versão da esquerda.
+er ou e2:	Edita e, então, usa a versão da direita.
+e:	Edita uma nova versão.
+l ou 1:	Usa a versão da esquerda.
+r ou 2:	Usa a versão da direita.
+s:	Inclui silenciosamente as linhas idênticas.
+v:	Inclui verbosamente as linhas idênticas.
+q:	Sai.
+",RU,LLAMA,46.09838426113129,11.372531781739744,0.41542666095255126,100.0,56.7409873008728
+unrecognized prefix: %s,prefiks não conhecido: %s,prefixo desconhecido: %s,RU,LLAMA,89.32320475578308,59.715754487602844,30.213753973567677,100.0,90.08414149284363
+unparsable value for --palette,valor não pode ser dividido para o --palette,valor não analisável para --palette,RU,LLAMA,76.36243104934692,49.51020070679006,13.134549472120788,80.0,86.39675378799438
