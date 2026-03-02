@@ -1,0 +1,420 @@
+{
+    "job_info": {
+        "input_file": "/home/vinicius/TCC/data/translations_download/exif_v0.6.22/exif-0.6.22.vi.po",
+        "output_file": "/home/vinicius/TCC/resultados/context_levels_download/exif_v0.6.22/exif-0.6.22.pt_BR.llama.ctx-2.ru-vi.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-14T13:48:02.338446",
+        "duration_seconds": 24.49,
+        "reference_file": "/home/vinicius/TCC/data/translations_download/exif_v0.6.22/exif-0.6.22.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": 8504782440986903562
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "VI",
+            "RU"
+        ],
+        "context_sentences_sample": {
+            "Not enough memory.": {
+                "VI": "Không đủ bộ nhớ.",
+                "RU": "Недостаточно памяти."
+            },
+            "Setting a value for this tag is unsupported!": {
+                "VI": "Không hỗ trợ chức năng tạo một giá trị cho thẻ này!",
+                "RU": "Установка значения для этого тега не поддерживается."
+            },
+            "Too few components specified (need %d, found %d)\n": {
+                "VI": "Chỉ định quá ít thành phần (cần %d, tìm thấy %d)\n",
+                "RU": "Указано слишком мало компонентов (необходимо %d, найдено %d)\n"
+            },
+            "Numeric value expected\n": {
+                "VI": "Cần một giá trị bằng số\n",
+                "RU": "Ожидалось числовое значение\n"
+            },
+            "Internal error. Please contact <%s>.": {
+                "VI": "Lỗi nội bộ. Hãy liên lạc với <%s>.",
+                "RU": "Внутренняя ошибка. Сообщите о ней по адресу <%s>."
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 71,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct 10 2025, 08:54:03) [GCC 11.4.0]"
+    },
+    "translations": [
+        {
+            "original": "Not enough memory.",
+            "translated": "Não há memória suficiente.",
+            "reference": "Memória insuficiente."
+        },
+        {
+            "original": "Setting a value for this tag is unsupported!",
+            "translated": "Não há suporte para a função de atribuir um valor a este elemento!",
+            "reference": "Não há suporte à definição de um valor para esta etiqueta!"
+        },
+        {
+            "original": "Too few components specified (need %d, found %d)\n",
+            "translated": "Chamado para indicar que há muito poucos componentes (requisito %d, encontrados %d)",
+            "reference": "Muito poucos componentes especificados (precisa de %d, encontrou %d)\n"
+        },
+        {
+            "original": "Numeric value expected\n",
+            "translated": "Cómo posso inserir um valor numérico?",
+            "reference": "Valor numérico esperado\n"
+        },
+        {
+            "original": "Internal error. Please contact <%s>.",
+            "translated": "Erro interno. Entre em contato com <%s>.",
+            "reference": "Erro interno. Por favor, contate <%s>."
+        },
+        {
+            "original": "Not yet implemented!",
+            "translated": "Não foi possível realizar a tarefa!",
+            "reference": "Não implementado ainda!"
+        },
+        {
+            "original": "Warning; Too many components specified!",
+            "translated": "Cairi: insuficiente informação sobre o componente!",
+            "reference": "Aviso; Especificados componentes demais!"
+        },
+        {
+            "original": "Too much EXIF data (%i bytes). Only %i bytes are allowed.",
+            "translated": "Excepcional quantidade de dados EXIF (%i byte). Permite apenas %i byte.",
+            "reference": "Dados EXIF demais (%i bytes). Apenas %i bytes são permitidos."
+        },
+        {
+            "original": "Could not write '%s' (%s).",
+            "translated": "Não é possível salvar '%s' (%s).",
+            "reference": "Não foi possível escrever \"%s\" (%s)."
+        },
+        {
+            "original": "Wrote file '%s'.",
+            "translated": "GHIUMA TIN %s.",
+            "reference": "Escrever arquivo \"%s\"."
+        },
+        {
+            "original": "EXIF entry '%s' ",
+            "translated": "Mục tin EXIF '%s'",
+            "reference": "Entrada EXIF \"%s\""
+        },
+        {
+            "original": "(0x%x, '%s') ",
+            "translated": "(0x%x, '%s') ",
+            "reference": "(0x%x, \"%s\") "
+        },
+        {
+            "original": "exists in IFD '%s':\n",
+            "translated": "đã tồn tại trong IFD \"%s\":",
+            "reference": "existe em IFD \"%s\":\n"
+        },
+        {
+            "original": "Adding entry...",
+            "translated": "Adicione o registro...",
+            "reference": "Adicionando entrada..."
+        },
+        {
+            "original": "IFD '%s' does not contain a tag '%s'!",
+            "translated": "IFD '%s' não possui nenhum elemento '%s'!",
+            "reference": "IFD \"%s\" não contém uma etiqueta \"%s\"!"
+        },
+        {
+            "original": "Could not open '%s' (%s)!",
+            "translated": "Não é possível abrir '%s' (%s)!",
+            "reference": "Não foi possível abrir \"%s\" (%s)!"
+        },
+        {
+            "original": "Could not determine size of '%s' (%s).",
+            "translated": "Não é possível determinar o tamanho do arquivo '%s' (%s).",
+            "reference": "Não foi possível determinar o tamanho de \"%s\" (%s)."
+        },
+        {
+            "original": "Could not read '%s' (%s).",
+            "translated": "Não é possível ler o arquivo '%s' (%s).",
+            "reference": "Não foi possível ler \"%s\" (%s)!"
+        },
+        {
+            "original": "IFD '%s' does not contain tag '%s'.",
+            "translated": "IFD '%s' não possui o símbolo de fechamento '%s'.",
+            "reference": "IFD \"%s\" não contém uma etiqueta \"%s\"."
+        },
+        {
+            "original": "'%s' does not contain tag '%s'.",
+            "translated": "'%s' não possui o sinal '%s'.",
+            "reference": "\"%s\" não contém uma etiqueta \"%s\"!"
+        },
+        {
+            "original": "'%s' does not contain a thumbnail!",
+            "translated": "IFD '%s' não possui imagens de modelo exibidas!",
+            "reference": "IFD \"%s\" não contém uma miniatura!"
+        },
+        {
+            "original": "Could not open '%s' for writing (%s)!",
+            "translated": "Não é possível abrir '%s' para gravar (%s)!",
+            "reference": "Não foi possível abrir \"%s\" para escrita (%s)!"
+        },
+        {
+            "original": "EXIF tags in '%s':",
+            "translated": "Thêm EXIF tags no arquivo '%s'.",
+            "reference": "Etiquetas EXIF em \"%s\":"
+        },
+        {
+            "original": "Unknown format or nonexistent MakerNote.\n",
+            "translated": "Não é possível identificar o formato ou não há informação de MakerNote.",
+            "reference": "Formato desconhecido ou MakerNote inexistente.\n"
+        },
+        {
+            "original": "MakerNote does not contain any value.\n",
+            "translated": "MakerNote não possui valor.",
+            "reference": "MakerNote não contém qualquer valor.\n"
+        },
+        {
+            "original": "MakerNote contains %i value:\n",
+            "translated": "",
+            "reference": ""
+        },
+        {
+            "original": "Unknown Tag",
+            "translated": "Sem identificação do elemento",
+            "reference": "Etiqueta desconhecida"
+        },
+        {
+            "original": "Unknown value",
+            "translated": "Valor insossobile",
+            "reference": "Valor desconhecido"
+        },
+        {
+            "original": "EXIF tags in '%s' ('%s' byte order):",
+            "translated": "Thẻ EXIF trong '%s' (thứ tự byte '%s'):",
+            "reference": "Tags EXIF em \"%s\" (ordem de \"%s\" byte):"
+        },
+        {
+            "original": "Tag",
+            "translated": "Thẻ",
+            "reference": "Etiqueta"
+        },
+        {
+            "original": "Value",
+            "translated": "Valor",
+            "reference": "Valor"
+        },
+        {
+            "original": "EXIF data contains a thumbnail (%i bytes).",
+            "translated": "Dados EXIF contêm uma imagem de modelo (%i byte).",
+            "reference": "Dados EXIF contêm uma miniatura (%i bytes)."
+        },
+        {
+            "original": "ThumbnailSize\t%i\n",
+            "translated": "Kích cỡ ảnh mẫu %i",
+            "reference": "TamanhoMiniatura\t%i\n"
+        },
+        {
+            "original": "Display software version",
+            "translated": "Hiện thị phiên bản phần mềm",
+            "reference": "Exiba a versão do software"
+        },
+        {
+            "original": "Show IDs instead of tag names",
+            "translated": "Olá! Seja bem-vindo ao sistema de identificação por número. Por favor, informe o seu Número de Identificação (NIN) para continuar.",
+            "reference": "Mostra IDs em vez de nomes de etiquetas"
+        },
+        {
+            "original": "Select tag",
+            "translated": "Escolha o tag",
+            "reference": "Seleciona uma etiqeuta"
+        },
+        {
+            "original": "tag",
+            "translated": "etiqueta",
+            "reference": "etiqueta"
+        },
+        {
+            "original": "Select IFD",
+            "translated": "Chose IFD",
+            "reference": "Seleciona IFD"
+        },
+        {
+            "original": "IFD",
+            "translated": "IFD",
+            "reference": "IFD"
+        },
+        {
+            "original": "List all EXIF tags",
+            "translated": "Lista completa de todos os tipos EXIF",
+            "reference": "Lista todas as etiquetas EXIF"
+        },
+        {
+            "original": "Show contents of tag MakerNote",
+            "translated": "Ocorrência atual do sinal de nota da marcação",
+            "reference": "Mostra conteúdos "
+        },
+        {
+            "original": "Remove tag or ifd",
+            "translated": "Borrar o sinal ou IFD.",
+            "reference": "Remove etiqueta ou ifd"
+        },
+        {
+            "original": "Show description of tag",
+            "translated": "Descrição atual do termo",
+            "reference": "Mostra descrição de etiqueta"
+        },
+        {
+            "original": "Extract thumbnail",
+            "translated": "Truncar a imagem para obter um esquete menor.",
+            "reference": "Extrai miniatura"
+        },
+        {
+            "original": "Remove thumbnail",
+            "translated": "Borrar a peça de roupa",
+            "reference": "Remove miniatura"
+        },
+        {
+            "original": "Insert FILE as thumbnail",
+            "translated": "Chèn TẾP TIN dạng ảnh mẫu",
+            "reference": "Insere ARQUIVO como miniatura"
+        },
+        {
+            "original": "FILE",
+            "translated": "TÁ PENSANDO?",
+            "reference": "ARQUIVO"
+        },
+        {
+            "original": "Do not fix existing tags in files",
+            "translated": "Não editar alterações já existentes no arquivo",
+            "reference": "Não fixa etiquetas existentes em arquivos"
+        },
+        {
+            "original": "Write data to FILE",
+            "translated": "Ghi dữ liệu vào TẬP TIN",
+            "reference": "Escreve dados para ARQUIVO"
+        },
+        {
+            "original": "Value of tag",
+            "translated": "Valor do tag",
+            "reference": "Valor de uma etiqueta"
+        },
+        {
+            "original": "STRING",
+            "translated": "CHUỖI",
+            "reference": "STRING"
+        },
+        {
+            "original": "Create EXIF data if not existing",
+            "translated": "Táo dữ liệu EXIF nếu không có.",
+            "reference": "Cria dados EXIF, se não existentes"
+        },
+        {
+            "original": "Output in a machine-readable (tab delimited) format",
+            "translated": "Xuaste para máquina leitora (com tabulação)",
+            "reference": "Saída em um formato legível por máquina (delimitado por \"tab\")"
+        },
+        {
+            "original": "Width of output",
+            "translated": "Chiêu longitudinal de saída",
+            "reference": "Largura da saída"
+        },
+        {
+            "original": "WIDTH",
+            "translated": "Rua",
+            "reference": "LARGURA"
+        },
+        {
+            "original": "Output in a XML format",
+            "translated": "Saída em formato XML",
+            "reference": "Saída em um formato XML"
+        },
+        {
+            "original": "Show debugging messages",
+            "translated": "Boa tarde, você recebeu uma mensagem de erro.",
+            "reference": "Mostra mensagens de depuração"
+        },
+        {
+            "original": "Help options:",
+            "translated": "Escolha de ajuda:",
+            "reference": "Opções de ajuda:"
+        },
+        {
+            "original": "Show this help message",
+            "translated": "Olá, você precisa de ajuda nesta etapa?",
+            "reference": "Mostra esta mensagem de ajuda"
+        },
+        {
+            "original": "Display brief usage message",
+            "translated": "Olá! Estou aqui para ajudar.",
+            "reference": "Exibe uma breve mensagem de uso"
+        },
+        {
+            "original": "[OPTION...] file",
+            "translated": "[TÙY_CHỌN...] tập_tin",
+            "reference": "[OPÇÃO...] arquivo"
+        },
+        {
+            "original": "Invalid IFD '%s'. Valid IFDs are '0', '1', 'EXIF', 'GPS', and 'Interoperability'.",
+            "translated": "IFD không hợp lệ '%s'. Các IFD hợp lệ là: \n • 0\n • 1\n • EXIF\n • GPS\n • Interoperability (Tương hành).",
+            "reference": "IFD inválido \"%s\". IFDs válidos são \"0\", \"1\", \"EXIF\", \"GPS\" e \"Interoperability\"."
+        },
+        {
+            "original": "Invalid tag '%s'!",
+            "translated": "Thẻ không hợp lệ '%s'!",
+            "reference": "Etiqueta inválida \"%s\"!"
+        },
+        {
+            "original": "You need to specify a tag!",
+            "translated": "Você precisa especificar um tag!",
+            "reference": "Você precisa especificar uma etiqueta!"
+        },
+        {
+            "original": "You need to specify an IFD!",
+            "translated": "Você precisa indicar um IFD!",
+            "reference": "Você precisa especificar um IFD!"
+        },
+        {
+            "original": "Tag '%s' ",
+            "translated": "Thẻ \"%s\" ",
+            "reference": "Tag \"%s\""
+        },
+        {
+            "original": "(0x%04x, '%s'): ",
+            "translated": "(0x%04x, '%s'): ",
+            "reference": "(0x%04x, \"%s\"): "
+        },
+        {
+            "original": "Specify input file or --create-exif",
+            "translated": "Chame o comando `--create-exif` para criar metadados EXIF no arquivo de entrada.",
+            "reference": "Especifique um arquivo de entrada ou --create-exif"
+        },
+        {
+            "original": "'%s' is not readable or does not contain EXIF data!",
+            "translated": "%s",
+            "reference": "\"%s\" não é legível ou não contém dados EXIF!"
+        },
+        {
+            "original": "XML format is not available for Maker Notes",
+            "translated": "O XML não é utilizado para o Maker Notes.",
+            "reference": "Formato XML não está disponível para Maker Notes"
+        },
+        {
+            "original": "Data does not follow JPEG specification.",
+            "translated": "Dados não seguem o padrão JPEG.",
+            "reference": "Os dados não seguem a especificação JPEG."
+        }
+    ]
+}

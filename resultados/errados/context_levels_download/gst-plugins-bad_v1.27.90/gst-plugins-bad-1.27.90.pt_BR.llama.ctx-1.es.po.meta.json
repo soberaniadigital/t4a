@@ -1,0 +1,933 @@
+{
+    "job_info": {
+        "input_file": "/home/vinicius/TCC/data/translations_download/gst-plugins-bad_v1.27.90/gst-plugins-bad-1.27.90.zh_CN.po",
+        "output_file": "/home/vinicius/TCC/resultados/context_levels_download/gst-plugins-bad_v1.27.90/gst-plugins-bad-1.27.90.pt_BR.llama.ctx-1.es.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-14T14:23:02.105798",
+        "duration_seconds": 65.26,
+        "reference_file": "/home/vinicius/TCC/data/translations_download/gst-plugins-bad_v1.27.90/gst-plugins-bad-1.27.90.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": 5338654710809112001
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "ES"
+        ],
+        "context_sentences_sample": {
+            "No URL set.": {
+                "ES": "No se definió un URL."
+            },
+            "OpenCV failed to load template image": {
+                "ES": "Falló OpenCV al cargar la imagen de plantilla"
+            },
+            "Could not read title information for DVD.": {
+                "ES": "No se pudo leer la información del título para el DVD."
+            },
+            "Failed to open DVD device '%s'.": {
+                "ES": "Falló abrir el dispositivo DVD «%s»."
+            },
+            "Failed to set PGC based seeking.": {
+                "ES": "Falló al establecer la búsqueda basada en PGC."
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 202,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct 10 2025, 08:54:03) [GCC 11.4.0]"
+    },
+    "translations": [
+        {
+            "original": "No URL set.",
+            "translated": "No URL foi definido.",
+            "reference": "Nenhum URL definido."
+        },
+        {
+            "original": "OpenCV failed to load template image",
+            "translated": "Fallou OpenCV ao carregar a imagem de plantela",
+            "reference": "O OpenCV falhou ao carregar a imagem modelo"
+        },
+        {
+            "original": "Could not read title information for DVD.",
+            "translated": "não foi possível ler a informação do título para o DVD.",
+            "reference": "Não foi possível ler as informações de título do DVD."
+        },
+        {
+            "original": "Failed to open DVD device '%s'.",
+            "translated": "Não foi possível abrir o dispositivo DVD \"%s\".",
+            "reference": "Falha ao abrir o dispositivo de DVD \"%s\"."
+        },
+        {
+            "original": "Failed to set PGC based seeking.",
+            "translated": "não foi possível configurar a pesquisa baseada em PGC.",
+            "reference": "Falha ao definir busca baseada em PGC."
+        },
+        {
+            "original": "Could not read DVD. This may be because the DVD is encrypted and a DVD decryption library is not installed.",
+            "translated": "Não foi possível ler o DVD. Isso pode ser devido ao fato de que o DVD está criptografado e a biblioteca necessária para descriptografá-lo não está instalada.",
+            "reference": "Não foi possível ler o DVD. O motivo pode ser que o DVD está criptografado ou uma biblioteca de descriptografia não está instalada."
+        },
+        {
+            "original": "Could not read DVD.",
+            "translated": "não foi possível ler o DVD.",
+            "reference": "Não foi possível ler o DVD."
+        },
+        {
+            "original": "This file contains no playable streams.",
+            "translated": "Este arquivo contém fluxos que não podem ser reproduzidos.",
+            "reference": "Este arquivo não contém fluxos reproduzíveis."
+        },
+        {
+            "original": "Could not open sndfile stream for reading.",
+            "translated": "não foi possível abrir e ler o fluxo sndfile.",
+            "reference": "Não foi possível abrir o fluxo sndfile para leitura."
+        },
+        {
+            "original": "Generated file has a larger preroll time than its streams duration",
+            "translated": "A seção de preenchimento do arquivo gerado ultrapassa o seu próprio comprimento de fluxo.",
+            "reference": "O arquivo gerado tem um tempo de preparação maior que a sua duração de fluxo"
+        },
+        {
+            "original": "Missing element '%s' - check your GStreamer installation.",
+            "translated": "Falta o componente '%s' - verifique sua instalação do GStreamer.",
+            "reference": "O elemento \"%s\" está faltando, verifique a sua instalação do GStreamer."
+        },
+        {
+            "original": "File location is set to NULL, please set it to a valid filename",
+            "translated": "A localização do arquivo foi definida como NULL, por favor defina um nome de arquivo válido.",
+            "reference": "A localização do arquivo está NULA, favor definir um nome de arquivo válido"
+        },
+        {
+            "original": "Digitalzoom element couldn't be created",
+            "translated": "não foi possível criar o componente Digitalzoom",
+            "reference": "O elemento Digitalzoom não pôde ser criado"
+        },
+        {
+            "original": "Subpicture format was not configured before data flow",
+            "translated": "O formato de subimagem não foi configurado antes do fluxo de dados.",
+            "reference": "O formato de sub-imagem não foi configurado antes do fluxo de dados"
+        },
+        {
+            "original": "Failed to get fragment URL.",
+            "translated": "não foi possível obter o URL do fragmento.",
+            "reference": "Falha ao obter um fragmento de URL."
+        },
+        {
+            "original": "Couldn't download fragments",
+            "translated": "não foi possível baixar o fragmento.",
+            "reference": "Não foi possível baixar os fragmentos"
+        },
+        {
+            "original": "Internal data stream error.",
+            "translated": "Erro interno de fluxo de dados.",
+            "reference": "Erro interno de fluxo de dados."
+        },
+        {
+            "original": "Device \"%s\" does not exist.",
+            "translated": "O dispositivo \"%s\" não existe.",
+            "reference": "O dispositivo \"%s\" não existe."
+        },
+        {
+            "original": "Could not open frontend device \"%s\".",
+            "translated": "Não foi possível abrir o dispositivo frontend «%s».",
+            "reference": "Não foi possível abrir o dispositivo de interface \"%s\"."
+        },
+        {
+            "original": "Could not get settings from frontend device \"%s\".",
+            "translated": "Não foi possível obter os ajustes do dispositivo frontend \"%s\".",
+            "reference": "Não foi possível obter as configurações do dispositivo de interface \"%s\"."
+        },
+        {
+            "original": "Cannot enumerate delivery systems from frontend device \"%s\".",
+            "translated": "Não foi possível enumerar os sistemas de entrega disponíveis no dispositivo frontend \"%s\".",
+            "reference": "Não foi possível listar os sistemas de entrega do dispositivo de interface \"%s\"."
+        },
+        {
+            "original": "Could not open file \"%s\" for reading.",
+            "translated": "não foi possível abrir o arquivo %s para leitura.",
+            "reference": "Não foi possível abrir o arquivo \"%s\" para leitura."
+        },
+        {
+            "original": "Couldn't find channel configuration file",
+            "translated": "não foi possível encontrar o arquivo de configuração do canal",
+            "reference": "Não foi possível encontrar o arquivo de configuração de canal"
+        },
+        {
+            "original": "Couldn't load channel configuration file: '%s'",
+            "translated": "não foi possível carregar o arquivo de configuração do canal: '%s'.",
+            "reference": "Não foi possível carregar o arquivo de configuração de canal: \"%s\""
+        },
+        {
+            "original": "Couldn't find details for channel '%s'",
+            "translated": "não foi possível obter detalhes para o canal '%s'",
+            "reference": "Não foi possível encontrar detalhes para o canal \"%s\""
+        },
+        {
+            "original": "No properties for channel '%s'",
+            "translated": "o canal '%s' não possui propriedades",
+            "reference": "Não há propriedades para o canal \"%s\""
+        },
+        {
+            "original": "Failed to set properties for channel '%s'",
+            "translated": "não foi possível definir as propriedades para o canal \"%s\".",
+            "reference": "Falha ao definir propriedades para o canal \"%s\""
+        },
+        {
+            "original": "Couldn't find channel configuration file: '%s'",
+            "translated": "não foi possível encontrar o arquivo de configuração do canal: '%s'",
+            "reference": "Não foi possível encontrar o arquivo de configuração de canal: \"%s\""
+        },
+        {
+            "original": "Channel configuration file doesn't contain any channels",
+            "translated": "No arquivo de configuração do canal há nenhum canal configurado",
+            "reference": "Nenhum canal foi encontrado no arquivo de configuração de canal"
+        },
+        {
+            "original": "failed to draw pattern",
+            "translated": "não foi possível desenhar o padrão",
+            "reference": "falha ao desenhar modelo"
+        },
+        {
+            "original": "A GL error occured",
+            "translated": "ocorreu um erro de GL",
+            "reference": "Um erro ocorreu no GL"
+        },
+        {
+            "original": "format wasn't negotiated before get function",
+            "translated": "Antes de chamar a função get, o formato não foi determinado adequadamente.",
+            "reference": "o formato não foi negociado antes da chamada da função"
+        },
+        {
+            "original": "Could not establish connection to sndio",
+            "translated": "não foi possível estabelecer uma conexão com sndio.",
+            "reference": "Não foi possível estabelecer a conexão para sndio"
+        },
+        {
+            "original": "Failed to query sndio capabilities",
+            "translated": "não foi possível obter informações sobre sndio.",
+            "reference": "Falha ao consultar os recursos de sndio"
+        },
+        {
+            "original": "Could not configure sndio",
+            "translated": "não foi possível configurar sndio",
+            "reference": "Não foi possível configurar o sndio"
+        },
+        {
+            "original": "Could not start sndio",
+            "translated": "não foi possível iniciar sndio.",
+            "reference": "Não foi possível iniciar o sndio"
+        },
+        {
+            "original": "No file name specified for writing.",
+            "translated": "Não foi especificado um nome de arquivo para escrita.",
+            "reference": "Nenhum nome de arquivo especificado para gravação."
+        },
+        {
+            "original": "Given file name \"%s\" can't be converted to local file name encoding.",
+            "translated": "O nome do arquivo '%s' não pode ser convertido para a codificação de nomes de arquivos locais.",
+            "reference": "O nome de arquivo fornecido \"%s\" não pode ser convertido para a codificação de nome de arquivo local."
+        },
+        {
+            "original": "Could not open file \"%s\" for writing.",
+            "translated": "Não foi possível abrir o arquivo %s para escrever.",
+            "reference": "Não foi possível abrir o arquivo \"%s\" para gravação."
+        },
+        {
+            "original": "default GStreamer sound events audiosink",
+            "translated": "sumidouro de eventos sonoros GStreamer por defeito para áudio agregado",
+            "reference": "audiosink do GStreamer pré-definido para eventos de som"
+        },
+        {
+            "original": "GStreamer can play audio using any number of output elements. Some possible choices are osssink, pulsesink and alsasink. The audiosink can be a partial pipeline instead of just one element.",
+            "translated": "O GStreamer pode usar qualquer número de componentes de saída para reproduzir áudio. As opções possíveis incluem osssink, pulsesink e alsasink. O somgrave pode ser uma parte do canal ou mais que um único componente.",
+            "reference": "O GStreamer pode reproduzir áudio utilizando qualquer quantidade de elementos de saída. Algumas das opções possíveis são osssink, pulsesink e alsasink. O audiosink pode ser uma fila de processamento parcial em vez de apenas um elemento."
+        },
+        {
+            "original": "description for default GStreamer sound events audiosink",
+            "translated": "Descrição para o sumidouro de áudio padrão dos eventos sonoros GStreamer.",
+            "reference": "descrição para o audiosink do GStreamer pré-definido para eventos de som"
+        },
+        {
+            "original": "Describes the selected audiosink element.",
+            "translated": "Descreva o componente de som selecionado para a descrição.",
+            "reference": "Descreve o elemento audiosink selecionado."
+        },
+        {
+            "original": "default GStreamer audiosink for Audio/Video Conferencing",
+            "translated": "sumidero de audio GStreamer por defecto para Conferencia Audio/Video",
+            "reference": "audiosink do GStreamer pré-definido para Conferência de Áudio e Vídeo"
+        },
+        {
+            "original": "description for default GStreamer audiosink for Audio/Video Conferencing",
+            "translated": "Descrição para o sumidero de áudio GStreamer padrão para Conferência de Audio/Video",
+            "reference": "descrição do audiosink do GStreamer pré-definido para Conferência de Áudio e Vídeo"
+        },
+        {
+            "original": "default GStreamer audiosink for Music and Movies",
+            "translated": "sumidero de audio GStreamer por defecto para música e filmes",
+            "reference": "audiosink do GStreamer pré-definido para Músicas e Filmes"
+        },
+        {
+            "original": "description for default GStreamer audiosink for Music and Movies",
+            "translated": "descrição para o sumidero de áudio GStreamer por defeito para música e filmes.",
+            "reference": "descrição para o audiosink do GStreamer pré-definido para Músicas e Filmes"
+        },
+        {
+            "original": "default GStreamer videosink",
+            "translated": "sumidouro de vídeo por padrão do GStreamer",
+            "reference": "videosink do GStreamer pré-definido"
+        },
+        {
+            "original": "GStreamer can play video using any number of output elements. Some possible choices are xvimagesink, ximagesink, sdlvideosink and aasink. The videosink can be a partial pipeline instead of just one element.",
+            "translated": "O GStreamer pode usar qualquer número de componentes de saída para reproduzir vídeos. Algumas opções possíveis incluem xvimagesink, ximagesink, sdlvideosink e aasink. O sumidouro de vídeo pode ser um componente parcial em vez de apenas uma única unidade.",
+            "reference": "O GStreamer pode reproduzir vídeo utilizando qualquer quantidade de elementos de saída. Algumas das opções possíveis são xvimagesink, ximagesink, sdlvideosink e aasink. O videosink pode ser uma fila de processamento parcial em vez de apenas um elemento."
+        },
+        {
+            "original": "description for default GStreamer videosink",
+            "translated": "descrição para o sumidero de vídeo GStreamer padrão",
+            "reference": "descrição para o videosink do GStreamer pré-definido"
+        },
+        {
+            "original": "Describes the selected videosink element.",
+            "translated": "Descreva o componente de vídeo selecionado para a descrição.",
+            "reference": "Descreve o elemento videosink selecionado."
+        },
+        {
+            "original": "default GStreamer audiosrc",
+            "translated": "fonte de audio GStreamer padrão",
+            "reference": "audiosrc do GStreamer pré-definido"
+        },
+        {
+            "original": "GStreamer can record audio using any number of input elements. Some possible choices are osssrc, pulsesrc and alsasrc. The audio source can be a partial pipeline instead of just one element.",
+            "translated": "O GStreamer pode utilizar qualquer número de componentes de entrada para gravar áudio. As opções possíveis incluem osssrc, pulsesrc e alsasrc. O fonte do áudio não precisa ser apenas um componente; também pode fazer parte de uma cadeia.",
+            "reference": "O GStreamer pode gravar áudio utilizando qualquer quantidade de elementos de entrada. Algumas das opções possíveis são osssrc, pulsesrc e alsasrc. A fonte de áudio pode ser uma fila de processamento parcial em vez de apenas um elemento."
+        },
+        {
+            "original": "description for default GStreamer audiosrc",
+            "translated": "descrição para a fonte de áudio GStreamer padrão",
+            "reference": "descrição para o audiosrc do GStreamer pré-definido"
+        },
+        {
+            "original": "Describes the selected audiosrc element.",
+            "translated": "Descreva o componente de entrada de áudio selecionado.",
+            "reference": "Descreve o elemento audiosrc selecionado."
+        },
+        {
+            "original": "default GStreamer videosrc",
+            "translated": "fonte de video GStreamer padrão",
+            "reference": "videosrc do GStreamer pré-definido"
+        },
+        {
+            "original": "GStreamer can record video from any number of input elements. Some possible choices are v4lsrc, v4l2src and videotestsrc. The video source can be a partial pipeline instead of just one element.",
+            "translated": "O GStreamer pode usar qualquer número de componentes de saída para reproduzir vídeo. As opções possíveis incluem v4lsrc, v4l2src e videotestsrc. O fonte do vídeo pode ser uma parte parcial da cadeia de áudio/vídeo em vez de apenas um único componente.",
+            "reference": "O GStreamer pode gravar vídeo de qualquer quantidade de elementos de entrada. Algumas das opções possíveis são v4lsrc, v4l2src e videotestsrc. A fonte de vídeo pode ser uma fila de processamento parcial em vez de apenas um elemento."
+        },
+        {
+            "original": "description for default GStreamer videosrc",
+            "translated": "descrição para a fonte de vídeo GStreamer padrão",
+            "reference": "descrição para o videosrc do GStreamer pré-definido"
+        },
+        {
+            "original": "Describes the selected videosrc element.",
+            "translated": "Descreva o componente de fonte de vídeo selecionado.",
+            "reference": "Descreve o elemento videosrc selecionado."
+        },
+        {
+            "original": "default GStreamer visualization",
+            "translated": "visualização GStreamer por defeito",
+            "reference": "visualização do GStreamer pré-definida"
+        },
+        {
+            "original": "GStreamer can put visualization plugins in a pipeline to transform audio streams in video frames. Some possible choices are goom, goom2k1 and synaesthesia. The visualization plugin can be a partial pipeline instead of just one element.",
+            "translated": "O GStreamer pode integrar plugins de visualização no fluxo para converter o sinal sonoro em quadros de vídeo. As opções possíveis incluem goom, goom2k1 e synaesthesia. O plugin de visualização não é apenas um componente isolado; ele se integra como parte do pipeline.",
+            "reference": "O GStreamer pode colocar plugins de visualização numa fila de processamento para transformar fluxos de áudio em quadros de vídeo. Algumas das opções possíveis são goom, goom2k1 e synaesthesia. O plugin de visualização pode ser uma fila de processamento parcial em vez de apenas um elemento."
+        },
+        {
+            "original": "description for default GStreamer visualization",
+            "translated": "descrição para a visualização GStreamer por defeito",
+            "reference": "descrição da visualização do GStreamer pré-definida"
+        },
+        {
+            "original": "Describes the selected visualization element.",
+            "translated": "Descreva o componente de visualização selecionado.",
+            "reference": "Descreve o elemento de visualização selecionado."
+        },
+        {
+            "original": "Internal data flow error.",
+            "translated": "Erro interno de fluxo de dados.",
+            "reference": "Erro interno de fluxo de dados."
+        },
+        {
+            "original": "Internal clock error.",
+            "translated": "Erro no relógio interno."
+        },
+        {
+            "original": "Could not write to file \"%s\".",
+            "translated": "Não foi possível escrever no arquivo %s.",
+            "reference": "Não foi possível gravar no arquivo \"%s\"."
+        },
+        {
+            "original": "Could not open audio device for mixer control handling.",
+            "translated": "Não foi possível abrir o arquivo de áudio para operações de controle do mixer."
+        },
+        {
+            "original": "Could not open audio device for mixer control handling. This version of the Open Sound System is not supported by this element.",
+            "translated": "Não foi possível abrir o dispositivo para controlar ajustes de volume. Este componente não suporta esta versão do Open Sound System."
+        },
+        {
+            "original": "Volume",
+            "translated": "Volume"
+        },
+        {
+            "original": "Master",
+            "translated": "Maestro"
+        },
+        {
+            "original": "Front",
+            "translated": "Pré-escolha de sinalização"
+        },
+        {
+            "original": "Rear",
+            "translated": "posterior"
+        },
+        {
+            "original": "Headphones",
+            "translated": "cabeça coberto por fones de ouvido"
+        },
+        {
+            "original": "Center",
+            "translated": "Centralizado"
+        },
+        {
+            "original": "LFE",
+            "translated": "Pediola de baixo tom"
+        },
+        {
+            "original": "Surround",
+            "translated": "Sonido envolvente tridimensional"
+        },
+        {
+            "original": "Side",
+            "translated": "Canais laterais"
+        },
+        {
+            "original": "Built-in Speaker",
+            "translated": "Altofalantes integrados"
+        },
+        {
+            "original": "AUX 1 Out",
+            "translated": "Saída auxiliar 1"
+        },
+        {
+            "original": "AUX 2 Out",
+            "translated": "Saída auxiliar 2"
+        },
+        {
+            "original": "AUX Out",
+            "translated": "Saída Auxiliar"
+        },
+        {
+            "original": "Bass",
+            "translated": "Baixos"
+        },
+        {
+            "original": "Treble",
+            "translated": "Treble"
+        },
+        {
+            "original": "3D Depth",
+            "translated": "Profundidade em 3D"
+        },
+        {
+            "original": "3D Center",
+            "translated": "Centro Tridimensional"
+        },
+        {
+            "original": "3D Enhance",
+            "translated": "Mejora em Terceira Dimensão"
+        },
+        {
+            "original": "Telephone",
+            "translated": "Assunto de voz"
+        },
+        {
+            "original": "Microphone",
+            "translated": "Microfone"
+        },
+        {
+            "original": "Line Out",
+            "translated": "saída do caminho de retorno"
+        },
+        {
+            "original": "Line In",
+            "translated": "Linha de entrada para o circuito elétrico"
+        },
+        {
+            "original": "Internal CD",
+            "translated": "CD interno de áudio"
+        },
+        {
+            "original": "Video In",
+            "translated": "Entrada de vídeo"
+        },
+        {
+            "original": "AUX 1 In",
+            "translated": "Entrada auxiliar 1"
+        },
+        {
+            "original": "AUX 2 In",
+            "translated": "Entrada auxiliar 2"
+        },
+        {
+            "original": "AUX In",
+            "translated": "Entrada auxiliar"
+        },
+        {
+            "original": "PCM",
+            "translated": "PCM"
+        },
+        {
+            "original": "Record Gain",
+            "translated": "Ganancia de gravação"
+        },
+        {
+            "original": "Output Gain",
+            "translated": "aumento de saída"
+        },
+        {
+            "original": "Microphone Boost",
+            "translated": "aumento do microfone"
+        },
+        {
+            "original": "Loopback",
+            "translated": "Loopback"
+        },
+        {
+            "original": "Diagnostic",
+            "translated": "Análise de amostragem"
+        },
+        {
+            "original": "Bass Boost",
+            "translated": "aumento de baixos"
+        },
+        {
+            "original": "Playback Ports",
+            "translated": "Porta de replay para reprodução"
+        },
+        {
+            "original": "Input",
+            "translated": "Entrada"
+        },
+        {
+            "original": "Record Source",
+            "translated": "fonte de gravação"
+        },
+        {
+            "original": "Monitor Source",
+            "translated": "Fonte do monitor de segurança"
+        },
+        {
+            "original": "Keyboard Beep",
+            "translated": "a som do teclado"
+        },
+        {
+            "original": "Monitor",
+            "translated": "Monitor"
+        },
+        {
+            "original": "Simulate Stereo",
+            "translated": "Simular estéreo"
+        },
+        {
+            "original": "Stereo",
+            "translated": "Som em estéreo"
+        },
+        {
+            "original": "Surround Sound",
+            "translated": "Sonido envolvente tridimensional"
+        },
+        {
+            "original": "Microphone Gain",
+            "translated": "Aumento do microfone EMV"
+        },
+        {
+            "original": "Speaker Source",
+            "translated": "fonte de alto-falantes"
+        },
+        {
+            "original": "Microphone Source",
+            "translated": "Origen do microfone de áudio"
+        },
+        {
+            "original": "Jack",
+            "translated": "Jack"
+        },
+        {
+            "original": "Center / LFE",
+            "translated": "CANHONEIAS POSICIONADAS / BAIXO FREQÜENCIA/LFE"
+        },
+        {
+            "original": "Stereo Mix",
+            "translated": "Mezclador estéreo"
+        },
+        {
+            "original": "Mono Mix",
+            "translated": "unidade mono"
+        },
+        {
+            "original": "Input Mix",
+            "translated": "Mezclador de entrada para somes digitais"
+        },
+        {
+            "original": "SPDIF In",
+            "translated": "Entrada S/PDIF"
+        },
+        {
+            "original": "SPDIF Out",
+            "translated": "Saída SPDIF"
+        },
+        {
+            "original": "Microphone 1",
+            "translated": "Micrófono 1"
+        },
+        {
+            "original": "Microphone 2",
+            "translated": "Micrófono 2"
+        },
+        {
+            "original": "Digital Out",
+            "translated": "Saída digital"
+        },
+        {
+            "original": "Digital In",
+            "translated": "Entrada digital"
+        },
+        {
+            "original": "HDMI",
+            "translated": "HDMI (alta definição)"
+        },
+        {
+            "original": "Modem",
+            "translated": "Modem"
+        },
+        {
+            "original": "Handset",
+            "translated": "cabeça coberta por dispositivos portáteis"
+        },
+        {
+            "original": "Other",
+            "translated": "Outros dispositivos"
+        },
+        {
+            "original": "None",
+            "translated": "Nenhum"
+        },
+        {
+            "original": "On",
+            "translated": "Encendido"
+        },
+        {
+            "original": "Off",
+            "translated": "Apagado"
+        },
+        {
+            "original": "Mute",
+            "translated": "Silenciar"
+        },
+        {
+            "original": "Fast",
+            "translated": "Rápido"
+        },
+        {
+            "original": "Very Low",
+            "translated": "muito lento"
+        },
+        {
+            "original": "Low",
+            "translated": "baixo"
+        },
+        {
+            "original": "Medium",
+            "translated": "Medio"
+        },
+        {
+            "original": "High",
+            "translated": "Alto"
+        },
+        {
+            "original": "Very High",
+            "translated": "muito alto"
+        },
+        {
+            "original": "Production",
+            "translated": "Comerciante"
+        },
+        {
+            "original": "Front Panel Microphone",
+            "translated": "Microfone do painel frontal"
+        },
+        {
+            "original": "Front Panel Line In",
+            "translated": "Placa de entrada da linha do circuito"
+        },
+        {
+            "original": "Front Panel Headphones",
+            "translated": "cabeça coberto com fones de ouvido do painel frontal"
+        },
+        {
+            "original": "Front Panel Line Out",
+            "translated": "Placa de saída do circuito"
+        },
+        {
+            "original": "Green Connector",
+            "translated": "saída de linha"
+        },
+        {
+            "original": "Pink Connector",
+            "translated": "saída por meio do microfone"
+        },
+        {
+            "original": "Blue Connector",
+            "translated": "entrada de som em forma tridimensional"
+        },
+        {
+            "original": "White Connector",
+            "translated": "conector mono"
+        },
+        {
+            "original": "Black Connector",
+            "translated": "Saída de rádio secundária"
+        },
+        {
+            "original": "Gray Connector",
+            "translated": "Saída de canal intermediário"
+        },
+        {
+            "original": "Orange Connector",
+            "translated": "Saída de baixa artilharia"
+        },
+        {
+            "original": "Red Connector",
+            "translated": "conector direito"
+        },
+        {
+            "original": "Yellow Connector",
+            "translated": "MIDI saída/balançadeira de jogos"
+        },
+        {
+            "original": "Green Front Panel Connector",
+            "translated": "Placa de saída do circuito"
+        },
+        {
+            "original": "Pink Front Panel Connector",
+            "translated": "fone de ouvido para painel frontal"
+        },
+        {
+            "original": "Blue Front Panel Connector",
+            "translated": "Superfície de entrada para entradas acústicas em panel frontal"
+        },
+        {
+            "original": "White Front Panel Connector",
+            "translated": "conector mono do painel frontal es"
+        },
+        {
+            "original": "Black Front Panel Connector",
+            "translated": "Placa de saída do alto canal"
+        },
+        {
+            "original": "Gray Front Panel Connector",
+            "translated": "conector gris do painel de saída centralizado"
+        },
+        {
+            "original": "Orange Front Panel Connector",
+            "translated": "Painel de saída para baixo somente"
+        },
+        {
+            "original": "Red Front Panel Connector",
+            "translated": "Conector vermelho do painel frontal"
+        },
+        {
+            "original": "Yellow Front Panel Connector",
+            "translated": "Midi de saída/balançador do jogo da placa frontal"
+        },
+        {
+            "original": "Spread Output",
+            "translated": "Espalhar saída para o ponto final"
+        },
+        {
+            "original": "Downmix",
+            "translated": "Reduzir a mistura de canais para um único canal mono ou stereo, dependendo das configurações do usuário."
+        },
+        {
+            "original": "Virtual Mixer Input",
+            "translated": "entrada do simulador de mixagem digital"
+        },
+        {
+            "original": "Virtual Mixer Output",
+            "translated": "Saída do simulador de mistura digital"
+        },
+        {
+            "original": "Virtual Mixer Channels",
+            "translated": "entrada de som virtual para mixer"
+        },
+        {
+            "original": "%s Function",
+            "translated": "Função %s"
+        },
+        {
+            "original": "%s %d",
+            "translated": "%s %d"
+        },
+        {
+            "original": "Could not open audio device for playback. Device is being used by another application.",
+            "translated": "Não foi possível abrir o dispositivo de som para reproduzir áudio. O dispositivo está atualmente em uso por outro aplicativo."
+        },
+        {
+            "original": "Could not open audio device for playback. You don't have permission to open the device.",
+            "translated": "Não foi possível abrir o dispositivo de som para reproduzir. Não tem permissão para acessá-lo."
+        },
+        {
+            "original": "Could not open audio device for playback.",
+            "translated": "Não foi possível abrir o dispositivo de som para reprodução."
+        },
+        {
+            "original": "Could not open audio device for playback. This version of the Open Sound System is not supported by this element.",
+            "translated": "Não foi possível abrir o dispositivo para reprodução de áudio. Este componente não suporta esta versão do Open Sound System."
+        },
+        {
+            "original": "Playback is not supported by this audio device.",
+            "translated": "Este dispositivo de sonido não suporta reprodução de áudio."
+        },
+        {
+            "original": "Audio playback error.",
+            "translated": "Erro na reprodução do áudio."
+        },
+        {
+            "original": "Recording is not supported by this audio device.",
+            "translated": "Este dispositivo de sonido não suporta gravação."
+        },
+        {
+            "original": "Error recording from audio device.",
+            "translated": "Ocorreu um erro ao gravar desde o dispositivo de áudio."
+        },
+        {
+            "original": "Failed to configure TwoLAME encoder. Check your encoding parameters.",
+            "translated": "Não foi possível configurar o codificador TwoLAME. Por favor, verifique seus parâmetros de codificação.\n"
+        },
+        {
+            "original": "The requested bitrate %d kbit/s for property '%s' is not allowed. The bitrate was changed to %d kbit/s.",
+            "translated": "Não é permitido o uso da tasa de bits %d kbps solicitada para a propriedade \"%s\". A tasa de bits foi alterada para %d kbps."
+        },
+        {
+            "original": "PCM 1",
+            "translated": "PCM 1"
+        },
+        {
+            "original": "PCM 2",
+            "translated": "PCM 2"
+        },
+        {
+            "original": "PCM 3",
+            "translated": "PCM 3"
+        },
+        {
+            "original": "PCM 4",
+            "translated": "PCM 4"
+        },
+        {
+            "original": "Green connector function",
+            "translated": "saída de linha do circuito"
+        },
+        {
+            "original": "Green front panel connector function",
+            "translated": "Placa de saída do circuito da fonte verde"
+        },
+        {
+            "original": "Pink connector function",
+            "translated": "efeito sonoro do headset de fone"
+        },
+        {
+            "original": "Pink front panel connector function",
+            "translated": "som de saída do headset no painel frontal"
+        },
+        {
+            "original": "Blue connector function",
+            "translated": "Entrada de som em forma tridimensional"
+        },
+        {
+            "original": "Blue front panel connector function",
+            "translated": "Efeito de som em volume tridimensional do painel frontal"
+        },
+        {
+            "original": "Orange connector function",
+            "translated": "efeito sonoro do canhão de baixa pressão"
+        },
+        {
+            "original": "Orange front panel connector function",
+            "translated": "Caixa de som do canhão baixo da interface ES"
+        },
+        {
+            "original": "Black connector function",
+            "translated": "saída de áudio por meio do conector traseiro"
+        },
+        {
+            "original": "Black front panel connector function",
+            "translated": "Placa de saída sonora posterior do dispositivo"
+        },
+        {
+            "original": "Gray connector function",
+            "translated": "Saída do canal intermediário de som"
+        },
+        {
+            "original": "Gray front panel connector function",
+            "translated": "Placa de saída do canal central da interface gris frontal"
+        },
+        {
+            "original": "White connector function",
+            "translated": "Saída mono de saída esquerda/direita"
+        },
+        {
+            "original": "White front panel connector function",
+            "translated": "Placa de saída monoafixa do lado esquerdo"
+        },
+        {
+            "original": "Red connector function",
+            "translated": "saída de áudio direita"
+        },
+        {
+            "original": "Red front panel connector function",
+            "translated": "Placa de saída sonora direita do painel frontal"
+        },
+        {
+            "original": "Yellow connector function",
+            "translated": "Saída de som em MIDI"
+        },
+        {
+            "original": "Yellow front panel connector function",
+            "translated": "Placa de saída para som via MIDI"
+        },
+        {
+            "original": "Couldn't get the Manifest's URI",
+            "translated": "não foi possível obter o URI do manifesto",
+            "reference": "Não foi possível obter a URI do manifesto"
+        }
+    ]
+}

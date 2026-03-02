@@ -1,0 +1,193 @@
+# pyproject.toml
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+# =============================================================================
+# PROJETO
+# =============================================================================
+[project]
+name = "po_translator"
+version = "0.1.0"
+description = "Sistema de tradução automática para arquivos .po com avaliação de qualidade"
+requires-python = ">=3.11"
+authors = [
+    { name = "Vinicius Candeia" }
+]
+
+# =============================================================================
+# DEPENDÊNCIAS DE RUNTIME (Core)
+# Instaladas por padrão - necessárias para executar o programa
+# =============================================================================
+dependencies = [
+    # --- Manipulação de Arquivos .po ---
+    "polib>=1.2.0",
+    # --- Configuração ---
+    "python-dotenv>=1.0.0",
+    # --- Interface de Usuário ---
+    "rich>=13.0.0",
+    # --- Utilidades ---
+    "beautifulsoup4>=4.12.0",
+    "packaging>=23.0",
+    # --- Provedores de Tradução ---
+    "deepl>=1.17.0", # DeepL API
+    "google-genai>=0.3.0", # Google Gemini
+    "mistralai>=1.0.0", # Mistral AI
+    "ollama>=0.6.0", # Ollama (Phi3, Llama, etc.)
+    "openai>=1.0.0", # OpenAI (ChatGPT) - futuro
+]
+
+# =============================================================================
+# DEPENDÊNCIAS OPCIONAIS
+# Instaladas apenas quando necessário via pip install .[grupo]
+# =============================================================================
+[project.optional-dependencies]
+
+# -----------------------------------------------------------------------------
+# GRUPO 'test' - Execução de Testes (TDD)
+# Uso: pip install .[test]
+# -----------------------------------------------------------------------------
+test = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0", # Cobertura de código
+]
+
+# -----------------------------------------------------------------------------
+# GRUPO 'eval' - Avaliação de Qualidade de Tradução (Métricas)
+# Uso: pip install .[eval]
+#
+# ATENÇÃO: Este grupo requer GPU para performance ideal
+# Instalação CPU-only: substitua torch por torch --index-url https://download.pytorch.org/whl/cpu
+# -----------------------------------------------------------------------------
+eval = [
+    # --- Backend Neural (GPU) ---
+    "torch>=2.0.0,<2.4.0", # PyTorch com suporte CUDA
+    "transformers>=4.43.0", # Modelos BERT/XLM-R do HuggingFace
+    "sentencepiece>=0.1.99", # Tokenização
+
+    # --- Pydantic (força v2 para compatibilidade) ---
+    "pydantic>=2.0.0,<3.0.0", # Versão 2.x (mais recente)
+
+    # --- Métricas Principais ---
+    "unbabel-comet>=2.2.2", # COMET-22 (estado da arte, neural)
+    "sacrebleu>=2.3.0,<3.0.0", # chrF++, BLEU, TER (lexicais)
+    "bert-score>=0.3.13", # BERTScore (embeddings)
+
+    # --- Utilidades para Métricas ---
+    "scipy>=1.11.0", # Operações matemáticas
+    "numpy>=1.24.0", # Arrays numéricos
+
+    # --- Lightning (para COMET) ---
+    "pytorch-lightning>=2.0.0,<2.5.0", # Framework do COMET
+]
+
+# -----------------------------------------------------------------------------
+# GRUPO 'dev' - Desenvolvimento Completo (test + eval + ferramentas)
+# Uso: pip install .[dev]
+# -----------------------------------------------------------------------------
+dev = [
+    "po-translator[test]", # Inclui dependências de teste
+    "po-translator[eval]", # Inclui dependências de métricas
+
+    # Ferramentas de desenvolvimento
+    "ipython>=8.12.0", # REPL melhorado
+    "black>=24.0.0", # Formatação de código
+    "ruff>=0.1.0", # Linter rápido
+    "mypy>=1.7.0", # Type checking
+]
+
+# =============================================================================
+# CONFIGURAÇÃO DE FERRAMENTAS
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Pytest - Framework de Testes
+# -----------------------------------------------------------------------------
+[tool.pytest.ini_options]
+pythonpath = ["src"]              # Adiciona src/ ao PYTHONPATH
+testpaths = ["tests"]             # Diretório de testes
+addopts = [
+    "-v", # Verbose
+    "--strict-markers", # Marca strict para markers
+    "--tb=short", # Traceback curto
+    "--cov=src", # Cobertura de código
+    "--cov-report=term-missing", # Mostra linhas não cobertas
+]
+
+# Ignora warnings específicos de bibliotecas externas
+filterwarnings = [
+    "ignore::pydantic.PydanticDeprecatedSince212", # Pydantic (google-genai)
+    "ignore::urllib3.exceptions.NotOpenSSLWarning", # urllib3 (OpenSSL)
+    "ignore::DeprecationWarning:transformers.*", # Transformers internos
+    "ignore::FutureWarning:torch.*", # PyTorch internos
+]
+
+# -----------------------------------------------------------------------------
+# Black - Formatação de Código
+# -----------------------------------------------------------------------------
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+# -----------------------------------------------------------------------------
+# Ruff - Linter Rápido (substituto do Flake8)
+# -----------------------------------------------------------------------------
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "F", # pyflakes
+    "I", # isort
+    "B", # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501", # line too long (Black cuida disso)
+    "B008", # do not perform function calls in argument defaults
+]
+
+# Exclui diretórios
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+]
+
+# -----------------------------------------------------------------------------
+# MyPy - Type Checking
+# -----------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false      # Gradual typing
+check_untyped_defs = true
+no_implicit_optional = true
+
+# Ignora imports de bibliotecas sem stubs
+[[tool.mypy.overrides]]
+module = [
+    "polib.*",
+    "deepl.*",
+    "mistralai.*",
+    "ollama.*",
+    "comet.*",
+    "bert_score.*",
+]
+ignore_missing_imports = true

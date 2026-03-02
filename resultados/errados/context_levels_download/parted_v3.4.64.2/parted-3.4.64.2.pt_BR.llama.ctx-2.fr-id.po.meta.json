@@ -1,0 +1,3313 @@
+{
+    "job_info": {
+        "input_file": "/home/vinicius/TCC/data/translations_download/parted_v3.4.64.2/parted-3.4.64.2.es.po",
+        "output_file": "/home/vinicius/TCC/resultados/context_levels_download/parted_v3.4.64.2/parted-3.4.64.2.pt_BR.llama.ctx-2.fr-id.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-16T12:42:43.991873",
+        "duration_seconds": 273.24,
+        "reference_file": "/home/vinicius/TCC/data/translations_download/parted_v3.4.64.2/parted-3.4.64.2.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": -5310336385680526601
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "FR",
+            "ID"
+        ],
+        "context_sentences_sample": {
+            "invalid argument %s for %s": {
+                "FR": "argument non valide %s pour %s",
+                "ID": "argumen %s tidak valid untuk %s"
+            },
+            "ambiguous argument %s for %s": {
+                "FR": "argument ambigu %s pour %s",
+                "ID": "argumen %s ambigu untuk %s"
+            },
+            "Valid arguments are:": {
+                "FR": "Arguments valides :",
+                "ID": "Argumen yang valid adalah:"
+            },
+            "write error": {
+                "FR": "erreur d’écriture",
+                "ID": "galat tulis"
+            },
+            "Unknown system error": {
+                "FR": "Erreur système inconnue",
+                "ID": "Galat sistem tak dikenal"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 660,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct 10 2025, 08:54:03) [GCC 11.4.0]"
+    },
+    "translations": [
+        {
+            "original": "invalid argument %s for %s",
+            "translated": "argumento %s inválido para %s",
+            "reference": "argumento inválido %s para %s"
+        },
+        {
+            "original": "ambiguous argument %s for %s",
+            "translated": "argumento %s ambíguo para %s",
+            "reference": "argumento ambíguo %s para %s"
+        },
+        {
+            "original": "Valid arguments are:",
+            "translated": "Os argumentos válidos são:",
+            "reference": "Argumentos válidos são:"
+        },
+        {
+            "original": "write error",
+            "translated": "erro de escritura",
+            "reference": "erro de escrita"
+        },
+        {
+            "original": "Unknown system error",
+            "translated": "Erro de sistema desconhecido",
+            "reference": "Erro desconhecido de sistema"
+        },
+        {
+            "original": "%s: option '%s%s' is ambiguous\n",
+            "translated": "%s: a opção '%s%s' é ambígua",
+            "reference": "%s: a opção \"%s%s\" é ambígua\n"
+        },
+        {
+            "original": "%s: option '%s%s' is ambiguous; possibilities:",
+            "translated": "%s: a opção '%s%s' é ambígua; possibilidades:",
+            "reference": "%s: a opção \"%s%s\" é ambígua; possibilidades:"
+        },
+        {
+            "original": "%s: unrecognized option '%s%s'\n",
+            "translated": "%s: opção '%s%s' não reconhecida",
+            "reference": "%s: opção desconhecida \"%s%s\"\n"
+        },
+        {
+            "original": "%s: option '%s%s' doesn't allow an argument\n",
+            "translated": "%s: a opção '%s%s' não permite argumento\n",
+            "reference": "%s: a opção \"%s%s\" não permite um argumento\n"
+        },
+        {
+            "original": "%s: option '%s%s' requires an argument\n",
+            "translated": "%s: a opção '%s%s' requer um argumento\n",
+            "reference": "%s: a opção \"%s%s\" exige um argumento\n"
+        },
+        {
+            "original": "%s: invalid option -- '%c'\n",
+            "translated": "%s: opção inválida -- '%c'",
+            "reference": "%s: opção inválida -- \"%c\"\n"
+        },
+        {
+            "original": "%s: option requires an argument -- '%c'\n",
+            "translated": "%s: a opção requer um argumento -- '%c'",
+            "reference": "%s: a opção exige um argumento -- \"%c\"\n"
+        },
+        {
+            "original": "`",
+            "translated": "`",
+            "reference": "“"
+        },
+        {
+            "original": "'",
+            "translated": "'",
+            "reference": "”"
+        },
+        {
+            "original": "Success",
+            "translated": "Conseguido",
+            "reference": "Sucesso"
+        },
+        {
+            "original": "No match",
+            "translated": "Não há coincidência.",
+            "reference": "Nenhuma ocorrência do padrão"
+        },
+        {
+            "original": "Invalid regular expression",
+            "translated": "Expresão regular inválida",
+            "reference": "Expressão regular inválida"
+        },
+        {
+            "original": "Invalid collation character",
+            "translated": "carácter de colação inválido",
+            "reference": "Caractere de combinação inválido"
+        },
+        {
+            "original": "Invalid character class name",
+            "translated": "Nome da classe de caracteres inválido",
+            "reference": "Nome inválido de categoria de caracteres"
+        },
+        {
+            "original": "Trailing backslash",
+            "translated": "barra invertida final",
+            "reference": "Barra invertida no final"
+        },
+        {
+            "original": "Invalid back reference",
+            "translated": "Referência para trás inválida",
+            "reference": "Retrorreferência inválida"
+        },
+        {
+            "original": "Unmatched [, [^, [:, [., or [=",
+            "translated": "[, [^, [:, [., ou [= não equilibradas",
+            "reference": "[, [^, [:, [. ou [= sem correspondente"
+        },
+        {
+            "original": "Unmatched ( or \\(",
+            "translated": "( ou \") não balanceadas",
+            "reference": "( ou \\( sem correspondente"
+        },
+        {
+            "original": "Unmatched \\{",
+            "translated": "\\{ desemparelhado",
+            "reference": "\\{ sem correspondente"
+        },
+        {
+            "original": "Invalid content of \\{\\}",
+            "translated": "Contenido inválido de \\\\{\\}",
+            "reference": "Conteúdo inválido de \\{\\}"
+        },
+        {
+            "original": "Invalid range end",
+            "translated": "Final de rango inválido",
+            "reference": "Fim de intervalo inválido"
+        },
+        {
+            "original": "Memory exhausted",
+            "translated": "Memória esgotada",
+            "reference": "Memória esgotada"
+        },
+        {
+            "original": "Invalid preceding regular expression",
+            "translated": "A expressão regular anterior é inválida",
+            "reference": "A expressão regular precedente é inválida"
+        },
+        {
+            "original": "Premature end of regular expression",
+            "translated": "Fim prematuro da expressão regular",
+            "reference": "Fim prematuro da expressão regular"
+        },
+        {
+            "original": "Regular expression too big",
+            "translated": "A expressão regular é muito grande",
+            "reference": "Expressão regular grande demais"
+        },
+        {
+            "original": "Unmatched ) or \\)",
+            "translated": ") ou \") não balanceadas",
+            "reference": ") ou \\) sem correspondente"
+        },
+        {
+            "original": "No previous regular expression",
+            "translated": "Não há nenhuma expressão regular anterior.",
+            "reference": "Nenhuma expressão regular anterior"
+        },
+        {
+            "original": "^[yY]",
+            "translated": "^[sS]",
+            "reference": "^[+1SsyY]"
+        },
+        {
+            "original": "^[nN]",
+            "translated": "não foi possível obter estado (stat) do arquivo %s",
+            "reference": "^[-0nN]"
+        },
+        {
+            "original": "Packaged by %s (%s)\n",
+            "translated": "Empacotado por %s (%s) \n",
+            "reference": "Empacotado por %s (%s)\n"
+        },
+        {
+            "original": "Packaged by %s\n",
+            "translated": "Empacotado por %s\n",
+            "reference": "Empacotado por %s\n"
+        },
+        {
+            "original": "(C)",
+            "translated": "©",
+            "reference": "(C)"
+        },
+        {
+            "original": "License GPLv3+: GNU GPL version 3 or later <%s>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n",
+            "translated": "Licença GPLv3+: Licença Pública Geral GNU versão 3 ou posterior <%s>. Este é software livre: você está autorizado a modificá-lo e redistribuí-lo. Não há nenhuma garantia, dentro das limitações legais permitidas.",
+            "reference": "Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>\nEste é um software livre: você é livre para alterá-lo e redistribuí-lo.\nNÃO HÁ QUALQUER GARANTIA, na máxima extensão permitida em lei.\n"
+        },
+        {
+            "original": "Written by %s.\n",
+            "translated": "Escrito por %s.",
+            "reference": "Escrito por %s.\n"
+        },
+        {
+            "original": "Written by %s and %s.\n",
+            "translated": "Escrito por %s e %s.",
+            "reference": "Escrito por %s e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, and %s.\n",
+            "translated": "Escrito por %s, %s e %s. \n\t(C) Copyright (c) [Year] by the authors.",
+            "reference": "Escrito por %s, %s, e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\nand %s.\n",
+            "translated": "Escrito por %s, %s, %s e %s. \n",
+            "reference": "Escrito por %s, %s, %s,\ne %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, and %s.\n",
+            "translated": "Escrito por %s, %s, %s, %s e %s. \n",
+            "reference": "Escrito por %s, %s, %s,\n%s, e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, and %s.\n",
+            "translated": "Escrito por %s, %s, %s, %s, %s e %s. \n\n",
+            "reference": "Escrito por %s, %s, %s,\n%s, %s, e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, and %s.\n",
+            "translated": "Escrito por %s, %s, %s, %s, %s, %s e %s. \n",
+            "reference": "Escrito por %s, %s, %s,\n%s, %s, %s, e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, %s,\nand %s.\n",
+            "translated": "Escrito por %s, %s, %s, \n%s, %s, %s, %s, \net %s. \n",
+            "reference": "Escrito por %s, %s, %s,\n%s, %s, %s, %s,\ne %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, %s,\n%s, and %s.\n",
+            "translated": "Escrito por %s, %s, %s, \n%s, %s, %s, %s, \n%s, e %s. \n",
+            "reference": "Escrito por %s, %s, %s,\n%s, %s, %s, %s,\n%s, e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, %s,\n%s, %s, and others.\n",
+            "translated": "Escrito por %s, %s, %s, \n%s, %s, %s, %s,\n%s, %s e outros. \n\n",
+            "reference": "Escrito por %s, %s, %s,\n%s, %s, %s, %s,\n%s, %s, e outros.\n"
+        },
+        {
+            "original": "Report bugs to: %s\n",
+            "translated": "Comunicar erros no programa para: %s",
+            "reference": "Relate erros para: %s\nRelate erros de tradução para <https://translationproject.org/team/pt_BR.html>\n"
+        },
+        {
+            "original": "Report %s bugs to: %s\n",
+            "translated": "Comunicar erros sobre %s ao destinatário a: %s\n",
+            "reference": "Relate erros do %s para: %s\n"
+        },
+        {
+            "original": "%s home page: <%s>\n",
+            "translated": "Página inicial de %s : <%s>",
+            "reference": "Página do %s: <%s>\n"
+        },
+        {
+            "original": "General help using GNU software: <%s>\n",
+            "translated": "Ajuda geral para o uso de software GNU: <%s>",
+            "reference": "Ajuda geral no uso de softwares GNU: <%s>\n"
+        },
+        {
+            "original": "memory exhausted",
+            "translated": "memória esgotada",
+            "reference": "memória esgotada"
+        },
+        {
+            "original": "Disk Image",
+            "translated": "Imagem de Disco",
+            "reference": "Imagem de disco"
+        },
+        {
+            "original": "Error opening %s: %s",
+            "translated": "Erro ao abrir %s : %s",
+            "reference": "Erro ao abrir %s: %s"
+        },
+        {
+            "original": "Unable to open %s read-write (%s).  %s has been opened read-only.",
+            "translated": "Não é possível abrir %s em modo de leitura e escrita (%d). O arquivo foi aberto no modo somente leitura.",
+            "reference": "Não foi possível abrir %s para leitura e escrita (%s). %s foi aberto somente-leitura."
+        },
+        {
+            "original": "%s during seek for read on %s",
+            "translated": "%s durante a preparação para leitura em %s",
+            "reference": "%s durante busca para leitura em %s"
+        },
+        {
+            "original": "%s during read on %s",
+            "translated": "%s durante a leitura em %s",
+            "reference": "%s durante leitura em %s"
+        },
+        {
+            "original": "Can't write to %s, because it is opened read-only.",
+            "translated": "Não é possível escrever no %s, pois está aberto para leitura somente.",
+            "reference": "Não é possível escrever em %s, pois foi aberto como somente-leitura."
+        },
+        {
+            "original": "%s during seek for write on %s",
+            "translated": "%s durante a preparação para a escrita em %s",
+            "reference": "%s durante busca para escrita em %s"
+        },
+        {
+            "original": "%s during write on %s",
+            "translated": "%s durante a escrita em %s",
+            "reference": "%s durante escrita em %s"
+        },
+        {
+            "original": "Try `%s --help' for more information.\n",
+            "translated": "Tente `%s --help' para mais informações.",
+            "reference": "Tente \"%s --help\" para mais informações.\n"
+        },
+        {
+            "original": "Usage: %s [OPTION] [DEVICE]...\n",
+            "translated": "Modo de uso: %s [OPÇÃO] [DEVICAO]\n",
+            "reference": "Uso: %s [OPÇÃO] [DISPOSITIVO]...\n"
+        },
+        {
+            "original": "Inform the operating system about partition table changes.\n\n  -d, --dry-run    do not actually inform the operating system\n  -s, --summary    print a summary of contents\n  -h, --help       display this help and exit\n  -v, --version    output version information and exit\n",
+            "translated": "Informe ao sistema operacional sobre os alterações na tabela de particionamento. \n\n -d, --dry-run    não informar o sistema operacional para o momento (teste sem efeito real) \n -s, --summary    exiba um resumo do conteúdo da mensagem \n -h, --help       mostre esta ajuda e saia \n -v, --version    mostre informações de versão e saia",
+            "reference": "Informa ao sistema operacional sobre alterações na tabela de partição.\n\n  -d, --dry-run    não chega a informar ao sistema operacional\n  -s, --summary    exibe um resumo do conteúdo\n  -h, --help       exibe esta ajuda e sai\n  -v, --version    mostra informações da versão e sai\n"
+        },
+        {
+            "original": "\nWhen no DEVICE is given, probe all partitions.\n",
+            "translated": "Quando nenhum dispositivo for especificado, examine todas as partições.",
+            "reference": "\nQuando nenhum DISPOSITIVO é informado, investiga todas as partições.\n"
+        },
+        {
+            "original": "\nReport bugs to <%s>.\n",
+            "translated": "Comunicar erros para <%s>.",
+            "reference": "\nRelate erros para <%s>.\n"
+        },
+        {
+            "original": "Unable to open %s.",
+            "translated": "Não é possível abrir %s.",
+            "reference": "Não foi possível abrir %s."
+        },
+        {
+            "original": "Unable to probe store.",
+            "translated": "Não é possível sondear o store.",
+            "reference": "Não foi possível investigar armazenamento."
+        },
+        {
+            "original": "WARNING: the kernel failed to re-read the partition table on %s (%s).  As a result, it may not reflect all of your changes until after reboot.",
+            "translated": "AVISO: o kernel não conseguiu ler novamente a tabela de partições em %s (%s). Por isso, pode haver alterações que ainda não foram refletidas até após um reinício.",
+            "reference": ""
+        },
+        {
+            "original": "Warning: unable to open %s (%s). As a result, it may not reflect all of your changes until after reboot.",
+            "translated": "Peringatan: não foi possível abrir %s (%s). Por isso, pode haver alterações que ainda não foram refletidas até após um reinício.",
+            "reference": ""
+        },
+        {
+            "original": "Warning: failed to make translator go away on %s (%s). As a result, it may not reflect all of your changes until after reboot.",
+            "translated": "Peringatan: não foi possível remover o tradutor em %s (%s). Por isso, ele pode não refletir todos os seus alterações até após um reinício.",
+            "reference": ""
+        },
+        {
+            "original": "%s trying to sync %s to disk",
+            "translated": "%s tentando sincronizar %s no disco",
+            "reference": "%s tentando sincronizar %s ao disco"
+        },
+        {
+            "original": "Could not stat device %s - %s.",
+            "translated": "Não é possível executar o comando `stat` no dispositivo %s - %s.",
+            "reference": "Não foi possível obter estado do dispositivo %s - %s."
+        },
+        {
+            "original": "Unable to determine the dm type of %s.",
+            "translated": "Não é possível determinar o tipo de dm de %s.",
+            "reference": "Não foi possível determinar o tipo dm de %s."
+        },
+        {
+            "original": "Could not determine sector size for %s: %s.\nUsing the default sector size (%lld).",
+            "translated": "Não foi possível determinar o tamanho do setor para %s : %.2f. Utiliza-se por omissão a medida padrão (%lld).",
+            "reference": "Não foi possível determinar o tamanho do setor para %s: %s.\nUtilizando tamanho padrão do setor (%lld)."
+        },
+        {
+            "original": "Could not determine physical sector size for %s.\nUsing the logical sector size (%lld).",
+            "translated": "Não foi possível determinar o tamanho dos sectores físicos para %s. Utiliza-se, em vez disso, a medida do sector lógico (%lld).",
+            "reference": "Não foi possível determinar o tamanho do setor físico para %s.\nUtilizando tamanho do setor lógico (%lld)."
+        },
+        {
+            "original": "Unable to determine the size of %s (%s).",
+            "translated": "Não é possível determinar o tamanho de %s (%s).",
+            "reference": "Não foi possível determinar tamanho de %s (%s)."
+        },
+        {
+            "original": "Generic IDE",
+            "translated": "IDE geral",
+            "reference": "IDE genérico"
+        },
+        {
+            "original": "Could not get identity of device %s - %s",
+            "translated": "impossível obter a identidade do dispositivo %s - %s",
+            "reference": "Não foi possível obter a identificação do dispositivo %s - %s"
+        },
+        {
+            "original": "Device %s has multiple (%d) logical sectors per physical sector.\nGNU Parted supports this EXPERIMENTALLY for some special disk label/file system combinations, e.g. GPT and ext2/3.\nPlease consult the web site for up-to-date information.",
+            "translated": "O dispositivo %s possui vários (%d) setores lógicos por cada sector físico. GNU Parted implementa isso de forma EXPERIMENTAL para algumas combinações especiais de etiquetas de disco/sistemas de arquivos, como GPT e ext2/3. Por favor consulte o site web para informações atualizadas.",
+            "reference": "O dispositivo %s possui múltiplos setores lógicos (%d) por setores físicos.\nGNU Parted suporta isto de forma EXPERIMENTAL para alguns rótulos de disco/combinações de sistema de arquivos especiais, ex.: GPT e ext2/3.\nPor gentileza, consulte o site para informações atualizadas."
+        },
+        {
+            "original": "Error initialising SCSI device %s - %s",
+            "translated": "Erro ao iniciar o dispositivo SCSI %s - %s",
+            "reference": "Erro ao inicializar dispositivo SCSI %s - %s"
+        },
+        {
+            "original": "The device %s is so small that it cannot possibly store a file system or partition table.  Perhaps you selected the wrong device?",
+            "translated": "O dispositivo %s é tão pequeno que não pode conter um sistema de arquivos ou uma tabela de particionamento. Talvez ele tenha selecionado o dispositivo errado?",
+            "reference": "O dispositivo %s é tão pequeno que possivelmente não pode armazenar um sistema de arquivos ou tabela de partições. Talvez você selecionou o dispositivo errado?"
+        },
+        {
+            "original": "Unable to determine geometry of file/device %s.  You should not use Parted unless you REALLY know what you're doing!",
+            "translated": "Não é possível determinar a geometria do ficheiro/dispositivo %s. Não deve utilizar Parted sem realmente saber o que está fazendo!",
+            "reference": "Não foi possível determinar a geometria do arquivo/dispositivo %s. Você não deveria utilizar o Parted a menos que você REALMENTE saiba o que está fazendo!"
+        },
+        {
+            "original": "Generic SD/MMC Storage Card",
+            "translated": "Tarjeta de memória SD/MMC genérica",
+            "reference": "Cartão de armazenamento genérico SD/MMC"
+        },
+        {
+            "original": "NVMe Device",
+            "translated": "Dispositivo NVMe",
+            "reference": "Dispositivo NVMe"
+        },
+        {
+            "original": "DAC960 RAID controller",
+            "translated": "Controladora RAID DAC960",
+            "reference": "Controlador RAID DAC960"
+        },
+        {
+            "original": "Promise SX8 SATA Device",
+            "translated": "Perífis Promise SX8 SATA",
+            "reference": "Dispositivo Promise SX8 SATA"
+        },
+        {
+            "original": "ATA over Ethernet Device",
+            "translated": "Dispositivo ATA por Ethernet",
+            "reference": "ATA através de dispositivo Ethernet"
+        },
+        {
+            "original": "IBM S390 DASD drive",
+            "translated": "Unidade DASD IBM S390",
+            "reference": "Unidade DASD IBM S390"
+        },
+        {
+            "original": "IBM iSeries Virtual DASD",
+            "translated": "DASD Virtual IBM iSeries",
+            "reference": "DASD Virtual IBM iSeries"
+        },
+        {
+            "original": "Compaq Smart Array",
+            "translated": "Estrutura Smart de Compaq",
+            "reference": "Compaq Smart Array"
+        },
+        {
+            "original": "NVDIMM Device",
+            "translated": "Dispositivo NVDIMM",
+            "reference": "Dispositivo NVDIMM"
+        },
+        {
+            "original": "ATARAID Controller",
+            "translated": "Controladora ATARAID",
+            "reference": "Controlador ATARAID"
+        },
+        {
+            "original": "I2O Controller",
+            "translated": "Controladora I20",
+            "reference": "Controlador I2O"
+        },
+        {
+            "original": "User-Mode Linux UBD",
+            "translated": "UBD de User-Mode Linux",
+            "reference": "Linux UBD modo usuário"
+        },
+        {
+            "original": "Loopback device",
+            "translated": "Dispositivo de origem",
+            "reference": "Dispositivo loopback"
+        },
+        {
+            "original": "Linux device-mapper (%s)",
+            "translated": "Mapeador de dispositivos do Linux (%s)",
+            "reference": "Mapeador de dispositivo Linux (%s)"
+        },
+        {
+            "original": "Xen Virtual Block Device",
+            "translated": "Périferique por bloco virtual Xen",
+            "reference": "Dispositivo de bloco virtual Xen"
+        },
+        {
+            "original": "Unknown",
+            "translated": "Desconhecida",
+            "reference": "Desconhecido"
+        },
+        {
+            "original": "Virtio Block Device",
+            "translated": "Périferique por bloco Virtio",
+            "reference": "Dispositivo de bloco Virtio"
+        },
+        {
+            "original": "Linux Software RAID Array",
+            "translated": "Conjunto de Software RAID do Linux",
+            "reference": "Conjunto RAID por software Linux"
+        },
+        {
+            "original": "RAM Drive",
+            "translated": "Unidade RAM",
+            "reference": "Unidade RAM"
+        },
+        {
+            "original": "ped_device_new()  Unsupported device type",
+            "translated": "ped_device_new() Tipo de dispositivo não suportado",
+            "reference": "ped_device_new()  Tipo de dispositivo não suportado"
+        },
+        {
+            "original": "Error fsyncing/closing %s: %s",
+            "translated": "Erro ao usar fsync ou fechar %s: %s",
+            "reference": "Erro ao chamar fsync/fechar %s: %s"
+        },
+        {
+            "original": "%0.0send of file while reading %s",
+            "translated": "%0.0s fim do arquivo atingido ao ler %s",
+            "reference": "%0.0s fim de arquivo enquanto lê %s"
+        },
+        {
+            "original": "Error informing the kernel about modifications to partition %s -- %s.  This means Linux won't know about any changes you made to %s until you reboot -- so you shouldn't mount it or use it in any way before rebooting.",
+            "translated": "Erro ao informar o núcleo sobre as alterações na partição %s -- %s. Isso significa que Linux não reconhecerá nenhum dos ajustes feitos no dispositivo de armazenamento /dev/%d até que seja reiniciado - portanto, você não deve montar ou utilizá-lo antes da reinicialização.",
+            "reference": "Erro ao informar ao kernel sobre alterações na partição %s -- %s. Isto significa que o Linux não saberá de qualquer alteração que você tenha feito em %s até que o computador seja reiniciado -- logo você não deve montá-lo ou usá-lo de maneira alguma antes de reiniciar."
+        },
+        {
+            "original": "Unable to determine the start and length of %s.",
+            "translated": "Não é possível determinar o início e o tamanho de %s.",
+            "reference": "Não foi possível determinar o início e comprimento de %s."
+        },
+        {
+            "original": "Partition(s) %s on %s have been written, but we have been unable to inform the kernel of the change, probably because it/they are in use.  As a result, the old partition(s) will remain in use.  You should reboot now before making further changes.",
+            "translated": "As partições %s em %s foram escritas, porém não conseguimos informar ao núcleo do sistema sobre esses alterações provavelmente porque estão sendo utilizadas. Consequentemente, as partição(ões) antigas continuarão a serem usadas. Deve-se reiniciar agora antes de fazer mais mudanças.",
+            "reference": "As partição(ões) %s em %s foram escritas, mas não foi possível informar ao kernel sobre as alterações, provavelmente está(ão) em uso. Como resultado, a(s) partição(ões) antiga(s) permanecerá(ão) em uso.  Você deve reinicializar agora antes de realizar alterações posteriores."
+        },
+        {
+            "original": "Can't have the end before the start! (start sector=%jd length=%jd)",
+            "translated": "Não é possível ter o final da partição antes do início! (setor de início=%jd tamanho=%jd)",
+            "reference": "Não é possível ter o fim antes do início! (setor inicial=%jd comprimento=%jd)"
+        },
+        {
+            "original": "Attempt to write sectors %ld-%ld outside of partition on %s.",
+            "translated": "Tentaram escrever os sectores %ld-%ld fora da partição no diretório em %s.",
+            "reference": "Tentativa de escrever setores %ld-%ld fora da partição em %s."
+        },
+        {
+            "original": "checking for bad blocks",
+            "translated": "comprovando blocos defeituosos",
+            "reference": "verificando por blocos defeituosos"
+        },
+        {
+            "original": "Backtrace has %d calls on stack:\n",
+            "translated": "Backtrace tem %d chamadas na pilha:",
+            "reference": "Backtrace possui %d chamadas na pilha:\n"
+        },
+        {
+            "original": "Assertion (%s) at %s:%d in function %s() failed.",
+            "translated": "Falhou a asserção (%s) no arquivo %s:%d na função %s().",
+            "reference": "A declaração (%s) em %s:%d na função %s() falhou."
+        },
+        {
+            "original": "%s: unrecognised disk label",
+            "translated": "%s: etiqueta de disco desconhecida",
+            "reference": "%s: rótulo de disco irreconhecível"
+        },
+        {
+            "original": "This libparted doesn't have write support for %s.  Perhaps it was compiled read-only.",
+            "translated": "Esta libraría “libparted” não tem suporte para escrita em %s. Pode haver sido compilada apenas para leitura.",
+            "reference": "O libparted não possui suporte para escrita em %s.  Talvez isto tenha sido compilado como somente-leitura."
+        },
+        {
+            "original": "Partition %d is %s, but the file system is %s.",
+            "translated": "A partição %d é de %s, mas o sistema de fichiers é do tipo %s.",
+            "reference": "A partição %d é %s, mas o sistema de arquivos é %s."
+        },
+        {
+            "original": "cylinder_alignment",
+            "translated": "alinhamento_cilíndrico",
+            "reference": "cylinder_alignment"
+        },
+        {
+            "original": "pmbr_boot",
+            "translated": "arranque_pmbr",
+            "reference": "pmbr_boot"
+        },
+        {
+            "original": "Unknown disk flag, %d.",
+            "translated": "Bandeira de disco desconhecida, %d.",
+            "reference": "Opção desconhecida de partição, %d."
+        },
+        {
+            "original": "%s disk labels do not support extended partitions.",
+            "translated": "As etiquetas de disco %s não suportam partições estendidas.",
+            "reference": "Rótulos de disco %s não suportam partições estendidas."
+        },
+        {
+            "original": "%s disk labels don't support logical or extended partitions.",
+            "translated": "As etiquetas de disco %s não suportam partições estendidas ou lógicas.",
+            "reference": "Rótulos de disco %s não suportam partições lógicas ou estendidas."
+        },
+        {
+            "original": "Too many primary partitions.",
+            "translated": "Existe uma quantidade excessiva de partições primárias.",
+            "reference": "Há partições primárias demais."
+        },
+        {
+            "original": "Can't add a logical partition to %s, because there is no extended partition.",
+            "translated": "Impossível adicionar uma partição lógica no %s, pois não há nenhuma partição estendida.",
+            "reference": "Não posso adicionar uma partição lógica em %s, pois não há uma partição estendida."
+        },
+        {
+            "original": "Can't have more than one extended partition on %s.",
+            "translated": "Não é possível ter mais de uma partição estendida em %s.",
+            "reference": "Não pode existir mais de uma partição estendida em %s."
+        },
+        {
+            "original": "Can't have logical partitions outside of the extended partition.",
+            "translated": "Não é possível ter uma partição lógica fora da partição estendida.",
+            "reference": "Partições lógicas não podem existir fora da partição estendida."
+        },
+        {
+            "original": "Can't have a logical partition outside of the extended partition on %s.",
+            "translated": "Não é possível ter uma partição lógica fora da partição estendida em %s.",
+            "reference": "Uma partição lógica não pode existir fora da partição estendida em %s."
+        },
+        {
+            "original": "Can't have a primary partition inside an extended partition.",
+            "translated": "Não é possível ter uma partição primária dentro de uma partição estendida.",
+            "reference": "Não é possível ter uma partição primária dentro de uma partição estendida."
+        },
+        {
+            "original": "Can't have a partition outside the disk!",
+            "translated": "Não é possível fazer uma partição fora do disco!",
+            "reference": "Não é possível ter uma partição para fora do disco!"
+        },
+        {
+            "original": "Can't have overlapping partitions.",
+            "translated": "Não é possível ter partições sobrepostas.",
+            "reference": "Não é possível ter partições que se sobrepõem."
+        },
+        {
+            "original": "metadata",
+            "translated": "metadados",
+            "reference": "metadados"
+        },
+        {
+            "original": "free",
+            "translated": "livre",
+            "reference": "livre"
+        },
+        {
+            "original": "extended",
+            "translated": "extensão",
+            "reference": "estendida"
+        },
+        {
+            "original": "logical",
+            "translated": "lógica",
+            "reference": "lógica"
+        },
+        {
+            "original": "primary",
+            "translated": "primária",
+            "reference": "primária"
+        },
+        {
+            "original": "boot",
+            "translated": "arranque",
+            "reference": "boot"
+        },
+        {
+            "original": "bios_grub",
+            "translated": "bios_grub",
+            "reference": "bios_grub"
+        },
+        {
+            "original": "root",
+            "translated": "raiz",
+            "reference": "root"
+        },
+        {
+            "original": "swap",
+            "translated": "troca",
+            "reference": "swap"
+        },
+        {
+            "original": "hidden",
+            "translated": "oculta",
+            "reference": "escondida"
+        },
+        {
+            "original": "raid",
+            "translated": "raid",
+            "reference": "raid"
+        },
+        {
+            "original": "lvm",
+            "translated": "volume lógico (LVM)",
+            "reference": "lvm"
+        },
+        {
+            "original": "lba",
+            "translated": "lba",
+            "reference": "lba"
+        },
+        {
+            "original": "hp-service",
+            "translated": "utilidade HP",
+            "reference": "hp-service"
+        },
+        {
+            "original": "palo",
+            "translated": "vara",
+            "reference": "palo"
+        },
+        {
+            "original": "prep",
+            "translated": "preparar",
+            "reference": "prep"
+        },
+        {
+            "original": "msftres",
+            "translated": "msftres",
+            "reference": "msftres"
+        },
+        {
+            "original": "msftdata",
+            "translated": "msftdata",
+            "reference": "msftdata"
+        },
+        {
+            "original": "atvrecv",
+            "translated": "atvrecv",
+            "reference": "atvrecv"
+        },
+        {
+            "original": "diag",
+            "translated": "diag",
+            "reference": "diag"
+        },
+        {
+            "original": "legacy_boot",
+            "translated": "arranque_legacy",
+            "reference": "legacy_boot"
+        },
+        {
+            "original": "irst",
+            "translated": "primeiro",
+            "reference": "irst"
+        },
+        {
+            "original": "esp",
+            "translated": "esp",
+            "reference": "esp"
+        },
+        {
+            "original": "chromeos_kernel",
+            "translated": "núcleo_chromeos",
+            "reference": "chromeos_kernel"
+        },
+        {
+            "original": "bls_boot",
+            "translated": "arranque_bls",
+            "reference": "bls_boot"
+        },
+        {
+            "original": "linux-home",
+            "translated": "linux-home",
+            "reference": ""
+        },
+        {
+            "original": "Unknown partition flag, %d.",
+            "translated": "Modificador de particion desconhecido, %d.",
+            "reference": "Opção de partição desconhecida, %d."
+        },
+        {
+            "original": "Information",
+            "translated": "Informação",
+            "reference": "Informação"
+        },
+        {
+            "original": "Warning",
+            "translated": "Avertimento",
+            "reference": "Atenção"
+        },
+        {
+            "original": "Error",
+            "translated": "Erro",
+            "reference": "Erro"
+        },
+        {
+            "original": "Fatal",
+            "translated": "Fatal",
+            "reference": "Fatal"
+        },
+        {
+            "original": "Bug",
+            "translated": "Erro",
+            "reference": "Erro"
+        },
+        {
+            "original": "No Implementation",
+            "translated": "Sem implementação",
+            "reference": "Sem implementação"
+        },
+        {
+            "original": "Fix",
+            "translated": "Reparar",
+            "reference": "Arrumar"
+        },
+        {
+            "original": "Yes",
+            "translated": "sim",
+            "reference": "Sim"
+        },
+        {
+            "original": "No",
+            "translated": "Não",
+            "reference": "Não"
+        },
+        {
+            "original": "OK",
+            "translated": "Acordado",
+            "reference": "OK"
+        },
+        {
+            "original": "Retry",
+            "translated": "Reintentar",
+            "reference": "Repetir"
+        },
+        {
+            "original": "Ignore",
+            "translated": "Descartar",
+            "reference": "Ignorar"
+        },
+        {
+            "original": "Cancel",
+            "translated": "Cancelar",
+            "reference": "Cancelar"
+        },
+        {
+            "original": "A bug has been detected in GNU Parted.  Refer to the web site of parted http://www.gnu.org/software/parted/parted.html for more information of what could be useful for bug submitting!  Please email a bug report to %s containing at least the version (%s) and the following message:  ",
+            "translated": "Uma anomalia foi detectada no GNU Parted. Consulte o site do software parted http://www.gnu.org/software/parted/parted.html para mais informações sobre como relatar esse erro! Por favor, envie um email ao %s contendo pelo menos a versão (%s) e este mensagem adicional: ",
+            "reference": "Um erro foi detectado no GNU parted.  Visite o site do parted: http://www.gnu.org/software/parted/parted.html para mais informações sobre o que pode ser útil na hora de submeter um relatório de erro. Por favor, envie um relatório de erro para %s contendo ao menos a versão (%s) e a seguinte mensagem:  "
+        },
+        {
+            "original": "Support for reading AIX disk labels is is not implemented yet.",
+            "translated": "A capacidade de ler etiquetas do sistema de arquivos AIX ainda não foi implementada.",
+            "reference": "O suporte para leitura de rótulos de disco AIX ainda não foi implementado."
+        },
+        {
+            "original": "Support for writing AIX disk labels is is not implemented yet.",
+            "translated": "A prise en charge de l’écriture du système de fichiers AIX n’est pas encore implantée.",
+            "reference": "O suporte para escrita de rótulos de disco AIX ainda não foi implementado."
+        },
+        {
+            "original": "Support for adding partitions to AIX disk labels is not implemented yet.",
+            "translated": "A suporte para adicionar partições ao label do disco AIX ainda não está implementado.",
+            "reference": "O suporte para adicionar partições em rótulos de disco AIX ainda não foi implementado."
+        },
+        {
+            "original": "Support for duplicating partitions in AIX disk labels is not implemented yet.",
+            "translated": "A suporte para a cópia de partições AIX ainda não está implementado.",
+            "reference": "O suporte para duplicar partições em rótulos de disco AIX ainda não foi implementado."
+        },
+        {
+            "original": "Support for setting system type of partitions in AIX disk labels is not implemented yet.",
+            "translated": "A preseção para o tipo de sistema de partição em etiquetas do disco AIX ainda não está implementada.",
+            "reference": "O suporte para definir o tipo de sistema de partições em rótulos de disco AIX ainda não foi implementado."
+        },
+        {
+            "original": "Support for setting flags in AIX disk labels is not implemented yet.",
+            "translated": "A preseção para a modificação de flags em etiquetas de disco AIX ainda não está implementada.",
+            "reference": "O suporte para definir as opções em rótulos de disco AIX não foi implementado ainda."
+        },
+        {
+            "original": "Can't use Atari partition tables on disks with a sector size not equal to %d bytes.",
+            "translated": "Não é possível utilizar uma tabela de particionamento Atari em discos cuja dimensão do setor não seja igual a %d bytes.",
+            "reference": "Não é possível usar tabelas de partição Atari em discos com um tamanho de setor diferente de %d bytes."
+        },
+        {
+            "original": "Can't use Atari partition tables on disks with more than %d sectors.",
+            "translated": "Não é possível utilizar tabelas de partição Atari em discos com mais de %d seções.",
+            "reference": "Não é possível usar tabelas de partição Atari em discos com mais de %d setores."
+        },
+        {
+            "original": "Too many Atari partitions detected.  Maybe there is a loop in the XGM linked list.  Aborting.",
+            "translated": "Detectaram demasiadas partições Atari. Talvez haja um loop no vínculo da lista XGM. Cancelando.",
+            "reference": "Muitas partições Atari detectadas. Talvez haja um loop na lista vinculada do XGM. Abortando."
+        },
+        {
+            "original": "No data partition found in the ARS at sector %lli.",
+            "translated": "Não foi possível encontrar informações de partição no setor auxiliar %lli.",
+            "reference": "Nenhuma partição de dados encontrada no ARS no setor %lli."
+        },
+        {
+            "original": "The entry of the next logical ARS is not of type XGM in ARS at sector %lli.",
+            "translated": "O registro do seguinte sector raíz auxiliar lógico não é do tipo XGM no sector %lli.",
+            "reference": "A entrada do próximo ARS lógico não é do tipo XGM no ARS no setor %lli."
+        },
+        {
+            "original": "There doesn't seem to be an Atari partition table on this disk (%s), or it is corrupted.",
+            "translated": "Não há uma tabela de particípio Atari neste disco (%s), ou está danificada.",
+            "reference": "Não parece haver uma tabela de partição Atari neste disco (%s) ou ela está corrompida."
+        },
+        {
+            "original": "No room at sector %lli to store ARS of logical partition %d.",
+            "translated": "Não há espaço no setor %lli para armazenar o sector raiz auxiliar da partição lógica %d.",
+            "reference": "Não há espaço no setor %lli para armazenar ARS da partição lógica %d."
+        },
+        {
+            "original": "No room at sector %lli to store ARS.",
+            "translated": "Não há espaço no sector %lli para armazenar o sítio raiz auxiliar.",
+            "reference": "Não há espaço no setor %lli para armazenar ARS."
+        },
+        {
+            "original": "The sector count that is stored in the partition table does not correspond to the size of your device.  Do you want to fix the partition table?",
+            "translated": "O conteúdo do número de setores armazenado na tabela de partições não corresponde ao tamanho do seu dispositivo. Deseja reparar a tabela de partições?",
+            "reference": "A contagem de setores armazenada na tabela de partição não corresponde ao tamanho do seu dispositivo. Você deseja corrigir a tabela de partição?"
+        },
+        {
+            "original": "No room at sector %lli to store BSL.",
+            "translated": "Não há espaço no setor %lli para armazenar a lista de sectors danificados.",
+            "reference": "Não há espaço no setor %lli para armazenar BSL."
+        },
+        {
+            "original": "There were remaining partitions after filling the main AHDI table.",
+            "translated": "Particípios pendentes permaneceram após preencher a tabela AHDI principal.",
+            "reference": "Restavam partições após preencher a tabela principal AHDI."
+        },
+        {
+            "original": "The main AHDI table has been filled with all partitions but the ICD table is not empty so more partitions of unknown size and position will be detected by ICD compatible software.  Do you want to invalidate the ICD table?",
+            "translated": "A tabel AHDI principal foi preenchida com todas as partições, mas a tabela ICD não está vazia. Consequentemente, mais partições de tamanho e posição desconhecendo serão detectadas pelo software compatível com ICD. Deseja invalidar a tabela ICD?",
+            "reference": "A tabela AHDI principal foi preenchida com todas as partições, mas a tabela ICD não está vazia, portanto, mais partições de tamanho e posição desconhecidos serão detectadas pelo software compatível com ICD. Você deseja invalidar a tabela ICD?"
+        },
+        {
+            "original": "ICD entries can't contain extended or logical partitions.",
+            "translated": "Os registros ICD não podem conter partições estendidas nem lógicas.",
+            "reference": "Entradas ICD não podem conter partições estendidas ou lógicas."
+        },
+        {
+            "original": "There were remaining partitions after filling the tables.",
+            "translated": "Partições pendentes permaneceram após preencher as tabelas.",
+            "reference": "Restavam partições após o preenchimento das tabelas."
+        },
+        {
+            "original": "You can't use an extended XGM partition in ICD mode (more than %d primary partitions, if XGM is the first one it counts for two).",
+            "translated": "Não pode usar uma partição XGM estendida no modo ICD (mais de %d partições primárias, se a partição XGM for a primeira, ela é contada duas vezes).",
+            "reference": "Você não pode usar uma partição XGM estendida no modo ICD (mais de %d partições primárias, se XGM for o primeiro, ele conta para duas)."
+        },
+        {
+            "original": "Unable to satisfy all constraints on the partition.",
+            "translated": "Não é possível satisfazer todas as restrições na partição.",
+            "reference": "Não foi possível satisfazer todos as restrições na partição."
+        },
+        {
+            "original": "You can't use more than %d primary partitions (ICD mode) if you use an extended XGM partition.  If XGM is the first partition it counts for two.",
+            "translated": "Não é possível usar mais de %d partições primárias (modo ICD) se estiver utilizando uma partição XGM extendida. Se a partição XGM for a primeira, ela conta como duas.",
+            "reference": "Você não pode usar mais de %d partições primárias (modo ICD) se usar uma partição XGM estendida. Se XGM for a primeira partição, ele conta para dois."
+        },
+        {
+            "original": "Unable to allocate a partition number.",
+            "translated": "Não é possível alocar um número de partição.",
+            "reference": "Não é possível alocar um número de partição."
+        },
+        {
+            "original": "Unable to allocate a bsd disklabel slot.",
+            "translated": "Não é possível alocar uma ranura da etiqueta de disco BSD.",
+            "reference": "Não foi possível alocar uma posição para rótulo de disco bsd."
+        },
+        {
+            "original": "The partition table of DASD-LDL device cannot be changed.\n",
+            "translated": "Não é possível alterar a tabela de particionamento do dispositivo DASD-LDL.",
+            "reference": "A tabela de partição do dispositivo DASD-LDL não pode ser alterada.\n"
+        },
+        {
+            "original": "Unable to allocate a dasd disklabel slot",
+            "translated": "Não é possível alocar uma ranura da etiqueta de disco dasd.",
+            "reference": "Não foi possível alocar uma posição para rótulo de disco dasd."
+        },
+        {
+            "original": "Invalid partition table on %s -- wrong signature %x.",
+            "translated": "Tabula de particionamento inválida em %s -- firma incorreta %x.",
+            "reference": "Tabela de partições inválida em %s -- assinatura errada %x."
+        },
+        {
+            "original": "Invalid partition table - recursive partition on %s.",
+            "translated": "Tabela de particionamento inválida - partição recursiva em %s.",
+            "reference": "Tabela de partições inválida - partição recursiva em %s."
+        },
+        {
+            "original": "Extended partitions cannot be hidden on msdos disk labels.",
+            "translated": "As partições estendidas não podem ser escondidas nas etiquetas de disco MS-DOS.",
+            "reference": "Partições estendidas não podem ser escondidas em rótulos de disco msdos."
+        },
+        {
+            "original": "Extended partitions cannot be recovery partitions on msdos disk labels.",
+            "translated": "As partições estendidas não podem ser particionamentos de recuperação em etiquetas do MS-DOS.",
+            "reference": "Partições estendidas não podem ser partições recuperadas em rótulos de disco msdos."
+        },
+        {
+            "original": "Parted can't resize partitions managed by Windows Dynamic Disk.",
+            "translated": "O Parted não pode redimensionar partições gerenciadas pelo Disco Rápido Dinâmico do Windows.",
+            "reference": "O Parted não pode redimensionar partições gerenciadas com o Disco Dinâmico do Windows."
+        },
+        {
+            "original": "cannot create any more partitions",
+            "translated": "não é possível criar mais partições.",
+            "reference": "não é possível criar mais nenhuma partição"
+        },
+        {
+            "original": "%s has no extended partition (volume header partition).",
+            "translated": "%s não possui partição estendida (partição de cabeçalho do volume).",
+            "reference": "%s não possui partições estendidas (cabeçalho de volume da partição)."
+        },
+        {
+            "original": "Checksum is wrong, indicating the partition table is corrupt.",
+            "translated": "A soma de controle é incorreta, o que indica que a tabela de particionamento está corrompida.",
+            "reference": "A soma de verificação está errada, indicando que a tabela de partições está corrompida."
+        },
+        {
+            "original": "Only primary partitions can be root partitions.",
+            "translated": "Sólo as partições primárias podem ser particiones raiz.",
+            "reference": "Apenas partições primárias podem ser partições root."
+        },
+        {
+            "original": "Only primary partitions can be swap partitions.",
+            "translated": "Sólo as particiones primárias podem ser partição de troca.",
+            "reference": "Apenas partições primárias podem ser partições de troca (swap)."
+        },
+        {
+            "original": "Only logical partitions can be a boot file.",
+            "translated": "Sólo las particiones lógicas pueden ser un fichero de arranque.",
+            "reference": "Apenas partições lógicas podem ser um arquivo de inicialização."
+        },
+        {
+            "original": "failed to set dvh partition name to %s:\nOnly logical partitions (boot files) have a name.",
+            "translated": "impossível estabelecer o nome da partição DVH em %s : Seu único objetivo é criar uma partição lógica (fichero de arranque) que tenha um nome.",
+            "reference": "falha ao definir nome de partição dvh para %s:\nApenas partições lógicas (arquivos de inicialização) possuem um nome."
+        },
+        {
+            "original": "Too many primary partitions",
+            "translated": "Existe uma quantidade excessiva de partições primárias.",
+            "reference": "Há partições primárias demais"
+        },
+        {
+            "original": "open error",
+            "translated": "erro de abertura",
+            "reference": "erro de abertura"
+        },
+        {
+            "original": "seek error",
+            "translated": "erro de busca",
+            "reference": "erro de busca"
+        },
+        {
+            "original": "read error",
+            "translated": "erro de leitura",
+            "reference": "erro de leitura"
+        },
+        {
+            "original": "ioctl() error",
+            "translated": "erro de ioctl()",
+            "reference": "erro de ioctl()"
+        },
+        {
+            "original": "API version mismatch",
+            "translated": "discrepância de versões da API",
+            "reference": "Versão da API não coincide"
+        },
+        {
+            "original": "Unsupported disk type",
+            "translated": "Tipo de disco não suportado",
+            "reference": "Tipo de disco sem suporte"
+        },
+        {
+            "original": "Unsupported disk format",
+            "translated": "Formato de disco não suportado.",
+            "reference": "Formato de disco sem suporte"
+        },
+        {
+            "original": "Disk is in use",
+            "translated": "O disco está em uso.",
+            "reference": "O disco está em uso"
+        },
+        {
+            "original": "Syntax error in config file",
+            "translated": "Erro de sintaxe no arquivo de configuração",
+            "reference": "Erro de sintaxe no arquivo de configuração"
+        },
+        {
+            "original": "Volume label is corrupted",
+            "translated": "A etiqueta do volume está danificada",
+            "reference": "O rótulo do volume está corrompido"
+        },
+        {
+            "original": "A data set name is corrupted",
+            "translated": "O nome de um conjunto de dados está danificado",
+            "reference": "Um nome de conjunto de dados está corrompido"
+        },
+        {
+            "original": "Memory allocation failed",
+            "translated": "Falha na alocação de memória",
+            "reference": "Falha em alocação de memória"
+        },
+        {
+            "original": "Device verification failed",
+            "translated": "falha na verificação do dispositivo",
+            "reference": "Falha em verificação de dispositivo"
+        },
+        {
+            "original": "The specified device is not a valid DASD device",
+            "translated": "O dispositivo especificado não é um dispositivo DASD válido.",
+            "reference": "O dispositivo especificado não é um dispositivo DASD válido"
+        },
+        {
+            "original": "VOLSER not found on device",
+            "translated": "Não foi possível encontrar o VOLSER no dispositivo.",
+            "reference": "VOLSER não encontrado no dispositivo"
+        },
+        {
+            "original": "Fatal error",
+            "translated": "Erro fatal",
+            "reference": "Erro fatal"
+        },
+        {
+            "original": "No room for volume label.",
+            "translated": "Não há espaço para a etiqueta de volume.",
+            "reference": "Nenhum espaço para rótulo de volume."
+        },
+        {
+            "original": "No room for partition info.",
+            "translated": "Não há espaço para as informações de partições.",
+            "reference": "Nenhum espaço para informações de partição."
+        },
+        {
+            "original": "Invalid VTOC.",
+            "translated": "VTOC inválido.",
+            "reference": "VTOC inválido."
+        },
+        {
+            "original": "Could not retrieve API version.",
+            "translated": "não foi possível obter a versão da API.",
+            "reference": "Não foi possível recuperar versão API."
+        },
+        {
+            "original": "The current API version '%d' doesn't match dasd driver API version '%d'!",
+            "translated": "A versão atual da API '%d' não corresponde à versão da API do controlador DASD '%d'!",
+            "reference": "A versão \"%d\" da API atual não coincide com a versão \"%d\" da API da controladora dasd!"
+        },
+        {
+            "original": "Could not retrieve disk size.",
+            "translated": "Não foi possível recuperar o tamanho do disco.",
+            "reference": "Não foi possível recuperar tamanho de disco."
+        },
+        {
+            "original": "Could not retrieve disk geometry information.",
+            "translated": "Não foi possível recuperar a informação da geometria do disco.",
+            "reference": "Não foi possível recuperar informações sobre a geometria do disco."
+        },
+        {
+            "original": "Could not retrieve blocksize information.",
+            "translated": "Não foi possível recuperar a informação sobre o tamanho do bloco.",
+            "reference": "Não foi possível recuperar informações de tamanho do bloco."
+        },
+        {
+            "original": "Disk geometry does not match a DASD device of type 3390.",
+            "translated": "A geometria do disco não corresponde ao dispositivo DASD tipo 3390.",
+            "reference": "A geometria do disco não corresponde a um dispositivo DASD do tipo 3390."
+        },
+        {
+            "original": "device is too small for GPT",
+            "translated": "o dispositivo é muito pequeno para GPT.",
+            "reference": "dispositivo é muito pequeno para GPT"
+        },
+        {
+            "original": "The format of the GPT partition table is version %x, which is newer than what Parted can recognise.  Please report this!",
+            "translated": "O formato da tabela de particípio GPT é a versão %x, que é mais recente do que o que Parted pode reconhecer. Por favor, relata isso!",
+            "reference": "A versão do formato da tabela de partição GPT é %x, que é mais recente do que o Parted pode reconhecer. Por favor, nos relate isso!"
+        },
+        {
+            "original": "Not all of the space available to %s appears to be used, you can fix the GPT to use all of the space (an extra %llu blocks) or continue with the current setting? ",
+            "translated": "Parece que o espaço disponível no %s não está totalmente utilizado. Pode ajustar GPT para usar todo esse espaço (extra %llu bloques) ou continuar com as configurações atuais?",
+            "reference": "Parece que não está sendo usado todo o espaço disponível em %s, você pode corrigir a GPT para usar todo seu espaço (uns %llu blocos adicionais) ou continuar com a configuração atual? "
+        },
+        {
+            "original": "The backup GPT table is not at the end of the disk, as it should be.  Fix, by moving the backup to the end (and removing the old backup)?",
+            "translated": "A tabela GPT de backup não está no final do disco, como deveria estar. Deve-se corrigir movendo o respaldo para a última posição (e removendo a cópia antiga)?",
+            "reference": "A cópia da tabela GPT não está no fim do disco, como deveria estar. Corrija-a, movendo a cópia para o fim do disco (e removendo a cópia antiga)?"
+        },
+        {
+            "original": "Both the primary and backup GPT tables are corrupt.  Try making a fresh table, and using Parted's rescue feature to recover partitions.",
+            "translated": "A tabel primária e a cópia de backup GPT estão corrompidas. Tente criar uma nova tabela e use o modo de recuperação do Parted para reestruturar as partições.",
+            "reference": "Tanto a tabela GPT primária quanto a sua cópia estão corrompidas. Tente fazer uma nova tabela, usando os recursos de recuperação do Parted para recuperar partições."
+        },
+        {
+            "original": "The backup GPT table is corrupt, but the primary appears OK, so that will be used.",
+            "translated": "A tabela GPT de backup está danificada, porém a primária parece correta, portanto será utilizada esta.",
+            "reference": "A cópia da tabela GPT está corrompida, mas a tabela primária aparece estar OK, então esta será usada."
+        },
+        {
+            "original": "The primary GPT table is corrupt, but the backup appears OK, so that will be used.",
+            "translated": "A tabel primária GPT está corrompida, mas a cópia de backup parece correta, portanto será utilizada.",
+            "reference": "A tabela GPT primária está corrompida, mas a cópia da tabela aparece estar OK, então esta será usada."
+        },
+        {
+            "original": "primary partition table array CRC mismatch",
+            "translated": "discrepância de CRC na tabela de particionamento primário",
+            "reference": "CRC do conjunto de tabela de partição primária não coincide"
+        },
+        {
+            "original": "failed to translate partition name",
+            "translated": "falha ao traduzir o nome da partição",
+            "reference": "falha ao traduzir nome de partição"
+        },
+        {
+            "original": "Invalid signature %x for Mac disk labels.",
+            "translated": "Assinatura inválida %x para etiquetas de discos Mac.",
+            "reference": "Assinatura inválida %x para rótulos de disco Mac."
+        },
+        {
+            "original": "Partition map has no partition map entry!",
+            "translated": "A tabela de particionamento não possui uma entrada na tabela de particionamento!",
+            "reference": "O mapa de partições não tem nenhuma entrada!"
+        },
+        {
+            "original": "%s is too small for a Mac disk label!",
+            "translated": "%s é muito pequeno para uma etiqueta de disco Mac!",
+            "reference": "%s é muito pequeno para um rótulo de disco Mac!"
+        },
+        {
+            "original": "Partition %d has an invalid signature %x.",
+            "translated": "A partição %d tem uma assinatura inválida %x.",
+            "reference": "A partição %d tem uma assinatura inválida %x."
+        },
+        {
+            "original": "Partition %d has an invalid length of 0 bytes!",
+            "translated": "A partição %d possui uma medida de comprimento inválida, que é igual a 0 bytes!",
+            "reference": "A partição %d tem um tamanho inválido de 0 bytes!"
+        },
+        {
+            "original": "The data region doesn't start at the start of the partition.",
+            "translated": "A região de dados não começa no início da partição.",
+            "reference": "A região de dados não começa no início da partição."
+        },
+        {
+            "original": "The partition's boot region doesn't occupy the entire partition.",
+            "translated": "A região de arranque da partição não ocupa toda a partição.",
+            "reference": "A região de inicialização da partição não a ocupa inteiramente."
+        },
+        {
+            "original": "The partition's data region doesn't occupy the entire partition.",
+            "translated": "A região de dados da partição não ocupa toda a partição.",
+            "reference": "A região de dados da partição não a ocupa inteiramente."
+        },
+        {
+            "original": "Weird block size on device descriptor: %d bytes is not divisible by 512.",
+            "translated": "Tamanho de bloco inválido no descriptor do dispositivo: %d bytes não é divisível por 512.",
+            "reference": "tamanho de bloco estranho no descritor de dispositivo: %d bytes não são divisíveis por 512."
+        },
+        {
+            "original": "The driver descriptor says the physical block size is %d bytes, but Linux says it is %d bytes.",
+            "translated": "O descrevedor do controlador indica que o tamanho físico do bloco é de %d bytes, mas Linux informa %d byte.",
+            "reference": "O descritor da controladora (driver) informa que o tamanho físico de bloco é %d bytes, mas o Linux informa que é %d bytes."
+        },
+        {
+            "original": "No valid partition map found.",
+            "translated": "Encontrou-se uma tabela de particionamento inválida.",
+            "reference": "Nenhum mapa de partições válido foi encontrado."
+        },
+        {
+            "original": "Conflicting partition map entry sizes!  Entry 1 says it is %d, but entry %d says it is %d!",
+            "translated": "Conflicto nas dimensões das entradas da tabela de particionamento! A entrada 1 indica %d, enquanto a entrada %d indica %d!",
+            "reference": "Conflito nos tamanhos de entrada do mapa de partições!  A entrada 1 diz que é %d, mas a entrada %d diz que é %d!"
+        },
+        {
+            "original": "Weird!  There are 2 partitions map entries!",
+            "translated": "É estranho - Há 2 entradas de tabela de particionamento!",
+            "reference": "Que estranho! Há 2 entradas no mapa de partições!"
+        },
+        {
+            "original": "Changing the name of a root or swap partition will prevent Linux from recognising it as such.",
+            "translated": "Cambiar o nome de uma partição raiz ou do espaço de troca impedirá que Linux a reconheça como tal.",
+            "reference": "Mudar o nome de uma partição root ou swap irá impedir o Linux de reconhecê-la como tal."
+        },
+        {
+            "original": "Can't add another partition -- the partition map is too small!",
+            "translated": "Não é possível adicionar outra partição - a tabela de partições está muito pequena!",
+            "reference": "Não é possível adicionar outra partição -- o mapa de partições é muito pequeno!"
+        },
+        {
+            "original": "Invalid partition table on %s.",
+            "translated": "Tabela de particionamento inválida em %s.",
+            "reference": "Tabela de partições inválida em %s."
+        },
+        {
+            "original": "Partition %d isn't aligned to cylinder boundaries.  This is still unsupported.",
+            "translated": "A partição %d não está alinhada aos limites do cilindro. Necessita de suporte para este caso.",
+            "reference": "A partição %d não está alinhada aos limites do cilindro.  Isto ainda não é suportado."
+        },
+        {
+            "original": "Can't add another partition.",
+            "translated": "Não é possível adicionar outra partição.",
+            "reference": "Não posso adicionar outra partição."
+        },
+        {
+            "original": "partition length of %jd sectors exceeds the %s-partition-table-imposed maximum of %jd",
+            "translated": "o tamanho da partição de %jd sectores excede o máximo especificado na tabulação de partições %s : %jd",
+            "reference": "tamanho de partição de %1$jd setores excede o máximo de %3$jd do imposto pela tabela de partições %2$s"
+        },
+        {
+            "original": "starting sector number, %jd exceeds the %s-partition-table-imposed maximum of %jd",
+            "translated": "o número do setor inicial %jd ultrapassa o máximo especificado na tabela de particionamento %s : %jd",
+            "reference": "número do setor inicial %1$jd excede o máximo de %3$jd do imposto pela tabela de partições %2$s"
+        },
+        {
+            "original": "%s : Bad checksum on block %llu of type %s.",
+            "translated": "%s : Falha na soma de controle no bloco %llu do tipo %s.",
+            "reference": "%s : Soma de verificação ruim no bloco %llu do tipo %s."
+        },
+        {
+            "original": "%s : Didn't find rdb block, should never happen.",
+            "translated": "%s : Não é possível encontrar o bloco RDB, isso não deveria acontecer.",
+            "reference": "%s: Bloco rdb não encontrado, isto nunca deveria acontecer."
+        },
+        {
+            "original": "%s : Loop detected at block %d.",
+            "translated": "%s : Bucle detectado no bloco %d.",
+            "reference": "%s : Loop detectado no bloco %d."
+        },
+        {
+            "original": "%s : The %s list seems bad at block %s.",
+            "translated": "%s : A lista %s parece estar errada no bloco %s.",
+            "reference": "%s : A lista %s parece ruim no bloco %s."
+        },
+        {
+            "original": "%s : Failed to list bad blocks.",
+            "translated": "%s : Impossível enlistar blocos daninhos.",
+            "reference": "%s : Falha ao listar blocos defeituosos."
+        },
+        {
+            "original": "%s : Failed to list partition blocks.",
+            "translated": "%s : Impossível lister os blocos da partição.",
+            "reference": "%s : Falha ao listar blocos de partições."
+        },
+        {
+            "original": "%s : Failed to list file system blocks.",
+            "translated": "%s : Impossível lister os blocos do sistema de fichiers.",
+            "reference": "%s : Falha ao listar blocos de sistemas de arquivo."
+        },
+        {
+            "original": "%s : Failed to list boot blocks.",
+            "translated": "%s : Impossível lister os blocos de inicialização.",
+            "reference": "%s : Falha ao listar blocos de inicialização."
+        },
+        {
+            "original": "Failed to write partition block at %d.",
+            "translated": "impossível escrever o bloco da partição em %d.",
+            "reference": "Falha ao escrever bloco de partição em %d."
+        },
+        {
+            "original": "Corrupted Sun disk label detected.",
+            "translated": "Uma etiqueta de disco Sun foi detectada com alterações.",
+            "reference": "Um rótulo de disco Sun corrompido foi detectado."
+        },
+        {
+            "original": "The disk CHS geometry (%d,%d,%d) reported by the operating system does not match the geometry stored on the disk label (%d,%d,%d).",
+            "translated": "A geometria de disco CHS (%d,%d,%d) informada pelo sistema operacional não parece coincidir com a geometria guardada na etiqueta do disco (%d,%d,%d).",
+            "reference": "A geometria CHS do disco (%d,%d,%d) informada pelo sistema operacional não coincide com a geometria gravada no rótulo de disco (%d,%d,%d)."
+        },
+        {
+            "original": "The disk label describes a disk bigger than %s.",
+            "translated": "A etiqueta de disco descreve um disco maior que %s.",
+            "reference": "O rótulo de disco descreve um disco maior que %s."
+        },
+        {
+            "original": "The disk has %d cylinders, which is greater than the maximum of 65536.",
+            "translated": "O disco possui %d cilindros, que são maiores do que o máximo de 65536.",
+            "reference": "O disco possui %d cilindros, número que é maior que o máximo de 65536."
+        },
+        {
+            "original": "The Whole Disk partition is the only available one left.  Generally, it is not a good idea to overwrite this partition with a real one.  Solaris may not be able to boot without it, and SILO (the sparc boot loader) appreciates it as well.",
+            "translated": "A partição Entera do Disco é a única que permanece disponível. Geralmente, não é uma boa ideia sobrescrever esta partição com um disco real. Solaris não pode ser iniciado sem ela e o SILO (carregador de inicialização para SPARC) também se beneficia dela.",
+            "reference": "A partição inteira do disco é a única disponível à esquerda.  Geralmente não é uma boa ideia sobrescrever esta partição com uma real.  O Solaris pode não ser capaz de inicializar sem isto, e o SILO (o carregador de inicialização sparc) utiliza também."
+        },
+        {
+            "original": "Sun disk label is full.",
+            "translated": "A etiqueta de disco Sun está cheia.",
+            "reference": "O rótulo de disco Sun está cheio."
+        },
+        {
+            "original": "opening of device failed",
+            "translated": "falha na abertura do dispositivo",
+            "reference": "falha ao abrir dispositivo"
+        },
+        {
+            "original": "seeking on device failed",
+            "translated": "falhou a busca no dispositivo",
+            "reference": "falha ao buscar em dispositivo"
+        },
+        {
+            "original": "writing to device failed",
+            "translated": "falha na escritura ao dispositivo",
+            "reference": "falha ao escrever em dispositivo"
+        },
+        {
+            "original": "reading from device failed",
+            "translated": "falha na leitura do dispositivo",
+            "reference": "falha ao ler de dispositivo"
+        },
+        {
+            "original": "Could not read volume label.",
+            "translated": "Não foi possível ler a etiqueta de volume.",
+            "reference": "Não foi possível ler o rótulo do volume."
+        },
+        {
+            "original": "Could not write volume label.",
+            "translated": "Não foi possível escrever a etiqueta de volume.",
+            "reference": "Não foi possível escrever o rótulo do volume."
+        },
+        {
+            "original": "Could not read VTOC labels.",
+            "translated": "não foi possível ler as etiquetas da tabela de volume (VTOC).",
+            "reference": "Não foi possível ler rótulos VTOC."
+        },
+        {
+            "original": "Could not read VTOC FMT1 DSCB.",
+            "translated": "Não foi possível ler o volume VTOC FMT1 DSCB.",
+            "reference": "Não foi possível ler VTOC FMT1 DSCB."
+        },
+        {
+            "original": "Could not read VTOC FMT4 DSCB.",
+            "translated": "Não foi possível ler o volume VTOC FMT4 DSCB.",
+            "reference": "Não foi possível ler VTOC FMT4 DSCB."
+        },
+        {
+            "original": "Could not read VTOC FMT5 DSCB.",
+            "translated": "Não foi possível ler o volume VTOC FMT5 DSCB.",
+            "reference": "Não foi possível ler VTOC FMT5 DSCB."
+        },
+        {
+            "original": "Could not read VTOC FMT7 DSCB.",
+            "translated": "Não foi possível ler o volume VTOC FMT7 DSCB.",
+            "reference": "Não foi possível ler VTOC FMT7 DSCB."
+        },
+        {
+            "original": "Could not write VTOC labels.",
+            "translated": "Não foi possível escrever as etiquetas da tabela de volume (VTOC).",
+            "reference": "Não foi possível escrever rótulos VTOC."
+        },
+        {
+            "original": "Could not write VTOC FMT1 DSCB.",
+            "translated": "Não foi possível escrever a tabela de volume VTOC FMT1 DSCB.",
+            "reference": "Não foi possível escrever VTOC FMT1 DSCB."
+        },
+        {
+            "original": "Could not write VTOC FMT4 DSCB.",
+            "translated": "Não foi possível escrever a tabela de volume VTOC FMT4 DSCB.",
+            "reference": "Não foi possível escrever VTOC FMT4 DSCB."
+        },
+        {
+            "original": "Could not write VTOC FMT5 DSCB.",
+            "translated": "Não foi possível escrever a tabela de volume VTOC FMT5 DSCB.",
+            "reference": "Não foi possível escrever VTOC FMT5 DSCB."
+        },
+        {
+            "original": "Could not write VTOC FMT7 DSCB.",
+            "translated": "Não foi possível escrever a tabela de volume VTOC FMT7 DSCB.",
+            "reference": "Não foi possível escrever VTOC FMT7 DSCB."
+        },
+        {
+            "original": "Could not write VTOC FMT9 DSCB.",
+            "translated": "Não foi possível escrever VTOC FMT9 DSCB.",
+            "reference": "Não foi possível escrever VTOC FMT9 DSCB."
+        },
+        {
+            "original": "Out of memory.",
+            "translated": "Não há memória.",
+            "reference": "Memória insuficiente."
+        },
+        {
+            "original": "Cannot get unit size for special unit 'COMPACT'.",
+            "translated": "Não é possível obter o tamanho unitário para a unidade especial 'COMPACT'.",
+            "reference": "Não foi possível obter o tamanho da unidade para a unidade especial \"COMPACT\"."
+        },
+        {
+            "original": "\"%s\" has invalid syntax for locations.",
+            "translated": "%s",
+            "reference": "\"%s\" possui sintaxe inválida para localizações."
+        },
+        {
+            "original": "The maximum head value is %d.",
+            "translated": "O valor máximo do cabeçalho é %d.",
+            "reference": "O valor máximo do cabeçalho é %d."
+        },
+        {
+            "original": "The maximum sector value is %d.",
+            "translated": "O valor máximo de sector é %d.",
+            "reference": "O valor máximo do setor é %d."
+        },
+        {
+            "original": "The location %s is outside of the device %s.",
+            "translated": "A localização %s está fora do dispositivo %s.",
+            "reference": "A localização %s está para fora do dispositivo %s."
+        },
+        {
+            "original": "Invalid number.",
+            "translated": "Número inválido.",
+            "reference": "Número inválido."
+        },
+        {
+            "original": "Use a smaller unit instead of a value < 1",
+            "translated": "Utilize uma unidade menor em vez de um valor < 1",
+            "reference": "Use uma unidade menor ao invés de usar um valor < 1"
+        },
+        {
+            "original": "%s : Failed to allocate partition block\n",
+            "translated": "%s : Impossível alocar um bloco de partição",
+            "reference": "%s : Falha ao alocar bloco de partição\n"
+        },
+        {
+            "original": "%s : Failed to allocate block\n",
+            "translated": "%s : Impossível alocar um bloco",
+            "reference": "%s : Falha ao alocar bloco\n"
+        },
+        {
+            "original": "%s : Couldn't read boot block %llu\n",
+            "translated": "%s : Impossível ler o bloco de inicialização %llu",
+            "reference": "%s : Não foi possível ler o bloco de inicialização %llu\n"
+        },
+        {
+            "original": "%s : Couldn't read root block %llu\n",
+            "translated": "%s : Impossível ler o bloco raiz %llu",
+            "reference": "%s : Não foi possível ler o bloco root %llu\n"
+        },
+        {
+            "original": "%s : Failed to allocate id list element\n",
+            "translated": "%s : Impossível alocar um elemento da lista de identificadores",
+            "reference": "%s : Falha ao alocar id de elemento de lista\n"
+        },
+        {
+            "original": "%s : Couldn't read block %llu\n",
+            "translated": "%s : impossível ler o bloco %llu",
+            "reference": "%s : Não foi possível ler o bloco %llu\n"
+        },
+        {
+            "original": "%s : Bad checksum on block %llu of type %s\n",
+            "translated": "%s : Falha na soma de controle no bloco %llu do tipo %s",
+            "reference": "%s : Soma de verificação ruim no bloco %llu do tipo %s\n"
+        },
+        {
+            "original": "%s : Couldn't write block %d\n",
+            "translated": "%s : impossível escrever o bloco %d",
+            "reference": "%s : Não foi possível escrever bloco %d\n"
+        },
+        {
+            "original": "%s : Failed to allocate disk_specific rdb block\n",
+            "translated": "%s : impossível alocar o bloco RDB específico do disco_specific",
+            "reference": "%s : Falha ao alocar bloco rdb de disco_específico\n"
+        },
+        {
+            "original": "%s : Didn't find rdb block, should never happen\n",
+            "translated": "%s : não é possível encontrar o bloco RDB, isso nunca deveria acontecer",
+            "reference": "%s : Não foi encontrado bloco rdb, isto nunca deveria acontecer\n"
+        },
+        {
+            "original": "%s : Failed to read partition block %llu\n",
+            "translated": "%s : Impossível escrever os blocos da partição %llu\n",
+            "reference": "%s : Falha ao ler bloco de partição %llu\n"
+        },
+        {
+            "original": "GNU Parted was miscompiled: the FAT boot sector should be 512 bytes.  FAT support will be disabled.",
+            "translated": "GNU parted foi mal compilado : o setor de inicialização FAT deve ser de 512 bytes. Suporte ao sistema de arquivos FAT será desabilitado.",
+            "reference": "O GNU Parted não foi mal compilado: o setor de boot FAT deveria ser de 512 bytes.  O suporte a FAT será desabilitado."
+        },
+        {
+            "original": "File system has an invalid signature for a FAT file system.",
+            "translated": "O sistema de fichiers tem uma assinatura inválida para um sistema de fichiers FAT.",
+            "reference": "O sistema de arquivos tem uma assinatura inválida para um FAT."
+        },
+        {
+            "original": "File system has an invalid sector size for a FAT file system.",
+            "translated": "O sistema de fichiers possui uma tamanho de setor inválido para um sistema de fichiers FAT.",
+            "reference": "O sistema de arquivos tem um tamanho de setor inválido para um FAT."
+        },
+        {
+            "original": "File system has an invalid cluster size for a FAT file system.",
+            "translated": "O sistema de fichiers tem um tamanho de cluster inválido para o sistema de fichiers FAT.",
+            "reference": "O sistema de arquivos tem um tamanho de cluster inválido para um FAT."
+        },
+        {
+            "original": "File system has an invalid number of reserved sectors for a FAT file system.",
+            "translated": "O sistema de fichiers possui um número inválido de sectores reservados para um sistema de fichiers FAT.",
+            "reference": "O sistema de arquivos tem um número inválido de setores reservados à sistemas de arquivo FAT."
+        },
+        {
+            "original": "File system has an invalid number of FATs.",
+            "translated": "O sistema de fichiers possui um número inválido de tabelas FAT.",
+            "reference": "O sistema de arquivos tem um número inválido de FATs."
+        },
+        {
+            "original": "The file system's CHS geometry is (%d, %d, %d), which is invalid.  The partition table's CHS geometry is (%d, %d, %d).",
+            "translated": "A geometria CHS do sistema de fichiers é (%d, %d, %d), e está incorreta. A geometria CHS da tabela de particípio é (%d, %d, %d).",
+            "reference": "A geometria CHS do sistema de arquivos é (%d, %d, %d), que é inválida. A geometria CHS da tabela de partições é (%d, %d, %d)."
+        },
+        {
+            "original": "FAT boot sector says logical sector size is 0.  This is weird. ",
+            "translated": "O sector de inicialização do sistema FAT indica uma dimensão lógica do setor igual a zero. Isto é incomum.",
+            "reference": "O setor de inicialização FAT diz que o tamanho lógico do setor é 0. Estranho. "
+        },
+        {
+            "original": "FAT boot sector says there are no FAT tables.  This is weird. ",
+            "translated": "O sector de arranque do FAT diz que não há tabelas FAT. Isto é incomum.",
+            "reference": "O setor de inicialização FAT diz que não há tabelas FAT. Estranho. "
+        },
+        {
+            "original": "FAT boot sector says clusters are 0 sectors.  This is weird. ",
+            "translated": "O sector de inicialização do sistema FAT indica que os clusters possuem zero setores. Isso é incomum.",
+            "reference": "O setor de inicialização FAT diz que os clusters têm 0 setores. Estranho. "
+        },
+        {
+            "original": "File system is FAT12, which is unsupported.",
+            "translated": "O sistema de fichiers é FAT12, o qual não está suportado.",
+            "reference": "O sistema de arquivos é FAT12, ao que não há suporte."
+        },
+        {
+            "original": "Unrecognised old style linux swap signature '%10s'.",
+            "translated": "Firma de estilo antigo da partição do intercambio de Linux '%10s' não reconhecida.",
+            "reference": "Assinatura linux swap estilo antigo não reconhecido '%10s'."
+        },
+        {
+            "original": "Unrecognised new style linux swap signature '%10s'.",
+            "translated": "Firma de particionamento do intercambio de Linux (swap) de estilo novo não reconhecida '\\u00a7%10s\\u00a7'.",
+            "reference": "Assinatura linux swap estilo novo não reconhecido '%10s'."
+        },
+        {
+            "original": "Unrecognised swsusp linux swap signature '%9s'.",
+            "translated": "Firma de sinalização da partição do trocaio Linux (swap) do tipo swsusp não reconhecida \"%10s\".",
+            "reference": "Assinatura linux swap swsusp não reconhecido '%9s'."
+        },
+        {
+            "original": "Parted can't use HFS file systems on disks with a sector size not equal to %d bytes.",
+            "translated": "O Parted não pode usar sistemas de arquivos HFS em discos com tamanho do setor diferente de %d bytes.",
+            "reference": "O Parted não pode utilizar sistemas de arquivos HFS em discos com um tamanho de setor diferente de %d bytes."
+        },
+        {
+            "original": "The file system's CHS geometry is (%d, %d, %d), which is invalid.  The partition table's CHS geometry is (%d, %d, %d).  If you select Ignore, the file system's CHS geometry will be left unchanged.  If you select Fix, the file system's CHS geometry will be set to match the partition table's CHS geometry.",
+            "translated": "A geometria CHS do sistema de fichiers é (%d, %d, %d), e isso não está correto. A geometria CHS da tabela das partições é (%d, %d, %d). Se você optar por ignorar (Ignore), a geometria CHS do sistema de fichiers permanecerá inalterada. Caso contrário, se escolher reparar (Fix), a geometria CHS do sistema de fichiers será atualizada para corresponder à geometria CHS da tabela das partições.",
+            "reference": "A geometria CHS do sistema de arquivos é (%d, %d, %d), que é inválida.  A geometria CHS da tabela de partições é (%d, %d, %d).  Se você selecionar Ignorar, a geometria CHS do sistema de arquivos permanecerá inalterada.  Se você selecionar Arrumar, a geometria CHS do sistema de arquivos será definida para coincidir com a geometria CHS da tabela de partições."
+        },
+        {
+            "original": "The information sector has the wrong signature (%x).  Select cancel for now, and send in a bug report.  If you're desperate, it's probably safe to ignore.",
+            "translated": "O sector de informação tem uma assinatura incorreta (%x). Por enquanto, selecione cancelar e envie um relatório de falha. Se estiver desesperado, pode ser mais seguro ignorá-lo.",
+            "reference": "O setor de informações tem uma assinatura inválida (%x). Selecione cancelar agora, e mande um relatório de erro. Se você está desesperado, é provável que seja seguro ignorar."
+        },
+        {
+            "original": "You need %s of free disk space to shrink this partition to this size.  Currently, only %s is free.",
+            "translated": "Necessita %s de espaço livre no disco para reduzir esta partição a este tamanho. Atualmente, só há que %s em liberdade.",
+            "reference": "Você precisa de %s de espaço livre em disco para diminuir esta partição a este tamanho. Atualmente, apenas %s estão livres."
+        },
+        {
+            "original": "Cluster start delta = %d, which is not a multiple of the cluster size %d.",
+            "translated": "Delta inicial do cluster = %d, que não é um múltiplo da tamanho de um cluster %d.",
+            "reference": "O cluster inicia em delta = %d, que não é um múltiplo do tamanho de cluster %d."
+        },
+        {
+            "original": "Bad directory entry for %s: first cluster is the end of file marker.",
+            "translated": "Entrada de diretório inválida para %s: o primeiro cluster está no final do marcador do arquivo.",
+            "reference": "Entrada de diretório inválida para %s: o primeiro cluster é o fim do marcador de arquivo."
+        },
+        {
+            "original": "Bad FAT: unterminated chain for %s.  You should run dosfsck or scandisk.",
+            "translated": "FAT incorreta: cadeia não finalizada para %s. Deve executar doskfsck ou scandisck.",
+            "reference": "FAT ruim: cadeia não terminada para %s. Você deveria rodar o dosfsck ou o scandisk."
+        },
+        {
+            "original": "Bad FAT: cluster %d outside file system in chain for %s.  You should run dosfsck or scandisk.",
+            "translated": "FAT incorreto: o cluster %d está fora do sistema de arquivos na cadeia para %s. Deve executar doskick ou scandisk.",
+            "reference": "FAT ruim: cluster %d fora do sistema de arquivos na cadeia para %s.  Você deveria rodar o dosfsck ou o scandisk."
+        },
+        {
+            "original": "Bad FAT: cluster %d is cross-linked for %s.  You should run dosfsck or scandisk.",
+            "translated": "FAT incorreto: o cluster %d possui emlaces cruzados para %s. Deve executar doisfsck ou scandisck.",
+            "reference": "FAT ruim: o cluster %d tem uma referência cruzada para %s. Você deveria rodar o dosfsck ou o scandisk."
+        },
+        {
+            "original": "%s is %dk, but it has %d clusters (%dk).",
+            "translated": "%s é de %dk, mas possui %d clusters (%dk).",
+            "reference": "%s é %dk, mas ele tem %d clusters (%dk)."
+        },
+        {
+            "original": "Partition too big/small for a %s file system.",
+            "translated": "A partição é muito grande ou muito pequena para um sistema de arquivos %s.",
+            "reference": "Partição muito grande/pequena para um sistema de arquivos %s."
+        },
+        {
+            "original": "The FATs don't match.  If you don't know what this means, then select cancel, run scandisk on the file system, and then come back.",
+            "translated": "As FATs não concordam. Se você não souber o que isso significa, selecione cancelar (cancel), execute scandisk no sistema de arquivos e depois tente novamente.",
+            "reference": "As FATs não estão iguais. Se você não sabe o que isto significa, selecione cancelar, execute o scandisk no sistema de arquivos, depois volte."
+        },
+        {
+            "original": "There are no possible configurations for this FAT type.",
+            "translated": "Não há configurações possíveis para este tipo de FAT.",
+            "reference": "Não há configurações possíveis para este tipo de FAT."
+        },
+        {
+            "original": "File system doesn't have expected sizes for Windows to like it.  Cluster size is %dk (%dk expected); number of clusters is %d (%d expected); size of FATs is %d sectors (%d expected).",
+            "translated": "O sistema de fichiers não possui tamanhos compatíveis com Windows. O tamanho do cluster é %dk (%dk esperado); o número de clusters é de %d (%d esperado). A dimensão da FAT é de %d seções (%d esperada).",
+            "reference": "O sistema de arquivos não tem o tamanho esperado para que o Windows utilize. O tamanho do cluster é %dk (%dk esperado); número de clusters é %d (%d esperado); tamanho da FAT é %d setores (%d esperado)."
+        },
+        {
+            "original": "File system is reporting the free space as %d clusters, not %d clusters.",
+            "translated": "O sistema de fichiers está anunciando que o espaço livre dos clusters é de %d, e não de %d clusters.",
+            "reference": "O sistema de arquivos está reportando que o espaço livre é %d clusters, não %d clusters."
+        },
+        {
+            "original": "There's not enough room in the root directory for all of the files.  Either cancel, or ignore to lose the files.",
+            "translated": "Não há espaço suficiente no diretório raiz para todos os arquivos. Pode cancelar ou descartá-los, perdendo assim seus dados.",
+            "reference": "Não há espaço suficiente no diretório raiz para todos os arquivos.  Cancele, ou ignore para perder os arquivos."
+        },
+        {
+            "original": "Error writing to the root directory.",
+            "translated": "Erro ao escrever no diretório raiz.",
+            "reference": "Erro ao escrever no diretório raiz."
+        },
+        {
+            "original": "If you leave your file system as FAT16, then you will have no problems.",
+            "translated": "Se você manter seu sistema de arquivos como FAT16, não terá problemas.",
+            "reference": "Se você deixar seu sistema de arquivos como FAT16, não haverá nenhum problema."
+        },
+        {
+            "original": "If you convert to FAT16, and MS Windows is installed on this partition, then you must re-install the MS Windows boot loader.  If you want to do this, you should consult the Parted manual (or your distribution's manual).",
+            "translated": "Se converter o sistema de arquivos para FAT16 e se MS Windows estiver instalado na partição, então deve reinstalar o carregador do arranque do MS Windows. Se quiser fazer isso, deve consultar manualmente Parted (ou o manual da sua distribuição).",
+            "reference": "Se você converter para FAT16, e o MS Windows está instalado nesta partição, você deverá reinstalar o gerenciador de boot do MS Windows. Se quiser fazer isso, consulte o manual do Parted (ou o manual de sua distribuição)."
+        },
+        {
+            "original": "If you leave your file system as FAT32, then you will not introduce any new problems.",
+            "translated": "Se você manter seu sistema de arquivos como FAT32, não terá problemas novos.",
+            "reference": "Se deixar seu sistema de arquivos como FAT32, você não criará mais nenhum problema novo."
+        },
+        {
+            "original": "If you convert to FAT32, and MS Windows is installed on this partition, then you must re-install the MS Windows boot loader.  If you want to do this, you should consult the Parted manual (or your distribution's manual).  Also, converting to FAT32 will make the file system unreadable by MS DOS, MS Windows 95a, and MS Windows NT.",
+            "translated": "Se converter o sistema de arquivos para FAT32 enquanto MS Windows está instalado na partição, é necessário reinstalar o carregador do arranque do MS Windows. Se optar por fazer isso, deve-se consultar o manual da Parted (ou o manual da sua distribuição). Observe que a conversão para FAT32 tornará ilegíveis os sistemas de arquivos para MS DOS, MS Windows 95a e MS Windows NT.",
+            "reference": "Se você converter para FAT32, e o MS Windows está instalado nesta partição, você deverá reinstalar o gerenciador de boot do MS Windows. Se quiser fazer isso, consulte o manual do Parted (ou o manual de sua distribuição). Também, convertendo para FAT32 fará com que o sistema de arquivos não seja mais reconhecido pelo MS DOS, Windows 95a, e MS Windows NT."
+        },
+        {
+            "original": "%s  %s  %s",
+            "translated": "%s  %s  %s",
+            "reference": "%s  %s  %s"
+        },
+        {
+            "original": "Would you like to use FAT32?",
+            "translated": "Gostaria de utilizar FAT32?",
+            "reference": "Você gostaria de usar FAT32?"
+        },
+        {
+            "original": "%s  %s",
+            "translated": "%s  %s",
+            "reference": "%s  %s"
+        },
+        {
+            "original": "The file system can only be resized to this size by converting to FAT16.",
+            "translated": "O sistema de fichiers só pode ser redimensionado a este tamanho para converterlo em FAT16.",
+            "reference": "O sistema de arquivos só pode ser redimensionado para este tamanho sendo convertido para FAT16."
+        },
+        {
+            "original": "The file system can only be resized to this size by converting to FAT32.",
+            "translated": "O sistema de fichiers só pode ser redimensionado para este tamanho, a fim de convertê-lo em FAT32.",
+            "reference": "O sistema de arquivos só pode ser redimensionado para este tamanho sendo convertido para FAT32."
+        },
+        {
+            "original": "GNU Parted cannot resize this partition to this size.  We're working on it!",
+            "translated": "GNU Parted não pode redimensionar esta partição para esse tamanho. Estamos trabalhando nela!",
+            "reference": "O GNU Parted não pode redimensionar esta partição a este tamanho.  Estamos trabalhando nisto!"
+        },
+        {
+            "original": "FAT %d media %x doesn't match the boot sector's media %x.  You should probably run scandisk.",
+            "translated": "A tabela FAT %d do meio físico não concorda com os sectores de inicialização do meio físico. Deve-se provavelmente executar scandisk.",
+            "reference": "FAT %d mídia %x não bate com o setor de boot mídia %x. Você deveria executar o scandisk."
+        },
+        {
+            "original": "fat_table_set: cluster %ld outside file system",
+            "translated": "fat_table_set : cluster %ld está fora do sistema de arquivos",
+            "reference": "fat_table_set: cluster %ld fora do sistema de arquivos"
+        },
+        {
+            "original": "fat_table_get: cluster %ld outside file system",
+            "translated": "fat_table_get : cluster %ld está fora do sistema de arquivos",
+            "reference": "fat_table_get: cluster %ld fora do sistema de arquivos"
+        },
+        {
+            "original": "fat_table_alloc_cluster: no free clusters",
+            "translated": "fat_table_alloc_cluster : não há clusters livres disponíveis.",
+            "reference": "fat_table_alloc_cluster: não há clusters livres"
+        },
+        {
+            "original": "Could not detect file system.",
+            "translated": "não foi possível detectar o sistema de arquivos.",
+            "reference": "Não foi possível detectar o sistema de arquivos."
+        },
+        {
+            "original": "resizing %s file systems is not supported",
+            "translated": "o redimensionamento do sistema de arquivos %s não está implementado",
+            "reference": "não é suportado redimensionar sistemas de arquivos %s"
+        },
+        {
+            "original": "The file system is bigger than its volume!",
+            "translated": "O sistema de arquivos é maior que o volume!",
+            "reference": "O sistema de arquivos é maior que seu volume!"
+        },
+        {
+            "original": "The file system contains errors.",
+            "translated": "O sistema de fichiers contém erros.",
+            "reference": "O sistema de arquivos contém erros."
+        },
+        {
+            "original": "Bad blocks could not be read.",
+            "translated": "Os blocos defeituosos não podem ser lidos.",
+            "reference": "Blocos defeituosos não podem ser lidos."
+        },
+        {
+            "original": "Trying to register an extent starting at block 0x%X, but another one already exists at this position.  You should check the file system!",
+            "translated": "Tentando registrar uma extensão que começa no bloco de memória 0x%X, mas já existe outra nesta posição. Deve-se verificar o sistema de arquivos!",
+            "reference": "Tentando registar uma extensão que inicia no bloco 0x%X, mas uma outra já existe nesta posição.  Você deve verificar o sistema de arquivos!"
+        },
+        {
+            "original": "Trying to move an extent from block 0x%X to block 0x%X, but another one already exists at this position.  This should not happen!",
+            "translated": "Tentando mover uma extensão do bloco Ox%X para o bloco Ox%X, mas já existe outra nesta posição. Isso não deveria acontecer!",
+            "reference": "Tentando mover uma extensão do bloco 0x%X para o bloco 0x%X, mas uma outra já existe nesta posição.  Isto não deveria acontecer!"
+        },
+        {
+            "original": "Could not update the extent cache for HFS file with CNID %X.",
+            "translated": "Não foi possível atualizar o cache de extensões para o ficheiro HFS com CNID %X.",
+            "reference": "Não foi possível atualizar o cache de extensão de arquivo HFS com CNID %X."
+        },
+        {
+            "original": "Trying to read HFS file with CNID %X behind EOF.",
+            "translated": "Tentando ler o ficheiro HFS com CNID %X após a conclusão do ficheiro.",
+            "reference": "Tentando ler arquivo HFS com CNID %X atrás do fim do arquivo."
+        },
+        {
+            "original": "Could not find sector %lli of HFS file with CNID %X.",
+            "translated": "Não foi possível encontrar o setor %lli do fichê HFS com CNID %X.",
+            "reference": "Não foi possível encontrar setor %lli de arquivo HFS com CNID %X."
+        },
+        {
+            "original": "Trying to write HFS file with CNID %X behind EOF.",
+            "translated": "Tentando escrever o ficheiro HFS com CNID %X após a conclusão do ficheiro.",
+            "reference": "Tentando escrever arquivo HFS com CNID %X atrás do fim do arquivo."
+        },
+        {
+            "original": "Could not update the extent cache for HFS+ file with CNID %X.",
+            "translated": "Não foi possível atualizar o cache de extensões para o arquivo HFS+ com CNID %X.",
+            "reference": "Não foi possível atualizar o cache do arquivo de extensão HFS+ com CNID %X."
+        },
+        {
+            "original": "Trying to read HFS+ file with CNID %X behind EOF.",
+            "translated": "Tentando ler o arquivo HFS+ com CNID %X após a conclusão do ficheiro.",
+            "reference": "Tentando ler arquivo HFS+ com CNID %X atrás do fim do arquivo."
+        },
+        {
+            "original": "Could not find sector %lli of HFS+ file with CNID %X.",
+            "translated": "Não foi possível encontrar o setor %lli do ficheiro HFS+ com CNID %X.",
+            "reference": "Não foi possível encontrar setor %lli de arquivo HFS+ com CNID %X."
+        },
+        {
+            "original": "Trying to write HFS+ file with CNID %X behind EOF.",
+            "translated": "Tentando escrever o ficheiro HFS+ com CNID %X após a conclusão do ficheiro.",
+            "reference": "Tentando escrever arquivo HFS+ com CNID %X atrás do fim do arquivo."
+        },
+        {
+            "original": "Sorry, HFS cannot be resized that way yet.",
+            "translated": "Desculpe, o sistema de fichiers HFS ainda não pode ser redimensionado dessa forma no momento.",
+            "reference": "Desculpe, HFS não pode ser redimensionada deste modo ainda."
+        },
+        {
+            "original": "shrinking",
+            "translated": "contrayendo",
+            "reference": "encolhendo"
+        },
+        {
+            "original": "Data relocation has failed.",
+            "translated": "O relocamento de dados falhou.",
+            "reference": "Realocação de dados falhou."
+        },
+        {
+            "original": "Data relocation left some data in the end of the volume.",
+            "translated": "O deslocamento de dados deixou alguns dados no final do volume.",
+            "reference": "A realocação de dados deixou alguns dados no final do volume."
+        },
+        {
+            "original": "writing HFS Master Directory Block",
+            "translated": "escribiendo Bloco de Diretório Maestro HFS",
+            "reference": "escrevendo bloco de diretório mestre HFS"
+        },
+        {
+            "original": "No valid HFS[+X] signature has been found while opening.",
+            "translated": "Não foi possível encontrar uma assinatura HFS[+X] válida ao abrir.",
+            "reference": "Nenhuma assinatura HFS[+X] válida foi encontrada ao abrir."
+        },
+        {
+            "original": "Version %d of HFS+ isn't supported.",
+            "translated": "A versão %d do sistema de arquivos HFS+ não está implementada.",
+            "reference": "Não há suporte para a versão %d do HFS+."
+        },
+        {
+            "original": "Version %d of HFSX isn't supported.",
+            "translated": "A versão %d do sistema de arquivos HFSX não está implementada.",
+            "reference": "Não há suporte para a versão %d do HFSX."
+        },
+        {
+            "original": "Data relocation left some data at the end of the volume.",
+            "translated": "O deslocamento de dados deixou alguns dados no final do volume.",
+            "reference": "A realocação de dados deixou alguns dados no final do volume."
+        },
+        {
+            "original": "Error while writing the allocation file.",
+            "translated": "Erro ao escrever o arquivo de atribuição.",
+            "reference": "Erro ao escrever o arquivo de alocação."
+        },
+        {
+            "original": "Error while writing the compatibility part of the allocation file.",
+            "translated": "Erro ao escrever a parte de compatibilidade do arquivo de atribuição.",
+            "reference": "Erro ao escrever a parte de compatibilidade do arquivo de alocação."
+        },
+        {
+            "original": "writing HFS+ Volume Header",
+            "translated": "escribiendo el Encabezado de Volumen HFS+",
+            "reference": "escrevendo cabeçalho de volume HFS+"
+        },
+        {
+            "original": "An error occurred while looking for the mandatory bad blocks file.",
+            "translated": "Ocurreu um erro ao procurar o arquivo obrigatório de blocos danificados.",
+            "reference": "Ocorreu um erro enquanto era visto o arquivo obrigatório de blocos defeituosos."
+        },
+        {
+            "original": "It seems there is an error in the HFS wrapper: the bad blocks file doesn't contain the embedded HFS+ volume.",
+            "translated": "Parece que houve um erro na envoltura HFS: o arquivo de blocos danificados não contém volume HFS+ embutido.",
+            "reference": "Parece que há um erro no empacotador HFS: o arquivo de blocos defeituosos não contém um volume HFS+ embutido."
+        },
+        {
+            "original": "Sorry, HFS+ cannot be resized that way yet.",
+            "translated": "Desculpe, o sistema de fichiers HFS+ não pode ser redimensionado dessa forma no momento.",
+            "reference": "Desculpe, HFS+ não pode ser redimensionada deste modo ainda."
+        },
+        {
+            "original": "shrinking embedded HFS+ volume",
+            "translated": "contrayendo o volume HFS+ embebido",
+            "reference": "encolhendo volume HFS+ embutido"
+        },
+        {
+            "original": "Resizing the HFS+ volume has failed.",
+            "translated": "O redimensionamento do volume HFS+ falhou.",
+            "reference": "Redimensionamento de volume HFS+ falhou."
+        },
+        {
+            "original": "shrinking HFS wrapper",
+            "translated": "contrayendo envoltura HFS",
+            "reference": "reduzindo empacotador HFS"
+        },
+        {
+            "original": "Updating the HFS wrapper has failed.",
+            "translated": "A atualização da envoltura HFS falhou.",
+            "reference": "Falha na atualização do empacotador HFS."
+        },
+        {
+            "original": "This is not a real %s check.  This is going to extract special low level files for debugging purposes.",
+            "translated": "Esta não é uma revisão real de %s. Isto vai extrair arquivos especiais do nível baixo para fins de depuração.",
+            "reference": "Isto não é uma verificação %s real.  Isto vai extrair arquivos especiais de baixo nível para propósitos de depuração."
+        },
+        {
+            "original": "Bad block list header checksum.",
+            "translated": "Somma de Controle do Encadeamento da Lista de Blocos Danificados.",
+            "reference": "Soma de verificação do cabeçalho de lista de blocos defeituosos."
+        },
+        {
+            "original": "Invalid size of a transaction block while replaying the journal (%i bytes).",
+            "translated": "Tamanho do bloco de transação inválido ao reproduzir o diário de registros (%i bytes).",
+            "reference": "Tamanho inválido de um bloco de transação ao reproduzir o journal (%i bytes)."
+        },
+        {
+            "original": "Journal stored outside of the volume are not supported.  Try to deactivate the journal and run Parted again.",
+            "translated": "O armazenamento do diário de registros fora do volume não está implementado. Tente desativar o jornal e execute Parted novamente.",
+            "reference": "Não há suporte a journals armazenados fora do volume.  Tente desabilitar o journal e executar Parted novamente."
+        },
+        {
+            "original": "Journal offset or size is not multiple of the sector size.",
+            "translated": "O tamanho do diário de registros ou o deslocamento não é um múltiplo da dimensão do setor.",
+            "reference": "O deslocamento ou tamanho de Journal não é um múltiplo do tamanho do cluster."
+        },
+        {
+            "original": "Incorrect magic values in the journal header.",
+            "translated": "Valores mágicos incorretos no cabeçalho do diário de registros.",
+            "reference": "Valores mágicos incorretos no cabeçalho journal."
+        },
+        {
+            "original": "Journal size mismatch between journal info block and journal header.",
+            "translated": "Discrepância no tamanho do diário de registros entre o bloco de informações e o cabeçalho.",
+            "reference": "Tamanho do Journal não coincide com o bloco de informações e cabeçalho do journal."
+        },
+        {
+            "original": "Some header fields are not multiple of the sector size.",
+            "translated": "Alguns campos de encabezado no são múltiplos do tamanho do sector.",
+            "reference": "Alguns campos de cabeçalho não são múltiplos do tamanho do setor."
+        },
+        {
+            "original": "The sector size stored in the journal is not 512 bytes.  Parted only supports 512 bytes length sectors.",
+            "translated": "O tamanho do sector armazenado no diário de registros não é de 512 bytes. Parted só implementa sectors com um tamanho fixo de 512 bytes.",
+            "reference": "O tamanho de setor armazenado no journal não é 512 bytes.  O Parted suporta apenas setores com 512 bytes de comprimento."
+        },
+        {
+            "original": "Bad journal checksum.",
+            "translated": "Somatória de controle do diário de registros incorreto.",
+            "reference": "Soma de verificação de journal ruim."
+        },
+        {
+            "original": "The journal is not empty.  Parted must replay the transactions before opening the file system.  This will modify the file system.",
+            "translated": "O registro não está vazio. Parted deve reproduzir as transações antes de abrir o sistema de arquivos. Isso modificará o sistema de arquivos.",
+            "reference": "O jornal não está vazio.  O Parted deve repetir as transações antes de abrir o sistema de arquivos.  Isto irá modificá-lo."
+        },
+        {
+            "original": "The volume header or the master directory block has changed while replaying the journal.  You should restart Parted.",
+            "translated": "O encabeçamento do volume ou bloco de diretório principal mudou ao reproduzir o diário. Deve reiniciar Parted.",
+            "reference": "O cabeçalho do volume ou o bloco de diretório mestre foi modificado quando repetindo o journal.  Você deve reiniciar o Parted."
+        },
+        {
+            "original": "An extent has not been relocated.",
+            "translated": "Não foi possível reubicar a extensão.",
+            "reference": "Uma extensão não foi realocada."
+        },
+        {
+            "original": "A reference to an extent comes from a place it should not.  You should check the file system!",
+            "translated": "Uma referência a uma extensão vem de um lugar que não deve ser associado. Deve revisar o sistema de arquivos!",
+            "reference": "Uma referência para uma extensão vem de um local indevido.  Você deve verificar o sistema de arquivos!"
+        },
+        {
+            "original": "This HFS volume has no catalog file.  This is very unusual!",
+            "translated": "Este volume HFS não possui um arquivo de catálogo. Isso é muito incomum!",
+            "reference": "Este volume HFS não possui arquivo de catálogo.  Isto é muito incomum!"
+        },
+        {
+            "original": "This HFS volume has no extents overflow file.  This is quite unusual!",
+            "translated": "Este volume HFS não possui um arquivo de overflow da extensão. Isso é bastante incomum!",
+            "reference": "Este volume HFS não possui nenhum arquivo de estouro de extensão.  Isto é bastante incomum!"
+        },
+        {
+            "original": "The extents overflow file should not contain its own extents!  You should check the file system.",
+            "translated": "O arquivo de extensões excedentes não deve conter suas próprias extensões! Deveria revisar o sistema de arquivos.",
+            "reference": "O arquivo de estouro de extensões não deve conter suas próprias extensões!  Você deve verificar o sistema de arquivos."
+        },
+        {
+            "original": "Could not cache the file system in memory.",
+            "translated": "Não foi possível armazenar o sistema de arquivos na memória cache.",
+            "reference": "Não foi possível armazenar em cache o sistema de arquivos em memória."
+        },
+        {
+            "original": "Bad blocks list could not be loaded.",
+            "translated": "Não foi possível carregar a lista de blocos danificados.",
+            "reference": "A lista de blocos defeituosos não pôde ser carregada."
+        },
+        {
+            "original": "An error occurred during extent relocation.",
+            "translated": "Ocorreu um erro durante a relocalização da extensão.",
+            "reference": "Ocorreu um erro durante a realocação da extensão."
+        },
+        {
+            "original": "This HFS+ volume has no catalog file.  This is very unusual!",
+            "translated": "Este volume HFS+ não possui um arquivo de catálogo. Isso é muito incomum!",
+            "reference": "Este volume HFS+ não possui nenhum arquivo de catálogo.  Isto é muito incomum!"
+        },
+        {
+            "original": "This HFS+ volume has no extents overflow file.  This is quite unusual!",
+            "translated": "Este volume HFS+ não tem um arquivo de overflow da extensão. Isso é muito incomum!",
+            "reference": "Este volume HFS+ não possui nenhum arquivo de estouro de extensões.  Isto é bastante incomum!"
+        },
+        {
+            "original": "displays this help message",
+            "translated": "muestra este mensaje de ajuda",
+            "reference": "mostra esta mensagem de ajuda"
+        },
+        {
+            "original": "lists partition layout on all block devices",
+            "translated": "liste a disposição das partições em todos os dispositivos de bloco",
+            "reference": "lista modelos de partições em todos os dispositivos de bloco"
+        },
+        {
+            "original": "displays machine parseable output",
+            "translated": "saída analisável",
+            "reference": "exibe saída analisável por máquina"
+        },
+        {
+            "original": "displays JSON output",
+            "translated": "saída em JSON mostrada",
+            "reference": "exibe saída analisável por máquina"
+        },
+        {
+            "original": "never prompts for user intervention",
+            "translated": "não solicite nunca a intervenção do usuário",
+            "reference": "nunca pede intervenção do usuário"
+        },
+        {
+            "original": "in script mode, fix instead of abort when asked",
+            "translated": "no modo de guion, corrija ao invés de cancelar ao solicitar",
+            "reference": ""
+        },
+        {
+            "original": "displays the version",
+            "translated": "exibe a versão",
+            "reference": "mostra a versão"
+        },
+        {
+            "original": "alignment for new partitions",
+            "translated": "alinhamento para novas partições",
+            "reference": "alinhamento para novas partições"
+        },
+        {
+            "original": "NUMBER is the partition number used by Linux.  On MS-DOS disk labels, the primary partitions number from 1 to 4, logical partitions from 5 onwards.\n",
+            "translated": "NUMERO é o número da partição utilizada por Linux. No sistema de etiquetas do disco MS-DOS, as partições primárias são numeradas de 1 a 4 e as partições lógicas começam no 5 em diante.",
+            "reference": "NÚMERO é o número da partição usado pelo Linux.  Em rótulos de disco MS-DOS, as partições primárias são de 1 a 4 e partições lógicas de 5 adiante.\n"
+        },
+        {
+            "original": "LABEL-TYPE is one of: ",
+            "translated": "TIPO_ETIQUETA é um dos seguintes tipos de etiquetas:",
+            "reference": "TIPO_RÓTULO é um de:"
+        },
+        {
+            "original": "FLAG is one of: ",
+            "translated": "FLAG est um dos valores : ",
+            "reference": "OPÇÃO é um de: "
+        },
+        {
+            "original": "UNIT is one of: ",
+            "translated": "UNIDAD é uma das seguintes opções:\n1. FR\n2. ID",
+            "reference": "UNIDADE é um de: "
+        },
+        {
+            "original": "desired alignment: minimum or optimal",
+            "translated": "alineação desejada: mínima ou óptima",
+            "reference": "alinhamento desejado: mínimo ou ideal"
+        },
+        {
+            "original": "PART-TYPE is one of: primary, logical, extended\n",
+            "translated": "TIPO-PART é um dos tipos : primário, lógico, estendido",
+            "reference": "TIPO-PART é uma: primária, lógica, estendida\n"
+        },
+        {
+            "original": "FS-TYPE is one of: ",
+            "translated": "TIPO-SF é um dos tipos de arquivos, entre eles o TIPE-FS.",
+            "reference": "TIPO-FS é um de: "
+        },
+        {
+            "original": "START and END are disk locations, such as 4GB or 10%.  Negative values count from the end of the disk.  For example, -1s specifies exactly the last sector.\n",
+            "translated": "INICIO e FIM são locais de disco, como 4GB ou 10%. Os valores negativos contam a partir da extremidade do disco. Por exemplo, -1s especifica precisamente o último setor.",
+            "reference": "INÍCIO E FIM são localizações de disco, assim como 4GB ou 10%.  Valores negativos contam a partir do final do disco.  Por exemplo, -1s especifica exatamente o último setor.\n"
+        },
+        {
+            "original": "END is disk location, such as 4GB or 10%.  Negative value counts from the end of the disk.  For example, -1s specifies exactly the last sector.\n",
+            "translated": "FIN é um local de disco, como 4GB ou 10%. Valores negativos começam a contar desde o final do disco. Por exemplo, -1s especifica precisamente o último setor.",
+            "reference": "FIM é localização de disco, assim como 4GB ou 10%.  Valores negativos contam a partir do final do disco.  Por exemplo, -1s especifica exatamente o último setor.\n"
+        },
+        {
+            "original": "STATE is one of: on, off\n",
+            "translated": "ÉTAT é um dos seguintes valores : on, off\n",
+            "reference": "ESTADO é um de: on, off\n"
+        },
+        {
+            "original": "DEVICE is usually /dev/hda or /dev/sda\n",
+            "translated": "DISPOSITIVO é normalmente do tipo /dev/hda ou /dev/sda",
+            "reference": "DISPOSITIVO é usualmente /dev/hda ou /dev/sda\n"
+        },
+        {
+            "original": "NAME is any word you want\n",
+            "translated": "NOMBRE é qualquer palavra que deseje inserir.",
+            "reference": "NOME é qualquer palavra que desejar\n"
+        },
+        {
+            "original": "Copyright (C) 1998 - 2006 Free Software Foundation, Inc.\nThis program is free software, covered by the GNU General Public License.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\n",
+            "translated": "Copyright (C) 1998 - 2006 Free Software Foundation, Inc. Este programa é software livre, coberto pela Licença Pública Geral de GNU. Este programa está distribuído com a esperança que seja útil, mas sem nenhuma garantia; nem mesmo uma garantia implícita de comercializabilidade ou conformidade para um uso específico. Consulte a Licença Pública Geral de GNU para obter mais detalhes.",
+            "reference": "Copyright (C) 1998 - 2006 Free Software Foundation, Inc.\nEste programa é um software livre, coberto pela Licença Pública Geral GNU.\n\nEste programa é distribuído na expectativa de ser útil, mas\nSEM QUALQUER GARANTIA; sem mesmo a garantia implícita de\nCOMERCIALIZAÇÃO ou de ADEQUAÇÃO A QUALQUER PROPÓSITO EM\nPARTICULAR. Consulte a Licença Pública Geral GNU para obter\nmais detalhes.\n\n"
+        },
+        {
+            "original": "%0.f%%\t(time left %.2d:%.2d)",
+            "translated": "%0.f%%\t(tempo restante %.2d:%<PRIuMAX>)",
+            "reference": "%0.f%%\t(tempo restante %.2d:%.2d)"
+        },
+        {
+            "original": "Partition %s is being used. Are you sure you want to continue?",
+            "translated": "A partição %s está em uso. Está certo de que deseja continuar?",
+            "reference": "A partição %s está em uso. Você tem certeza que deseja continuar?"
+        },
+        {
+            "original": "Partition(s) on %s are being used.",
+            "translated": "Ao menos uma partição de %s está sendo utilizada.",
+            "reference": "Partição(ões) em %s está(ão) sendo utilizada(s)."
+        },
+        {
+            "original": "The existing disk label on %s will be destroyed and all data on this disk will be lost. Do you want to continue?",
+            "translated": "A etiqueta do disco %s será apagada e todos os dados neste disco se perderão. Deseja continuar?",
+            "reference": "O rótulo de disco existente em %s será destruído e todos os dados neste disco serão perdidos. Você deseja continuar?"
+        },
+        {
+            "original": "New disk label type?",
+            "translated": "Novo tipo de etiqueta para disco?",
+            "reference": "Novo tipo de rótulo de disco?"
+        },
+        {
+            "original": "Partition type?",
+            "translated": "Tipo de partição?",
+            "reference": "Tipo da partição?"
+        },
+        {
+            "original": "Partition name?",
+            "translated": "Nome da partição?",
+            "reference": "Nome da partição?"
+        },
+        {
+            "original": "File system type?",
+            "translated": "Tipo de sistema de arquivos?",
+            "reference": "Tipo do sistema de arquivos?"
+        },
+        {
+            "original": "Start?",
+            "translated": "Início?",
+            "reference": "Iniciar?"
+        },
+        {
+            "original": "End?",
+            "translated": "Fim?",
+            "reference": "Terminar?"
+        },
+        {
+            "original": "You requested a partition from %s to %s (sectors %llu..%llu).\nThe closest location we can manage is %s to %s (sectors %llu..%llu).%s",
+            "translated": "Pediu uma partição de %s a %s (sectores %llu..%llu). A localização mais próxima que podemos lidar é %s a %s (sectores %llu..%llu).%s",
+            "reference": "Você solicitou uma partição de %s até %s (setores %llu..%llu).\nA localização mais próxima que podemos gerenciar é de %s até %s (setores %llu..%llu).%s"
+        },
+        {
+            "original": "\nIs this still acceptable to you?",
+            "translated": "Este aún é aceitável para você?",
+            "reference": "\nIsto é ainda aceitável para você?"
+        },
+        {
+            "original": "The resulting partition is not properly aligned for best performance: %s",
+            "translated": "A partição resultante não está corretamente alinhada para o melhor desempeño: %s",
+            "reference": "A partição resultante não está propriamente alinhada para melhor performance: %s"
+        },
+        {
+            "original": "unknown (malloc failed)",
+            "translated": "desconhecido (malloc falhou)",
+            "reference": "desconhecido (malloc falhou)"
+        },
+        {
+            "original": "%s disk labels do not support partition name.",
+            "translated": "As etiquetas do disco %s não implementam o nome da partição.",
+            "reference": "Rótulos de disco %s não suportam nome de partição."
+        },
+        {
+            "original": "Partition number?",
+            "translated": "Número da partição?",
+            "reference": "Número da partição?"
+        },
+        {
+            "original": "BIOS cylinder,head,sector geometry: %d,%d,%d.  Each cylinder is %s.\n",
+            "translated": "Geometria cilíndrica, cabeça e seção de BIOS: %d,%d,%d. Cada cilindro é um silício com uma área superficial circular plana.",
+            "reference": "cilindro pela BIOS,cabeça,geometria do setor: %d,%d,%d.  Cada cilindro é %s.\n"
+        },
+        {
+            "original": "Model: %s (%s)\n",
+            "translated": "Modelo : %s (%s) \n",
+            "reference": "Modelo: %s (%s)\n"
+        },
+        {
+            "original": "Disk %s: %s\n",
+            "translated": "Disco %s : %s\n",
+            "reference": "Disco %s: %s\n"
+        },
+        {
+            "original": "Sector size (logical/physical): %lldB/%lldB\n",
+            "translated": "Tamanho do sector (lógico/físico): %lldB/%lldB",
+            "reference": "Tamanho do setor (lógico/físico): %lldB/%lldB\n"
+        },
+        {
+            "original": "Partition Table: %s\n",
+            "translated": "Tabulação de particionamento: %s",
+            "reference": "Tabela de partições: %s\n"
+        },
+        {
+            "original": "Disk Flags: %s\n",
+            "translated": "Bandeiras de disco : %s\n",
+            "reference": "Opções de disco: %s\n"
+        },
+        {
+            "original": "Number",
+            "translated": "Número",
+            "reference": "Número"
+        },
+        {
+            "original": "Start",
+            "translated": "Início",
+            "reference": "Início"
+        },
+        {
+            "original": "End",
+            "translated": "Fim",
+            "reference": "Fim"
+        },
+        {
+            "original": "Size",
+            "translated": "Tamanho",
+            "reference": "Tamanho"
+        },
+        {
+            "original": "Type",
+            "translated": "Tipo",
+            "reference": "Tipo"
+        },
+        {
+            "original": "File system",
+            "translated": "Sistema de arquivos",
+            "reference": "Sistema de arquivos"
+        },
+        {
+            "original": "Name",
+            "translated": "Nome",
+            "reference": "Nome"
+        },
+        {
+            "original": "Flags",
+            "translated": "Bandeiras",
+            "reference": "Opções"
+        },
+        {
+            "original": "Free Space",
+            "translated": "Espaço Livre",
+            "reference": "Espaço livre"
+        },
+        {
+            "original": "A %s %s partition was found at %s -> %s.  Do you want to add it to the partition table?",
+            "translated": "Uma partição %s %s foi encontrada no dispositivo de armazenamento em estado sólido do sistema operacional. Deseja adicioná-la à tabela de partições?\n",
+            "reference": "Uma partição %s %s foi encontrada em %s -> %s.  Você deseja adicioná-la a tabela de partições?"
+        },
+        {
+            "original": "searching for file systems",
+            "translated": "buscando os sistemas de arquivos",
+            "reference": "pesquisando por sistemas de arquivo"
+        },
+        {
+            "original": "The resize command has been removed in parted 3.0",
+            "translated": "A comando resize foi eliminado na versão 3.0 do Parted.",
+            "reference": "O comando resize foi removido no parted 3.0"
+        },
+        {
+            "original": "Shrinking a partition can cause data loss, are you sure you want to continue?",
+            "translated": "Contrair uma partição pode provocar perda de dados; deseja continuar?",
+            "reference": "Reduzir uma partição pode causar perda de dados, você tem certeza que deseja continuar?"
+        },
+        {
+            "original": "New device?",
+            "translated": "Novo dispositivo?",
+            "reference": "Novo dispositivo?"
+        },
+        {
+            "original": "alignment type(min/opt)",
+            "translated": "tipo de alinhamento (min/opt)",
+            "reference": "tipo de alinhamento(min/opt)"
+        },
+        {
+            "original": "%d aligned\n",
+            "translated": "%d alinhada",
+            "reference": "%d alinhado(s)\n"
+        },
+        {
+            "original": "%d not aligned: %s\n",
+            "translated": "%d não alinhada(s) : %s",
+            "reference": "%d não alinhado: %s\n"
+        },
+        {
+            "original": "Flag to Invert?",
+            "translated": "Bandeira para Inverno?",
+            "reference": "Opção para inverter?"
+        },
+        {
+            "original": "New state?",
+            "translated": "Novo estado?",
+            "reference": "Novo estado?"
+        },
+        {
+            "original": "Unit?",
+            "translated": "Unidade?",
+            "reference": "Unidade?"
+        },
+        {
+            "original": "align-check",
+            "translated": "verificação de alinhamento",
+            "reference": "align-check"
+        },
+        {
+            "original": "align-check TYPE N                       check partition N for TYPE(min|opt) alignment",
+            "translated": "verificação de alinhamento TIPO N                     verifica o alinhamento do tipo (min|opt) da partição N",
+            "reference": "align-check TIPO N                       verifica a partição N para alinhamento de TIPO(mínimo|ideal)"
+        },
+        {
+            "original": "help",
+            "translated": "Ajuda",
+            "reference": "help"
+        },
+        {
+            "original": "help [COMMAND]                           print general help, or help on COMMAND",
+            "translated": "help [ORDEN]                           mostra a ajuda geral, ou a ajuda sobre o ORDEN",
+            "reference": "help [COMANDO]                           exibe a ajuda geral, ou ajuda para o COMANDO"
+        },
+        {
+            "original": "mklabel",
+            "translated": "mklabel",
+            "reference": "mklabel"
+        },
+        {
+            "original": "mktable",
+            "translated": "tabela de mercado",
+            "reference": "mktable"
+        },
+        {
+            "original": "mklabel,mktable LABEL-TYPE               create a new disklabel (partition table)",
+            "translated": "mklabel,mktable TIPO-ETIQUETA          cria uma nova etiqueta de disco (na tabela de particionamento)",
+            "reference": "mklabel,mktable TIPO-RÓTULO              cria um novo rótulo de disco (na tabela de partição)"
+        },
+        {
+            "original": "mkpart",
+            "translated": "mkpart",
+            "reference": "mkpart"
+        },
+        {
+            "original": "mkpart PART-TYPE [FS-TYPE] START END     make a partition",
+            "translated": "mkpart TIPO-PART [TIPO-SF] INICIO FIN      cria uma partição do tipo %s com início em %<PRIuMAX> e fim no valor de %d",
+            "reference": "mkpart TIPO-PART [TIPO-FS] INÍCIO FIM    cria uma partição"
+        },
+        {
+            "original": "'mkpart' makes a partition without creating a new file system on the partition.  FS-TYPE may be specified to set an appropriate partition ID.\n",
+            "translated": "O comando 'mkpart' cria uma partição sem criar um novo sistema de arquivos na partição. É possível definir o TIPO-SF para atribuir uma ID da partição adequada.",
+            "reference": "mkpart cria uma partição sem criar um novo sistema de arquivos na partição. TIPO-FS deve ser especificado para partições de dados (ao oposto de uma partição estendida). Este comando é útil se você apagou acidentalmente uma partição.\n"
+        },
+        {
+            "original": "name",
+            "translated": "nomear",
+            "reference": "name"
+        },
+        {
+            "original": "name NUMBER NAME                         name partition NUMBER as NAME",
+            "translated": "nome NUMERO NOMBRE                     nome a partição NUMERO como NOMBRE",
+            "reference": "name NÚMERO NOME                         renomeia a partição NÚMERO para NOME"
+        },
+        {
+            "original": "print",
+            "translated": "imprimir",
+            "reference": "print"
+        },
+        {
+            "original": "print [devices|free|list,all]            display the partition table, or available devices, or free space, or all found partitions",
+            "translated": "print [devices|free|list,all]          mostra a tabela de partições, dispositivos disponíveis, espaço livre ou todas as partições.",
+            "reference": "print [devices|free|list,all|NÚMERO]     exibe a tabela de partições, dispositivos disponíveis, espaço livre, todas as partições encontradas ou uma partição específica"
+        },
+        {
+            "original": "Without arguments, 'print' displays the entire partition table. However with the following arguments it performs various other actions.\n",
+            "translated": "Sin argumentos, 'print' mostra a tabela de particionamento completa. Contudo, com os seguintes argumentos, realiza outras ações.",
+            "reference": "Sem argumentos, \"print\" exibe a tabela de partições inteira. Entretanto, com os argumentos a seguir, ele executa várias outras ações.\n"
+        },
+        {
+            "original": "  devices   : display all active block devices\n",
+            "translated": "dispositivos : exibe todos os dispositivos de bloqueio ativo",
+            "reference": "  devices   : exibe todos os dispositivos de bloco ativos\n"
+        },
+        {
+            "original": "  free      : display information about free unpartitioned space on the current block device\n",
+            "translated": "free : exibe informações sobre o espaço livre não particionado no dispositivo de bloqueamento atual.",
+            "reference": "  free      : exibe informações sobre espaço livre não particionado no dispositivo de bloco atual\n"
+        },
+        {
+            "original": "  list, all : display the partition tables of all active block devices\n",
+            "translated": "listar, todos : mostrar as tabelas de particionamento das partições por blocos ativos dos dispositivos do sistema",
+            "reference": "  list, all : exibe as tabelas de partições de todos os dispositivos de bloco ativos\n"
+        },
+        {
+            "original": "quit",
+            "translated": "sair",
+            "reference": "quit"
+        },
+        {
+            "original": "quit                                     exit program",
+            "translated": "sair do programa",
+            "reference": "quit                                     sai do programa"
+        },
+        {
+            "original": "rescue",
+            "translated": "resgate",
+            "reference": "rescue"
+        },
+        {
+            "original": "rescue START END                         rescue a lost partition near START and END",
+            "translated": "recupera as particiones perdidas entre INICIO e FIN",
+            "reference": "rescue INÍCIO FIM                        recupera uma partição perdida próxima do INÍCIO e FIM"
+        },
+        {
+            "original": "resize",
+            "translated": "redimentionnar",
+            "reference": "resize"
+        },
+        {
+            "original": "The resize command was removed in parted 3.0\n",
+            "translated": "A comando resize foi eliminado na versão 3.0 do Parted.",
+            "reference": "O comando resize foi removido no parted 3.0\n"
+        },
+        {
+            "original": "resizepart",
+            "translated": "redimpart",
+            "reference": "resizepart"
+        },
+        {
+            "original": "resizepart NUMBER END                    resize partition NUMBER",
+            "translated": "redimpart NUMERO FIN                    redim partition NUMERO",
+            "reference": "resizepart NÚMERO FIM                    redimensiona a partição NÚMERO"
+        },
+        {
+            "original": "rm",
+            "translated": "remover arquivo",
+            "reference": "rm"
+        },
+        {
+            "original": "rm NUMBER                                delete partition NUMBER",
+            "translated": "rm NUMERO                              apaga a partição NUMERO",
+            "reference": "rm NÚMERO                                apaga a partição NÚMERO"
+        },
+        {
+            "original": "select",
+            "translated": "selecionar",
+            "reference": "select"
+        },
+        {
+            "original": "select DEVICE                            choose the device to edit",
+            "translated": "selecione o dispositivo para editar",
+            "reference": "select DISPOSITIVO                       escolhe o dispositivo para editar"
+        },
+        {
+            "original": "disk_set",
+            "translated": "seleção de disco",
+            "reference": "disk_set"
+        },
+        {
+            "original": "disk_set FLAG STATE                      change the FLAG on selected device",
+            "translated": "disco_selecionado ESTADO                altera a BANDERA no dispositivo selecionado",
+            "reference": "disk_set OPÇÃO ESTADO                    muda o estado de OPÇÃO no dispositivo selecionado"
+        },
+        {
+            "original": "disk_toggle",
+            "translated": "disque_bascular",
+            "reference": "disk_toggle"
+        },
+        {
+            "original": "disk_toggle [FLAG]                       toggle the state of FLAG on selected device",
+            "translated": "alterna o estado do símbolo [BANDERA] no dispositivo selecionado.",
+            "reference": "disk_toggle [OPÇÃO]                      alterna o estado de OPÇÃO no dispositivo selecionado"
+        },
+        {
+            "original": "set",
+            "translated": "posicionar",
+            "reference": "set"
+        },
+        {
+            "original": "set NUMBER FLAG STATE                    change the FLAG on partition NUMBER",
+            "translated": "set NUMERO BANDERA ESTADO                      altera a BANDERA da partição NUMERO",
+            "reference": "set NÚMERO OPÇÃO ESTADO                  muda a OPÇÃO na partição NÚMERO"
+        },
+        {
+            "original": "toggle",
+            "translated": "ativar/desativar",
+            "reference": "toggle"
+        },
+        {
+            "original": "toggle [NUMBER [FLAG]]                   toggle the state of FLAG on partition NUMBER",
+            "translated": "alternar [NUMERO [BANDERA]]              alterna o estado da BANDERA na partição NUMERO",
+            "reference": "toggle [NÚMERO [OPÇÃO]]                  alterna o estado de OPÇÃO no NÚMERO da partição"
+        },
+        {
+            "original": "unit",
+            "translated": "unidade",
+            "reference": "unit"
+        },
+        {
+            "original": "unit UNIT                                set the default unit to UNIT",
+            "translated": "unidade UNIDAD                              define a unidade padrão para UNIDAD",
+            "reference": "unit UNIDADE                             define como unidade padrão UNIDADE"
+        },
+        {
+            "original": "version",
+            "translated": "versão",
+            "reference": "version"
+        },
+        {
+            "original": "version                                  display the version number and copyright information of GNU Parted",
+            "translated": "versão                                Mostra o número de versão e a informação sobre o copyright do GNU Parted.",
+            "reference": "version                                  exibe o número da versão e informações de direitos autorais do GNU Parted"
+        },
+        {
+            "original": "'version' displays copyright and version information corresponding to this copy of GNU Parted\n",
+            "translated": "A versão mostra a informação de licença e da versão desta cópia do GNU Parted.",
+            "reference": "'version' exibe informações de versão e direitos autorais correspondentes a esta cópia do GNU Parted\n"
+        },
+        {
+            "original": "Usage: %s [-hlmsfv] [-a<align>] [DEVICE [COMMAND [PARAMETERS]]...]\n",
+            "translated": "Modo de uso: %s [-hlmsfv] [-a<alinear>] [DEVÍZIONE[COMUNDA[PARAMETROS]]...]",
+            "reference": "Uso: %s [-hlmsv] [-a<alinhamento>] [DISPOSITIVO [COMANDO [PARÂMETROS]]...]\n"
+        },
+        {
+            "original": "No device found",
+            "translated": "Nenhum dispositivo encontrado.",
+            "reference": "Nenhum dispositivo encontrado"
+        },
+        {
+            "original": "WARNING: You are not superuser.  Watch out for permissions.\n",
+            "translated": "ATENÇÃO : você não é superusuário. Fique atento aos permissões.",
+            "reference": "ATENÇÃO: Você não é super usuário.  Tome cuidado com permissões.\n"
+        },
+        {
+            "original": "You should reinstall your boot loader before rebooting.  Read section 4 of the Parted User documentation for more information.",
+            "translated": "Antes de reiniciar, é necessário reinstalar o carregador do arranque. Consulte a seção 4 da documentação para usuários do Parted para obter mais informações.",
+            "reference": "Você deve reinstalar seu carregador de inicialização antes de reinicializar. Leia a seção 4 da documentação do usuário do Parted para mais informações."
+        },
+        {
+            "original": "You may need to update /etc/fstab.\n",
+            "translated": "Pode haver que tenha de atualizar /etc/fstab se necessário.",
+            "reference": "Você pode precisar atualizar /etc/fstab.\n"
+        },
+        {
+            "original": "Welcome to GNU Parted! Type 'help' to view a list of commands.\n",
+            "translated": "Bem-vindo(a) ao GNU Parted! Digite 'help' para ver uma lista de comandos.",
+            "reference": "Bem vindo ao GNU Parted! Digite 'help' para ver uma lista de comandos.\n"
+        },
+        {
+            "original": "Usage: parted [OPTION]... [DEVICE [COMMAND [PARAMETERS]...]...]\nApply COMMANDs with PARAMETERS to DEVICE.  If no COMMAND(s) are given, run in\ninteractive mode.\n",
+            "translated": "Modo de Empleo: parted [OPCIÓN]… [DISPOSITIVO [ORDEN[PARAMETROS...]]...] Aplica a(s) ORDEN(es) com PARAMETROS ao DISPOSITIVO. Se nenhuma ORDEN for dada, o execução será em modo interativo.",
+            "reference": "Uso: parted [OPCOES]... [DISPOSITIVO [COMANDO [PARÂMETROS]...]...]\nAplica COMANDOs com PARÂMETROS para DISPOSITIVO. Se nenhum COMANDO(s) forem\ninformados, executa-se em modo interativo.\n"
+        },
+        {
+            "original": "\n\nYou found a bug in GNU Parted! Here's what you have to do:\n\nDon't panic! The bug has most likely not affected any of your data.\nHelp us to fix this bug by doing the following:\n\nCheck whether the bug has already been fixed by checking\nthe last version of GNU Parted that you can find at:\n\n\thttp://ftp.gnu.org/gnu/parted/\n\nPlease check this version prior to bug reporting.\n\nIf this has not been fixed yet or if you don't know how to check,\nplease visit the GNU Parted website:\n\n\thttp://www.gnu.org/software/parted\n\nfor further information.\n\nYour report should contain the version of this release (%s)\nalong with the error message below, the output of\n\n\tparted DEVICE unit co print unit s print\n\nand the following history of commands you entered.\nAlso include any additional information about your setup you\nconsider important.\n",
+            "translated": "\n\n¡Usted encontró un error en GNU Parted! Aquí está lo que debe hacer:\n\n¡No se asuste! El error probablemente no ha afectado su información.\nAyúdenos a arreglar este error haciendo lo siguiente:\n\nRevise si este error ya fue corregido revisando la\núltima versión de GNU Parted que pueda encontrar en:\n\n\thttp://ftp.gnu.org/gnu/parted/\n\nPor favor revise esta versión antes de reportar este error.\n\nSi el error no ha sido corregido, o si no sabe cómo revisarlo,\npor favor visite el sitio web de GNU Parted:\n\n\thttp://www.gnu.org/software/parted\n\npara más información.\n\nSu reporte debería contener la versión de esta revisión (%s)\njunto con el mensaje de error que aparece abajo, la salida de\n\n\t parted DISPOSITIVO unit co print unit s print\n\ny el siguiente historial de órdenes que usted usó.\nIncluya también cualquier información adicional acerca de su\nconfiguración que considere importante.\n",
+            "reference": "\n\nVocê encontrou um problema no GNU Parted! Eis o que deve fazer:\n\nNão entre em pânico! O erro provavelmente não afetou nenhum de seus dados.\nAjude-nos a consertar este problema fazendo o seguinte:\n\nConfira se o problema já foi resolvido verificando\na última versão do GNU Parted disponível em:\n\n\thttp://ftp.gnu.org/gnu/parted/\n\nPor favor, confira essa versão antes de relatar seu problema.\n\nSe ele ainda não tiver sido resolvido, ou se não sabe como verificá-lo,\npor favor visite a página do GNU Parted:\n\n\thttp://www.gnu.org/software/parted\n\npara maiores informações.\n\nSeu relatório deve conter a versão deste lançamento, Parted (%s),\na mensagem de erro abaixo, a saída do comando\n\n\tparted DISPOSITIVO unit co print unit s print\n\ne o histórico de comandos que você digitou.\nIsto também inclui quaisquer informações adicionais sobre seu sistema\nque você considerar relevantes.\n"
+        },
+        {
+            "original": "\nCommand History:\n",
+            "translated": "Historial de comandos : \n\n%s: opção %d não permite argumento.\nTente `%s --help' para mais informações. A abertura do soquete foi abortada devido à falta de privilégios necessários.",
+            "reference": "\nHistórico de comandos:\n"
+        },
+        {
+            "original": "\nError: SEGV_MAPERR (Address not mapped to object)\n",
+            "translated": "Erro SEGV_MAPERR (endereço não associado a um objeto)",
+            "reference": "\nErro: SEGV_MAPERR (Endereço não mapeado ao objeto)\n"
+        },
+        {
+            "original": "\nError: SEGV_ACCERR (Invalid permissions for mapped object)\n",
+            "translated": "Erro SEGV_ACCERR (Permissões inválidas para o objeto associado)",
+            "reference": "\nErro: SEGV_ACCERR (Permissões inválidas para o objeto mapeado)\n"
+        },
+        {
+            "original": "\nError: A general SIGSEGV signal was encountered.\n",
+            "translated": "Erro : um sinal SIGSEGV geral foi detectado.",
+            "reference": "\nErro: Um sinal geral SIGSEGV foi encontrado.\n"
+        },
+        {
+            "original": "\nError: FPE_INTDIV (Integer: divide by zero)",
+            "translated": "Erro FPE_INTDIV (Entãoiro dividindo por zero)",
+            "reference": "\nError: FPE_INTDIV (Inteiro: divisão por zero)"
+        },
+        {
+            "original": "\nError: FPE_INTOVF (Integer: overflow)",
+            "translated": "Erro : FPE_INTOVF (Entero: desbordamento)",
+            "reference": "\nErro: FPE_INTOVF (Inteiro: estouro)"
+        },
+        {
+            "original": "\nError: FPE_FLTDIV (Float: divide by zero)",
+            "translated": "Erro FPE_FLTDIV (Divisão por zero em números flutuantes)",
+            "reference": "\nErro: FPE_FLTDIV (Real: divisão por zero)"
+        },
+        {
+            "original": "\nError: FPE_FLTOVF (Float: overflow)",
+            "translated": "Erro FPE_FLTOVF (Flutuante: desbordamento)",
+            "reference": "\nErro: FPE_FLTOVF (Real: estouro)"
+        },
+        {
+            "original": "\nError: FPE_FLTUND (Float: underflow)",
+            "translated": "Erro FPE_FLTUND (Flutuante: subdesbordamento)",
+            "reference": "\nErro: FPE_FLTUND (Real: estouro negativo)"
+        },
+        {
+            "original": "\nError: FPE_FLTRES (Float: inexact result)",
+            "translated": "Erro : FPE_FLTRES (Flutuante: resultado inexato)",
+            "reference": "\nErro: FPE_FLTRES (Real: resultado não exato)"
+        },
+        {
+            "original": "\nError: FPE_FLTINV (Float: invalid operation)",
+            "translated": "Erro : FPE_FLTINV (Flutuante: operação inválida)",
+            "reference": "\nErro: FPE_FLTINV (Real: operação inválida)"
+        },
+        {
+            "original": "\nError: FPE_FLTSUB (Float: subscript out of range)",
+            "translated": "Erro FPE_FLTSUB (Flutuante: subíndice fora do intervalo)",
+            "reference": "\nErro: FPE_FLTSUB (Real: subscrito fora de alcance)"
+        },
+        {
+            "original": "\nError: A general SIGFPE signal was encountered.",
+            "translated": "Erro : Um sinal SIGFPE geral foi detectado.",
+            "reference": "\nErro: Um sinal geral SIGFPE foi encontrado."
+        },
+        {
+            "original": "\nError: ILL_ILLOPC (Illegal Opcode)",
+            "translated": "Erro: ILL_ILLOPC (Opcode ilegal)",
+            "reference": "\nErro: ILL_ILLOPC (Código de operação privilegiado)"
+        },
+        {
+            "original": "\nError: ILL_ILLOPN (Illegal Operand)",
+            "translated": "Erro : ILL_ILLOPN (Operando ilegal)",
+            "reference": "\nErro: ILL_ILLOPN (Operando ilegal)"
+        },
+        {
+            "original": "\nError: ILL_ILLADR (Illegal addressing mode)",
+            "translated": "Erro: ILL_ILLADR (Modo de direccionamento ilegal)",
+            "reference": "\nErro: ILL_ILLADR (Modo de endereçamento ilegal)"
+        },
+        {
+            "original": "\nError: ILL_ILLTRP (Illegal Trap)",
+            "translated": "Erro : ILL_ILLTRP (Trampa ilegal)",
+            "reference": "\nErro: ILL_ILLTRP (Interrupção ilegal)"
+        },
+        {
+            "original": "\nError: ILL_PRVOPC (Privileged Opcode)",
+            "translated": "Erro ILL_PRVOPC (Opcode Privilegiado)",
+            "reference": "\nErro: ILL_PRVOPC (Código de operação privilegiado)"
+        },
+        {
+            "original": "\nError: ILL_PRVREG (Privileged Register)",
+            "translated": "Erro : ILL_PRVREG (Registro Privilégio)",
+            "reference": "\nErro: ILL_PRVREG (Registrador privilegiado)"
+        },
+        {
+            "original": "\nError: ILL_COPROC (Coprocessor Error)",
+            "translated": "Erro de coprocessador (ILL_COPROC)",
+            "reference": "\nErro: ILL_COPROC (Erro do coprocessador)"
+        },
+        {
+            "original": "\nError: ILL_BADSTK (Internal Stack Error)",
+            "translated": "Erro : ILL_BADSTK (Erro de pila interna)",
+            "reference": "\nErro: ILL_BADSTK (Erro interno da pilha)"
+        },
+        {
+            "original": "\nError: A general SIGILL signal was encountered.",
+            "translated": "Erro : um sinal SIGILL geral foi detectado.",
+            "reference": "\nErro: Um sinal geral SIGILL foi encontrado."
+        },
+        {
+            "original": "invalid token: %s",
+            "translated": "token inválido: %s",
+            "reference": "token inválido: %s"
+        },
+        {
+            "original": "Expecting a partition number.",
+            "translated": "esperava-se um número de partição.",
+            "reference": "Espera-se um número de partição."
+        },
+        {
+            "original": "Partition doesn't exist.",
+            "translated": "A partição não existe.",
+            "reference": "A partição não existe."
+        },
+        {
+            "original": "Expecting a file system type.",
+            "translated": "esperado um tipo de sistema de ficheiros.",
+            "reference": "Espera-se um tipo de sistema de arquivos."
+        },
+        {
+            "original": "Unknown file system type \"%s\".",
+            "translated": "Tipo de sistema de fichiers %s desconhecido.",
+            "reference": "Tipo de sistema de arquivos \"%s\" desconhecido."
+        },
+        {
+            "original": "Expecting a disk label type.",
+            "translated": "esperava-se um tipo de etiqueta de disco.",
+            "reference": "Espera-se um tipo de rótulo de disco."
+        },
+        {
+            "original": "No flags supported",
+            "translated": "Nenhuma bandeira implementada.",
+            "reference": "Nenhuma opção suportada"
+        },
+        {
+            "original": "Can't create any more partitions.",
+            "translated": "Não é possível criar mais partições.",
+            "reference": "Não é possível criar mais nenhuma partição."
+        },
+        {
+            "original": "Expecting a partition type.",
+            "translated": "esperava-se um tipo de partição.",
+            "reference": "Espera-se um tipo de partição."
+        },
+        {
+            "original": "on",
+            "translated": "no contexto fornecido para traduzir 'on'.",
+            "reference": "ligado"
+        },
+        {
+            "original": "off",
+            "translated": "off",
+            "reference": "desligado"
+        },
+        {
+            "original": "optimal",
+            "translated": "ótimo",
+            "reference": "ideal"
+        },
+        {
+            "original": "minimal",
+            "translated": "mínimo",
+            "reference": "mínimo"
+        },
+        {
+            "original": "OPTIONs:",
+            "translated": "OPÇÕES:",
+            "reference": "OPÇÕEs:"
+        },
+        {
+            "original": "COMMANDs:",
+            "translated": "COMMANDS :",
+            "reference": "COMANDOs:"
+        },
+        {
+            "original": "\nReport bugs to %s\n",
+            "translated": "Relatar erros para %s",
+            "reference": "\nInforme erros para %s\n"
+        },
+        {
+            "original": "Using %s\n",
+            "translated": "Utilização de %s",
+            "reference": "Usando %s\n"
+        },
+        {
+            "original": "This command does not make sense in non-interactive mode.\n",
+            "translated": "Esta ordem não tem sentido no modo não interativo.",
+            "reference": "Este comando não faz sentido em modo não interativo.\n"
+        },
+        {
+            "original": "  NUMBER    : display more detailed information about this particular partition\n",
+            "translated": "  NUMERO    : muestra información más detallada acerca de esta partición específica\n",
+            "reference": "  NÚMERO    : exibe informações mais detalhadas sobre esta partição específica\n"
+        },
+        {
+            "original": "The sector size on %s is %d bytes.  Parted is known not to work properly with drives with sector sizes other than %d bytes.",
+            "translated": "El tamaño del sector en %s es de %d bytes.  Parted no funciona correctamente con unidades que tengan un tamaño de sector distinto de %d bytes"
+        },
+        {
+            "original": "IDE",
+            "translated": "IDE"
+        },
+        {
+            "original": "The kernel was unable to re-read the partition table on %s (%s).  This means Linux won't know anything about the modifications you made until you reboot.  You should reboot your computer before doing anything with %s.",
+            "translated": "El núcleo no pudo releer la tabla de particiones en %s (%s).  Esto significa que Linux no reconocerá las modificaciones que hizo.  Debe reiniciarlo antes de hacer cualquier uso con %s."
+        },
+        {
+            "original": "The partition table cannot be re-read.  This means you need to reboot before mounting any modified partitions.  You also need to reinstall your boot loader before you reboot (which may require mounting modified partitions).  It is impossible do both things!  So you'll need to boot off a rescue disk, and reinstall your boot loader from the rescue disk.  Read section 4 of the Parted User documentation for more information.",
+            "translated": "No se pudo releer la tabla de particiones, por lo tanto es necesario reiniciar antes de montar alguna partición modificada.  ¡También necesita reinstalar su cargador de arranque antes de reiniciar (que puede requerir montar las particiones modificadas).  ¡Es imposible hacer ambas cosas!  Así que necesitará arrancar con un disco de rescate y reinstalar su cargador de arranque desde el disco de rescate.  Lea la sección 4 de la documentación del Usuario de Parted para obtener más información.",
+            "reference": "A tabela de partições não pde ser lida novamente. Isto significa que você precisa reiniciar antes de montar qualquer partição modificada. Você também precisa reinstalar seu carregador de inicialização antes de reinicializar (o que pode exigir a montagem das partições modificadas). É impossível fazer as duas coisas! Então você irá precisar inicializar por um disco de resgate, e reinstalar seu gerenciador de boot a partir deste disco.  Leia a seção 4 da documentação do usuário do Parted para maiores informações."
+        },
+        {
+            "original": "The partition table on %s cannot be re-read (%s).  This means the Hurd knows nothing about any modifications you made.  You should reboot your computer before doing anything with %s.",
+            "translated": "La tabla de particiones en %s no puede ser releida(%s).  Esto significa que Hurd (o Linux) no reconocerá las modificaciones que hizo.  Debe reiniciar su computadora antes de hacer nada con %s.",
+            "reference": "A tabela de partições em %s não pode ser lida novamente (%s).  Isto significa que o GNU Hurd não sabe nada sobre as modificações que você fez. Você deve reinicializar seu computador antes de fazer qualquer coisa em %s."
+        },
+        {
+            "original": "%s contains GPT signatures, indicating that it has a GPT table.  However, it does not have a valid fake msdos partition table, as it should.  Perhaps it was corrupted -- possibly by a program that doesn't understand GPT partition tables.  Or perhaps you deleted the GPT table, and are now using an msdos partition table.  Is this a GPT partition table?",
+            "translated": "%s contiene firmas GPT, lo cual indica que tiene una tabla GPT.  No obstante, no tiene una tabla de particiones msdos de imitación válida, como habría de ser.  Quizás esta corrupta -- posiblemente por un programa que no es capaz de enterder las tablas de partición GPT.  O quizás borró la tabla GPT y ahora está usando una tabla de particiones msdos.  ¿Es esta una tabla de partición GPT?",
+            "reference": "%s contêm assinaturas GPT, indicando que isto possui uma tabela GPT. Entretando, ele não tem uma tabela de partição falsa do msdos válida, como deveria. Talvez tenha sido corrompido -- possivelmente por um programa que não compreende tabelas de partição GPT.  Ou talvez você excluiu a tabela GPT, e agora está usando uma tabela de partição msdos.  Isto é uma tabela de partição GPT?"
+        },
+        {
+            "original": "The boot region doesn't start at the start of the partition.",
+            "translated": "La región de arranque no empieza al principio de la partición.",
+            "reference": "A região de inicialização não começa no início da partição."
+        },
+        {
+            "original": "Support for opening %s file systems is not implemented yet.",
+            "translated": "El soporte para abrir el sistema de ficheros %s aún no está implementado.",
+            "reference": "O suporte para abrir sistema de arquivos %s não foi implementado ainda."
+        },
+        {
+            "original": "Support for checking %s file systems is not implemented yet.",
+            "translated": "El soporte para comprobar el sistema de ficheros %s aún no está implementado.",
+            "reference": "Suporte para checar sistema de arquivos não implementado para %s."
+        },
+        {
+            "original": "raw block copying",
+            "translated": "copiando los bloque en bruto"
+        },
+        {
+            "original": "growing file system",
+            "translated": "sistema de ficheros creciendo"
+        },
+        {
+            "original": "Can't copy onto an overlapping partition.",
+            "translated": "No se puede copiar sobre una partición superpuesta."
+        },
+        {
+            "original": "Direct support for copying file systems is not yet implemented for %s.  However, support for resizing is implemented.  Therefore, the file system can be copied if the new partition is at least as big as the old one.  So, either shrink the partition you are trying to copy, or copy to a bigger partition.",
+            "translated": "El soporte directo para copiar sistemas de ficheros aún no está implementado para %s.  Sin embargo, el soporte para redimensionar está implementado.  Por lo tanto, el sistema de ficheros se puede copiar si la nueva partición es por lo menos tan grande como la vieja. Así, o reduce la partición que está intentando copiar o copie en una partición más grande."
+        },
+        {
+            "original": "Support for copying %s file systems is not implemented yet.",
+            "translated": "El soporte para copiar el sistema de ficheros %s aún no está implementado.",
+            "reference": "Suporte para copiar sistema de arquivos não implementado para %s."
+        },
+        {
+            "original": "A bug has been detected in GNU parted.  Please email a bug report to bug-parted@gnu.org containing the version (%s) and the following message:",
+            "translated": "Si detectó un bicho en GNU parted. Por favor, envíe un informe del bicho a bug-parted@gnu.org conteniendo la versión (%s) y el mensaje siguiente:",
+            "reference": "Um bug foi detectado no GNU parted. Por favor, envie um relatório de bugpara bug-parted@gnu.org contendo a versão (%s) e a mensagem abaixo:"
+        },
+        {
+            "original": "Attempt to read sectors %ld-%ld outside of partition on %s.",
+            "translated": "Se intentaron leer los sectores %ld-%ld fuera de la partición en %s."
+        },
+        {
+            "original": "Inconsistent group descriptors!",
+            "translated": "¡Descriptores de grupo inconsistentes!",
+            "reference": "Descritores de grupo inconsistentes!"
+        },
+        {
+            "original": "File system full!",
+            "translated": "¡Sistema de ficheros lleno!"
+        },
+        {
+            "original": "This ext2 file system has a rather strange layout!  Parted can't resize this (yet).",
+            "translated": "¡Este sistema de ficheros ext2 tiene un diseño muy estraño!  Parted (aún) no puede redimensionarlo."
+        },
+        {
+            "original": "Invalid superblock.  Are you sure this is an ext2 file system?",
+            "translated": "Superbloque inválido.  ¿Está seguro de que este es un sistema de ficheros ext2?"
+        },
+        {
+            "original": "File system has errors!  You should run e2fsck.",
+            "translated": "¡El sistema de ficheros tiene errores!  Debería ejecutar e2fsck."
+        },
+        {
+            "original": "File system was not cleanly unmounted!  You should run e2fsck.  Modifying an unclean file system could cause severe corruption.",
+            "translated": "¡El sistema de ficheros no fue desmontado limpiamente!  Debería ejecutar e2fsck.  Modificar un sistema de ficheros sucio podría causar una corrupción grave."
+        },
+        {
+            "original": "File system has an incompatible feature enabled.",
+            "translated": "El sistema de ficheros tiene activada una característica incompatible."
+        },
+        {
+            "original": "Error allocating buffer cache.",
+            "translated": "Error asignando espacio en la caché del búfer.",
+            "reference": "Erro determinando o cache temporário."
+        },
+        {
+            "original": "Found an inode with a incorrect link count.  Better go run e2fsck first!",
+            "translated": "Encontrado un nodo-i con una cuenta de enlace incorrecta.  ¡Mejor ejecutar primero e2fsck!"
+        },
+        {
+            "original": "Not enough free inodes!",
+            "translated": "¡No hay suficientes nodos-i libres!",
+            "reference": "Não há inodes livres suficientes!"
+        },
+        {
+            "original": "File system is too full to remove a group!",
+            "translated": "¡El sistema de ficheros está demasiado ocupado para borrar un grupo!"
+        },
+        {
+            "original": "File system has too many allocated inodes to remove a group!",
+            "translated": "¡El sistema de ficheros tiene demasiados nodos-i asignados para borrar un grupo!"
+        },
+        {
+            "original": "adding groups",
+            "translated": "añadiendo grupos"
+        },
+        {
+            "original": "Your file system is too full to resize it to %i blocks.  Sorry.",
+            "translated": "Su sistema de ficheros está demasiado lleno para redimensionarlo a %i bloques.  Disculpe."
+        },
+        {
+            "original": "Your file system has too many occupied inodes to resize it to %i blocks.  Sorry.",
+            "translated": "Su sistema de ficheros tiene demasiados nodos-i ocupados para redimensionarlo a %i bloques.  Disculpe."
+        },
+        {
+            "original": "File system was not cleanly unmounted!  You should run e2fsck.",
+            "translated": "¡El sistema de ficheros no fue desmontado limpiamente!  Debería ejecutar e2fsck."
+        },
+        {
+            "original": "The file system has the 'dir_index' feature enabled.  Parted can only resize the file system if it disables this feature.  You can enable it later by running 'tune2fs -O dir_index DEVICE' and then 'e2fsck -fD DEVICE'.",
+            "translated": "El sistema de ficheros tiene la opción 'dir_index' habilitada.  Parted sólo pude redimensionar el sistema de ficheros si desactiva esta opción.  Puede habilitarla después ejecutando 'tune2fs -O dir_index UNIDAD' y luego 'e2fsck -fD UNIDAD'."
+        },
+        {
+            "original": "Cross-linked blocks found!  Better go run e2fsck first!",
+            "translated": "¡Se encontraron bloques con referencia cruzada!  ¡Mejor ejecutar primero e2fsck!"
+        },
+        {
+            "original": "Block %i has no reference?  Weird.",
+            "translated": "¿El bloque %i no tiene una referencia?  Estraño."
+        },
+        {
+            "original": "Block %i shouldn't have been marked!",
+            "translated": "¡El bloque %i no debería haber sido marcado!",
+            "reference": "Bloco %i não deveria ter sido marcado!"
+        },
+        {
+            "original": "The ext2 file system passed a basic check.  For a more comprehensive check, use the e2fsck program.",
+            "translated": "El sistema de ficheros ext2 pasó una comprobación básica. Para una comprobación más a fondo, utilize el programa e2fsck."
+        },
+        {
+            "original": "Sorry, can't move the start of ext2 partitions yet!",
+            "translated": "¡Disculpe, aún no se puede mover el principio de las particiones ext2!",
+            "reference": "Desculpe, não posso mover o início de partições ext2 ainda!"
+        },
+        {
+            "original": "Couldn't flush buffer cache!",
+            "translated": "¡No se pudo vaciar la caché del búfer!",
+            "reference": "Não foi possível esvaziar cache temporário!"
+        },
+        {
+            "original": "writing per-group metadata",
+            "translated": "escribiendo metadatos por-grupo"
+        },
+        {
+            "original": "This file system has a logical sector size of %d.  GNU Parted is known not to work properly with sector sizes other than 512 bytes.",
+            "translated": "El sistema de ficheros tiene el tamaño del sector lógico de %d.  GNU Parted es conocido por no funcionar adecuadamente con tamaños de sector distintos de 512 bytes.",
+            "reference": "Este sistema de arquivos tem um tamanho de setor lógico de %d. O GNU Parted é conhecido por não funcionar corretamente com setores diferentes de 512 bytes."
+        },
+        {
+            "original": "The file %s is marked as a system file.  This means moving it could cause some programs to stop working.",
+            "translated": "El fichero %s está marcado como un fichero del sistema.  Esto quiere decir que si lo mueve puede ocurrir que algunos programas no funcionen.",
+            "reference": "O arquivo %s está marcado como um arquivo de sistema.  Isto significa que movê-lo pode fazer com que alguns programas parem de funcionar."
+        },
+        {
+            "original": "Too many bad pages.",
+            "translated": "Demasiadas páginas incorrectas."
+        },
+        {
+            "original": "where necessary, prompts for user intervention",
+            "translated": "donde sea necesario, pedir la intervención del usuario",
+            "reference": "quando necessário, pede intervenção do usuário"
+        },
+        {
+            "original": "The partition must have one of the following FS-TYPEs: ",
+            "translated": "La partición debe tener uno de los siguientes TIPOS de SF: "
+        },
+        {
+            "original": "Source partition number?",
+            "translated": "¿Número de la partición de origen?"
+        },
+        {
+            "original": "Destination partition number?",
+            "translated": "¿Número de la partición de destino?"
+        },
+        {
+            "original": "File system?",
+            "translated": "¿Sistema de ficheros?"
+        },
+        {
+            "original": "You requested to create a partition at %s - %s. The closest Parted can manage is %s - %s.",
+            "translated": "Pidió crear una partición en %s - %s. Lo más cerca que Parted puede manejar es %s - %s."
+        },
+        {
+            "original": "An extended partition cannot hold a file system.  Did you want mkpart?",
+            "translated": "La particiones extendidas no puede sostener un sistema de ficheros.  ¿Quiere mkpart?"
+        },
+        {
+            "original": "Can't move an extended partition.",
+            "translated": "No se pueden mover una partición extendida."
+        },
+        {
+            "original": "Can't move a partition onto itself.  Try using resize, perhaps?",
+            "translated": "No se puede mover una partición sobre sí misma.  ¿Pruebe a usar redimensionar, quizás?",
+            "reference": "Não posso mover a partição sobre ela mesma. Talvez queira redimensionar?"
+        },
+        {
+            "original": "You requested to move the partition to %s - %s. The closest Parted can manage is %s - %s.",
+            "translated": "Pidió mover la partición a %s - %s. Lo más cerca que Parted puede manejar es %s - %s."
+        },
+        {
+            "original": "Minor: %d\n",
+            "translated": "Minor: %d\n"
+        },
+        {
+            "original": "Flags: ",
+            "translated": "Banderas: "
+        },
+        {
+            "original": "File System: %s\n",
+            "translated": "Sistema de ficheros: %s\n"
+        },
+        {
+            "original": "Size:         ",
+            "translated": "Tamaño:         %10.3fMb (%d%%)\n"
+        },
+        {
+            "original": "Minimum size: ",
+            "translated": "Tamaño mínimo: "
+        },
+        {
+            "original": "Maximum size: ",
+            "translated": "Tamaño máximo: "
+        },
+        {
+            "original": "Disk geometry for %s: %s - %s\n",
+            "translated": "Geometría de disco para %s: %s - %s\n"
+        },
+        {
+            "original": "check NUMBER                  do a simple check on the file system",
+            "translated": "comprueba NUMERO                   hace una comprobación simple del sistema de ficheros"
+        },
+        {
+            "original": "cp",
+            "translated": "cp",
+            "reference": "cp"
+        },
+        {
+            "original": "cp [FROM-DEVICE] FROM-NUMBER TO-NUMBER   copy file system to another partition",
+            "translated": "cp [DESDE-DISPOSITIVO] DE-NUMERO A-NUMERO   copia el sistema de ficheros a otra partición"
+        },
+        {
+            "original": "mkfs",
+            "translated": "mkfs",
+            "reference": "mkfs"
+        },
+        {
+            "original": "mkfs NUMBER FS-TYPE           make a FS-TYPE file system on partititon NUMBER",
+            "translated": "mkfs NUMERO TIPO-SF           crea un sistema de ficheros TIPO-SF en la partición NUMERO"
+        },
+        {
+            "original": "mkpartfs",
+            "translated": "mkpartfs",
+            "reference": "mkpartfs"
+        },
+        {
+            "original": "mkpartfs PART-TYPE FS-TYPE START END     make a partition with a file system",
+            "translated": "mkpartfs TIPO-PART TIPO-SF INICIO FIN     crear una partición con un sistema de ficheros"
+        },
+        {
+            "original": "move",
+            "translated": "move",
+            "reference": "move"
+        },
+        {
+            "original": "move NUMBER START END         move partition NUMBER",
+            "translated": "move NUMERO INICIO FIN        mueve la partición NUMERO"
+        },
+        {
+            "original": "print [NUMBER]                display the partition table, or a partition",
+            "translated": "print [NUMERO]               muestra la tabla de las particiones, o una partición"
+        },
+        {
+            "original": "resize NUMBER START END       resize partition NUMBER and its file system",
+            "translated": "resize NUMERO INICIO FIN       redimensiona el sistema de ficheros y la partición NUMERO"
+        },
+        {
+            "original": "You found a bug in GNU Parted.  Please email a bug report to bug-parted@gnu.org containing the version (%s), and the following message:\n",
+            "translated": "Encontró un bicho en GNU parted.  Por favor, envíe un informe del bicho a bug-parted@gnu.org conteniedo la versión (%s), y el siguiente mensaje:\n",
+            "reference": "Você encontrou um bug no GNU parted. Por favor envie um relatório para bug-parted@gnu.org\ncontendo a versão (%s), e a mensagem abaixo:\n"
+        },
+        {
+            "original": "Device %s has dodgey geometry.",
+            "translated": "El dispositivo %s tiene una geometría incorrecta.",
+            "reference": "Dispositivo %s tem uma geometria estranha."
+        },
+        {
+            "original": "SCSI",
+            "translated": "SCSI"
+        },
+        {
+            "original": "Device %s is neither a SCSI nor IDE drive.",
+            "translated": "El dispositivo %s no es una unidad SCSI ni IDE.",
+            "reference": "O dispositivo %s não é um drive SCSI ou IDE."
+        },
+        {
+            "original": "Error reading %s (%s) to determine if partition is mounted.",
+            "translated": "Error leyendo %s (%s) para determinar si la partición está montada.",
+            "reference": "Erro lendo %s (%s) para determinar se a partição está montada."
+        },
+        {
+            "original": "The partition table on %s is inconsistent.  There are many reasons why this might be the case.  However, the most likely reason is that Linux detected the BIOS geometry for %s incorrectly.  GNU Parted suspects the real geometry should be %d/%d/%d (not %d/%d/%d).  You should check with your BIOS first, as this may not be correct.  You can inform Linux by adding the parameter %s=%d,%d,%d to the command line.  See the LILO or GRUB documentation for more information.  If you think Parted's suggested geometry is correct, you may select Ignore to continue (and fix Linux later).  Otherwise, select Cancel (and fix Linux and/or the BIOS now).",
+            "translated": "La tabla de particiones en %s es inconsistente.  Hay varias razones para que ocurra esto. Sin embargo, la razón más probable es que Linux detectó la geometría de la BIOS para %s incorrectamente.  GNU Parted sospecha que la geometría real debería ser %d/%d/%d (y no %d/%d/%d).  Debería comprobar su BIOS primero, pues esta puede no ser correcta. Puede informar a Linux añadiendo el parámetro %s=%d,%d,%d en la línea de órdenes.  Vea la documentación de LILO o GRUB para obtener más información.  Si cree que la geometría sugerida por Parted es correcta, puede seleccionar Ignorar para continuar (y arreglar Linux después).  De lo contrario, seleccione Cancelar (y repare Linux y/o la BIOS ahora).",
+            "reference": "A tabela de partições em %s é inconsistente. Há várias razões para isto ocorrer. A mais certa seria o Linux detectar a geometria do BIOS para %s incorretamente. O GNU Parted suspeita que a geometria real deveria ser %d/%d/%d (e não %d/%d/%d). Você deve checar com seu BIOS primeiro, pois isto pode não ser correto. Você pode informar o Linux adicionando o parâmetro %s=%d,%d,%d na linha de comando. Veja a documentação do LILO ou GRUB para maiores informações. Se você acha que a geometria sugeria pelo Parted é a correta, pode selecionar Ignorar para continuar (e arrumar o Linux depois). De outra maneira, selecione Cancelar (e arrume o Linux e/ou o BIOS agora)."
+        },
+        {
+            "original": "The partition table on %s is inconsistent.  There are many reasons why this might be the case.  Often, the reason is that Linux detected the BIOS geometry incorrectly.  However, this does not appear to be the case here.  It is safe to ignore,but ignoring may cause (fixable) problems with some boot loaders, and may cause problems with FAT file systems.  Using LBA is recommended.",
+            "translated": "La tabla de particiones en %s es inconsistente.  Hay varias razones para que esto ocurra. Muchas veces, la razón es que Linux detecta la geometría de la BIOS incorrectamente. Sin embargo, este no parece ser el caso aquí. Puede estar seguro ignorándolo, pero el ignorarlo puede causar problemas (reparables) con algunos cargadores de arranque, y puede causar problemas con sistemas de ficheros FAT. Es recomendable usar LBA.",
+            "reference": "A tabela de partições em %s está inconsistente. Há várias razões para isto ocorrer. Muitas vezes, o Linux detecta a geometria do BIOS incorretamente. Porém, isso não parece ser o caso aqui. É seguro ignorar, mas isso pode causar problemas (solucionáveis) com alguns gerenciadores de boot. É recomendável usar LBA."
+        },
+        {
+            "original": "Unable to align partition properly.  This probably means that another partitioning tool generated an incorrect partition table, because it didn't have the correct BIOS geometry.  It is safe to ignore,but ignoring may cause (fixable) problems with some boot loaders.",
+            "translated": "No se puede alinear correctamente la partición. Esto probablemente significa que otra herramienta de particionado ha generado una tabla de la partición incorrecta, porque no tiene correcta la geometría de la BIOS. Puede estar seguro ignorándolo, pero el ignorarlo puede causar problemas (reparables) con algunos cargadores de arranque.",
+            "reference": "Impossível alinhar a partição propriamente. Isso provavelmente significa que outra ferramenta de particionamento gerou uma tabela de partições incorreta porque não tinha a geometria na BIOS correta. É seguro ignorar, mas isto pode causar problemas (solucionáveis) com alguns gerenciadores de boot."
+        },
+        {
+            "original": "File system has an invalid signature for a FAT file systems.",
+            "translated": "El sistema de ficheros tiene una firma inválida para un sistema de ficheros FAT.",
+            "reference": "Sistema de arquivos tem uma assinatura inválida para um FAT."
+        },
+        {
+            "original": "START and END are in megabytes\n",
+            "translated": "INICIO y FIN son en megabytes\n",
+            "reference": "INICIO e FIM são em megabytes\n"
+        },
+        {
+            "original": "Partition is being used.",
+            "translated": "La partición está siendo usada."
+        },
+        {
+            "original": "Minor    Start       End     ",
+            "translated": "Minor   Inicio      Fin     ",
+            "reference": "Minor    Início      Fim     "
+        },
+        {
+            "original": "Type      ",
+            "translated": "Tipo      ",
+            "reference": "Tipo      "
+        },
+        {
+            "original": "Filesystem  ",
+            "translated": "Sistema de ficheros  "
+        },
+        {
+            "original": "Name                  ",
+            "translated": "Nombre               ",
+            "reference": "Nome                  "
+        },
+        {
+            "original": "  You have Windows FAT partition(s) that are not using LBA.  If your BIOS supports LBA, then you should switch to LBA by setting the LBA flag on all FAT partitions.  Otherwise, make sure the operating system and the BIOS have the same geometry before resizing any FAT partitions.",
+            "translated": "  Tiene particiones FAT Windows que no están usando LBA.  Si su BIOS soporta LBA, debería cambiarse a LBA poniendo el modificador LBA en todas las particiones FAT. De otro modo, asegúrese de que el sistema operativo y la BIOS tienen la misma geometría antes de redimensionar cualquiera de las particiones FAT.",
+            "reference": "  Você tem partições FAT Windows que não estão usando LBA. Se seu BIOS suporta LBA, você deveria mudar para LBA ligando o OPÇÃO LBA em todas as partições FAT. De outro modo, tenha certeza que o sistema operacional e o BIOS têm a mesma geometria antes de redimensionar quaisquer partições FAT."
+        },
+        {
+            "original": "The operating system thinks the geometry on %s is %d/%d/%d.  Therefore, cylinder 1024 ends at %.3fM.%s",
+            "translated": "El sistema operativo opina que la geometría en %s es %d/%d/%d.  Por consiguiente, el cilindro 1024 termina en %.3fM.%s",
+            "reference": "O sistema operacional acha que a geometria de %s é %d/%d/%d. Porém, o cilindro 1024 termina em %.3fM.%s"
+        },
+        {
+            "original": "The operating system thinks the geometry on %s is %d/%d/%d.%s",
+            "translated": "El sistema operativo cree que la geometría en %s es %d/%d/%d.%s",
+            "reference": "O sistema operacional acha que a geometria de %s é %d/%d/%d.%s"
+        }
+    ]
+}

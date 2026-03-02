@@ -1,0 +1,3135 @@
+{
+    "job_info": {
+        "input_file": "/home/vinicius/TCC/data/translations_filtered/nano_v8.4-pre1/nano-8.4-pre1.ru.po",
+        "output_file": "/home/vinicius/TCC/resultados/context_levels_filtered/nano_v8.4-pre1/nano-8.4-pre1.pt_BR.llama.ctx-2.de-es.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-18T02:44:04.389546",
+        "duration_seconds": 212.71,
+        "reference_file": "/home/vinicius/TCC/data/translations_filtered/nano_v8.4-pre1/nano-8.4-pre1.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": -8656110956149889461
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "DE",
+            "ES"
+        ],
+        "context_sentences_sample": {
+            "(dir)": {
+                "DE": "(Verz.)",
+                "ES": "(dir)"
+            },
+            "(parent dir)": {
+                "DE": "(höher)",
+                "ES": "(dir padre)"
+            },
+            "(huge)": {
+                "DE": "riesig",
+                "ES": "enorme"
+            },
+            "Search Wrapped": {
+                "DE": "Suche umbrechen",
+                "ES": "Búsqueda recomenzada"
+            },
+            "This is the only occurrence": {
+                "DE": "Das ist das einzige Auftreten",
+                "ES": "Ésta es la única coincidencia"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 614,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct 10 2025, 08:54:03) [GCC 11.4.0]"
+    },
+    "translations": [
+        {
+            "original": "(dir)",
+            "translated": "(categorizado)",
+            "reference": "(dir)"
+        },
+        {
+            "original": "(parent dir)",
+            "translated": "(região católica)",
+            "reference": "(dir acima)"
+        },
+        {
+            "original": "(huge)",
+            "translated": "grande (máximo)",
+            "reference": "gigante"
+        },
+        {
+            "original": "Search Wrapped",
+            "translated": "Procuração continuada desde o começo",
+            "reference": "Pesquisa recomeçou"
+        },
+        {
+            "original": "This is the only occurrence",
+            "translated": "Éste o único coincidente encontrado.",
+            "reference": "Esta é a única ocorrência"
+        },
+        {
+            "original": "Search",
+            "translated": "Procuração",
+            "reference": "Pesquisa"
+        },
+        {
+            "original": " [Backwards]",
+            "translated": "Voltar para a página anterior.",
+            "reference": " [Retroceder]"
+        },
+        {
+            "original": "Cancelled",
+            "translated": "Cancelado",
+            "reference": "Cancelado"
+        },
+        {
+            "original": "No current search pattern",
+            "translated": "Não há motivo para buscar.",
+            "reference": "Nenhum padrão de pesquisa atualmente"
+        },
+        {
+            "original": "Cannot open directory: %s",
+            "translated": "Não foi possível abrir o diretório: %s",
+            "reference": "Não foi possível abrir o diretório: %s"
+        },
+        {
+            "original": "Go To Directory",
+            "translated": "Acesse o diretório",
+            "reference": "Ir para o diretório"
+        },
+        {
+            "original": "Can't go outside of %s",
+            "translated": "não é possível sair de %s",
+            "reference": "Não é possível sair de %s"
+        },
+        {
+            "original": "Can't move up a directory",
+            "translated": "não é possível mover o diretório",
+            "reference": "Não é possível subir um diretório"
+        },
+        {
+            "original": "Error reading %s: %s",
+            "translated": "Erro ao ler %s: %s",
+            "reference": "Erro ao ler %s: %s"
+        },
+        {
+            "original": "The working directory has disappeared",
+            "translated": "O catálogo de trabalho desapareceu.",
+            "reference": "O diretório de trabalho desapareceu"
+        },
+        {
+            "original": "Unknown syntax name: %s",
+            "translated": "Nome desconhecido de sintaxe: %s",
+            "reference": "Nome de sintaxe desconhecido: %s"
+        },
+        {
+            "original": "magic_load() failed: %s",
+            "translated": "Erro ao carregar o magic_load(): %s",
+            "reference": "magic_load() falhou: %s"
+        },
+        {
+            "original": "magic_file(%s) failed: %s",
+            "translated": "falha ao acessar o arquivo %s\n%s",
+            "reference": "magic_file(%s) falhou: %s"
+        },
+        {
+            "original": "Nothing was cut",
+            "translated": "Não há nada cortado",
+            "reference": "Nada foi cortado"
+        },
+        {
+            "original": "Copied nothing",
+            "translated": "Nenhum arquivo foi copiado",
+            "reference": "Nada foi copiado"
+        },
+        {
+            "original": "Cutbuffer is empty",
+            "translated": "O buffer de transferência está vazio",
+            "reference": "buffer-de-transferência está vazio"
+        },
+        {
+            "original": "Error deleting lock file %s: %s",
+            "translated": "Erro ao remover a arquivo de bloqueio %s: %s",
+            "reference": "Erro ao excluir o arquivo de trava %s: %s"
+        },
+        {
+            "original": "Couldn't determine my identity for lock file",
+            "translated": "Не foi possível determinar seu arquivo de bloqueio para a autenticação.",
+            "reference": "Falha ao determinar minha ID para arquivo de trava"
+        },
+        {
+            "original": "Couldn't determine hostname: %s",
+            "translated": "não foi possível determinar o nome do nó: %s",
+            "reference": "Falha ao determinar nome de máquina: %s"
+        },
+        {
+            "original": "Error writing lock file %s: %s",
+            "translated": "Erro ao escrever a arquivo de bloqueio %s: %s",
+            "reference": "Erro ao escrever o arquivo de trava %s: %s"
+        },
+        {
+            "original": "Someone else is also editing this file",
+            "translated": "Alguém mais está editando este arquivo atualmente",
+            "reference": "Outra pessoa também está editando esse arquivo"
+        },
+        {
+            "original": "Error opening lock file %s: %s",
+            "translated": "Erro ao abrir a arquivo de bloqueio %s: %s",
+            "reference": "Erro ao abrir o arquivo de trava %s: %s"
+        },
+        {
+            "original": "Bad lock file is ignored: %s",
+            "translated": "Arquivo de bloqueio inválido ignorado: %s",
+            "reference": "Arquivo de trava inválido é ignorado: %s"
+        },
+        {
+            "original": "File %s is being edited by %s (with %s, PID %s); open anyway?",
+            "translated": "Arquivo '%s' está sendo editado pelo usuário '%s' (com %s, PID %d); abrir de qualquer forma?",
+            "reference": "Arquivo %s sendo editado (por %s com %s, PID %s). Abrir mesmo assim?"
+        },
+        {
+            "original": "Directory '%s' does not exist",
+            "translated": "O catálogo \"%s\" não existe",
+            "reference": "O diretório \"%s\" não existe"
+        },
+        {
+            "original": "Path '%s': %s",
+            "translated": "Caminho \"%s\": %s",
+            "reference": "Caminho \"%s\": %s"
+        },
+        {
+            "original": "Path '%s' is not a directory",
+            "translated": "O caminho \"%s\" não é um diretório",
+            "reference": "O caminho \"%s\" não é um diretório"
+        },
+        {
+            "original": "Path '%s' is not accessible",
+            "translated": "O caminho \"%s\" não está disponível.",
+            "reference": "O caminho \"%s\" não é acessível"
+        },
+        {
+            "original": "Directory '%s' is not writable",
+            "translated": "Catalogo \"%s\" não está disponível para gravação.",
+            "reference": "O diretório \"%s\" não é gravável"
+        },
+        {
+            "original": "Can't read file from outside of %s",
+            "translated": "não foi possível ler o arquivo fora de %s",
+            "reference": "Não foi possível ler arquivo de fora de %s"
+        },
+        {
+            "original": "\"%s\" is a directory",
+            "translated": "O arquivo \"%s\" é um diretório",
+            "reference": "\"%s\" é um diretório"
+        },
+        {
+            "original": "\"%s\" is a device file",
+            "translated": "O arquivo \"%s\" é um arquivo de dispositivo",
+            "reference": "\"%s\" é um arquivo dispositivo"
+        },
+        {
+            "original": "\"%s\" is a FIFO",
+            "translated": "O arquivo \"%s\" é FIFO",
+            "reference": "\"%s\" é um FIFO"
+        },
+        {
+            "original": "%s is meant to be read-only",
+            "translated": "%s considerado como somente leitura (RL)",
+            "reference": "%s tem a intenção de ser somente leitura"
+        },
+        {
+            "original": "New Buffer",
+            "translated": "novo buffer",
+            "reference": "Novo buffer"
+        },
+        {
+            "original": "DOS",
+            "translated": "DO Sistema Operacional",
+            "reference": "DOS"
+        },
+        {
+            "original": "Mac",
+            "translated": "Mac",
+            "reference": "Mac"
+        },
+        {
+            "original": "No more open file buffers",
+            "translated": "Não há mais buffers de arquivos abertos",
+            "reference": "Não há mais nenhum buffer de arquivos abertos"
+        },
+        {
+            "original": "Interrupted",
+            "translated": "Interrompido",
+            "reference": "Interrompido"
+        },
+        {
+            "original": "File '%s' is unwritable",
+            "translated": "Arquivo \"%s\" não está disponível para escrita.",
+            "reference": "O arquivo \"%s\" não é gravável"
+        },
+        {
+            "original": "New File",
+            "translated": "Novo arquivo",
+            "reference": "Novo arquivo"
+        },
+        {
+            "original": "File \"%s\" not found",
+            "translated": "Arquivo \"%s\" não encontrado",
+            "reference": "Arquivo \"%s\" não encontrado"
+        },
+        {
+            "original": "Reading from FIFO...",
+            "translated": "Lendo do FIFO…",
+            "reference": "Lendo de FIFO..."
+        },
+        {
+            "original": "Reading...",
+            "translated": "Leia...",
+            "reference": "Lendo..."
+        },
+        {
+            "original": "Could not create pipe: %s",
+            "translated": "Não foi possível criar o canal de fluxo (pipe): %s",
+            "reference": "Não foi possível criar o pipe: %s"
+        },
+        {
+            "original": "Could not fork: %s",
+            "translated": "não foi possível criar um processo filho: %s",
+            "reference": "Não foi possível bifurcar: %s"
+        },
+        {
+            "original": "Executing...",
+            "translated": "É executado...",
+            "reference": "Executando..."
+        },
+        {
+            "original": "filtering",
+            "translated": "filtragem",
+            "reference": "filtragem"
+        },
+        {
+            "original": "Failed to open pipe: %s",
+            "translated": "Não foi possível abrir o canal de entrada/saída padrão: %s",
+            "reference": "Falha ao abrir o pipe: %s"
+        },
+        {
+            "original": "Error: %s",
+            "translated": "Erro de leitura %s: %s",
+            "reference": "Erro: %s"
+        },
+        {
+            "original": "Command to execute in new buffer",
+            "translated": "Comando para execução em novo buffer",
+            "reference": "Comando para execução no novo buffer"
+        },
+        {
+            "original": "Command to execute",
+            "translated": "comando para execução",
+            "reference": "Comando para execução"
+        },
+        {
+            "original": "File to read unconverted into new buffer [from %s]",
+            "translated": "Arquivo para ler sem conversão em novo buffer [de %s]",
+            "reference": "Arquivo para ler não convertido no novo buffer [de %s]"
+        },
+        {
+            "original": "File to read into new buffer [from %s]",
+            "translated": "Arquivo para ler no novo buffer [de %s]",
+            "reference": "Arquivo para leitura no novo buffer [de %s]"
+        },
+        {
+            "original": "File to insert unconverted [from %s]",
+            "translated": "Arquivo para inserir sem conversão [de %s].",
+            "reference": "Arquivo para inserção não convertido [de %s]"
+        },
+        {
+            "original": "File to insert [from %s]",
+            "translated": "Arquivo para inserção [de %s]",
+            "reference": "Arquivo para inserção [de %s]"
+        },
+        {
+            "original": "Invalid operating directory: %s\n",
+            "translated": "Não é permitido o uso desse diretório de trabalho. Por favor, escolha outro.",
+            "reference": "Diretório de operação inválido: %s\n"
+        },
+        {
+            "original": "Invalid backup directory: %s\n",
+            "translated": "Não é permitido o diretório de backup especificado: %s",
+            "reference": "Diretório reserva inválido: %s\n"
+        },
+        {
+            "original": "Making backup...",
+            "translated": "Criando cópias de backup...",
+            "reference": "Criando arquivo reserva..."
+        },
+        {
+            "original": "Too many existing backup files",
+            "translated": "Zu muitas cópias de segurança presentes.",
+            "reference": "Muitos arquivos reserva existentes"
+        },
+        {
+            "original": "Cannot read original file",
+            "translated": "não foi possível ler o arquivo original",
+            "reference": "Não é possível ler o arquivo original"
+        },
+        {
+            "original": "Cannot make regular backup",
+            "translated": "não é possível criar uma cópia de segurança padrão",
+            "reference": "Não é possível criar um arquivo reserva comum"
+        },
+        {
+            "original": "Trying again in your home directory",
+            "translated": "Uma nova tentativa será feita no seu diretório doméstico.",
+            "reference": "Tentando novamente em seu diretório pessoal"
+        },
+        {
+            "original": "Cannot make backup",
+            "translated": "não foi possível criar cópia de segurança",
+            "reference": "Não foi possível criar o arquivo reserva"
+        },
+        {
+            "original": "Cannot make backup; continue and save actual file? ",
+            "translated": "Não foi possível criar uma cópia de segurança; deseja continuar e salvar o arquivo original?",
+            "reference": "Não foi possível criar o arquivo reserva; continuar e salvar o arquivo atual? "
+        },
+        {
+            "original": "Cannot make backup: %s",
+            "translated": "Não foi possível criar uma cópia de segurança do arquivo %s",
+            "reference": "Não foi possível criar o arquivo reserva: %s"
+        },
+        {
+            "original": "Can't write outside of %s",
+            "translated": "Não é possível escrever fora de %s",
+            "reference": "Não foi possível escrever fora de %s"
+        },
+        {
+            "original": "Error writing %s: %s",
+            "translated": "Erro ao escrever %s: %s",
+            "reference": "Erro ao escrever %s: %s"
+        },
+        {
+            "original": "Error writing temp file: %s",
+            "translated": "Erro ao escrever no arquivo temporário: %s",
+            "reference": "Erro ao escrever o arquivo temporário: %s"
+        },
+        {
+            "original": "Writing to FIFO...",
+            "translated": "A escrita no FIFO está em processo...",
+            "reference": "Escrevendo para FIFO..."
+        },
+        {
+            "original": "Writing...",
+            "translated": "A escrita está em andamento...",
+            "reference": "Escrevendo..."
+        },
+        {
+            "original": "Error reading temp file: %s",
+            "translated": "Erro ao ler o arquivo temporário %s",
+            "reference": "Erro ao ler o arquivo temporário: %s"
+        },
+        {
+            "original": "File on disk has been truncated!",
+            "translated": "O arquivo no disco foi modificado.",
+            "reference": "O arquivo no disco foi truncado!"
+        },
+        {
+            "original": " [DOS Format]",
+            "translated": "[DOS-Format]",
+            "reference": " [Formato DOS]"
+        },
+        {
+            "original": " [Mac Format]",
+            "translated": "[Mac-Format]",
+            "reference": " [Formato Mac]"
+        },
+        {
+            "original": " [Backup]",
+            "translated": "[Série de Backups]",
+            "reference": " [Arq reserva]"
+        },
+        {
+            "original": "Prepend Selection to File",
+            "translated": "Adicionar seleção no começo do arquivo",
+            "reference": "Pré-adicionar seleção para o arquivo"
+        },
+        {
+            "original": "Append Selection to File",
+            "translated": "Adicionar seleção ao final do arquivo",
+            "reference": "Adicionar seleção para o arquivo"
+        },
+        {
+            "original": "Write Selection to File",
+            "translated": "Escrever seleção no arquivo",
+            "reference": "Escrever a seleção para o arquivo"
+        },
+        {
+            "original": "Prepend to File",
+            "translated": "Adicionar ao início do arquivo alocado",
+            "reference": "Pré-adicionar para o arquivo"
+        },
+        {
+            "original": "Append to File",
+            "translated": "Adicionar um arquivo ao final do conteúdo",
+            "reference": "Adicionar para o arquivo"
+        },
+        {
+            "original": "Write to File",
+            "translated": "Escrever no arquivo o conteúdo designado.",
+            "reference": "Escrever para o arquivo"
+        },
+        {
+            "original": "Too tiny",
+            "translated": "Zu klein",
+            "reference": "Pequena demais"
+        },
+        {
+            "original": "File exists -- cannot overwrite",
+            "translated": "Arquivo existente – não pode ser sobrescrito.",
+            "reference": "O arquivo existe -- não é possível sobrescrevê-lo"
+        },
+        {
+            "original": "Save file under DIFFERENT NAME? ",
+            "translated": "Você quer salvar o arquivo com um nome diferente? ",
+            "reference": "Salvar o arquivo com um NOME DIFERENTE? "
+        },
+        {
+            "original": "File \"%s\" exists; OVERWRITE? ",
+            "translated": "Arquivo \"%s\" existe. Deseja reescrever? ",
+            "reference": "Arquivo \"%s\" já existe; SOBRESCREVER? "
+        },
+        {
+            "original": "File on disk has changed",
+            "translated": "O arquivo no disco foi modificado",
+            "reference": "Arquivo no disco foi alterado"
+        },
+        {
+            "original": "File was modified since you opened it; continue saving? ",
+            "translated": "Arquivo foi modificado após seu acesso por você. Deseja continuar salvando? ",
+            "reference": "O arquivo foi modificado desde a última vez que você abriu; continuar salvamento? "
+        },
+        {
+            "original": "(more)",
+            "translated": "(ainda)",
+            "reference": "(mais)"
+        },
+        {
+            "original": "Exit",
+            "translated": "Sair",
+            "reference": "Sair"
+        },
+        {
+            "original": "Close",
+            "translated": "fechar",
+            "reference": "Fechar"
+        },
+        {
+            "original": "Cancel the current function",
+            "translated": "cancelar a função atual",
+            "reference": "Cancela a função atual"
+        },
+        {
+            "original": "Display this help text",
+            "translated": "Mostrar esta ajuda.",
+            "reference": "Exibe este texto de ajuda"
+        },
+        {
+            "original": "Close the current buffer / Exit from nano",
+            "translated": "fechar o buffer atual / sair do nano",
+            "reference": "Fecha o buffer atual / Sai do nano"
+        },
+        {
+            "original": "Write the current buffer (or the marked region) to disk",
+            "translated": "Salvar o buffer atual (ou a região marcada) no disco.",
+            "reference": "Escreve o buffer atual (ou a região marcada) no disco"
+        },
+        {
+            "original": "Insert another file into current buffer (or into new buffer)",
+            "translated": "Inserir outro arquivo no buffer atual (ou em um novo buffer)",
+            "reference": "Insere outro arquivo no buffer atual (ou em um novo buffer)"
+        },
+        {
+            "original": "Search forward for a string or a regular expression",
+            "translated": "procurar por uma string ou expressão regular em direção à frente",
+            "reference": "Procura para frente por um texto ou uma expressão regular"
+        },
+        {
+            "original": "Search backward for a string or a regular expression",
+            "translated": "Pesquisar reversamente uma sequência de caracteres ou expressão regular",
+            "reference": "Procura para trás por um texto ou uma expressão regular"
+        },
+        {
+            "original": "Cut current line (or marked region) and store it in cutbuffer",
+            "translated": "Cortar a linha atual (ou região marcada) e salvá-la na área de transferência.",
+            "reference": "Recorta a linha atual (ou região marcada) e guarda-a no buffer-de-transferência"
+        },
+        {
+            "original": "Copy current line (or marked region) and store it in cutbuffer",
+            "translated": "Copiar a linha atual (ou região marcada) na área de transferência para o buffer do sistema operacional",
+            "reference": "Copia a linha atual (ou região marcada) e armazena-a no buffer-de-transferência"
+        },
+        {
+            "original": "Paste the contents of cutbuffer at current cursor position",
+            "translated": "Inserir o conteúdo do seu copiar e colar na posição atual do cursor.",
+            "reference": "Cola o conteúdo do buffer-de-transferência na posição do cursor"
+        },
+        {
+            "original": "Display the position of the cursor",
+            "translated": "Mostrar a posição do cursor atual.",
+            "reference": "Mostra a posição do cursor"
+        },
+        {
+            "original": "Invoke the spell checker, if available",
+            "translated": "Verificar ortografia, se disponível.",
+            "reference": "Chama o verificador ortográfico, se disponível"
+        },
+        {
+            "original": "Replace a string or a regular expression",
+            "translated": "Substituir uma cadeia de texto ou expressão regular",
+            "reference": "Substitui um texto ou expressão regular"
+        },
+        {
+            "original": "Go to line and column number",
+            "translated": "Avançar para a linha %d e coluna %<PRIuMAX> especificadas.",
+            "reference": "Vai para linha e coluna número"
+        },
+        {
+            "original": "Go to the matching bracket",
+            "translated": "Para a correspondente aspa, avance",
+            "reference": "Vai para o fechamento do parênteses/colchetes/chaves"
+        },
+        {
+            "original": "Mark text starting from the cursor position",
+            "translated": "Marcar texto a partir da posição atual do cursor",
+            "reference": "Marca o texto iniciando na posição do cursor"
+        },
+        {
+            "original": "Throw away the current line (or marked region)",
+            "translated": "Exclua a linha atual (ou região marcada)",
+            "reference": "Descarta a linha atual (ou região marcada)"
+        },
+        {
+            "original": "Indent the current line (or marked lines)",
+            "translated": "Aumentar o espaço da linha atual (ou das regiões marcadas)",
+            "reference": "Recua a linha atual (ou linhas marcadas)"
+        },
+        {
+            "original": "Unindent the current line (or marked lines)",
+            "translated": "diminuir o espaço da linha atual (ou das regiões marcadas)",
+            "reference": "Remove recuo da linha atual (ou linhas marcadas)"
+        },
+        {
+            "original": "Undo the last operation",
+            "translated": "Cancelar a última operação",
+            "reference": "Desfaz a última operação"
+        },
+        {
+            "original": "Redo the last undone operation",
+            "translated": "Repetir a última operação cancelada",
+            "reference": "Refaz a última operação desfeita"
+        },
+        {
+            "original": "Go back one character",
+            "translated": "um passo para trás em um caractere",
+            "reference": "Volta em um caractere"
+        },
+        {
+            "original": "Go forward one character",
+            "translated": "um passo para frente em um caractere",
+            "reference": "Avança em um caractere"
+        },
+        {
+            "original": "Go back one word",
+            "translated": "Retroceder uma palavra.",
+            "reference": "Retrocede em uma palavra"
+        },
+        {
+            "original": "Go forward one word",
+            "translated": "Adiante um palavra",
+            "reference": "Avança em uma palavra"
+        },
+        {
+            "original": "Go to previous line",
+            "translated": "Na linha anterior",
+            "reference": "Vai para a anterior linha"
+        },
+        {
+            "original": "Go to next line",
+            "translated": "na próxima linha",
+            "reference": "Vai para a próxima linha"
+        },
+        {
+            "original": "Go to beginning of current line",
+            "translated": "no começo desta linha",
+            "reference": "Vai para o início da linha atual"
+        },
+        {
+            "original": "Go to end of current line",
+            "translated": "no final da linha atual",
+            "reference": "Vai para o fim da linha atual"
+        },
+        {
+            "original": "Go to previous block of text",
+            "translated": "Avançar para o bloco de texto anterior.",
+            "reference": "Vai para o bloco de texto anterior"
+        },
+        {
+            "original": "Go to next block of text",
+            "translated": "Avançar para o próximo bloco de texto.",
+            "reference": "Vai para a próximo bloco de texto"
+        },
+        {
+            "original": "Go to beginning of paragraph; then of previous paragraph",
+            "translated": "Ao iniciar o atual parágrafo; em seguida, ao início do anterior",
+            "reference": "Vai para o início do parágrafo; depois para o parágrafo anterior"
+        },
+        {
+            "original": "Go just beyond end of paragraph; then of next paragraph",
+            "translated": "No final do atual parágrafo; em seguida, no próximo parágrafo.",
+            "reference": "Vai para o fim do parágrafo; depois para o próximo parágrafo"
+        },
+        {
+            "original": "Go to first row in the viewport",
+            "translated": "Avançar para a primeira linha deste coluna",
+            "reference": "Vai para a primeira linha na janela de visualização"
+        },
+        {
+            "original": "Go to last row in the viewport",
+            "translated": "Avançar para a última linha deste coluna",
+            "reference": "Vai para a última linha na janela de visualização"
+        },
+        {
+            "original": "Center the line where the cursor is",
+            "translated": "Centrar a linha na qual está o cursor.",
+            "reference": "Centraliza a linha onde o cursor está"
+        },
+        {
+            "original": "Go one screenful up",
+            "translated": "Pressione '↑' para irar ao próximo menu.",
+            "reference": "Vai uma tela acima"
+        },
+        {
+            "original": "Go one screenful down",
+            "translated": "Avançar para a tela inferior.",
+            "reference": "Vai uma tela abaixo"
+        },
+        {
+            "original": "Go to the first line of the file",
+            "translated": "na primeira linha do arquivo",
+            "reference": "Vai para a primeira linha do arquivo"
+        },
+        {
+            "original": "Go to the last line of the file",
+            "translated": "na última linha do arquivo",
+            "reference": "Vai para a última linha do arquivo"
+        },
+        {
+            "original": "Scroll up one line without moving the cursor textually",
+            "translated": "rolar uma linha para cima sem mover o cursor",
+            "reference": "Rola uma linha acima sem mover o cursor textualmente"
+        },
+        {
+            "original": "Scroll down one line without moving the cursor textually",
+            "translated": "Pesquisar uma linha abaixo, sem mover o cursor na tela do terminal",
+            "reference": "Rola uma linha abaixo sem mover o cursor textualmente"
+        },
+        {
+            "original": "Switch to the previous file buffer",
+            "translated": "Preencha a tradução em português para 'Перейти в предыдущий буфер'.",
+            "reference": "Troca para o buffer de arquivo anterior"
+        },
+        {
+            "original": "Switch to the next file buffer",
+            "translated": "Avançar para o próximo buffer de entrada/saída padrão.",
+            "reference": "Troca para o próximo buffer de arquivo"
+        },
+        {
+            "original": "Insert the next keystroke verbatim",
+            "translated": "Insira a próxima combinação de teclas como está",
+            "reference": "Insere o próxima combinação de teclas literal"
+        },
+        {
+            "original": "Insert a tab at the cursor position (or indent marked lines)",
+            "translated": "Inserir uma tabulação na posição do cursor (ou alinhar as linhas marcadas)",
+            "reference": "Insere uma tabulação na posição do cursor (ou recua linhas marcadas)"
+        },
+        {
+            "original": "Insert a newline at the cursor position",
+            "translated": "Inserir uma linha na posição do cursor.",
+            "reference": "Insere quebra de linha na posição do cursor"
+        },
+        {
+            "original": "Delete the character under the cursor",
+            "translated": "Remover o caractere sob a posição do cursor",
+            "reference": "Apaga o caractere sob o cursor"
+        },
+        {
+            "original": "Delete the character to the left of the cursor",
+            "translated": "Remover o caractere à esquerda do cursor",
+            "reference": "Apaga o caractere a esquerda do cursor"
+        },
+        {
+            "original": "Delete backward from cursor to word start",
+            "translated": "Remover do cursor em direção contrária até o começo da palavra.",
+            "reference": "Exclui para trás do cursor até o início da palavra"
+        },
+        {
+            "original": "Delete forward from cursor to next word start",
+            "translated": "Remover do cursor até o começo da próxima palavra",
+            "reference": "Exclui para frente do cursor até início da próxima palavra"
+        },
+        {
+            "original": "Cut from the cursor position to the end of the file",
+            "translated": "Cortar desde o cursor até o final do arquivo",
+            "reference": "Recorta do cursor até o fim da linha"
+        },
+        {
+            "original": "Justify the current paragraph",
+            "translated": "alinhar o atual parágrafo",
+            "reference": "Justifica o parágrafo atual"
+        },
+        {
+            "original": "Justify the entire file",
+            "translated": "alinhar o conteúdo do atual parágrafo por largura",
+            "reference": "Justifica o arquivo inteiro"
+        },
+        {
+            "original": "Count the number of lines, words, and characters",
+            "translated": "Contar o número de linhas, palavras e caracteres.",
+            "reference": "Conta o número de linhas, palavras e caracteres"
+        },
+        {
+            "original": "Suspend the editor (return to the shell)",
+            "translated": "Pausar o editor (se possível)",
+            "reference": "Suspende o editor (retorna para o shell)"
+        },
+        {
+            "original": "Refresh (redraw) the current screen",
+            "translated": "Atualizar o painel de exibição atual",
+            "reference": "Atualiza (re-desenha) a tela atual"
+        },
+        {
+            "original": "Try and complete the current word",
+            "translated": "Completar o palavra atual",
+            "reference": "Tenta e completa a palavra atual"
+        },
+        {
+            "original": "Comment/uncomment the current line (or marked lines)",
+            "translated": "Comentar/descomentar a linha atual (ou as linhas marcadas)",
+            "reference": "Comenta/descomenta a linha atual (ou linhas marcadas)"
+        },
+        {
+            "original": "Save file without prompting",
+            "translated": "Salvar arquivo sem confirmação",
+            "reference": "Salva o arquivo sem perguntar"
+        },
+        {
+            "original": "Search next occurrence backward",
+            "translated": "Procurar o próximo padrão reverso",
+            "reference": "Pesquisa a ocorrência anterior"
+        },
+        {
+            "original": "Search next occurrence forward",
+            "translated": "Procurar ocorrência anterior",
+            "reference": "Pesquisa a próxima ocorrência"
+        },
+        {
+            "original": "Start/stop recording a macro",
+            "translated": "Iniciar/parar gravação de macro",
+            "reference": "Inicia/para gravação de um macro"
+        },
+        {
+            "original": "Run the last recorded macro",
+            "translated": "Executar o último macro gravado",
+            "reference": "Executa a última macro gravada"
+        },
+        {
+            "original": "Place or remove an anchor at the current line",
+            "translated": "Instalar ou remover a ancoragem na linha atual.",
+            "reference": "Coloca ou remove uma âncora na linha atual"
+        },
+        {
+            "original": "Jump backward to the nearest anchor",
+            "translated": "Avançar para a página anterior mais próxima.",
+            "reference": "Pula para a âncora anterior mais próxima"
+        },
+        {
+            "original": "Jump forward to the nearest anchor",
+            "translated": "Avançar para a próxima página da biblioteca de referências mais próxima.",
+            "reference": "Pula para a próxima âncora mais próxima"
+        },
+        {
+            "original": "Toggle the case sensitivity of the search",
+            "translated": "procurar levando em conta a distinção entre maiúsculas e minúsculas",
+            "reference": "Ativa sensibilidade de caixa na pesquisa"
+        },
+        {
+            "original": "Reverse the direction of the search",
+            "translated": "inverter a direção da pesquisa",
+            "reference": "Inverte a direção da pesquisa"
+        },
+        {
+            "original": "Toggle the use of regular expressions",
+            "translated": "Utilizar expressões regulares",
+            "reference": "Ativa o uso de expressões regulares"
+        },
+        {
+            "original": "Recall the previous search/replace string",
+            "translated": "Limpar a linha anterior de pesquisa/substituição.",
+            "reference": "Lembra o último texto de pesquisa/substituição"
+        },
+        {
+            "original": "Recall the next search/replace string",
+            "translated": "Sobrer a próxima linha de pesquisa/substituição",
+            "reference": "Lembra o ultimo texto de pesquisa/substituição"
+        },
+        {
+            "original": "Toggle the use of DOS format",
+            "translated": "Utilizar o formato DOS",
+            "reference": "Ativa o uso do formato DOS"
+        },
+        {
+            "original": "Toggle the use of Mac format",
+            "translated": "Utilizar o formato Mac",
+            "reference": "Ativa o uso do formato Mac"
+        },
+        {
+            "original": "Toggle appending",
+            "translated": "Adicionar no final do texto",
+            "reference": "Ativa ajuntamento"
+        },
+        {
+            "original": "Toggle prepending",
+            "translated": "Adicionar no começo",
+            "reference": "Ativa pré-adicionamento"
+        },
+        {
+            "original": "Toggle backing up of the original file",
+            "translated": "fazer cópias de segurança do original",
+            "reference": "Ativa cópia de segurança do arquivo original"
+        },
+        {
+            "original": "Execute a function or an external command",
+            "translated": "Executar uma função ou um comando externo",
+            "reference": "Executa uma função ou um comando externo"
+        },
+        {
+            "original": "Pipe the current buffer (or marked region) to the command",
+            "translated": "Enviar através do canal o conector (ou a região marcada) da instrução",
+            "reference": "Pipe no buffer atual (ou a região marcada) para o comando"
+        },
+        {
+            "original": "Recall the previous command",
+            "translated": "Limpar a linha anterior de pesquisa/substituição.",
+            "reference": "Lembra o comando anterior"
+        },
+        {
+            "original": "Recall the next command",
+            "translated": "Reiniciar a próxima linha de pesquisa/substituição.",
+            "reference": "Lembra o comando seguinte"
+        },
+        {
+            "original": "Do not convert from DOS/Mac format",
+            "translated": "Não converter do formato DOS/Mac.",
+            "reference": "Não converte do formato DOS/Mac"
+        },
+        {
+            "original": "Toggle the use of a new buffer",
+            "translated": "Utilizar um novo buffer",
+            "reference": "Ativa o uso de um novo buffer"
+        },
+        {
+            "original": "Close buffer without saving it",
+            "translated": "fechar o buffer sem salvar",
+            "reference": "Fecha o buffer sem salvá-lo"
+        },
+        {
+            "original": "Go to file browser",
+            "translated": "Acerte no gerenciador de arquivos para acessar seus documentos.",
+            "reference": "Vai para o navegador de arquivo"
+        },
+        {
+            "original": "Exit from the file browser",
+            "translated": "Sair do gerenciador de arquivos",
+            "reference": "Sai do navegador de arquivos"
+        },
+        {
+            "original": "Go to the first file in the list",
+            "translated": "Avançar para o primeiro arquivo da lista",
+            "reference": "Vai para o primeiro arquivo na lista"
+        },
+        {
+            "original": "Go to the last file in the list",
+            "translated": "Avançar para o último arquivo da lista.",
+            "reference": "Vai para o último arquivo na lista"
+        },
+        {
+            "original": "Go to the previous file in the list",
+            "translated": "Avançar para o arquivo anterior na lista",
+            "reference": "Vai para o arquivo anterior na lista"
+        },
+        {
+            "original": "Go to the next file in the list",
+            "translated": "Avançar para o próximo arquivo na lista",
+            "reference": "Vai para o próximo arquivo na lista"
+        },
+        {
+            "original": "Go to lefthand column",
+            "translated": "Avançar para a coluna à esquerda",
+            "reference": "Vai para a coluna da esquerda"
+        },
+        {
+            "original": "Go to righthand column",
+            "translated": "Avançar para a coluna à direita",
+            "reference": "Vai para a coluna da direita"
+        },
+        {
+            "original": "Go to first row in this column",
+            "translated": "Acerte a primeira linha deste coluna para continuar.",
+            "reference": "Vai para a primeira linha nesta coluna"
+        },
+        {
+            "original": "Go to last row in this column",
+            "translated": "Avançar para a última linha nesta coluna",
+            "reference": "Vai para a última linha nesta coluna"
+        },
+        {
+            "original": "Search forward for a string",
+            "translated": "procurar uma linha na frente",
+            "reference": "Pesquisa para frente por um texto"
+        },
+        {
+            "original": "Search backward for a string",
+            "translated": "procurar uma linha de forma reversa",
+            "reference": "Pesquisa para trás por um texto"
+        },
+        {
+            "original": "Refresh the file list",
+            "translated": "Atualizar a lista de arquivos",
+            "reference": "Atualiza a lista de arquivos"
+        },
+        {
+            "original": "Go to directory",
+            "translated": "Acerte em Ctrl+C para interromper o processo e pressione Enter para voltar ao diretório inicial.",
+            "reference": "Vai para o diretório"
+        },
+        {
+            "original": "Invoke the linter, if available",
+            "translated": "Verificar sintaxe do código, se disponível.",
+            "reference": "Chama o lintador, se disponível"
+        },
+        {
+            "original": "Go to previous linter msg",
+            "translated": "Para a última mensagem do sistema de análise, vá para o último comentário.",
+            "reference": "Vai para a mensagem anterior do lintador"
+        },
+        {
+            "original": "Go to next linter msg",
+            "translated": "na próxima mensagem",
+            "reference": "Vai para a próxima mensagem do lintador"
+        },
+        {
+            "original": "Invoke a program to format/arrange/manipulate the buffer",
+            "translated": "Executar um programa para formatar ou realizar outras manipulações no buffer.",
+            "reference": "Chama um programa para formatar/organizar/manipular o buffer"
+        },
+        {
+            "original": "Help",
+            "translated": "Sua solicitação foi recebida com sucesso.",
+            "reference": "Ajuda"
+        },
+        {
+            "original": "Cancel",
+            "translated": "Cancelar",
+            "reference": "Cancelar"
+        },
+        {
+            "original": "Write Out",
+            "translated": "Salvar",
+            "reference": "Gravar"
+        },
+        {
+            "original": "Read File",
+            "translated": "Arquivo não encontrado.",
+            "reference": "Ler o arq"
+        },
+        {
+            "original": "Justify",
+            "translated": "alinhar",
+            "reference": "Justificar"
+        },
+        {
+            "original": "Refresh",
+            "translated": "Actualizar",
+            "reference": "Atualizar"
+        },
+        {
+            "original": "Where Is",
+            "translated": "Buscar",
+            "reference": "Onde está?"
+        },
+        {
+            "original": "Replace",
+            "translated": "substituir",
+            "reference": "Substituir"
+        },
+        {
+            "original": "Cut",
+            "translated": "Cortar",
+            "reference": "Recortar"
+        },
+        {
+            "original": "Paste",
+            "translated": "inserir",
+            "reference": "Colar"
+        },
+        {
+            "original": "Execute",
+            "translated": "Executar",
+            "reference": "Executar"
+        },
+        {
+            "original": "Location",
+            "translated": "Posição",
+            "reference": "Local"
+        },
+        {
+            "original": "Go To Line",
+            "translated": "na linha %d",
+            "reference": "Ir p/ linha"
+        },
+        {
+            "original": "Undo",
+            "translated": "Cancelar",
+            "reference": "Desfazer"
+        },
+        {
+            "original": "Redo",
+            "translated": "Repetir",
+            "reference": "Refazer"
+        },
+        {
+            "original": "Set Mark",
+            "translated": "Adicionar etiqueta",
+            "reference": "Marcar"
+        },
+        {
+            "original": "Copy",
+            "translated": "Copiar",
+            "reference": "Copiar"
+        },
+        {
+            "original": "Case Sens",
+            "translated": "Registro escolar",
+            "reference": "Dif. MAI/min"
+        },
+        {
+            "original": "Reg.exp.",
+            "translated": "Reg.Virgolândia",
+            "reference": "Exp.Regular"
+        },
+        {
+            "original": "Backwards",
+            "translated": "Rápido, volta!",
+            "reference": "Contrário"
+        },
+        {
+            "original": "No Replace",
+            "translated": "Não substituir",
+            "reference": "Sem substituição"
+        },
+        {
+            "original": "Older",
+            "translated": "Más antiguo",
+            "reference": "Mais antigo"
+        },
+        {
+            "original": "Newer",
+            "translated": "Novo",
+            "reference": "Mais novo"
+        },
+        {
+            "original": "Go To Dir",
+            "translated": "Caminho para o diretório",
+            "reference": "Ir p/ dir"
+        },
+        {
+            "original": "Where Was",
+            "translated": "Buscar atrás em arquivos e pastas para encontrar informações desejadas.",
+            "reference": "Onde estava"
+        },
+        {
+            "original": "Previous",
+            "translated": "Préviamente",
+            "reference": "Anterior"
+        },
+        {
+            "original": "Next",
+            "translated": "Próximo",
+            "reference": "Próxima"
+        },
+        {
+            "original": "To Bracket",
+            "translated": "na asa da palavra",
+            "reference": "Parênteses"
+        },
+        {
+            "original": "Back",
+            "translated": "Voltar",
+            "reference": "Voltar"
+        },
+        {
+            "original": "Forward",
+            "translated": "Adiante",
+            "reference": "Avançar"
+        },
+        {
+            "original": "Prev Word",
+            "translated": "Palavra anterior",
+            "reference": "Palvr ant"
+        },
+        {
+            "original": "Next Word",
+            "translated": "Palavra seguinte",
+            "reference": "Prx palvr"
+        },
+        {
+            "original": "Home",
+            "translated": "Início",
+            "reference": "Início"
+        },
+        {
+            "original": "End",
+            "translated": "Fim",
+            "reference": "Fim"
+        },
+        {
+            "original": "Prev Line",
+            "translated": "PREDESTRROCA",
+            "reference": "Linha ant"
+        },
+        {
+            "original": "Next Line",
+            "translated": "Linha seguinte",
+            "reference": "Próx linha"
+        },
+        {
+            "original": "Scroll Up",
+            "translated": "rolar para cima",
+            "reference": "Rolar acima"
+        },
+        {
+            "original": "Scroll Down",
+            "translated": "Deslizar para baixo",
+            "reference": "Rolar abaixo"
+        },
+        {
+            "original": "Prev Block",
+            "translated": "Prébloco",
+            "reference": "Bloco ant"
+        },
+        {
+            "original": "Next Block",
+            "translated": "Próximo Bloco",
+            "reference": "Próx bloco"
+        },
+        {
+            "original": "Begin of Paragr.",
+            "translated": "Início do parágrafo",
+            "reference": "Início parágrafo"
+        },
+        {
+            "original": "End of Paragraph",
+            "translated": "Parágrafo concluído.",
+            "reference": "Fim parágrafo"
+        },
+        {
+            "original": "Top Row",
+            "translated": "Estrutura superior da tabela",
+            "reference": "Linha superior"
+        },
+        {
+            "original": "Bottom Row",
+            "translated": "Linha inferior",
+            "reference": "Linha inferior"
+        },
+        {
+            "original": "Prev Page",
+            "translated": "PREDCORTE",
+            "reference": "Pág anterior"
+        },
+        {
+            "original": "Next Page",
+            "translated": "não foi possível obter estado (stat) do arquivo %s",
+            "reference": "Próx página"
+        },
+        {
+            "original": "First Line",
+            "translated": "primeira linha",
+            "reference": "Prim linha"
+        },
+        {
+            "original": "Last Line",
+            "translated": "Última linha",
+            "reference": "Última linha"
+        },
+        {
+            "original": "Prev File",
+            "translated": "Pré-arquivo",
+            "reference": "Arquivo anterior"
+        },
+        {
+            "original": "Next File",
+            "translated": "Próxima Fich. de Arquivo",
+            "reference": "Próximo arquivo"
+        },
+        {
+            "original": "Tab",
+            "translated": "Tabulação",
+            "reference": "Tab"
+        },
+        {
+            "original": "Enter",
+            "translated": "Entrar",
+            "reference": "Enter"
+        },
+        {
+            "original": "Backspace",
+            "translated": "voltar a tecla de cancelamento",
+            "reference": "Tecla BACKSPACE"
+        },
+        {
+            "original": "Delete",
+            "translated": "Remover",
+            "reference": "Excluir"
+        },
+        {
+            "original": "Chop Left",
+            "translated": "Remover à esquerda",
+            "reference": "Excluir à esquerda"
+        },
+        {
+            "original": "Chop Right",
+            "translated": "Remover à direita",
+            "reference": "Excluir à direita"
+        },
+        {
+            "original": "Cut Till End",
+            "translated": "cortar até o final",
+            "reference": "Cortar até fim"
+        },
+        {
+            "original": "Full Justify",
+            "translated": "alinhar à esquerda/direita",
+            "reference": "JustificTodo"
+        },
+        {
+            "original": "Word Count",
+            "translated": "Contador de palavras",
+            "reference": "Contagem de palavras"
+        },
+        {
+            "original": "Verbatim",
+            "translated": "detalhado",
+            "reference": "Entrada literal"
+        },
+        {
+            "original": "Indent",
+            "translated": "остання linha de frente",
+            "reference": "Recuo"
+        },
+        {
+            "original": "Unindent",
+            "translated": "Remover o espaço em branco",
+            "reference": "Tirar recuo"
+        },
+        {
+            "original": "Comment Lines",
+            "translated": "Comentar linhas",
+            "reference": "Comentar linhas"
+        },
+        {
+            "original": "Complete",
+            "translated": "Autodicao",
+            "reference": "Completar"
+        },
+        {
+            "original": "Record",
+            "translated": "gravar sinal",
+            "reference": "Gravar"
+        },
+        {
+            "original": "Run Macro",
+            "translated": "Executar macro",
+            "reference": "Executar macro"
+        },
+        {
+            "original": "Zap",
+            "translated": "Remover",
+            "reference": "Zap"
+        },
+        {
+            "original": "Anchor",
+            "translated": "âncora",
+            "reference": "Âncora"
+        },
+        {
+            "original": "Up to anchor",
+            "translated": "Próxima ancoragem",
+            "reference": "Âncora acima"
+        },
+        {
+            "original": "Down to anchor",
+            "translated": "esta a seguir na sequência de ancoragem",
+            "reference": "Âncora abaix"
+        },
+        {
+            "original": "Spell Check",
+            "translated": "Verificação da ortografia",
+            "reference": "Verif Ortogr"
+        },
+        {
+            "original": "Linter",
+            "translated": "Verificação de sintaxe",
+            "reference": "Lintar"
+        },
+        {
+            "original": "Formatter",
+            "translated": "Formatação",
+            "reference": "Formatador"
+        },
+        {
+            "original": "Suspend",
+            "translated": "pausar",
+            "reference": "Suspender"
+        },
+        {
+            "original": "Center",
+            "translated": "Centralizar",
+            "reference": "Centralizar"
+        },
+        {
+            "original": "Save",
+            "translated": "Salvar",
+            "reference": "Salvar"
+        },
+        {
+            "original": "Pipe Text",
+            "translated": "Texto em Pipe (PE)",
+            "reference": "Pipe text"
+        },
+        {
+            "original": "Go To Text",
+            "translated": "na linha",
+            "reference": "Ir para texto"
+        },
+        {
+            "original": "DOS Format",
+            "translated": "Formato DOS",
+            "reference": "Formato DOS"
+        },
+        {
+            "original": "Mac Format",
+            "translated": "Formato Mac",
+            "reference": "Formato Mac"
+        },
+        {
+            "original": "Append",
+            "translated": "Adicionar ao final do texto.",
+            "reference": "Anexar"
+        },
+        {
+            "original": "Prepend",
+            "translated": "Adicionar opções extras no final do arquivo.",
+            "reference": "Pré-anexar"
+        },
+        {
+            "original": "Backup File",
+            "translated": "cópia de segurança",
+            "reference": "Arquivo reserva"
+        },
+        {
+            "original": "No Conversion",
+            "translated": "sem transformação",
+            "reference": "Sem conversão"
+        },
+        {
+            "original": "Execute Command",
+            "translated": "Executar comando",
+            "reference": "Executar comando"
+        },
+        {
+            "original": "Browse",
+            "translated": "Exibição de arquivos e pastas.",
+            "reference": "Navegar"
+        },
+        {
+            "original": "First File",
+            "translated": "Primeiro arquivo",
+            "reference": "Primeira linha"
+        },
+        {
+            "original": "Last File",
+            "translated": "Último arquivo",
+            "reference": "Última linha"
+        },
+        {
+            "original": "Left Column",
+            "translated": "Coluna esquerda",
+            "reference": "Coluna da esquerda"
+        },
+        {
+            "original": "Right Column",
+            "translated": "Coluna Direita",
+            "reference": "Coluna da direita"
+        },
+        {
+            "original": "Discard buffer",
+            "translated": "Descartar buffer",
+            "reference": "Descartar buffer"
+        },
+        {
+            "original": "Previous Linter message",
+            "translated": "Mensagem anterior do analisador sintático",
+            "reference": "Mensagem anterior do lintador"
+        },
+        {
+            "original": "Next Linter message",
+            "translated": "Mensagem seguinte da verificação sintaxe",
+            "reference": "Próxima mensagem do lintador"
+        },
+        {
+            "original": "Help mode",
+            "translated": "Modo de ajuda",
+            "reference": "Modo ajuda"
+        },
+        {
+            "original": "Constant cursor position display",
+            "translated": "Exibição do cursor em posição constante",
+            "reference": "Mostra da posição do cursor constante"
+        },
+        {
+            "original": "Soft wrapping of overlong lines",
+            "translated": "Movimento suave de linhas longas",
+            "reference": "Quebra suave de linhas longas"
+        },
+        {
+            "original": "Line numbering",
+            "translated": "Númeração de linhas",
+            "reference": "Numeração de linha"
+        },
+        {
+            "original": "Whitespace display",
+            "translated": "Exibição de espaços em branco",
+            "reference": "Mostra espaços vazios"
+        },
+        {
+            "original": "Color syntax highlighting",
+            "translated": "Acelerador de sintaxe",
+            "reference": "Marcação colorida de sintaxe"
+        },
+        {
+            "original": "Smart home key",
+            "translated": "Tecla de home inteligente",
+            "reference": "Tecla Home inteligente"
+        },
+        {
+            "original": "Auto indent",
+            "translated": "automáticas de indentação",
+            "reference": "Recuo automático"
+        },
+        {
+            "original": "Cut to end",
+            "translated": "cortar até o final da linha",
+            "reference": "Recorta até o fim"
+        },
+        {
+            "original": "Hard wrapping of overlong lines",
+            "translated": "transferência rígida de linhas longas",
+            "reference": "Quebra rígida de linhas longas"
+        },
+        {
+            "original": "Conversion of typed tabs to spaces",
+            "translated": "Conversão de tabulações em espaços",
+            "reference": "Conversão de tabulações para espaços"
+        },
+        {
+            "original": "Mouse support",
+            "translated": "Suporte para a mouse (ou trackpad)",
+            "reference": "Suporte ao mouse"
+        },
+        {
+            "original": "Search Command Help Text\n\n Enter the words or characters you would like to search for, and then press Enter.  If there is a match for the text you entered, the screen will be updated to the location of the nearest match for the search string.\n\n The previous search string will be shown in brackets after the search prompt.  Hitting Enter without entering any text will perform the previous search.  ",
+            "translated": "Assistente de texto para a ordenação de pesquisa\n\nDigite as palavras ou caracteres que deseja procurar e pressione Enter. Se uma correspondência for encontrada, o cursor será movido para mostrar onde está localizada mais próximamente à entrada do texto.\n\nA cadeia de pesquisa anterior é exibida entre parênteses após a solicitação 'Pesquise:'. Pressionar Enter sem digitar nenhum texto continuará o último processamento de pesquisa.",
+            "reference": "Texto de Ajuda do Comando de Pesquisa\n\n Insira as palavras ou caracteres que você gostaria de pesquisar e, então, pressione Enter. Se existir ocorrências para o texto que você inseriu, a tela será atualizada para a localização da ocorrência mais próxima.\n\n O texto da pesquisa anterior aparecerá em parênteses logo após a entrada de pesquisa. Pressionando Enter sem inserir nenhum texto executará a pesquisa anterior.  "
+        },
+        {
+            "original": "If you have selected text with the mark and then search to replace, only matches in the selected text will be replaced.\n\n The following function keys are available in Search mode:\n\n",
+            "translated": "Se você marcar texto com marcação e depois usar a pesquisa para substituição, apenas correspondências dentro do trecho marcado serão trocadas. As teclas de função disponíveis no modo de busca são: \n",
+            "reference": "Se você selecionou um texto com o marcador e então fez uma pesquisa para substituição, apenas as ocorrências do texto marcado serão substituídas.\n\n As seguintes teclas de função vão estar disponíveis no modo de pesquisa:\n\n"
+        },
+        {
+            "original": " The following function keys are available at this prompt:\n\n",
+            "translated": "Siga as seguintes teclas de atalho para verificação do sintaxe do código:\n",
+            "reference": " As seguintes teclas de função estão disponíveis neste prompt:\n\n"
+        },
+        {
+            "original": "Go To Line Help Text\n\n Enter the line number that you wish to go to and hit Enter.  If there are fewer lines of text than the number you entered, you will be brought to the last line of the file.\n\n The following function keys are available in Go To Line mode:\n\n",
+            "translated": "Hilfetext para \"Zu Zeile\"\nIntroduza o número da linha a qual deseja ir e pressione Enter. Se houver menos linhas no arquivo do que o número inserido, você estará na última linha.\nAs seguints teclas de função estão disponíveis neste modo:\n",
+            "reference": "Texto de Ajuda do Ir Para Linha\n\n Insira o número da linha para a qual você deseja ir e pressione Enter.  Se não existirem linhas de texto para o número que você inseriu, então você será enviado para a última linha do arquivo.\n\n As seguintes teclas de funções estão disponíveis no modo Ir Para Linha:\n\n"
+        },
+        {
+            "original": "Insert File Help Text\n\n Type in the name of a file to be inserted into the current file buffer at the current cursor location.\n\n If you have compiled nano with multiple file buffer support, and enable multiple file buffers with the -F or --multibuffer command line flags, the Meta-F toggle, or a nanorc file, inserting a file will cause it to be loaded into a separate buffer (use Meta-< and > to switch between file buffers).  ",
+            "translated": "Texto de ayuda para inserir ficheiro\n\nDigite o nome do ficheiro a ser inserido no buffer de ficheiros atual, na posição actual do cursor.\nSe tiver habilitado búfers múltiplos com as opções -F ou --multibuffer, usando a combinação Meta-F ou um arquivo nanorc, o ficheiro será inserido em um buffer diferente (use Meta-\"<\" e \">\" para alternar entre os buffers de ficheros).",
+            "reference": "Texto de Ajuda do Inserir Arquivo\n\n Digite o nome de um arquivo que será inserido no buffer de arquivo atual na posição do cursor.\n\n Se você compilou o nano com suporte a múltiplos buffers de arquivo e o habilitou com o sinalizador de comando -F ou --multibuffer, ou com a tecla de alternância Meta-F, ou com um arquivo nanorc, a inserção de um arquivo irá ocorrer em um buffer separado (utilize Meta-< e > para alternar entre os buffers de arquivo).  "
+        },
+        {
+            "original": "If you need another blank buffer, do not enter any filename, or type in a nonexistent filename at the prompt and press Enter.\n\n The following function keys are available in Insert File mode:\n\n",
+            "translated": "Se precisar de outro buffer vazio, não insira o nome do arquivo ou tipo e sim aperte Enter. As teclas seguintes estão disponíveis no modo inserção de arquivos:",
+            "reference": "Se você precisar de um outro buffer vazio, basta não indicar nenhum arquivo ou indicar o nome de um arquivo que não existe e pressione Enter.\n\n As seguintes teclas de funções estão disponíveis no modo de Inserção de Arquivo:\n\n"
+        },
+        {
+            "original": "Write File Help Text\n\n Type the name that you wish to save the current file as and press Enter to save the file.\n\n If you have selected text with the mark, you will be prompted to save only the selected portion to a separate file.  To reduce the chance of overwriting the current file with just a portion of it, the current filename is not the default in this mode.\n\n The following function keys are available in Write File mode:\n\n",
+            "translated": "Aviso de assistência para escrever arquivo\n\nDigite o nome com que deseja salvar o arquivo atual e pressione Enter para salvá-lo. Se você tiver selecionado texto, será perguntado se quer salvar apenas a parte selecionada em um arquivo diferente. Para minimizar as chances de sobrescrever o arquivo atual com uma parte dela mesma, este nome não é o padrão neste modo.\n\nAs teclas de função disponíveis no modo Guardar fichê:\n",
+            "reference": "Texto de Ajuda do Escrever Arquivo\n\n Digite o nome com o qual você gostaria de salvar o arquivo atual e pressione Enter para salvá-lo.\n\n Se você selecionou texto com a marcação, você será solicitado a salvar somente a porção selecionada para um arquivo separado.  Para reduzir as chances de sobrescrever o arquivo atual com a parte selecionada dele, o nome padrão não é o do arquivo atual nesse modo.\n\n As seguintes teclas de funções estão disponíveis no modo Escrever Arquivo:\n\n"
+        },
+        {
+            "original": "File Browser Help Text\n\n The file browser is used to visually browse the directory structure to select a file for reading or writing.  You may use the arrow keys or Page Up/Down to browse through the files, and S or Enter to choose the selected file or enter the selected directory.  To move up one level, select the directory called \"..\" at the top of the file list.\n\n The following function keys are available in the file browser:\n\n",
+            "translated": "SUPORTAÇÃO DE FICHIERES",
+            "reference": "Texto de Ajuda do Navegador de Arquivos\n\n O navegador de arquivos é utilizado para visualmente pesquisar a estrutura do diretório para selecionar um arquivo para leitura ou gravação.  Você pode utilizar as teclas de setas ou <Page Up/Down> para navegar através dos arquivos, e S ou Enter para escolher um arquivo, ou entrar em um diretório, selecionado.  Para subir um nível,  selecione o diretório chamado \"..\" no topo da lista de arquivos.\n\n As seguintes teclas de funções estão disponíveis no Navegador de Arquivos:\n\n"
+        },
+        {
+            "original": "Browser Search Command Help Text\n\n Enter the words or characters you would like to search for, and then press Enter.  If there is a match for the text you entered, the screen will be updated to the location of the nearest match for the search string.\n\n The previous search string will be shown in brackets after the search prompt.  Hitting Enter without entering any text will perform the previous search.\n\n",
+            "translated": "SUPORTAÇÃO DE COMMANDOS PARA A BUSCA\nDigite as palavras ou caracteres que deseja pesquisar e pressione Enter. Se uma correspondência para o texto digitado for encontrada, a tela será movida para mostrar a localização mais próxima do resultado da busca.\nA cadeia de texto anterior é exibida entre parênteses após a solicitação 'Buscar:'. Pressionar Enter sem digitar nenhum texto continuará o último processamento de pesquisa.",
+            "reference": "Texto de Ajuda do Comando de Pesquisa\n\n Insira as palavras ou caracteres que você gostaria de procurar e, então, pressione Enter.  Se existir combinações para o texto que você inseriu, a tela será atualizada para a localização da combinação mais próxima.\n\n O texto da pesquisa anterior aparecerá entre parênteses logo após o prompt de pesquisa.  Pressionar Enter sem inserir nenhum texto faz uma pesquisa com o texto da pesquisa anterior.\n\n"
+        },
+        {
+            "original": "Browser Go To Directory Help Text\n\n Enter the name of the directory you would like to browse to.\n\n If tab completion has not been disabled, you can use the Tab key to (attempt to) automatically complete the directory name.\n\n The following function keys are available in Browser Go To Directory mode:\n\n",
+            "translated": "Hilfetext para Gehe-zu-Verzeichnis im Dateibrowser\nGeben Sie den Namen des Verzeichnisses ein, das Sie durchsuchen wollen.\nWenn Tabulator-Vervollständigung nicht abgeschaltet worden ist, so können Sie die Tabulator-Taste benutzen, um (zu versuchen) den Verzeichnisnamen automatisch vervollständigen zu lassen. \nDie folgenden Funktionstasten sind im Gehe-zu-Verzeichnis-Modus des Dateibrowsers verfügbar:\n",
+            "reference": "Texto de Ajuda do Navegador de Ida à Diretórios\n\n Insira o nome do diretório que você gostaria de navegar.\n\n Se a completação <TAB> não foi desabilitada, você pode utilizar a tecla <TAB> para (tentar) completar automaticamente o nome do diretório.\n\n As seguinte teclas de funções estão disponíveis no modo Navegador de Ida à Diretórios:\n\n"
+        },
+        {
+            "original": "Spell Check Help Text\n\n The spell checker checks the spelling of all text in the current file.  When an unknown word is encountered, it is highlighted and a replacement can be edited.  It will then prompt to replace every instance of the given misspelled word in the current file, or, if you have selected text with the mark, in the selected text.\n\n The following function keys are available in Spell Check mode:\n\n",
+            "translated": "SUPORTAÇÃO DE ERROS EM ORTOFÍBICA\nProgama de ortografia verifica a ortografia do texto completo da ficheira atual. Quando encontra uma palavra desconhecida, ela é destacada e pode ser editada para substituição correta. Em seguida, solicitará se você quer reverter todas as ocorrências dessa palavra mal escrita na ficheira actual ou, se houver texto marcado selecionando-o, dentro da sua escolha.",
+            "reference": "Texto de Ajuda da Verificação Ortográfica\n\n O verificador ortográfico verifica todo o texto no arquivo atual.  Quando uma palavra desconhecida é encontrada, ela é destacada e pode ser substituída por outra.  Então, será feita a pergunta se a palavra deve ser substituída por todo o texto ou, se você selecionou texto com a marcação, no texto selecionado.\n\n As seguinte teclas de funções estão disponíveis no modo Verificação Ortográfica:\n\n"
+        },
+        {
+            "original": "Execute Command Help Text\n\n This mode allows you to insert the output of a command run by the shell into the current buffer (or into a new buffer).  If the command is preceded by '|' (the pipe symbol), the current contents of the buffer (or marked region) will be piped to the command.  ",
+            "translated": "Assistente de execução externa\nEste modo permite inserir a saída do comando externo executado na shell no buffer atual (ou em um novo buffer). Se você anteceder ao comando o símbolo '|' (pipe), então o conteúdo atual do buffer (ou da região marcada) será adicionado à entrada desse comando.",
+            "reference": "Texto de Ajuda da Execução de Comando\n\n Este modo permite que você insira a saída de um comando executado pelo shell no buffer atual (ou em um novo buffer).  Se o comando é precedido de \"|\" (o símbolo de pipe), o conteúdo atual do buffer (ou região marcada) será passada por pipe para o comando.  "
+        },
+        {
+            "original": "If you just need another blank buffer, do not enter any command.\n\n You can also pick one of four tools, or cut a large piece of the buffer, or put the editor to sleep.\n\n",
+            "translated": "Se você só precisar de outro buffer vazio, não insira nenhuma comando. Você também pode escolher entre quatro ferramentas ou cortar um pedaço grande do buffer e enviá-lo para o modo de espera.",
+            "reference": "Se você só precisa de outro buffer vazio, não insira qualquer comando.\n\n Você também pode escolher uma das quatro ferramentas, ou recortar um pedaço grande do buffer, o colocar o editor para dormir.\n\n"
+        },
+        {
+            "original": "=== Linter ===\n\n In this mode, the status bar shows an error message or warning, and the cursor is put at the corresponding position in the file.  With PageUp and PageDown you can switch to earlier and later messages.\n\n",
+            "translated": "=== Verificação Sintática ===\\nEm este modo, a área de status mostrará uma mensagem de erro ou aviso e o cursor será posicionado na localização correspondente no arquivo. Com PageUp e PageDown você pode navegar entre as mensagens.",
+            "reference": "=== Lintador ===\n\n Neste modo, a barra de status mostra uma mensagem de erro ou aviso, e o cursor é colocado na posição correspondente no arquivo. Com PageUp e PageDown, você pode alternar para mensagens anteriores e posteriores.\n\n"
+        },
+        {
+            "original": " The following function keys are available in Linter mode:\n\n",
+            "translated": "Siga as seguintes teclas de seta para verificar o sintaxe do código:\n",
+            "reference": " As seguintes teclas de função estão disponíveis no modo de Lintador:\n\n"
+        },
+        {
+            "original": "Main nano help text\n\n The nano editor is designed to emulate the functionality and ease-of-use of the UW Pico text editor.  There are four main sections of the editor.  The top line shows the program version, the current filename being edited, and whether or not the file has been modified.  Next is the main editor window showing the file being edited.  The status line is the third line from the bottom and shows important messages.  ",
+            "translated": "Ajuda principal de nano\n\nO editor Nano foi projetado para imitar a funcionalidade e simplicidade do uso do Editor Pico da Universidade do Wisconsin. O editor possui quatro seções principais.\n\nLinha superior: mostra versão do programa, nome atual do arquivo que está sendo editado e sinaliza se o arquivo foi modificado ou não.\n\nJanela principal (main window): exibe a filezinha em edição. \n\nLinha de status (status line) - é uma linha com 3 caracteres abaixo: mostra mensagens importantes.",
+            "reference": "Texto Principal de Ajuda do Nano\n\n O editor nano foi projetado para simular as funcionalidades e a facilidade de uso do editor de texto UW Pico.  O editor possui quatro seções principais.  A linha superior mostra a versão do programa, o arquivo sendo editado no momento e se este foi modificado ou não.  Em seguida está a janela principal de edição exibindo o arquivo que está sendo editado.  A linha de status é a terceira de baixo para cima, mostrando mensagens importantes.  "
+        },
+        {
+            "original": "The bottom two lines show the most commonly used shortcuts in the editor.\n\n Shortcuts are written as follows: Control-key sequences are notated with a '^' and can be entered either by using the Ctrl key or pressing the Esc key twice.  Meta-key sequences are notated with 'M-' and can be entered using either the Alt, Cmd, or Esc key, depending on your keyboard setup.  ",
+            "translated": "Das duas últimas linhas mostram as combinações de teclas mais utilizadas no editor. As sequências com a tecla Ctrl são indicadas pelo símbolo '^' e podem ser introduzidas pulando para ela pressionada ou pulsando Esc duas vezes. Já as sequências com a tecla Meta são marcadas por 'M-' e se inserem utilizando qualquer uma das teclas Alt, Cmd ou Esc, conforme sua configuração de teclado.",
+            "reference": "As duas linhas de baixo mostram os atalhos mais comuns do editor.\n\n Atalhos são escritos da seguinte forma: Sequências com teclas Ctrl são apresentadas com um '^' (circunflexo) e podem ser executadas tanto com a tecla Ctrl ou pressionando a tecla Esc duas vezes. Sequências com teclas Meta são apresentadas com 'M-' e podem ser executadas com as teclas Alt, Cmd ou Esc, dependendo da sua configuração de teclado.  "
+        },
+        {
+            "original": "Also, pressing Esc twice and then typing a three-digit decimal number from 000 to 255 will enter the character with the corresponding value.  The following keystrokes are available in the main editor window.  Alternative keys are shown in parentheses:\n\n",
+            "translated": "Além disso, ao pressionar Esc duas vezes e depois digitar um número trinomial entre 000 e 255 no campo de entrada, o caractere com o código correspondente será inserido. As seguintes combinações de teclas estão disponíveis na janela principal do editor. Combinações alternativas são mostradas entre parênteses:",
+            "reference": "Pressionar Esc duas vezes e, então, digitar um número com três dígitos decimais de 000 até 255 fará inserir o caractere com o valor correspondente.  As seguintes sequências estão disponíveis na janela de edição principal.  Teclas alternativas são mostradas em parênteses:\n\n"
+        },
+        {
+            "original": "enable/disable",
+            "translated": "ativar/desativar",
+            "reference": "habilitado/desabilitado"
+        },
+        {
+            "original": "^W = Ctrl+W    M-W = Alt+W",
+            "translated": "^W = Ctrl+W    M-W = Alt+W",
+            "reference": "^W = Ctrl+W    M-W = Alt+W"
+        },
+        {
+            "original": "Unable to create directory %s: %s\nIt is required for saving/loading search history or cursor positions.\n",
+            "translated": "Не foi possível criar o diretório %s: %s\nO diretório é necessário para armazenar/recuperar a história de pesquisas ou posições do cursor.",
+            "reference": "Não foi possível criar o diretório %s: %s\nÉ necessário para salvar/carregar posições do cursor ou histórico de pesquisa.\n"
+        },
+        {
+            "original": "Path %s is not a directory and needs to be.\nNano will be unable to load or save search history or cursor positions.\n",
+            "translated": "O caminho '%s' não indica um diretório, embora deva. Nano não poderá carregar ou salvar o histórico da pesquisa e a posição do cursor.",
+            "reference": "Caminho %s não é um diretório e precisa ser.\nNano não poderá carregar ou salvar posições do cursor ou histórico de pesquisa.\n"
+        },
+        {
+            "original": "Key is invalid in view mode",
+            "translated": "Não é permitido o uso dessa tecla neste modo de visualização.",
+            "reference": "A tecla é inválida no modo de visualização"
+        },
+        {
+            "original": "This function is disabled in restricted mode",
+            "translated": "Esta função está desativada no modo de operação limitado.",
+            "reference": "Esta função está desabilitada no modo restrito"
+        },
+        {
+            "original": "No file name",
+            "translated": "Não há nome para o arquivo.",
+            "reference": "Nenhum nome de arquivo"
+        },
+        {
+            "original": "Save modified buffer? ",
+            "translated": "Salvar o buffer modificado? ",
+            "reference": "Salvar o buffer modificado? "
+        },
+        {
+            "original": "\nToo many .save files\n",
+            "translated": "Excesso de arquivos .save",
+            "reference": "\nMuitos arquivos .save\n"
+        },
+        {
+            "original": "\nBuffer written to %s\n",
+            "translated": "Буфер записаний em %s",
+            "reference": "\nBuffer escrito em %s\n"
+        },
+        {
+            "original": "Usage: nano [OPTIONS] [[+LINE[,COLUMN]] FILE]...\n\n",
+            "translated": "Utilização: nano [OPÇÕES] [[+LINHA[,COLUNA]] ARQUIVO...]…",
+            "reference": "Uso: nano [OPÇÕES] [[+LINHA[,COLUNA]] ARQUIVO]...\n\n"
+        },
+        {
+            "original": "To place the cursor on a specific line of a file, put the line number with\na '+' before the filename.  The column number can be added after a comma.\n",
+            "translated": "Para posicionar o cursor na linha %<PRIuMAX> do arquivo, digite a sequência '+%s' seguida pelo nome do arquivo. Se você quiser especificar também a coluna, pode inserir seu número após uma vírgula.",
+            "reference": "Para posicionar o cursor em uma linha específica de um arquivo,\ncoloque o número da linha com um \"+\" antes do nome do arquivo.\nO número da coluna pode ser adicionar após uma vírgula.\n"
+        },
+        {
+            "original": "When a filename is '-', nano reads data from standard input.\n\n",
+            "translated": "Quando o nome do arquivo é “-”, então o nano lê dados da entrada padrão.",
+            "reference": "Quando um nome de arquivo é \"-\", nano lê dados da entrada padrão.\n\n"
+        },
+        {
+            "original": "Option",
+            "translated": "Opção",
+            "reference": "Opção"
+        },
+        {
+            "original": "Long option",
+            "translated": "opção longa",
+            "reference": "Opção longa"
+        },
+        {
+            "original": "Meaning",
+            "translated": "Valor",
+            "reference": "Significado"
+        },
+        {
+            "original": "Enable smart home key",
+            "translated": "Habilitar a tecla de home inteligente",
+            "reference": "Habilita tecla Home inteligente"
+        },
+        {
+            "original": "Save backups of existing files",
+            "translated": "Fazer cópias de segurança ao salvar",
+            "reference": "Salva cópias de arquivos existentes"
+        },
+        {
+            "original": "-C <dir>",
+            "translated": "-C <catalog>",
+            "reference": "-E <dir>"
+        },
+        {
+            "original": "--backupdir=<dir>",
+            "translated": "--backupdir=<Verz.>",
+            "reference": "--backupdir=<dir>"
+        },
+        {
+            "original": "Directory for saving unique backup files",
+            "translated": "Catalogo de Salvaguarda de Copias Unicas",
+            "reference": "Diretório para salvar arquivos reservas"
+        },
+        {
+            "original": "Use bold instead of reverse video text",
+            "translated": "Utilizar fonte em negrito.",
+            "reference": "Usa negrito ao invés de texto inverso"
+        },
+        {
+            "original": "Convert typed tabs to spaces",
+            "translated": "Converter tabulações em espaços ao escrever",
+            "reference": "Converte tabulações digitadas em espaços"
+        },
+        {
+            "original": "Read a file into a new buffer by default",
+            "translated": "Por padrão, ler o arquivo no novo buffer",
+            "reference": "Lê um arquivo num novo buffer por padrão"
+        },
+        {
+            "original": "Use (vim-style) lock files",
+            "translated": "Utilize arquivos de bloqueio (como no Vim)",
+            "reference": "Usa arquivos de travas (estilo vim)"
+        },
+        {
+            "original": "Save & reload old search/replace strings",
+            "translated": "Salvar a história de pesquisas e substituições de linhas.",
+            "reference": "Salva & recarrega strings antigas de pesquisa/substituição"
+        },
+        {
+            "original": "Don't look at nanorc files",
+            "translated": "Não utilizar em arquivos nanorc.",
+            "reference": "Não olha em arquivos nanorc"
+        },
+        {
+            "original": "-J <number>",
+            "translated": "-J <numero>",
+            "reference": "-J <número>"
+        },
+        {
+            "original": "--guidestripe=<number>",
+            "translated": "--guidestripe=<число>",
+            "reference": "--guidestripe=<número>"
+        },
+        {
+            "original": "Show a guiding bar at this column",
+            "translated": "Exibir a linha na coluna atual.",
+            "reference": "Mostra uma barra guia nesta coluna"
+        },
+        {
+            "original": "Fix numeric keypad key confusion problem",
+            "translated": "Resolver o problema de travamento da teclado numérico digital",
+            "reference": "Corrige confusão com o teclado numérico"
+        },
+        {
+            "original": "Don't add an automatic newline",
+            "translated": "Não adicionar uma linha em branco no final",
+            "reference": "Não faz adição automática de nova linha"
+        },
+        {
+            "original": "Trim tail spaces when hard-wrapping",
+            "translated": "eliminar espaços em branco nos extremos das linhas ao realizar uma divisão manual dos textos.",
+            "reference": "Apara espaços no fim em quebras rígidas"
+        },
+        {
+            "original": "Don't convert files from DOS/Mac format",
+            "translated": "Não converter do formato DOS/Mac.",
+            "reference": "Não converte arquivos do formato DOS/Mac"
+        },
+        {
+            "original": "Leading whitespace means new paragraph",
+            "translated": "O espaço em branco antecedente indica o início de um novo parágrafo",
+            "reference": "Espaço em branco no início significa novo parágrafo"
+        },
+        {
+            "original": "Save & restore position of the cursor",
+            "translated": "Mostrar a posição do cursor.",
+            "reference": "Salva & restaura a posição do cursor"
+        },
+        {
+            "original": "-Q <regex>",
+            "translated": "-Q <regex>",
+            "reference": "-Q <regex>"
+        },
+        {
+            "original": "--quotestr=<regex>",
+            "translated": "--quotestr=<regex>",
+            "reference": "--quotestr=<regex>"
+        },
+        {
+            "original": "Regular expression to match quoting",
+            "translated": "expressão regular para encontrar aspas",
+            "reference": "Expr. regular para corresponder citação"
+        },
+        {
+            "original": "Restrict access to the filesystem",
+            "translated": "limitar o acesso ao sistema de arquivos",
+            "reference": "Restringe o acesso ao sistema de arquivos"
+        },
+        {
+            "original": "Display overlong lines on multiple rows",
+            "translated": "Transferir longas linhas ao visualizar",
+            "reference": "Exibe linhas longas em várias linhas separadas"
+        },
+        {
+            "original": "-T <number>",
+            "translated": "-T <número>",
+            "reference": "-T <número>"
+        },
+        {
+            "original": "--tabsize=<number>",
+            "translated": "--tabsize=<число>",
+            "reference": "--tabsize=<número>"
+        },
+        {
+            "original": "Make a tab this number of columns wide",
+            "translated": "Definir a largura da tabulação em pontos de caractere (tab)",
+            "reference": "Faz uma tabulação com esse número de colunas"
+        },
+        {
+            "original": "Wipe status bar upon next keystroke",
+            "translated": "Limpar a linha de estado ao pressionar uma tecla",
+            "reference": "Apaga barra de status ao press. de tecla"
+        },
+        {
+            "original": "Print version information and exit",
+            "translated": "Mostrar versão e sair",
+            "reference": "Imprime informação de versão e fecha"
+        },
+        {
+            "original": "Detect word boundaries more accurately",
+            "translated": "Determinar limites de palavras com maior precisão",
+            "reference": "Detecção precisa de limites das palavras"
+        },
+        {
+            "original": "-X <string>",
+            "translated": "-X <строка>",
+            "reference": "-X <texto>"
+        },
+        {
+            "original": "--wordchars=<string>",
+            "translated": "--wordchars=<строка>",
+            "reference": "--wordchars=<texto>"
+        },
+        {
+            "original": "Which other characters are word parts",
+            "translated": "Quais outros símbolos constituem parte do termo?",
+            "reference": "Quais caracteres são partes da palavra"
+        },
+        {
+            "original": "-Y <name>",
+            "translated": "-Y <имя>",
+            "reference": "-Y <nome>"
+        },
+        {
+            "original": "--syntax=<name>",
+            "translated": "--syntax=<nome>",
+            "reference": "--syntax=<nome>"
+        },
+        {
+            "original": "Syntax definition to use for coloring",
+            "translated": "Utilizar a descrição sintática para destacar",
+            "reference": "Definição de sintaxe para uso de cores"
+        },
+        {
+            "original": "Let Bsp and Del erase a marked region",
+            "translated": "Limpar a região selecionada utilizando Bsp e Del.",
+            "reference": "Deixa Bsp e Del apagar região marcada"
+        },
+        {
+            "original": "When soft-wrapping, do it at whitespace",
+            "translated": "Fazer um transporte de linha suave apenas em espaços em branco",
+            "reference": "Na quebra suave, o faz em espaço branco"
+        },
+        {
+            "original": "Automatically hard-wrap overlong lines",
+            "translated": "transfetar de forma rígida linhas excessivamente longas para outro local",
+            "reference": "Quebra rígida automática de linha longa"
+        },
+        {
+            "original": "Constantly show cursor position",
+            "translated": "Posicionamento do cursor sempre exibido",
+            "reference": "Mostra posição do cursor constantemente"
+        },
+        {
+            "original": "Fix Backspace/Delete confusion problem",
+            "translated": "Resolver o problema de Bcksp/Del",
+            "reference": "Corrige confusão entre Backspace/Delete"
+        },
+        {
+            "original": "Keep the line below the title bar empty",
+            "translated": "Não preencha a linha abaixo do cabeçalho da tela.",
+            "reference": "Mantém a linha abaixo do título vazio"
+        },
+        {
+            "original": "-f <file>",
+            "translated": "-f <arquivo>",
+            "reference": "-f <arquivo>"
+        },
+        {
+            "original": "--rcfile=<file>",
+            "translated": "--rcfile=<файл>",
+            "reference": "--rcfile=<arquivo>"
+        },
+        {
+            "original": "Use only this file for configuring nano",
+            "translated": "Utilizar apenas este arquivo para as configurações do nano.",
+            "reference": "Usa só esse arquivo para configurar nano"
+        },
+        {
+            "original": "Show cursor in file browser & help text",
+            "translated": "Mostrar o cursor e texto de ajuda no gerenciador de arquivos",
+            "reference": "Mostra cursor ao navegar arquivo & ajuda"
+        },
+        {
+            "original": "Show this help text and exit",
+            "translated": "Exibir este texto e sair.",
+            "reference": "Mostra esse texto de ajuda e sai"
+        },
+        {
+            "original": "Automatically indent new lines",
+            "translated": "automático de recuo em novas linhas",
+            "reference": "Avanço automático do recuo em nova linha"
+        },
+        {
+            "original": "Scroll per half-screen, not per line",
+            "translated": "Rotação por meio de tela completa, e não linha a linha.",
+            "reference": "Rolagem a cada metade de tela, não linha"
+        },
+        {
+            "original": "Cut from cursor to end of line",
+            "translated": "Cortar desde o cursor até o final da linha",
+            "reference": "Recorta do cursor até o fim da linha"
+        },
+        {
+            "original": "Show line numbers in front of the text",
+            "translated": "Mostrar os números de linha antes do texto.",
+            "reference": "Mostra núm. de linhas na frente do texto"
+        },
+        {
+            "original": "Enable the use of the mouse",
+            "translated": "Permitir o uso da mouse.",
+            "reference": "Habilita o uso do mouse"
+        },
+        {
+            "original": "Do not read the file (only write it)",
+            "translated": "Não ler o arquivo (só escrever nele)",
+            "reference": "Não lê o arquivo (apenas o escreve)"
+        },
+        {
+            "original": "-o <dir>",
+            "translated": "-o <catalog>",
+            "reference": "-o <dir>"
+        },
+        {
+            "original": "--operatingdir=<dir>",
+            "translated": "--operatingdir=<Verz.>",
+            "reference": "--operatingdir=<dir>"
+        },
+        {
+            "original": "Set operating directory",
+            "translated": "Configurar o diretório de trabalho",
+            "reference": "Define o diretório de trabalho"
+        },
+        {
+            "original": "Preserve XON (^Q) and XOFF (^S) keys",
+            "translated": "Reservar as teclas XON (^Q) e XOFF (^S)",
+            "reference": "Preserva as teclas XON (^Q) e XOFF (^S)"
+        },
+        {
+            "original": "Show a position+portion indicator",
+            "translated": "Mostrar indicador de posição+parte",
+            "reference": "Mostra um indicador posição+porção"
+        },
+        {
+            "original": "-r <number>",
+            "translated": "-r <número>",
+            "reference": "-r <número>"
+        },
+        {
+            "original": "--fill=<number>",
+            "translated": "--fill=<число>",
+            "reference": "--fill=<número>"
+        },
+        {
+            "original": "Set width for hard-wrap and justify",
+            "translated": "Definir a largura para o alinhamento rígido e justificação",
+            "reference": "Define largura de quebra rígida e justifica"
+        },
+        {
+            "original": "-s <program>",
+            "translated": "-s <programa>",
+            "reference": "-s <programa>"
+        },
+        {
+            "original": "--speller=<program>",
+            "translated": "--speller=<programa>",
+            "reference": "--speller=<programa>"
+        },
+        {
+            "original": "Use this alternative spell checker",
+            "translated": "Utilizar esta alternativa de verificação ortográfica",
+            "reference": "Usa este verificador ortográfico alternativo"
+        },
+        {
+            "original": "Save changes on exit, don't prompt",
+            "translated": "sem solicitar, ao sair, não salva as alterações feitas.",
+            "reference": "Salva alterações ao sair, sem perguntar"
+        },
+        {
+            "original": "Save a file by default in Unix format",
+            "translated": "Por padrão, salvar o arquivo no formato Unix.",
+            "reference": "Salva arquivo por padrão no formato Unix"
+        },
+        {
+            "original": "View mode (read-only)",
+            "translated": "Modo de visualização (apenas leitura)",
+            "reference": "Modo visualização (somente leitura)"
+        },
+        {
+            "original": "Don't hard-wrap long lines [default]",
+            "translated": "Não permitir a transferência de linhas longas [padrão]",
+            "reference": "Sem quebra rígida de linha longa[padrão]"
+        },
+        {
+            "original": "Don't show the two help lines",
+            "translated": "Não mostrar as duas linhas de ajuda no final",
+            "reference": "Não mostra as duas linhas de ajuda"
+        },
+        {
+            "original": "Make Ctrl+Right stop at word ends",
+            "translated": "Parar ao final das palavras enquanto mantém a tecla Ctrl pressionada e direciona o cursor para a direita.",
+            "reference": "Faz Ctrl+Right parar no fim das palavras"
+        },
+        {
+            "original": "Also try magic to determine syntax",
+            "translated": "Utilizar magia para determinar sintaxe",
+            "reference": "Também tenta mágica para determinar a sintaxe"
+        },
+        {
+            "original": "Show some states on the title bar",
+            "translated": "Mostrar estados na barra do título",
+            "reference": "Mostra alguns estados na barra de título"
+        },
+        {
+            "original": "Show a feedback bar at the bottom",
+            "translated": "Exibir a linha de feedback neste coluna.",
+            "reference": "Mostra uma barra de feedback na parte inferior"
+        },
+        {
+            "original": " GNU nano, version %s\n",
+            "translated": "GNU nano, versão %s\n",
+            "reference": " GNU nano, versão %s\n"
+        },
+        {
+            "original": " (C) %s the Free Software Foundation and various contributors\n",
+            "translated": "A Free Software Foundation (C) The Free Software Foundation and other contributors.",
+            "reference": " (C) %s a Fundação de Software Livre e vários colaboradores\n"
+        },
+        {
+            "original": " Compiled options:",
+            "translated": "Parâmetros de compilação:",
+            "reference": " Opções compiladas:"
+        },
+        {
+            "original": "Could not reconnect stdin to keyboard\n",
+            "translated": "Não foi possível reconectar o stdin para a tecla de entrada. Por favor, tente novamente.",
+            "reference": "Não foi possível reconectar a entrada padrão ao teclado\n"
+        },
+        {
+            "original": "Reading data from keyboard; type ^D or ^D^D to finish.\n",
+            "translated": "Lendo dados da entrada padrão; digite ^D ou ^D^D para finalizar.",
+            "reference": "Lendo dados do teclado; digite ^D ou ^D^D para finalizar.\n"
+        },
+        {
+            "original": "Failed to open stdin: %s",
+            "translated": "Não foi possível abrir o padrão de entrada: %s",
+            "reference": "Falha ao abrir a entrada padrão: %s"
+        },
+        {
+            "original": "Received SIGHUP or SIGTERM\n",
+            "translated": "Recebido SIGHUP ou SIGTERM",
+            "reference": "Recebi SIGHUP ou SIGTERM\n"
+        },
+        {
+            "original": "Sorry! Nano crashed!  Code: %d.  Please report a bug.\n",
+            "translated": "Ói! Nano caiu! Código de erro: %d. Por favor, informe sobre isso aos autores.",
+            "reference": "Desculpe! Nano travou!  Código: %d.  Por favor, relate o erro.\n"
+        },
+        {
+            "original": "Use \"fg\" to return to nano.\n",
+            "translated": "Utilize o comando `fg` para retornar ao editor nano.",
+            "reference": "Utilize \"fg\" para retornar ao nano.\n"
+        },
+        {
+            "original": "enabled",
+            "translated": "ativado",
+            "reference": "habilitado"
+        },
+        {
+            "original": "disabled",
+            "translated": "desligado",
+            "reference": "desabilitado"
+        },
+        {
+            "original": "Unknown sequence",
+            "translated": "sequência desconhecida",
+            "reference": "Sequência desconhecida"
+        },
+        {
+            "original": "Unknown function: %s",
+            "translated": "opção desconhecida: %s",
+            "reference": "Função desconhecida: %s"
+        },
+        {
+            "original": "Missing }",
+            "translated": "Parâmetro ausente",
+            "reference": "Faltando }"
+        },
+        {
+            "original": "Unbound key: F%i",
+            "translated": "Tecla não associada: F%i",
+            "reference": "Tecla não vinculada: F%i"
+        },
+        {
+            "original": "Unbound key",
+            "translated": "A tecla não foi atribuída",
+            "reference": "Tecla não vinculada"
+        },
+        {
+            "original": "Unbindable key: M-^%c",
+            "translated": "Não é possível atribuir a tecla: M-^%c",
+            "reference": "Tecla não vinculável: M-^%c"
+        },
+        {
+            "original": "Unbound key: %s%c",
+            "translated": "Tecla não associada: %s%c",
+            "reference": "Tecla não vinculada: %s%c"
+        },
+        {
+            "original": "Unbindable key: ^[",
+            "translated": "Não é possível atribuir a tecla: ^[",
+            "reference": "Tecla não vinculável: ^["
+        },
+        {
+            "original": "Guide column \"%s\" is invalid",
+            "translated": "Размер направляющего столбца «%s» не admissível",
+            "reference": "A coluna guia \"%s\" é inválido"
+        },
+        {
+            "original": "Requested tab size \"%s\" is invalid",
+            "translated": "Размер табуляції \"%s\" inválido.",
+            "reference": "Tamanho \"%s\" de tabulação é inválido"
+        },
+        {
+            "original": "Requested fill size \"%s\" is invalid",
+            "translated": "Размер заполнения \"%s\" não é permitido.",
+            "reference": "Pedido de tamanho \"%s\" inválido"
+        },
+        {
+            "original": "Type '%s -h' for a list of available options.\n",
+            "translated": "Utilize \"%s -h\" para obter uma lista das opções disponíveis.",
+            "reference": "Digite \"%s -h\" para uma lista de opções disponíveis.\n"
+        },
+        {
+            "original": "Bad quoting regex \"%s\": %s\n",
+            "translated": "Não é permitido o uso do padrão regular \"%s\": %s",
+            "reference": "Expressão regular errada de citação \"%s\": %s\n"
+        },
+        {
+            "original": "Invalid search modifier '%c'",
+            "translated": "Modificador de búsqueda '%c' inválido",
+            "reference": "Modificador de pesquisa \"%c\" inválido"
+        },
+        {
+            "original": "Empty search string",
+            "translated": "cadeia de pesquisa vazia",
+            "reference": "Texto de pesquisa vazio"
+        },
+        {
+            "original": "Invalid line or column number",
+            "translated": "Недопустимая строка или столбец",
+            "reference": "Número de linha ou coluna inválido"
+        },
+        {
+            "original": "Invalid number\n",
+            "translated": "código inválido para o caractere",
+            "reference": "Número inválido\n"
+        },
+        {
+            "original": "Can open just one file\n",
+            "translated": "Este arquivo só pode ser aberto um por vez.",
+            "reference": "É possível abrir apenas um arquivo\n"
+        },
+        {
+            "original": "Welcome to nano.  For basic help, type Ctrl+G.",
+            "translated": "Bom dia e bem-vindo ao nano. Para obter assistência básica, pressione Ctrl+G.",
+            "reference": "Bem-vindo ao nano. Para uma ajuda básica, digite Ctrl+G."
+        },
+        {
+            "original": "Yy",
+            "translated": "Yy",
+            "reference": "SsYy"
+        },
+        {
+            "original": "Nn",
+            "translated": "Nn",
+            "reference": "Nn"
+        },
+        {
+            "original": "Aa",
+            "translated": "Aa",
+            "reference": "Tt"
+        },
+        {
+            "original": "Yes",
+            "translated": "Sim",
+            "reference": "Sim"
+        },
+        {
+            "original": "No",
+            "translated": "Não",
+            "reference": "Não"
+        },
+        {
+            "original": "All",
+            "translated": "Todas as entidades",
+            "reference": "Todos"
+        },
+        {
+            "original": "Mistakes in '%s'",
+            "translated": "Erros em \"%s\"",
+            "reference": "Erros em \"%s\""
+        },
+        {
+            "original": "Problems with history file",
+            "translated": "Problema com a história de arquivos",
+            "reference": "Problemas com o arquivo de histórico"
+        },
+        {
+            "original": "Error in %s on line %zu: ",
+            "translated": "Erro em %s na linha %zu: ",
+            "reference": "Erro no %s na linha %zu: "
+        },
+        {
+            "original": "Argument '%s' has an unterminated \"",
+            "translated": "Argumento \"%s\" possui uma string não finalizada",
+            "reference": "Argumento \"%s\" possui indeterminado \""
+        },
+        {
+            "original": "Regex strings must begin and end with a \" character",
+            "translated": "As strings regulares de expressões devem começar e terminar com o caractere \"",
+            "reference": "Expressão regular deve começar e terminar com um caractere \""
+        },
+        {
+            "original": "Empty regex string",
+            "translated": "expressão regular vazia",
+            "reference": "Texto de expressão regular vazio"
+        },
+        {
+            "original": "Bad regex \"%s\": %s",
+            "translated": "Regex \"%s\" inválido: %s",
+            "reference": "Expressão regular errônea \"%s\": %s"
+        },
+        {
+            "original": "Missing syntax name",
+            "translated": "falta de nome para sintaxe",
+            "reference": "Falta o nome da sintaxe"
+        },
+        {
+            "original": "Unpaired quote in syntax name",
+            "translated": "Falha no fechamento de parêntesis na denominação do sintaxe",
+            "reference": "Aspas não pareadas no nome da sintaxe"
+        },
+        {
+            "original": "The \"none\" syntax is reserved",
+            "translated": "A sintaxe 'none' está reservada.",
+            "reference": "A sintaxe \"none\" é reservada"
+        },
+        {
+            "original": "The \"default\" syntax does not accept extensions",
+            "translated": "A sintaxe \"default\" não permite extensões.",
+            "reference": "A sintaxe \"default\" não aceita extensões"
+        },
+        {
+            "original": "Syntax \"%s\" has no color commands",
+            "translated": "O sintaxe \"%s\" não possui comandos de cores padrão do terminal.",
+            "reference": "Sintaxe \"%s\" não possui comandos de cor"
+        },
+        {
+            "original": "Missing key name",
+            "translated": "Não há nome para a tecla",
+            "reference": "Falta o nome da chave"
+        },
+        {
+            "original": "Key name %s is invalid",
+            "translated": "Nome da tecla %s é inválido",
+            "reference": "O nome de chave \"%s\" é inválido"
+        },
+        {
+            "original": "Must specify a function to bind the key to",
+            "translated": "Indique a função à qual está vinculada essa tecla.",
+            "reference": "É preciso especificar uma função para o vínculo da tecla"
+        },
+        {
+            "original": "Must specify a menu (or \"all\") in which to bind/unbind the key",
+            "translated": "Você deve especificar o nome do menu (ou \"all\") ao qual deseja associar/desassociar um atalho de tecla.",
+            "reference": "É preciso especificar um menu (ou \"all\") para vincular/desvincular a tecla"
+        },
+        {
+            "original": "Unknown menu: %s",
+            "translated": "Nome desconhecido do sintaxe: %s",
+            "reference": "Menu desconhecido: %s"
+        },
+        {
+            "original": "Function '%s' does not exist in menu '%s'",
+            "translated": "A função \"%s\" não existe no menu \"%s\". Para obter mais informações, tente 'menu --help'.",
+            "reference": "Função \"%s\" não existe no menu \"%s\""
+        },
+        {
+            "original": "Keystroke %s may not be rebound",
+            "translated": "A combinação de teclas %s não pode ser reassintrada.",
+            "reference": "A sequência %s não pode ter seu vínculo redefinido"
+        },
+        {
+            "original": "Command \"%s\" not understood",
+            "translated": "Comando não compreendido: \"%s\"",
+            "reference": "Comando \"%s\" não compreendido"
+        },
+        {
+            "original": "Error expanding %s: %s",
+            "translated": "Erro ao expandir %s: %s",
+            "reference": "Erro ao expandir %s: %s"
+        },
+        {
+            "original": "Color '%s' takes no prefix",
+            "translated": "A cor \"%s\" não pode ter prefixo adicionado",
+            "reference": "A cor \"%s\" aceita nenhum prefixo"
+        },
+        {
+            "original": "Color \"%s\" not understood",
+            "translated": "Не foi possível interpretar o símbolo de cor \"%s\"",
+            "reference": "Cor \"%s\" não compreendida"
+        },
+        {
+            "original": "An attribute requires a subsequent comma",
+            "translated": "O atributo requer vírgula após si mesmo.",
+            "reference": "Um atributo requer uma vírgula subsequente"
+        },
+        {
+            "original": "Missing color name",
+            "translated": "Falta de nome de cor",
+            "reference": "Falta o nome da cor"
+        },
+        {
+            "original": "Missing regex string after '%s' command",
+            "translated": "Falha na execução do comando '%s': padrão de expressão regular ausente",
+            "reference": "Faltando texto de expressão regular após o comando \"%s\""
+        },
+        {
+            "original": "\"start=\" requires a corresponding \"end=\"",
+            "translated": "«start=» requer um «end=» correspondente",
+            "reference": "\"start=\" precisa de um \"end=\" correspondente"
+        },
+        {
+            "original": "A '%s' command requires a preceding 'syntax' command",
+            "translated": "Команда «%s» требует, чтобы перед ней была команда «syntax»",
+            "reference": "Um comando \"%s\" requer um comando \"syntax\" anterior"
+        },
+        {
+            "original": "The \"default\" syntax does not accept '%s' regexes",
+            "translated": "A sintaxe \"default\" não suporta expressões regulares \"%s\".",
+            "reference": "A sintaxe \"default\" não aceita expressões regulares \"%s\""
+        },
+        {
+            "original": "Missing argument after '%s'",
+            "translated": "falta argumento após \"%s\"",
+            "reference": "Faltando um argumento após \"%s\""
+        },
+        {
+            "original": "Argument of '%s' lacks closing \"",
+            "translated": "Argumento para \"%s\" não contém a chave de fechamento '\"'.",
+            "reference": "Argumento de \"%s\" falta \" de fechamento"
+        },
+        {
+            "original": "No key is bound to function '%s' in menu '%s'.  Exiting.\n",
+            "translated": "A chave não foi atribuída para a função \"%s\" no menu \"%s\". Sair.",
+            "reference": "Nenhuma tecla está vinculada à função \"%s\" no menu \"%s\". Saindo.\n"
+        },
+        {
+            "original": "If needed, use nano with the -I option to adjust your nanorc settings.\n",
+            "translated": "Use o nano com a opção '-I' se necessário para adaptar os parâmetros do seu nanorc. \n",
+            "reference": "Se necessário, use nano com a opção -I para ajustar suas configurações no nanorc.\n"
+        },
+        {
+            "original": "Could not find syntax \"%s\" to extend",
+            "translated": "Não foi possível associar o nome \"%s\" ao seu extensor de arquivo.",
+            "reference": "Não foi possível localizar a sintaxe \"%s\" para estender"
+        },
+        {
+            "original": "Command \"%s\" not allowed in included file",
+            "translated": "Comando \"%s\" não é permitido no arquivo incluído.",
+            "reference": "Comando \"%s\" não é permitido no arquivo incluído"
+        },
+        {
+            "original": "Missing option",
+            "translated": "Parâmetro ausente",
+            "reference": "Falta opção"
+        },
+        {
+            "original": "Unknown option: %s",
+            "translated": "Opção desconhecida: %s",
+            "reference": "Opção desconhecida: %s"
+        },
+        {
+            "original": "Cannot unset option \"%s\"",
+            "translated": "Não foi possível desativar a opção \"%s\"",
+            "reference": "Não é possível desativar a opção \"%s\""
+        },
+        {
+            "original": "Option \"%s\" requires an argument",
+            "translated": "A opção \"%s\" requer um argumento.",
+            "reference": "Opção \"%s\" requer um argumento"
+        },
+        {
+            "original": "Argument is not a valid multibyte string",
+            "translated": "Argumento não é uma string multibyte válida",
+            "reference": "O argumento não é uma string multibyte válida"
+        },
+        {
+            "original": "Non-blank characters required",
+            "translated": "É necessário um caractere não vazio.",
+            "reference": "Caracteres imprimíveis são necessário"
+        },
+        {
+            "original": "Even number of characters required",
+            "translated": "É necessária uma quantidade par de caracteres.",
+            "reference": "Número par de caracteres é necessário"
+        },
+        {
+            "original": "Two single-column characters required",
+            "translated": "É necessário dois caracteres de uma linha cada.",
+            "reference": "Dois caracteres de coluna única são necessários"
+        },
+        {
+            "original": "Specified rcfile does not exist\n",
+            "translated": "A configuração especificada não existe",
+            "reference": "O arquivo rc especificado não existe\n"
+        },
+        {
+            "original": "I can't find my home directory!  Wah!",
+            "translated": "Não consigo encontrar o diretório de home do usuário! Acho!",
+            "reference": "Não consigo localizar o meu diretório pessoal! Putz!"
+        },
+        {
+            "original": " [Case Sensitive]",
+            "translated": "[Sob a consideração da registragem]",
+            "reference": " [Sensibilidade de caixa]"
+        },
+        {
+            "original": " [Regexp]",
+            "translated": "[reg. Ausdruck]",
+            "reference": " [Expressão regular]"
+        },
+        {
+            "original": " (to replace) in selection",
+            "translated": "alterações a serem feitas no campo de seleção.",
+            "reference": " (para substituir) na seleção"
+        },
+        {
+            "original": " (to replace)",
+            "translated": "(a substituir)",
+            "reference": " (para substituir)"
+        },
+        {
+            "original": "Searching...",
+            "translated": "Procure...",
+            "reference": "Pesquisando..."
+        },
+        {
+            "original": "\"%.*s%s\" not found",
+            "translated": "\"%.*s%s\" não encontrado",
+            "reference": "\"%.*s%s\" não encontrado"
+        },
+        {
+            "original": "Replace this instance?",
+            "translated": "Substituir este elemento?",
+            "reference": "Substituir esse termo?"
+        },
+        {
+            "original": "Replace with",
+            "translated": "Substituir por",
+            "reference": "Substituir por"
+        },
+        {
+            "original": "Enter line number, column number",
+            "translated": "Introduza a linha e coluna números.",
+            "reference": "Insira o número da linha, número da coluna"
+        },
+        {
+            "original": "Not a bracket",
+            "translated": "Não há nenhuma chave para apertar.",
+            "reference": "Não é um parênteses"
+        },
+        {
+            "original": "No matching bracket",
+            "translated": "Не há uma correspondente para a chave.",
+            "reference": "Nenhum parênteses encontrado"
+        },
+        {
+            "original": "Placed anchor",
+            "translated": "A marcação foi instalada.",
+            "reference": "Âncora posicionada"
+        },
+        {
+            "original": "Removed anchor",
+            "translated": "A marcação foi removida.",
+            "reference": "Âncora removida"
+        },
+        {
+            "original": "Jumped to anchor",
+            "translated": "Foi realizado o transporte para a página de destino",
+            "reference": "Pulado para âncora"
+        },
+        {
+            "original": "This is the only anchor",
+            "translated": "É a única estaca",
+            "reference": "Esta é a única âncora"
+        },
+        {
+            "original": "There are no anchors",
+            "translated": "Não há chavetas para fixar.",
+            "reference": "Não há âncora"
+        },
+        {
+            "original": "Mark Set",
+            "translated": "Marcagem estabelecida",
+            "reference": "Marcação feita"
+        },
+        {
+            "original": "Mark Unset",
+            "translated": "Marca removida",
+            "reference": "Marcação desativada"
+        },
+        {
+            "original": "Commenting is not supported for this file type",
+            "translated": "Comentários não são suportados para este tipo de arquivo.",
+            "reference": "Não há suporte a comentar neste tipo de arquivo"
+        },
+        {
+            "original": "Cannot comment past end of file",
+            "translated": "Não é permitido comentar após o final da linha de texto.",
+            "reference": "Não é possível comentar após o fim do arquivo"
+        },
+        {
+            "original": "Nothing to undo",
+            "translated": "Não há como desfazer",
+            "reference": "Nada para desfazer"
+        },
+        {
+            "original": "addition",
+            "translated": "adicionar",
+            "reference": "adição"
+        },
+        {
+            "original": "line break",
+            "translated": "nova linha",
+            "reference": "quebra de linha"
+        },
+        {
+            "original": "deletion",
+            "translated": "Remoção",
+            "reference": "exclusão"
+        },
+        {
+            "original": "line join",
+            "translated": "объединение строк",
+            "reference": "juntar linha"
+        },
+        {
+            "original": "replacement",
+            "translated": "substituição",
+            "reference": "substituição"
+        },
+        {
+            "original": "erasure",
+            "translated": "limpeza do disco rígido",
+            "reference": "apagamento"
+        },
+        {
+            "original": "cut",
+            "translated": "reviramento",
+            "reference": "recorte"
+        },
+        {
+            "original": "paste",
+            "translated": "inserção",
+            "reference": "colagem"
+        },
+        {
+            "original": "insertion",
+            "translated": "inserção",
+            "reference": "inserção"
+        },
+        {
+            "original": "indent",
+            "translated": "остання posição",
+            "reference": "recuo"
+        },
+        {
+            "original": "unindent",
+            "translated": "diminuição do espaço em branco",
+            "reference": "retirada de recuo"
+        },
+        {
+            "original": "comment",
+            "translated": "comentário",
+            "reference": "comentário"
+        },
+        {
+            "original": "uncomment",
+            "translated": "remover comentário",
+            "reference": "retirada de comentário"
+        },
+        {
+            "original": "Undid %s",
+            "translated": "%s foi cancelado.",
+            "reference": "Desfeita a ação %s"
+        },
+        {
+            "original": "Nothing to redo",
+            "translated": "Não há nada para repetir.",
+            "reference": "Nada para refazer"
+        },
+        {
+            "original": "Redid %s",
+            "translated": "%s foi executado novamente.",
+            "reference": "Refeita a ação %s"
+        },
+        {
+            "original": "justification",
+            "translated": "alinhamento por largura",
+            "reference": "justificação"
+        },
+        {
+            "original": "Selection is empty",
+            "translated": "O alocamento está vazio",
+            "reference": "A seleção está vazia"
+        },
+        {
+            "original": "Justified selection",
+            "translated": "alinhado a uma posição específica",
+            "reference": "Seleção justificada"
+        },
+        {
+            "original": "Justified file",
+            "translated": "O arquivo foi alinhado",
+            "reference": "Arquivo justificado"
+        },
+        {
+            "original": "Justified paragraph",
+            "translated": "Parágrafo alinhado",
+            "reference": "Parágrafo justificado"
+        },
+        {
+            "original": "Buffer is empty",
+            "translated": "BUFFER EMPTY",
+            "reference": "O buffer está vazio"
+        },
+        {
+            "original": "Invoking formatter...",
+            "translated": "Iniciando a execução da ferramenta de verificação do sintaxe...",
+            "reference": "Chamando formatador..."
+        },
+        {
+            "original": "Error invoking '%s'",
+            "translated": "Erro ao chamar o comando '%s'",
+            "reference": "Erro ao chamar o \"%s\""
+        },
+        {
+            "original": "Program '%s' complained",
+            "translated": "Programa \"%s\" se queixou de ter sido invadida por algo",
+            "reference": "O programa \"%s\" reclamou"
+        },
+        {
+            "original": "Nothing changed",
+            "translated": "Não há alterações.",
+            "reference": "Nada alterado"
+        },
+        {
+            "original": "spelling correction",
+            "translated": "verificação ortográfica",
+            "reference": "correção de escrita"
+        },
+        {
+            "original": "formatting",
+            "translated": "formatação",
+            "reference": "formatação"
+        },
+        {
+            "original": "Finished checking spelling",
+            "translated": "A verificação da ortografia concluída",
+            "reference": "Verificação ortográfica finalizada"
+        },
+        {
+            "original": "Buffer has been processed",
+            "translated": "O buffer foi totalmente processado.",
+            "reference": "O buffer foi processado"
+        },
+        {
+            "original": "Unfindable word: %s",
+            "translated": "Palavra não encontrada: %s",
+            "reference": "Palavra não localizável: %s"
+        },
+        {
+            "original": "Edit a replacement",
+            "translated": "Editar a substituição",
+            "reference": "Editar uma substituição"
+        },
+        {
+            "original": "Next word...",
+            "translated": "A seguir está o próximo termo...",
+            "reference": "Próxima palavra..."
+        },
+        {
+            "original": "Invoking spell checker...",
+            "translated": "Iniciando a verificação ortográfica...",
+            "reference": "Chamando verificador ortográfico..."
+        },
+        {
+            "original": "Could not get size of pipe buffer",
+            "translated": "não foi possível determinar o tamanho do buffer de conexão da tubulação (pipe)",
+            "reference": "Não foi possível descobrir o tamanho do buffer de pipe"
+        },
+        {
+            "original": "Error invoking \"uniq\"",
+            "translated": "Erro ao executar o comando 'uniq'",
+            "reference": "Erro ao chamar o \"uniq\""
+        },
+        {
+            "original": "Error invoking \"sort\"",
+            "translated": "Erro ao executar o comando 'sort'",
+            "reference": "Erro ao chamar o \"sort\""
+        },
+        {
+            "original": "Error invoking \"spell\"",
+            "translated": "Erro ao executar o comando 'spell'",
+            "reference": "Erro ao chamar o \"spell\""
+        },
+        {
+            "original": "No linter is defined for this type of file",
+            "translated": "Nenhuma ferramenta de análise sintática para este tipo de arquivo foi instalada",
+            "reference": "Nenhum lintador está definido para este tipo de arquivo"
+        },
+        {
+            "original": "Save modified buffer before linting?",
+            "translated": "Salvar o buffer modificado antes de verificar a sintaxe do código?",
+            "reference": "Salvar o buffer modificado antes de lintar?"
+        },
+        {
+            "original": "Invoking linter...",
+            "translated": "Iniciando a execução da ferramenta de verificação do sintaxe...",
+            "reference": "Chamando lintador..."
+        },
+        {
+            "original": "Got 0 parsable lines from command: %s",
+            "translated": "Получено 0 строк распознанных от команды: %s",
+            "reference": "Obteve 0 linhas analisáveis a partir do comando: %s"
+        },
+        {
+            "original": "This message is for unopened file %s, open it in a new buffer?",
+            "translated": "Esta mensagem é para o arquivo %s, que não está aberto; deseja abri-lo em um novo buffer?",
+            "reference": "Essa mensagem é para o arquivo não-aberto %s, abri-lo em um novo buffer?"
+        },
+        {
+            "original": "No messages for this file",
+            "translated": "Não há mensagens para este arquivo.",
+            "reference": "Nenhuma mensagem para esse arquivo"
+        },
+        {
+            "original": "At first message",
+            "translated": "primeiro aviso",
+            "reference": "Na primeira mensagem"
+        },
+        {
+            "original": "At last message",
+            "translated": "Último aviso",
+            "reference": "Na última mensagem"
+        },
+        {
+            "original": "No formatter is defined for this type of file",
+            "translated": "Não há um formatador para este tipo de arquivo definido",
+            "reference": "Nenhum formatador definido para este tipo de arquivo"
+        },
+        {
+            "original": "%s%zd %s,  %zu %s,  %zu %s",
+            "translated": "%s%zd %s,  %zu %s,  %zu %s",
+            "reference": "%s%zd %s,  %zu %s,  %zu %s"
+        },
+        {
+            "original": "In Selection:  ",
+            "translated": "Em seleção:",
+            "reference": "Na seleção:  "
+        },
+        {
+            "original": "Verbatim Input",
+            "translated": "Entrada direta 'como é'",
+            "reference": "Entrada literal"
+        },
+        {
+            "original": "Invalid code",
+            "translated": "Código inválido",
+            "reference": "Código inválido"
+        },
+        {
+            "original": "No word fragment",
+            "translated": "Não há fragmentos de palavras.",
+            "reference": "Nenhum fragmento de palavra"
+        },
+        {
+            "original": "No further matches",
+            "translated": "Não há mais correspondências.",
+            "reference": "Nenhuma outra ocorrência"
+        },
+        {
+            "original": "No matches",
+            "translated": "Não há correspondências",
+            "reference": "Nenhuma ocorrência"
+        },
+        {
+            "original": "Nano is out of memory!\n",
+            "translated": "Nano não tem mais memória disponível!",
+            "reference": "Nano está sem memória!\n"
+        },
+        {
+            "original": "Recording a macro...",
+            "translated": "A gravação do macro está concluída.",
+            "reference": "Gravar uma macro..."
+        },
+        {
+            "original": "Stopped recording",
+            "translated": "A gravação foi interrompida.",
+            "reference": "Parou de gravar"
+        },
+        {
+            "original": "Cannot run macro while recording",
+            "translated": "Não é possível executar o macro durante a gravação.",
+            "reference": "Não é possível executar macro enquanto grava"
+        },
+        {
+            "original": "Macro is empty",
+            "translated": "MACRO VAZIA",
+            "reference": "A macro está vazia"
+        },
+        {
+            "original": "Too many errors from stdin\n",
+            "translated": "Excesso de erros do stdin",
+            "reference": "Número excessivo de erros da entrada padrão\n"
+        },
+        {
+            "original": "Unicode Input: %s",
+            "translated": "Entrada de código Unicode: %s",
+            "reference": "Entrada Unicode: %s"
+        },
+        {
+            "original": "Linting --",
+            "translated": "Verificação de sintaxe do código --",
+            "reference": "Lintagem --"
+        },
+        {
+            "original": "DIR:",
+            "translated": "Ponto:",
+            "reference": "DIR:"
+        },
+        {
+            "original": "View",
+            "translated": "Visualização",
+            "reference": "Olhar"
+        },
+        {
+            "original": "Modified",
+            "translated": "Modificado",
+            "reference": "Modificado"
+        },
+        {
+            "original": "Restricted",
+            "translated": "restrito",
+            "reference": "Restrito"
+        },
+        {
+            "original": "line %*zd/%zd (%2d%%), col %2zu/%2zu (%3d%%), char %*zu/%zu (%2d%%)",
+            "translated": "linha %zd/%zd (%d%%), coluna %zu/%zu (%d%%), caractere %zu/%zu (%d%%)",
+            "reference": "linha %*zd/%zd (%2d%%), col %2zu/%2zu (%3d%%), car %*zu/%zu (%2d%%)"
+        },
+        {
+            "original": "The nano text editor",
+            "translated": "Editor de texto nano",
+            "reference": "O editor de texto nano"
+        },
+        {
+            "original": "version",
+            "translated": "versão",
+            "reference": "versão"
+        },
+        {
+            "original": "Brought to you by:",
+            "translated": "Desenvolvido por:",
+            "reference": "Trazido para você por:"
+        },
+        {
+            "original": "Special thanks to:",
+            "translated": "особая благодарность:",
+            "reference": "Agradecimentos especiais para:"
+        },
+        {
+            "original": "The Free Software Foundation",
+            "translated": "A Fundação GNU/Liberdade (FGL)",
+            "reference": "A Fundação Software Livre"
+        },
+        {
+            "original": "the many translators and the TP",
+            "translated": "um conjunto de tradutores e comandos para tradução",
+            "reference": "os vários tradutores e o TP"
+        },
+        {
+            "original": "For ncurses:",
+            "translated": "Para ncurses:",
+            "reference": "Para o ncurses:"
+        },
+        {
+            "original": "and anyone else we forgot...",
+            "translated": "Дмитрию Рязанцеву, em nome daqueles que estão por aí e não fizemos menção deles...",
+            "reference": "e qualquer outro que nós esquecemos..."
+        },
+        {
+            "original": "Thank you for using nano!",
+            "translated": "Obrigado pela utilização do nano!",
+            "reference": "Obrigado por usar o nano!"
+        },
+        {
+            "original": "%s: option '%s%s' is ambiguous\n",
+            "translated": "%s: a opção «%s%s» não é clara para um único significado",
+            "reference": "%s: a opção \"%s%s\" é ambígua\n"
+        },
+        {
+            "original": "%s: option '%s%s' is ambiguous; possibilities:",
+            "translated": "%s: Opção «%s%s» é ambígua; Possibilidades:",
+            "reference": "%s: a opção \"%s%s\" é ambígua; possibilidades:"
+        },
+        {
+            "original": "%s: unrecognized option '%s%s'\n",
+            "translated": "%s: Opção não reconhecida \"%s%s\"",
+            "reference": "%s: a opção \"%s%s\" é desconhecida\n"
+        },
+        {
+            "original": "%s: option '%s%s' doesn't allow an argument\n",
+            "translated": "%s: a opção «%s%s» não permite argumento\n",
+            "reference": "%s: a opção \"%s%s\" não aceita argumentos\n"
+        },
+        {
+            "original": "%s: option '%s%s' requires an argument\n",
+            "translated": "%s: a opção \"%s%s\" precisa de um argumento\n",
+            "reference": "%s: a opção \"%s%s\" exige um argumento\n"
+        },
+        {
+            "original": "%s: invalid option -- '%c'\n",
+            "translated": "%s: opção inválida — «%c»",
+            "reference": "%s: opção inválida -- \"%c\"\n"
+        },
+        {
+            "original": "%s: option requires an argument -- '%c'\n",
+            "translated": "%s: a opção precisa um argumento — «%c»",
+            "reference": "%s: a opção exige um argumento -- \"%c\"\n"
+        },
+        {
+            "original": "Success",
+            "translated": "Érase um erro, tudo correu bem.",
+            "reference": "Sucesso"
+        },
+        {
+            "original": "No match",
+            "translated": "Não há correspondências.",
+            "reference": "Nenhuma ocorrência do padrão"
+        },
+        {
+            "original": "Invalid regular expression",
+            "translated": "expressão regular inválida",
+            "reference": "Expressão regular inválida"
+        },
+        {
+            "original": "Invalid collation character",
+            "translated": "caracter de associação inválido",
+            "reference": "Caractere de combinação inválido"
+        },
+        {
+            "original": "Invalid character class name",
+            "translated": "Nome de classe inválido para caracteres",
+            "reference": "Nome inválido de categoria de caracteres"
+        },
+        {
+            "original": "Trailing backslash",
+            "translated": "barra inclinada para trás final",
+            "reference": "Barra invertida no final"
+        },
+        {
+            "original": "Invalid back reference",
+            "translated": "referência inválida para volta",
+            "reference": "Retrorreferência inválida"
+        },
+        {
+            "original": "Unmatched [, [^, [:, [., or [=",
+            "translated": "Não há par complementar para [, [^, [: ou [=",
+            "reference": "[, [^, [:, [. ou [= sem correspondente"
+        },
+        {
+            "original": "Unmatched ( or \\(",
+            "translated": "Непарный ( ou \\\\(",
+            "reference": "( ou \\( sem correspondente"
+        },
+        {
+            "original": "Unmatched \\{",
+            "translated": "Não há par para \\\\{\\}",
+            "reference": "\\{ sem correspondente"
+        },
+        {
+            "original": "Invalid content of \\{\\}",
+            "translated": "Contenido inválido de \\{\\\\}",
+            "reference": "Conteúdo inválido de \\{\\}"
+        },
+        {
+            "original": "Invalid range end",
+            "translated": "Fim do intervalo inválido",
+            "reference": "Fim de intervalo inválido"
+        },
+        {
+            "original": "Memory exhausted",
+            "translated": "Memória esgotada.",
+            "reference": "Memória esgotada"
+        },
+        {
+            "original": "Invalid preceding regular expression",
+            "translated": "expressão regular precedente inválida",
+            "reference": "A expressão regular precedente é inválida"
+        },
+        {
+            "original": "Premature end of regular expression",
+            "translated": "fim antecipado da expressão regular",
+            "reference": "Fim prematuro da expressão regular"
+        },
+        {
+            "original": "Regular expression too big",
+            "translated": "expressão regular excessivamente grande",
+            "reference": "Expressão regular grande demais"
+        },
+        {
+            "original": "Unmatched ) or \\)",
+            "translated": "Não há par para ) ou \\)",
+            "reference": ") ou \\) sem correspondente"
+        },
+        {
+            "original": "No previous regular expression",
+            "translated": "Não há nenhum expressão regular anterior",
+            "reference": "Nenhuma expressão regular anterior"
+        }
+    ]
+}

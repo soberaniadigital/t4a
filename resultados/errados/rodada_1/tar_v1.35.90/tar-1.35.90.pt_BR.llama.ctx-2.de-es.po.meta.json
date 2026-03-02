@@ -1,0 +1,945 @@
+{
+    "job_info": {
+        "input_file": "/home/vinicius/TCC/data/translations_sample/tar_v1.35.90/tar-1.35.90.es.po",
+        "output_file": "/home/vinicius/TCC/resultados/context_levels_sample/tar_v1.35.90/tar-1.35.90.pt_BR.llama.ctx-2.de-es.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-10T22:57:15.103051",
+        "duration_seconds": 72.09,
+        "reference_file": "/home/vinicius/TCC/data/translations_sample/tar_v1.35.90/tar-1.35.90.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": 614449638660071024
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "ES",
+            "DE"
+        ],
+        "context_sentences_sample": {
+            "Garbage in ARGP_HELP_FMT: %s": {
+                "ES": "Incongruencia en ARGP_HELP_FMT: %s",
+                "DE": "Müll in ARGP_HELP_FMT: %s"
+            },
+            "Mandatory or optional arguments to long options are also mandatory or optional for any corresponding short options.": {
+                "ES": "Los argumentos obligatorios u opcionales para las opciones largas son también\nobligatorios u opcionales para las opciones cortas correspondientes.",
+                "DE": "Erforderliche oder optionale Argumente für lange Optionen sind ebenso erforderlich bzw. optional für die entsprechenden Kurzoptionen."
+            },
+            "Usage:": {
+                "ES": "Modo de empleo:",
+                "DE": "Aufruf:"
+            },
+            " [OPTION...]": {
+                "ES": " [OPCIÓN...]",
+                "DE": " [OPTION...]"
+            },
+            "Report bugs to %s.\n": {
+                "ES": "Comunicar errores a %s.\n",
+                "DE": "Melden Sie Fehler (auf Englisch, mit LC_ALL=C) an %s.\n"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 176,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct 10 2025, 08:54:03) [GCC 11.4.0]"
+    },
+    "translations": [
+        {
+            "original": "Garbage in ARGP_HELP_FMT: %s",
+            "translated": "Incongruência em ARGP_HELP_FMT: %s",
+            "reference": "Lixo em ARGP_HELP_FMT: %s"
+        },
+        {
+            "original": "Mandatory or optional arguments to long options are also mandatory or optional for any corresponding short options.",
+            "translated": "Os argumentos obrigatórios e opcionais para as opções longas também são obrigatórios ou opcionais para as opções curtas correspondentes.",
+            "reference": "Argumentos obrigatórios ou opcionais para opções longas também o são para quaisquer opções curtas correspondentes."
+        },
+        {
+            "original": "Usage:",
+            "translated": "Modo de uso:",
+            "reference": "Uso:"
+        },
+        {
+            "original": " [OPTION...]",
+            "translated": "[OPCIÓN...]",
+            "reference": " [OPÇÃO...]"
+        },
+        {
+            "original": "Report bugs to %s.\n",
+            "translated": "Comunicar erros a %s.",
+            "reference": "Relate erros para %s.\n"
+        },
+        {
+            "original": "print program version",
+            "translated": "exibe a versão do programa",
+            "reference": "mostra a versão do programa"
+        },
+        {
+            "original": "(PROGRAM ERROR) Option should have been recognized!?",
+            "translated": "(ERRO DO PROGRAMA) Por que não deveria ter reconhecido a opção?!",
+            "reference": "(ERRO NO PROGRAMA) A opção deveria ter sido reconhecida!?"
+        },
+        {
+            "original": "%s: option '%s%s' is ambiguous; possibilities:",
+            "translated": "%s: a opção '%s%s' é ambígua; possibilidades:",
+            "reference": "%s: a opção \"%s%s\" é ambígua; possibilidades:"
+        },
+        {
+            "original": "%s: unrecognized option '%s%s'\n",
+            "translated": "%s: Opção não reconhecida '%s%s'",
+            "reference": "%s: opção desconhecida \"%s%s\"\n"
+        },
+        {
+            "original": "%s: option '%s%s' requires an argument\n",
+            "translated": "%s: a opção '%s%s' requer um argumento\n",
+            "reference": "%s: a opção \"%s%s\" exige um argumento\n"
+        },
+        {
+            "original": "%s: option requires an argument -- '%c'\n",
+            "translated": "%s: a opção requer um argumento -- '%c'",
+            "reference": "%s: a opção exige um argumento -- \"%c\"\n"
+        },
+        {
+            "original": "unable to record current working directory",
+            "translated": "não é possível obter o diretório de trabalho atual",
+            "reference": "não foi possível registrar o diretório de trabalho atual"
+        },
+        {
+            "original": "^[yY]",
+            "translated": "ES",
+            "reference": "^[+1SsyY]"
+        },
+        {
+            "original": "License GPLv3+: GNU GPL version 3 or later <%s>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n",
+            "translated": "License GPLv3+: GPL de GNU versão 3 ou posterior <%s>. Este é software livre: ele tem permissão para modificá-lo e redistribuí-lo. Não há nenhuma garantia, até onde o direito autoral permite.",
+            "reference": "Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>\nEste é um software livre: você é livre para alterá-lo e redistribuí-lo.\nNÃO HÁ QUALQUER GARANTIA, na máxima extensão permitida em lei.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, and %s.\n",
+            "translated": "Escrito por %s, %s, %s, %s, e %s. \n",
+            "reference": "Escrito por %s, %s, %s\n%s, e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, %s,\n%s, and %s.\n",
+            "translated": "Escrito por %s, %s, %s, %s, %s, %s, %s, %s, e %s. \n",
+            "reference": "Escrito por %s, %s, %s\n%s, %s, %s, %s,\n%s, e %s.\n"
+        },
+        {
+            "original": "Written by %s, %s, %s,\n%s, %s, %s, %s,\n%s, %s, and others.\n",
+            "translated": "Escrito por %s, %s, %s, \n%s, %s, %s, %s, \n%s, %s y otros. \n",
+            "reference": "Escrito por %s, %s, %s\n%s, %s, %s, %s,\n%s, %s, e outros.\n"
+        },
+        {
+            "original": "%s: Warning: Cannot %s",
+            "translated": "%s: Atenção: Não é possível executar %s.",
+            "reference": "%s: Atenção: Função %s falhou"
+        },
+        {
+            "original": "%s: Cannot hard link to %s",
+            "translated": "%s: Não é possível criar um enlace duro para %s",
+            "reference": "%s: Não foi possível criar um link físico para %s"
+        },
+        {
+            "original": "%s: Cannot create symlink to %s",
+            "translated": "%s: Não é possível criar o link simbólico para %s",
+            "reference": "%s: Não foi possível criar um link simbólico para %s"
+        },
+        {
+            "original": "stdin",
+            "translated": "entrada padrão (stdin)",
+            "reference": "entrada padrão (stdin)"
+        },
+        {
+            "original": "Invalid seek offset",
+            "translated": "Deslocamento inválido",
+            "reference": "Deslocamento de salto inválido"
+        },
+        {
+            "original": "NUMBER",
+            "translated": "NÚMERO",
+            "reference": "NUMERO"
+        },
+        {
+            "original": "set debug level",
+            "translated": "estabeleça o nível de depuração",
+            "reference": "define nível de depuração"
+        },
+        {
+            "original": "cannot open %s",
+            "translated": "não é possível abrir %s",
+            "reference": "não foi possível abrir %s"
+        },
+        {
+            "original": "This does not look like a tar archive",
+            "translated": "Este não parece um arquivo tar.",
+            "reference": "Este não parece ser um arquivo-tar"
+        },
+        {
+            "original": "(pipe)",
+            "translated": "(tubulação)",
+            "reference": "(pipe)"
+        },
+        {
+            "original": "Refusing to read archive contents from terminal (missing -f option?)",
+            "translated": "Declinando ler o conteúdo de um arquivo a partir do terminal (falta opção -f?)?",
+            "reference": "Recusando a ler conteúdo do arquivo-tar a partir do terminal (faltando a opção -f ?)"
+        },
+        {
+            "original": "Archive is compressed. Use %s option",
+            "translated": "O arquivo está comprimido. Utilize a opção %s.",
+            "reference": "O arquivo-tar está compactado. Use a opção %s"
+        },
+        {
+            "original": "Cannot backspace archive file; it may be unreadable without -i",
+            "translated": "Não é possível ir para trás no arquivo; pode ser ilegível sem -i.",
+            "reference": "Não foi possível recuar no arquivo-tar; pode estar ilegível sem -i"
+        },
+        {
+            "original": "%s: contains invalid volume number",
+            "translated": "%s: contém um número de volume inválido",
+            "reference": "%s: contém um número de volume inválido"
+        },
+        {
+            "original": "WARNING: Archive is incomplete",
+            "translated": "ATENÇÃO: O arquivo está incompleto",
+            "reference": "AVISO: O arquivo-tar está incompleto"
+        },
+        {
+            "original": " ?             Print this list\n",
+            "translated": "?             Mostra esta lista",
+            "reference": " ?                Mostra esta lista\n"
+        },
+        {
+            "original": "No new volume; exiting.\n",
+            "translated": "Não há volume novo; finalizando.",
+            "reference": "Nenhum volume novo; encerrando.\n"
+        },
+        {
+            "original": "File name not specified. Try again.\n",
+            "translated": "Não foi especificado o nome do arquivo. Tente novamente.",
+            "reference": "Nome de arquivo não foi especificado. Tente novamente.\n"
+        },
+        {
+            "original": "%s is possibly continued on this volume: header contains truncated name",
+            "translated": "%s possivelmente continua neste volume: a cabeça contém um nome truncado.",
+            "reference": "%s possivelmente é continuado neste volume: o cabeçalho contém o nome truncado"
+        },
+        {
+            "original": "%s is the wrong size (%jd != %jd + %jd)",
+            "translated": "%s tem um tamanho errôneo (%jd != %jd + %jd)",
+            "reference": "%s é o tamanho errado (%jd != %jd + %jd)"
+        },
+        {
+            "original": "%s: file name too long to be stored in a GNU multivolume header, truncated",
+            "translated": "%s: o nome do arquivo é muito longo para ser armazenado em uma cabeça de volume GNU, ele é truncado",
+            "reference": "%s: nome de arquivo muito longo para ser armazenado num cabeçalho GNU multivolume, truncado"
+        },
+        {
+            "original": "write did not end on a block boundary",
+            "translated": "a escritura chegou ao limite de bloco definido.",
+            "reference": "escrita não acabou numa fronteira de bloco"
+        },
+        {
+            "original": "Not linked to %s",
+            "translated": "Não se enlaça a %s",
+            "reference": "Sem link para %s"
+        },
+        {
+            "original": "Device number differs",
+            "translated": "O número do dispositivo é diferente",
+            "reference": "O número de dispositivo é diferente"
+        },
+        {
+            "original": "Verify ",
+            "translated": "Verificar ",
+            "reference": "Verificar "
+        },
+        {
+            "original": "Archive contains transformed file names.",
+            "translated": "O arquivo contém nomes de ficheiros transformados.",
+            "reference": "O arquivo-tar contém nomes de arquivos transformados."
+        },
+        {
+            "original": "Verification may fail to locate original files.",
+            "translated": "Pode haver um problema na verificação que impede a localização dos arquivos originais.",
+            "reference": "A verificação pode falhar em localizar os arquivos originais."
+        },
+        {
+            "original": "value %s%ju out of %s range %jd..%ju",
+            "translated": "valor %s%ju fora do intervalo de %s %jd..%su.",
+            "reference": "valor %s%ju fora da faixa %s: %jd..%ju"
+        },
+        {
+            "original": "Generating negative octal headers",
+            "translated": "Gerando cabeçalhos octais negativos",
+            "reference": "Gerando cabeçalhos octais negativos"
+        },
+        {
+            "original": "%s: file name is too long (max %d); not dumped",
+            "translated": "%s: o nome do arquivo é muito longo (máx %d); não se pode copiar",
+            "reference": "%s: nome de arquivo é grande demais (máximo de %d); não será arquivado"
+        },
+        {
+            "original": "%s: file is on a different filesystem; not dumped",
+            "translated": "%s: o arquivo está em um sistema de fichiers diferente; não se pode copiar",
+            "reference": "%s: arquivo está em outro sistema de arquivos; não será arquivado"
+        },
+        {
+            "original": "%s: Unknown file type; file ignored",
+            "translated": "%s: Tipo de fichero desconhecido; não se terá em conta.",
+            "reference": "%s: Tipo de arquivo desconhecido; arquivo ignorado"
+        },
+        {
+            "original": "%s: file changed as we read it",
+            "translated": "%s: o arquivo foi alterado enquanto estava sendo lido.",
+            "reference": "%s: arquivo alterado enquanto estava sendo lido"
+        },
+        {
+            "original": "%s: time stamp %s is %s s in the future",
+            "translated": "%s: a marca de tempo %s está %s segundos no futuro.",
+            "reference": "%s: o carimbo de data/hora %s está %s s no futuro"
+        },
+        {
+            "original": "%s: skipping existing file",
+            "translated": "%s: salta arquivo existente",
+            "reference": "%s: ignorando arquivo existente"
+        },
+        {
+            "original": "Extracting contiguous files as regular files",
+            "translated": "Extraindo arquivos contínuos como arquivos regulares",
+            "reference": "Extraindo arquivos contíguos como sendo arquivos comuns"
+        },
+        {
+            "original": "Unexpected long name header",
+            "translated": "Cabeçalho de nomes largos inesperados",
+            "reference": "Nome longo de cabeçalho inesperado"
+        },
+        {
+            "original": "Current %s is newer or same age",
+            "translated": "O %s atual é mais recente ou da mesma data.",
+            "reference": "%s atual é mais novo ou tem a mesma idade"
+        },
+        {
+            "original": "%s: Directory has been renamed from %s",
+            "translated": "%s: O diretório foi renomeado desde %s",
+            "reference": "%s: O diretório foi renomeado de %s"
+        },
+        {
+            "original": "Invalid time stamp",
+            "translated": "Marca de tempo inválida",
+            "reference": "Carimbo de data/hora inválido"
+        },
+        {
+            "original": "Invalid modification time (nanoseconds)",
+            "translated": "Data de modificação inválida (nanosegundos)",
+            "reference": "Tempo de modificação inválido (nanossegundos)"
+        },
+        {
+            "original": "Invalid inode number",
+            "translated": "Número de nodo-i inválido",
+            "reference": "Número de inode inválido"
+        },
+        {
+            "original": "Missing record terminator",
+            "translated": "Falta a terminação do registro",
+            "reference": "Faltando registro de terminação"
+        },
+        {
+            "original": "Malformed dumpdir: expected '%c' but found end of data",
+            "translated": "Dumpdir errôneo: esperado '%c', mas encontrou o final dos dados",
+            "reference": "Diretório de despejo malformado: \"%c\" esperado, mas \"fim de dado\" recebido"
+        },
+        {
+            "original": "Malformed dumpdir: 'X' never used",
+            "translated": "Dumpdir erróneo: nunca utilizou 'X' como diretório de backup",
+            "reference": "Diretório de despejo malformado: 'X' nunca usado"
+        },
+        {
+            "original": "Cannot create temporary directory using template %s",
+            "translated": "Não é possível criar um diretório temporário usando a plantela %s",
+            "reference": "Não foi possível criar diretório temporário usando o modelo %s"
+        },
+        {
+            "original": "%s: directory is on a different device: not purging",
+            "translated": "%s: o diretório está em um dispositivo diferente: não se pode apagar.",
+            "reference": "%s: O diretório está em outro dispositivo; não será purgado"
+        },
+        {
+            "original": "Archive octal value %.*s is out of %s range",
+            "translated": "O valor octal %.*s do arquivo está fora do intervalo [%d, %<PRIuMAX>)",
+            "reference": "O valor octal do arquivo-tar %.*s está fora de faixa %s"
+        },
+        {
+            "original": " link to ",
+            "translated": "enlace a ES e DE para %s e %d, respectivamente.",
+            "reference": " link para "
+        },
+        {
+            "original": "--Long Name--\n",
+            "translated": "--Nome Largo--",
+            "reference": "--Nome Longo--\n"
+        },
+        {
+            "original": "Creating directory:",
+            "translated": "Criando o diretório:",
+            "reference": "Criando de diretório:"
+        },
+        {
+            "original": "Renaming %s back to %s\n",
+            "translated": "Se vuelva a renomear %s como %s",
+            "reference": "Renomeando %s de volta para %s\n"
+        },
+        {
+            "original": "get names to extract or create from FILE",
+            "translated": "obtém os nomes que se vão a extrair ou criar de arquivo",
+            "reference": "obtém nomes para extrair ou criar a partir de ARQUIVO"
+        },
+        {
+            "original": "disable the effect of the previous --null option",
+            "translated": "desativa o efeito da opção --null anterior",
+            "reference": "desabilita o efeito da opção --null anterior"
+        },
+        {
+            "original": "unquote input file or member names (default)",
+            "translated": "retire as aspas das nomes de arquivos de entrada ou dos membros (padrão)",
+            "reference": "remove citação de nomes de membros ou arquivos de entrada (padrão)"
+        },
+        {
+            "original": "do not unquote input file or member names",
+            "translated": "Não se esqueça de remover as aspas das nomes dos arquivos de entrada ou membros.",
+            "reference": "não remove citação de nomes de membros ou arquivos de entrada"
+        },
+        {
+            "original": "-T reads file names verbatim (no escape or option handling)",
+            "translated": "-T lee nombres de fichero literalmente (sin manejo de escape ni de opções)",
+            "reference": "-T lê nomes de arquivos literalmente (sem escape ou tratamento de opção)"
+        },
+        {
+            "original": "PATTERN",
+            "translated": "PATRÓN",
+            "reference": "PADRÃO"
+        },
+        {
+            "original": "exclude files, given as a PATTERN",
+            "translated": "exclua arquivos, dados que seguem um padrão\n",
+            "reference": " exclui arquivos, dados como um PADRÃO"
+        },
+        {
+            "original": "exclude patterns listed in FILE",
+            "translated": "exclua os padrões listados no arquivo",
+            "reference": "exclui padrões listados em ARQUIVO"
+        },
+        {
+            "original": "exclude contents of directories containing CACHEDIR.TAG, except for the tag file itself",
+            "translated": "exclua o conteúdo de todos os diretórios que contêm CACHEDIR.TAG, exceto por ele próprio.",
+            "reference": "exclui conteúdos de diretórios contendo CACHEDIR.TAG, exceto pela própria etiqueta de arquivo"
+        },
+        {
+            "original": "exclude everything under directories containing CACHEDIR.TAG",
+            "translated": "exclua todos os diretórios que contêm o tag CACHEDIR.TAG",
+            "reference": "exclui tudo sob diretórios contendo CACHEDIR.TAG"
+        },
+        {
+            "original": "exclude contents of directories containing FILE, except for FILE itself",
+            "translated": "exclua o conteúdo dos diretórios que contenham arquivo, exceto o próprio arquivo.",
+            "reference": "exclui conteúdo dos diretórios contendo ARQUIVO, exceto o próprio ARQUIVO"
+        },
+        {
+            "original": "avoid descending automatically in directories",
+            "translated": "evita descender automáticamente em diretórios",
+            "reference": "não desce pela árvore de diretórios"
+        },
+        {
+            "original": "patterns match file name start",
+            "translated": "Os padrões se alinham com o começo do nome do arquivo.",
+            "reference": "padrões combinam com início do nome do arquivo"
+        },
+        {
+            "original": "use wildcards (default for exclusion)",
+            "translated": "utiliza comodines (padrão para exclusão)",
+            "reference": "usam coringas (padrão para exclusão)"
+        },
+        {
+            "original": "wildcards do not match '/'",
+            "translated": "Os comodines não se encaixam em '/'",
+            "reference": "coringas não combinam com \"/\""
+        },
+        {
+            "original": "The following options were used after non-option arguments.  These options are positional and affect only arguments that follow them.  Please, rearrange them properly.",
+            "translated": "As seguintes opções foram utilizadas após argumentos não opcionais. Essas opções são posicionais e afetam apenas aos argumentos que vêm depois delas. Deve-se recolocá-las adequadamente.",
+            "reference": "As seguintes opções foram usadas após argumentos que não são opções. Essas opções são posicionais e afetam apenas os argumentos que os seguem. Por favor, reorganize-os adequadamente."
+        },
+        {
+            "original": "-C %s has no effect",
+            "translated": "-C %s carece de efeito",
+            "reference": "-C %s possui nenhum efeito"
+        },
+        {
+            "original": "--%s has no effect",
+            "translated": "--%s carece de efeito",
+            "reference": "--%s possui nenhum efeito"
+        },
+        {
+            "original": "%s: file name read contains nul character",
+            "translated": "%s: o nome do arquivo lido contém um caractere nulo",
+            "reference": "%s: nome de arquivo lido contém caractere nulo"
+        },
+        {
+            "original": "Pattern matching characters used in file names",
+            "translated": "Utilizaram caracteres de expressões regulares nos nomes dos arquivos.",
+            "reference": "Padrão correspondente a caracteres usados em nomes de arquivos"
+        },
+        {
+            "original": "Use --wildcards to enable pattern matching, or --no-wildcards to suppress this warning",
+            "translated": "Utilize o --wildcards para habilitar a cobertura de padrões, ou utilize o --no-wildcards para suprimir este aviso.",
+            "reference": "Use --wildcards para habilitar casamento de padrão, ou --no-wildcards para suprimir este aviso"
+        },
+        {
+            "original": "%s: Not found in archive",
+            "translated": "%s: Não encontra-se no arquivo.",
+            "reference": "%s: Não foi encontrado no arquivo-tar"
+        },
+        {
+            "original": "%s: Required occurrence not found in archive",
+            "translated": "%s: O elemento solicitado não se encontra no arquivo",
+            "reference": "%s: Ocorrência pedida não foi encontrada no arquivo-tar"
+        },
+        {
+            "original": "Archive label mismatch",
+            "translated": "Discordância na etiqueta do arquivo",
+            "reference": "Arquivo-tar não rotulado para casar"
+        },
+        {
+            "original": "GNU 'tar' saves many files together into a single tape or disk archive, and can restore individual files from the archive.\n\nExamples:\n  tar -cf archive.tar foo bar  # Create archive.tar from files foo and bar.\n  tar -tvf archive.tar         # List all files in archive.tar verbosely.\n  tar -xf archive.tar          # Extract all files from archive.tar.\n",
+            "translated": "GNU `tar' armazena vários arquivos em um único arquivo no disco ou cinta, e pode restaurar arquivos individuais a partir do arquivo. \nExemplos:\ntar -cf nome_do_arquivo.tar ficheiro1 ficheiro2 # Cria o nome_do_arquivo.tar com os fichiers 1 e 2.\ntar -tvf nome_do_arquivo.tar      # Lista todos os fichiers do nome_do_arquivo.tar em detalhe.\ntar -xf nome_do_arquivo.tar       # Extrai todos os ficheiros do nome_do0_arquivo.tar.",
+            "reference": "GNU \"tar\" salva vários arquivos juntos em uma única fita ou arquivo-tar no disco, e pode restaurar arquivos individuais a partir do arquivo-tar.\n\nExemplos:\n  tar -cf arquivo.tar foo bar  # Cria arquivo.tar através de foo e bar.\n  tar -tvf arquivo.tar         # Lista com detalhes arquivos de arquivo.tar.\n  tar -xf arquivo.tar          # Extrai todos os arquivos de arquivo.tar.\n"
+        },
+        {
+            "original": "Main operation mode:",
+            "translated": "Modo principal de operação:",
+            "reference": "Modo de operação principal:"
+        },
+        {
+            "original": "extract files from an archive",
+            "translated": "extraia arquivos de um arquivo",
+            "reference": "extrai arquivos de um arquivo-tar"
+        },
+        {
+            "original": "only append files newer than copy in archive",
+            "translated": "solamente añada ficheros más recientes que la copia del arquivo",
+            "reference": "anexa apenas arquivos mais novos do que a cópia no arquivo-tar"
+        },
+        {
+            "original": "Operation modifiers:",
+            "translated": "Modificadores de operação:",
+            "reference": "Modificadores de operação:"
+        },
+        {
+            "original": "technique to detect holes",
+            "translated": "técnica para detectar buracos",
+            "reference": "técnica para detectar lacunas"
+        },
+        {
+            "original": "do not check device numbers when creating incremental archives",
+            "translated": "não há verificação dos números de dispositivo quando se criam arquivos incrementais.",
+            "reference": "não verifica números de dispositivos ao criar arquivos-tar incrementais"
+        },
+        {
+            "original": "check device numbers when creating incremental archives (default)",
+            "translated": "verifica os números de dispositivo quando se criam arquivos incrementais (pela omissão)",
+            "reference": "verifica números de dispositivos ao criar arquivos-tar incrementais (padrão)"
+        },
+        {
+            "original": "overwrite existing files when extracting",
+            "translated": "sobreescreva os arquivos que existam ao extrair.",
+            "reference": "sobrescreve arquivos existentes durante extração"
+        },
+        {
+            "original": "overwrite metadata of existing directories when extracting (default)",
+            "translated": "sobreescrever os metadados dos diretórios existentes ao extrair (padrão)",
+            "reference": "sobrescreve metadados de diretórios existentes ao extrair (padrão)"
+        },
+        {
+            "original": "create a subdirectory to avoid having loose files extracted",
+            "translated": "cria um subdiretório para não ter arquivos soltos ao fazer a extração",
+            "reference": "cria um subdiretório para evitar ter arquivos extraídos soltos"
+        },
+        {
+            "original": "Handling of file attributes:",
+            "translated": "Gerenciamento dos atributos do arquivo:",
+            "reference": "Tratamento de atributos de arquivo:"
+        },
+        {
+            "original": "DATE-OR-FILE",
+            "translated": "FECHAR O FICHERO",
+            "reference": "DATA-OU-ARQUIVO"
+        },
+        {
+            "original": "CHANGES",
+            "translated": "CAMBIOS",
+            "reference": "ALTERAÇÕES"
+        },
+        {
+            "original": "force (symbolic) mode CHANGES for added files",
+            "translated": "fuerza CAMBIOS (simbólicos) de modo para os ficheros que se añadem",
+            "reference": "  força (simbolicamente) modo ALTERAÇÕES para arquivos adicionados"
+        },
+        {
+            "original": "try extracting files with the same ownership as exists in the archive (default for superuser)",
+            "translated": "tenta extrair os arquivos com o mesmo proprietário que existe no arquivo (padrão para o superusuário)",
+            "reference": "tenta extrair arquivos usando o mesmo dono definido dentro do arquivo-tar (padrão para superusuário)"
+        },
+        {
+            "original": "extract files as yourself (default for ordinary users)",
+            "translated": "extraia os arquivos como você mesmo (padrão para usuários normais)",
+            "reference": "extrai arquivos como você mesmo (padrão para usuários comuns)"
+        },
+        {
+            "original": "always use numbers for user/group names",
+            "translated": "utiliza sempre números para os nomes de usuários/grupos",
+            "reference": "sempre usa números para nomes de usuário/grupo"
+        },
+        {
+            "original": "apply the user's umask when extracting permissions from the archive (default for ordinary users)",
+            "translated": "aplica o umask do usuário ao extrair permissões de arquivo (padrão para usuários normais)",
+            "reference": "aplica o umask do usuário ao extrair permissões do arquivo-tar (padrão para usuários comuns)"
+        },
+        {
+            "original": "delay setting modification times and permissions of extracted directories until the end of extraction",
+            "translated": "demora o estabelecimento das datas de modificação e dos permissões dos diretórios que se extraem até o final da extracção.",
+            "reference": "atrasa definição de permissões e tempos de modificação de diretórios extraídos até o fim da extração"
+        },
+        {
+            "original": "directory sorting order: none (default), name or inode",
+            "translated": "ordem de ordenação do diretório: nenhum (padrão), nome ou nó i",
+            "reference": "ordem de organização de diretório: \"none\" (padrão), \"name\" ou \"inode\""
+        },
+        {
+            "original": "directory sorting order: none (default) or name",
+            "translated": "ordem de ordenação do diretório: nenhum (padrão) ou nome",
+            "reference": "ordem de organização de diretório: \"none\" (padrão) ou \"name\""
+        },
+        {
+            "original": "Handling of extended file attributes:",
+            "translated": "Gerenciamento dos atributos estendidos do arquivo:",
+            "reference": "Tratamento de atributos estendidos de arquivo:"
+        },
+        {
+            "original": "specify the exclude pattern for xattr keys",
+            "translated": "especifique o padrão de exclusão para as chaves xattr",
+            "reference": "especifica o padrão de exclusão para chaves de xattr"
+        },
+        {
+            "original": "Enable the SELinux context support",
+            "translated": "Ative o suporte de contextos SELinux",
+            "reference": "habilita suporte ao contexto de SELinux"
+        },
+        {
+            "original": "specify drive and density",
+            "translated": "especifique a unidade e a densidade do dispositivo de armazenamento selecionado.",
+            "reference": "especifica unidade e densidade"
+        },
+        {
+            "original": "archive file is local even if it has a colon",
+            "translated": "o arquivo é local mesmo que tenha dois pontos em seu nome.",
+            "reference": "arquivo-tar é local mesmo se tiver dois pontos"
+        },
+        {
+            "original": "use given rmt COMMAND instead of rmt",
+            "translated": "utiliza a ORDEN rmt dada em vez de rmt",
+            "reference": "usa COMANDO rmt dado ao invés de rmt"
+        },
+        {
+            "original": "use remote COMMAND instead of rsh",
+            "translated": "utiliza a ORDEN remota em vez de rsh",
+            "reference": "usa COMANDO remoto ao invés de rsh"
+        },
+        {
+            "original": "create/list/extract multi-volume archive",
+            "translated": "cria/lista/extrai um arquivo multivolume",
+            "reference": "cria/lista/extrai arquivo-tar multivolume"
+        },
+        {
+            "original": "use/update the volume number in FILE",
+            "translated": "usa/atualiza o número de volume no arquivo",
+            "reference": "usa/atualiza o número do volume no ARQUIVO"
+        },
+        {
+            "original": "Device blocking:",
+            "translated": "Bloques em dispositivos:",
+            "reference": "Blocagem de dispositivo:"
+        },
+        {
+            "original": "NUMBER of bytes per record, multiple of 512",
+            "translated": "NÚMERO de bytes por registro, múltiplo de 512",
+            "reference": "NUMERO de bytes por gravação, múltiplo de 512"
+        },
+        {
+            "original": "ignore zeroed blocks in archive (means EOF)",
+            "translated": "não considera bloco convertidos em zeros dentro de um arquivo (significando fim do arquivo)",
+            "reference": "ignora blocos zerados no arquivo-tar (significa fim do arquivo)"
+        },
+        {
+            "original": "reblock as we read (for 4.2BSD pipes)",
+            "translated": "reescreva os blocos conforme lê (para tubulações de 4.2BSD)",
+            "reference": "refaz blocos na medida em que os lê (para redirecionamentos de 4.2BSD)"
+        },
+        {
+            "original": "create archive with volume name TEXT; at list/extract time, use TEXT as a globbing pattern for volume name",
+            "translated": "cria um arquivo com nome de volume TEXTO; ao listar/extrair, utilize TEXTO como padrão expandível para o nome do volume",
+            "reference": "cria arquivo-tar com nome de volume TEXTO; ao listar/extrair, usa TEXTO como um padrão de casamento para nome de volume"
+        },
+        {
+            "original": "Compression options:",
+            "translated": "Opciones de compressão:",
+            "reference": "Opções de compressão:"
+        },
+        {
+            "original": "MEMBER-NAME",
+            "translated": "NOMBRE-DE-MIEMBRO",
+            "reference": "NOME-MEMBRO"
+        },
+        {
+            "original": "strip NUMBER leading components from file names on extraction",
+            "translated": "elimina NÚMERO componentes iniciales de los nombres de ficheros ao extrair",
+            "reference": "remove NUMERO no início de componentes de nomes de arquivos na extração"
+        },
+        {
+            "original": "display progress messages every NUMBERth record (default 10)",
+            "translated": "mostra mensagens de progresso a cada NÚMERO-ésimo registro (por omissão 10)",
+            "reference": "exibe mensagens de progresso a cada NUMERO-ésima gravação (padrão 10)"
+        },
+        {
+            "original": "ACTION",
+            "translated": "ACCIÓN",
+            "reference": "AÇÃO"
+        },
+        {
+            "original": "send verbose output to FILE",
+            "translated": "envie a saída detalhada para o arquivo",
+            "reference": "envia saída verbosa para ARQUIVO"
+        },
+        {
+            "original": "show valid ranges for snapshot-file fields",
+            "translated": "exibe os intervalos válidos para os campos de arquivo da instantânea",
+            "reference": "mostra intervalos válidos para campos de arquivo instantâneo"
+        },
+        {
+            "original": "show file or archive names after transformation",
+            "translated": "exibe os nomes dos arquivos ou diretórios após a transformação",
+            "reference": "mostra nomes de arquivo ou arquivo-tar após transformação"
+        },
+        {
+            "original": "set name quoting style; see below for valid STYLE values",
+            "translated": "estabeleça o estilo de cita dos nomes; veja abaixo os valores ESTILO válidos.",
+            "reference": "define o estilo de citação de nome; veja abaixo por valores válidos para ESTILO"
+        },
+        {
+            "original": "additionally quote characters from STRING",
+            "translated": "também entrecomilla os caracteres de CADENA",
+            "reference": "adicionalmente, cita caracteres de STRING"
+        },
+        {
+            "original": "Substituting %s for unknown date format %s",
+            "translated": "Sustituindo %s por el formato de fecha desconocido %s",
+            "reference": "Substituindo %s pelo formato de data desconhecido %s"
+        },
+        {
+            "original": "Valid arguments for the --quoting-style option are:",
+            "translated": "Os argumentos válidos para a opção --quoting-style são:",
+            "reference": "Argumentos válidos para a opção --quoting-style são:"
+        },
+        {
+            "original": "Options '-[0-7][lmh]' not supported by *this* tar",
+            "translated": "*Esta* versão do *tar* não aceita as opções '-[0-7][lmh]'.",
+            "reference": "Sem suporte às opções \"-[0-7][lmh]\" por *este* tar"
+        },
+        {
+            "original": "Invalid tape length",
+            "translated": "Longitude of the tape invalid",
+            "reference": "Tamanho da fita inválido"
+        },
+        {
+            "original": "More than one threshold date",
+            "translated": "Se ha especificado más de una fecha tope",
+            "reference": "Mais do que uma data limite"
+        },
+        {
+            "original": "--atime-preserve='system' is not supported on this platform",
+            "translated": "--atime-preserve='system' não é suportado nesta plataforma.",
+            "reference": "Sem suporte a --atime-preserve=\"system\" nesta plataforma"
+        },
+        {
+            "original": "invalid --checkpoint value",
+            "translated": "valor inválido para o opção --checkpoint",
+            "reference": "valor de --checkpoint inválido"
+        },
+        {
+            "original": "error parsing %s",
+            "translated": "erro ao analisar %s",
+            "reference": "erro ao analisar \"%s\""
+        },
+        {
+            "original": "non-option arguments in %s",
+            "translated": "argumentos que no são opções em %s",
+            "reference": "argumentos de não-opção em %s"
+        },
+        {
+            "original": "%s: Volume label length exceeds %d bytes",
+            "translated": "%s: A longitud da etiqueta do volume excede %d bytes",
+            "reference": "%s: O comprimento do rótulo do volume excede %d bytes"
+        },
+        {
+            "original": "Cannot use multi-volume compressed archives",
+            "translated": "Não é possível utilizar arquivos multivolumen comprimidos",
+            "reference": "Não foi possível usar arquivos-tar multivolume compactados"
+        },
+        {
+            "original": "--acls can be used only on POSIX archives",
+            "translated": "--acls solamente se pode usar em arquivos POSIX.",
+            "reference": "--acls pode ser usada apenas em arquivos-tar POSIX"
+        },
+        {
+            "original": "--xattrs can be used only on POSIX archives",
+            "translated": "--xattrs só pode ser usado em arquivos POSIX.",
+            "reference": "--xattrs pode ser usada apenas em arquivos-tar POSIX"
+        },
+        {
+            "original": "Cannot deduce top-level directory name; please set it explicitly with --one-top-level=DIR",
+            "translated": "Não é possível deduzir o nome do diretório superior; indique explicitamente com --one-top-level=DIR",
+            "reference": "Não foi possível deduzir nome de arquivo topo de nível; por favor defina-o explicitamente com --one-top-level=DIR"
+        },
+        {
+            "original": "failed to assert availability of the standard file descriptors",
+            "translated": "não pode ser garantido que os descriptores de arquivos padrão estejam disponíveis.",
+            "reference": "falha ao asseverar a disponibilidade dos descritores de arquivo padrão"
+        },
+        {
+            "original": "Pattern %s cannot be used",
+            "translated": "Não é possível usar o padrão %s.",
+            "reference": "O padrão %s não pode ser usado"
+        },
+        {
+            "original": "Malformed extended header: missing equal sign",
+            "translated": "Cabeçalha estendida incorreta: falta de sinal igual",
+            "reference": "Cabeçalho estendido malformado: falta sinal de igual"
+        },
+        {
+            "original": "Extended header %s=%s is out of range %jd..%ju",
+            "translated": "La cabecera extendida %s=%s está fora do intervalo %jd..%ju.",
+            "reference": "Cabeçalho estendido %s=%s está fora da faixa %jd..%ju"
+        },
+        {
+            "original": "Malformed extended header: invalid %s: odd number of values",
+            "translated": "Cabeçalho estendido incorreto: %s inválido: número par de valores",
+            "reference": "Cabeçalho estendido malformado: %s inválido: número ímpar de valores"
+        },
+        {
+            "original": "write",
+            "translated": "escritura",
+            "reference": "escreva"
+        },
+        {
+            "original": "File creation options:",
+            "translated": "Opções de criação de arquivos:",
+            "reference": "Opções de criação do arquivo:"
+        },
+        {
+            "original": "SIZE",
+            "translated": "TAMAIGNTE",
+            "reference": "TAM"
+        },
+        {
+            "original": "Create file of the given SIZE",
+            "translated": "Crie um arquivo do tamanho dado.",
+            "reference": "Cria arquivo com tamanho TAM"
+        },
+        {
+            "original": "Size of a block for sparse file",
+            "translated": "Tamanho de um bloco para arquivo disperso",
+            "reference": "Tamanho de um bloco para arquivo esparso"
+        },
+        {
+            "original": "Generate sparse file. Rest of the command line gives the file map.",
+            "translated": "Gerar um arquivo disperso. O restante da linha de comandos fornece o mapa do arquivo.",
+            "reference": "Gera arquivo esparso. O resto da linha de comando dá o mapa de arquivos."
+        },
+        {
+            "original": "Seek to the given offset before writing data",
+            "translated": "Busca no deslocamento indicado antes de escrever os dados.",
+            "reference": "Procura pela posição dada antes de escrever os dados"
+        },
+        {
+            "original": "Suppress non-fatal diagnostic messages",
+            "translated": "Suprime mensagens de diagnóstico não fatales",
+            "reference": "Suprime mensagens diagnóstico não-fatais"
+        },
+        {
+            "original": "File statistics options:",
+            "translated": "Opções de estatísticas de arquivos:",
+            "reference": "Opções de estatísticas do arquivo:"
+        },
+        {
+            "original": "Invalid size: %s",
+            "translated": "Tamanho inválido: %s",
+            "reference": "Tamanho inválido: %s"
+        },
+        {
+            "original": "cannot open `%s'",
+            "translated": "não é possível abrir `%s'",
+            "reference": "não foi possível abrir \"%s\""
+        },
+        {
+            "original": "cannot seek",
+            "translated": "não é possível executar `seek'",
+            "reference": "não foi possível saltar"
+        },
+        {
+            "original": "command failed: %s",
+            "translated": "la orden falló: %s",
+            "reference": "o comando falhou: %s"
+        },
+        {
+            "original": "cannot remove directory `%s'",
+            "translated": "não é possível apagar o diretório `%s'",
+            "reference": "não foi possível remover diretório \"%s\""
+        },
+        {
+            "original": "cannot unlink `%s'",
+            "translated": "não é possível desanexar `%s'",
+            "reference": "não foi possível desfazer link simbólico \"%s\""
+        },
+        {
+            "original": "Command failed with status %d\n",
+            "translated": "A ordem falhou com o estado %d.",
+            "reference": "Comando falhou com o sinal %d\n"
+        },
+        {
+            "original": "Command terminated on signal %d\n",
+            "translated": "A ordem foi concluída com a sinalização %d",
+            "reference": "Comando terminou no sinal %d\n"
+        },
+        {
+            "original": "Command stopped on signal %d\n",
+            "translated": "A ordem foi interrompida com a sinalização %d",
+            "reference": "Comando parado ao receber o sinal %d\n"
+        }
+    ]
+}

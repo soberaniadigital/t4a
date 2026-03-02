@@ -1,0 +1,1095 @@
+{
+    "job_info": {
+        "input_file": "/home/vinicius/TCC/data/translations_download/man-db_v2.13.1-pre1/man-db-2.13.1-pre1.fr.po",
+        "output_file": "/home/vinicius/TCC/resultados/context_levels_download/man-db_v2.13.1-pre1/man-db-2.13.1-pre1.pt_BR.llama.ctx-2.es-zh_CN.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-15T19:04:11.099469",
+        "duration_seconds": 75.12,
+        "reference_file": "/home/vinicius/TCC/data/translations_download/man-db_v2.13.1-pre1/man-db-2.13.1-pre1.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": 3662407503372797700
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "ZH_CN",
+            "ES"
+        ],
+        "context_sentences_sample": {
+            "warning: %s: ignoring bogus filename": {
+                "ZH_CN": "警告：%s：忽略错误的文件名",
+                "ES": "aviso: %s: se ignora el nombre espurio de fichero"
+            },
+            "can't determine current directory": {
+                "ZH_CN": "无法确定当前目录",
+                "ES": "no se puede determinar el directorio actual"
+            },
+            "can't set effective uid": {
+                "ZH_CN": "无法设置有效 uid",
+                "ES": "no se puede asignar el uid efectivo"
+            },
+            "the setuid man user \"%s\" does not exist": {
+                "ZH_CN": "不存在用来将 man 程序 setuid 的用户 %s",
+                "ES": "el usuario man setuid «%s» no existe"
+            },
+            "fatal: regex `%s': %s": {
+                "ZH_CN": "致命错误：regex `%s'：%s",
+                "ES": "error fatal: regex `%s': %s"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 206,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct 10 2025, 08:54:03) [GCC 11.4.0]"
+    },
+    "translations": [
+        {
+            "original": "warning: %s: ignoring bogus filename",
+            "translated": "atenção: %s : nome de arquivo inválido, ignorado",
+            "reference": "aviso: %s: ignorando nome de arquivo inválido"
+        },
+        {
+            "original": "can't determine current directory",
+            "translated": "não foi possível determinar qual é o diretório atual",
+            "reference": "não foi possível determinar o diretório atual"
+        },
+        {
+            "original": "can't set effective uid",
+            "translated": "impossível posicionar o proprietário (UID) efeitoivo",
+            "reference": "não foi possível definir o uid efetivo"
+        },
+        {
+            "original": "the setuid man user \"%s\" does not exist",
+            "translated": "o utilizador com privilégio setuid \"%s\" não existe",
+            "reference": "o usuário man setuid \"%s\" não existe"
+        },
+        {
+            "original": "fatal: regex `%s': %s",
+            "translated": "erro fatal : expressão racional \"%s\" : %s",
+            "reference": "fatal: regex \"%s\": %s"
+        },
+        {
+            "original": "multi key %s does not exist",
+            "translated": "a chave múltiple %s não existe",
+            "reference": "a multichave %s não existe"
+        },
+        {
+            "original": "can't lock index cache %s",
+            "translated": "não foi possível verificar o estado (stat) do arquivo %s",
+            "reference": "não foi possível travar o cache de índice %s"
+        },
+        {
+            "original": "index cache %s corrupt",
+            "translated": "Cache de índices %s danificada",
+            "reference": "o cache de índice %s está corrompido"
+        },
+        {
+            "original": "cannot replace key %s",
+            "translated": "impossível de substituir a chave %s",
+            "reference": "não foi possível substituir a chave %s"
+        },
+        {
+            "original": "only %d field in content",
+            "translated": "falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": ""
+        },
+        {
+            "original": "bad fetch on multi key %s",
+            "translated": "acesso inválido na chave múltipla %s",
+            "reference": "busca ruim na multichave %s"
+        },
+        {
+            "original": "Database %s corrupted; rebuild with mandb --create",
+            "translated": "A base de dados %s está corrompida; reconstrua-lá com mandb --create.",
+            "reference": "Banco de dados %s corrompido; reconstrua-o com mandb --create"
+        },
+        {
+            "original": "warning: %s has no version identifier\n",
+            "translated": "atenção: %s não possui identificador de versão",
+            "reference": "aviso: %s não possui identificador de versão\n"
+        },
+        {
+            "original": "warning: %s is version %s, expecting %s\n",
+            "translated": "atenção: a versão %s do pacote %s ao invés da versão esperada %s.",
+            "reference": "aviso: %s é versão %s, esperava-se %s\n"
+        },
+        {
+            "original": "fatal: unable to insert version identifier into %s",
+            "translated": "erro fatal : impossível inserir o identificador de versão no campo %s",
+            "reference": "fatal: não foi possível de inserir o identificador de versão em %s"
+        },
+        {
+            "original": "[MAN DATABASE]",
+            "translated": "[BASE DE DONNÉES DE MAN]",
+            "reference": "[BANDO-DE-DADOS MAN]"
+        },
+        {
+            "original": "The man database defaults to %s%s.",
+            "translated": "A base de dados padrão é %s%s.",
+            "reference": "O banco de dados man tem como padrão %s%s."
+        },
+        {
+            "original": "emit debugging messages",
+            "translated": "exibição de mensagens de depuração",
+            "reference": "emite mensagens de depuração"
+        },
+        {
+            "original": "can't open %s for reading",
+            "translated": "não é possível abrir %s para leitura",
+            "reference": "não foi possível abrir %s para leitura"
+        },
+        {
+            "original": "[SECTION...]",
+            "translated": "[SECTION...]",
+            "reference": "[SEÇÃO...]"
+        },
+        {
+            "original": "PATH",
+            "translated": "CHEMIN",
+            "reference": "CAMINHO"
+        },
+        {
+            "original": "set search path for manual pages to PATH",
+            "translated": "configuração do caminho de pesquisa para as páginas dos manuales como PATH",
+            "reference": "define o caminho de pesquisa por páginas de manual com CAMINHO"
+        },
+        {
+            "original": "FILE",
+            "translated": "Arquivo",
+            "reference": "ARQUIVO"
+        },
+        {
+            "original": "use this user configuration file",
+            "translated": "utilize este arquivo de configuração do usuário",
+            "reference": "usa esse arquivo de configuração de usuário"
+        },
+        {
+            "original": "man command failed with exit status %d",
+            "translated": "a commande man falhou com %d como código de retorno",
+            "reference": "o comando man falhou com estado de saída %d"
+        },
+        {
+            "original": "NULL content for key: %s",
+            "translated": "Contenuto vazio para chave: %s",
+            "reference": "conteúdo NULL para a chave: %s"
+        },
+        {
+            "original": "\nUpdating cat files for section %s of man hierarchy %s\n",
+            "translated": "Atualizando os arquivos préformatados para a seção %s da parte de formatação do manual %s.",
+            "reference": "\nAtualizando arquivos cat para seção %s da hierarquia man %s\n"
+        },
+        {
+            "original": "cannot write within %s",
+            "translated": "não é possível escrever no %s",
+            "reference": "não foi possível escrever dentro de %s"
+        },
+        {
+            "original": "cannot read database %s",
+            "translated": "não foi possível obter estado (stat) do arquivo %s",
+            "reference": "não foi possível ler o banco de dados %s"
+        },
+        {
+            "original": "unable to update %s",
+            "translated": "não é possível atualizar %s",
+            "reference": "não foi possível de atualizar %s"
+        },
+        {
+            "original": "warning: %s/man%s/%s.%s*: competing extensions",
+            "translated": "atenção: %s/man%s/%s.%s*: extensões em conflito",
+            "reference": "aviso: %s/man%s/%s.%s*: extensões conflitantes"
+        },
+        {
+            "original": "can't update index cache %s",
+            "translated": "impossível de atualizar o cache do índice %s",
+            "reference": "não foi possível atualizar cache de índice %s"
+        },
+        {
+            "original": "warning: %s: bad symlink or ROFF `.so' request",
+            "translated": "atenção: %s : símbolo de ligação simbólico ou diretiva ROFF «.so» incorreto",
+            "reference": "aviso: %s: link simbólico ruim ou requisição \".so\" ROFF"
+        },
+        {
+            "original": "warning: %s: ignoring empty file",
+            "translated": "atenção: %s : arquivo vazio ignorado",
+            "reference": "aviso: %s: ignorando arquivo vazio"
+        },
+        {
+            "original": "warning: %s: whatis parse for %s(%s) failed",
+            "translated": "atenção: %s : a pesquisa de whatis em %s(%s) falhou",
+            "reference": "aviso: %s: análise por whatis para %s(%s) falhou"
+        },
+        {
+            "original": "can't search directory %s",
+            "translated": "não foi possível buscar no diretório %s",
+            "reference": "não foi possível pesquisar no diretório %s"
+        },
+        {
+            "original": "can't chown %s",
+            "translated": "não é possível alterar o proprietário do arquivo %s",
+            "reference": "não foi possível fazer chown em %s"
+        },
+        {
+            "original": "warning: cannot create catdir %s",
+            "translated": "atenção: não é possível criar o diretório de páginas préformatas %s",
+            "reference": "aviso: não foi possível criar o catdir %s"
+        },
+        {
+            "original": "can't chmod %s",
+            "translated": "não é possível alterar os direitos de %s",
+            "reference": "não foi possível fazer chmod em %s"
+        },
+        {
+            "original": "can't change to directory %s",
+            "translated": "não é possível ir para o diretório %s",
+            "reference": "não foi possível mudar para o diretório %s"
+        },
+        {
+            "original": "can't create index cache %s",
+            "translated": "não foi possível criar o cache de índex %s",
+            "reference": "não foi possível criar cache de índice %s"
+        },
+        {
+            "original": "Updating index cache for path `%s/%s'. Wait...",
+            "translated": "Atualizando cache de índices para o caminho %s/%s. Por favor, espere...",
+            "reference": "Atualizando o cache de índice para o caminho \"%s/%s\". Aguarde..."
+        },
+        {
+            "original": "done.\n",
+            "translated": "terminado.",
+            "reference": "feito.\n"
+        },
+        {
+            "original": "Purging old database entries in %s...\n",
+            "translated": "Efetuação da remoção de entradas desnecessárias do campo %s em curso...",
+            "reference": "Descartando entradas antigas de banco de dados em %s...\n"
+        },
+        {
+            "original": "warning: failed to store entry for %s(%s)",
+            "translated": "atenção: impossível armazenar a entrada para %s(%s)",
+            "reference": "aviso: falha ao armazenar entradas para %s(%s)"
+        },
+        {
+            "original": "PATH SECTION NAME",
+            "translated": "Nome da Seção de Caminho",
+            "reference": "CAMINHO SEÇÃO NOME"
+        },
+        {
+            "original": "EXTENSION",
+            "translated": "EXTENSION",
+            "reference": "EXTENSÃO"
+        },
+        {
+            "original": "limit search to extension type EXTENSION",
+            "translated": "limite a pesquisa apenas nas extensões EXTENSION",
+            "reference": "limita a pesquisa ao tipo de extensão EXTENSÃO"
+        },
+        {
+            "original": "look for pages case-insensitively (default)",
+            "translated": "busca as páginas sem distinguir maiúsculas e minúsculas (padrão)",
+            "reference": "procura por páginas sem diferenciar maiúsculo de minúsculo (padrão)"
+        },
+        {
+            "original": "look for pages case-sensitively",
+            "translated": "reconhecer as páginas distinguindo maiúsculas e minúsculas na caixa de caracteres.",
+            "reference": "procura por páginas diferenciando maiúsculo de minúsculo"
+        },
+        {
+            "original": "interpret page name as a regex",
+            "translated": "considere o nome da página como uma expressão regular interpretada.",
+            "reference": "interpreta o nome da páginas como uma expressão regular"
+        },
+        {
+            "original": "the page name contains wildcards",
+            "translated": "o nome da página contém caracteres de jogo",
+            "reference": "o nome da página contém caracteres curingas"
+        },
+        {
+            "original": "warning: whatis for %s exceeds %d byte, truncating.",
+            "translated": "falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": ""
+        },
+        {
+            "original": "can't open %s",
+            "translated": "não é possível abrir %s",
+            "reference": "não foi possível abrir %s"
+        },
+        {
+            "original": "FILE...",
+            "translated": "FICHERO...",
+            "reference": "ARQUIVO..."
+        },
+        {
+            "original": "The defaults are --man and --whatis.",
+            "translated": "As opções padrão são --man e --whatis.",
+            "reference": "Os padrões são --man e --whatis."
+        },
+        {
+            "original": "parse as man page",
+            "translated": "lê os arquivos como páginas de manual",
+            "reference": "analisa como uma página man"
+        },
+        {
+            "original": "parse as cat page",
+            "translated": "lê os arquivos como páginas préformatadas",
+            "reference": "analisa como uma página cat"
+        },
+        {
+            "original": "show whatis information",
+            "translated": "exibe os dados como whatis",
+            "reference": "mostra informação whatis"
+        },
+        {
+            "original": "show guessed series of preprocessing filters",
+            "translated": "exibir a lista sugerida de filtros pré-processamento",
+            "reference": "mostra séries adivinhadas de filtros de pré-processamento"
+        },
+        {
+            "original": "ENCODING",
+            "translated": "ENCODAGE",
+            "reference": "CODIFICAÇÃO"
+        },
+        {
+            "original": "use selected output encoding",
+            "translated": "utilize o código de exibição selecionado",
+            "reference": "usa a codificação de saída selecionada"
+        },
+        {
+            "original": "%s: incompatible options",
+            "translated": "%s: opções incompatíveis",
+            "reference": "%s: opções incompatíveis"
+        },
+        {
+            "original": "command exited with status %d: %s",
+            "translated": "Comando concluído com código de retorno %d: Erro\n",
+            "reference": "o comando saiu com status %d: %s"
+        },
+        {
+            "original": "[SECTION] PAGE...",
+            "translated": "[SECCIÓN] PÁGINA...",
+            "reference": "[SEÇÃO] PÁGINA..."
+        },
+        {
+            "original": "reset all options to their default values",
+            "translated": "reinicializa as configurações padrão das opções",
+            "reference": "redefine todas opções para seus valores padrão"
+        },
+        {
+            "original": "WARNINGS",
+            "translated": "AVISOS",
+            "reference": "AVISOS"
+        },
+        {
+            "original": "enable warnings from groff",
+            "translated": "avisos ativos de groff",
+            "reference": "habilita avisos do groff"
+        },
+        {
+            "original": "Main modes of operation:",
+            "translated": "Modos operacionais principais:",
+            "reference": "Modos principais de operação:"
+        },
+        {
+            "original": "equivalent to whatis",
+            "translated": "equivalente a whatis",
+            "reference": "equivalente a whatis"
+        },
+        {
+            "original": "equivalent to apropos",
+            "translated": "equivalente a apropos",
+            "reference": "equivalente a apropos"
+        },
+        {
+            "original": "search for text in all pages",
+            "translated": "recurra na busca do texto em todas as páginas",
+            "reference": "pesquisa pelo texto em todas as páginas"
+        },
+        {
+            "original": "print physical location of man page(s)",
+            "translated": "exibir o localização das páginas do manual",
+            "reference": "emite localização física da(s) página(s) man"
+        },
+        {
+            "original": "print physical location of cat file(s)",
+            "translated": "mostra o local físico dos arquivos cat",
+            "reference": "emite localização física do(s) arquivo(s) cat"
+        },
+        {
+            "original": "interpret PAGE argument(s) as local filename(s)",
+            "translated": "interpretar o argumento PAGE como um nome de arquivo localmente",
+            "reference": "interpreta argumento(s) PÁGINA como nome(s) de arquivo(s) local(is)"
+        },
+        {
+            "original": "used by catman to reformat out of date cat pages",
+            "translated": "utilizado por catman para reformatear as páginas muito antigas.",
+            "reference": "usado por catman para reformatar páginas cat desatualizadas"
+        },
+        {
+            "original": "output source page encoded in ENCODING",
+            "translated": "exibe o código fonte convertido em ENCODAGE",
+            "reference": "emite a página fonte codificada em CODIFICAÇÃO"
+        },
+        {
+            "original": "Finding manual pages:",
+            "translated": "Pesquisa de páginas do manual:",
+            "reference": "Localizando as páginas de manual:"
+        },
+        {
+            "original": "LOCALE",
+            "translated": "区域",
+            "reference": "LOCALIDADE"
+        },
+        {
+            "original": "define the locale for this particular man search",
+            "translated": "defina a localização para esta pesquisa de manual",
+            "reference": "define a localidade para esta pesquisa de man em particular"
+        },
+        {
+            "original": "SYSTEM",
+            "translated": "Sistema",
+            "reference": "SISTEMA"
+        },
+        {
+            "original": "use manual pages from other systems",
+            "translated": "empleue as páginas do manual de outros sistemas",
+            "reference": "usa páginas de manual para outros sistemas"
+        },
+        {
+            "original": "LIST",
+            "translated": "LISTA",
+            "reference": "LISTA"
+        },
+        {
+            "original": "use colon separated section list",
+            "translated": "utilize a lista de seções separadas por dois pontos.",
+            "reference": "usa lista de seções separada por dois-pontos"
+        },
+        {
+            "original": "show all pages matching regex",
+            "translated": "montre todas as páginas correspondentes à expressão regular",
+            "reference": "mostra todas as páginas que coincidem com a expressão regular"
+        },
+        {
+            "original": "show all pages matching wildcard",
+            "translated": "montre todas as páginas correspondentes ao caractere joker",
+            "reference": "mostra todas as páginas que coincidem com o caractere curinga"
+        },
+        {
+            "original": "make --regex and --wildcard match page names only, not descriptions",
+            "translated": "Somente as opções --regex e --wildcard correspondem aos nomes de páginas, não às descrições.",
+            "reference": "faz --regex e --wildcard coincidirem apenas nomes de páginas, e não descrições"
+        },
+        {
+            "original": "find all matching manual pages",
+            "translated": "encontra todas as páginas correspondentes",
+            "reference": "localiza todas as páginas de manual correspondentes"
+        },
+        {
+            "original": "force a cache consistency check",
+            "translated": "forçar uma verificação de consistência do cache",
+            "reference": "força uma verificação de consistência de cache"
+        },
+        {
+            "original": "don't try subpages, e.g. 'man foo bar' => 'man foo-bar'",
+            "translated": "Não prenda em consideração as subcomandos, por exemplo 'man truc bidule' => 'man truc-bidule'",
+            "reference": "não tenta subpáginas, ex.: \"man foo bar\" => \"man foo-bar\""
+        },
+        {
+            "original": "Controlling formatted output:",
+            "translated": "Controle de formatos de exibição:",
+            "reference": "Controlando saída formatada:"
+        },
+        {
+            "original": "PAGER",
+            "translated": "AFFICCHEUR",
+            "reference": "PAGINADOR"
+        },
+        {
+            "original": "use program PAGER to display output",
+            "translated": "utilize do programa AFFICHEUR para o exibição da saída textual.",
+            "reference": "usa o programa PAGINADOR para exibir a saída"
+        },
+        {
+            "original": "STRING",
+            "translated": "cadeia de caracteres",
+            "reference": "TEXTO"
+        },
+        {
+            "original": "provide the `less' pager with a prompt",
+            "translated": "Dê uma linha de prompt ao paginador 'less'.",
+            "reference": "fornece ao paginador \"less\" com uma pergunta"
+        },
+        {
+            "original": "display ASCII translation of certain latin1 chars",
+            "translated": "exibe uma versão ASCII equivalente de certos caracteres latinos1",
+            "reference": "exibe a tradução ASCII de certos caracteres latin1"
+        },
+        {
+            "original": "turn off hyphenation",
+            "translated": "desabilita a césura",
+            "reference": "desliga hifenização"
+        },
+        {
+            "original": "turn off justification",
+            "translated": "desabilita a justificação",
+            "reference": "desliga justificação"
+        },
+        {
+            "original": "STRING indicates which preprocessors to run:\ne - [n]eqn, p - pic, t - tbl,\ng - grap, r - refer, v - vgrind",
+            "translated": "CENA indique os pré-processadores a utilizar : e - [n]eqn, p - pic, t - tbl, g - gráp, r - refer, v - vgrind",
+            "reference": "TEXTO indica quais pré-processadores serão executados:\ne - [n]eqn, p - pic, t - tbl,\ng - grap, r - refer, v - vgrind"
+        },
+        {
+            "original": "use %s to format pages",
+            "translated": "utilize o comando %s para formatar as páginas do manual.",
+            "reference": "usa %s para formatar páginas"
+        },
+        {
+            "original": "DEVICE",
+            "translated": "Pérepheríquio",
+            "reference": "DISPOSITIVO"
+        },
+        {
+            "original": "use %s with selected device",
+            "translated": "utilize o dispositivo %s selecionado com a ferramenta especificada",
+            "reference": "usa %s com o dispositivo selecionado"
+        },
+        {
+            "original": "BROWSER",
+            "translated": "Navegador",
+            "reference": "NAVEGADOR"
+        },
+        {
+            "original": "use %s or BROWSER to display HTML output",
+            "translated": "utilize %s ou NAVIGATOR para exibir HTML.",
+            "reference": "usa %s ou NAVEGADOR para exibir a saída HTML"
+        },
+        {
+            "original": "RESOLUTION",
+            "translated": "RESOLUÇÃO",
+            "reference": "RESOLUÇÃO"
+        },
+        {
+            "original": "use groff and display through gxditview (X11):\n-X = -TX75, -X100 = -TX100, -X100-12 = -TX100-12",
+            "translated": "utilize groff e exiba com gxditview (X11):\n-X = -TX75, -X100 = -TX100, -X100-12 = -TX100-12",
+            "reference": "usa groff e exibe por meio de gxditview (X11):\n-X = -TX75, -X100 = -TX100, -X100-12 = -TX100-12"
+        },
+        {
+            "original": "use groff and force it to produce ditroff",
+            "translated": "utilize o groff e forçá-lo a gerar ditroff",
+            "reference": "usa groff e força-o a produzir ditroff"
+        },
+        {
+            "original": "No manual entry for %s\n",
+            "translated": "Não há nenhuma entrada de manual para %s",
+            "reference": "Nenhuma entrada de manual para %s\n"
+        },
+        {
+            "original": "(Alternatively, what manual page do you want from section %s?)\n",
+            "translated": "(Sinon, qual é a página de manual da seção %s que você deseja?)",
+            "reference": "(Alternativamente, qual a página de manual desejada da seção %s?)\n"
+        },
+        {
+            "original": "What manual page do you want?\n",
+            "translated": "Qual é a página do manual que deseja ver?",
+            "reference": "Qual a página de manual desejada?\n"
+        },
+        {
+            "original": "For example, try 'man man'.\n",
+            "translated": "Por exemplo, tente 'man man'.",
+            "reference": "Por exemplo, tente \"man man\".\n"
+        },
+        {
+            "original": "No manual entry for %s in section %s\n",
+            "translated": "Nenhuma entrada de manual para %s na seção %s.",
+            "reference": "Nenhuma entrada de manual para %s na seção %s\n"
+        },
+        {
+            "original": "See '%s' for help when manual pages are not available.\n",
+            "translated": "veja «%s» para obter ajuda quando as páginas do manual não estiverem disponíveis.",
+            "reference": "Veja \"%s\" para ajuda quando as páginas de manual não estiverem disponíveis.\n"
+        },
+        {
+            "original": "ignoring unknown preprocessor `%c'",
+            "translated": "O pré-processador `%c' não é reconhecido e ignorado.",
+            "reference": "ignorando pré-processador desconhecido \"%c\""
+        },
+        {
+            "original": "can't rename %s to %s",
+            "translated": "não é possível renomear %s para %s",
+            "reference": "não foi possível renomear %s para %s"
+        },
+        {
+            "original": "can't set times on %s",
+            "translated": "não é possível alterar a data do arquivo %s",
+            "reference": "não foi possível definir os horários de %s"
+        },
+        {
+            "original": "can't unlink %s",
+            "translated": "não foi possível remover %s",
+            "reference": "não foi possível remover o link %s"
+        },
+        {
+            "original": "can't create temporary cat for %s",
+            "translated": "impossível criar uma página temporária de cat para %s",
+            "reference": "não foi possível criar o cat temporário para %s"
+        },
+        {
+            "original": "can't create temporary directory",
+            "translated": "não foi possível criar o diretório temporário",
+            "reference": "não foi possível criar o diretório temporário"
+        },
+        {
+            "original": "can't open temporary file %s",
+            "translated": "não foi possível abrir o arquivo temporário %s",
+            "reference": "não foi possível abrir o arquivo temporário %s"
+        },
+        {
+            "original": "can't remove directory %s",
+            "translated": "não foi possível remover o diretório %s",
+            "reference": "não foi possível remover o diretório %s"
+        },
+        {
+            "original": "--Man-- next: %s [ view (return) | skip (Ctrl-D) | quit (Ctrl-C) ]\n",
+            "translated": "--Man-- próximo: %s [ ver (voltar) | avançar (Ctrl+D) | sair (Ctrl+C) ]\n",
+            "reference": "--Man-- próxima: %s [ ver (Enter) | pular (Ctrl-D) | sair (Ctrl-C) ]\n"
+        },
+        {
+            "original": "\ncannot write to %s in catman mode",
+            "translated": "impossível escrever no %s em modo catman",
+            "reference": "\nnão foi possível escrever em %s no modo catman"
+        },
+        {
+            "original": "Can't convert %s to cat name",
+            "translated": "Não é possível converter %s em nome de página préformatada",
+            "reference": "Não foi possível converter %s para um nome cat"
+        },
+        {
+            "original": "%s: relying on whatis refs is deprecated\n",
+            "translated": "%s : não é recomendado mais se basear nas referências de whatis\n",
+            "reference": "%s: o uso de whatis refs está obsoleto\n"
+        },
+        {
+            "original": "mandb command failed with exit status %d",
+            "translated": "Comando `mandb` falhou com o código de retorno `%d",
+            "reference": "o comando mandb falhou com status de saída %d"
+        },
+        {
+            "original": "internal error: candidate type %d out of range",
+            "translated": "erro interno: o tipo candidato %d está fora do alcance",
+            "reference": "erro interno: tipo de candidato %d fora da faixa"
+        },
+        {
+            "original": " Manual page ",
+            "translated": "Página de manual",
+            "reference": " Página de manual "
+        },
+        {
+            "original": "-t CODE {--suffix SUFFIX | --in-place} FILENAME...",
+            "translated": "-t CODE {--suffix SUFFIXE | --in-place} NOM_DE_FICHIER...",
+            "reference": "-t CÓDIGO {--suffix SUFIXO | --in-place} NOME-DE-ARQUIVO..."
+        },
+        {
+            "original": "CODE",
+            "translated": "CÓDE",
+            "reference": "CÓDIGO"
+        },
+        {
+            "original": "encoding for output",
+            "translated": "codificação de exibição",
+            "reference": "codificação para a saída"
+        },
+        {
+            "original": "SUFFIX",
+            "translated": "SUFFIXE",
+            "reference": "SUFIXO"
+        },
+        {
+            "original": "suffix to append to output file name",
+            "translated": "sufixo que se deve adicionar ao nome do arquivo de saída",
+            "reference": "sufixo para acrescentar ao nome de arquivo de saída"
+        },
+        {
+            "original": "overwrite input files in place",
+            "translated": "erase the input file",
+            "reference": "sobrescreve arquivos de entrada no mesmo lugar"
+        },
+        {
+            "original": "produce fewer warnings",
+            "translated": "produza menos avisos",
+            "reference": "produz menos avisos"
+        },
+        {
+            "original": "must specify an output encoding",
+            "translated": "a codificação de saída deve ser especificada.",
+            "reference": "deve-se especificar uma codificação de saída"
+        },
+        {
+            "original": "must use either --suffix or --in-place",
+            "translated": "deve utilizar --suffix ou --in-place",
+            "reference": "deve-se usar --suffix ou --in-place"
+        },
+        {
+            "original": "--suffix and --in-place are mutually exclusive",
+            "translated": "--suffix e --in-place são mutuamente exclusivos",
+            "reference": "--suffix e --in-place são mutuamente exclusivos"
+        },
+        {
+            "original": "can't remove %s",
+            "translated": "não é possível remover %s",
+            "reference": "não foi possível remover %s"
+        },
+        {
+            "original": "can't write to standard output",
+            "translated": "não é possível escrever para a saída padrão",
+            "reference": "não foi possível escrever para a saída padrão"
+        },
+        {
+            "original": "iconv: incomplete character at end of buffer",
+            "translated": "iconv: caractere incompleto no final do buffer",
+            "reference": "iconv: caractere incompleto no final do buffer"
+        },
+        {
+            "original": "[-f CODE[:...]] -t CODE [FILENAME]",
+            "translated": "[-f CODE[:...]] -t CODE [NOM_DE_FICHIER]",
+            "reference": "[-f CÓDIGO[:...]] -t CÓDIGO [NOME-DE-ARQUIVO]"
+        },
+        {
+            "original": "CODE[:...]",
+            "translated": "falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "CÓDIGO[:...]"
+        },
+        {
+            "original": "possible encodings of original text",
+            "translated": "codificações possíveis do texto original",
+            "reference": "codificações possíveis do texto original"
+        },
+        {
+            "original": "[MANPATH]",
+            "translated": "[MANPATH]",
+            "reference": "[CAMINHO-MAN]"
+        },
+        {
+            "original": "work quietly, except for 'bogus' warning",
+            "translated": "não exibe nada além de avisos de falha do sistema, exceto para mensagens espúrias.",
+            "reference": "trabalha silenciosamente, exceto para aviso de erro"
+        },
+        {
+            "original": "don't look for or add stray cats to the dbs",
+            "translated": "Não procure nem adicione arquivos cat parasitários na base de dados.",
+            "reference": "não procura ou adiciona cats errantes aos bancos de dados"
+        },
+        {
+            "original": "don't purge obsolete entries from the dbs",
+            "translated": "Não remova as entradas obsoletas da base de dados.",
+            "reference": "não descarta entradas obsoletas dos bancos de dados"
+        },
+        {
+            "original": "produce user databases only",
+            "translated": "produz apenas bases de usuário para o sistema do utilizador",
+            "reference": "produz apenas bancos de dados de usuário"
+        },
+        {
+            "original": "create dbs from scratch, rather than updating",
+            "translated": "Crie as bases do começo em vez de uma atualização",
+            "reference": "cria banco de dados do zero, ao invés de atualizá-los"
+        },
+        {
+            "original": "check manual pages for correctness",
+            "translated": "verificar a validade das páginas do manual",
+            "reference": "verifica a exatidão de páginas de manual"
+        },
+        {
+            "original": "FILENAME",
+            "translated": "Nome do Arquivo",
+            "reference": "NOME-DE-ARQUIVO"
+        },
+        {
+            "original": "update just the entry for this filename",
+            "translated": "atualize apenas a entrada correspondente ao nome deste arquivo",
+            "reference": "atualiza apenas a entrada deste nome de arquivo"
+        },
+        {
+            "original": "can't write to %s",
+            "translated": "não é possível escrever no %s",
+            "reference": "não posso escrever em %s"
+        },
+        {
+            "original": "can't read from %s",
+            "translated": "não é possível ler a partir de %s",
+            "reference": "não foi possível ler de %s"
+        },
+        {
+            "original": "Processing manual pages under %s...\n",
+            "translated": "Tratamento das páginas do manual sob %s...\n",
+            "reference": "Processando as páginas de manual sob %s...\n"
+        },
+        {
+            "original": "Removing obsolete cat directory %s...\n",
+            "translated": "Supressão do diretório cat obsoleto %s...",
+            "reference": "Removendo diretório cat obsoleto %s...\n"
+        },
+        {
+            "original": "Only the '%s' user can create or update system-wide databases; acting as if the --user-db option was used.\n",
+            "translated": "Só usuários com credenciais específicas podem criar ou atualizar bancos de dados do sistema; o programa está operando como se a opção --user-db estivesse habilitada.",
+            "reference": "Somente o usuário \"%s\" pode criar ou atualizar bancos de dados em todo o sistema; agindo como se a opção --user-db tivesse sido usada.\n"
+        },
+        {
+            "original": "warning: no MANDB_MAP directives in %s, using your manpath",
+            "translated": "atenção: não há diretivas MANDB_MAP no %s, o caminho do manual (manpath) é utilizado.",
+            "reference": "aviso: nenhuma diretiva MANDB_MAP em %s, usando o seu caminho man"
+        },
+        {
+            "original": "%d man subdirectory contained newer manual pages.\n",
+            "translated": "falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": ""
+        },
+        {
+            "original": "%d manual page was added.\n",
+            "translated": "falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": ""
+        },
+        {
+            "original": "%d stray cat was added.\n",
+            "translated": "falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": ""
+        },
+        {
+            "original": "%d old database entry was purged.\n",
+            "translated": "falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": ""
+        },
+        {
+            "original": "No databases created.",
+            "translated": "Nenhuma base de dados foi criada.",
+            "reference": "Nenhum banco de dados criado."
+        },
+        {
+            "original": "can't make sense of the manpath configuration file %s",
+            "translated": "O arquivo de configuração do caminho %s é estranho.",
+            "reference": "não há sentido algum no arquivo de configuração de caminho man %s"
+        },
+        {
+            "original": "warning: %s",
+            "translated": "atenção: %s",
+            "reference": "aviso: %s"
+        },
+        {
+            "original": "warning: %s isn't a directory",
+            "translated": "atenção: '%s' não é um diretório",
+            "reference": "aviso: %s não é um diretório"
+        },
+        {
+            "original": "warning: $PATH not set",
+            "translated": "atenção: a variável $PATH não está posicionada",
+            "reference": "aviso: $PATH não definido"
+        },
+        {
+            "original": "warning: empty $PATH",
+            "translated": "atenção: a variável $PATH está vazia",
+            "reference": "aviso: $PATH vazio"
+        },
+        {
+            "original": "warning: $MANPATH set, prepending %s",
+            "translated": "atenção: a variável $MANPATH está posicionada, ela é precedida por %s",
+            "reference": "aviso: $MANPATH definido, acrescentando %s ao início"
+        },
+        {
+            "original": "warning: $MANPATH set, appending %s",
+            "translated": "atenção: a variável $MANPATH está posicionada e é seguida por %s",
+            "reference": "aviso: $MANPATH definido, acrescentando %s ao final"
+        },
+        {
+            "original": "warning: $MANPATH set, inserting %s",
+            "translated": "atenção: a variável $MANPATH está posicionada, %s é inserido",
+            "reference": "aviso: $MANPATH definido, inserindo %s"
+        },
+        {
+            "original": "warning: $MANPATH set, ignoring %s",
+            "translated": "atenção: a variável $MANPATH foi posicionada, %s é ignorado.",
+            "reference": "aviso: $MANPATH definido, ignorando %s"
+        },
+        {
+            "original": "can't parse directory list `%s'",
+            "translated": "impossível de percorrer a lista de diretório «%s»",
+            "reference": "não foi possível analisar a lista de diretórios \"%s\""
+        },
+        {
+            "original": "can't open the manpath configuration file %s",
+            "translated": "impossível abrir o arquivo de configuração do manual %s",
+            "reference": "não foi possível abrir o arquivo de configuração do caminho man %s"
+        },
+        {
+            "original": "warning: mandatory directory %s doesn't exist",
+            "translated": "atenção: o diretório requerido %s não existe",
+            "reference": "aviso: diretório obrigatório %s não existe"
+        },
+        {
+            "original": "warning: %s does not begin with %s",
+            "translated": "atenção: %s não começa com %s",
+            "reference": "aviso: %s não começa com %s"
+        },
+        {
+            "original": "show relative catpaths",
+            "translated": "exibe os caminhos de acesso relativos às páginas 'cat'.",
+            "reference": "mostra caminhos cat relativos"
+        },
+        {
+            "original": "show the entire global manpath",
+            "translated": "exibe os caminhos completos das páginas do manual global",
+            "reference": "mostra o caminho man global inteiro"
+        },
+        {
+            "original": "warning: no global manpaths set in config file %s",
+            "translated": "atenção: não há caminho para os manuales globais no arquivo de configuração %s",
+            "reference": "aviso: nenhum caminho man global definido no arquivo de configuração %s"
+        },
+        {
+            "original": "Checking for stray cats under %s...\n",
+            "translated": "Pesquisa de arquivos préformatados sem fontes sob %s…",
+            "reference": "Verificando por cats errantes sob %s...\n"
+        },
+        {
+            "original": "warning: %s is a dangling symlink",
+            "translated": "atenção: '%s' é um link simbólico flutuante",
+            "reference": "aviso: %s é um link simbólico perdido"
+        },
+        {
+            "original": "can't resolve %s",
+            "translated": "não é possível resolver %s",
+            "reference": "não foi possível resolver %s"
+        },
+        {
+            "original": "%s is self referencing",
+            "translated": "%s se auto-referencia",
+            "reference": "%s referencia a si mesmo"
+        },
+        {
+            "original": "KEYWORD...",
+            "translated": "MOT-CLEF... (continuação da tradução necessária)",
+            "reference": "PALAVRA-CHAVE..."
+        },
+        {
+            "original": "The --regex option is enabled by default.",
+            "translated": "A opção --regex está habilitada por padrão.",
+            "reference": "A opção --regex está habilitada por padrão."
+        },
+        {
+            "original": "print verbose warning messages",
+            "translated": "exibir mensagens de aviso extensivas",
+            "reference": "emite mensagens de aviso detalhadas"
+        },
+        {
+            "original": "interpret each keyword as a regex",
+            "translated": "interpretar cada palavra-chave como uma expressão regular",
+            "reference": "interpreta cada palavra-chave como uma expressão regular"
+        },
+        {
+            "original": "search each keyword for exact match",
+            "translated": "buscar uma correspondência exata para cada um dos termos chaves.",
+            "reference": "pesquisa cada palavra-chave por correspondência exata"
+        },
+        {
+            "original": "the keyword(s) contain wildcards",
+            "translated": "As palavras-chave contêm jokers (substitutos)",
+            "reference": "a(s) palavra-chave(s) não podem conter caracteres coringas"
+        },
+        {
+            "original": "require all keywords to match",
+            "translated": "todos os termos-chave devem corresponder simultaneamente",
+            "reference": "exige correspondência de todas as palavra-chaves"
+        },
+        {
+            "original": "do not trim output to terminal width",
+            "translated": "não reduz o tamanho da exibição para a largura do terminal",
+            "reference": "não corta a saída para a largura do terminal"
+        },
+        {
+            "original": "search only these sections (colon-separated)",
+            "translated": "relação limitada a estas seções (separadas por dois pontos)",
+            "reference": "pesquisa apenas nestas seções (separadas por dois-pontos)"
+        },
+        {
+            "original": "define the locale for this search",
+            "translated": "defina a localização para esta pesquisa",
+            "reference": "define a localidade para esta pesquisa"
+        },
+        {
+            "original": "%s what?\n",
+            "translated": "%s o que?\n",
+            "reference": "%s o quê?\n"
+        },
+        {
+            "original": "warning: %s contains a pointer loop",
+            "translated": "atenção: o campo %s contém uma referência circular",
+            "reference": "aviso: %s contém um laço de ponteiros"
+        },
+        {
+            "original": "(unknown subject)",
+            "translated": "(tópico desconhecido)",
+            "reference": "(assunto desconhecido)"
+        },
+        {
+            "original": "%s: nothing appropriate.\n",
+            "translated": "%s : nada adequado.",
+            "reference": "%s: nada apropriado.\n"
+        },
+        {
+            "original": "%s:%d: .so requests nested too deeply or are recursive",
+            "translated": "%s:%d: requetes .so imbriquées excessivamente profundamente ou recursivamente",
+            "reference": "%s:%d: requisições de .so aninhadas com muita profundidade ou são recursivas"
+        },
+        {
+            "original": "%s:%d: warning: failed .so request",
+            "translated": "%s:%d: atenção : requisição .so falhou",
+            "reference": "%s:%d: aviso: requisição .so falhou"
+        },
+        {
+            "original": "%s:%d: warning: newline in .so request, ignoring",
+            "translated": "%s:%d: aviso: volta à linha em uma requisição .so, ignorada",
+            "reference": "%s:%d: aviso: nova-linha na requisição de .so, ignorando"
+        },
+        {
+            "original": "%s:%d: warning: newline in .lf request, ignoring",
+            "translated": "%s:%d: aviso: linha em uma solicitação .lf, ignorada",
+            "reference": "%s:%d: aviso: nova-linha na requisição de .lf, ignorando"
+        },
+        {
+            "original": "%s:%d: unterminated quote in roff request",
+            "translated": "%s:%d: guillemet não fechado em uma requisição roff\n",
+            "reference": "%s:%d: aspas não terminadas na requisição de roff"
+        },
+        {
+            "original": "compatibility switch (ignored)",
+            "translated": "opção de compatibilidade (ignorada)",
+            "reference": "troca de compatibilidade (ignorado)"
+        },
+        {
+            "original": "warning: can't update index cache %s",
+            "translated": "atenção: impossível atualizar o cache de índice %s",
+            "reference": "aviso: não foi possível atualizar o cache de índice %s"
+        },
+        {
+            "original": "%s:%d: warning: malformed .lf request, ignoring",
+            "translated": "%s:%d: aviso: anomalia na requisição .lf, ignorada",
+            "reference": "%s:%d: aviso: requisição de .lf malformada, ignorando"
+        }
+    ]
+}

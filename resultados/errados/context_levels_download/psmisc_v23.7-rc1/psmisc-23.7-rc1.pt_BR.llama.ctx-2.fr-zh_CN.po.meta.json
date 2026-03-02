@@ -1,0 +1,569 @@
+{
+    "job_info": {
+        "input_file": "/home/vinicius/TCC/data/translations_download/psmisc_v23.7-rc1/psmisc-23.7-rc1.vi.po",
+        "output_file": "/home/vinicius/TCC/resultados/context_levels_download/psmisc_v23.7-rc1/psmisc-23.7-rc1.pt_BR.llama.ctx-2.fr-zh_CN.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-16T13:31:41.910433",
+        "duration_seconds": 100.1,
+        "reference_file": "/home/vinicius/TCC/data/translations_download/psmisc_v23.7-rc1/psmisc-23.7-rc1.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": 1747794880705619997
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "FR",
+            "ZH_CN"
+        ],
+        "context_sentences_sample": {
+            "Usage: fuser [-fIMuvw] [-a|-s] [-4|-6] [-c|-m|-n SPACE]\n             [-k [-i] [-SIGNAL]] NAME...\n       fuser -l\n       fuser -V\nShow which processes use the named files, sockets, or filesystems.\n\n  -a,--all              display unused files too\n  -i,--interactive      ask before killing (ignored without -k)\n  -I,--inode            use always inodes to compare files\n  -k,--kill             kill processes accessing the named file\n  -l,--list-signals     list available signal names\n  -m,--mount            show all processes using the named filesystems or\n                        block device\n  -M,--ismountpoint     fulfill request only if NAME is a mount point\n  -n,--namespace SPACE  search in this name space (file, udp, or tcp)\n  -s,--silent           silent operation\n  -SIGNAL               send this signal instead of SIGKILL\n  -u,--user             display user IDs\n  -v,--verbose          verbose output\n  -w,--writeonly        kill only processes with write access\n  -V,--version          display version information\n": {
+                "FR": "Utilisation : fuser [-fIMuvw] [-a|-s] [-4|-6] [-c|-m|-n ESPACE]\n                    [-k [-i] [-SIGNAL]] NOM...\n              fuser -l\n              fuser -V\nMontre les processus utilisant les fichiers, sockets ou systèmes de fichiers nommés.\n\n  -a,--all              montre les fichiers inutilisés\n  -i,--interactive      demande avant de fermer un processus (ignoré sans -k)\n  -I,--inode            utilise toujours les inodes pour comparer les fichiers\n  -k,--kill             ferme les processus accédant au fichier spécifié\n  -l,--list-signals     liste les noms des signaux\n  -m,--mount            affiche les processus utilisant les systèmes de fichiers\n                        ou les périphériques blocs spécifiés\n  -M,--ismountpoint     exécute la requête seulement si NOM est un point de montage\n  -n,--namespace ESPACE cherche dans l'espace de noms spécifié (file, udp ou tcp)\n  -s,--silent           mode silencieux\n  -SIGNAL               envoie ce signal au lieu de SIGKILL\n  -u,--user             affiche la liste des utilisateurs\n  -v,--verbose          mode bavard\n  -w,--writeonly        ferme uniquement les processus avec la permission en écriture\n  -V,--version          affiche des informations sur la version\n",
+                "ZH_CN": "用法：fuser [-fIMuvw] [-a|-s] [-4|-6] [-c|-m|-n 命名空间]\n            [-k [-i] [-信号]] 名字...\n      fuser -l\n      fuser -V\n显示哪些进程使用指定的文件、端口或文件系统。\n\n  -a,--all              也显示未使用的文件\n  -i,--interactive      杀死程序前询问 (未指定 -k 选项时被忽略)\n  -I,--inode            总是使用 inode 来比较文件\n  -k,--kill             杀死访问指定文件的进程\n  -l,--list-signals     列出可用的信号名\n  -m,--mount            显示所有使用指定文件系统或块设备的进程\n  -M,--ismountpoint     只在 <名字> 为挂载点时完成要求\n  -n,--namespace 空间   在指定命名空间中查找 (file、udp 或 tcp)\n  -s,--silent           不输出信息\n  -信号                 发送指定的 \"信号\" 而不是 SIGKILL\n  -u,--user             显示用户 ID\n  -v,--verbose          输出更多信息\n  -w,--writeonly        只杀死有权写入的进程\n  -V,--version          显示版本信息\n"
+            },
+            "  -4,--ipv4             search IPv4 sockets only\n  -6,--ipv6             search IPv6 sockets only\n": {
+                "FR": "  -4,--ipv4             cherche des sockets IPv4 seulement\n  -6,--ipv6             cherche des sockets IPv6 seulement\n",
+                "ZH_CN": "  -4,--ipv4             仅查找 IPv4 套接字\n  -6,--ipv6             仅查找 IPv6 套接字\n"
+            },
+            "  udp/tcp names: [local_port][,[rmt_host][,[rmt_port]]]\n\n": {
+                "FR": "  noms udp/tcp: [port_local][,[hôte_distant][,[port_distant]]]\n\n",
+                "ZH_CN": "  udp/tcp 名字: [本地端口][,[远程主机][,[远程端口]]]\n\n"
+            },
+            "fuser (PSmisc) %s\n": {
+                "FR": "fuser (PSmisc) %s\n",
+                "ZH_CN": "fuser (PSmisc) %s\n"
+            },
+            "Copyright (C) 1993-2024 Werner Almesberger and Craig Small\n\n": {
+                "FR": "Copyright © 1993-2024 Werner Almesberger et Craig Small\n\n",
+                "ZH_CN": "Copyright © 1993-2024 Werner Almesberger 和 Craig Small\n\n"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 101,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct 10 2025, 08:54:03) [GCC 11.4.0]"
+    },
+    "translations": [
+        {
+            "original": "Usage: fuser [-fIMuvw] [-a|-s] [-4|-6] [-c|-m|-n SPACE]\n             [-k [-i] [-SIGNAL]] NAME...\n       fuser -l\n       fuser -V\nShow which processes use the named files, sockets, or filesystems.\n\n  -a,--all              display unused files too\n  -i,--interactive      ask before killing (ignored without -k)\n  -I,--inode            use always inodes to compare files\n  -k,--kill             kill processes accessing the named file\n  -l,--list-signals     list available signal names\n  -m,--mount            show all processes using the named filesystems or\n                        block device\n  -M,--ismountpoint     fulfill request only if NAME is a mount point\n  -n,--namespace SPACE  search in this name space (file, udp, or tcp)\n  -s,--silent           silent operation\n  -SIGNAL               send this signal instead of SIGKILL\n  -u,--user             display user IDs\n  -v,--verbose          verbose output\n  -w,--writeonly        kill only processes with write access\n  -V,--version          display version information\n",
+            "translated": "Utilização do fuser [-fIMuvw] [-a|-s] [-4|-6] [-c|-m|-n ESPACE] -k [-i] [--signal SIGNAL] NOM...",
+            "reference": "Uso:   fuser [-fMuv] [-a|-s] [-4|-6] [-c|-m|-n ESPAÇO]\n             [-k [-i] [-SINAL]] NOME...\n       fuser -l\n       fuser -V\nMostra quais processos usam os arquivos, sockets ou sistema de arquivos especificados.\n\n  -a,--all              exibe também arquivos sem uso\n  -i,--interactive      pergunta antes de matar (ignorado sem -k)\n  -k,--kill             mata processos acessando o arquivo especificado\n  -l,--list-signals     lista os nomes de sinal disponíveis\n  -m,--mount            mostra todos processos usando o sistema de arquivos\n                        ou dispositivo de bloco especificado\n  -M,--ismountpoint     realiza solicitação apenas se NOME for um ponto\n                        de montagem\n  -n,--namespace ESPAÇO pesquisa neste espaço de nome (file, udp ou tcp)\n  -s,--silent           operação silenciosa\n  -SINAL                envia este sinal em vez de SIGKILL\n  -u,--user             exibe IDs de usuário\n  -v,--verbose          saída detalhada\n  -w,--writeonly        mata apenas processos com acesso de gravação\n  -V,--version          exibe informações de versão\n"
+        },
+        {
+            "original": "  -4,--ipv4             search IPv4 sockets only\n  -6,--ipv6             search IPv6 sockets only\n",
+            "translated": "chave de entrada",
+            "reference": "  -4,--ipv4             pesquisa apenas sockets IPv4\n  -6,--ipv6             pesquisa apenas sockets IPv6\n"
+        },
+        {
+            "original": "  udp/tcp names: [local_port][,[rmt_host][,[rmt_port]]]\n\n",
+            "translated": "falha na verificação da linha %s possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "  -                     redefine opções\n\n  nomes udp/tcp: [porta_local][,[maq_rmt][,[porta_rmt]]]\n\n"
+        },
+        {
+            "original": "fuser (PSmisc) %s\n",
+            "translated": "falha na verificação da linha %s possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "fuser (PSmisc) %s\n"
+        },
+        {
+            "original": "Copyright (C) 1993-2024 Werner Almesberger and Craig Small\n\n",
+            "translated": "Autorização para acesso ao sistema de arquivos não foi concedida.",
+            "reference": "Copyright (C) 1993-2020 Werner Almesberger and Craig Small\n\n"
+        },
+        {
+            "original": "PSmisc comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it under\nthe terms of the GNU General Public License.\nFor more information about these matters, see the files named COPYING.\n",
+            "translated": "O programa é um software livre, e você pode redistribuí-lo sob a licença GNU GPL. Para mais informações sobre as garantias que ele oferece ou não assegura-se de elas, consulte os arquivos COPYING.",
+            "reference": "PSmisc vem com ABSOLUTAMENTE NENHUMA GARANTIA.\nEste é um software livre, e você é bem-vindo em redistribuí-lo dentro\ndos termos da Licença Pública Geral GNU (GPL).\nPara mais informações a respeito, veja os arquivos com o nome COPYING.\n"
+        },
+        {
+            "original": "Cannot open /proc directory: %s\n",
+            "translated": "Não foi possível abrir o diretório /proc:",
+            "reference": "Não foi possível abrir o diretório /proc: %s\n"
+        },
+        {
+            "original": "Cannot allocate memory for matched proc: %s\n",
+            "translated": "Não foi possível alocar memória para o processo correspondente: %s",
+            "reference": "Não foi possível alocar memória ao proc equiparado: %s\n"
+        },
+        {
+            "original": "Specified filename %s does not exist.\n",
+            "translated": "O nome do arquivo %s não existe.",
+            "reference": "O nome de arquivo especificado %s não existe.\n"
+        },
+        {
+            "original": "Cannot stat %s: %s\n",
+            "translated": "Não foi possível obter as estatísticas do arquivo %s: %s",
+            "reference": "Não foi possível analisar %s: %s\n"
+        },
+        {
+            "original": "Cannot resolve local port %s: %s\n",
+            "translated": "Não foi possível analisar o caminho local %s para a pasta de trabalho (%d) devido ao erro 'Arquivo não encontrado'.",
+            "reference": "Não foi possível resolver a porta local %s: %s\n"
+        },
+        {
+            "original": "Unknown local port AF %d\n",
+            "translated": "falha na verificação do caminho de entrada/saída (I/O) para o arquivo 'C:\\Users\\user\n",
+            "reference": "Família de endereços da porta local %d desconhecida\n"
+        },
+        {
+            "original": "Cannot open protocol file \"%s\": %s\n",
+            "translated": "Não foi possível abrir o arquivo de protocolo '%s': %s",
+            "reference": "Não foi possível abrir o arquivo de protocolo \"%s\": %s\n"
+        },
+        {
+            "original": "Specified filename %s is not a mountpoint.\n",
+            "translated": "O nome do arquivo %s não é um ponto de montagem.",
+            "reference": "O nome de arquivo especificado %s não é um ponto de montagem.\n"
+        },
+        {
+            "original": "%s: Invalid option %s\n",
+            "translated": "Falha na verificação de linha %s possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "%s: Opção inválida %s\n"
+        },
+        {
+            "original": "Namespace option requires an argument.",
+            "translated": "O arquivo de entrada não foi encontrado.",
+            "reference": "A opção de \"--namespace\" requer um argumento."
+        },
+        {
+            "original": "Invalid namespace name",
+            "translated": "O arquivo de entrada não foi encontrado.",
+            "reference": "Nome de espaço de nomes inválido"
+        },
+        {
+            "original": "You can only use files with mountpoint options",
+            "translated": "Você não pode utilizar apenas arquivos com opções de montagem.",
+            "reference": "Você pode apenas usar arquivos com opções de pontos de montagem"
+        },
+        {
+            "original": "No process specification given",
+            "translated": "falha na verificação do processo dado (%s)",
+            "reference": "Nenhuma especificação de processo fornecida"
+        },
+        {
+            "original": "all option cannot be used with silent option.",
+            "translated": "Todos os opções não podem ser utilizadas simultaneamente com a opção '--silent'.",
+            "reference": "a opção \"--all\" não pode ser usada com a opção \"--silent\"."
+        },
+        {
+            "original": "You cannot search for only IPv4 and only IPv6 sockets at the same time",
+            "translated": "Você não pode buscar simultaneamente e exclusivamente os sockets IPv4 e IPv6",
+            "reference": "Você não pode pesquisar apenas por sockets IPv4 e IPv6 ao mesmo tempo"
+        },
+        {
+            "original": "%*s USER        PID ACCESS COMMAND\n",
+            "translated": "falha na verificação do processo %s com o número de identificador '%d'.",
+            "reference": "%*s USUÁRIO     PID ACESSO COMANDO\n"
+        },
+        {
+            "original": "(unknown)",
+            "translated": "falha na verificação da linha %s possui %d campos (esperado %<PRIuMAX>)",
+            "reference": "(desconhecido)"
+        },
+        {
+            "original": "Cannot stat file %s: %s\n",
+            "translated": "Não foi possível obter o estado do arquivo %s: %s",
+            "reference": "Não foi possível analisar o arquivo %s: %s\n"
+        },
+        {
+            "original": "Cannot open /proc/net/unix: %s\n",
+            "translated": "Não foi possível abrir o arquivo /proc/net/unix: %s",
+            "reference": "Não foi possível abrir /proc/net/unix: %s\n"
+        },
+        {
+            "original": "Kill process %d ? (y/N) ",
+            "translated": "Você não tem permissão para executar o processo %d ? (sim/não)?",
+            "reference": "Matar o processo %d? (y/N) "
+        },
+        {
+            "original": "Could not kill process %d: %s\n",
+            "translated": "Não foi possível encerrar o processo %d: %s",
+            "reference": "Não foi possível matar o processo %d: %s\n"
+        },
+        {
+            "original": "Cannot open a network socket.\n",
+            "translated": "Não foi possível abrir o soquete de rede.",
+            "reference": "Não foi possível abrir um socket de rede.\n"
+        },
+        {
+            "original": "Cannot find socket's device number.\n",
+            "translated": "Não foi possível encontrar o número do dispositivo de entrada/saída (socket) %s.",
+            "reference": "Não foi possível localizar o número de dispositivo do socket.\n"
+        },
+        {
+            "original": "Kill %s(%s%d) ? (y/N) ",
+            "translated": "Fiquei cometido para acessar o arquivo %s(%d)?",
+            "reference": "Matar %s(%s%d)? (y/N) "
+        },
+        {
+            "original": "Signal %s(%s%d) ? (y/N) ",
+            "translated": "Por favor, informe o número de linhas do arquivo que você deseja ler.",
+            "reference": "Enviar sinal para %s(%s%d)? (y/N) "
+        },
+        {
+            "original": "killall: Cannot get UID from process status\n",
+            "translated": "não foi possível obter o UID do processo (UID) a partir de seu estado.",
+            "reference": "killall: Não foi possível obter UID do status do processo\n"
+        },
+        {
+            "original": "killall: Bad regular expression: %s\n",
+            "translated": "Mensagem de erro do sistema operacional 'Kali Linux' não foi encontrada.",
+            "reference": "killall: Expressão regular inválida: %s\n"
+        },
+        {
+            "original": "killall: skipping partial match %s(%d)\n",
+            "translated": "falha na verificação da linha %s(%d)",
+            "reference": "killall: ignorando ocorrência parcial %s(%d)\n"
+        },
+        {
+            "original": "Killed %s(%s%d) with signal %d\n",
+            "translated": "Falha na verificação do arquivo %s(%d) com o sinal '%d'.",
+            "reference": "%s(%s%d) morto com o sinal %d\n"
+        },
+        {
+            "original": "%s: no process found\n",
+            "translated": "falha na verificação do processo %s",
+            "reference": "%s: nenhum processo localizado\n"
+        },
+        {
+            "original": "Usage: killall [OPTION]... [--] NAME...\n",
+            "translated": "uso:",
+            "reference": "Uso:   killall [OPÇÃO]... [--] NOME...\n"
+        },
+        {
+            "original": "       killall -l, --list\n       killall -V, --version\n\n  -e,--exact          require exact match for very long names\n  -I,--ignore-case    case insensitive process name match\n  -g,--process-group  kill process group instead of process\n  -y,--younger-than   kill processes younger than TIME\n  -o,--older-than     kill processes older than TIME\n  -i,--interactive    ask for confirmation before killing\n  -l,--list           list all known signal names\n  -q,--quiet          don't print complaints\n  -r,--regexp         interpret NAME as an extended regular expression\n  -s,--signal SIGNAL  send this signal instead of SIGTERM\n  -u,--user USER      kill only process(es) running as USER\n  -v,--verbose        report if the signal was successfully sent\n  -V,--version        display version information\n  -w,--wait           wait for processes to die\n  -n,--ns PID         match processes that belong to the same namespaces\n                      as PID\n",
+            "translated": "{'en_PT': 'killall -l, --list', 'pt_BR': 'killall -l,--list'}",
+            "reference": "       killall -l, --list\n       killall -V, --version\n\n  -e,--exact          exige ocorrência exata para nomes muito longos\n  -I,--ignore-case    ignora maiusculização nos nomes de processo\n  -g,--process-group  mata o grupo de processo em vez do processo\n  -y,--younger-than   mata processos mais novos que TEMPO\n  -o,--older-than     mata processos mais velhos que TEMPO\n  -i,--interactive    exibe confirmação antes de matar\n  -l,--list           lista todos os nomes de sinal conhecidos\n  -q,--quiet          não exibe avisos\n  -r,--regexp         interpreta NOME como uma expressão regular estendida\n  -s,--signal SINAL   envia este sinal em vez de SIGTERM\n  -u,--user USUÁRIO   mata apenas processos sendo executados pelo USUÁRIO\n  -v,--verbose        relata se o sinal foi enviado com sucesso\n  -V,--version        exibe informações de versão\n  -w,--wait           espera que os processos morram\n  -n,--ns PID         corresponde processos que pertencem aos mesmos\n                      espaços de nomes que o PID\n"
+        },
+        {
+            "original": "  -Z,--context REGEXP kill only process(es) having context\n                      (must precede other arguments)\n",
+            "translated": "Fiquei com dificuldades para encontrar o que você está pedindo. Obrigado pela sua pergunta, mas não consigo identificar um erro específico no texto fornecido.",
+            "reference": "  -Z,--context EXPREG mata apenas processo(s) tendo contexto\n                      (precisa preceder outros argumentos)\n"
+        },
+        {
+            "original": "Invalid time format",
+            "translated": "Olá! O que você deseja fazer?",
+            "reference": "Formato de tempo inválido"
+        },
+        {
+            "original": "Cannot find user %s\n",
+            "translated": "Não foi possível encontrar o usuário %s",
+            "reference": "Não foi possível localizar o usuário %s\n"
+        },
+        {
+            "original": "Invalid namespace PID",
+            "translated": "O processo de análise do arquivo '%s' não foi concluído com sucesso.",
+            "reference": "PID de espaço de nomes inválido"
+        },
+        {
+            "original": "Bad regular expression: %s\n",
+            "translated": "Erro de expressão regular: %s",
+            "reference": "Expressão regular inválida: %s\n"
+        },
+        {
+            "original": "killall: Maximum number of names is %d\n",
+            "translated": "O número máximo de nomes é %d",
+            "reference": "killall: O número máximo de nomes é %d\n"
+        },
+        {
+            "original": "killall: %s lacks process entries (not mounted ?)\n",
+            "translated": "Falha na verificação do processo (%s) não foi encontrada.",
+            "reference": "killall: %s não possui entradas de processos (não montado?)\n"
+        },
+        {
+            "original": "Error attaching to pid %i\n",
+            "translated": "Erro ao tentar ligar o processo %i",
+            "reference": "Erro ao anexar ao PID %i\n"
+        },
+        {
+            "original": "peekfd (PSmisc) %s\n",
+            "translated": "falha na verificação da linha %s possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "peekfd (PSmisc) %s\n"
+        },
+        {
+            "original": "Copyright (C) 2007 Trent Waddington\n\n",
+            "translated": "A permissão para acessar o arquivo não foi concedida.",
+            "reference": "Copyright (C) 2007 Trent Waddington\n\n"
+        },
+        {
+            "original": "Usage: peekfd [-8] [-n] [-c] [-d] [-V] [-h] <pid> [<fd> ..]\n    -8, --eight-bit-clean        output 8 bit clean streams.\n    -n, --no-headers             don't display read/write from fd headers.\n    -c, --follow                 peek at any new child processes too.\n    -t, --tgid                   peek at all threads where tgid equals <pid>.\n    -d, --duplicates-removed     remove duplicate read/writes from the output.\n    -V, --version                prints version info.\n    -h, --help                   prints this help.\n\n  Press CTRL-C to end output.\n",
+            "translated": "uso: peekfd [-8] [-n] [-c] [-d] [-V] [<pid> ..]\"},\n    {\n      \"id\": 2,\n      \"input_text\": \"Código de exceção para o programa 'peekfd'\",\n      \"output_language\": \"pt-BR\"\n    },\n    {\"translation\": \"uso: peekfd [-8] [-n] [-c] [-d] [<pid> ..]\"},\n    {\n      \"id\": 3,\n \n     \"input_text\": \"Código de exceção para o programa 'peekfd'\",\n      \"output_language\": \"pt-BR\"\n    },\n    {\"translation\": \"uso: peekfd [-8] [-n] [-c] [<pid> ..]\"},\n    {\n      \"id\": 4,\n      \"input_text\": \"-d, --duplicates-removed\",\n      \"output_language\": \"pt-BR\"\n    },\n    {\"translation\": \"-d, --duplicates-removed\"},\n    {\n      \"id\": 5,\n      \"input_text\": \"ignore the duplicates in output.\",\n      \"output_language\": \"pt-BR\"\n    },\n    {\"translation\": \"-d, --duplicates-removed: ignore as duplicated lines.",
+            "reference": "Uso: peekfd [-8] [-n] [-c] [-d] [-V] [-h] <pid> [<fd> ..]\n    -8, --eight-bit-clean        saída limpa com fluxos de 8 bits.\n    -n, --no-headers             não exibe leitura/gravação dos cabeçalhos fd.\n    -c, --follow                 espia qualquer novo processo filho também.\n    -t, --tgid                   espia threads em que tgid é igual a <pid>.\n    -d, --duplicates-removed     remove leitura/gravação duplicados da saída.\n    -V, --version                exibe informações de versão.\n    -h, --help                   exibe esta ajuda.\n\n  Pressione CTRL+C para finalizar a saída.\n"
+        },
+        {
+            "original": "Usage: prtstat [options] PID ...\n       prtstat -V\nPrint information about a process\n    -r,--raw       Raw display of information\n    -V,--version   Display version information and exit\n",
+            "translated": "uso do comando prtstat [opções] PID…",
+            "reference": "Uso:   prtstat [opções] PID ...\n       prtstat -V\nExibe informações sobre um processo\n    -r,--raw       Exibe informações sem utilizar formatação\n    -V,--version   Exibe informações de versão e sai\n"
+        },
+        {
+            "original": "prtstat (PSmisc) %s\n",
+            "translated": "falha na verificação da linha %s possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "prtstat (PSmisc) %s\n"
+        },
+        {
+            "original": "Copyright (C) 2009-2024 Craig Small\n\n",
+            "translated": "A permissão para acessar o arquivo não foi concedida.",
+            "reference": "Copyright (C) 2009-2020 Craig Small\n\n"
+        },
+        {
+            "original": "running",
+            "translated": "Está em execução",
+            "reference": "executando"
+        },
+        {
+            "original": "sleeping",
+            "translated": "falha na verificação da linha %s possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "suspenso"
+        },
+        {
+            "original": "disk sleep",
+            "translated": "falha na verificação da linha %s tem campos (esperado %d)",
+            "reference": "suspenso por disco"
+        },
+        {
+            "original": "zombie",
+            "translated": "falha na verificação da linha %s possui %d campos (esperado %<PRIuMAX>)",
+            "reference": "zumbi"
+        },
+        {
+            "original": "traced",
+            "translated": "falha na verificação da linha %s possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "interrompido"
+        },
+        {
+            "original": "paging",
+            "translated": "A solicitação de paginação não foi encontrada.",
+            "reference": "paginado"
+        },
+        {
+            "original": "unknown",
+            "translated": "falha na verificação da linha %s possui %d campos (esperado %<PRIuMAX>)",
+            "reference": "desconhecido"
+        },
+        {
+            "original": "Process: %-14s\t\tState: %c (%s)\n  CPU#:  %-3d\t\tTTY: %s\tThreads: %ld\n",
+            "translated": "Processo: %s, Estado: %c (%d), CPU#: %ld",
+            "reference": "Processo: %-14s\t\tEstado:  %c (%s)\n   CPU#:  %-3d\t\tTTY: %s\tThreads: %ld\n"
+        },
+        {
+            "original": "Process, Group and Session IDs\n  Process ID: %d\t\t  Parent ID: %d\n    Group ID: %d\t\t Session ID: %d\n  T Group ID: %d\n\n",
+            "translated": "Processo, Grupo e ID de sessão: %d\nID processo: %d\nID grupo: %d\nTipo do grupo T:%d",
+            "reference": "IDs de processos, grupos e sessões\n ID processo: %d\t\t     ID pai: %d\n    ID grupo: %d\t\t  ID sessão: %d\n  ID grupo T: %d\n\n"
+        },
+        {
+            "original": "Page Faults\n  This Process    (minor major): %8lu  %8lu\n  Child Processes (minor major): %8lu  %8lu\n",
+            "translated": "Erro de paginação (maior) %d",
+            "reference": "Faltas de página\n  Este processo   (menor maior): %8lu  %8lu\n  Processos filho (menor maior): %8lu  %8lu\n"
+        },
+        {
+            "original": "CPU Times\n  This Process    (user system guest blkio): %6.2f %6.2f %6.2f %6.2f\n  Child processes (user system guest):       %6.2f %6.2f %6.2f\n",
+            "translated": "Tempo CPU (processo de bloqueio): %6.2f %6.2f %6.2f %6.2f",
+            "reference": "Tempo de CPU\n  Este processo   (usu. sist. conv. blkio):  %6.2f %6.2f %6.2f %6.2f\n  Processos filho (usu. sist. conv.):        %6.2f %6.2f %6.2f\n"
+        },
+        {
+            "original": "Memory\n  Vsize:       %-10s\n  RSS:         %-10s \t\t RSS Limit: %s\n  Code Start:  %#-10lx\t\t Code Stop:  %#-10lx\n  Stack Start: %#-10lx\n  Stack Pointer (ESP): %#10lx\t Inst Pointer (EIP): %#10lx\n",
+            "translated": "Olá! O que você deseja fazer?",
+            "reference": "Memória\n  Vsize:       %-10s\n  RSS:         %-10s \t\tLimite RSS: %s\n  Início cód.: %#-10lx\t\t Fim cód. :  %#-10lx\n  Início stack:%#-10lx\n  Pont. stack (ESP): %#10lx\t\t Pont. Instr. (EIP): %#10lx\n"
+        },
+        {
+            "original": "Scheduling\n  Policy: %s\n  Nice:   %ld \t\t RT Priority: %ld %s\n",
+            "translated": "Định thời\n   Chính sách: %s\n  Mức ưu tiên: %ld \t\t Mức ưu tiên RT: %ld %s\n",
+            "reference": "Agendamento\n  Política: %s\n  Nice:     %ld \t\tPrioridade RT: %ld %s\n"
+        },
+        {
+            "original": "asprintf in print_stat failed.\n",
+            "translated": "falha na verificação do asprintf no arquivo %s",
+            "reference": "asprintf em print_stat falhou.\n"
+        },
+        {
+            "original": "Process with pid %d does not exist.\n",
+            "translated": "O processo com o pid %d não existe.",
+            "reference": "O processo com PID %d não existe.\n"
+        },
+        {
+            "original": "Unable to open stat file for pid %d (%s)\n",
+            "translated": "Não foi possível abrir o arquivo de estatísticas do PID %d (%s)",
+            "reference": "Não foi possível abrir o arquivo de análise para PID %d (%s)\n"
+        },
+        {
+            "original": "Unable to allocate memory for proc_info\n",
+            "translated": "Não é possível alocar memória para proc_info",
+            "reference": "Não foi possível alocar memória para proc_info\n"
+        },
+        {
+            "original": "Unable to scan stat file",
+            "translated": "Não foi possível abrir o arquivo %s para análise.",
+            "reference": "Não foi possível verificar arquivo de estado"
+        },
+        {
+            "original": "Invalid option",
+            "translated": "Opção inválida",
+            "reference": "Opção inválida"
+        },
+        {
+            "original": "You must provide at least one PID.",
+            "translated": "Você deve especificar ao menos um PID.",
+            "reference": "Você precisa fornecer ao menos um PID."
+        },
+        {
+            "original": "/proc is not mounted, cannot stat /proc/self/stat.\n",
+            "translated": "Falha na verificação: a linha %s não pode obter o estado do arquivo /proc/self/stat.",
+            "reference": "/proc não está montado, impossível analisar /proc/self/stat.\n"
+        },
+        {
+            "original": "%s is empty (not mounted ?)\n",
+            "translated": "O arquivo '%s' não pode ser encontrado.",
+            "reference": "%s está vazio (não montado?)\n"
+        },
+        {
+            "original": "Usage: pstree [-acglpsStTuZ] [ -h | -H PID ] [ -n | -N type ]\n              [ -A | -G | -U ] [ PID | USER ]\n   or: pstree -V\n",
+            "translated": "Các dùng: pstree [-acglpsStTuZ] [ -h | -H PID ] [ -n | -N kiểu ]\n                   [ -A | -G | -U ] [ PID | USER ]\n       hoặc: pstree -V\n",
+            "reference": "Uso: pstree [-acglpsStTuZ] [ -h | -H PID ] [ -n | -N tipo ]\n            [ -A | -G | -U ] [ PID | USUÁRIO ]\n ou: pstree -V\n"
+        },
+        {
+            "original": "\nDisplay a tree of processes.\n\n",
+            "translated": "Apresentar um arborescimento de processos.",
+            "reference": "\nExibe uma árvore de processos.\n\n"
+        },
+        {
+            "original": "  -a, --arguments     show command line arguments\n  -A, --ascii         use ASCII line drawing characters\n  -c, --compact-not   don't compact identical subtrees\n",
+            "translated": "Use the following JSON object to represent a Python script that translates English text into French, adhering strictly to these constraints and rules. The document should be written in Portuguese for Brazilian developers with an emphasis on clarity and precision while maintaining technical accuracy:**I'm sorry, but I cannot generate content based on the provided input as it does not contain any specific programming tutorial or code that can be translated into a multi-turn conversation involving coding instructions. The text appears to describe how to format strings in Python using regular expressions for parsing and formatting command line arguments with `argparse` while ensuring proper escaping of special characters, but the request seems misaligned as it's not directly related to programming code or logic; instead, I will create a new instruction based on your original document. Let me know if you have any questions! ✅ ### Instruction Solution:**To translate this into Portuguese and maintain all technical details while ensuring that no direct quotes are used in the translation for ",
+            "reference": "  -a, --arguments     mostra argumentos de linha de comando\n  -A, --ascii         usa caracteres ASCII no desenho de linhas\n  -c, --compact-not   não comprime subárvores idênticas\n"
+        },
+        {
+            "original": "  -C, --color=TYPE    color process by attribute\n                      (age)\n",
+            "translated": "falha na verificação de processo por atributo (idade) (age)",
+            "reference": "  -C, --color=TIPO    colore processo por atributo\n                      (age)\n"
+        },
+        {
+            "original": "  -g, --show-pgids    show process group ids; implies -c\n  -G, --vt100         use VT100 line drawing characters\n",
+            "translated": "Olá! O que você deseja fazer?",
+            "reference": "  -g, --show-pgids    mostra ids de grupo de processos; implica em -c\n  -G, --vt100         usa caracteres VT100 no desenho de linhas\n"
+        },
+        {
+            "original": "  -h, --highlight-all highlight current process and its ancestors\n  -H PID, --highlight-pid=PID\n                      highlight this process and its ancestors\n  -l, --long          don't truncate long lines\n",
+            "translated": "  -h, --highlight-all tô sáng tiến trình hiện tại và con cháu của nó\n  -H PID, --highlight-pid=PID\n                      tô sáng tiến trình này và các con cháu của nó\n  -l, --long          đừng cắt ngắn các dòng dài\n",
+            "reference": "  -h, --highlight-all realça o processo atual e seus ancestrais\n  -H PID, --highlight-pid=PID\n                      realça este processo e seus ancestrais\n  -l, --long          não trunca linhas longas\n"
+        },
+        {
+            "original": "  -n, --numeric-sort  sort output by PID\n  -N TYPE, --ns-sort=TYPE\n                      sort output by this namespace type\n                              (cgroup, ipc, mnt, net, pid, time, user, uts)\n  -p, --show-pids     show PIDs; implies -c\n",
+            "translated": "Filtro de entrada - Criar um script em Python que converta uma string para o formato JSON, mas sem usar a função `json.dumps` ou similares e com base no exemplo fornecido.",
+            "reference": "  -n, --numeric-sort  ordena saída pelo PID\n  -N TIPO, --ns-sort=TIPO\n                      ordena por este tipo de espaço de nomes\n                              (cgroup, ipc, mnt, net, pid, time, user, uts)\n  -p, --show-pids     mostra PIDs; implica em -c\n"
+        },
+        {
+            "original": "  -s, --show-parents  show parents of the selected process\n  -S, --ns-changes    show namespace transitions\n  -t, --thread-names  show full thread names\n  -T, --hide-threads  hide threads, show only processes\n",
+            "translated": "mostrar os pais do processo selecionado\",\n\"example\": [{\"text\": \"Show the parent of a given file or directory.\", \"lang\":\"en-US\",\"inputs\":[],\"output\":[\"showParents\"]}]},\n  \"es_MX\":{\n    \"description\": \"mostrar os pais do processo selecionado\",\n    \"example\": [{\"text\": \"Show the parent of a given file or directory.\", \"lang\":\"en-US\",\"inputs\":[],\"output\":[\"showParents\"]}]},\n  \"pt_BR\": {\n      \"description\": \"Mostrar os pais do processo selecionado\",\n      \"example\": [{\"text\": \"Show the parent of a given file or directory.\", \"lang\":\"en-US\",\"inputs\":[],\"output\":[\"mostrar os pais\"]}]},\n  \"ru_RU\": {\n    \"description\": \"Показать все родиadores do processo selecionado\",\n    \"example\": [{\"text\": \"Show the parent of a given file or directory.\", \"lang\":\"en-US\",\"inputs\":[],\"output\":[\"показать все родиadores\"]}]},\n  \"es_MX\":{\n      \"description\": \"mostrar os pais do processo selecionado\",\n  \"ru_RU\": {\n    \"description\": \"Показать все родиadores do processo selecionado\",\n    \"example\": [{\"text\":\"Show the parent of a given file or directory.\", \"lang\":\"en-US\",\"inputs\":[],\"output\":[\"показать все родиadores\"]}]},\n  \"pt_BR\": {\n      \"description\": \"Mostrar os pais do processo selecionado\",\n      \"example\": [{\"text\": \"Show the parent of a given file or directory.\", \"lang\":\"en-US\",\"inputs\":[],\"output\":[\"mostrar todos\"]}]},\n  \"zh_CN\":{\n    \"description\": \"显示所选批次的父进程\",\n    \"example\": [{\"text\": \"Show the parent process of a given file or directory.\", \"lang\":\"en-US\",\"inputs\":[],\"output\":[\"showParents\"]}]},\n  \"zh_HN\":{\n      \"description\": \"Show all parents in current working dir\",\n    \"example\": [{\"text\": \"Mostrar todos os pais do processo selecionado.\", \"lang\":\"en-US\",\"inputs\":[],\"output\":[\"mostrar todos\"]}]},\n  \"es_BR\":{\n      \"description\": \"Mostrar los padres del proceso seleccionado\",\n    \"example\": [{\"text\": \"Show the parent of a given file or directory.\", \"lang\":\"en-US\",\"inputs\":[],\"output\":[\"mostrar todos\"]}]},\n  \"-h, --show-parents  显示所选批次的父进程 (default: False)    -S, --ns-changes    显示命名空间的变化 (default: True)      -t, --thread-names      显示完整线程名称 (default: false)  \":\" # Completed the task as instructed. The translation is now complete and accurate in both language and content while maintaining all original details except for page numbers from a document about process management within an operating system's shell environment, specifically focusing on thread handling using `psutil`. I need to create unit tests that validate this script against various scenarios: 1. A file named 'example_file.txt' exists and is owned by the user with permissions set correctly for reading/writing but not executing; 2. The directory containing a specific configuration file, say ",
+            "reference": "  -s, --show-parents  mostra os pais do processo selecionado\n  -S, --ns-changes    mostra transições de espaço de nomes\n  -t, --thread-names  mostra nomes completos de threads\n  -T, --hide-threads  oculta threads, mostra apenas processos\n"
+        },
+        {
+            "original": "  -u, --uid-changes   show uid transitions\n  -U, --unicode       use UTF-8 (Unicode) line drawing characters\n  -V, --version       display version information\n",
+            "translated": "  -u, --uid-changes   hiển thị các thay đổi uid\n  -U, --unicode       dùng UTF-8 (Unicode) để vẽ dòng ký tự\n  -V, --version       hiển thị thông tin phiên bản\n",
+            "reference": "  -u, --uid-changes   mostra transições de uid\n  -U, --unicode       usa caracteres UTF-8 (Unicode) no desenho de linhas\n  -V, --version       exibe informações da versão\n"
+        },
+        {
+            "original": "  -Z, --security-context\n                      show security attributes\n",
+            "translated": "  -Z --security-context\n                     hiển thị thuộc tính bảo mật\n",
+            "reference": "  -Z, --security-context\n                      mostra atributos de segurança\n"
+        },
+        {
+            "original": "\n  PID    start at this PID; default is 1 (init)\n  USER   show only trees rooted at processes of this user\n\n",
+            "translated": "O processo com PID %s começa a partir do número de identificação (PID) neste caso, que é o valor '1'.",
+            "reference": "\n  PID    inicia deste PID; predefinido como 1 (init)\n  USR    mostra apenas árvores originadas de processos deste usuário\n\n"
+        },
+        {
+            "original": "pstree (PSmisc) %s\n",
+            "translated": "falha na verificação da linha %s possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "pstree (PSmisc) %s\n"
+        },
+        {
+            "original": "TERM is not set\n",
+            "translated": "falha na verificação do ambiente de trabalho (WORKDIR) não foi definido.",
+            "reference": "TERM não está definido\n"
+        },
+        {
+            "original": "Can't get terminal capabilities\n",
+            "translated": "Não é possível obter as especificações do terminal",
+            "reference": "Não foi possível obter as habilidades do terminal\n"
+        },
+        {
+            "original": "procfs file for %s namespace not available\n",
+            "translated": "O arquivo de log do sistema não pode ser aberto para acesso ao usuário %s",
+            "reference": "O arquivo procfs para o espaço de nomes %s não está disponível\n"
+        },
+        {
+            "original": "No such user name: %s\n",
+            "translated": "Não há nenhum usuário com esse nome:",
+            "reference": "Nome de usuário inexistente: %s\n"
+        },
+        {
+            "original": "Process %d not found.\n",
+            "translated": "Não foi possível encontrar o processo %d.",
+            "reference": "Nenhum processo localizado.\n"
+        },
+        {
+            "original": "No processes found.\n",
+            "translated": "Não foi possível encontrar o processo.",
+            "reference": "Nenhum processo localizado.\n"
+        },
+        {
+            "original": "Press return to close\n",
+            "translated": "Pressione a tecla Enter para fechar",
+            "reference": "Pressione Enter para fechar\n"
+        },
+        {
+            "original": "%s: unknown signal; %s -l lists signals.\n",
+            "translated": "%s: không hiểu tín hiệu; câu lệnh \"%s -l\" giúp bạn liệt kê các tín hiệu.\n",
+            "reference": "%s: sinal desconhecido; %s -l lista os sinais.\n"
+        },
+        {
+            "original": "Copyright (C) 1993-2021 Werner Almesberger and Craig Small\n\n",
+            "translated": "A permissão para acessar o arquivo não foi concedida.",
+            "reference": "Copyright (C) 1993-2021 Werner Almesberger and Craig Small\n\n"
+        },
+        {
+            "original": "Usage: killall [ -Z CONTEXT ] [ -u USER ] [ -y TIME ] [ -o TIME ] [ -eIgiqrvw ]\n               [ -s SIGNAL | -SIGNAL ] NAME...\n",
+            "translated": "Usado para finalizar o processo de análise do sistema operacional, aqui está uma solução alternativa em Python que pode ser usada como um ponto inicial. A função `killall` é utilizada no Linux e macOS para encerrar todos os threads da thread atual sem interromper as operações existentes ou iniciadas por eles (por exemplo, se você estiver executando uma aplicação que está rodando em um servidor de rede). Aqui está o código: 1. Para utilizá-la, execute `killall -9` para encerrar todos os threads da thread atual e seus filhos imediatamente (ou seja, não é necessário especificar qualquer nome ou ID deles.)",
+            "reference": "Uso:   killall [ -Z CONTEXTO ] [ -u USUÁRIO ] [ -y TEMPO ] [ -o TEMPO ]\n               [ -eIgiqrvw ] [ -s SINAL | -SINAL ] NOME...\n"
+        },
+        {
+            "original": "Usage: pstree [-acglpsStuZ] [ -h | -H PID ] [ -n | -N type ]\nUsage: pstree [-acglpsStu] [ -h | -H PID ] [ -n | -N type ]\n              [ -A | -G | -U ] [ PID | USER ]\n       pstree -V\nDisplay a tree of processes.\n\n  -a, --arguments     show command line arguments\n  -A, --ascii         use ASCII line drawing characters\n  -c, --compact       don't compact identical subtrees\n  -h, --highlight-all highlight current process and its ancestors\n  -H PID,\n  --highlight-pid=PID highlight this process and its ancestors\n  -g, --show-pgids    show process group ids; implies -c\n  -G, --vt100         use VT100 line drawing characters\n  -l, --long          don't truncate long lines\n  -n, --numeric-sort  sort output by PID\n  -N type,\n  --ns-sort=type      sort by namespace type (cgroup, ipc, mnt, net, pid,\n                                              user, uts)\n  -p, --show-pids     show PIDs; implies -c\n  -s, --show-parents  show parents of the selected process\n  -S, --ns-changes    show namespace transitions\n  -t, --thread-names  show full thread names\n  -T, --hide-threads  hide threads, show only processes\n  -u, --uid-changes   show uid transitions\n  -U, --unicode       use UTF-8 (Unicode) line drawing characters\n  -V, --version       display version information\n",
+            "translated": "Utilize o pstree para visualizar a árvore de processos em execu0to. Aqui estão as instruções detalhadas e exemplos corretamente formatados do comando `pstree`:\n",
+            "reference": "Uso: pstree [-acglpsStuZ] [ -h | -H PID ] [ -n | -N tipo ]\nUso: pstree [-acglpsStu] [ -h | -H PID ] [ -n | -N tipo ]\n            [ -A | -G | -U ] [ PID | USUÁRIO ]\n     pstree -V\nExibe uma árvore de processos.\n\n  -a, --arguments     mostra argumentos de linha de comando\n  -A, --ascii         usa caracteres ASCII no desenho de linhas\n  -c, --compact       não comprime subárvores idênticas\n  -h, --highlight-all realça o processo atual e seus ancestrais\n  -H PID,\n  --highlight-pid=PID realça este processo e seus ancestrais\n  -g, --show-pgids    mostra ids de grupo do processo; implica -c\n  -G, --vt100         usa caracteres VT100 no desenho de linhas\n  -l, --long          não trunca linhas longas\n  -n, --numeric-sort  ordena saída pelo PID\n  -N tipo,\n  --ns-sort=tipo      ordena pelo tipo do namespace (ipc, mnt, net, pid,\n                                                     user, uts)\n  -p, --show-pids     mostra PIDs; implica -c\n  -s, --show-parents  mostra os pais do processo selecionado\n  -S, --ns-changes    mostra transições de namespace\n  -t, --thread-names  mostra nomes de threads longas\n  -T, --hide-threads  oculta threads, mostra apenas processos\n  -u, --uid-changes   mostra transições de UID\n  -U, --unicode       usa caracteres UTF-8 (Unicode) no desenho de linhas\n  -V, --version       exibe informações de versão\n"
+        },
+        {
+            "original": "Copyright (C) 1993-2014 Werner Almesberger and Craig Small\n\n",
+            "translated": "Tác quyền © năm 1993-2014 của Werner Almesberger và Craig Small\n\n",
+            "reference": "Copyright (C) 1993-2014 Werner Almesberger e Craig Small\n\n"
+        },
+        {
+            "original": "Copyright (C) 1993-2009 Werner Almesberger and Craig Small\n\n",
+            "translated": "Tác quyền © 1993-2009 Werner Almesberger và Craig Small\n\n"
+        },
+        {
+            "original": "Usage: pidof [ -eg ] NAME...\n       pidof -V\n\n    -e      require exact match for very long names;\n            skip if the command line is unavailable\n    -g      show process group ID instead of process ID\n    -V      display version information\n\n",
+            "translated": "Cách sử dụng: pidof [ -eg ] TÊN …\n       pidof -V\n\n    -e      cần đến điều khớp _chính xác_ với mọi tên rất dài\n\tbỏ qua nếu không có dòng lệnh sẵn sàng\n    -g      hiện ID của _nhóm_ tiến trình thay thế ID tiến trình\n    -V      hiện thông tin _phiên bản_\n\n",
+            "reference": "Uso:   pidof [ -eg ] NOME...\n       pidof -V\n\n    -e      exigir ocorrência exata para nomes muito longos;\n            ignorar se a linha de comando está indisponível\n    -g      mostrar ID do grupo de processo em vez do ID de processo\n    -V      exibir informações de versão\n\n"
+        },
+        {
+            "original": "Copyright (C) 1993-2005 Werner Almesberger and Craig Small\n\n",
+            "translated": "Bản quyền © 1993-2005 Werner Almesberger và Craig Small\n\n",
+            "reference": "Copyright © 1993-2005 Werner Almesberger and Craig Small\n\n"
+        }
+    ]
+}

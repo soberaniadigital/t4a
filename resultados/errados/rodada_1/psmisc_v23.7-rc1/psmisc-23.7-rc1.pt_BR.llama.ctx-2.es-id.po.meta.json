@@ -1,0 +1,155 @@
+{
+    "job_info": {
+        "input_file": "/Users/viniciuscandeia/development/TCC/data/translations_sample/psmisc_v23.7-rc1/psmisc-23.7-rc1.de.po",
+        "output_file": "/Users/viniciuscandeia/development/TCC/resultados/context_levels_sample/psmisc_v23.7-rc1/psmisc-23.7-rc1.pt_BR.llama.ctx-2.es-id.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-10T22:00:11.197438",
+        "duration_seconds": 81.42,
+        "reference_file": "/Users/viniciuscandeia/development/TCC/data/translations_sample/psmisc_v23.7-rc1/psmisc-23.7-rc1.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": 8504559443697029588
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "ES",
+            "ID"
+        ],
+        "context_sentences_sample": {
+            "Specified filename %s does not exist.\n": {
+                "ES": "El nombre de fichero especificado %s no existe.\n",
+                "ID": "Nama berkas %s yang dispesifikasikan tidak ada.\n"
+            },
+            "Namespace option requires an argument.": {
+                "ES": "La opción de espacio de nombres requiere argumento.",
+                "ID": "Opsi nama ruang membutuhkan sebuah argumen."
+            },
+            "Invalid namespace name": {
+                "ES": "Nombre no válido de espacio de nombres",
+                "ID": "Nama ruang tidak valid"
+            },
+            "       killall -l, --list\n       killall -V, --version\n\n  -e,--exact          require exact match for very long names\n  -I,--ignore-case    case insensitive process name match\n  -g,--process-group  kill process group instead of process\n  -y,--younger-than   kill processes younger than TIME\n  -o,--older-than     kill processes older than TIME\n  -i,--interactive    ask for confirmation before killing\n  -l,--list           list all known signal names\n  -q,--quiet          don't print complaints\n  -r,--regexp         interpret NAME as an extended regular expression\n  -s,--signal SIGNAL  send this signal instead of SIGTERM\n  -u,--user USER      kill only process(es) running as USER\n  -v,--verbose        report if the signal was successfully sent\n  -V,--version        display version information\n  -w,--wait           wait for processes to die\n  -n,--ns PID         match processes that belong to the same namespaces\n                      as PID\n": {
+                "ES": "       killall -l, --list\n       killall -V, --version\n\n  -e,--exact          requiere coincidencia exacta para nombres muy largos\n  -I,--ignore-case    MAYÚS/minux indistinguibles para coincidencia de nombre\n                      del proceso\n  -g,--process-group  mata grupo de procesos de vez de proceso\n  -y,--younger-than   mata procesos más recientes que HORA\n  -o,--older-than     mata procesos más antiguos que HORA\n  -i,--interactive    pide confirmación antes de matar\n  -l,--list           lista todos los nombres de señales conocidas\n  -q,--quiet          no escribe quejas\n  -r,--regexp         interpreta NOMBRE como una expreg extendida\n  -s,--signal SEÑAL   envía esta señal en vez de SIGTERM\n  -u,--user USUARIO   mata solo proceso(s) ejecutándose como USUARIO\n  -v,--verbose        informa si la señal se ha enviado correctamente\n  -V,--version        muestra información sobre la versión\n  -w,--wait           espera a que los procesos mueran\n  -n,--ns PID         coincidencia con procesos que pertenecen al mismo\n                      espacio de nombres que PID\n",
+                "ID": "       killall -l, --list\n       killall -V, --version\n\n  -e,--exact          membutuhkan pencocokan tepat untuk setiap nama panjang\n  -I,--ignore-case    pencocokan nama proses tidak memperhatikan besar huruf\n  -g,--process-group  hentikan proses grup daripada proses\n  -y,--younger-than   hentikan proses lebih muda dari WAKTU\n  -o,--older-than     hentikan proses lebih tua dari WAKTU\n  -i,--interactive    tanya untuk konfirmasi sebelum menghentikan\n  -l,--list           daftar seluruh nama sinyal yang diketahui\n  -q,--quiet          jangan tampilkan komplain\n  -r,--regexp         interpretasikan NAMA sebagai sebuah ekstensi ekpresi regular\n  -s,--signal SINYAL  kirim sinyal ini daripada SIGTERM\n  -u,--user PENGGUNA  hentikan hanya proses yang berjalan sebagai PENGGUNA\n  -v,--verbose        laporkan jika sinyal telah secara sukses dikirimkan\n  -V,--version        tampilkan informasi versi\n  -w,--wait           tunggu untuk proses untuk mati\n  -n,--ns PID         cocokkan dengan proses milik ruang nama yang sama\n                      dengan PID\n"
+            },
+            "  -Z,--context REGEXP kill only process(es) having context\n                      (must precede other arguments)\n": {
+                "ES": "  -Z,--context EXPREG mata solo proceso(s) que tienen contexto\n                      (debe preceder a otros argumentos)\n",
+                "ID": "  -Z,--context REGEXP hanya hentikan proses yang memiliki konteks\n                      (harus mendahului argumen lain)\n"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 18,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct  9 2025, 16:16:55) [Clang 17.0.0 (clang-1700.6.3.2)]"
+    },
+    "translations": [
+        {
+            "original": "Specified filename %s does not exist.\n",
+            "translated": "Nome de arquivo %s não foi encontrado.",
+            "reference": "O nome de arquivo especificado %s não existe.\n"
+        },
+        {
+            "original": "Namespace option requires an argument.",
+            "translated": "A opção de espaço de nomes requer argumento.",
+            "reference": "A opção de \"--namespace\" requer um argumento."
+        },
+        {
+            "original": "Invalid namespace name",
+            "translated": "Nome ruach de espaço não válido",
+            "reference": "Nome de espaço de nomes inválido"
+        },
+        {
+            "original": "       killall -l, --list\n       killall -V, --version\n\n  -e,--exact          require exact match for very long names\n  -I,--ignore-case    case insensitive process name match\n  -g,--process-group  kill process group instead of process\n  -y,--younger-than   kill processes younger than TIME\n  -o,--older-than     kill processes older than TIME\n  -i,--interactive    ask for confirmation before killing\n  -l,--list           list all known signal names\n  -q,--quiet          don't print complaints\n  -r,--regexp         interpret NAME as an extended regular expression\n  -s,--signal SIGNAL  send this signal instead of SIGTERM\n  -u,--user USER      kill only process(es) running as USER\n  -v,--verbose        report if the signal was successfully sent\n  -V,--version        display version information\n  -w,--wait           wait for processes to die\n  -n,--ns PID         match processes that belong to the same namespaces\n                      as PID\n",
+            "translated": "       killall -l, --list\n       killall -V, --version\n\n--exact          requer coincidencia exacta para nomes muito longos\n-I,--ignore-case    diferencia entre MAYÚS e minux indistinguibles para coincidencia de nome do processo\n-g,--process-group  termina grupo de processos em vez de um único processo\n-y,--younger-than   termina processos mais recentes que HORA\n-o,--older-than     termina processos mais antigos que HORA\n-i,--interactive    solicita confirmação antes de matar\n-l,--list           lista todos os nomes conhecidos das sinuais\n-q,--quiet          não exibe notificações e erros\n-r,--regexp         interpreta NOMBRE como uma extensão do expressao regular\n-s,--signal SIGNAL  envia esta sinaula em vez de SIGTERM\n-u,--user USER      termina apenas processos que estão executando como este usuário específico\n-v,--verbose        exibe se a sinua foi enviada com sucesso\n-V,--version        mostra informações sobre versão\n-w,--wait           espera os processos terminarem antes de sair do terminal\n-n,--ns PID         termina apenas processos que pertencem ao mesmo espaço nominal como este PID",
+            "reference": "       killall -l, --list\n       killall -V, --version\n\n  -e,--exact          exige ocorrência exata para nomes muito longos\n  -I,--ignore-case    ignora maiusculização nos nomes de processo\n  -g,--process-group  mata o grupo de processo em vez do processo\n  -y,--younger-than   mata processos mais novos que TEMPO\n  -o,--older-than     mata processos mais velhos que TEMPO\n  -i,--interactive    exibe confirmação antes de matar\n  -l,--list           lista todos os nomes de sinal conhecidos\n  -q,--quiet          não exibe avisos\n  -r,--regexp         interpreta NOME como uma expressão regular estendida\n  -s,--signal SINAL   envia este sinal em vez de SIGTERM\n  -u,--user USUÁRIO   mata apenas processos sendo executados pelo USUÁRIO\n  -v,--verbose        relata se o sinal foi enviado com sucesso\n  -V,--version        exibe informações de versão\n  -w,--wait           espera que os processos morram\n  -n,--ns PID         corresponde processos que pertencem aos mesmos\n                      espaços de nomes que o PID\n"
+        },
+        {
+            "original": "  -Z,--context REGEXP kill only process(es) having context\n                      (must precede other arguments)\n",
+            "translated": "  -Z,--context REGEXP interrompa apenas processos que possuem contexto (deve preceder outros argumentos)\n",
+            "reference": "  -Z,--context EXPREG mata apenas processo(s) tendo contexto\n                      (precisa preceder outros argumentos)\n"
+        },
+        {
+            "original": "Invalid time format",
+            "translated": "Formato de hora no válido",
+            "reference": "Formato de tempo inválido"
+        },
+        {
+            "original": "Cannot find user %s\n",
+            "translated": "O usuário %s não pode ser encontrado.",
+            "reference": "Não foi possível localizar o usuário %s\n"
+        },
+        {
+            "original": "Invalid namespace PID",
+            "translated": "Namensraum PID inválido",
+            "reference": "PID de espaço de nomes inválido"
+        },
+        {
+            "original": "Bad regular expression: %s\n",
+            "translated": "Expresão regular mal formada: %s",
+            "reference": "Expressão regular inválida: %s\n"
+        },
+        {
+            "original": "Copyright (C) 2009-2024 Craig Small\n\n",
+            "translated": "Copyright (C) 2009–2donde Small Craig em 2024.",
+            "reference": "Copyright (C) 2009-2020 Craig Small\n\n"
+        },
+        {
+            "original": "running",
+            "translated": "executando",
+            "reference": "executando"
+        },
+        {
+            "original": "Scheduling\n  Policy: %s\n  Nice:   %ld \t\t RT Priority: %ld %s\n",
+            "translated": "Política de Gerenciamento do Processo\n  Política: %s\n  Cortesia: %ld \tPrioridade RT: %ld %s",
+            "reference": "Agendamento\n  Política: %s\n  Nice:     %ld \t\tPrioridade RT: %ld %s\n"
+        },
+        {
+            "original": "Invalid option",
+            "translated": "opção inválida",
+            "reference": "Opção inválida"
+        },
+        {
+            "original": "  -h, --highlight-all highlight current process and its ancestors\n  -H PID, --highlight-pid=PID\n                      highlight this process and its ancestors\n  -l, --long          don't truncate long lines\n",
+            "translated": " -h, --highlight-all resalta o processo atual e seus antecessores\n -H PID, --highlight-pid=PID\n                      destaca este processo e seus antecessores\n -l, --long          não corte as linhas longas",
+            "reference": "  -h, --highlight-all realça o processo atual e seus ancestrais\n  -H PID, --highlight-pid=PID\n                      realça este processo e seus ancestrais\n  -l, --long          não trunca linhas longas\n"
+        },
+        {
+            "original": "\n  PID    start at this PID; default is 1 (init)\n  USER   show only trees rooted at processes of this user\n\n",
+            "translated": "PID     iniciar este PID; valor padrão é 1 (init)\nUSUARIO mostra apenas árvores de processos cujas raízes são em processos deste usuário.",
+            "reference": "\n  PID    inicia deste PID; predefinido como 1 (init)\n  USR    mostra apenas árvores originadas de processos deste usuário\n\n"
+        },
+        {
+            "original": "pstree (PSmisc) %s\n",
+            "translated": "pstree (PSmisc) %s\n",
+            "reference": "pstree (PSmisc) %s\n"
+        },
+        {
+            "original": "No such user name: %s\n",
+            "translated": "Não há usuário com esse nome de usuário: %s",
+            "reference": "Nome de usuário inexistente: %s\n"
+        },
+        {
+            "original": "Press return to close\n",
+            "translated": "Pressione Enter para fechar",
+            "reference": "Pressione Enter para fechar\n"
+        }
+    ]
+}

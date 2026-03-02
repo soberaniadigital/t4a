@@ -1,0 +1,921 @@
+original,translated,reference,context_languages,strategy,comet,chrf,bleu,ter,bertscore
+invalid argument %s for %s,argumento %s invÃ¡lido para a opÃ§Ã£o %s,argumento inválido %s para %s,,LLAMA,77.74076461791992,50.2409854648115,14.923729480049115,80.0,74.07897114753723
+ambiguous argument %s for %s,argumento %s ambíguo para %s,argumento ambíguo %s para %s,,LLAMA,92.28426814079285,70.91549278334176,33.437015248821105,20.0,92.2233521938324
+Valid arguments are:,Os argumentos válidos são:,Argumentos válidos são:,,LLAMA,98.43652844429016,86.19589689046727,39.76353643835252,33.33333333333333,88.09451460838318
+write error,erro de escritura,erro de escrita,,LLAMA,96.11270427703857,80.71001833901845,55.03212081491043,33.33333333333333,96.32450342178345
+Unknown system error,Erro de sistema desconhecido,Erro desconhecido de sistema,,LLAMA,96.81670665740967,82.22337897609637,37.99178428257963,25.0,93.34007501602173
+"%s: option '%s%s' is ambiguous
+","%s: a opção '%s%s' é ambígua
+","%s: a opção ""%s%s"" é ambígua
+",,LLAMA,96.71453833580017,65.36890851965222,42.86982293646294,16.666666666666664,92.61655807495117
+%s: option '%s%s' is ambiguous; possibilities:,%s: a opção '%s%s' é ambígua; possibilidades:,"%s: a opção ""%s%s"" é ambígua; possibilidades:",,LLAMA,96.81451916694641,79.60010658927068,54.01152096367801,14.285714285714285,96.12218737602234
+"%s: unrecognized option '%s%s'
+",%s: opção '%s%s' não reconhecida.,"%s: opção desconhecida ""%s%s""
+",,LLAMA,90.89996218681335,52.678350590963795,30.66148710292676,75.0,87.96006441116333
+"%s: option '%s%s' doesn't allow an argument
+","%s: a opção '%s%s' não permite argumento
+","%s: a opção ""%s%s"" não permite um argumento
+",,LLAMA,96.35974168777466,64.2031572068712,37.32083238656446,25.0,92.81185865402222
+"%s: option '%s%s' requires an argument
+","%s: a opciÃ³n '%s%s' requer um argumento
+","%s: a opção ""%s%s"" exige um argumento
+",,LLAMA,92.8254783153534,47.437734668961546,28.863046226018728,42.857142857142854,81.44263029098511
+"%s: invalid option -- '%c'
+",%s: opção invÃ¡lida -- '%c',"%s: opção inválida -- ""%c""
+",,LLAMA,94.45218443870544,36.262330703208754,18.04438612975343,60.0,88.2588803768158
+"%s: option requires an argument -- '%c'
+",%s: a opção requer um argumento -- '%c',"%s: a opção exige um argumento -- ""%c""
+",,LLAMA,95.0945794582367,50.78988107630714,29.167552921712726,37.5,96.1072027683258
+`,`,“,,LLAMA,92.23870635032654,0.0,0.0,100.0,100.00003576278687
+',',”,,LLAMA,92.98043251037598,0.0,0.0,100.0,68.19586753845215
+Success,Conseguido,Sucesso,,LLAMA,81.35891556739807,7.518796992481204,0.0,100.0,78.32618355751038
+No match,Sem coincidência,Nenhuma ocorrência do padrão,,LLAMA,60.81234812736511,12.514954549654385,0.0,100.0,73.05382490158081
+Invalid regular expression,Ex ExpressÃ£o regular inválida,Expressão regular inválida,,LLAMA,62.69754767417908,74.13638138063415,31.947155212313625,66.66666666666666,83.43575596809387
+Invalid collation character,Caracter de colação inválido,Caractere de combinação inválido,,LLAMA,69.22707557678223,54.17564791212926,18.99589214128981,50.0,92.93521642684937
+Invalid character class name,Nome de classe invÃ¡lido,Nome inválido de categoria de caracteres,,LLAMA,61.543965339660645,19.659155315819792,11.521590992286539,66.66666666666666,76.6261100769043
+Trailing backslash,barra invertida no final,Barra invertida no final,,LLAMA,86.51422262191772,88.61921193916163,59.460355750136046,0.0,94.89543437957764
+Invalid back reference,Referência para atrás inválida,Retrorreferência inválida,,LLAMA,83.33098292350769,48.63414249621722,15.97357760615681,100.0,84.47086215019226
+"Unmatched [, [^, [:, [., or [=","Desemparelhado, [^, [:, o., = desemparejado","[, [^, [:, [. ou [= sem correspondente",,LLAMA,48.73998463153839,30.351137010733343,42.944948109279814,75.0,80.45196533203125
+Unmatched ( or \(,falha na desconexão do processo (desemparelhado),( ou \( sem correspondente,,LLAMA,39.85351026058197,12.577011077562297,5.522397783539471,100.0,63.61863613128662
+Unmatched \{,desemparelhado,\{ sem correspondente,,LLAMA,54.512566328048706,12.237669672608394,0.0,100.0,64.78327512741089
+Invalid content of \{\},Contenuto invÃ¡lido de \{\},Conteúdo inválido de \{\},,LLAMA,87.68935203552246,56.4710869948003,61.47881529512643,50.0,82.05991387367249
+Invalid range end,Ranking final inválido,Fim de intervalo inválido,,LLAMA,53.454357385635376,28.575192428720484,19.716118825581447,75.0,76.53065323829651
+Memory exhausted,Memória insuficiente,Memória esgotada,,LLAMA,83.53082537651062,33.228653606906335,49.99999999999999,50.0,84.01222229003906
+Invalid preceding regular expression,A expressÃ£o regular anterior é inválida,A expressão regular precedente é inválida,,LLAMA,88.92329335212708,52.24346352957178,19.304869754804482,33.33333333333333,87.06943988800049
+Premature end of regular expression,final prematuro da expressÃ£o regular,Fim prematuro da expressão regular,,LLAMA,58.62986445426941,66.75042618152739,23.643540225079384,40.0,75.17437934875488
+Regular expression too big,A expressão regular é muito grande.,Expressão regular grande demais,,LLAMA,72.03121185302734,52.83282727755893,7.809849842300637,100.0,76.6863763332367
+Unmatched ) or \),arquivo desempacotado,) ou \) sem correspondente,,LLAMA,39.5798534154892,11.194898084029822,0.0,100.0,64.05910849571228
+No previous regular expression,Não há nenhuma expressÃ£o regular anterior.,Nenhuma expressão regular anterior,,LLAMA,86.94517016410828,70.21617073754318,13.134549472120788,100.0,75.40857195854187
+^[yY],^[sS],^[+1SsyY],,LLAMA,88.24184536933899,18.03904923599321,27.534765745159184,100.0,86.43255233764648
+^[nN],^[nN],^[-0nN],,LLAMA,96.98173999786377,28.840813152632748,35.35533905932737,100.0,91.30476713180542
+"Packaged by %s (%s)
+",Embalado por %s (%s),"Empacotado por %s (%s)
+",,LLAMA,78.45812439918518,67.08198361085593,84.08964152537145,25.0,95.61264514923096
+"Packaged by %s
+",Embalado por %s,"Empacotado por %s
+",,LLAMA,77.76755690574646,54.4983270998222,59.460355750136046,33.33333333333333,93.48092675209045
+(C),Â©,(C),,LLAMA,78.34978699684143,0.0,0.0,100.0,71.79695963859558
+"License GPLv3+: GNU GPL version 3 or later <%s>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+","Licenciamento GPLv3+: Licença Pública Geral do GNU versão 3 ou posterior <%s>. Este é software livre. Você está livres de modificar e redistribuir o código fonte. Nenhuma garantia existe, até onde a lei permite.","Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>
+Este é um software livre: você é livre para alterá-lo e redistribuí-lo.
+NÃO HÁ QUALQUER GARANTIA, na máxima extensão permitida em lei.
+",,LLAMA,84.41051840782166,40.340344569571506,22.580433890796044,80.64516129032258,78.1303882598877
+"Written by %s.
+",Escrito por %s.,"Escrito por %s.
+",,LLAMA,98.86450171470642,100.0,100.00000000000004,0.0,100.00001192092896
+"Written by %s and %s.
+",Escrito por %s e %s.,"Escrito por %s e %s.
+",,LLAMA,98.28445315361023,100.0,100.00000000000004,0.0,100.00001192092896
+"Written by %s, %s, and %s.
+","Escrito por %s, %s e %s. 
+","Escrito por %s, %s, e %s.
+",,LLAMA,97.27108478546143,78.19529357205283,74.26141117870938,16.666666666666664,98.24777245521545
+"Written by %s, %s, %s,
+and %s.
+","Escrito por %s, %s, %s e %d. 
+Yo, %s.","Escrito por %s, %s, %s,
+e %s.
+",,LLAMA,91.3134515285492,77.46577048659216,59.08871032231054,42.857142857142854,90.1365578174591
+"Written by %s, %s, %s,
+%s, and %s.
+","Escrito por %s, %s, %s. 
+%s e %s.","Escrito por %s, %s, %s,
+%s, e %s.
+",,LLAMA,94.8948323726654,74.23112604916025,69.26989774939868,25.0,94.35946941375732
+"Written by %s, %s, %s,
+%s, %s, and %s.
+","Escrito por %s, %s, %s. 
+%s, %s e %s. 
+","Escrito por %s, %s, %s,
+%s, %s, e %s.
+",,LLAMA,94.94706988334656,73.45292201750252,72.62953340221206,22.22222222222222,94.49997544288635
+"Written by %s, %s, %s,
+%s, %s, %s, and %s.
+","Escrito por %s, %s, %s
+%s, %s, %s e %s.
+","Escrito por %s, %s, %s,
+%s, %s, %s, e %s.
+",,LLAMA,95.57998776435852,75.26248539279294,76.59884031836235,20.0,97.96441197395325
+"Written by %s, %s, %s,
+%s, %s, %s, %s,
+and %s.
+","Escrito por %s, %s, %s
+%s, %s, %s, %s
+y %s.
+","Escrito por %s, %s, %s,
+%s, %s, %s, %s,
+e %s.
+",,LLAMA,93.87741684913635,74.87652888809183,75.53175483185653,27.27272727272727,97.04688787460327
+"Written by %s, %s, %s,
+%s, %s, %s, %s,
+%s, and %s.
+","Escrito por %s, %s, %s
+%s, %s, %s, %s
+%s e %s.
+","Escrito por %s, %s, %s,
+%s, %s, %s, %s,
+%s, e %s.
+",,LLAMA,94.78291869163513,72.23157967024189,73.217393283289,25.0,97.36630916595459
+"Written by %s, %s, %s,
+%s, %s, %s, %s,
+%s, %s, and others.
+","Escrito por %s, %s, %s
+%s, %s, %s, %s
+%s, %s e outros.
+","Escrito por %s, %s, %s,
+%s, %s, %s, %s,
+%s, %s, e outros.
+",,LLAMA,93.51022839546204,73.51094485985412,74.0203705657524,23.076923076923077,98.04700016975403
+"Report bugs to: %s
+",Comunicar erros do programa para: %s,"Relate erros para: %s
+Relate erros de tradução para <https://translationproject.org/team/pt_BR.html>
+",,LLAMA,61.70240044593811,20.35954621812538,3.0006599964971663,80.0,70.43091058731079
+"Report %s bugs to: %s
+",Comunicar erros sobre %s ao destinatário específico ou grupo de usuários definido por %s.,"Relate erros do %s para: %s
+",,LLAMA,61.64918541908264,19.822918827560535,6.839596061560946,100.0,74.96947050094604
+"%s home page: <%s>
+",Página inicial do %s: <%s>,"Página do %s: <%s>
+",,LLAMA,95.33709287643433,74.42472426229594,78.25422900366438,25.0,96.81253433227539
+"General help using GNU software: <%s>
+",Ajuda geral sobre o uso de software GNU: <%s>,"Ajuda geral no uso de softwares GNU: <%s>
+",,LLAMA,96.1346685886383,73.72492321342918,47.037095938668976,37.5,95.66265344619751
+memory exhausted,memória insuficiente,memória esgotada,,LLAMA,86.19312644004822,33.228653606906335,49.99999999999999,50.0,84.80943441390991
+Disk Image,Imagem de Disco,Imagem de disco,,LLAMA,92.0000970363617,63.37242618492619,55.03212081491043,0.0,94.43600177764893
+Error opening %s: %s,Erro ao abrir %s: %s,Erro ao abrir %s: %s,,LLAMA,97.67854809761047,100.0,100.00000000000004,0.0,100.00002384185791
+Unable to open %s read-write (%s).  %s has been opened read-only.,Não é possível abrir %s no modo de leitura e escrita (%d). O arquivo foi aberto em modo somente leitura.,Não foi possível abrir %s para leitura e escrita (%s). %s foi aberto somente-leitura.,,LLAMA,84.95150208473206,60.886158145974115,27.40899731303482,78.57142857142857,88.57260346412659
+%s during seek for read on %s,%s durante a preparaÃ§Ã£o para leitura em %s,%s durante busca para leitura em %s,,LLAMA,77.11477875709534,71.25139556623398,52.53819788848316,28.57142857142857,86.63893938064575
+%s during read on %s,%s durante a leitura em %s,%s durante leitura em %s,,LLAMA,93.78259778022766,84.99653978144678,50.000000000000014,20.0,97.51999974250793
+"Can't write to %s, because it is opened read-only.","Não é possível escrever no %s, pois está aberto para leitura somente.","Não é possível escrever em %s, pois foi aberto como somente-leitura.",,LLAMA,89.00229930877686,60.6123808332437,34.79159475128446,45.45454545454545,93.36657524108887
+%s during seek for write on %s,%s durante a preparaÃ§Ã£o para a escrita em %s.,%s durante busca para escrita em %s,,LLAMA,76.67977213859558,58.77100854314242,31.702331385234313,57.14285714285714,82.59279131889343
+%s during write on %s,%s durante a escrita em %s,%s durante escrita em %s,,LLAMA,93.34406852722168,84.99653978144678,50.000000000000014,20.0,96.95652723312378
+"Try `%s --help' for more information.
+",Tente '%s --help' para mais informações.,"Tente ""%s --help"" para mais informações.
+",,LLAMA,96.67884707450867,74.35736293539898,33.010083098515025,33.33333333333333,97.45575189590454
+"Usage: %s [OPTION] [DEVICE]...
+","Modo de uso: %s [OPÇÃO] [DISPOSITIVOS]
+","Uso: %s [OPÇÃO] [DISPOSITIVO]...
+",,LLAMA,88.95561099052429,73.63949821009126,49.05378138718246,75.0,90.18309116363525
+"Inform the operating system about partition table changes.
+
+  -d, --dry-run    do not actually inform the operating system
+  -s, --summary    print a summary of contents
+  -h, --help       display this help and exit
+  -v, --version    output version information and exit
+","Informa ao sistema operacional sobre alterações na tabela de particionamento.
+
+ -d, --dry-run    não informa ao sistema operacional;
+ -s, --summary     mostra um resumo do conteúdo;
+ -h, --help       mostra esta ajuda e finaliza;
+ -v, --version    mostra informações de versão e finaliza.","Informa ao sistema operacional sobre alterações na tabela de partição.
+
+  -d, --dry-run    não chega a informar ao sistema operacional
+  -s, --summary    exibe um resumo do conteúdo
+  -h, --help       exibe esta ajuda e sai
+  -v, --version    mostra informações da versão e sai
+",,LLAMA,83.06493759155273,76.12134132945486,46.4033302814996,26.82926829268293,86.59906387329102
+"
+When no DEVICE is given, probe all partitions.
+","Quando nenhum dispositivo fornecido, analise todas as partições.","
+Quando nenhum DISPOSITIVO é informado, investiga todas as partições.
+",,LLAMA,74.15007948875427,49.817947347975235,29.377167835760567,33.33333333333333,82.79918432235718
+"
+Report bugs to <%s>.
+","Comunicar erros ao <%s>. 
+","
+Relate erros para <%s>.
+",,LLAMA,91.26885533332825,33.10326859871611,54.10822690539397,50.0,89.34400677680969
+Unable to open %s.,Não é possível abrir %s.,Não foi possível abrir %s.,,LLAMA,96.77112102508545,74.36139983610926,64.34588841607616,20.0,97.958242893219
+Unable to probe store.,Não é possível sondear a loja.,Não foi possível investigar armazenamento.,,LLAMA,75.56461095809937,25.428156208550913,8.643019616048525,80.0,82.05038905143738
+%s trying to sync %s to disk,%s tentando sincronizar %s no disco rígido,%s tentando sincronizar %s ao disco,,LLAMA,82.06728100776672,81.77331342340325,61.04735835807847,33.33333333333333,92.26394295692444
+Could not stat device %s - %s.,Não é possível executar `stat` no dispositivo %s - %s.,Não foi possível obter estado do dispositivo %s - %s.,,LLAMA,79.72596287727356,55.94194543048072,42.61082723917019,40.0,88.33714127540588
+Unable to determine the dm type of %s.,Não é possível determinar o tipo de dm do %s.,Não foi possível determinar o tipo dm de %s.,,LLAMA,91.18064641952515,71.62361380629892,33.521134190816646,33.33333333333333,96.05291485786438
+"Could not determine sector size for %s: %s.
+Using the default sector size (%lld).",Não foi possível determinar o tamanho do setor para %s: %s. O tamanho do sector é utilizado por omissÃ£o (%lld).,"Não foi possível determinar o tamanho do setor para %s: %s.
+Utilizando tamanho padrão do setor (%lld).",,LLAMA,75.4493772983551,74.68531855429703,65.18189960679543,41.17647058823529,89.47964310646057
+"Could not determine physical sector size for %s.
+Using the logical sector size (%lld).","NÃ£o foi possível determinar o tamanho do setor físico para %s. Utiliza-se, em vez disso, o tamanho do sector lógico (%lld).","Não foi possível determinar o tamanho do setor físico para %s.
+Utilizando tamanho do setor lógico (%lld).",,LLAMA,88.17933201789856,83.5594947612281,56.26311385960481,41.17647058823529,89.00105953216553
+Unable to determine the size of %s (%s).,Não é possível determinar o tamanho do arquivo %s (%d).,Não foi possível determinar tamanho de %s (%s).,,LLAMA,73.7009584903717,58.04692809922872,23.505204106959603,62.5,89.27843570709229
+Generic IDE,IDE Genérico,IDE genérico,,LLAMA,96.27346992492676,51.72077922077922,49.99999999999999,0.0,80.67302703857422
+Could not get identity of device %s - %s,Não é possível obter a identidade do dispositivo %s - %s.,Não foi possível obter a identificação do dispositivo %s - %s,,LLAMA,93.34378838539124,68.44135574643693,54.45178846139407,27.27272727272727,94.07115578651428
+"Device %s has multiple (%d) logical sectors per physical sector.
+GNU Parted supports this EXPERIMENTALLY for some special disk label/file system combinations, e.g. GPT and ext2/3.
+Please consult the web site for up-to-date information.","O dispositivo %s possui vários (%d) setores lógicos por cada setor físico. GNU Parted implementa isso de forma EXPERIMENTAL para algumas combinações especiais de etiqueta de disco/sistema de arquivos, como GPT e ext2/3. Por favor consulte o site web para informações atualizadas.","O dispositivo %s possui múltiplos setores lógicos (%d) por setores físicos.
+GNU Parted suporta isto de forma EXPERIMENTAL para alguns rótulos de disco/combinações de sistema de arquivos especiais, ex.: GPT e ext2/3.
+Por gentileza, consulte o site para informações atualizadas.",,LLAMA,84.00738835334778,66.65864488955799,39.303578860799306,42.5,91.78920388221741
+Error initialising SCSI device %s - %s,Erro ao iniciar o dispositivo SCSI %s - %s,Erro ao inicializar dispositivo SCSI %s - %s,,LLAMA,94.86510157585144,80.82846676138989,63.15552371794039,25.0,96.23098373413086
+The device %s is so small that it cannot possibly store a file system or partition table.  Perhaps you selected the wrong device?,O dispositivo %s é tão pequeno que não pode conter um sistema de arquivos ou tabulação de partições. Talvez ele tenha selecionado o dispositivo erroneamente?,O dispositivo %s é tão pequeno que possivelmente não pode armazenar um sistema de arquivos ou tabela de partições. Talvez você selecionou o dispositivo errado?,,LLAMA,90.92739224433899,70.47960349864306,50.10690128179971,28.000000000000004,91.87001585960388
+Unable to determine geometry of file/device %s.  You should not use Parted unless you REALLY know what you're doing!,"NÃ£o pode ser determinada a geometria do arquivo/dispositivo %s.  Â¡Não deveria utilizar Parted, salvo que REALMENTE se saiba o que está fazendo!",Não foi possível determinar a geometria do arquivo/dispositivo %s. Você não deveria utilizar o Parted a menos que você REALMENTE saiba o que está fazendo!,,LLAMA,78.64700555801392,64.39825916352217,45.37519286835208,48.0,87.49791979789734
+Generic SD/MMC Storage Card,Tarjeta de memoria (SD/MMC) genérica,Cartão de armazenamento genérico SD/MMC,,LLAMA,86.4959180355072,27.070503798876334,19.070828081828378,80.0,79.33735251426697
+NVMe Device,Dispositivo NVMe,Dispositivo NVMe,,LLAMA,98.85305762290955,100.0,100.00000000000004,0.0,99.99997615814209
+DAC960 RAID controller,Controladora RAID DAC960,Controlador RAID DAC960,,LLAMA,96.30634784698486,78.03365862100347,55.03212081491043,33.33333333333333,98.87595772743225
+Promise SX8 SATA Device,Dispositivo SATA Promise SX8,Dispositivo Promise SX8 SATA,,LLAMA,97.11834788322449,74.65509128552605,37.99178428257963,25.0,92.72608757019043
+ATA over Ethernet Device,Dispositivo ATA por Ethernet,ATA através de dispositivo Ethernet,,LLAMA,86.54455542564392,43.46919202676266,14.794015674776452,60.0,82.41692185401917
+IBM S390 DASD drive,Unidade DASD IBM S390,Unidade DASD IBM S390,,LLAMA,98.93094301223755,100.0,100.00000000000004,0.0,100.0
+IBM iSeries Virtual DASD,Disco virtual IBM iSeries DASD,DASD Virtual IBM iSeries,,LLAMA,84.28570628166199,70.55104051504749,23.643540225079384,50.0,88.79048824310303
+Compaq Smart Array,Estrutura Inteligente de Computador Compaq,Compaq Smart Array,,LLAMA,71.1034893989563,22.85948393229297,10.682175159905848,100.0,74.20102953910828
+ATARAID Controller,Controladora ATARAID,Controlador ATARAID,,LLAMA,94.35765147209167,67.29407459249474,49.99999999999999,50.0,98.52008819580078
+I2O Controller,Controladora I20,Controlador I2O,,LLAMA,92.10533499717712,56.742268140139394,0.0,100.0,88.69337439537048
+User-Mode Linux UBD,UBD de User-Mode Linux,Linux UBD modo usuário,,LLAMA,71.85433506965637,24.342857757137946,18.99589214128981,75.0,78.68536114692688
+Loopback device,Dispositivo de origem,Dispositivo loopback,,LLAMA,74.79509711265564,44.71466652013002,27.516060407455225,100.0,85.11834144592285
+Linux device-mapper (%s),Mapeador de dispositivos do Linux (%s),Mapeador de dispositivo Linux (%s),,LLAMA,91.12582802772522,85.9892595086306,51.33450480401705,40.0,95.57313323020935
+Xen Virtual Block Device,Dispositivo orientado a bloques virtual Xen,Dispositivo de bloco virtual Xen,,LLAMA,78.53178381919861,57.25148376161202,17.965205598154213,60.0,91.46199226379395
+Unknown,Desconhecida,Desconhecido,,LLAMA,94.57687735557556,76.3827045969903,0.0,100.0,74.57823157310486
+Virtio Block Device,Dispositivo orientado a bloques Virtio,Dispositivo de bloco Virtio,,LLAMA,67.25974678993225,48.08869743547369,12.703318703865365,75.0,89.05215859413147
+Linux Software RAID Array,Conjunto de Software RAID do Linux,Conjunto RAID por software Linux,,LLAMA,88.85805606842041,47.91776657305415,10.682175159905853,60.0,88.61045837402344
+ped_device_new()  Unsupported device type,ped_device_new() Tipo de dispositivo suportado,ped_device_new()  Tipo de dispositivo não suportado,,LLAMA,91.54210686683655,87.27176794276261,83.52052074548166,16.666666666666664,97.12496399879456
+Error fsyncing/closing %s: %s,Erro ao usar fsync ou fechar %s: %s,Erro ao chamar fsync/fechar %s: %s,,LLAMA,87.50617504119873,62.12607497147589,53.48259312838876,66.66666666666666,93.52821111679077
+%0.0send of file while reading %s,falha na leitura do arquivo durante a execução de %s. Erro ao finalizar o ficheiro.,%0.0s fim de arquivo enquanto lê %s,,LLAMA,57.078224420547485,19.52523378651444,5.10809933294318,100.0,73.09281826019287
+Error informing the kernel about modifications to partition %s -- %s.  This means Linux won't know about any changes you made to %s until you reboot -- so you shouldn't mount it or use it in any way before rebooting.,"Erro ao informar o núcleo sobre as modificaÃ§ÕES na participaÃ§Ã£o %s -- %s. Isso significa que Linux não reconhecerá nenhum alteramento feito em %s até que seja reiniciado - portanto, ele não pode montar ou utilizar a partição antes de ser reiniciada.",Erro ao informar ao kernel sobre alterações na partição %s -- %s. Isto significa que o Linux não saberá de qualquer alteração que você tenha feito em %s até que o computador seja reiniciado -- logo você não deve montá-lo ou usá-lo de maneira alguma antes de reiniciar.,,LLAMA,77.4955689907074,47.424007124475786,24.594748196973928,56.25,84.43082571029663
+Unable to determine the start and length of %s.,Não é possível determinar o início e tamanho do %s.,Não foi possível determinar o início e comprimento de %s.,,LLAMA,78.42488884925842,60.23597035850998,43.66835442847811,30.0,97.10443019866943
+"Partition(s) %s on %s have been written, but we have been unable to inform the kernel of the change, probably because it/they are in use.  As a result, the old partition(s) will remain in use.  You should reboot now before making further changes.","As participações dos(as) %s em(%e) se escreveram, mas não conseguimos informar ao núcleo do sistema ocorrido no uso. Portanto, as participações antigas permanecerÃ£-las.","As partição(ões) %s em %s foram escritas, mas não foi possível informar ao kernel sobre as alterações, provavelmente está(ão) em uso. Como resultado, a(s) partição(ões) antiga(s) permanecerá(ão) em uso.  Você deve reinicializar agora antes de realizar alterações posteriores.",,LLAMA,48.776376247406006,26.458283575723453,5.829032875552279,84.21052631578947,75.40861964225769
+Can't have the end before the start! (start sector=%jd length=%jd),Â¡Não é possível ter o fim da participação antes do início! (sector de início=%jd tamanho=%jd),Não é possível ter o fim antes do início! (setor inicial=%jd comprimento=%jd),,LLAMA,86.45598292350769,61.34952930524773,44.438146210688274,58.333333333333336,91.14598631858826
+Attempt to write sectors %ld-%ld outside of partition on %s.,Eles tentaram escrever os sectores %ld-%ld fora da participação no evento %s.,Tentativa de escrever setores %ld-%ld fora da partição em %s.,,LLAMA,64.52101469039917,56.23364855903509,36.821398145189974,70.0,86.74766421318054
+checking for bad blocks,verificando blocos incorretos,verificando por blocos defeituosos,,LLAMA,70.9035873413086,42.389745177103485,24.840753130578644,50.0,87.67669200897217
+"Backtrace has %d calls on stack:
+","Backtrace tem %d chamadas na pilha:
+","Backtrace possui %d chamadas na pilha:
+",,LLAMA,94.59932446479797,74.76301014576292,70.71067811865478,16.666666666666664,98.38153123855591
+Assertion (%s) at %s:%d in function %s() failed.,A assinatura (%s) caiu em %s:%d na função %s().,A declaração (%s) em %s:%d na função %s() falhou.,,LLAMA,78.54947447776794,52.41904369235774,71.41167025174802,44.44444444444444,90.10050892829895
+%s: unrecognised disk label,%s: etiqueta de disco desconhecida,%s: rótulo de disco irreconhecível,,LLAMA,73.26241731643677,40.173117272255205,30.739407647563215,40.0,84.28944945335388
+This libparted doesn't have write support for %s.  Perhaps it was compiled read-only.,Esta biblioteca parted não tem suporte para escrita em %s. Queria saber se foi compilada apenas para leitura.,O libparted não possui suporte para escrita em %s.  Talvez isto tenha sido compilado como somente-leitura.,,LLAMA,78.07199358940125,46.352454821489275,29.4467310498826,75.0,85.78731417655945
+"Partition %d is %s, but the file system is %s.","A participação do %d é da classe %s, porém o sistema de arquivos em uso é do tipo %s.","A partição %d é %s, mas o sistema de arquivos é %s.",,LLAMA,73.03867936134338,57.91173452618784,22.68196520523482,75.0,87.5087320804596
+cylinder_alignment,alinhamento cilíndrico,cylinder_alignment,,LLAMA,62.69407868385315,20.79283243581341,0.0,100.0,68.4602439403534
+pmbr_boot,inicialização do PMR (Processo de Montagem),pmbr_boot,,LLAMA,47.85957634449005,4.826254826254827,0.0,100.0,64.15243148803711
+"Unknown disk flag, %d.","Bandeira de disco desconhecida, %d.","Opção desconhecida de partição, %d.",,LLAMA,61.138588190078735,48.00755672766241,38.260294162784454,80.0,87.1295690536499
+%s disk labels do not support extended partitions.,As etiquetas de disco do %s não suportam partições estendidas.,Rótulos de disco %s não suportam partições estendidas.,,LLAMA,86.17199063301086,81.25305194238695,57.067457770559976,37.5,90.33448100090027
+%s disk labels don't support logical or extended partitions.,As etiquetas de disco %s não suportam partições estendidas ou lógicas.,Rótulos de disco %s não suportam partições lógicas ou estendidas.,,LLAMA,86.36675477027893,75.4934585917964,52.664038784792645,40.0,91.93562269210815
+Too many primary partitions.,Existe uma grande quantidade de partições primárias.,Há partições primárias demais.,,LLAMA,77.33995914459229,54.907732115079945,12.22307556087252,100.0,85.12827157974243
+"Can't add a logical partition to %s, because there is no extended partition.","Não é possível adicionar uma participação lógica em %s, porque não há nenhuma extensão de participante.","Não posso adicionar uma partição lógica em %s, pois não há uma partição estendida.",,LLAMA,70.02046704292297,53.33836685013045,25.543184713657478,57.14285714285714,87.02632188796997
+Can't have more than one extended partition on %s.,Não é possível ter mais de uma participação estendida em %s.,Não pode existir mais de uma partição estendida em %s.,,LLAMA,75.74042677879333,65.28368959567243,39.832871551569504,40.0,92.01048016548157
+Can't have logical partitions outside of the extended partition.,Não é possível ter participação legal fora da partilha estendida.,Partições lógicas não podem existir fora da partição estendida.,,LLAMA,53.99022698402405,38.260048590353826,10.600313379512592,77.77777777777779,82.97557234764099
+Can't have a logical partition outside of the extended partition on %s.,Não é possível ter uma participação legal fora da partilha estendida em %s.,Uma partição lógica não pode existir fora da partição estendida em %s.,,LLAMA,57.733434438705444,47.15834497801433,28.295596283263514,66.66666666666666,85.5116605758667
+Can't have a primary partition inside an extended partition.,Não é possível ter uma participação primária dentro de uma participação estendida.,Não é possível ter uma partição primária dentro de uma partição estendida.,,LLAMA,72.40166068077087,85.85816570313213,52.664038784792666,16.666666666666664,92.93988347053528
+Can't have a partition outside the disk!,Â¡Não é possível participar fora do disco!!,Não é possível ter uma partição para fora do disco!,,LLAMA,70.19681930541992,52.091585121104835,28.422022424918996,60.0,84.60972309112549
+Can't have overlapping partitions.,Não é possível ter partições superpostas.,Não é possível ter partições que se sobrepõem.,,LLAMA,90.97591042518616,62.80925092191888,48.35447404743731,37.5,90.84160923957825
+metadata,metadados,metadados,,LLAMA,99.25172924995422,100.0,100.00000000000004,0.0,100.0
+free,livre,livre,,LLAMA,98.81972670555115,100.0,100.00000000000004,0.0,99.99997019767761
+extended,extensão,estendida,,LLAMA,74.19885396957397,13.881080734180465,0.0,100.0,79.88357543945312
+logical,lógica,lógica,,LLAMA,97.52931594848633,100.0,100.00000000000004,0.0,99.99998211860657
+primary,primária,primária,,LLAMA,98.87425303459167,100.0,100.00000000000004,0.0,99.99996423721313
+boot,arranque do sistema operacional,boot,,LLAMA,50.82136392593384,6.818181818181819,0.0,100.0,71.87288999557495
+bios_grub,grub_bios,bios_grub,,LLAMA,71.98962569236755,37.92517006802721,39.68502629920499,100.0,88.3409321308136
+root,razão,root,,LLAMA,68.87825131416321,9.523809523809526,0.0,100.0,84.45037007331848
+swap,intercâmbio de memória,swap,,LLAMA,65.94303846359253,2.777777777777778,0.0,100.0,69.51782703399658
+hidden,oculto,escondida,,LLAMA,77.70687937736511,3.401360544217687,0.0,100.0,78.55740189552307
+raid,RAID,raid,,LLAMA,75.27552247047424,0.0,0.0,0.0,77.57986187934875
+lvm,lvm,lvm,,LLAMA,97.74307012557983,100.0,100.00000000000004,0.0,100.0
+lba,lba,lba,,LLAMA,98.82950186729431,100.0,100.00000000000004,0.0,99.99995827674866
+hp-service,utilidade HP,hp-service,,LLAMA,76.0672390460968,2.801120448179272,0.0,100.0,72.7288007736206
+palo,estacão,palo,,LLAMA,61.99408769607544,8.695652173913043,0.0,100.0,79.78183031082153
+prep,preparar,prep,,LLAMA,77.96375155448914,59.38104448742746,0.0,100.0,71.18815183639526
+msftres,msftres,msftres,,LLAMA,99.11420941352844,100.0,100.00000000000004,0.0,100.00005960464478
+msftdata,msftdata,msftdata,,LLAMA,99.4233787059784,100.0,100.00000000000004,0.0,100.00001192092896
+atvrecv,recuperação de dados via ATV (Automotive Vehicle Technology),atvrecv,,LLAMA,43.07042360305786,9.078544389278852,0.0,100.0,60.68153977394104
+diag,diag,diag,,LLAMA,98.61950874328613,100.0,100.00000000000004,0.0,100.00004768371582
+legacy_boot,arranque_legacy,legacy_boot,,LLAMA,68.93443465232849,31.57473675892122,34.66806371753173,100.0,83.65002870559692
+irst,primeiro,irst,,LLAMA,63.6075496673584,13.613861386138613,0.0,100.0,73.07415008544922
+esp,esp,esp,,LLAMA,99.0412175655365,100.0,100.00000000000004,0.0,99.99998807907104
+bls_boot,iniciar BLS (Bloodless Liver),bls_boot,,LLAMA,45.50158679485321,6.2761506276150625,0.0,100.0,63.832855224609375
+"Unknown partition flag, %d.","Modificador de particionamento desconhecido, %d.","Opção de partição desconhecida, %d.",,LLAMA,75.1352608203888,49.913562843686535,36.55552228545123,60.0,88.17530274391174
+Information,Informação,Informação,,LLAMA,99.03149008750916,100.0,100.00000000000004,0.0,99.99997615814209
+Warning,Atenção,Atenção,,LLAMA,98.7119972705841,100.0,100.00000000000004,0.0,100.0
+Error,Erro,Erro,,LLAMA,98.89680743217468,100.0,100.00000000000004,0.0,100.0
+Fatal,Fatal,Fatal,,LLAMA,99.32514429092407,100.0,100.00000000000004,0.0,100.0
+Bug,Erro,Erro,,LLAMA,98.89505505561829,100.0,100.00000000000004,0.0,100.0
+No Implementation,Sem implementação,Sem implementação,,LLAMA,99.22344088554382,100.0,100.00000000000004,0.0,100.0
+Fix,consertar,Arrumar,,LLAMA,48.68179261684418,8.02404295051354,0.0,100.0,79.88393306732178
+Yes,São,Sim,,LLAMA,68.9235508441925,8.333333333333332,0.0,100.0,79.33576703071594
+No,Não,Não,,LLAMA,99.09730553627014,100.0,100.00000000000004,0.0,100.00003576278687
+OK,Acordado,OK,,LLAMA,71.41469717025757,0.0,0.0,100.0,72.78767228126526
+Retry,Reintentar,Repetir,,LLAMA,48.4387069940567,13.44353908982551,0.0,100.0,82.12166428565979
+Ignore,Descartar,Ignorar,,LLAMA,52.635616064071655,8.02404295051354,0.0,100.0,80.9694766998291
+Cancel,_Cancelar_,Cancelar,,LLAMA,63.82792592048645,79.47514297425488,27.516060407455225,100.0,82.46963024139404
+A bug has been detected in GNU Parted.  Refer to the web site of parted http://www.gnu.org/software/parted/parted.html for more information of what could be useful for bug submitting!  Please email a bug report to %s containing at least the version (%s) and the following message:  ,"Se detectou um erro no GNU Parted. Consulte o site web de parted http://www.gnu.org/software/parted/parted.html para mais informações sobre o que pode ser útil para relatar o erro! Por favor, comunique o erro enviando um email a %s contendo pelo menos a versÃ£o (%d) e o seguinte mensagem: 'Erro detectado no GNU Parted'","Um erro foi detectado no GNU parted.  Visite o site do parted: http://www.gnu.org/software/parted/parted.html para mais informações sobre o que pode ser útil na hora de submeter um relatório de erro. Por favor, envie um relatório de erro para %s contendo ao menos a versão (%s) e a seguinte mensagem:  ",,LLAMA,83.3203136920929,62.25237427498248,45.62591065728645,57.14285714285714,87.29439973831177
+Support for reading AIX disk labels is is not implemented yet.,O suporte para ler etiquetas de disco AIX ainda não está implementado.,O suporte para leitura de rótulos de disco AIX ainda não foi implementado.,,LLAMA,91.61359667778015,66.40276480504068,39.355951621009716,30.76923076923077,93.46742630004883
+Support for writing AIX disk labels is is not implemented yet.,O suporte para escrever etiquetas de disco AIX ainda não está implementado.,O suporte para escrita de rótulos de disco AIX ainda não foi implementado.,,LLAMA,90.01654386520386,68.2945379158124,39.355951621009716,30.76923076923077,94.03090476989746
+Support for adding partitions to AIX disk labels is not implemented yet.,O suporte para adicionar partições a etiquetas de disco AIX ainda não está implementado.,O suporte para adicionar partições em rótulos de disco AIX ainda não foi implementado.,,LLAMA,91.93585515022278,76.27308363235291,53.03624596095554,21.428571428571427,95.15597820281982
+Support for duplicating partitions in AIX disk labels is not implemented yet.,O suporte para duplicar partições em etiquetas de disco AIX ainda não está implementado.,O suporte para duplicar partições em rótulos de disco AIX ainda não foi implementado.,,LLAMA,93.4700071811676,79.56381152534082,61.04735835807847,14.285714285714285,95.88465690612793
+Support for setting system type of partitions in AIX disk labels is not implemented yet.,O suporte para definir o sistema de particionamento no tipo etiquetas do disco AIX ainda não está implementado.,O suporte para definir o tipo de sistema de partições em rótulos de disco AIX ainda não foi implementado.,,LLAMA,88.0714476108551,65.45250617911762,35.81864017617662,36.84210526315789,90.82309007644653
+Support for setting flags in AIX disk labels is not implemented yet.,O suporte para definir flags em etiquetas de disco AIX ainda não está implementado.,O suporte para definir as opções em rótulos de disco AIX não foi implementado ainda.,,LLAMA,89.22216892242432,58.80227142604107,25.470014226549075,46.666666666666664,90.63772559165955
+Can't use Atari partition tables on disks with a sector size not equal to %d bytes.,Não é possível utilizar tabelas de participação Atari em discos com um tamanho de setor diferente a %d bytes.,Não é possível usar tabelas de partição Atari em discos com um tamanho de setor diferente de %d bytes.,,LLAMA,84.68526005744934,83.61500059032245,59.19783121240429,15.789473684210526,96.90904021263123
+Unable to satisfy all constraints on the partition.,Não é possível satisfazer todas as restrições na participação.,Não foi possível satisfazer todos as restrições na partição.,,LLAMA,73.34036231040955,71.27966337885162,21.36435031981171,33.33333333333333,94.70555782318115
+Unable to allocate a partition number.,Não é possível atribuir um número de participantes.,Não é possível alocar um número de partição.,,LLAMA,76.93831324577332,66.93332578556604,31.02016197007,25.0,88.84918689727783
+Unable to allocate a bsd disklabel slot.,Não é possível atribuir uma ranula da etiqueta de disco BSD.,Não foi possível alocar uma posição para rótulo de disco bsd.,,LLAMA,60.93662977218628,32.516336415216884,8.91376552139813,45.45454545454545,80.73254227638245
+Unable to allocate a dasd disklabel slot,Não é possível atribuir uma ranura na etiqueta de disco dasd.,Não foi possível alocar uma posição para rótulo de disco dasd.,,LLAMA,60.39867401123047,41.73454298505448,24.384183193426086,45.45454545454545,84.55025553703308
+Invalid partition table on %s -- wrong signature %x.,Tabula de particionamento inválida em %s -- firma incorreta %x.,Tabela de partições inválida em %s -- assinatura errada %x.,,LLAMA,82.09852576255798,50.17946965778175,39.832871551569504,40.0,89.12944197654724
+Invalid partition table - recursive partition on %s.,Tabela de particionamento inválida - participação recursiva em %s.,Tabela de partições inválida - partição recursiva em %s.,,LLAMA,83.74525904655457,74.69956495574998,44.97332084013507,22.22222222222222,90.99543690681458
+Extended partitions cannot be hidden on msdos disk labels.,As partições estendidas não podem ser ocultas nas etiquetas de disco msdos.,Partições estendidas não podem ser escondidas em rótulos de disco msdos.,,LLAMA,80.10388612747192,65.61542934759889,38.67706276352344,36.36363636363637,90.10255932807922
+Extended partitions cannot be recovery partitions on msdos disk labels.,As parti%s de estencais não podem ser partic%s de recupera%<PRIuMAX> em etiquetas do disco msdos.,Partições estendidas não podem ser partições recuperadas em rótulos de disco msdos.,,LLAMA,51.173824071884155,49.218137389269494,10.583814787289993,75.0,76.85638666152954
+Parted can't resize partitions managed by Windows Dynamic Disk.,A partição não pode ser redimensionada por uma partição gerenciada pelo Disco Dinâmico do Windows.,O Parted não pode redimensionar partições gerenciadas com o Disco Dinâmico do Windows.,,LLAMA,77.16014981269836,60.493056332107976,26.33201939239632,69.23076923076923,89.58243727684021
+cannot create any more partitions,não é possível criar mais partiÃ§Ãµes,não é possível criar mais nenhuma partição,,LLAMA,84.87382531166077,66.05710789002886,64.31870218238025,28.57142857142857,82.47349858283997
+%s has no extended partition (volume header partition).,%s não tem participação estendida (participação de cabeçalho do volume).,%s não possui partições estendidas (cabeçalho de volume da partição).,,LLAMA,65.49429297447205,45.30389211813643,15.396503757846457,70.0,89.76194262504578
+"Checksum is wrong, indicating the partition table is corrupt.","A soma de comprovação é incorreta, indicando que a tabela de particionamento está corrompida.","A soma de verificação está errada, indicando que a tabela de partições está corrompida.",,LLAMA,85.07232666015625,65.17113931832033,45.93073632354733,28.57142857142857,91.32081866264343
+Only primary partitions can be root partitions.,Só as partições primárias podem ser particulas raiz.,Apenas partições primárias podem ser partições root.,,LLAMA,63.10959458351135,66.75890245463805,31.55984539112946,57.14285714285714,88.61864805221558
+Only primary partitions can be swap partitions.,Só as partições primárias podem ser particípios de troca.,Apenas partições primárias podem ser partições de troca (swap).,,LLAMA,80.6317687034607,67.31881401164465,26.581560693718632,55.55555555555556,87.41641044616699
+Only logical partitions can be a boot file.,Solo as parti%s l%<PRIuMAX>gicas logica%d podem ser um ficheiro de arranque.,Apenas partições lógicas podem ser um arquivo de inicialização.,,LLAMA,53.222912549972534,34.941390778111284,7.681104116622756,77.77777777777779,75.88678002357483
+"failed to set dvh partition name to %s:
+Only logical partitions (boot files) have a name.","falha ao estabelecer o nome da participação do disco virtual a %s:
+Somente as partiÃ§oes lógicas (discos de arranque) possuem um nome.","falha ao definir nome de partição dvh para %s:
+Apenas partições lógicas (arquivos de inicialização) possuem um nome.",,LLAMA,74.07698035240173,45.105664039605685,21.47607499133801,72.22222222222221,82.77025818824768
+Too many primary partitions,demasiadas partições primárias,Há partições primárias demais,,LLAMA,83.11740756034851,65.68820308498958,39.43223765116288,50.0,84.9566638469696
+open error,erro de abertura,erro de abertura,,LLAMA,98.54777455329895,100.0,100.00000000000004,0.0,99.99999403953552
+seek error,erro de busca,erro de busca,,LLAMA,98.53911399841309,100.0,100.00000000000004,0.0,100.00004768371582
+read error,erro de leitura,erro de leitura,,LLAMA,98.64049553871155,100.0,100.00000000000004,0.0,100.00003576278687
+ioctl() error,erro de ioctl(),erro de ioctl(),,LLAMA,98.15487265586853,100.0,100.00000000000004,0.0,100.00001192092896
+API version mismatch,discrepância de versões da API,Versão da API não coincide,,LLAMA,89.80924487113953,26.471230808045654,21.3643503198117,80.0,79.4082760810852
+Unsupported disk type,Tipo de disco não suportado.,Tipo de disco sem suporte,,LLAMA,87.81768083572388,60.06418164062956,30.213753973567677,40.0,89.78095650672913
+Unsupported disk format,Formato de disco no suporte,Formato de disco sem suporte,,LLAMA,91.73425436019897,72.53191330082741,42.72870063962342,20.0,96.79863452911377
+Disk is in use,O disco está em uso.,O disco está em uso,,LLAMA,96.20956182479858,97.77154894343545,75.98356856515926,20.0,93.305504322052
+Syntax error in config file,Erro de sintaxe no arquivo de configuração,Erro de sintaxe no arquivo de configuração,,LLAMA,98.12777042388916,100.0,100.00000000000004,0.0,100.00001192092896
+Volume label is corrupted,A etiqueta do volume está dada.,O rótulo do volume está corrompido,,LLAMA,62.17884421348572,40.01972737526918,24.446151121745054,50.0,77.09319591522217
+A data set name is corrupted,O nome de um conjunto de dados está definido.,Um nome de conjunto de dados está corrompido,,LLAMA,81.00547790527344,61.41214803514428,31.239399369202552,37.5,83.32586288452148
+Memory allocation failed,falha na alocaÃ§Ã£o de memória,Falha em alocação de memória,,LLAMA,84.82133746147156,47.02082605142181,21.3643503198117,40.0,77.6906967163086
+Device verification failed,falha na verificação de dispositivo,Falha em verificação de dispositivo,,LLAMA,94.0803050994873,74.43378671548861,39.76353643835252,20.0,92.9820716381073
+The specified device is not a valid DASD device,O dispositivo especificado não é um dispositivo DASD válido.,O dispositivo especificado não é um dispositivo DASD válido,,LLAMA,96.48793339729309,99.14024642098789,88.01117367933934,11.11111111111111,96.63287997245789
+Fatal error,Erro fatal,Erro fatal,,LLAMA,99.19041991233826,100.0,100.00000000000004,0.0,100.00001192092896
+No room for volume label.,Não há espaço para a etiqueta de volume.,Nenhum espaço para rótulo de volume.,,LLAMA,87.48576045036316,52.69857719680665,22.31618068926665,66.66666666666666,78.64564657211304
+No room for partition info.,Não há espaço para a informação de particionamento.,Nenhum espaço para informações de partição.,,LLAMA,79.59830164909363,50.32859797944842,11.339582221952005,83.33333333333334,86.43250465393066
+Invalid VTOC.,VTOC invÃ¡lido.,VTOC inválido.,,LLAMA,81.8963348865509,54.718319823777286,34.66806371753173,50.0,75.17727613449097
+Could not retrieve API version.,Não foi possível obter a versÃ£o da API.,Não foi possível recuperar versão API.,,LLAMA,83.05714130401611,53.08109533195186,22.31618068926665,66.66666666666666,82.2935163974762
+The current API version '%d' doesn't match dasd driver API version '%d'!,"Â¡A versÃ£o atual da API, '%d', não coincide com a versÃ£o da API do controlador das dados!","A versão ""%d"" da API atual não coincide com a versão ""%d"" da API da controladora dasd!",,LLAMA,77.6154100894928,52.26074791075946,14.446427477158162,64.70588235294117,80.56818842887878
+Could not retrieve disk size.,Não foi possível recuperar o tamanho do disco.,Não foi possível recuperar tamanho de disco.,,LLAMA,94.8398768901825,79.23652517317976,36.88939732334405,28.57142857142857,94.06493902206421
+Could not retrieve disk geometry information.,Não foi possível recuperar as informações de geometria do disco.,Não foi possível recuperar informações sobre a geometria do disco.,,LLAMA,95.25584578514099,78.53341663735664,48.326978309062206,30.0,95.37323713302612
+Could not retrieve blocksize information.,Não foi possível recuperar a informação de tamanho dos blocos.,Não foi possível recuperar informações de tamanho do bloco.,,LLAMA,94.31124329566956,70.9572559513056,28.997844147152072,44.44444444444444,91.71267747879028
+device is too small for GPT,o dispositivo é muito pequeno para GPT.,dispositivo é muito pequeno para GPT,,LLAMA,96.55337929725647,97.43539696733619,68.037493331712,33.33333333333333,92.09312200546265
+"The format of the GPT partition table is version %x, which is newer than what Parted can recognise.  Please report this!","O formato da tabela de particionamento GPT é a versÃ£o %x, que é mais recente do que o que Parted pode reconhecer. Por favor, reporte isso!","A versão do formato da tabela de partição GPT é %x, que é mais recente do que o Parted pode reconhecer. Por favor, nos relate isso!",,LLAMA,86.08213067054749,74.09780280835602,58.75581881262649,30.76923076923077,91.13137722015381
+"Not all of the space available to %s appears to be used, you can fix the GPT to use all of the space (an extra %llu blocks) or continue with the current setting? ","Parece que não se está utilizando todo o espaço disponível no %s, pode corrigir a GPT para usar todos os blocos (%llu bloco extra) ou deseja continuar com a configuração atual? ","Parece que não está sendo usado todo o espaço disponível em %s, você pode corrigir a GPT para usar todo seu espaço (uns %llu blocos adicionais) ou continuar com a configuração atual? ",,LLAMA,87.79170513153076,66.18874010718696,40.23529927147912,40.625,92.18438267707825
+"The backup GPT table is not at the end of the disk, as it should be.  Fix, by moving the backup to the end (and removing the old backup)?","A tabela GPT de backup não está no final do disco, como deve estar. Corrigir isso movendo o backup para a última posição (e removendo o respaldo antigo)?","A cópia da tabela GPT não está no fim do disco, como deveria estar. Corrija-a, movendo a cópia para o fim do disco (e removendo a cópia antiga)?",,LLAMA,81.82149529457092,50.43121967992148,16.591003921777816,57.14285714285714,87.41421699523926
+"Both the primary and backup GPT tables are corrupt.  Try making a fresh table, and using Parted's rescue feature to recover partitions.","A tabela primária e a cópia de backup GPT estão corrompidas. Tente criar uma nova versão da tabela, e use a opção 'rescue' do Parted para reestruturar as partições.","Tanto a tabela GPT primária quanto a sua cópia estão corrompidas. Tente fazer uma nova tabela, usando os recursos de recuperação do Parted para recuperar partições.",,LLAMA,87.84303665161133,52.18360273481336,15.356865413172349,61.53846153846154,88.45343589782715
+"The backup GPT table is corrupt, but the primary appears OK, so that will be used.","A tabela de backup GPT está definida, mas a primária parece correta, portanto será utilizada esta.","A cópia da tabela GPT está corrompida, mas a tabela primária aparece estar OK, então esta será usada.",,LLAMA,78.06522846221924,41.7330528655633,10.615835131592489,66.66666666666666,85.7322633266449
+"The primary GPT table is corrupt, but the backup appears OK, so that will be used.","A tabela primária GPT está corrompida, mas a cópia de segurança parece correta, portanto será utilizada esta.","A tabela GPT primária está corrompida, mas a cópia da tabela aparece estar OK, então esta será usada.",,LLAMA,90.83059430122375,54.8596188557409,29.025128636001497,55.55555555555556,89.89075422286987
+primary partition table array CRC mismatch,discrepância de CRC da tabela de particionamento primários,CRC do conjunto de tabela de partição primária não coincide,,LLAMA,68.2134747505188,40.53673232098168,10.229197414177778,80.0,78.97113561630249
+failed to translate partition name,falha ao traduzir o nome da participação,falha ao traduzir nome de partição,,LLAMA,82.5325071811676,62.471007018434,26.269098944241588,50.0,89.6049439907074
+Invalid signature %x for Mac disk labels.,Firma inválida %x para etiquetas de discos Mac.,Assinatura inválida %x para rótulos de disco Mac.,,LLAMA,82.77513384819031,54.107726391706315,32.46679154750989,37.5,87.14574575424194
+Partition map has no partition map entry!,A tabela de particionamento não possui uma entrada na tabela de particionamento!,O mapa de partições não tem nenhuma entrada!,,LLAMA,71.09758853912354,34.59816630035801,4.368583925857938,100.0,84.24745202064514
+%s is too small for a Mac disk label!,Â¡%s é muito pequeno para uma etiqueta de disco Mac!,%s é muito pequeno para um rótulo de disco Mac!,,LLAMA,89.62352275848389,71.43255794121544,57.83569866465144,30.0,91.39209389686584
+Partition %d has an invalid signature %x.,A participação %d tem uma assinatura inválida %x.,A partição %d tem uma assinatura inválida %x.,,LLAMA,76.9787609577179,89.00315617240625,80.70557274927978,12.5,93.65478157997131
+Partition %d has an invalid length of 0 bytes!,A participação com %d possui uma extensÃ£o invÃ¡lida de 0 bytes!,A partição %d tem um tamanho inválido de 0 bytes!,,LLAMA,65.16723036766052,41.05229766574317,23.90108882452814,60.0,81.68110847473145
+The data region doesn't start at the start of the partition.,A região de dados não começa no início da participação.,A região de dados não começa no início da partição.,,LLAMA,76.88738107681274,90.43226017365514,80.70557274927978,10.0,94.70152258872986
+The partition's boot region doesn't occupy the entire partition.,A região de arranque da participação não ocupa toda a participação.,A região de inicialização da partição não a ocupa inteiramente.,,LLAMA,58.89466404914856,42.27388187588842,16.108992769687397,50.0,86.27837300300598
+The partition's data region doesn't occupy the entire partition.,A região de dados da participação não ocupa toda a participação.,A região de dados da partição não a ocupa inteiramente.,,LLAMA,62.953120470047,57.53736312548199,36.72056269893593,40.0,88.48401308059692
+Weird block size on device descriptor: %d bytes is not divisible by 512.,Tamanho do bloco extra de descriptor do dispositivo em bytes não é divisível por 512.,tamanho de bloco estranho no descritor de dispositivo: %d bytes não são divisíveis por 512.,,LLAMA,76.65218710899353,48.33441755445488,11.361556796288184,60.0,83.5711658000946
+"The driver descriptor says the physical block size is %d bytes, but Linux says it is %d bytes.","O descriptor do controlador diz que o tamanho do bloco físico é de %d bytes, mas Linux diz que é de %d bytes.","O descritor da controladora (driver) informa que o tamanho físico de bloco é %d bytes, mas o Linux informa que é %d bytes.",,LLAMA,83.83846879005432,53.19502869763064,28.23472570084228,47.82608695652174,92.39603281021118
+No valid partition map found.,Encontrou-se uma tabela de particionamento inválida.,Nenhum mapa de partições válido foi encontrado.,,LLAMA,76.4062762260437,30.247186707544365,6.770186228657864,100.0,77.38006711006165
+"Conflicting partition map entry sizes!  Entry 1 says it is %d, but entry %d says it is %d!","Â¡Conflicto no tamanho da entrada na tabulação de particionamento! A entrada 1 diz que é %d, mas a entrada %d diz que é %d!","Conflito nos tamanhos de entrada do mapa de partições!  A entrada 1 diz que é %d, mas a entrada %d diz que é %d!",,LLAMA,84.20407176017761,69.05125201123302,69.93357379065988,29.166666666666668,90.70966839790344
+Weird!  There are 2 partitions map entries!,Extraordinário! Existem duas entradas na tabela de particionamento!,Que estranho! Há 2 entradas no mapa de partições!,,LLAMA,87.05816268920898,32.05679965903064,5.369488567517933,77.77777777777779,83.5448682308197
+Changing the name of a root or swap partition will prevent Linux from recognising it as such.,"Ao alterar o nome de uma participação raiz ou em intercâmbio, impedirá Linux reconhecer como tal.",Mudar o nome de uma partição root ou swap irá impedir o Linux de reconhecê-la como tal.,,LLAMA,53.97648215293884,48.88046592290505,20.706193828327603,58.82352941176471,81.55166506767273
+Can't add another partition -- the partition map is too small!,Â¡Não é possível adicionar outra participação -- a tabela das partiÃ§oes já está muito pequena!,Não é possível adicionar outra partição -- o mapa de partições é muito pequeno!,,LLAMA,68.6458170413971,58.877563640774255,17.609282679116177,64.28571428571429,83.99903774261475
+Invalid partition table on %s.,Tabla de particionaÃ§Ã£o inválida em %s.,Tabela de partições inválida em %s.,,LLAMA,78.70703339576721,62.06404712929632,54.10822690539397,33.33333333333333,86.72619462013245
+Partition %d isn't aligned to cylinder boundaries.  This is still unsupported.,A participação de %d não está alinhada aos limites do cilindro. Necessita de adicionarle suporte.,A partição %d não está alinhada aos limites do cilindro.  Isto ainda não é suportado.,,LLAMA,56.00360035896301,63.839120750539344,53.569769608593234,46.666666666666664,85.27357578277588
+Can't add another partition.,Não é possível adicionar outra participação.,Não posso adicionar outra partição.,,LLAMA,76.93299651145935,61.754224220485746,15.619699684601283,60.0,85.65483093261719
+partition length of %jd sectors exceeds the %s-partition-table-imposed maximum of %jd,o tamanho de participação dos %d sectores excede o máximo especificado na tabela de particionamento %s da partição %d,tamanho de partição de %1$jd setores excede o máximo de %3$jd do imposto pela tabela de partições %2$s,,LLAMA,62.53594756126404,50.683658946136255,8.614758872728595,72.22222222222221,78.84407043457031
+"starting sector number, %jd exceeds the %s-partition-table-imposed maximum of %jd","O número de setores inicial, %d excede o máximo especificado na tabela de particionamento %s do disco com capacidade de %d",número do setor inicial %1$jd excede o máximo de %3$jd do imposto pela tabela de partições %2$s,,LLAMA,56.13252520561218,46.054583576718365,9.242641665864062,88.23529411764706,77.4773359298706
+%s : Bad checksum on block %llu of type %s.,%s : Verificação de soma mala em bloco %llu do tipo %s.,%s : Soma de verificação ruim no bloco %llu do tipo %s.,,LLAMA,77.65384316444397,62.29715843336092,54.237828377183035,33.33333333333333,91.50309562683105
+"%s : Didn't find rdb block, should never happen.","%s : O bloco RDB não pode ser encontrado, isso nunca deveria acontecer.","%s: Bloco rdb não encontrado, isto nunca deveria acontecer.",,LLAMA,88.07900547981262,64.63561114159366,25.33654946448646,66.66666666666666,90.13471603393555
+%s : Loop detected at block %d.,"%s : Blocos detectados em um loop.
+",%s : Loop detectado no bloco %d.,,LLAMA,76.824289560318,40.040578956684314,17.0653267718276,71.42857142857143,80.70523738861084
+%s : The %s list seems bad at block %s.,%s : A lista %s parece mal organizada no bloco %s.,%s : A lista %s parece ruim no bloco %s.,,LLAMA,88.57473134994507,77.01372726376478,72.41577342575832,20.0,96.74795269966125
+%s : Failed to list bad blocks.,%s : Falla ao tentar adicionar blocos desfechados.,%s : Falha ao listar blocos defeituosos.,,LLAMA,62.03916072845459,44.88456655280743,18.575057999133595,57.14285714285714,86.18586659431458
+%s : Failed to list partition blocks.,%s : Falla ao tentar listar blocos de participação.,%s : Falha ao listar blocos de partições.,,LLAMA,58.54368209838867,63.238343558199595,25.211936184349828,37.5,90.44572710990906
+%s : Failed to list file system blocks.,%s : Falha ao adicionar blocos do sistema de arquivos.,%s : Falha ao listar blocos de sistemas de arquivo.,,LLAMA,87.24526762962341,60.06526791735322,35.65506208559251,40.0,92.84229874610901
+%s : Failed to list boot blocks.,%s : Falha ao listar blocos de inicialização.,%s : Falha ao listar blocos de inicialização.,,LLAMA,97.38577604293823,100.0,100.00000000000004,0.0,100.00001192092896
+Failed to write partition block at %d.,falha ao escrever o bloco de participação em %d.,Falha ao escrever bloco de partição em %d.,,LLAMA,63.374561071395874,74.50707199551933,31.7023313852343,25.0,89.67033624649048
+Corrupted Sun disk label detected.,Uma etiqueta de disco do Sun foi detectada com danos.,Um rótulo de disco Sun corrompido foi detectado.,,LLAMA,80.68544268608093,40.778241436038705,9.425159511373677,87.5,82.76640176773071
+"The disk CHS geometry (%d,%d,%d) reported by the operating system does not match the geometry stored on the disk label (%d,%d,%d).","A geometria de disco CHS (%d, %d, %d) informada pelo sistema operativo não parece coincidir com a geometria guardada na etiqueta do disco (%d, %d, %d).","A geometria CHS do disco (%d,%d,%d) informada pelo sistema operacional não coincide com a geometria gravada no rótulo de disco (%d,%d,%d).",,LLAMA,88.05570006370544,64.86712537313284,65.62555116665254,66.66666666666666,92.53396987915039
+The disk label describes a disk bigger than %s.,A etiqueta de disco descreve um disco maior que %s.,O rótulo de disco descreve um disco maior que %s.,,LLAMA,85.8297348022461,81.17922547272607,80.70557274927978,20.0,91.84505343437195
+"The disk has %d cylinders, which is greater than the maximum of 65536.",O disco tem %d cilindros que são maiores do que o máximo de 65536.,"O disco possui %d cilindros, número que é maior que o máximo de 65536.",,LLAMA,80.78673481941223,60.273323507855714,40.02916772576474,42.857142857142854,93.98338198661804
+"The Whole Disk partition is the only available one left.  Generally, it is not a good idea to overwrite this partition with a real one.  Solaris may not be able to boot without it, and SILO (the sparc boot loader) appreciates it as well.","A participação integral do disco é a única disponível. Geralmente, não é uma boa ideia sobrescrever essa participação com um verdadeiro.","A partição inteira do disco é a única disponível à esquerda.  Geralmente não é uma boa ideia sobrescrever esta partição com uma real.  O Solaris pode não ser capaz de inicializar sem isto, e o SILO (o carregador de inicialização sparc) utiliza também.",,LLAMA,48.35723042488098,41.26202437432692,15.503910700843756,69.76744186046511,79.79429960250854
+Sun disk label is full.,A etiqueta de disco do Sun está cheia.,O rótulo de disco Sun está cheio.,,LLAMA,78.69334816932678,53.91506800358188,14.25876976452075,57.14285714285714,84.9678099155426
+opening of device failed,falha na abertura do dispositivo,falha ao abrir dispositivo,,LLAMA,94.71793174743652,47.82625870038404,12.703318703865365,75.0,87.82920241355896
+seeking on device failed,falhou na busca no dispositivo.,falha ao buscar em dispositivo,,LLAMA,85.4387104511261,42.54047624108733,8.116697886877475,100.0,84.54281091690063
+writing to device failed,a escritura caiu no dispositivo,falha ao escrever em dispositivo,,LLAMA,70.1448380947113,34.38852644608274,10.682175159905848,80.0,81.64411187171936
+reading from device failed,falha na leitura do dispositivo,falha ao ler de dispositivo,,LLAMA,88.25525641441345,46.733680042286906,12.703318703865365,60.0,88.29914927482605
+Could not read volume label.,Não foi possível ler a etiqueta de volume.,Não foi possível ler o rótulo do volume.,,LLAMA,85.86861491203308,61.510968329817516,35.49481056010054,37.5,90.43395519256592
+Could not write volume label.,Não foi possível escrever a etiqueta de volume.,Não foi possível escrever o rótulo do volume.,,LLAMA,83.23981165885925,65.47789394952977,35.49481056010054,37.5,89.8058295249939
+Could not read VTOC labels.,Não foi possível ler as etiquetas VTOC.,Não foi possível ler rótulos VTOC.,,LLAMA,91.98132753372192,68.37544006995027,41.11336169005198,33.33333333333333,91.57116413116455
+Could not read VTOC FMT1 DSCB.,Não foi possível ler o VTOC FMT1 DSCB.,Não foi possível ler VTOC FMT1 DSCB.,,LLAMA,93.42506527900696,90.00903120262232,59.694917920196445,14.285714285714285,98.13675880432129
+Could not read VTOC FMT4 DSCB.,Não foi possível ler o VTOC FMT4 DSCB.,Não foi possível ler VTOC FMT4 DSCB.,,LLAMA,93.58450770378113,90.00903120262232,59.694917920196445,14.285714285714285,98.1856107711792
+Could not read VTOC FMT5 DSCB.,Não foi possível ler o VTOC FMT5 DSCB.,Não foi possível ler VTOC FMT5 DSCB.,,LLAMA,92.53345131874084,90.00903120262232,59.694917920196445,14.285714285714285,98.16768169403076
+Could not read VTOC FMT7 DSCB.,Não foi possível ler o VTOC FMT7 DSCB.,Não foi possível ler VTOC FMT7 DSCB.,,LLAMA,92.45036244392395,90.00903120262232,59.694917920196445,14.285714285714285,98.1224000453949
+Could not write VTOC labels.,Não foi possível escrever as etiquetas VTOC.,Não foi possível escrever rótulos VTOC.,,LLAMA,88.08315992355347,72.33575954657935,41.11336169005198,33.33333333333333,91.56348705291748
+Could not write VTOC FMT1 DSCB.,Não foi possível escrever VTOC FMT1 DSCB.,Não foi possível escrever VTOC FMT1 DSCB.,,LLAMA,96.643728017807,100.0,100.00000000000004,0.0,100.0
+Could not write VTOC FMT4 DSCB.,Não foi possível escrever o VTOC FMT4 DSCB.,Não foi possível escrever VTOC FMT4 DSCB.,,LLAMA,92.74795651435852,91.22208876479515,59.694917920196445,14.285714285714285,98.06774258613586
+Could not write VTOC FMT5 DSCB.,Não foi possível escrever o VTOC FMT5 DSCB.,Não foi possível escrever VTOC FMT5 DSCB.,,LLAMA,91.7786717414856,91.22208876479515,59.694917920196445,14.285714285714285,98.0367362499237
+Could not write VTOC FMT7 DSCB.,Não foi possível escrever o VTOC FMT7 DSCB.,Não foi possível escrever VTOC FMT7 DSCB.,,LLAMA,91.48969650268555,91.22208876479515,59.694917920196445,14.285714285714285,97.9931116104126
+Could not write VTOC FMT9 DSCB.,Não foi possível escrever o VTOC FMT9 DSCB.,Não foi possível escrever VTOC FMT9 DSCB.,,LLAMA,92.52975583076477,91.22208876479515,59.694917920196445,14.285714285714285,98.06770086288452
+Out of memory.,Não há memória.,Memória insuficiente.,,LLAMA,69.58706378936768,20.46502168197682,15.97357760615681,100.0,74.04495477676392
+Cannot get unit size for special unit 'COMPACT'.,Não é possível obter o tamanho unitário para a unidade especial 'COMPACT'.,"Não foi possível obter o tamanho da unidade para a unidade especial ""COMPACT"".",,LLAMA,92.01253056526184,65.97020629991529,32.46827270101123,30.76923076923077,95.19878625869751
+"""%s"" has invalid syntax for locations.",%s,"""%s"" possui sintaxe inválida para localizações.",,LLAMA,44.380372762680054,2.230215827338129,1.8315638888734187,100.0,71.81324362754822
+The maximum head value is %d.,O valor máximo do cabeçalho é %d.,O valor máximo do cabeçalho é %d.,,LLAMA,95.6921398639679,100.0,100.00000000000004,0.0,99.99997615814209
+The maximum sector value is %d.,O valor máximo do setor é %d.,O valor máximo do setor é %d.,,LLAMA,98.07968735694885,100.0,100.00000000000004,0.0,99.99999403953552
+The location %s is outside of the device %s.,A localizaÃ§Ã£o %s estÃ¡ fora do dispositivo %s.,A localização %s está para fora do dispositivo %s.,,LLAMA,85.25375723838806,67.80117519753867,48.83499409416458,33.33333333333333,81.05669617652893
+Invalid number.,Número inválido.,Número inválido.,,LLAMA,98.81807565689087,100.0,100.00000000000004,0.0,99.99998807907104
+Use a smaller unit instead of a value < 1,Use uma unidade menor em vez de um valor inferior a 1.,Use uma unidade menor ao invés de usar um valor < 1,,LLAMA,91.90880060195923,56.48942408665797,24.71244254525359,50.0,86.49858236312866
+"%s : Failed to allocate partition block
+","%s : Falla ao tentar alocar o bloco de participação
+","%s : Falha ao alocar bloco de partição
+",,LLAMA,61.56233549118042,58.14859559980897,19.081654556856684,50.0,89.30484056472778
+"%s : Failed to allocate block
+","%s : Falla ao tentar alocar o bloco
+","%s : Falha ao alocar bloco
+",,LLAMA,88.02527785301208,51.897225862639765,21.10534063187263,50.0,90.93881249427795
+"%s : Couldn't read boot block %llu
+","%s : Não foi possível ler o bloco de inicialização %llu
+","%s : Não foi possível ler o bloco de inicialização %llu
+",,LLAMA,97.82140851020813,100.0,100.00000000000004,0.0,100.0
+"%s : Couldn't read root block %llu
+","%s : Não foi possível ler o bloco raiz %llu
+","%s : Não foi possível ler o bloco root %llu
+",,LLAMA,84.32113528251648,83.76112548429727,76.91605673134588,10.0,94.85554099082947
+"%s : Failed to allocate id list element
+",%s : Erro ao atribuir elemento da lista de identificação,"%s : Falha ao alocar id de elemento de lista
+",,LLAMA,89.36451077461243,39.10047010273394,17.242221289766626,60.0,86.80581450462341
+"%s : Couldn't read block %llu
+","%s : Não foi possível ler o bloco %llu
+","%s : Não foi possível ler o bloco %llu
+",,LLAMA,97.80814051628113,100.0,100.00000000000004,0.0,100.00001192092896
+"%s : Bad checksum on block %llu of type %s
+","%s : Verificação de soma mala no bloco %llu do tipo %s
+","%s : Soma de verificação ruim no bloco %llu do tipo %s
+",,LLAMA,81.85170888900757,67.00601198527319,58.282339541526554,25.0,92.67303943634033
+"%s : Couldn't write block %d
+","%s : Não foi possível escrever o bloco %d
+","%s : Não foi possível escrever bloco %d
+",,LLAMA,96.36853337287903,91.04698716891465,70.16879391277372,12.5,97.7071762084961
+"%s : Failed to allocate disk_specific rdb block
+","%s : Falla ao tentar alocar bloco RDB específico do disco
+","%s : Falha ao alocar bloco rdb de disco_específico
+",,LLAMA,78.84020209312439,54.13156740639955,17.827531042796263,55.55555555555556,86.34496927261353
+"%s : Didn't find rdb block, should never happen
+","%s : O bloco RDB não pode ser encontrado, isso nunca deveria acontecer.","%s : Não foi encontrado bloco rdb, isto nunca deveria acontecer
+",,LLAMA,89.75349068641663,59.04407990097644,16.94357181593088,72.72727272727273,89.14465308189392
+"%s : Failed to read partition block %llu
+","%s : Falla ao escrever o bloco de participação %llu
+","%s : Falha ao ler bloco de partição %llu
+",,LLAMA,63.589292764663696,58.766060407518225,19.156928817239653,44.44444444444444,90.55687189102173
+GNU Parted was miscompiled: the FAT boot sector should be 512 bytes.  FAT support will be disabled.,GNU parted foi mal compilado: o setor de inicialização FAT do disco deve ser de 512 bytes. O suporte a FAT será desabilitado.,O GNU Parted não foi mal compilado: o setor de boot FAT deveria ser de 512 bytes.  O suporte a FAT será desabilitado.,,LLAMA,87.84992098808289,74.87987381548913,66.3685910876666,26.08695652173913,95.06069421768188
+File system has an invalid signature for a FAT file system.,O sistema de arquivos possui uma assinatura inválida para um sistema de arquivos FAT.,O sistema de arquivos tem uma assinatura inválida para um FAT.,,LLAMA,88.41297030448914,79.8697955698109,44.80304273880272,36.36363636363637,96.40669226646423
+File system has an invalid sector size for a FAT file system.,O sistema de arquivos possui um tamanho do setor inválido para o sistema de arquivos FAT.,O sistema de arquivos tem um tamanho de setor inválido para um FAT.,,LLAMA,85.4563295841217,71.28639812636264,25.772294506990857,46.15384615384615,95.0700581073761
+File system has an invalid cluster size for a FAT file system.,O sistema de arquivos tem um tamanho cluster inválido para o sistema de arquivos FAT.,O sistema de arquivos tem um tamanho de cluster inválido para um FAT.,,LLAMA,86.11330389976501,80.38727651043219,50.353378875558576,30.76923076923077,94.38266158103943
+File system has an invalid number of reserved sectors for a FAT file system.,O sistema de arquivos possui um número inválido de setores reservados para o sistema de arquivos FAT.,O sistema de arquivos tem um número inválido de setores reservados à sistemas de arquivo FAT.,,LLAMA,91.5478765964508,75.56874095765379,44.219732271776664,31.25,96.83031439781189
+File system has an invalid number of FATs.,O sistema de arquivos possui um número inválido de FATs.,O sistema de arquivos tem um número inválido de FATs.,,LLAMA,95.3400194644928,85.36789004324697,70.16879391277372,10.0,99.31885600090027
+"The file system's CHS geometry is (%d, %d, %d), which is invalid.  The partition table's CHS geometry is (%d, %d, %d).","A geometria CHS do sistema de arquivos é (%d, %d, %d), e está inválida. A geometria CHS da tabela de particionamento é (%d, %d, %d).","A geometria CHS do sistema de arquivos é (%d, %d, %d), que é inválida. A geometria CHS da tabela de partições é (%d, %d, %d).",,LLAMA,90.70150256156921,86.45632740834537,84.81274884140932,12.0,97.44172692298889
+FAT boot sector says logical sector size is 0.  This is weird. ,O sector de inicialização da FAT indica que o tamanho lógico do seu sector é zero. Isso não faz sentido.,O setor de inicialização FAT diz que o tamanho lógico do setor é 0. Estranho. ,,LLAMA,84.45215225219727,57.77630050806681,21.27988282044162,66.66666666666666,86.94390654563904
+FAT boot sector says there are no FAT tables.  This is weird. ,O sector de inicialização da FAT indica que não há tabelas FAT. Isso é extraordinário.,O setor de inicialização FAT diz que não há tabelas FAT. Estranho. ,,LLAMA,80.35957217216492,63.39810716759923,34.31501915902151,50.0,87.37594485282898
+FAT boot sector says clusters are 0 sectors.  This is weird. ,O sector de inicialização da FAT indica que os clusters possuem zero setores. Isso é extraordinário.,O setor de inicialização FAT diz que os clusters têm 0 setores. Estranho. ,,LLAMA,83.73921513557434,54.02559615632542,12.846189726767717,61.53846153846154,86.50984764099121
+"File system is FAT12, which is unsupported.","O sistema de fichiers é FAT12, o qual não está suportado.","O sistema de arquivos é FAT12, ao que não há suporte.",,LLAMA,89.9233877658844,49.36740732069894,20.78060434846712,45.45454545454545,90.04194140434265
+Unrecognised old style linux swap signature '%10s'.,Firma estilo antigo de participação no intercâmbio do Linux '%10s' não reconhecida.,Assinatura linux swap estilo antigo não reconhecido '%10s'.,,LLAMA,65.67789912223816,44.339262788785746,13.380161378318954,100.0,78.78300547599792
+Unrecognised new style linux swap signature '%10s'.,Firma estilo novo de participação no intercâmbio do sistema operacional '%10s' não reconhecida.,Assinatura linux swap estilo novo não reconhecido '%10s'.,,LLAMA,60.70932149887085,40.98502548260756,12.451643194233869,100.0,78.21443676948547
+Unrecognised swsusp linux swap signature '%9s'.,Firma de suspensão do participante '%10s' na reconhecida interação em Linux.,Assinatura linux swap swsusp não reconhecido '%9s'.,,LLAMA,43.735477328300476,24.92982016127194,6.285596338261262,100.0,72.91821241378784
+Parted can't use HFS file systems on disks with a sector size not equal to %d bytes.,O Parted não pode usar sistemas de arquivos HFS em discos com um tamanho do setor diferente de %d bytes.,O Parted não pode utilizar sistemas de arquivos HFS em discos com um tamanho de setor diferente de %d bytes.,,LLAMA,90.5410647392273,87.49873158635585,73.89984311706958,10.0,99.35060739517212
+"The file system's CHS geometry is (%d, %d, %d), which is invalid.  The partition table's CHS geometry is (%d, %d, %d).  If you select Ignore, the file system's CHS geometry will be left unchanged.  If you select Fix, the file system's CHS geometry will be set to match the partition table's CHS geometry.","A geometria CHS do sistema de arquivos é (%d, %d, %d), e está inválida. A geometria CHS da tabela de particionamento é (%d, %d, %d). Se escolher Descartar, a geometria CHS do sistema de arquivos permanecerá sem alterações. Se optar por Arreglar, a geometria CHS do sistema de arquivos será ajustada para coincidir com a da tabela de particionamento.","A geometria CHS do sistema de arquivos é (%d, %d, %d), que é inválida.  A geometria CHS da tabela de partições é (%d, %d, %d).  Se você selecionar Ignorar, a geometria CHS do sistema de arquivos permanecerá inalterada.  Se você selecionar Arrumar, a geometria CHS do sistema de arquivos será definida para coincidir com a geometria CHS da tabela de partições.",,LLAMA,84.99186635017395,74.52684600819754,68.06329669698235,24.59016393442623,92.96711683273315
+"The information sector has the wrong signature (%x).  Select cancel for now, and send in a bug report.  If you're desperate, it's probably safe to ignore.","O setor de informÃ¡tica tem uma assinatura incorreta (%x). Selecione cancelar por ahora, e mande um relatório de falha. Se estiver desesperado, é mais seguro descartar.","O setor de informações tem uma assinatura inválida (%x). Selecione cancelar agora, e mande um relatório de erro. Se você está desesperado, é provável que seja seguro ignorar.",,LLAMA,71.37214541435242,61.61167682856856,40.87506142320582,39.285714285714285,89.2352283000946
+"You need %s of free disk space to shrink this partition to this size.  Currently, only %s is free.","Necessita %s de espaÃ§o disco livre para reduzir esta participaÃ§Ã£o a este tamanho. Atualmente, sÃ£o apenas %s livres.","Você precisa de %s de espaço livre em disco para diminuir esta partição a este tamanho. Atualmente, apenas %s estão livres.",,LLAMA,69.67030763626099,56.78389158721671,30.8417629184358,47.61904761904761,80.62719106674194
+"Cluster start delta = %d, which is not a multiple of the cluster size %d.","O delta inicial do cluster é %d, que não é um múltiplo do tamanho deste mesmo cluster, %d.","O cluster inicia em delta = %d, que não é um múltiplo do tamanho de cluster %d.",,LLAMA,82.61550068855286,69.6814244657715,48.52277021118391,47.05882352941176,90.82627892494202
+Bad directory entry for %s: first cluster is the end of file marker.,Entrada de diretório inválida para %s: o primeiro cluster é a marca do ficheiro.,Entrada de diretório inválida para %s: o primeiro cluster é o fim do marcador de arquivo.,,LLAMA,82.18162655830383,74.42076073656058,62.395071887651454,31.25,94.03191804885864
+Bad FAT: unterminated chain for %s.  You should run dosfsck or scandisk.,Erro de FAT incorreto: cadeia não finalizada para %s. Deve executar dosck ou scandisck.,FAT ruim: cadeia não terminada para %s. Você deveria rodar o dosfsck ou o scandisk.,,LLAMA,69.50679421424866,42.39954576207921,20.11000490379284,73.33333333333333,85.60835719108582
+Bad FAT: cluster %d outside file system in chain for %s.  You should run dosfsck or scandisk.,Erro de FAT incorreto: o cluster %d está fora do sistema de arquivos no seio da cadeia para %s. Deve executar doisfsck ou scandisk.,FAT ruim: cluster %d fora do sistema de arquivos na cadeia para %s.  Você deveria rodar o dosfsck ou o scandisk.,,LLAMA,76.61554217338562,60.4340510728416,31.83118407199322,61.904761904761905,87.39630579948425
+Bad FAT: cluster %d is cross-linked for %s.  You should run dosfsck or scandisk.,Erro de FAT incorreto: o cluster %d possui emendas cruzadas para %s. Deve executar doisfsck ou scandisck.,FAT ruim: o cluster %d tem uma referência cruzada para %s. Você deveria rodar o dosfsck ou o scandisk.,,LLAMA,71.21100425720215,41.651037325690595,26.57693698645509,73.68421052631578,86.7348849773407
+"%s is %dk, but it has %d clusters (%dk).","%s é de %dk, mas tem %d clusters (%dk).","%s é %dk, mas ele tem %d clusters (%dk).",,LLAMA,94.28847432136536,77.14514189367823,71.05477917053867,22.22222222222222,96.25650644302368
+Partition too big/small for a %s file system.,Participação demasiadamente grande/pequena para um sistema de arquivos %s.,Partição muito grande/pequena para um sistema de arquivos %s.,,LLAMA,72.76628613471985,78.2991438067553,82.4236750264605,22.22222222222222,94.58803534507751
+"The FATs don't match.  If you don't know what this means, then select cancel, run scandisk on the file system, and then come back.","As FATs não são idênticas. Se você não sabe o que isso significa, selecione cancelar, execute scandisk no sistema de arquivos e depois volte.","As FATs não estão iguais. Se você não sabe o que isto significa, selecione cancelar, execute o scandisk no sistema de arquivos, depois volte.",,LLAMA,91.55704379081726,80.34138615336994,56.424087159184374,25.0,96.56522274017334
+There are no possible configurations for this FAT type.,Não há configurações possíveis para este tipo de FAT.,Não há configurações possíveis para este tipo de FAT.,,LLAMA,98.09832572937012,100.0,100.00000000000004,0.0,99.99999403953552
+File system doesn't have expected sizes for Windows to like it.  Cluster size is %dk (%dk expected); number of clusters is %d (%d expected); size of FATs is %d sectors (%d expected).,O sistema de fichiers não possui os tamanhos esperados para que sejam utilizados no Windows. O tamanho do cluster é %dk (esperado %dk); o número de clusters é de %d (esperado %d); o tamanho da FAT é de %d sectores (esperado %d).,O sistema de arquivos não tem o tamanho esperado para que o Windows utilize. O tamanho do cluster é %dk (%dk esperado); número de clusters é %d (%d esperado); tamanho da FAT é %d setores (%d esperado).,,LLAMA,83.83444547653198,63.27046646731019,33.741186386638596,54.054054054054056,91.39233231544495
+"File system is reporting the free space as %d clusters, not %d clusters.","O sistema de fichiers está informando que o espaço livre dos clusters é de %d, e não de %d clusters.","O sistema de arquivos está reportando que o espaço livre é %d clusters, não %d clusters.",,LLAMA,81.14691376686096,59.954906292152785,28.231469873854905,50.0,88.9647364616394
+"There's not enough room in the root directory for all of the files.  Either cancel, or ignore to lose the files.","Não há espaço suficiente no diretório raiz para todos os arquivos. Pode cancelar ou descartá-los, perdendo assim esses arquivos.","Não há espaço suficiente no diretório raiz para todos os arquivos.  Cancele, ou ignore para perder os arquivos.",,LLAMA,85.49989461898804,71.73800192019212,56.01180155731479,33.33333333333333,88.2777750492096
+Error writing to the root directory.,Erro ao escrever no diretório raiz.,Erro ao escrever no diretório raiz.,,LLAMA,95.8954393863678,100.0,100.00000000000004,0.0,99.99999403953552
+"If you leave your file system as FAT16, then you will have no problems.","Se o seu sistema de arquivos permanecer no FAT16, não terá problemas.","Se você deixar seu sistema de arquivos como FAT16, não haverá nenhum problema.",,LLAMA,92.44741797447205,52.84782363348349,25.491833774890388,53.84615384615385,89.10939693450928
+"If you convert to FAT16, and MS Windows is installed on this partition, then you must re-install the MS Windows boot loader.  If you want to do this, you should consult the Parted manual (or your distribution's manual).","Se converter para FAT16, e se o MS Windows estiver instalado nessa partição, então deverá reinstalar o carregador de inicialização do MS Windows. Se quiser fazer isso, deve consultar o manual da Parted (ou o manual da sua distribuição).","Se você converter para FAT16, e o MS Windows está instalado nesta partição, você deverá reinstalar o gerenciador de boot do MS Windows. Se quiser fazer isso, consulte o manual do Parted (ou o manual de sua distribuição).",,LLAMA,87.38098740577698,72.0070919137813,45.530053393896196,28.947368421052634,93.85402798652649
+"If you leave your file system as FAT32, then you will not introduce any new problems.","Se o seu sistema de arquivos permanecer como FAT32, então não terá novos problemas.","Se deixar seu sistema de arquivos como FAT32, você não criará mais nenhum problema novo.",,LLAMA,90.64599871635437,50.351056847613506,22.740957796794838,53.333333333333336,88.59851360321045
+"If you convert to FAT32, and MS Windows is installed on this partition, then you must re-install the MS Windows boot loader.  If you want to do this, you should consult the Parted manual (or your distribution's manual).  Also, converting to FAT32 will make the file system unreadable by MS DOS, MS Windows 95a, and MS Windows NT.","Se converter para FAT32, e se o MS Windows estiver envolvido na participação, será necessário reinstalar o carregador de inicialização do MS Windows. Se quiser fazer isso, deve consultar o manual da Parted (ou o manual da sua distribuiutoÃ§Ã£o). Além disso, a conversiÃ³n para FAT32 farÃ£-lo ilegível no sistema de arquivos para MS DOS, Windows 95 e Windows NT.","Se você converter para FAT32, e o MS Windows está instalado nesta partição, você deverá reinstalar o gerenciador de boot do MS Windows. Se quiser fazer isso, consulte o manual do Parted (ou o manual de sua distribuição). Também, convertendo para FAT32 fará com que o sistema de arquivos não seja mais reconhecido pelo MS DOS, Windows 95a, e MS Windows NT.",,LLAMA,77.18502879142761,57.873935306654914,31.698198289993158,48.38709677419355,85.48856973648071
+%s  %s  %s,%s   %s   %s,%s  %s  %s,,LLAMA,99.50042366981506,100.0,100.00000000000004,0.0,99.99998807907104
+Would you like to use FAT32?,Gostaria de usar FAT32?,Você gostaria de usar FAT32?,,LLAMA,96.26670479774475,76.11483416748816,54.75182535069452,20.0,88.98642659187317
+%s  %s,%s %s,%s  %s,,LLAMA,99.5674192905426,100.0,100.00000000000004,0.0,100.00001192092896
+The file system can only be resized to this size by converting to FAT16.,O sistema de arquivos só pode ser dimensionado para este tamanho para converter ao FAT16.,O sistema de arquivos só pode ser redimensionado para este tamanho sendo convertido para FAT16.,,LLAMA,88.19277882575989,75.55731543883033,50.353378875558576,26.666666666666668,93.0257260799408
+The file system can only be resized to this size by converting to FAT32.,O sistema de arquivos só pode ser dimensionado para este tamanho para converter em FAT32.,O sistema de arquivos só pode ser redimensionado para este tamanho sendo convertido para FAT32.,,LLAMA,88.20157647132874,75.715951798906,50.353378875558576,26.666666666666668,93.56427192687988
+GNU Parted cannot resize this partition to this size.  We're working on it!,GNU Parted não pode redimensionar esta partição para esse tamanho. Estamos trabalhando nela!,O GNU Parted não pode redimensionar esta partição a este tamanho.  Estamos trabalhando nisto!,,LLAMA,93.87626051902771,80.91750054518894,54.52353574508255,28.57142857142857,93.70198249816895
+FAT %d media %x doesn't match the boot sector's media %x.  You should probably run scandisk.,"A FAT do meio %d não corresponde aos setores de inicialização no meio %x. Provávelmente, deve executar scandisk.",FAT %d mídia %x não bate com o setor de boot mídia %x. Você deveria executar o scandisk.,,LLAMA,72.9841411113739,32.739853112211904,10.086853619665545,77.77777777777779,80.47677874565125
+fat_table_set: cluster %ld outside file system,fat_table_set: o cluster %ld está fora do sistema de arquivos,fat_table_set: cluster %ld fora do sistema de arquivos,,LLAMA,91.42562747001648,86.23182960008828,61.28081331864041,25.0,95.20779252052307
+fat_table_get: cluster %ld outside file system,fat_table_get: o cluster %ld está fora do sistema de arquivos,fat_table_get: cluster %ld fora do sistema de arquivos,,LLAMA,91.57385230064392,86.23182960008828,61.28081331864041,25.0,95.1980710029602
+fat_table_alloc_cluster: no free clusters,alocação de fat_table: falta de clusters livres para alocar,fat_table_alloc_cluster: não há clusters livres,,LLAMA,68.88895630836487,44.77392380567101,16.59038701421971,100.0,77.08720564842224
+Could not detect file system.,Não foi possível detectar o sistema de arquivos.,Não foi possível detectar o sistema de arquivos.,,LLAMA,98.04890155792236,100.0,100.00000000000004,0.0,100.00002384185791
+resizing %s file systems is not supported,o redimensionamento de sistemas de arquivos %s não está implementado,não é suportado redimensionar sistemas de arquivos %s,,LLAMA,75.30569434165955,64.05331882311302,36.72056269893591,75.0,90.9922182559967
+The file system is bigger than its volume!,O sistema de arquivos é maior do que seu volume!,O sistema de arquivos é maior que seu volume!,,LLAMA,96.70819640159607,91.70272653084793,70.16879391277372,11.11111111111111,98.60233068466187
+The file system contains errors.,O sistema de arquivos contém erros.,O sistema de arquivos contém erros.,,LLAMA,98.5024631023407,100.0,100.00000000000004,0.0,100.00002384185791
+Bad blocks could not be read.,Não é possível ler os blocos incorretos.,Blocos defeituosos não podem ser lidos.,,LLAMA,61.024147272109985,17.884083737374183,5.522397783539471,100.0,79.65276837348938
+"Trying to register an extent starting at block 0x%X, but another one already exists at this position.  You should check the file system!","Ao tentar registrar uma extensão que começa no bloco de memória 0x%X, mas já existe outra nesta posição. Deve-se verificar o sistema de arquivos!","Tentando registar uma extensão que inicia no bloco 0x%X, mas uma outra já existe nesta posição.  Você deve verificar o sistema de arquivos!",,LLAMA,83.51329565048218,66.50057231746993,40.175225959915295,43.47826086956522,91.15538001060486
+"Trying to move an extent from block 0x%X to block 0x%X, but another one already exists at this position.  This should not happen!","Ao tentar mover uma extensão do bloco Ox%X para o Bloco Ox%X, mas já existir outra nesta posição. Isso não deveria acontecer!","Tentando mover uma extensão do bloco 0x%X para o bloco 0x%X, mas uma outra já existe nesta posição.  Isto não deveria acontecer!",,LLAMA,77.26861834526062,67.4163574992598,41.247506600834846,36.36363636363637,93.40860247612
+Could not update the extent cache for HFS file with CNID %X.,Não foi possível atualizar a cachÃª de extensiÃ³n para o ficheiro HFS com CNID %X.,Não foi possível atualizar o cache de extensão de arquivo HFS com CNID %X.,,LLAMA,70.35457491874695,65.87636212600145,44.81501736040872,42.857142857142854,85.2928876876831
+Trying to read HFS file with CNID %X behind EOF.,Tentando ler o arquivo HFS com CNID %X após a conclusão do arquivo.,Tentando ler arquivo HFS com CNID %X atrás do fim do arquivo.,,LLAMA,84.22999382019043,69.33986094374902,44.80304273880272,33.33333333333333,93.44361424446106
+Could not find sector %lli of HFS file with CNID %X.,Não foi possível encontrar o setor %lli do arquivo HFS com CNID %X.,Não foi possível encontrar setor %lli de arquivo HFS com CNID %X.,,LLAMA,94.20883059501648,86.75239147012438,61.28081331864041,16.666666666666664,96.72189950942993
+Trying to write HFS file with CNID %X behind EOF.,Tentando escrever o ficheiro HFS com CNID %X após a conclusão do ficheiro.,Tentando escrever arquivo HFS com CNID %X atrás do fim do arquivo.,,LLAMA,73.01030158996582,52.031954318168914,30.130404892785695,50.0,89.14008140563965
+Could not update the extent cache for HFS+ file with CNID %X.,Não foi possível atualizar a cachÃª de extensiÃ³n para o ficheiro HFS+ com CNID %X.,Não foi possível atualizar o cache do arquivo de extensão HFS+ com CNID %X.,,LLAMA,73.79342913627625,66.91114396685124,48.59373818796306,50.0,85.60993075370789
+Trying to read HFS+ file with CNID %X behind EOF.,Tentando ler o arquivo HFS+ com CNID %X após a conclusão do arquivo.,Tentando ler arquivo HFS+ com CNID %X atrás do fim do arquivo.,,LLAMA,84.84104871749878,70.34072531954088,49.35578819979934,33.33333333333333,93.93085837364197
+Could not find sector %lli of HFS+ file with CNID %X.,Não foi possível encontrar o setor %lli do arquivo HFS+ com CNID %X.,Não foi possível encontrar setor %lli de arquivo HFS+ com CNID %X.,,LLAMA,93.88384222984314,87.21160626783117,64.22727797927409,16.666666666666664,96.80773615837097
+Trying to write HFS+ file with CNID %X behind EOF.,Tentando escrever o ficheiro HFS+ com CNID %X após a conclusão do ficheiro.,Tentando escrever arquivo HFS+ com CNID %X atrás do fim do arquivo.,,LLAMA,73.35501313209534,53.53537604284917,35.83129187641355,50.0,89.82387781143188
+"Sorry, HFS cannot be resized that way yet.","Desculpe, HFS não pode ser redimensionado.","Desculpe, HFS não pode ser redimensionada deste modo ainda.",,LLAMA,86.45176291465759,69.15473069009363,48.59869096699083,44.44444444444444,94.15192604064941
+shrinking,contrair,encolhendo,,LLAMA,50.7091760635376,6.125548045305078,0.0,100.0,69.8347806930542
+Data relocation has failed.,A reubicação de dados falhou.,Realocação de dados falhou.,,LLAMA,89.92615938186646,76.03467075999296,50.81327481546149,50.0,86.08645796775818
+Data relocation left some data in the end of the volume.,A reorganização de dados deixou alguns dados no final do volume.,A realocação de dados deixou alguns dados no final do volume.,,LLAMA,90.88270664215088,87.02957813993788,82.651681837938,9.090909090909092,93.91824007034302
+writing HFS Master Directory Block,escrevendo Bloco de Diretório Maestro HFS,escrevendo bloco de diretório mestre HFS,,LLAMA,83.38605761528015,49.41291578325606,10.682175159905853,16.666666666666664,87.91120648384094
+No valid HFS[+X] signature has been found while opening.,Não foi possível encontrar uma assinatura HFS+ válida ao abrir.,Nenhuma assinatura HFS[+X] válida foi encontrada ao abrir.,,LLAMA,79.85721230506897,56.87831411503728,16.40212036255558,100.0,87.00520992279053
+Version %d of HFS+ isn't supported.,A versÃ£o %d do HFS+ não está implementada.,Não há suporte para a versão %d do HFS+.,,LLAMA,85.85856556892395,31.099560185956527,33.5295721026861,88.88888888888889,84.74507927894592
+Version %d of HFSX isn't supported.,A versÃ£o %d do HFSX não está implementada.,Não há suporte para a versão %d do HFSX.,,LLAMA,83.8893175125122,33.710323710103715,25.13293635022765,88.88888888888889,84.70061421394348
+Data relocation left some data at the end of the volume.,A reubicação de dados deixou alguns dados no final do volume.,A realocação de dados deixou alguns dados no final do volume.,,LLAMA,90.67123532295227,88.88612227541762,82.651681837938,9.090909090909092,95.55938243865967
+Error while writing the allocation file.,Erro ao escrever o arquivo de atribuição.,Erro ao escrever o arquivo de alocação.,,LLAMA,93.14226508140564,78.28681843200431,70.71067811865478,14.285714285714285,94.35600638389587
+Error while writing the compatibility part of the allocation file.,Erro ao escrever a parte de compatibilidade do arquivo de atribuição.,Erro ao escrever a parte de compatibilidade do arquivo de alocação.,,LLAMA,92.0838475227356,87.41954583919244,82.651681837938,9.090909090909092,96.10839486122131
+writing HFS+ Volume Header,escrevendo o cabeçalho do volume HFS+,escrevendo cabeçalho de volume HFS+,,LLAMA,90.09681344032288,75.3494169970615,27.77619034011791,40.0,96.33673429489136
+An error occurred while looking for the mandatory bad blocks file.,Ocorreu um erro ao procurar o arquivo obrigatório de blocos danificados.,Ocorreu um erro enquanto era visto o arquivo obrigatório de blocos defeituosos.,,LLAMA,84.6646249294281,60.445144860359434,40.17682558797496,33.33333333333333,90.28666019439697
+It seems there is an error in the HFS wrapper: the bad blocks file doesn't contain the embedded HFS+ volume.,Parece que houve um erro na envoltura HFS: o arquivo de blocos danificados não contém volume HFS+ incorporado.,Parece que há um erro no empacotador HFS: o arquivo de blocos defeituosos não contém um volume HFS+ embutido.,,LLAMA,84.54278707504272,59.12494188163955,34.280983392071754,31.57894736842105,91.85742735862732
+"Sorry, HFS+ cannot be resized that way yet.","Desculpe, HFS+ não pode ser redimensionado.","Desculpe, HFS+ não pode ser redimensionada deste modo ainda.",,LLAMA,88.89127373695374,70.52672437302519,53.78454936756791,44.44444444444444,94.41555738449097
+shrinking embedded HFS+ volume,contractando volume do HFS+ embutido,encolhendo volume HFS+ embutido,,LLAMA,81.73765540122986,62.51109757023977,32.46679154750991,50.0,83.63854885101318
+Resizing the HFS+ volume has failed.,O redimensionamento do volume HFS+ falhou.,Redimensionamento de volume HFS+ falhou.,,LLAMA,79.92921471595764,81.09354397645087,51.697315395717055,40.0,90.55379629135132
+shrinking HFS wrapper,contando emvolvimento HFS,reduzindo empacotador HFS,,LLAMA,53.46298813819885,21.153142242959174,27.516060407455225,66.66666666666666,76.38838291168213
+Updating the HFS wrapper has failed.,A atualização da envoltura HFS falhou.,Falha na atualização do empacotador HFS.,,LLAMA,78.35280895233154,35.08002751026253,8.643019616048525,100.0,84.0168297290802
+This is not a real %s check.  This is going to extract special low level files for debugging purposes.,Esta não é uma revisiÃ³ra real de %s. Isso vai extrair arquivos especiais do baixo nível para depuraciÃ£o.,Isto não é uma verificação %s real.  Isto vai extrair arquivos especiais de baixo nível para propósitos de depuração.,,LLAMA,76.9024908542633,54.43516696670788,23.29796301599973,47.368421052631575,87.3339295387268
+Bad block list header checksum.,CRC do encabezado da lista de bloques saldos.,Soma de verificação do cabeçalho de lista de blocos defeituosos.,,LLAMA,51.35357975959778,25.98342684035978,9.080027618567454,70.0,79.90503311157227
+Invalid size of a transaction block while replaying the journal (%i bytes).,Tamanho inválido de um bloco de transação ao reproduzir o diário de registros (%i bytes).,Tamanho inválido de um bloco de transação ao reproduzir o journal (%i bytes).,,LLAMA,88.7046754360199,83.72056258887883,73.31765459202478,23.076923076923077,96.47735357284546
+Journal stored outside of the volume are not supported.  Try to deactivate the journal and run Parted again.,O armazenamento de diário de registros fora do volume não está implementado. Tente desativar o diário de registros e execute Parted novamente.,Não há suporte a journals armazenados fora do volume.  Tente desabilitar o journal e executar Parted novamente.,,LLAMA,78.64752411842346,46.87115666980188,11.83306466282395,88.23529411764706,86.11624240875244
+Journal offset or size is not multiple of the sector size.,O deslocamento ou o tamanho do diário de registros não é um múltiplo do tamanho do setor.,O deslocamento ou tamanho de Journal não é um múltiplo do tamanho do cluster.,,LLAMA,67.3327624797821,67.61605330646697,42.93663233009673,35.714285714285715,92.32491254806519
+Incorrect magic values in the journal header.,Valores mágicos incorretos no cabeçalho do diário de registros.,Valores mágicos incorretos no cabeçalho journal.,,LLAMA,81.48594498634338,75.09754519842602,41.11336169005198,66.66666666666666,92.290598154068
+Journal size mismatch between journal info block and journal header.,Discrepância no tamanho do diário de registros entre o bloco de informações e o cabeçalho.,Tamanho do Journal não coincide com o bloco de informações e cabeçalho do journal.,,LLAMA,69.83248591423035,46.84377890263312,25.748661016289674,64.28571428571429,79.53594326972961
+Some header fields are not multiple of the sector size.,Alguns campos de encabezado não são múltiplos do tamanho do sector.,Alguns campos de cabeçalho não são múltiplos do tamanho do setor.,,LLAMA,82.77408480644226,77.20182921850507,54.52469119630866,18.181818181818183,94.63030695915222
+The sector size stored in the journal is not 512 bytes.  Parted only supports 512 bytes length sectors.,O tamanho do sector armazenado no diário de registros não é de 512 bytes. Particionamento apenas implementa sectores de 512 bytes.,O tamanho de setor armazenado no journal não é 512 bytes.  O Parted suporta apenas setores com 512 bytes de comprimento.,,LLAMA,75.49527287483215,49.40012549786788,12.062940248564933,66.66666666666666,88.40213418006897
+Bad journal checksum.,Checksum do diário de registros incorreto.,Soma de verificação de journal ruim.,,LLAMA,62.63679265975952,12.97788743115314,7.809849842300637,83.33333333333334,75.67720413208008
+The journal is not empty.  Parted must replay the transactions before opening the file system.  This will modify the file system.,O registro do diário não está vazio. O usuário deve reproduzir as transações antes de abrir o sistema de arquivos. Isso modificará o sistema de arquivos.,O jornal não está vazio.  O Parted deve repetir as transações antes de abrir o sistema de arquivos.  Isto irá modificá-lo.,,LLAMA,73.22251200675964,65.60226433472111,44.89929043142397,52.38095238095239,88.96291851997375
+The volume header or the master directory block has changed while replaying the journal.  You should restart Parted.,O encabeçamento do volume ou bloco de diretório raiz mudou ao reproduzir o diário de registros. Deve reiniciar Parted.,O cabeçalho do volume ou o bloco de diretório mestre foi modificado quando repetindo o journal.  Você deve reiniciar o Parted.,,LLAMA,72.65290021896362,45.14176115267483,12.997432906360487,52.38095238095239,84.53360199928284
+An extent has not been relocated.,Não foi possível relocar a extensÃ£o.,Uma extensão não foi realocada.,,LLAMA,75.34019351005554,30.92115235650056,7.809849842300637,100.0,75.53589940071106
+A reference to an extent comes from a place it should not.  You should check the file system!,Uma referÃªncia a uma extensiÃ³n vem de um lugar que não deve. Revise o sistema de fichiers!,Uma referência para uma extensão vem de um local indevido.  Você deve verificar o sistema de arquivos!,,LLAMA,74.77931380271912,42.40871082106648,14.747364570390475,52.94117647058824,79.14852499961853
+This HFS volume has no catalog file.  This is very unusual!,Este volume HFS não possui um arquivo de catálogo. Isso é muito extraordinário!,Este volume HFS não possui arquivo de catálogo.  Isto é muito incomum!,,LLAMA,92.5079882144928,74.20988127809807,45.788313721339826,25.0,94.40943598747253
+This HFS volume has no extents overflow file.  This is quite unusual!,Este volume HFS não possui um arquivo de overflow da extensão. Isso é muito extraordinário!,Este volume HFS não possui nenhum arquivo de estouro de extensão.  Isto é bastante incomum!,,LLAMA,82.40827918052673,53.6005696849849,28.85537660018372,40.0,90.51649570465088
+The extents overflow file should not contain its own extents!  You should check the file system.,O arquivo de exceder extensões não deve conter suas próprias extensões! Deve revisar o sistema de arquivos.,O arquivo de estouro de extensões não deve conter suas próprias extensões!  Você deve verificar o sistema de arquivos.,,LLAMA,75.99912285804749,75.06082500743626,56.61433137657307,21.052631578947366,93.5217797756195
+Could not cache the file system in memory.,Não foi possível armazenar em cache o sistema de arquivos.,Não foi possível armazenar em cache o sistema de arquivos em memória.,,LLAMA,92.68133640289307,84.369792268461,76.26264731696685,25.0,97.86746501922607
+Bad blocks list could not be loaded.,Não foi possível carregar a lista de blocos danificados.,A lista de blocos defeituosos não pôde ser carregada.,,LLAMA,86.82796955108643,41.21975630714552,16.784459625186194,66.66666666666666,84.13015007972717
+An error occurred during extent relocation.,Ocorreu um erro durante a relocalização da extensão.,Ocorreu um erro durante a realocação da extensão.,,LLAMA,93.41827034950256,85.36705766615839,59.694917920196445,12.5,93.53953003883362
+This HFS+ volume has no catalog file.  This is very unusual!,Este volume HFS+ não possui um arquivo de catálogo. Isso é muito extraordinário!,Este volume HFS+ não possui nenhum arquivo de catálogo.  Isto é muito incomum!,,LLAMA,92.69179105758667,71.76381189844282,50.353378875558576,23.076923076923077,94.70170140266418
+This HFS+ volume has no extents overflow file.  This is quite unusual!,Este volume HFS+ não possui um arquivo de extensões desbordadas. Isso é muito extraordinário!,Este volume HFS+ não possui nenhum arquivo de estouro de extensões.  Isto é bastante incomum!,,LLAMA,85.93454360961914,56.90384716140211,34.365395712064895,46.666666666666664,91.64285659790039
+displays this help message,Mostre este mensagem de ajuda.,mostra esta mensagem de ajuda,,LLAMA,84.56022143363953,62.54943362245635,30.213753973567677,60.0,90.28741717338562
+lists partition layout on all block devices,lista as partiÃ§oes de blocos em todos os dispositivos de bloco disponÃ­veis,lista modelos de partições em todos os dispositivos de bloco,,LLAMA,79.54067587852478,65.88060010250234,44.833867003844595,40.0,82.5792670249939
+displays machine parseable output,saída analisável,exibe saída analisável por máquina,,LLAMA,81.30500316619873,47.56973026052458,22.31301601484299,60.0,85.95066666603088
+displays JSON output,Saída em JSON mostrada,exibe saída analisável por máquina,,LLAMA,60.33932566642761,7.818692858751768,0.0,80.0,71.47519588470459
+never prompts for user intervention,nunca pede a interveniÃ§Ã£o do usuário.,nunca pede intervenção do usuário,,LLAMA,89.7513210773468,67.53674964734284,18.575057999133602,60.0,82.73226022720337
+displays the version,exibe a versão,mostra a versão,,LLAMA,85.87900996208191,46.147121741932054,55.03212081491043,33.33333333333333,85.87954044342041
+alignment for new partitions,alinhamento de partição para novas partições,alinhamento para novas partições,,LLAMA,85.3911280632019,83.85731605284576,32.46679154750991,50.0,93.11119318008423
+"NUMBER is the partition number used by Linux.  On MS-DOS disk labels, the primary partitions number from 1 to 4, logical partitions from 5 onwards.
+","O NUMERO é o número de participação utilizado pelo Linux. Nas etiquetas do disco MS-DOS, as partiÃ§oes primÃ¡rias vÃ¡m do 1 ao 4 e as partiÃ³gicas a partir do 5 em diante.","NÚMERO é o número da partição usado pelo Linux.  Em rótulos de disco MS-DOS, as partições primárias são de 1 a 4 e partições lógicas de 5 adiante.
+",,LLAMA,74.94438290596008,49.455421917826364,14.424375017452912,71.42857142857143,80.5161714553833
+LABEL-TYPE is one of: ,TIPO_ETIQUETA é um dos seguintes tipos de etiqueta:,TIPO_RÓTULO é um de:,,LLAMA,65.83718657493591,29.077423004918423,11.731175160263996,100.0,78.62905263900757
+FLAG is one of: ,"O FLAG é um dos seguintes: %s, %d, %<PRIuMAX>.",OPÇÃO é um de: ,,LLAMA,48.057928681373596,19.243920849786004,4.753622060013117,100.0,70.49017548561096
+UNIT is one of: ,UNIDAD é um dos seguintes: ,UNIDADE é um de: ,,LLAMA,82.52366185188293,41.523304754163654,17.965205598154213,75.0,87.02481389045715
+desired alignment: minimum or optimal,alinhamento desejado: mínimo ou óptimo,alinhamento desejado: mínimo ou ideal,,LLAMA,95.30918002128601,83.05270914695325,75.98356856515926,20.0,94.22021508216858
+"PART-TYPE is one of: primary, logical, extended
+","TIPO-PART é um dos seguidos: primÃ¡rio, lÃ³gico, extendido","TIPO-PART é uma: primária, lógica, estendida
+",,LLAMA,70.48764824867249,42.535370734540464,9.425159511373677,100.0,79.41235303878784
+FS-TYPE is one of: ,TIPO-SF é um dos seguintes tipos:,TIPO-FS é um de: ,,LLAMA,88.25488686561584,34.52451842597814,14.535768424205482,100.0,88.53179216384888
+"START and END are disk locations, such as 4GB or 10%.  Negative values count from the end of the disk.  For example, -1s specifies exactly the last sector.
+","Início e Fim são locais de disco, como 4GB ou 10%. Os valores negativos contam desde o final do disco. Por exemplo, -1 especifica exatamente a última unidade.","INÍCIO E FIM são localizações de disco, assim como 4GB ou 10%.  Valores negativos contam a partir do final do disco.  Por exemplo, -1s especifica exatamente o último setor.
+",,LLAMA,87.19865679740906,62.318971948782476,37.66609832882795,34.48275862068966,90.2243435382843
+"END is disk location, such as 4GB or 10%.  Negative value counts from the end of the disk.  For example, -1s specifies exactly the last sector.
+","FIN é uma localizaÃ§Ã£o de disco, como 4GB ou 10%. Os valores negativos contam desde o final do disco. Por exemplo, -1 especifica exatamente a última unidade.","FIM é localização de disco, assim como 4GB ou 10%.  Valores negativos contam a partir do final do disco.  Por exemplo, -1s especifica exatamente o último setor.
+",,LLAMA,84.58428978919983,65.90225833888137,40.02334831747483,44.44444444444444,90.62799215316772
+"STATE is one of: on, off
+","Estado é um dos seguintes valores: on, off","ESTADO é um de: on, off
+",,LLAMA,86.52453422546387,40.8609480605219,31.239399369202552,50.0,82.9798936843872
+"DEVICE is usually /dev/hda or /dev/sda
+",DISPOSITIVO é normalmente /dev/hda ou /dev/sda.,"DISPOSITIVO é usualmente /dev/hda ou /dev/sda
+",,LLAMA,96.7664361000061,76.32243965031208,70.16035864257111,33.33333333333333,97.48282432556152
+"NAME is any word you want
+",NOMBRE é qualquer palavra que deseje.,"NOME é qualquer palavra que desejar
+",,LLAMA,84.61341857910156,78.24951174176039,41.11336169005198,33.33333333333333,88.10855150222778
+"Copyright (C) 1998 - 2006 Free Software Foundation, Inc.
+This program is free software, covered by the GNU General Public License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+","Copyright (C) 1998 -2006 Free Software Foundation, Inc. 
+Este programa é software livre coberto pela Licença Pública Geral de GNU. 
+
+ Este programa se distribui com a esperança que seja útil, mas sem nenhuma garantia; nem mesmo a garanteÃ­a implÃªscia da comercializabilidade ou adequade para um fim determinado. Consulte a Licença Pública Geral de GNU para obter mais detalhes.","Copyright (C) 1998 - 2006 Free Software Foundation, Inc.
+Este programa é um software livre, coberto pela Licença Pública Geral GNU.
+
+Este programa é distribuído na expectativa de ser útil, mas
+SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+COMERCIALIZAÇÃO ou de ADEQUAÇÃO A QUALQUER PROPÓSITO EM
+PARTICULAR. Consulte a Licença Pública Geral GNU para obter
+mais detalhes.
+
+",,LLAMA,80.07583022117615,61.72872348973007,42.23772459876395,40.67796610169492,78.40121984481812
+%0.f%%	(time left %.2d:%.2d),%0.f%% (tempo que queda %.2d:%.2d),%0.f%%	(tempo restante %.2d:%.2d),,LLAMA,90.30557870864868,65.73697322052745,77.7811122305422,50.0,96.81515097618103
+Partition %s is being used. Are you sure you want to continue?,A participação do usuário %s está em uso. ¡Realmente deseja continuar?,A partição %s está em uso. Você tem certeza que deseja continuar?,,LLAMA,71.37407660484314,58.630130674259625,42.57110866884422,58.333333333333336,84.17086005210876
+Partition(s) on %s are being used.,As participações em %s estão sendo utilizadas.,Partição(ões) em %s está(ão) sendo utilizada(s).,,LLAMA,62.099820375442505,45.669383760669874,8.290056966884416,66.66666666666666,76.90343260765076
+The existing disk label on %s will be destroyed and all data on this disk will be lost. Do you want to continue?,A etiqueta de disco atual em %s será destruída e todos os dados neste disco se perderão. ¡Deseja continuar?,O rótulo de disco existente em %s será destruído e todos os dados neste disco serão perdidos. Você deseja continuar?,,LLAMA,88.08515667915344,60.75431160247875,36.160012662152226,40.0,89.86141085624695
+New disk label type?,Novo tipo de etiqueta para discos?,Novo tipo de rótulo de disco?,,LLAMA,94.07551884651184,46.52803346793575,26.269098944241588,50.0,86.99122071266174
+Partition type?,Tipo de participação?,Tipo da partição?,,LLAMA,79.14592623710632,41.72285759260994,18.99589214128981,66.66666666666666,87.96773552894592
+Partition name?,Nome da participação?,Nome da partição?,,LLAMA,89.47253823280334,69.66217173951465,35.35533905932737,33.33333333333333,88.9078438282013
+File system type?,Tipo de sistema de arquivos?,Tipo do sistema de arquivos?,,LLAMA,97.1125841140747,80.15101055504373,53.7284965911771,20.0,97.1003532409668
+Start?,Início?,Iniciar?,,LLAMA,86.76337003707886,17.95153260991162,49.99999999999999,100.0,84.20637845993042
+End?,Fim?,Terminar?,,LLAMA,70.79822421073914,14.880952380952378,49.99999999999999,100.0,84.0972363948822
+"You requested a partition from %s to %s (sectors %llu..%llu).
+The closest location we can manage is %s to %s (sectors %llu..%llu).%s","Pedido uma participação de %s a %s (setores %llu..%llu). A localizaciÃ£o mais próxima que podemos manejar é em %s, na cidade de %s (setor %llu..%llu).","Você solicitou uma partição de %s até %s (setores %llu..%llu).
+A localização mais próxima que podemos gerenciar é de %s até %s (setores %llu..%llu).%s",,LLAMA,75.6418228149414,61.51843177872185,54.862795054790254,54.166666666666664,85.98721623420715
+"
+Is this still acceptable to you?",Esta é aceitável para você?,"
+Isto é ainda aceitável para você?",,LLAMA,95.78447341918945,65.7909492420368,45.48019047027906,33.33333333333333,95.32723426818848
+The resulting partition is not properly aligned for best performance: %s,A participação resultante não está corretamente alinhada para o melhor desempeÃ±o: %s,A partição resultante não está propriamente alinhada para melhor performance: %s,,LLAMA,74.30886030197144,61.903251594934694,21.35901256790989,36.36363636363637,87.2355043888092
+%s disk labels do not support partition name.,As etiquetas de disco do %s não implementam nome de participante.,Rótulos de disco %s não suportam nome de partição.,,LLAMA,69.499272108078,51.493417745296725,17.474335703431752,55.55555555555556,85.22279262542725
+Partition number?,Número de participantes?,Número da partição?,,LLAMA,76.82600021362305,40.153191006643425,18.99589214128981,66.66666666666666,78.19335460662842
+"BIOS cylinder,head,sector geometry: %d,%d,%d.  Each cylinder is %s.
+","Geometria cilíndrica, encabezada por sector de BIOS: %d,%d,%d. Cada cilindro possui uma seção transversal circular.
+","cilindro pela BIOS,cabeça,geometria do setor: %d,%d,%d.  Cada cilindro é %s.
+",,LLAMA,67.8361713886261,46.68401250409976,45.104357918905706,100.0,79.27567958831787
+"Model: %s (%s)
+",Modelo: %s (%s),"Modelo: %s (%s)
+",,LLAMA,98.75355958938599,100.0,100.00000000000004,0.0,100.0
+"Disk %s: %s
+","Disco %s: %s
+","Disco %s: %s
+",,LLAMA,98.40936064720154,100.0,100.00000000000004,0.0,100.00001192092896
+"Sector size (logical/physical): %lldB/%lldB
+",Tamanho do sector (lógico/físico): %<PRIuMAX>B/%<PRIuMAX>B,"Tamanho do setor (lógico/físico): %lldB/%lldB
+",,LLAMA,74.63510632514954,64.65857229586024,35.07534174929481,40.0,82.52598643302917
+"Partition Table: %s
+","Tabula de particionamento: %s
+","Tabela de partições: %s
+",,LLAMA,92.81193614006042,47.03855142409624,32.46679154750991,50.0,89.59770202636719
+"Disk Flags: %s
+","Banderas de disco: %s
+","Opções de disco: %s
+",,LLAMA,80.48726916313171,66.63855623754984,75.98356856515926,25.0,87.28928565979004
+Number,Número,Número,,LLAMA,98.7723171710968,100.0,100.00000000000004,0.0,100.0
+Start,Início,Início,,LLAMA,98.80149960517883,100.0,100.00000000000004,0.0,99.99997019767761
+End,Fim,Fim,,LLAMA,98.53989481925964,100.0,100.00000000000004,0.0,99.99998807907104
+Size,Tamanho do arquivo,Tamanho,,LLAMA,77.464359998703,70.55053509207274,27.516060407455225,100.0,75.58861970901489
+Type,Tipo,Tipo,,LLAMA,99.27751421928406,100.0,100.00000000000004,0.0,99.99998211860657
+File system,Sistema de arquivos,Sistema de arquivos,,LLAMA,98.8290011882782,100.0,100.00000000000004,0.0,100.0
+Name,Nome,Nome,,LLAMA,99.30971264839172,100.0,100.00000000000004,0.0,99.99994039535522
+Flags,Bandeiras,Opções,,LLAMA,63.42906951904297,4.329004329004329,0.0,100.0,83.74090790748596
+Free Space,Espaço Livre,Espaço livre,,LLAMA,97.68376350402832,47.8517316017316,49.99999999999999,0.0,96.38164043426514
+A %s %s partition was found at %s -> %s.  Do you want to add it to the partition table?,Foi encontrada uma participação %s em %s -> %s. ¡Quer adicionar a esta tabela de particionamento?,Uma partição %s %s foi encontrada em %s -> %s.  Você deseja adicioná-la a tabela de partições?,,LLAMA,62.80606985092163,52.871531810560334,35.58574367741913,47.05882352941176,85.5188250541687
+searching for file systems,buscando os sistemas de arquivos,pesquisando por sistemas de arquivo,,LLAMA,90.02413749694824,52.88211527964205,21.3643503198117,60.0,89.85361456871033
+The resize command has been removed in parted 3.0,A função resize foi removida na versão parted 3.0.,O comando resize foi removido no parted 3.0,,LLAMA,90.12793898582458,57.99282022158291,11.868405219520975,75.0,91.96553826332092
+"Shrinking a partition can cause data loss, are you sure you want to continue?","Contrair uma participação pode provocar perda de dados, ¡realmente deseja continuar?","Reduzir uma partição pode causar perda de dados, você tem certeza que deseja continuar?",,LLAMA,72.08267450332642,55.357532321413686,23.644618856835695,50.0,85.81094145774841
+New device?,Novo dispositivo?,Novo dispositivo?,,LLAMA,99.5561420917511,100.0,100.00000000000004,0.0,100.00001192092896
+alignment type(min/opt),Tipo de alinhamento (mínimo/ótimo),tipo de alinhamento(min/opt),,LLAMA,84.75210070610046,56.52735001694388,23.356898886410015,66.66666666666666,88.76445889472961
+"%d aligned
+",%d alinhada,"%d alinhado(s)
+",,LLAMA,83.36334228515625,59.51147949127129,20.24518585186855,50.0,90.8994972705841
+"%d not aligned: %s
+",%d desalinhado(s): %s,"%d não alinhado: %s
+",,LLAMA,86.48501634597778,51.48959615373849,22.31618068926665,50.0,85.38497686386108
+Flag to Invert?,Bandeira para Invernotr?,Opção para inverter?,,LLAMA,58.76844525337219,25.069400064446995,18.99589214128981,66.66666666666666,79.20284867286682
+New state?,Novo estado?,Novo estado?,,LLAMA,99.53175187110901,100.0,100.00000000000004,0.0,100.00002384185791
+Unit?,Unidade?,Unidade?,,LLAMA,98.91311526298523,100.0,100.00000000000004,0.0,100.00002384185791
+align-check,verificação de alinhamento,align-check,,LLAMA,63.59410881996155,10.855724976806721,0.0,100.0,65.32222032546997
+align-check TYPE N                       check partition N for TYPE(min|opt) alignment,verifica alinhamento TIPO N                     revisa o tipo de alinhamento do participante N (min|opt),align-check TIPO N                       verifica a partição N para alinhamento de TIPO(mínimo|ideal),,LLAMA,63.99589776992798,38.72678788545671,6.661792187996065,90.9090909090909,80.59546947479248
+help,ajuda,help,,LLAMA,95.27081251144409,0.0,0.0,100.0,89.51277732849121
+"help [COMMAND]                           print general help, or help on COMMAND","Ajuda [ORDEN]                           mostra a ajuda geral, ou a ajuda sobre o comando ORDEN","help [COMANDO]                           exibe a ajuda geral, ou ajuda para o COMANDO",,LLAMA,80.66033124923706,38.545713632870964,26.518122980477767,54.54545454545454,83.05882811546326
+mklabel,mklabel,mklabel,,LLAMA,98.2524573802948,100.0,100.00000000000004,0.0,100.00001192092896
+mktable,tabela de mercado,mktable,,LLAMA,65.33973813056946,15.907703482756222,0.0,100.0,77.35806703567505
+"mklabel,mktable LABEL-TYPE               create a new disklabel (partition table)","mklabel,mktable TIPO-ETIQUETA          cria uma nova etiqueta de disco (na tabela de particípios)","mklabel,mktable TIPO-RÓTULO              cria um novo rótulo de disco (na tabela de partição)",,LLAMA,79.38235402107239,60.59221353657151,40.325042950627804,41.66666666666667,91.0555899143219
+mkpart,mkpart,mkpart,,LLAMA,97.92699217796326,100.0,100.00000000000004,0.0,99.99998807907104
+mkpart PART-TYPE [FS-TYPE] START END     make a partition,mkpart TIPO-PART [TIPO-SF] INICIO FIN cria uma partiÃ£o,mkpart TIPO-PART [TIPO-FS] INÍCIO FIM    cria uma partição,,LLAMA,75.14640688896179,62.463560317587586,20.556680845025987,50.0,93.04968118667603
+"'mkpart' makes a partition without creating a new file system on the partition.  FS-TYPE may be specified to set an appropriate partition ID.
+",'mkpart' cria uma partiÃ£o sem criar um novo sistema de arquivos na partição. Pode definir o TIPO-SF para atribuir uma ID da partiÃ£o.,"mkpart cria uma partição sem criar um novo sistema de arquivos na partição. TIPO-FS deve ser especificado para partições de dados (ao oposto de uma partição estendida). Este comando é útil se você apagou acidentalmente uma partição.
+",,LLAMA,65.58411717414856,36.90086924964947,20.66208443838578,64.86486486486487,81.3336193561554
+name,nome,name,,LLAMA,93.83115768432617,21.666666666666664,0.0,100.0,91.3794994354248
+name NUMBER NAME                         name partition NUMBER as NAME,nome NUMERO NOMBRE                     nome a participÃ¡ncia NUMERO como NOMBRE,name NÚMERO NOME                         renomeia a partição NÚMERO para NOME,,LLAMA,58.945685625076294,26.73706537629652,4.767707020457095,88.88888888888889,74.260413646698
+print,imprimir,print,,LLAMA,86.9360089302063,20.836819500223115,0.0,100.0,62.91291117668152
+"print [devices|free|list,all]            display the partition table, or available devices, or free space, or all found partitions","imprime [dispositivos|livre|lista,todos] mostrando a tabela de partições, dispositivos disponíveis, espaço livre ou todas as partições.","print [devices|free|list,all|NÚMERO]     exibe a tabela de partições, dispositivos disponíveis, espaço livre, todas as partições encontradas ou uma partição específica",,LLAMA,78.22148203849792,56.50503157487024,34.74855879120132,52.63157894736842,85.18480062484741
+"Without arguments, 'print' displays the entire partition table. However with the following arguments it performs various other actions.
+","Sem argumentos, 'print' mostra a tabela de particionamento completa. Contudo, com os seguintes argumentos, realiza outras ações.","Sem argumentos, ""print"" exibe a tabela de partições inteira. Entretanto, com os argumentos a seguir, ele executa várias outras ações.
+",,LLAMA,88.10264468193054,50.668006814619794,15.31944832582338,55.00000000000001,89.04818296432495
+"  devices   : display all active block devices
+",dispositivos : mostra todos os dispositivos de bloqueio ativo,"  devices   : exibe todos os dispositivos de bloco ativos
+",,LLAMA,88.31397891044617,57.589623408602066,31.55984539112946,44.44444444444444,90.64011573791504
+"  free      : display information about free unpartitioned space on the current block device
+","free : exibe informações sobre o espaço livre sem particionar no dispositivo de bloqueamento atual
+","  free      : exibe informações sobre espaço livre não particionado no dispositivo de bloco atual
+",,LLAMA,80.40201663970947,74.4386414827696,37.0304683381906,28.57142857142857,93.1571900844574
+"  list, all : display the partition tables of all active block devices
+",lista de todas as tabes de particionamento dos dispositivos de bloque ativos,"  list, all : exibe as tabelas de partições de todos os dispositivos de bloco ativos
+",,LLAMA,75.61044096946716,47.68668210008539,6.386992091194858,66.66666666666666,80.81571459770203
+quit,sair,quit,,LLAMA,67.52249002456665,5.0,0.0,100.0,79.2479932308197
+quit                                     exit program,Sair do programa                           Venda do programa,quit                                     sai do programa,,LLAMA,54.14504408836365,44.23852606205651,16.233395773754953,100.0,80.94291687011719
+rescue,resgate,rescue,,LLAMA,74.19978976249695,18.114609895431812,0.0,100.0,83.04301500320435
+rescue START END                         rescue a lost partition near START and END,recuperação INICIO FIN                      recupera as partições perdidas entre INICIO e FIN,rescue INÍCIO FIM                        recupera uma partição perdida próxima do INÍCIO e FIM,,LLAMA,67.84433722496033,32.92499044503349,4.069582841180382,83.33333333333334,82.51364231109619
+resize,redimensão,resize,,LLAMA,67.09219813346863,12.969724631066484,0.0,100.0,81.74741268157959
+"The resize command was removed in parted 3.0
+",A função 'resize' foi removida na versão do Parted 3.0.,"O comando resize foi removido no parted 3.0
+",,LLAMA,88.56292366981506,40.24814878323367,4.456882760699063,100.0,88.35514187812805
+resizepart,redimigração de partição,resizepart,,LLAMA,50.66041946411133,24.39313695232854,0.0,100.0,69.25318837165833
+resizepart NUMBER END                    resize partition NUMBER,redimensiona a participação NUMERO FIN,resizepart NÚMERO FIM                    redimensiona a partição NÚMERO,,LLAMA,47.047099471092224,44.87111516575883,14.320952289897704,85.71428571428571,74.08539056777954
+rm,remover arquivo,rm,,LLAMA,67.08640456199646,15.151515151515152,0.0,100.0,67.69486665725708
+rm NUMBER                                delete partition NUMBER,Remoção de NUMERO                              apaga a participação NUMERO,rm NÚMERO                                apaga a partição NÚMERO,,LLAMA,53.206223249435425,49.56532283651982,13.134549472120788,83.33333333333334,81.28670454025269
+select,selecionar,select,,LLAMA,87.15753555297852,42.236679421451484,0.0,100.0,74.51938986778259
+select DEVICE                            choose the device to edit,Selecione o dispositivo para edição,select DISPOSITIVO                       escolhe o dispositivo para editar,,LLAMA,85.70401072502136,46.04299563832479,26.65429557589628,57.14285714285714,75.64879059791565
+disk_set,set de disco,disk_set,,LLAMA,64.9377167224884,22.392817040859786,27.516060407455225,100.0,75.39529800415039
+disk_set FLAG STATE                      change the FLAG on selected device,o estado do dispositivo selecionado foi alterado para a bandeira %s.,disk_set OPÇÃO ESTADO                    muda o estado de OPÇÃO no dispositivo selecionado,,LLAMA,51.94856524467468,42.584186452715095,8.73716785171588,90.9090909090909,72.38026261329651
+disk_toggle,ativar/desativar disco,disk_toggle,,LLAMA,45.21614909172058,10.275843835374989,0.0,100.0,68.83023381233215
+disk_toggle [FLAG]                       toggle the state of FLAG on selected device,alterna o estado de %s no dispositivo selecionado,disk_toggle [OPÇÃO]                      alterna o estado de OPÇÃO no dispositivo selecionado,,LLAMA,66.72802567481995,61.57432553012342,24.767214526041226,30.0,80.20284175872803
+set,definir,set,,LLAMA,66.36000275611877,6.578947368421052,0.0,100.0,81.52668476104736
+set NUMBER FLAG STATE                    change the FLAG on partition NUMBER,set NUMERO BANDERA ESTADO              altera a BANDERA de participação do Estado NUMERO,set NÚMERO OPÇÃO ESTADO                  muda a OPÇÃO na partição NÚMERO,,LLAMA,51.070261001586914,24.016085075404735,4.456882760699063,90.0,81.31139874458313
+toggle,ativar/desativar,toggle,,LLAMA,46.83879911899567,3.571428571428571,0.0,100.0,71.60242795944214
+toggle [NUMBER [FLAG]]                   toggle the state of FLAG on partition NUMBER,"alterna o estado da banda em participação %<PRIuMAX> [%s]
+",toggle [NÚMERO [OPÇÃO]]                  alterna o estado de OPÇÃO no NÚMERO da partição,,LLAMA,35.93006432056427,30.38067081622312,10.883006131731655,75.0,71.92297577857971
+unit,unidade,unit,,LLAMA,88.07072043418884,31.98402863830373,0.0,100.0,93.02327632904053
+unit UNIT                                set the default unit to UNIT,Unidade UNIDAD                            configura a unidade por defeito para UNIDAD,unit UNIDADE                             define como unidade padrão UNIDADE,,LLAMA,57.03210234642029,32.25336854956629,4.767707020457095,100.0,77.33946442604065
+version,versão,version,,LLAMA,91.7387306690216,27.613031708000126,0.0,100.0,92.35870242118835
+version                                  display the version number and copyright information of GNU Parted,versÃ£o                                mostra o nÃºmero de versiÃ³n e a informaciÃ³ra do copyright GNU Parted,version                                  exibe o número da versão e informações de direitos autorais do GNU Parted,,LLAMA,71.63626551628113,31.541443283194614,7.52885143038073,71.42857142857143,72.03503847122192
+"'version' displays copyright and version information corresponding to this copy of GNU Parted
+",'versao' mostra a informaÃ§Ã£o de versiÃ³n e copyright deste copiar do GNU Parted.,"'version' exibe informações de versão e direitos autorais correspondentes a esta cópia do GNU Parted
+",,LLAMA,59.17748808860779,32.00424806854587,11.704569597597914,73.33333333333333,74.7291624546051
+"Usage: %s [-hlmsfv] [-a<align>] [DEVICE [COMMAND [PARAMETERS]]...]
+",Modo de uso: %s [-hlmsfv] [-a<alinear>] [DISPOSITIVO [ORDEN [PARÃMETROS]]...],"Uso: %s [-hlmsv] [-a<alinhamento>] [DISPOSITIVO [COMANDO [PARÂMETROS]]...]
+",,LLAMA,77.30424404144287,58.70432055625089,48.39281708164424,85.71428571428571,93.34496855735779
+No device found,Não foi possível encontrar o dispositivo,Nenhum dispositivo encontrado,,LLAMA,93.86482834815979,44.64694592624635,8.116697886877475,100.0,77.05076932907104
+"WARNING: You are not superuser.  Watch out for permissions.
+",AVISO: Você não é superusuário. Fique atento aos permissões.,"ATENÇÃO: Você não é super usuário.  Tome cuidado com permissões.
+",,LLAMA,75.44803619384766,55.15165527230318,24.107473040766184,60.0,86.01109385490417
+You should reinstall your boot loader before rebooting.  Read section 4 of the Parted User documentation for more information.,É necessÃ¡rio reinstalar seu carregador de inicializaciÃ³rio antes de reiniciar. Leia a seção 4 da documentaciÃ³n do Usuario para obter mais informaÃ§Ã£o.,Você deve reinstalar seu carregador de inicialização antes de reinicializar. Leia a seção 4 da documentação do usuário do Parted para mais informações.,,LLAMA,78.85357737541199,61.79396730704527,32.726726474734306,43.47826086956522,80.58943748474121
+"You may need to update /etc/fstab.
+",Pode haver que atualizar /etc/fstab.,"Você pode precisar atualizar /etc/fstab.
+",,LLAMA,95.79107165336609,54.55211626789844,58.73949094699213,60.0,91.06414318084717
+"Welcome to GNU Parted! Type 'help' to view a list of commands.
+",Bem-vindo(a) ao GNU Parted! Escreva 'help' para ver uma lista de comandos.,"Bem vindo ao GNU Parted! Digite 'help' para ver uma lista de comandos.
+",,LLAMA,92.05048680305481,75.77147698265631,56.35190098079901,23.076923076923077,91.82815551757812
+"Usage: parted [OPTION]... [DEVICE [COMMAND [PARAMETERS]...]...]
+Apply COMMANDs with PARAMETERS to DEVICE.  If no COMMAND(s) are given, run in
+interactive mode.
+","Modo de Emprego: parted [OPCIÃŠN]... [DISPOSITIVO [ORDEN[PARÂMETROS]]...] [...] Aplica a(s) ORDÊN(ES) com PARÂMETROS ao DISPOSITIVO. Se nenhuma(s) ORDÊN(ES) forem dadas, executar no modo interativo.","Uso: parted [OPCOES]... [DISPOSITIVO [COMANDO [PARÂMETROS]...]...]
+Aplica COMANDOs com PARÂMETROS para DISPOSITIVO. Se nenhum COMANDO(s) forem
+informados, executa-se em modo interativo.
+",,LLAMA,69.07087564468384,56.77916449991267,32.13491226408265,66.66666666666666,88.5502278804779
+"
+
+You found a bug in GNU Parted! Here's what you have to do:
+
+Don't panic! The bug has most likely not affected any of your data.
+Help us to fix this bug by doing the following:
+
+Check whether the bug has already been fixed by checking
+the last version of GNU Parted that you can find at:
+
+	http://ftp.gnu.org/gnu/parted/
+
+Please check this version prior to bug reporting.
+
+If this has not been fixed yet or if you don't know how to check,
+please visit the GNU Parted website:
+
+	http://www.gnu.org/software/parted
+
+for further information.
+
+Your report should contain the version of this release (%s)
+along with the error message below, the output of
+
+	parted DEVICE unit co print unit s print
+
+and the following history of commands you entered.
+Also include any additional information about your setup you
+consider important.
+","Atenciosamente, você encontrou um erro no GNU Parted! Aqui está o que deve fazer: 
+
+Não se assuste! O erro provavelmente não afetou sua informação. 
+Podemos ajudar a corrigir este erro seguindo os passos abaixo: 
+Revise se esse erro já foi corrigido revisando a última versão de GNU Parted que possui disponÃ­vel no site do FTP da Fundacao Gnu/Linux, na página ftp://ftp.gnu.org/gnu/parted/. Se o problema não for resolvido ou se vocÃª sabe como verificar isso, visite a página web oficial de GNU Parted: http://www.gnu.org/software/parted/, para mais informaÃ§Ãµes. 
+Seu relato deve conter o link deste artigo (%s) junto com o mensagem do erro que aparece abaixo, a saída de 'parted DISPOSITIVO unit co print unit s print' e o seguinte histórico dos comandos usados. Inclua também qualquer informaciÃ³ra adicional sobre sua configuraciÃ³n considerada importante.","
+
+Você encontrou um problema no GNU Parted! Eis o que deve fazer:
+
+Não entre em pânico! O erro provavelmente não afetou nenhum de seus dados.
+Ajude-nos a consertar este problema fazendo o seguinte:
+
+Confira se o problema já foi resolvido verificando
+a última versão do GNU Parted disponível em:
+
+	http://ftp.gnu.org/gnu/parted/
+
+Por favor, confira essa versão antes de relatar seu problema.
+
+Se ele ainda não tiver sido resolvido, ou se não sabe como verificá-lo,
+por favor visite a página do GNU Parted:
+
+	http://www.gnu.org/software/parted
+
+para maiores informações.
+
+Seu relatório deve conter a versão deste lançamento, Parted (%s),
+a mensagem de erro abaixo, a saída do comando
+
+	parted DISPOSITIVO unit co print unit s print
+
+e o histórico de comandos que você digitou.
+Isto também inclui quaisquer informações adicionais sobre seu sistema
+que você considerar relevantes.
+",,LLAMA,78.80709767341614,53.87670494505853,33.38755561337963,60.902255639097746,83.34740996360779
+"
+Command History:
+",Historial de ordens:,"
+Histórico de comandos:
+",,LLAMA,83.94293189048767,22.03022253174579,18.99589214128981,66.66666666666666,85.85837483406067
+"
+Error: SEGV_MAPERR (Address not mapped to object)
+",Erro de SEGV_MAPERR (Direção não atribuída ao objeto),"
+Erro: SEGV_MAPERR (Endereço não mapeado ao objeto)
+",,LLAMA,89.0756905078888,50.820104397160506,32.649710286280516,57.14285714285714,87.18823194503784
+"
+Error: SEGV_ACCERR (Invalid permissions for mapped object)
+",Erro de Segmentação Acidental (Permissões inválidas para objeto atribuído),"
+Erro: SEGV_ACCERR (Permissões inválidas para o objeto mapeado)
+",,LLAMA,77.96334624290466,52.16167999409308,22.499268274284365,75.0,78.01446914672852
+"
+Error: A general SIGSEGV signal was encountered.
+",Erro encontrado: seção geral de SIGSEGV.,"
+Erro: Um sinal geral SIGSEGV foi encontrado.
+",,LLAMA,69.53238844871521,44.33518739819607,7.6274380401407225,85.71428571428571,82.49725699424744
+"
+Error: FPE_INTDIV (Integer: divide by zero)",Erro FPE_INTDIV (Divisão por zero): Entero,"
+Error: FPE_INTDIV (Inteiro: divisão por zero)",,LLAMA,73.86336326599121,51.149299973466036,32.03558799120807,83.33333333333334,86.66066527366638
+"
+Error: FPE_INTOVF (Integer: overflow)",Erro FPE_INTOVF (Excedimento de Entidade): Entero desbordamento,"
+Erro: FPE_INTOVF (Inteiro: estouro)",,LLAMA,59.442681074142456,33.820651976787204,24.384183193426086,100.0,80.97423911094666
+"
+Error: FPE_FLTDIV (Float: divide by zero)",Erro: FPE_FLTDIV (Divisão por zero em flutuante),"
+Erro: FPE_FLTDIV (Real: divisão por zero)",,LLAMA,81.27195239067078,65.70986325202821,48.326978309062184,83.33333333333334,92.74506568908691
+"
+Error: FPE_FLTOVF (Float: overflow)",Erro FPE_FLTOVF (Desvio de Ponto Flutuante): Sobredinho ou desbordamento),"
+Erro: FPE_FLTOVF (Real: estouro)",,LLAMA,52.61749029159546,34.25642679499896,18.92240568795936,100.0,78.0475914478302
+"
+Error: FPE_FLTUND (Float: underflow)",Erro FPE_FLTUND (Subdesbordamento Flutuante),"
+Erro: FPE_FLTUND (Real: estouro negativo)",,LLAMA,67.6098883152008,32.00660715127771,26.295889981470573,80.0,83.92341732978821
+"
+Error: FPE_FLTRES (Float: inexact result)",Erro FPE_FLTRES (Resultado Inexato): Flutuante,"
+Erro: FPE_FLTRES (Real: resultado não exato)",,LLAMA,81.85451626777649,48.284597563335346,24.736929544091943,83.33333333333334,85.75499653816223
+"
+Error: FPE_FLTINV (Float: invalid operation)",Erro FPE_FLTINV (Operação inválida para flutuante): %s,"
+Erro: FPE_FLTINV (Real: operação inválida)",,LLAMA,71.08816504478455,52.49881002341209,22.997519112894437,100.0,85.75534224510193
+"
+Error: FPE_FLTSUB (Float: subscript out of range)",Erro: FPE_FLTSUB (Flutuante: subÃ­ndice fora do intervalo),"
+Erro: FPE_FLTSUB (Real: subscrito fora de alcance)",,LLAMA,68.07170510292053,45.45223700370649,42.11813371894876,57.14285714285714,86.47012710571289
+"
+Error: A general SIGFPE signal was encountered.",Erro encontrado: seção geral de SIGFPE.,"
+Erro: Um sinal geral SIGFPE foi encontrado.",,LLAMA,65.19523859024048,43.15417505485128,7.6274380401407225,85.71428571428571,85.00726222991943
+"
+Error: ILL_ILLOPC (Illegal Opcode)",Erro: ILL_ILLOPC (Operação ilegal),"
+Erro: ILL_ILLOPC (Código de operação privilegiado)",,LLAMA,79.31902408599854,49.64145987476823,48.88290318657944,66.66666666666666,90.77833890914917
+"
+Error: ILL_ILLOPN (Illegal Operand)",Erro: ILL_ILLOPN (Operando ilegal),"
+Erro: ILL_ILLOPN (Operando ilegal)",,LLAMA,96.60583734512329,100.0,100.00000000000004,0.0,100.0
+"
+Error: ILL_ILLADR (Illegal addressing mode)",Erro: ILL_ILLADR (Modo de direcionamento ilegal),"
+Erro: ILL_ILLADR (Modo de endereçamento ilegal)",,LLAMA,82.56023526191711,78.47768005480397,74.19446627365011,16.666666666666664,96.81050777435303
+"
+Error: ILL_ILLTRP (Illegal Trap)",Erro: ILL_ILLTRP (Trampa ilegal),"
+Erro: ILL_ILLTRP (Interrupção ilegal)",,LLAMA,76.47051215171814,63.79342072554197,66.06328636027612,25.0,95.45886516571045
+"
+Error: ILL_PRVOPC (Privileged Opcode)",Erro: ILL:PRVOPC (Operação de Código Privilegiado),"
+Erro: ILL_PRVOPC (Código de operação privilegiado)",,LLAMA,88.05282711982727,59.311028709426324,19.72940627795883,50.0,90.3067409992218
+"
+Error: ILL_PRVREG (Privileged Register)",Erro: ILL:PRVREG (Registro privilegiado),"
+Erro: ILL_PRVREG (Registrador privilegiado)",,LLAMA,91.33078455924988,68.95457053875886,26.084743001221455,50.0,92.66977906227112
+"
+Error: ILL_COPROC (Coprocessor Error)",Erro de ILL_COPROC (Error do coprocessador),"
+Erro: ILL_COPROC (Erro do coprocessador)",,LLAMA,93.01434755325317,77.03562541088,39.281465090051285,60.0,93.77318024635315
+"
+Error: ILL_BADSTK (Internal Stack Error)",Erro de pila interna (ILL_BADSTK),"
+Erro: ILL_BADSTK (Erro interno da pilha)",,LLAMA,79.02464270591736,37.29039489926092,16.89983564524027,100.0,86.95232272148132
+"
+Error: A general SIGILL signal was encountered.",Erro: Encontrado uma seção geral de SIGILL.,"
+Erro: Um sinal geral SIGILL foi encontrado.",,LLAMA,66.7657196521759,42.48464032930944,11.99014838091355,85.71428571428571,84.57655906677246
+invalid token: %s,token inválido: %s,token inválido: %s,,LLAMA,98.88249039649963,100.0,100.00000000000004,0.0,100.00002384185791
+Expecting a partition number.,esperava-se um número de participantes.,Espera-se um número de partição.,,LLAMA,64.54636454582214,66.02652250206387,32.46679154750991,40.0,82.08001852035522
+Partition doesn't exist.,A participação não existe.,A partição não existe.,,LLAMA,73.42018485069275,76.16770620433918,42.72870063962342,25.0,88.61072063446045
+Expecting a file system type.,esperava-se um tipo de sistema de arquivos.,Espera-se um tipo de sistema de arquivos.,,LLAMA,92.29500889778137,89.47651421006022,84.08964152537145,14.285714285714285,93.12533140182495
+"Unknown file system type ""%s"".",Tipo de sistema de fichiers '%s' desconhecido.,"Tipo de sistema de arquivos ""%s"" desconhecido.",,LLAMA,95.5298364162445,62.24986463473306,29.377167835760567,28.57142857142857,87.67253160476685
+Expecting a disk label type.,esperava-se um tipo de etiqueta para disco.,Espera-se um tipo de rótulo de disco.,,LLAMA,83.92927050590515,52.919187152824954,25.848657697858535,42.857142857142854,84.45839881896973
+Can't create any more partitions.,Não é possível criar mais partiÃ§Ãµes.,Não é possível criar mais nenhuma partição.,,LLAMA,80.17488121986389,64.12972546860513,55.780028607687655,28.57142857142857,84.59967374801636
+Expecting a partition type.,esperava-se uma forma de participação.,Espera-se um tipo de partição.,,LLAMA,67.57137179374695,40.777018083261254,9.652434877402245,80.0,82.6092541217804
+on,ligado,ligado,,LLAMA,98.21943640708923,100.0,100.00000000000004,0.0,100.0
+off,desligado,desligado,,LLAMA,97.8554904460907,100.0,100.00000000000004,0.0,100.0
+optimal,ótimo,ideal,,LLAMA,89.43293690681458,3.3333333333333335,0.0,100.0,79.07012701034546
+minimal,mínimo,mínimo,,LLAMA,99.18398261070251,100.0,100.00000000000004,0.0,99.99997019767761
+OPTIONs:,Opções:,OPÇÕEs:,,LLAMA,81.99777007102966,13.690476190476192,49.99999999999999,0.0,73.58617782592773
+COMMANDs:,ORDENES:,COMANDOs:,,LLAMA,83.26403498649597,11.938202247191011,49.99999999999999,100.0,84.88270044326782
+"
+Report bugs to %s
+",Comunicar erros a %s,"
+Informe erros para %s
+",,LLAMA,93.17039847373962,30.72619480702753,23.643540225079384,50.0,85.09238958358765
+"Using %s
+",Utilizando %s,"Usando %s
+",,LLAMA,91.35587811470032,55.60670110530802,55.03212081491043,50.0,76.47900581359863
+"This command does not make sense in non-interactive mode.
+",Esta ordem não tem sentido no modo não interativo.,"Este comando não faz sentido em modo não interativo.
+",,LLAMA,82.25886225700378,55.5192338980474,29.071536848410968,44.44444444444444,93.5828447341919
