@@ -30,12 +30,14 @@ dependencies = [
     # --- Utilidades ---
     "beautifulsoup4>=4.12.0",
     "packaging>=23.0",
+    # --- Manipulação de Dados ---
+    "pandas>=2.0.0",             # DataFrames e CSV
     # --- Provedores de Tradução ---
-    "deepl>=1.17.0", # DeepL API
-    "google-genai>=0.3.0", # Google Gemini
-    "mistralai>=1.0.0", # Mistral AI
-    "ollama>=0.6.0", # Ollama (Phi3, Llama, etc.)
-    "openai>=1.0.0", # OpenAI (ChatGPT) - futuro
+    "deepl>=1.17.0",             # DeepL API
+    "google-genai>=0.3.0",       # Google Gemini
+    "mistralai>=1.0.0",          # Mistral AI
+    "ollama>=0.6.0",             # Ollama (Phi3, Llama, etc.)
+    "openai>=1.0.0",             # OpenAI (ChatGPT) - futuro
 ]
 
 # =============================================================================
@@ -51,7 +53,7 @@ dependencies = [
 test = [
     "pytest>=8.0.0",
     "pytest-asyncio>=0.23.0",
-    "pytest-cov>=4.1.0", # Cobertura de código
+    "pytest-cov>=4.1.0",         # Cobertura de código
 ]
 
 # -----------------------------------------------------------------------------
@@ -63,39 +65,58 @@ test = [
 # -----------------------------------------------------------------------------
 eval = [
     # --- Backend Neural (GPU) ---
-    "torch>=2.0.0,<2.4.0", # PyTorch com suporte CUDA
-    "transformers>=4.43.0", # Modelos BERT/XLM-R do HuggingFace
-    "sentencepiece>=0.1.99", # Tokenização
+    "torch>=2.0.0,<2.4.0",          # PyTorch com suporte CUDA
+    "transformers>=4.43.0",          # Modelos BERT/XLM-R do HuggingFace
+    "sentencepiece>=0.1.99",         # Tokenização
 
     # --- Pydantic (força v2 para compatibilidade) ---
-    "pydantic>=2.0.0,<3.0.0", # Versão 2.x (mais recente)
+    "pydantic>=2.0.0,<3.0.0",        # Versão 2.x (mais recente)
 
     # --- Métricas Principais ---
-    "unbabel-comet>=2.2.2", # COMET-22 (estado da arte, neural)
-    "sacrebleu>=2.3.0,<3.0.0", # chrF++, BLEU, TER (lexicais)
-    "bert-score>=0.3.13", # BERTScore (embeddings)
+    "unbabel-comet>=2.2.2",          # COMET-22 (estado da arte, neural)
+    "sacrebleu>=2.3.0,<3.0.0",       # chrF++, BLEU, TER (lexicais)
+    "bert-score>=0.3.13",            # BERTScore (embeddings)
 
     # --- Utilidades para Métricas ---
-    "scipy>=1.11.0", # Operações matemáticas
-    "numpy>=1.24.0", # Arrays numéricos
+    "scipy>=1.11.0",                 # Operações matemáticas
+    "numpy>=1.24.0",                 # Arrays numéricos
 
     # --- Lightning (para COMET) ---
-    "pytorch-lightning>=2.0.0,<2.5.0", # Framework do COMET
+    "pytorch-lightning>=2.0.0,<2.5.0",  # Framework do COMET
 ]
 
 # -----------------------------------------------------------------------------
-# GRUPO 'dev' - Desenvolvimento Completo (test + eval + ferramentas)
+# GRUPO 'stats' - Análise Estatística dos Resultados
+# Uso: pip install .[stats]
+# -----------------------------------------------------------------------------
+stats = [
+    # --- Testes Estatísticos ---
+    "scipy>=1.11.0",                 # Shapiro-Wilk, K-S, Wilcoxon, Kruskal-Wallis
+    "scikit-posthocs>=0.9.0",        # Dunn post-hoc com correção Bonferroni
+
+    # --- Visualização ---
+    "matplotlib>=3.7.0",             # Heatmaps, boxplots e histogramas
+    "plotly>=5.18.0",                # Gráficos interativos
+    "kaleido>=0.2.1",                # Exportação de gráficos Plotly para PNG
+
+    # --- Utilitários ---
+    "numpy>=1.24.0",                 # Arrays numéricos
+]
+
+# -----------------------------------------------------------------------------
+# GRUPO 'dev' - Desenvolvimento Completo (test + eval + stats + ferramentas)
 # Uso: pip install .[dev]
 # -----------------------------------------------------------------------------
 dev = [
-    "po-translator[test]", # Inclui dependências de teste
-    "po-translator[eval]", # Inclui dependências de métricas
+    "po-translator[test]",           # Inclui dependências de teste
+    "po-translator[eval]",           # Inclui dependências de métricas
+    "po-translator[stats]",          # Inclui dependências de análise estatística
 
     # Ferramentas de desenvolvimento
-    "ipython>=8.12.0", # REPL melhorado
-    "black>=24.0.0", # Formatação de código
-    "ruff>=0.1.0", # Linter rápido
-    "mypy>=1.7.0", # Type checking
+    "ipython>=8.12.0",               # REPL melhorado
+    "black>=24.0.0",                 # Formatação de código
+    "ruff>=0.1.0",                   # Linter rápido
+    "mypy>=1.7.0",                   # Type checking
 ]
 
 # =============================================================================
@@ -109,19 +130,19 @@ dev = [
 pythonpath = ["src"]              # Adiciona src/ ao PYTHONPATH
 testpaths = ["tests"]             # Diretório de testes
 addopts = [
-    "-v", # Verbose
-    "--strict-markers", # Marca strict para markers
-    "--tb=short", # Traceback curto
-    "--cov=src", # Cobertura de código
-    "--cov-report=term-missing", # Mostra linhas não cobertas
+    "-v",                         # Verbose
+    "--strict-markers",           # Marca strict para markers
+    "--tb=short",                 # Traceback curto
+    "--cov=src",                  # Cobertura de código
+    "--cov-report=term-missing",  # Mostra linhas não cobertas
 ]
 
 # Ignora warnings específicos de bibliotecas externas
 filterwarnings = [
-    "ignore::pydantic.PydanticDeprecatedSince212", # Pydantic (google-genai)
-    "ignore::urllib3.exceptions.NotOpenSSLWarning", # urllib3 (OpenSSL)
-    "ignore::DeprecationWarning:transformers.*", # Transformers internos
-    "ignore::FutureWarning:torch.*", # PyTorch internos
+    "ignore::pydantic.PydanticDeprecatedSince212",  # Pydantic (google-genai)
+    "ignore::urllib3.exceptions.NotOpenSSLWarning",  # urllib3 (OpenSSL)
+    "ignore::DeprecationWarning:transformers.*",     # Transformers internos
+    "ignore::FutureWarning:torch.*",                 # PyTorch internos
 ]
 
 # -----------------------------------------------------------------------------
@@ -147,17 +168,17 @@ extend-exclude = '''
 line-length = 88
 target-version = "py311"
 select = [
-    "E", # pycodestyle errors
-    "W", # pycodestyle warnings
-    "F", # pyflakes
-    "I", # isort
-    "B", # flake8-bugbear
-    "C4", # flake8-comprehensions
-    "UP", # pyupgrade
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
 ]
 ignore = [
-    "E501", # line too long (Black cuida disso)
-    "B008", # do not perform function calls in argument defaults
+    "E501",  # line too long (Black cuida disso)
+    "B008",  # do not perform function calls in argument defaults
 ]
 
 # Exclui diretórios
@@ -189,5 +210,6 @@ module = [
     "ollama.*",
     "comet.*",
     "bert_score.*",
+    "scikit_posthocs.*",
 ]
 ignore_missing_imports = true
