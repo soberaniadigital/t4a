@@ -1,0 +1,955 @@
+{
+    "job_info": {
+        "input_file": "/home/vinicius/TCC/data/translations_sample/wget_v1.25.0/wget-1.25.0.ru.po",
+        "output_file": "/home/vinicius/TCC/resultados/context_levels_sample/wget_v1.25.0/wget-1.25.0.pt_BR.llama.ctx-2.id-ru.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-10T23:30:38.006728",
+        "duration_seconds": 77.49,
+        "reference_file": "/home/vinicius/TCC/data/translations_sample/wget_v1.25.0/wget-1.25.0.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": 614449638660071024
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "RU",
+            "ID"
+        ],
+        "context_sentences_sample": {
+            "%s: unable to resolve bind address %s; disabling bind.\n": {
+                "RU": "%s: не удаётся разрешить адрес bind %s; bind отключается.\n",
+                "ID": "%s: tidak bisa mengurai alamat bind %s; menonaktifkan bind.\n"
+            },
+            "Connecting to %s:%d... ": {
+                "RU": "Подключение к %s:%d... ",
+                "ID": "Menghubungi %s:%d... "
+            },
+            "%s: unable to resolve host address %s\n": {
+                "RU": "%s: не удаётся разрешить адрес %s\n",
+                "ID": "%s: tidak bisa mengurai alamat host %s\n"
+            },
+            "Cannot convert links in %s: %s\n": {
+                "RU": "Не удаётся преобразовать ссылки в %s: %s\n",
+                "ID": "Tidak dapat mengubah tautan dalam %s: %s\n"
+            },
+            "Syntax error in Set-Cookie: %s at position %d.\n": {
+                "RU": "Синтаксическая ошибка в Set-Cookie: %s в позиции %d.\n",
+                "ID": "Salah sintaks dalam Set-Cookie: %s pada posisi %d.\n"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 178,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct 10 2025, 08:54:03) [GCC 11.4.0]"
+    },
+    "translations": [
+        {
+            "original": "%s: unable to resolve bind address %s; disabling bind.\n",
+            "translated": "%s: não é possível resolver o endereço bind %s; desligando bind.",
+            "reference": "%s: não foi possível resolver endereço de associação %s; desabilitando a associação.\n"
+        },
+        {
+            "original": "Connecting to %s:%d... ",
+            "translated": "Conectando ao %s:%d... ",
+            "reference": "Conectando-se a %s:%d... "
+        },
+        {
+            "original": "%s: unable to resolve host address %s\n",
+            "translated": "%s: não é possível resolver o endereço %s",
+            "reference": "%s: não foi possível resolver endereço de máquina %s\n"
+        },
+        {
+            "original": "Cannot convert links in %s: %s\n",
+            "translated": "Не удаётся преобразовать ссылки в %s: %s\n",
+            "reference": "Não foi possível converter links em %s: %s\n"
+        },
+        {
+            "original": "Syntax error in Set-Cookie: %s at position %d.\n",
+            "translated": "Erro de sintaxe no Set-Cookie: %s na posição %d.",
+            "reference": "Erro de sintaxe em Set-Cookie: %s na posição %d.\n"
+        },
+        {
+            "original": "Cannot open cookies file %s: %s\n",
+            "translated": "não é possível abrir o arquivo cookies %s: %s\n",
+            "reference": "Não foi possível abrir o arquivo de cookies %s: %s\n"
+        },
+        {
+            "original": "time unknown       ",
+            "translated": "o tempo é desconhecido",
+            "reference": "horário desconhecido "
+        },
+        {
+            "original": "File        ",
+            "translated": "Arquivo        ",
+            "reference": "Arquivo     "
+        },
+        {
+            "original": ", %s (%s) remaining",
+            "translated": ", %s (%s) restante.",
+            "reference": ", %s (%s) restantes"
+        },
+        {
+            "original": "Write failed, closing control connection.\n",
+            "translated": "Erro de escrita, conexão gerenciada encerrou.",
+            "reference": "Falha de escrita, fechando a conexão de controle.\n"
+        },
+        {
+            "original": "The server refuses login.\n",
+            "translated": "O servidor rejeitou o login.",
+            "reference": "O servidor recusou o acesso.\n"
+        },
+        {
+            "original": "Server did not accept the 'PROT %c' command.\n",
+            "translated": "O servidor não aceitou a comando 'PROT %c'.",
+            "reference": "O servidor não aceitou o comando \"PROT %c\".\n"
+        },
+        {
+            "original": "done.    ",
+            "translated": "pronto.",
+            "reference": "feito.   "
+        },
+        {
+            "original": "cwd_count: %d\ncwd_start: %d\ncwd_end: %d\n",
+            "translated": "cwd_count: %d\ncwd_start: %d\ncwd_end: %d\n",
+            "reference": "cwd_count: %d\ncwd_start: %d\ncwd_end: %d\n"
+        },
+        {
+            "original": "No such directory %s.\n\n",
+            "translated": "Não há tal diretório: %s.",
+            "reference": "O diretório %s não foi encontrado.\n\n"
+        },
+        {
+            "original": "Cannot parse PASV response.\n",
+            "translated": "Erro de análise do comando PASV.",
+            "reference": "Não foi possível entender resposta do comando PASV.\n"
+        },
+        {
+            "original": "couldn't connect to %s port %d: %s\n",
+            "translated": "não foi possível se conectar ao %s porto %d: %s",
+            "reference": "não foi possível se conectar a %s porta %d: %s\n"
+        },
+        {
+            "original": "Bind error (%s).\n",
+            "translated": "Erro bind (%s).",
+            "reference": "Erro na associação (%s).\n"
+        },
+        {
+            "original": "Invalid PORT.\n",
+            "translated": "Porto inválido.",
+            "reference": "PORT é inválido.\n"
+        },
+        {
+            "original": "\nREST failed, starting from scratch.\n",
+            "translated": "Erro REST, inicialização do serviço.\n",
+            "reference": "\nREST falhou, recomeçando do zero.\n"
+        },
+        {
+            "original": "%s has sprung into existence.\n",
+            "translated": "%s se tornou realidade.",
+            "reference": "%s surgiu do nada.\n"
+        },
+        {
+            "original": "File %s already there; not retrieving.\n",
+            "translated": "Arquivo %s já existe; não é carregado.",
+            "reference": "O arquivo %s já existe, não será baixado.\n"
+        },
+        {
+            "original": "(try:%2d)",
+            "translated": "(tentativa:%2d)",
+            "reference": "(tentativa:%2d)"
+        },
+        {
+            "original": "%s (%s) - written to stdout %s[%s]\n\n",
+            "translated": "%s (%s) - gravado na saída padrão %s[%s]",
+            "reference": "%s (%s) - escrito para a saída padrão %s[%s]\n\n"
+        },
+        {
+            "original": "Removing %s.\n",
+            "translated": "Удаляється %s.",
+            "reference": "Removendo %s.\n"
+        },
+        {
+            "original": "Removed %s.\n",
+            "translated": "Для %s. ",
+            "reference": "Removeu %s.\n"
+        },
+        {
+            "original": "Remote file is newer than local file %s -- retrieving.\n\n",
+            "translated": "Arquivo remoto do novo local — carregando.",
+            "reference": "O arquivo remoto é mais novo que o local %s -- baixando.\n\n"
+        },
+        {
+            "original": "The sizes do not match (local %s) -- retrieving.\n\n",
+            "translated": "Os tamanhos não são idênticos (tamanho local %s) — é carregado.",
+            "reference": "Os tamanhos não coincidem (local %s) -- baixando.\n\n"
+        },
+        {
+            "original": "Invalid name of the symlink, skipping.\n",
+            "translated": "Nome inválido para referência simbólica, ignorado.",
+            "reference": "Nome inválido da ligação simbólica, ignorando.\n"
+        },
+        {
+            "original": "Skipping directory %s.\n",
+            "translated": "O diretório %s é ignorado.",
+            "reference": "Ignorando o diretório %s.\n"
+        },
+        {
+            "original": "Rejecting %s.\n",
+            "translated": "Отклоняється %s.",
+            "reference": "Rejeitando %s.\n"
+        },
+        {
+            "original": "Error matching %s against %s: %s\n",
+            "translated": "Erro de correspondência entre %s e %s: %s\n",
+            "reference": "Erro ao comparar %s com %s: %s.\n"
+        },
+        {
+            "original": "No matches on pattern %s.\n",
+            "translated": "Não há correspondências com o padrão %s.",
+            "reference": "Não há ocorrências para o padrão %s.\n"
+        },
+        {
+            "original": "ERROR: Failed to open cert %s: (%d).\n",
+            "translated": "ERRO DE ACESSO À CERTIFICAÇÃO SERVIDOR %s (%d).",
+            "reference": "ERRO: Não conseguiu abrir o certificado %s: (%d).\n"
+        },
+        {
+            "original": "Loaded CRL file '%s'\n",
+            "translated": "CRL-arquivo carregado «%s»",
+            "reference": "Carregou arquivo LCR \"%s\"\n"
+        },
+        {
+            "original": "%s: The certificate of %s doesn't have a known issuer.\n",
+            "translated": "%s: Неизвестный издатель сертификата %s.",
+            "reference": "%s: O certificado de %s não tem um emissor conhecido.\n"
+        },
+        {
+            "original": "%s: The certificate signer of %s was not a CA.\n",
+            "translated": "%s: O certificado assinado %s não está presente no UC. (Certificado ausente)",
+            "reference": "%s: O signatário do certificado de %s não era uma AC.\n"
+        },
+        {
+            "original": "Error initializing X509 certificate: %s\n",
+            "translated": "Erro de inicialização do certificado X509: %s",
+            "reference": "Erro ao iniciar o certificado X509: %s\n"
+        },
+        {
+            "original": "No certificate found\n",
+            "translated": "Certificado não encontrado",
+            "reference": "Nenhum certificado foi encontrado\n"
+        },
+        {
+            "original": "The certificate has not yet been activated\n",
+            "translated": "O certificado ainda não está ativado.",
+            "reference": "O certificado não foi ativado ainda\n"
+        },
+        {
+            "original": "The public key does not match pinned public key!\n",
+            "translated": "Chave pública não corresponde à chave pública fixa!",
+            "reference": "A chave pública não coincide com a chave pública memorizada!\n"
+        },
+        {
+            "original": "Error in handling the address list.\n",
+            "translated": "Erro ao processar a lista de endereços.",
+            "reference": "Erro ao manipular a lista de endereços.\n"
+        },
+        {
+            "original": "%s: Cannot resolve incomplete link %s.\n",
+            "translated": "%s: não é possível reconhecer uma URL parcialmente inválida %s. Por favor, verifique se a URL está correta e tente novamente.",
+            "reference": "%s: Não foi possível resolver o link incompleto %s.\n"
+        },
+        {
+            "original": "No headers, assuming HTTP/0.9",
+            "translated": "Os cabeçalhos não estão presentes, é assumido HTTP/0.9.",
+            "reference": "Não foram recebidos cabeçalhos, assumindo HTTP/0.9"
+        },
+        {
+            "original": "Reusing existing connection to %s:%d.\n",
+            "translated": "uso repetido do soquete com %s:%d.",
+            "reference": "Reaproveitando a conexão existente para %s:%d.\n"
+        },
+        {
+            "original": "%s ERROR %d: %s.\n",
+            "translated": "%s ОШИБКА %d: %s.",
+            "reference": "%s ERRO %d: %s.\n"
+        },
+        {
+            "original": "Proxy tunneling failed: %s",
+            "translated": "Erro de tunelamento do proxy: %s",
+            "reference": "O tunelamento pelo proxy falhou: %s"
+        },
+        {
+            "original": "Saving to: %s\n",
+            "translated": "Salvar no: %s\n",
+            "reference": "Salvando em: %s\n"
+        },
+        {
+            "original": "Could not create temporary file. Skipping signature download.\n",
+            "translated": "Não foi possível criar um arquivo temporário. O download da assinatura é permitido.",
+            "reference": "Não foi possível criar um arquivo temporário. Ignorando o download da assinatura.\n"
+        },
+        {
+            "original": "%s request sent, awaiting response... ",
+            "translated": "%s-pedido enviado. Esperando resposta... ",
+            "reference": "A requisição %s foi enviada, aguardando resposta... "
+        },
+        {
+            "original": "No data received.\n",
+            "translated": "Não foram encontrados dados.",
+            "reference": "Nenhum dado foi recebido.\n"
+        },
+        {
+            "original": "Read error (%s) in headers.\n",
+            "translated": "Erro de leitura (%s) nos cabeçalhos.",
+            "reference": "Erro de leitura (%s) nos cabeçalhos.\n"
+        },
+        {
+            "original": "unspecified",
+            "translated": "não há dados",
+            "reference": "não especificada"
+        },
+        {
+            "original": " [following]",
+            "translated": " [mudança]",
+            "reference": " [redirecionando]"
+        },
+        {
+            "original": "\n    The file is already fully retrieved; nothing to do.\n\n",
+            "translated": "Arquivo já foi carregado integralmente; não há nada mais a ser feito.",
+            "reference": "\n    O arquivo já foi completamente obtido; não há nada a ser feito.\n\n"
+        },
+        {
+            "original": "Length: ",
+            "translated": "Для a linha %s, o valor é de %<PRIuMAX> unidades.",
+            "reference": "Tamanho: "
+        },
+        {
+            "original": "ignored",
+            "translated": "ignorado",
+            "reference": "ignorado"
+        },
+        {
+            "original": "Cannot write to temporary WARC file.\n",
+            "translated": "Não é possível escrever no arquivo WARC temporário.",
+            "reference": "Não foi possível escrever em arquivo WARC temporário.\n"
+        },
+        {
+            "original": "Cannot unlink %s (%s).\n",
+            "translated": "Невозможно видалити %s (%s).",
+            "reference": "Não foi possível remover %s (%s).\n"
+        },
+        {
+            "original": "Last-modified header invalid -- time-stamp ignored.\n",
+            "translated": "Заголовок last-modified — недопустимо. Временные отметки проигнорированы.",
+            "reference": "O cabeçalho Last-modified é inválido -- horário ignorado.\n"
+        },
+        {
+            "original": "%s (%s) - Connection closed at byte %s. ",
+            "translated": "%s (%s) - Conectividade fechada, posição %s. ",
+            "reference": "%s (%s) - Conexão fechada no byte %s. "
+        },
+        {
+            "original": "%s: Cannot read %s (%s).\n",
+            "translated": "%s: Não é possível ler %s (%s).",
+            "reference": "%s: Não foi possível ler %s (%s).\n"
+        },
+        {
+            "original": "%s: Unknown command %s in %s at line %d.\n",
+            "translated": "%s: Comando desconhecido %s na linha %d.",
+            "reference": "%s: Comando desconhecido %s em %s na linha %d.\n"
+        },
+        {
+            "original": "Parsing system wgetrc file (env SYSTEM_WGETRC) failed.  Please check\n'%s',\nor specify a different file using --config.\n",
+            "translated": "Erro de processamento do arquivo wgetrc (env SYSTEM_WGETRC). Verifique '%%s', ou especifique outro arquivo utilizando --config.",
+            "reference": "Falhou a análise do arquivo wgetrc do sistema (váriavel SYSTEM_WGETRC).\nFavor conferir \"%s\" ou\nespecifique um arquivo diferente usando --config.\n"
+        },
+        {
+            "original": "%s: Warning: Both system and user wgetrc point to %s.\n",
+            "translated": "%s: Aviso: o wgetrc do sistema e do usuário indicam em %s. \n",
+            "reference": "%s: Aviso: os arquivos wgetrc tanto do sistema como do usuário apontam para %s.\n"
+        },
+        {
+            "original": "%s: Invalid --execute command %s\n",
+            "translated": "%s: Comando --execute inválido %s",
+            "reference": "%s: O comando --execute %s é inválido\n"
+        },
+        {
+            "original": "%s: %s: Invalid boolean %s; use `on' or `off'.\n",
+            "translated": "%s: %s: Falha lógica; use 'on' or 'off'.",
+            "reference": "%s: %s: o valor booleano %s é inválido; use \"on\" ou \"off\".\n"
+        },
+        {
+            "original": "%s: %s: Invalid %s; use `on', `off' or `quiet'.\n",
+            "translated": "%s: %s: Incorrecto; use 'on', 'off' ou 'quiet'.",
+            "reference": "%s: %s: O valor %s é inválido; use \"on\", \"off\" ou \"quiet\".\n"
+        },
+        {
+            "original": "%s: %s: Invalid number %s.\n",
+            "translated": "%s: %s: Número inválido %s. (Número incorreto %s.)",
+            "reference": "%s: %s: O número %s é inválido.\n"
+        },
+        {
+            "original": "%s: %s: Negative time period %s\n",
+            "translated": "%s: %s: Período de tempo negativo %s",
+            "reference": "%s: %s: Período de tempo negativo %s\n"
+        },
+        {
+            "original": "Conversion from %s to %s isn't supported\n",
+            "translated": "O conversor de %s para %s não é suportado.",
+            "reference": "Não há suporte para a conversão de %s para %s\n"
+        },
+        {
+            "original": "Unhandled errno %d\n",
+            "translated": "Código de erro não tratado %d",
+            "reference": "Erro não tratado: errno %d\n"
+        },
+        {
+            "original": "\nRedirecting output to %s.\n",
+            "translated": "O E/S padrão é redirecionado para %s.",
+            "reference": "\nRedirecionando saída para %s.\n"
+        },
+        {
+            "original": "%s: %s; disabling logging.\n",
+            "translated": "%s: %s; o registro de log é desligado. (logging is turned off).",
+            "reference": "%s: %s; desabilitando registro.\n"
+        },
+        {
+            "original": "Usage: %s [OPTION]... [URL]...\n",
+            "translated": "Utilização: %s [PARAMETRO]... [URL]...\n",
+            "reference": "Uso: %s [OPÇÃO]... [URL]...\n"
+        },
+        {
+            "original": "Mandatory arguments to long options are mandatory for short options too.\n\n",
+            "translated": "Os argumentos obrigatórios para parâmetros longos e curtos são os mesmos.",
+            "reference": "Argumentos obrigatórios para opções longas também o são para as opções curtas.\n\n"
+        },
+        {
+            "original": "Startup:\n",
+            "translated": "Запуск:",
+            "reference": "Inicialização:\n"
+        },
+        {
+            "original": "  -h,  --help                      print this help\n",
+            "translated": "  -h,  --help              mostrar esta ajuda\n",
+            "reference": "  -h,  --help                      emite esta ajuda\n"
+        },
+        {
+            "original": "  -b,  --background                go to background after startup\n",
+            "translated": "  -b,  --background        após o término do programa, para entrar no modo de fundo.",
+            "reference": "  -b,  --background                vai para o plano de fundo depois de iniciar\n"
+        },
+        {
+            "original": "Logging and input file:\n",
+            "translated": "Jornalização e ficheiro de entrada:\n",
+            "reference": "Arquivo de entrada e de registro:\n"
+        },
+        {
+            "original": "  -a,  --append-output=FILE        append messages to FILE\n",
+            "translated": "  -a,  --append-output=%s  adicionar mensagens ao final do arquivo %s\n",
+            "reference": "  -a,  --append-output=ARQUIVO     anexa mensagens ao ARQUIVO\n"
+        },
+        {
+            "original": "  -v,  --verbose                   be verbose (this is the default)\n",
+            "translated": "  -v,  --verbose             mostrar informações detalhadas (padrão)",
+            "reference": "  -v,  --verbose                   detalhista (isto é o padrão)\n"
+        },
+        {
+            "original": "       --report-speed=TYPE         output bandwidth as TYPE.  TYPE can be bits\n",
+            "translated": "       --report-speed=ТИП    единицы измерения пропускной способности\n                             определить ТИПОМ. ТИП может быть равно bits\n",
+            "reference": "       --report-speed=TIPO         emite a largura de banda como TIPO. TIPO pode\n                                     ser bits\n"
+        },
+        {
+            "original": "  -i,  --input-file=FILE           download URLs found in local or external FILE\n",
+            "translated": "  -i,  --input-file=FILE     carregar URLs de acordo com o arquivo local ou externo\n",
+            "reference": "  -i,  --input-file=ARQUIVO        baixa os URLs encontrados no ARQUIVO local ou\n                                     externo\n"
+        },
+        {
+            "original": "       --no-config                 do not read any config file\n",
+            "translated": "       --no-config           não ler arquivos de configuração\n",
+            "reference": "       --no-config                 não lê nenhum arquivo de configuração\n"
+        },
+        {
+            "original": "       --rejected-log=FILE         log reasons for URL rejection to FILE\n",
+            "translated": "       --rejected-log=FILE   registros das razões para o rejeitamento de URL no FILE\n",
+            "reference": "       --rejected-log=ARQUIVO      anota as razões de rejeição de URL em ARQUIVO\n"
+        },
+        {
+            "original": "Download:\n",
+            "translated": "Carregamento:",
+            "reference": "Download:\n"
+        },
+        {
+            "original": "  -t,  --tries=NUMBER              set number of retries to NUMBER (0 unlimits)\n",
+            "translated": "  -t,  --tries=ЧИСЛО             configurar ЧИСЛО tentativas adicionais\n                                 (0 без ограничения) \n",
+            "reference": "  -t,  --tries=NÚMERO              define o número de tentativas como NÚMERO\n                                     (0 significa ilimitadas)\n"
+        },
+        {
+            "original": "  -O,  --output-document=FILE      write documents to FILE\n",
+            "translated": "  -O,  --output-document=FILE    escrever documentos no FILE\n",
+            "reference": "  -O,  --output-document=ARQUIVO   escreve os documentos no ARQUIVO\n"
+        },
+        {
+            "original": "  -c,  --continue                  resume getting a partially-downloaded file\n",
+            "translated": "  -c,  --continue                continue a leitura parcial de um arquivo incompletamente carregado\n",
+            "reference": "  -c,  --continue                  retoma o download de um arquivo baixado\n                                     parcialmente\n"
+        },
+        {
+            "original": "       --progress=TYPE             select progress gauge type\n",
+            "translated": "       --progress=ТИП            selecionar tipo de indicador de progresso\n",
+            "reference": "       --progress=TIPO             seleciona o tipo de indicador de progresso\n"
+        },
+        {
+            "original": "  -S,  --server-response           print server response\n",
+            "translated": "  -S,  --server-response         resposta do servidor\n",
+            "reference": "  -S,  --server-response           exibe a resposta do servidor\n"
+        },
+        {
+            "original": "  -T,  --timeout=SECONDS           set all timeout values to SECONDS\n",
+            "translated": "  -T,  --timeout=SEGUNDOS         configuração de todos os tempos limite igual ao número SEGUNDO\n",
+            "reference": "  -T,  --timeout=SEGUNDOS          define todos os valores de tempo de espera\n                                     como SEGUNDOS\n"
+        },
+        {
+            "original": "       --dns-timeout=SECS          set the DNS lookup timeout to SECS\n",
+            "translated": "       --dns-timeout=SEC         instalação de tempo limite para pesquisa DNS em SEC\n",
+            "reference": "       --dns-timeout=SEGUNDOS      define o tempo de espera de busca de DNS\n                                     como SEGUNDOS\n"
+        },
+        {
+            "original": "       --read-timeout=SECS         set the read timeout to SECS\n",
+            "translated": "       --read-timeout=SEC        instalação do tempo limite de leitura em segundos\n",
+            "reference": "       --read-timeout=SEGUNDOS     define o tempo de espera de leitura como\n                                     SEGUNDOS\n"
+        },
+        {
+            "original": "  -w,  --wait=SECONDS              wait SECONDS between retrievals\n                                     (applies if more then 1 URL is to be retrieved)\n",
+            "translated": "  -w, --wait=SEGUNDOS            pausa de SEGUNDOS entre as chamadas para carregar mais de um URL\n                                 (aplica-se quando forem baixados mais de um URL)",
+            "reference": "  -w,  --wait=SEGUNDOS             espera SEGUNDOS entre downloads\n                                     (aplica-se se mais de 1 URL é para ser obtido)\n"
+        },
+        {
+            "original": "       --no-proxy                  explicitly turn off proxy\n",
+            "translated": "--no-proxy                  desligar o proxy explicitamente",
+            "reference": "       --no-proxy                  desativa explicitamente o proxy\n"
+        },
+        {
+            "original": "  -Q,  --quota=NUMBER              set retrieval quota to NUMBER\n",
+            "translated": "  -Q,  --quota=%s             estabelecer a quantidade de quota em %s por tempo\n",
+            "reference": "  -Q,  --quota=QUANTIDADE          define a cota de download como QUANTIDADE\n"
+        },
+        {
+            "original": "       --limit-rate=RATE           limit download rate to RATE\n",
+            "translated": "       --limit-rate=СКОРОСТЬ     ограничить СКОРОСТЬ загрузки\n",
+            "reference": "       --limit-rate=TAXA           limita a taxa de download a TAXA\n"
+        },
+        {
+            "original": "  -6,  --inet6-only                connect only to IPv6 addresses\n",
+            "translated": "--ipv6-only              conectar apenas a endereços IPv6\n",
+            "reference": "  -6,  --inet6-only                conecta apenas a endereços IPv6\n"
+        },
+        {
+            "original": "       --no-iri                    turn off IRI support\n",
+            "translated": "       --no-iri                  desligar a suporte IRI\n",
+            "reference": "       --no-iri                    desativa o suporte para IRI\n"
+        },
+        {
+            "original": "       --unlink                    remove file before clobber\n",
+            "translated": "       --unlink                  remover arquivo antes de sobrescrever",
+            "reference": "       --unlink                    remove o arquivo antes de se sobrescrever\n"
+        },
+        {
+            "original": "Directories:\n",
+            "translated": "Catálogos:\n",
+            "reference": "Diretórios:\n"
+        },
+        {
+            "original": "HTTP options:\n",
+            "translated": "Parâmetros HTTP:\n",
+            "reference": "Opções HTTP:\n"
+        },
+        {
+            "original": "       --http-user=USER            set http user to USER\n",
+            "translated": "       --http-user=ПОЛЬЗОВ.    estabelecer usuário http no POЛЬЗОВАТЕLЬ",
+            "reference": "       --http-user=USUÁRIO         define o usuário do HTTP\n"
+        },
+        {
+            "original": "       --no-cache                  disallow server-cached data\n",
+            "translated": "--no-cache              ignorar dados armazenados no servidor",
+            "reference": "       --no-cache                  desautoriza dados em cache do servidor\n"
+        },
+        {
+            "original": "       --header=STRING             insert STRING among the headers\n",
+            "translated": "       --header=%s         inserir STRING entre cabeçalhos\n",
+            "reference": "       --header=TEXTO              insere TEXTO em meio aos cabeçalhos\n"
+        },
+        {
+            "original": "       --max-redirect              maximum redirections allowed per page\n",
+            "translated": "       --max-redirect          máximo permitido de redirecionamentos para a página\n",
+            "reference": "       --max-redirect              quantidade máxima de  redirecionamentos\n                                     permitidos por página\n"
+        },
+        {
+            "original": "       --proxy-password=PASS       set PASS as proxy password\n",
+            "translated": "       --proxy-password=ПАРОЛЬ   установить ПАРОЛЬ в качестве пароля для прокси\n",
+            "reference": "       --proxy-password=SENHA      define a senha para o proxy\n"
+        },
+        {
+            "original": "       --keep-session-cookies      load and save session (non-permanent) cookies\n",
+            "translated": "       --keep-session-cookies  carregar e salvar cookies de sessão (não permanentes) \n",
+            "reference": "       --keep-session-cookies      carrega e salva os cookies (não permanentes) da\n                                     sessão\n"
+        },
+        {
+            "original": "       --post-data=STRING          use the POST method; send STRING as the data\n",
+            "translated": "       --post-data=СТРОКА      utilizar método POST; envio de СТРОКИ como dados\n",
+            "reference": "       --post-data=TEXTO           usa o método POST; envia o TEXTO como dados\n"
+        },
+        {
+            "original": "       --content-disposition       honor the Content-Disposition header when\n                                     choosing local file names (EXPERIMENTAL)\n",
+            "translated": "       --content-disposition   considere o cabeçalho Content-Disposition ao escolher nomes para arquivos locais (Experimental)\n",
+            "reference": "       --content-disposition       honra o cabeçalho Content-Disposition ao\n                                     escolher os nomes do arquivo local\n                                     (EXPERIMENTAL)\n"
+        },
+        {
+            "original": "HTTPS (SSL/TLS) options:\n",
+            "translated": "Parâmetros HTTPS (SSL/TLS):",
+            "reference": "Opções HTTPS (SSL/TLS):\n"
+        },
+        {
+            "original": "       --certificate=FILE          client certificate file\n",
+            "translated": "       --certificate=FILE       arquivo de certificado do usuário\n",
+            "reference": "       --certificate=ARQUIVO       o arquivo de certificado do cliente\n"
+        },
+        {
+            "original": "       --no-hsts                   disable HSTS\n",
+            "translated": "       --no-hsts               desligar HSTS",
+            "reference": "       --no-hsts                   desabilita HSTS\n"
+        },
+        {
+            "original": "       --hsts-file                 path of HSTS database (will override default)\n",
+            "translated": "       --hsts-file             caminho para a base de dados HSTS (substitui o valor padrão)\n",
+            "reference": "       --hsts-file                 caminho da base de dados HSTS\n                                    (sobrescreve a padrão)\n"
+        },
+        {
+            "original": "FTP options:\n",
+            "translated": "Parâmetros FTP:\n",
+            "reference": "Opções FTP:\n"
+        },
+        {
+            "original": "       --no-remove-listing         don't remove '.listing' files\n",
+            "translated": "       --no-remove-listing     não remova listagens de arquivo",
+            "reference": "       --no-remove-listing         não exclui os arquivos \".listing\"\n"
+        },
+        {
+            "original": "       --no-passive-ftp            disable the \"passive\" transfer mode\n",
+            "translated": "       --no-passive-ftp        desligue o modo \"paciente\" de transferência FTP",
+            "reference": "       --no-passive-ftp            desabilita o modo de transferência \"passivo\"\n"
+        },
+        {
+            "original": "FTPS options:\n",
+            "translated": "Parâmetros FTPS:\n",
+            "reference": "Opções FTPS:\n"
+        },
+        {
+            "original": "       --backups=N                 before writing file X, rotate up to N backup files\n",
+            "translated": "--backups=N                 antes de escrever o arquivo X, fazer backup até N cópias\n",
+            "reference": "       --backups=N                 antes de converte arquivo X, gera cópia de\n                                     segurança (até N cópias)\n"
+        },
+        {
+            "original": "  -K,  --backup-converted          before converting file X, back up as X.orig\n",
+            "translated": "  -K,  --backup-converted   antes de converter o arquivo X, criar uma cópia em formato X.orig\n",
+            "reference": "  -K,  --backup-converted          antes de converter o arquivo X, faz uma cópia\n                                     de segurança como X.orig\n"
+        },
+        {
+            "original": "  -R,  --reject=LIST               comma-separated list of rejected extensions\n",
+            "translated": "  -R, --reject=LISTA DE EXTENSIONS DIGITADAS PARAMETERIZÁVEIS\n",
+            "reference": "  -R,  --reject=LISTA              lista separada por vírgulas das extensões\n                                     rejeitadas\n"
+        },
+        {
+            "original": "  -X,  --exclude-directories=LIST  list of excluded directories\n",
+            "translated": "--excluir-diretórios=%s\n",
+            "reference": "  -X,  --exclude-directories=LISTA  lista dos diretórios excluídos\n"
+        },
+        {
+            "original": "GNU Wget %s, a non-interactive network retriever.\n",
+            "translated": "GNU Wget %s, programa para a transferência de arquivos da internet em modo automático. \n\nO GNU Wget é uma ferramenta poderosa que permite baixar arquivos diretamente do web sem interação contínua com o usuário.",
+            "reference": "GNU Wget %s, um programa não interativo para baixar arquivos da rede.\n"
+        },
+        {
+            "original": "Error initializing spawn file actions for use-askpass: %d\n",
+            "translated": "Erro de inicialização do objeto ação de arquivo durante o spawn para use-askpass: %d",
+            "reference": "Erro ao inicializar ações de arquivo para posix_spawn para use-askpass: %d\n"
+        },
+        {
+            "original": "Error reading response from command \"%s %s\": %s\n",
+            "translated": "Erro de leitura da resposta do comando \"%s %s\": %s",
+            "reference": "Erro ao ler resposta ao comando \"%s %s\": %s\n"
+        },
+        {
+            "original": "Locale: ",
+            "translated": "Lokal: ",
+            "reference": "Localidade: "
+        },
+        {
+            "original": "    %s (env)\n",
+            "translated": "    %s (ambiente) \n",
+            "reference": "    %s (ambiente)\n"
+        },
+        {
+            "original": "License GPLv3+: GNU GPL version 3 or later\n<http://www.gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n",
+            "translated": "Licença GPLv3+: GNU GPL versão 3 ou posterior. <http://www.gnu.org/licenses/gpl.html>. Este é software livre que você pode modificar e distribuir sem restrições, dentro das limitações da lei.",
+            "reference": "Licença GPLv3+: GNU GPL versão 3 ou posterior <http://gnu.org/licenses/gpl.html>\nEste é um software livre: você é livre para alterá-lo e redistribuí-lo.\nNÃO HÁ QUALQUER GARANTIA, na máxima extensão permitida em lei.\n"
+        },
+        {
+            "original": "Try `%s --help' for more options.\n",
+            "translated": "Para obter mais informações, tente a comando ' %s --help'.",
+            "reference": "Tente \"%s --help\" para mais opções.\n"
+        },
+        {
+            "original": "Both --no-clobber and --convert-file-only were specified, only --convert-file-only will be used.\n",
+            "translated": "Указаны сразу --no-clobber і --convert-file-only, буде використовуватися лише --convert-file-only.",
+            "reference": "Tanto --no-clobber como --convert-file-only foram especificadas; somente --convert-file-only será usada.\n"
+        },
+        {
+            "original": "Cannot specify both --inet4-only and --inet6-only.\n",
+            "translated": "Не é possível especificar --inet4-only e --inet6-only ao mesmo tempo.",
+            "reference": "Não é possível especificar ao mesmo tempo --inet4-only e --inet6-only.\n"
+        },
+        {
+            "original": "Cannot specify both -k or --convert-file-only and -O if multiple URLs are given, or in combination\nwith -p or -r. See the manual for details.\n\n",
+            "translated": "Não é permitido especificar simultaneamente -k ou --convert-file-only e -O, se URLs forem indicadas em quantidade, ou na combinação com parâmetros -p ou -r. Detalhes estão disponíveis no manual.",
+            "reference": "Não é possível especificar -k ou --convert-file-only e -O se são fornecidos\nmúltiplos URLs, ou em combinação com -p ou -r. Veja o manual para mais detalhes.\n\n"
+        },
+        {
+            "original": "WARNING: timestamping does nothing in combination with -O. See the manual\nfor details.\n\n",
+            "translated": "PRELUDE PARA O PROCESSO DE TRABALHOS COM MARKDOWN TIMESTAMPS NÃO SE MANEJAM, SIMULACION DO ARGUMENTO -O. CONTEMPLAR RECOMENDAÇÕES EM REDACTION.",
+            "reference": "AVISO: a opção --timestamp não faz nada se combinada com -O. Veja o manual\npara detalhes.\n\n"
+        },
+        {
+            "original": "WARC output does not work with --no-clobber, --no-clobber will be disabled.\n",
+            "translated": "O output do WARC não funciona com o parâmetro --no-clobber, esse parâmetro será desabilitado.",
+            "reference": "A saída WARC não funciona com --no-clobber; --no-clobber será desabilitada.\n"
+        },
+        {
+            "original": "WARC output does not work with --spider.\n",
+            "translated": "O output WARC não funciona com --spider.",
+            "reference": "A saída WARC não funciona com --spider.\n"
+        },
+        {
+            "original": "WARC output does not work with --continue or --start-pos, they will be disabled.\n",
+            "translated": "O output WARC não funciona com --continue ou --start-pos; eles serão desativados.",
+            "reference": "A saída WARC não funciona com --continue ou --start-pos; elas serão desabilitadas.\n"
+        },
+        {
+            "original": "Digests are disabled; WARC deduplication will not find duplicate records.\n",
+            "translated": "Дайджест відключений; дедупликація WARC не буде виявляти пововідкові записи.",
+            "reference": "As resenhas (digests) estão desabilitadas; não se encontrará registros duplicados para serem removidos.\n"
+        },
+        {
+            "original": "Cannot specify both --ask-password and --password.\n",
+            "translated": "Não é possível especificar simultaneamente --ask-password e --password.",
+            "reference": "Não é possível especificar ao mesmo tempo --ask-password e --password.\n"
+        },
+        {
+            "original": "WARNING: No username set with --ask-password. This is usually not what you want.\n",
+            "translated": "PRELUDE PARA O ERRO: Não foi especificado o nome do usuário, mas houve a indicação de pedir senha com --ask-password. Isso geralmente não é necessário.",
+            "reference": "AVISO: Nenhum nome de usuário definido com --ask-password. Normalmente, isso não é o que você deseja.\n"
+        },
+        {
+            "original": "-k or -r can be used together with -O only if outputting to a regular file.\n",
+            "translated": "Parâmetro -k ou -r pode ser utilizado somente em conjunto com -O, se o resultado for produzido em um arquivo padrão. \n",
+            "reference": "-k ou -r pode ser usada juntamente com -O somente se a saída for um arquivo comum.\n"
+        },
+        {
+            "original": "Failed to init c-ares channel\n",
+            "translated": "Erro de inicialização do canal c-ares",
+            "reference": "Falhou em iniciar o canal c-ares\n"
+        },
+        {
+            "original": "Unable to parse metalink file %s.\n",
+            "translated": "Não foi possível processar o arquivo metalink %s.",
+            "reference": "Não foi possível interpretar o arquivo metalink %s.\n"
+        },
+        {
+            "original": "Rejecting metalink file. Unsafe name.\n",
+            "translated": "Excluindo o arquivo metalink. Nome de entrada inseguro.",
+            "reference": "Rejeitando arquivo metalink. Nome inseguro.\n"
+        },
+        {
+            "original": "Rejecting metaurl file %s. Unsafe name.\n",
+            "translated": "Отбраковываем файл metaurl %s. Nome inseguro.",
+            "reference": "Rejeitando arquivo de metaurl %s. Nome inseguro.\n"
+        },
+        {
+            "original": "Failed to download %s. Skipping metaurl.\n",
+            "translated": "Erro ao baixar %s. Ignorando metaurl.",
+            "reference": "Falhou em baixar %s. Pulando metaurl.\n"
+        },
+        {
+            "original": "Metaurls processing returned with error.\n",
+            "translated": "Ao processar o URL meta, foi gerada uma exceção.",
+            "reference": "Processamento de metaurls resultou em erro.\n"
+        },
+        {
+            "original": "Could not open downloaded file.\n",
+            "translated": "Não é possível abrir o arquivo baixado.",
+            "reference": "Não foi possível abrir arquivo baixado.\n"
+        },
+        {
+            "original": "GPGME data_new_from_mem: %s\n",
+            "translated": "GPGME data_new_from_mem: %s\n",
+            "reference": "GPGME data_new_from_mem: %s\n"
+        },
+        {
+            "original": "GPGME op_verify: %s\n",
+            "translated": "GPGME op_verificar: %s",
+            "reference": "GPGME op_verify: %s\n"
+        },
+        {
+            "original": "No checksums found.\n",
+            "translated": "As contas de verificação não foram encontradas.",
+            "reference": "Nenhuma soma de verificação foi encontrada.\n"
+        },
+        {
+            "original": "File %s retrieved but signature does not match. \n",
+            "translated": "Arquivo %s recebido, mas a assinatura não corresponde.  \n",
+            "reference": "O arquivo %s foi obtido, mas a assinatura não coincide.\n"
+        },
+        {
+            "original": "Continuing in background.\n",
+            "translated": "Através do comando 'screen', a execução continua em segundo plano.",
+            "reference": "Continuando em plano de fundo.\n"
+        },
+        {
+            "original": "%s: %s:%d: warning: %s token appears before any machine name\n",
+            "translated": "%s: %s:%d: aviso: antes do nome de cada máquina há um marcador %s",
+            "reference": "%s: %s:%d: aviso: o termo %s aparece antes de qualquer nome de máquina\n"
+        },
+        {
+            "original": "WARNING: using a weak random seed.\n",
+            "translated": "PRECEDÊNCIA: utiliza um fonte de dados aleatórios pobres. \n",
+            "reference": "AVISO: usando uma semente fraca de aleatoriedade.\n"
+        },
+        {
+            "original": "Your OpenSSL version is too old to support TLSv1.1\n",
+            "translated": "Versão da sua biblioteca OpenSSL está muito antiga para suportar TLSv1.1.",
+            "reference": "Sua versão do OpenSSL é muito antiga para suportar TLSv1.1\n"
+        },
+        {
+            "original": "OpenSSL: Failed to allocate verification param\n",
+            "translated": "OpenSSL: Não foi possível alocar parâmetro de verificação\n",
+            "reference": "OpenSSL: Falha ao alocar parâmetro de verificação\n"
+        },
+        {
+            "original": "WARNING: Could not seed PRNG. Consider using --random-file.\n",
+            "translated": "PREEMPRESAÇÃO: não é possível sequestrar PRNG; considera-se o uso do parâmetro --random-file.",
+            "reference": "AVISO: Não foi possível gerar semente para PRNG; considere o uso de --random-file.\n"
+        },
+        {
+            "original": "  Self-signed certificate encountered.\n",
+            "translated": "Foi encontrado um certificado autoassinado.",
+            "reference": "  Foi encontrado um certificado auto-assinado.\n"
+        },
+        {
+            "original": "  Issued certificate has expired.\n",
+            "translated": "Para o certificado solicitado, expirou o prazo de validade.",
+            "reference": "  Certificado emitido expirou.\n"
+        },
+        {
+            "original": "To connect to %s insecurely, use `--no-check-certificate'.\n",
+            "translated": "Para conexões não seguras ao %s, utilize o parâmetro '--no-check-certificate'.",
+            "reference": "Para se conectar a %s de forma insegura, use \"--no-check-certificate\".\n"
+        },
+        {
+            "original": "Invalid dot style specification %s; leaving unchanged.\n",
+            "translated": "Não é aceito a especificação dot-style não permitida «%s»; deixado sem alterações.",
+            "reference": "Especificação inválida de estilo da ordem de grandeza (dot) %s;\n  mantendo inalterado.\n"
+        },
+        {
+            "original": "Invalid user name",
+            "translated": "Nome de usuário inválido",
+            "reference": "O nome de usuário é inválido"
+        },
+        {
+            "original": "Unconvertable multibyte sequence encountered\n",
+            "translated": "Detectada uma sequência de bytes multibyte não convertível",
+            "reference": "Encontrou-se uma sequência multibyte que não dá para converter\n"
+        },
+        {
+            "original": "%s: aprintf: text buffer is too big (%d bytes), aborting.\n",
+            "translated": "%s: aprintf: buffer de texto muito grande (%d bytes), parando.",
+            "reference": "%s: aprintf: a memória para texto é muito grande (%d bytes); abortando.\n"
+        },
+        {
+            "original": "File %s changed since the last check. Security check failed.\n",
+            "translated": "Desde a última verificação, o arquivo %s sofreu alterações. Erro na verificação de segurança.",
+            "reference": "O arquivo %s mudou desde a última verificação. Verificação de segurança falhou.\n"
+        },
+        {
+            "original": "Failed to stat file %s, error: %s\n",
+            "translated": "Erro ao executar stat para o arquivo %s, erro: %s\n",
+            "reference": "Falhou no stat de arquivo %s, erro: %s\n"
+        },
+        {
+            "original": "Invalid regular expression %s, PCRE2 error %d\n",
+            "translated": "Não é permitido o uso do padrão regular %s, erro PCRE2 %d\n",
+            "reference": "Expressão regular inválida %s, erro PCRE2 %d\n"
+        },
+        {
+            "original": "Invalid regular expression %s, %s\n",
+            "translated": "Não é permitido o uso do padrão de expressão regular %s, %s\n",
+            "reference": "Expressão regular inválida %s, %s\n"
+        },
+        {
+            "original": "Error while matching %s: %d\n",
+            "translated": "Erro ao comparar %s com valor %d\n",
+            "reference": "Erro ao comparar %s: %d\n"
+        },
+        {
+            "original": "Error setting WARC file position.\n",
+            "translated": "Erro ao mover arquivo WARC.",
+            "reference": "Erro ao definir posição no arquivo WARC.\n"
+        },
+        {
+            "original": "Error opening GZIP stream to WARC file.\n",
+            "translated": "Erro ao abrir fluxo GZIP no arquivo WARC.",
+            "reference": "Erro ao abrir fluxo GZIP para arquivo WARC.\n"
+        },
+        {
+            "original": "Error writing warcinfo record to WARC file.\n",
+            "translated": "Erro ao salvar a entrada warcinfo no arquivo WARC.",
+            "reference": "Erro ao escrever registro warcinfo em arquivo WARC.\n"
+        },
+        {
+            "original": "CDX file does not list original urls. (Missing column 'a'.)\n",
+            "translated": "Arquivo CDX não contém URLs originais (coluna 'a' ausente).",
+            "reference": "Arquivo CDX não lista os URLs originais (falta a coluna \"a\").\n"
+        },
+        {
+            "original": "CDX file does not list checksums. (Missing column 'k'.)\n",
+            "translated": "Arquivo CDX não contém checksums (coluna 'k' ausente).",
+            "reference": "Arquivo CDX não lista as somas de verificação (falta a coluna \"k\").\n"
+        },
+        {
+            "original": "Could not open temporary WARC log file.\n",
+            "translated": "Não é possível abrir o arquivo temporário de registro WARC.",
+            "reference": "Não foi possível abrir arquivo de registro WARC temporário.\n"
+        },
+        {
+            "original": "Could not open CDX file for output.\n",
+            "translated": "Não é possível abrir o arquivo CDX para gravação dos resultados.",
+            "reference": "Não foi possível abrir o arquivo CDX para saída.\n"
+        }
+    ]
+}

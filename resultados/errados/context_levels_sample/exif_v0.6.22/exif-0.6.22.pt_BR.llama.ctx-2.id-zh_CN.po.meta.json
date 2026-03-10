@@ -1,0 +1,130 @@
+{
+    "job_info": {
+        "input_file": "/Users/viniciuscandeia/development/TCC/data/translations_sample/exif_v0.6.22/exif-0.6.22.de.po",
+        "output_file": "/Users/viniciuscandeia/development/TCC/resultados/context_levels_sample/exif_v0.6.22/exif-0.6.22.pt_BR.llama.ctx-2.id-zh_CN.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-10T08:19:23.322763",
+        "duration_seconds": 28.67,
+        "reference_file": "/Users/viniciuscandeia/development/TCC/data/translations_sample/exif_v0.6.22/exif-0.6.22.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": 8504559443697029588
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "ZH_CN",
+            "ID"
+        ],
+        "context_sentences_sample": {
+            "Warning; Too many components specified!": {
+                "ZH_CN": "警告：指定的组件过多！",
+                "ID": "Peringatan; Terlalu banyak komponen yang ditentukan!"
+            },
+            "Could not write '%s' (%s).": {
+                "ZH_CN": "无法写入“%s”(%s)。",
+                "ID": "Tak dapat membaca '%s' (%s)."
+            },
+            "IFD '%s' does not contain a tag '%s'!": {
+                "ZH_CN": "IFD“%s”中不包含标签“%s”！",
+                "ID": "IFD '%s' tak berisi tag '%s'!"
+            },
+            "Could not determine size of '%s' (%s).": {
+                "ZH_CN": "无法确定“%s”的大小 (%s)。",
+                "ID": "Tak dapat membaca '%s' (%s)."
+            },
+            "'%s' does not contain tag '%s'.": {
+                "ZH_CN": "“%s”不包含标签“%s”。",
+                "ID": "'%s' tak berisi tag '%s'."
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 13,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct  9 2025, 16:16:55) [Clang 17.0.0 (clang-1700.6.3.2)]"
+    },
+    "translations": [
+        {
+            "original": "Warning; Too many components specified!",
+            "translated": "Aviso: Foram especificadas mais componentes do que o permitido!",
+            "reference": "Aviso; Especificados componentes demais!"
+        },
+        {
+            "original": "Could not write '%s' (%s).",
+            "translated": "Não foi possível escrever em '%s' (%s).",
+            "reference": "Não foi possível escrever \"%s\" (%s)."
+        },
+        {
+            "original": "IFD '%s' does not contain a tag '%s'!",
+            "translated": "Seção IFD »%s« não contém marcação de 'IFD'!",
+            "reference": "IFD \"%s\" não contém uma etiqueta \"%s\"!"
+        },
+        {
+            "original": "Could not determine size of '%s' (%s).",
+            "translated": "A medida de tamanho do elemento \"%s\" não pôde ser determinada (%s).",
+            "reference": "Não foi possível determinar o tamanho de \"%s\" (%s)."
+        },
+        {
+            "original": "'%s' does not contain tag '%s'.",
+            "translated": "“%s” não contém a marcação “%s”.",
+            "reference": "\"%s\" não contém uma etiqueta \"%s\"!"
+        },
+        {
+            "original": "'%s' does not contain a thumbnail!",
+            "translated": "«%s» não contém nenhuma pré-visualização!",
+            "reference": "IFD \"%s\" não contém uma miniatura!"
+        },
+        {
+            "original": "MakerNote does not contain any value.\n",
+            "translated": "Anotação do fabricante não contém nenhum valor.",
+            "reference": "MakerNote não contém qualquer valor.\n"
+        },
+        {
+            "original": "Value",
+            "translated": "valor",
+            "reference": "Valor"
+        },
+        {
+            "original": "Show IDs instead of tag names",
+            "translated": "Exibir identificadores (IDs) em vez dos nomes das marcações",
+            "reference": "Mostra IDs em vez de nomes de etiquetas"
+        },
+        {
+            "original": "tag",
+            "translated": "Marcação",
+            "reference": "etiqueta"
+        },
+        {
+            "original": "List all EXIF tags",
+            "translated": "Listar todas as marcações EXIF",
+            "reference": "Lista todas as etiquetas EXIF"
+        },
+        {
+            "original": "Output in a XML format",
+            "translated": "Saída em um formato XML",
+            "reference": "Saída em um formato XML"
+        },
+        {
+            "original": "You need to specify a tag!",
+            "translated": "Por favor, indique uma marcação!",
+            "reference": "Você precisa especificar uma etiqueta!"
+        }
+    ]
+}
