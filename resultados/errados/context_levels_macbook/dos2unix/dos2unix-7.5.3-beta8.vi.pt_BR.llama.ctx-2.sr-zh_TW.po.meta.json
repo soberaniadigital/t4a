@@ -1,0 +1,723 @@
+{
+    "job_info": {
+        "input_file": "/home/vinicius/TCC/data/macbook/dos2unix/dos2unix-7.5.3-beta8.vi.po",
+        "output_file": "/home/vinicius/TCC/resultados/context_levels_macbook/dos2unix/dos2unix-7.5.3-beta8.vi.pt_BR.llama.ctx-2.sr-zh_TW.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-08T22:25:47.727000",
+        "duration_seconds": 67.14,
+        "reference_file": "/home/vinicius/TCC/data/macbook/dos2unix/dos2unix-7.5.3-beta8.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": -254371055815847658
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\n$context_section\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "ZH_TW",
+            "SR"
+        ],
+        "context_sentences_sample": {
+            "Copyright (C) 2009-%d Erwin Waterlander\nCopyright (C) 1998      Christian Wurll (Version 3.1)\nCopyright (C) 1998      Bernd Johannes Wuebben (Version 3.0)\nCopyright (C) 1994-1995 Benjamin Lin\nAll rights reserved.\n\n": {
+                "ZH_TW": "版權所有 (C) 2009-%d Erwin Waterlander\n版權所有 (C) 1998      Christian Wurll (版本 3.1)\n版權所有 (C) 1998      Bernd Johannes Wuebben (版本 3.0)\n版權所有 (C) 1994-1995 Benjamin Lin\n保留所有權利。\n\n",
+                "SR": "Ауторска права © 2009-%d Ервин Вотерландер\nАуторска права © 1998      Кристиан Вирл (издање 3.1)\nАуторска права © 1998      Берн Јохан Вјебен (Version 3.0)\nАуторска права © 1994-1995 Бенџамин Лин\nСва права су задржана.\n\n"
+            },
+            "Binary symbol 0x00%02X found at line %u\n": {
+                "ZH_TW": "在第 %2$u 找到二進位符號 0x00%1$02X\n",
+                "SR": "Бинарни симбол 0x00%02X је пронађен у %u. реду\n"
+            },
+            "Added line break to last line.\n": {
+                "ZH_TW": "已在最後一列加上斷行字元。\n",
+                "SR": "Прекид реда је додат у последњи ред.\n"
+            },
+            "program error, invalid conversion mode %d\n": {
+                "ZH_TW": "程式錯誤，不合法的轉換模式 %d\n",
+                "SR": "програмска грешка, неисправан режим претварања %d\n"
+            },
+            "Converted %u out of %u line breaks.\n": {
+                "ZH_TW": "已轉換 %u 個，共 %u 個換行符號。\n",
+                "SR": "Претворио сам %u од %u прекида реда.\n"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 132,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct 10 2025, 08:54:03) [GCC 11.4.0]"
+    },
+    "translations": [
+        {
+            "original": "Copyright (C) 2009-%d Erwin Waterlander\nCopyright (C) 1998      Christian Wurll (Version 3.1)\nCopyright (C) 1998      Bernd Johannes Wuebben (Version 3.0)\nCopyright (C) 1994-1995 Benjamin Lin\nAll rights reserved.\n\n",
+            "translated": "Tác quyền (C) 2009-%d Erwin Waterlander\n",
+            "reference": "Copyright (C) 2009-%d Erwin Waterlander\nCopyright (C) 1998      Christian Wurll (Versão 3.1)\nCopyright (C) 1998      Bernd Johannes Wuebben (Versão 3.0)\nCopyright (C) 1994-1995 Benjamin Lin\nTodos os direitos reservados.\n\n"
+        },
+        {
+            "original": "Binary symbol 0x00%02X found at line %u\n",
+            "translated": "falha na verificação da linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "Símbolo binário 0x00%02X localizado na linha %u\n"
+        },
+        {
+            "original": "Added line break to last line.\n",
+            "translated": "Foi adicionado um caractere no final do último registro.",
+            "reference": "Adicionada quebra de liha à última linha.\n"
+        },
+        {
+            "original": "program error, invalid conversion mode %d\n",
+            "translated": "Erro no programa, o modo de conversão %d não é válido.",
+            "reference": "erro do programa, modo de conversão %d é inválido\n"
+        },
+        {
+            "original": "Converted %u out of %u line breaks.\n",
+            "translated": "Foi convertido %s no número de linhas alteradas, totalizando %u alterações.",
+            "reference": "Convertidas %u de %u quebras de linha.\n"
+        },
+        {
+            "original": "using code page %d.\n",
+            "translated": "Use o código de erro %d.",
+            "reference": "usando a página de código %d.\n"
+        },
+        {
+            "original": "Binary symbol 0x%02X found at line %u\n",
+            "translated": "O sinal de erro %s foi encontrado na linha %u.",
+            "reference": "Símbolo binário 0x%02X localizado na linha %u\n"
+        },
+        {
+            "original": "error: Value of environment variable DOS2UNIX_LOCALEDIR is too long.\n",
+            "translated": "falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "erro: O valor da variável de ambiente DOS2UNIX_LOCALEDIR é muito comprido.\n"
+        },
+        {
+            "original": "Copyright (C) 2009-%d Erwin Waterlander\nCopyright (C) 1994-1995 Benjamin Lin\nAll rights reserved.\n\n",
+            "translated": "Bênção (C) 2009-%d Erwin Waterlander\nBênção (C) 1994-1995 Benjamin Lin\nTodos os direitos reservados.",
+            "reference": "Copyright (C) 2009-%d Erwin Waterlander\nCopyright (C) 1994-1995 Benjamin Lin\nTodos os direitos reservados.\n\n"
+        },
+        {
+            "original": "Failed to write to temporary output file %s:",
+            "translated": "Erro ao escrever no arquivo de saída temporário %s:",
+            "reference": "Falha ao gravar no arquivo de saída temporário %s:"
+        },
+        {
+            "original": "Failed to close input file %s:",
+            "translated": "Erro ao inserir o arquivo %s:",
+            "reference": "Falha ao fechar o arquivo de entrada %s:"
+        },
+        {
+            "original": "Redistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions\nare met:\n1. Redistributions of source code must retain the above copyright\n   notice, this list of conditions and the following disclaimer.\n2. Redistributions in binary form must reproduce the above copyright\n   notice in the documentation and/or other materials provided with\n   the distribution.\n\n",
+            "translated": "Phân phối lại và dùng mã nguồn và dạng nhị phân, được phép nếu tuân thủ các điều kiện sau đây:",
+            "reference": "A redistribuição e o uso nas formas de código e binária, com ou sem\nalterações, são permitidas desde que sejam atendidas as condições\nque se seguem:\n1. As redistribuições de código-fonte devem reter os avisos de direitos\n   autorais acima, a lista de condições e a renúncia a seguir.\n2. As redistribuições na forma binária devem reproduzir o aviso de\n   direitos autorais acima na documentação e/ou outros materiais\n   fornecidos com a distribuição.\n\n"
+        },
+        {
+            "original": "THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY\nEXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR\nPURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR\nCONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT\nOF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR\nBUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,\nWHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE\nOR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN\nIF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+            "translated": "O software é de propriedade do autor e não pode ser usado para anything que viole a lei ou as políticas da OpenBSD Foundation. O uso deste material está sujeito às suas próp0rias Política de Uso Respeitável (RFC).",
+            "reference": "ESTE SOFTWARE É FORNECIDO PELO AUTOR ``COMO ESTÁ'' E SEM\nQUAISQUER GARANTIAS EXPRESSAS OU IMPLÍCITAS, INCLUINDO, MAS NÃO LIMITADO A,\nIMPLICAR GARANTIAS DE COMERCIALIZAÇÃO E ADEQUAÇÃO A UM FIM ESPECÍFICO,\nESTAS SÃO RENUNCIADAS.  SOB NENHUM CASO O AUTOR DEVE SER CONSIDERADO RESPONSÁVEL POR\nQUALQUER DANO DIRETO, INDIRETO, ACIDENTAL, ESPECIAL, EXEMPLAR, OU\nCONSEQUENCIAL (INCLUINDO, MAS NÃO LIMITADO A, AQUISIÇÃO\nDE BENS SUBSTITUTOS OU SERVIÇOS; PERDA DE USO, DADOS, OU LUCROS; OU\nINTERRUPÇÃO DE NEGÓCIOS) CAUSADOS E SOB QUALQUER TEORIA DE RESPONSABILIZAÇÃO,\nSEJA CONTRATUAL, RESPONSABILIZAÇÃO ESTRITA, OU AGRAVO (INCLUINDO NEGLIGÊNCIA\nOU OUTRAS FORMAS) LEVANTADAS EM QUALQUER FORMA FORA DO USO DESTE SOFTWARE, MESMO\nSE RESSALVADO DA POSSIBILIDADE DE TAL DANO.\n"
+        },
+        {
+            "original": "Usage: %s [options] [file ...] [-n infile outfile ...]\n",
+            "translated": "Método de uso: %s [opções] [-n tabela_de_entrada entrada ...]",
+            "reference": "Uso: %s [opções] [arquivo ...] [-n arquivo_entrada arquivo_saida ...]\n"
+        },
+        {
+            "original": " --allow-chown         allow file ownership change\n",
+            "translated": "--allow-chown         permite alterar propriedade do arquivo",
+            "reference": " --allow-chown         permite alteração da propriedade do arquivo\n"
+        },
+        {
+            "original": " -ascii                default conversion mode\n",
+            "translated": " -ascii                modo padrão de conversão ASCII",
+            "reference": " -ascii                modo de conversão padrão\n"
+        },
+        {
+            "original": " -iso                  conversion between DOS and ISO-8859-1 character set\n",
+            "translated": "chute zero para o número de linhas que você deseja processar.",
+            "reference": " -iso                  conversão entre conjunto de caractere do DOS e ISO-8859-1\n"
+        },
+        {
+            "original": "   -1252               use Windows code page 1252 (Western European)\n",
+            "translated": "Utilize o código Windows-1252 para codificar a página (Windows-1252) - Tây Âu",
+            "reference": "   -1252               usa a página de código 1252 do Windows (Europa ocidental)\n"
+        },
+        {
+            "original": "   -437                use DOS code page 437 (US) (default)\n",
+            "translated": "   -437                utilizando código DOS 437 (US) (padrão)",
+            "reference": "   -437                usa a página de código 437 do DOS (EUA) (padrão)\n"
+        },
+        {
+            "original": "   -850                use DOS code page 850 (Western European)\n",
+            "translated": "Utilize o DOS 850 (Tây Árabe) para codificar a página de destino.",
+            "reference": "   -850                usa a página de código 850 do DOS (Europa ocidental)\n"
+        },
+        {
+            "original": "   -860                use DOS code page 860 (Portuguese)\n",
+            "translated": "Use o código DOS 860 (Português) para acessar as configurações do sistema operacional.",
+            "reference": "   -860                usa a página de código 860 do DOS (Português)\n"
+        },
+        {
+            "original": "   -863                use DOS code page 863 (French Canadian)\n",
+            "translated": "Use o código DOS 863 (Canadá Francês) para acessar esta página.",
+            "reference": "   -863                usa a página de código 863 do DOS (Francês do Canadá)\n"
+        },
+        {
+            "original": "   -865                use DOS code page 865 (Nordic)\n",
+            "translated": "Use o código DOS 865 (Europa do Norte) para acessar as linhas de dados da tabela.",
+            "reference": "   -865                usa a página de código 865 do DOS (Nórdico)\n"
+        },
+        {
+            "original": " -7                    convert 8 bit characters to 7 bit space\n",
+            "translated": "falha na verificação da linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": " -7                    converte caracteres de 8 bits para espaço de 7 bits\n"
+        },
+        {
+            "original": " -b, --keep-bom        keep Byte Order Mark\n",
+            "translated": "giúpia o sinal de byte order mark (BOM) para manter a ordem original dos bytes.",
+            "reference": " -b, --keep-bom        mantém marca de ordem de byte (B.O.M.)\n"
+        },
+        {
+            "original": " -b, --keep-bom        keep Byte Order Mark (default)\n",
+            "translated": "opção --keep-bom        preservar o marcador de byte order mark (método padrão)",
+            "reference": " -b, --keep-bom        mantém marca de ordem de byte (B.O.M.) (padrão)\n"
+        },
+        {
+            "original": " -c, --convmode        conversion mode\n   convmode            ascii, 7bit, iso, mac, default to ascii\n",
+            "translated": "chave de conversão --convmode         modo de convergência: ASCII, 7bit, ISO, MAC, moldura padrão é ASCII.",
+            "reference": " -c, --convmode        modo de conversão\n   convmode            ascii, 7bit, iso, mac, sendo padrão o ascii\n"
+        },
+        {
+            "original": " -D, --display-enc     set encoding of displayed text messages\n   encoding            ansi, unicode, utf8, default to ansi\n",
+            "translated": " -D, --display-enc     đặt bảng mã para exibir các thông báo\n   bảng mã: ansi, unicode, utf8, mặc định là ansi",
+            "reference": " -D, --display-enc     define codificação das mensagens de texto exibidas\n   codificação         ansi, unicode, utf8, sendo padrão o ansi\n"
+        },
+        {
+            "original": " -e, --add-eol         add a line break to the last line if there isn't one\n",
+            "translated": " -e, --add-eol   adicione um caractere de nova linha no final da última coluna se ele não existir.",
+            "reference": " -e, --add-eol         adiciona uma quebra de linha à última linha\n                       se não houver uma\n"
+        },
+        {
+            "original": " -f, --force           force conversion of binary files\n",
+            "translated": "bateria de energia para o processo, ou seja, a força necessária para converter dados binários em um formato diferente.",
+            "reference": " -f, --force           força a conversão de arquivos binários\n"
+        },
+        {
+            "original": " -gb, --gb18030        convert UTF-16 to GB18030\n",
+            "translated": " -gb, --gb18030          converte UTF-16 para GB18030",
+            "reference": " -gb, --gb18030        converte-se de UTF-16 para GB18030\n"
+        },
+        {
+            "original": " -h, --help            display this help text\n",
+            "translated": "Use '--help' para obter mais informações.",
+            "reference": " -h, --help            exibe este texto de ajuda\n"
+        },
+        {
+            "original": " -i, --info[=FLAGS]    display file information\n   file ...            files to analyze\n",
+            "translated": " -i, --info[=CỜ]        hiển thị thông tin tập tin\n   tập-tin …            các tập tin cần phân tích\n",
+            "reference": " -i, --info[=OPÇÕES]   exibe informação do arquivo\n   file ...            arquivos para analisar\n"
+        },
+        {
+            "original": " -k, --keepdate        keep output file date\n",
+            "translated": "Preservar o dia de entrada do arquivo %s",
+            "reference": " -k, --keepdate        mantém a data do arquivo de saída\n"
+        },
+        {
+            "original": " -L, --license         display software license\n",
+            "translated": "opção -L, --license         apresenta o licenciamento do software",
+            "reference": " -L, --license         exibe a licença do software\n"
+        },
+        {
+            "original": " -l, --newline         add additional newline\n",
+            "translated": " -l, --newline         adicionar linha extra (dónde ocorre a quebra de linha)",
+            "reference": " -l, --newline         acrescenta nova linha adicional\n"
+        },
+        {
+            "original": " -m, --add-bom         add Byte Order Mark (default UTF-8)\n",
+            "translated": "adicionar o sinal de byte order mark (BOM) padrão UTF-8 à sequência do arquivo, se necessário.",
+            "reference": " -m, --add-bom         adiciona marca de ordem de byte (B.O.M.) (padrão UTF-8)\n"
+        },
+        {
+            "original": " -n, --newfile         write to new file\n   infile              original file in new-file mode\n   outfile             output file in new-file mode\n",
+            "translated": " -n, --newfile         寫入新檔\n   tập tin gốc 到 tập tin mới\n   tập tin ra 在 tập tin mới",
+            "reference": " -n, --newfile         grava em novo arquivo\n   arquivo-entrada     arquivo original no modo de novo arquivo\n   arquivo-saída       arquivo de saída no modo de novo arquivo\n"
+        },
+        {
+            "original": " --no-allow-chown      don't allow file ownership change (default)\n",
+            "translated": "não é permitido alterar o proprietário do arquivo (padrão)",
+            "reference": " --no-allow-chown      não permite alterar a propriedade do arquivo (padrão)\n"
+        },
+        {
+            "original": " --no-add-eol          don't add a line break to the last line if there isn't one (default)\n",
+            "translated": " --no-add-eol          não adicionar dáfunkcję (dấu ngắt) no final da linha se ela não existir (por padrão)",
+            "reference": " --no-add-eol          não adiciona uma quebra de linha à última linha\n                       se não houver uma (padrão)\n"
+        },
+        {
+            "original": " -O, --to-stdout       write to standard output\n",
+            "translated": "Opcion -o, --to-stdout       escreve na saída padrão",
+            "reference": " -O, --to-stdout       escreve para a saída padrão\n"
+        },
+        {
+            "original": " -o, --oldfile         write to old file (default)\n   file ...            files to convert in old-file mode\n",
+            "translated": " -o, --oldfile         輸入檔案 (預設) 檔案 ...            旧檔案 ...",
+            "reference": " -o, --oldfile         grava no arquivo antigo (padrão)\n   arquivo ...         arquivos a converter no modo de arquivo antigo\n"
+        },
+        {
+            "original": " -q, --quiet           quiet mode, suppress all warnings\n",
+            "translated": "chave -q, --quiet           modo silencioso, sem nenhum aviso ou mensagem de erro",
+            "reference": " -q, --quiet           modo silencioso, esconde todos os avisos\n"
+        },
+        {
+            "original": " -r, --remove-bom      remove Byte Order Mark (default)\n",
+            "translated": "opção -r, --remove-bom      apagar o byte order mark (BOM) padrão (padrão)",
+            "reference": " -r, --remove-bom      remove marca de ordem de byte (B.O.M.) (padrão)\n"
+        },
+        {
+            "original": " -r, --remove-bom      remove Byte Order Mark\n",
+            "translated": "Remover o Byte Order Mark (BOM) -r, --remove-bom      gostaria de remover a sequência BOM do arquivo.",
+            "reference": " -r, --remove-bom      remove marca de ordem de byte (B.O.M.)\n"
+        },
+        {
+            "original": " -s, --safe            skip binary files (default)\n",
+            "translated": "opção segura -s, --safe            exclusão de linha (mínimo)",
+            "reference": " -s, --safe            ignora os arquivos binários (padrão)\n"
+        },
+        {
+            "original": " -u,  --keep-utf16     keep UTF-16 encoding\n",
+            "translated": " -u, --keep-utf16     conservando em UTF-16",
+            "reference": " -u,  --keep-utf16     mantém codificação UTF-16\n"
+        },
+        {
+            "original": " -ul, --assume-utf16le assume that the input format is UTF-16LE\n",
+            "translated": " -ul, --assume-utf16le 假設輸入檔格式為 UTF-16LE",
+            "reference": " -ul, --assume-utf16le supõe que o formato de entrada é UTF-16LE\n"
+        },
+        {
+            "original": " -ub, --assume-utf16be assume that the input format is UTF-16BE\n",
+            "translated": " -ub, --assume-utf16be coi rão que o formato de entrada seja UTF-16BE",
+            "reference": " -ub, --assume-utf16be supõe que o formato de entrada é UTF-16BE\n"
+        },
+        {
+            "original": " -v,  --verbose        verbose operation\n",
+            "translated": " -v, --verbose        anunciar detalhes",
+            "reference": " -v,  --verbose        operação detalhada\n"
+        },
+        {
+            "original": " -F, --follow-symlink  follow symbolic links and convert the targets\n",
+            "translated": "opção --follow-symlink, para seguir links simbólicos e converter diretório de entrada/saída padrão.",
+            "reference": " -F, --follow-symlink  segue os links simbólicos e converte os destinos\n"
+        },
+        {
+            "original": " -R, --replace-symlink replace symbolic links with converted files\n                         (original target files remain unchanged)\n",
+            "translated": " -R, --replace-symlink thay thế liên kết mềm bằng tập tin đã chuyển đổi (các tập tin đích nguyên gốc thì để nguyên không thay đổi)",
+            "reference": " -R, --replace-symlink substitui os links simbólicos por arquivos convertidos\n                   (os arquivos originais de destino permanecem inalterados)\n"
+        },
+        {
+            "original": " -S, --skip-symlink    keep symbolic links and targets unchanged (default)\n",
+            "translated": " -S, --skip-symlink    ignorar links simbólicos e seus objetivos não alteráveis (padrão)",
+            "reference": " -S, --skip-symlink    mantém os links simbólicos e os destinos inalterados (padrão)\n"
+        },
+        {
+            "original": " -V, --version         display version number\n",
+            "translated": " -V, --version         apresenta versão do programa",
+            "reference": " -V, --version         exibe o número da versão\n"
+        },
+        {
+            "original": "DOS 16 bit version (Watcom C).\n",
+            "translated": "Ficheiro de texto não encontrado.",
+            "reference": "DOS versão de 16 bits (Watcom C).\n"
+        },
+        {
+            "original": "DOS 16 bit version (Turbo C).\n",
+            "translated": "Ficha de referência para o sistema operacional DOS (16 bits) Turbo C.",
+            "reference": "DOS versão de 16 bits (Turbo C).\n"
+        },
+        {
+            "original": "DOS 32 bit version (Watcom C).\n",
+            "translated": "Ficha de DOS em 32 bits (Watcom C).",
+            "reference": "DOS versão de 32 bits (Watcom C).\n"
+        },
+        {
+            "original": "DOS 32 bit version (DJGPP).\n",
+            "translated": "Ficha de referência para o DOS em modo de 32 bits (DJGPP).",
+            "reference": "DOS versão de 32 bits (DJGPP).\n"
+        },
+        {
+            "original": "MSYS version.\n",
+            "translated": "Ficheiro de log do sistema operacional.",
+            "reference": "Versão do MSYS.\n"
+        },
+        {
+            "original": "Cygwin version.\n",
+            "translated": "Ficha de referência do Cygwin. \n",
+            "reference": "Versão do Cygwin.\n"
+        },
+        {
+            "original": "Windows 64 bit version (MinGW-w64).\n",
+            "translated": "Ficha técnica do Windows 64 bits (MinGW-w64).",
+            "reference": "Windows versão de 64 bits (MinGW-w64).\n"
+        },
+        {
+            "original": "Windows 32 bit version (Watcom C).\n",
+            "translated": "Ficheiro de texto não encontrado.",
+            "reference": "Windows versão de 32 bits (Watcom C).\n"
+        },
+        {
+            "original": "Windows 32 bit version (MinGW-w64).\n",
+            "translated": "Ficha técnica do Windows 32 bits (MinGW-w64).",
+            "reference": "Windows versão de 32 bits (MinGW-w64).\n"
+        },
+        {
+            "original": "Windows 32 bit version (MinGW).\n",
+            "translated": "Ficha técnica do Windows 32 bits (MinGW).",
+            "reference": "Windows versão de 32 bits (MinGW).\n"
+        },
+        {
+            "original": "Windows 64 bit version (MSVC %d).\n",
+            "translated": "Ficha de demonstração do Windows 64 bits (MSVC %d).",
+            "reference": "Windows versão de 64 bits (MSVC %d).\n"
+        },
+        {
+            "original": "Windows 32 bit version (MSVC %d).\n",
+            "translated": "Ficha de Windows para sistemas em execução no modo gráfico (MSVC %d).",
+            "reference": "Windows versão de 32 bits (MSVC %d).\n"
+        },
+        {
+            "original": "OS/2 version (Watcom C).\n",
+            "translated": "Ficheiro de log do sistema operacional OS/2 (Watcom C).",
+            "reference": "Versão OS/2 (Watcom C).\n"
+        },
+        {
+            "original": "OS/2 version (EMX).\n",
+            "translated": "Ficheiro de exemplo (EMX).",
+            "reference": "Versão OS/2 (EMX).\n"
+        },
+        {
+            "original": "%s version.\n",
+            "translated": "Ficha de referência %s.",
+            "reference": "Versão %s.\n"
+        },
+        {
+            "original": "With Unicode UTF-16 support.\n",
+            "translated": "Olá! Obrigado pela sua solicitação. Por favor, me dê o nome do arquivo que deseja analisar.",
+            "reference": "Com suporte a Unicode UTF-16.\n"
+        },
+        {
+            "original": "Without Unicode UTF-16 support.\n",
+            "translated": "Não há suporte Unicode UTF-16.",
+            "reference": "Sem suporte a Unicode UTF-16.\n"
+        },
+        {
+            "original": "With Unicode file name support.\n",
+            "translated": "Có hora de apoio para o nome do arquivo Unicode.",
+            "reference": "Com suporte a nomes de arquivos em Unicode UTF-16.\n"
+        },
+        {
+            "original": "Without Unicode file name support.\n",
+            "translated": "Não há suporte para Unicode filenames.",
+            "reference": "Sem suporte a nomes de arquivos em Unicode UTF-16.\n"
+        },
+        {
+            "original": "With native language support.\n",
+            "translated": "Olá! O programa 'GNU Make' é um utilitário de linha de comando que ajuda a gerir o processo de compilação e construção em sistemas operacionais Linux. Ele permite aos desenvolvedores criar, editar e gerenciar arquivos .po (Portuguese) ou .mo (multilanguage), bem como executá-los para traduzir textos entre diferentes idiomas.",
+            "reference": "Com suporte ao idioma nativo.\n"
+        },
+        {
+            "original": "With support to preserve the user and group ownership of files.\n",
+            "translated": "Como você pode obter acesso ao seu próprio arquivo de configura0.json e grupo?",
+            "reference": "Com suporte a preservar a propriedade de usuário e grupos de arquivos.\n"
+        },
+        {
+            "original": "Without support to preserve the user and group ownership of files.\n",
+            "translated": "Não há suporte para o uso de arquivos em cache por usuários individuais e grupos. Para obter mais informações, tente '`%s --help'.",
+            "reference": "Sem suporte a preservar a propriedade de usuário e grupos de arquivos.\n"
+        },
+        {
+            "original": "Path for temporary output file is too long:",
+            "translated": "O caminho de saída para o arquivo temporário é muito longo:",
+            "reference": "O caminho do arquivo de saída temporário é muito grande:"
+        },
+        {
+            "original": "Writing %s BOM.\n",
+            "translated": "Estamos gravando %s BOM.",
+            "reference": "Escrevendo %s BOM.\n"
+        },
+        {
+            "original": "UTF-16LE",
+            "translated": "UTF-16LE",
+            "reference": "UTF-16LE"
+        },
+        {
+            "original": "UTF-16BE",
+            "translated": "UTF-16BE",
+            "reference": "UTF-16BE"
+        },
+        {
+            "original": "GB18030",
+            "translated": "GB18030",
+            "reference": "GB18030"
+        },
+        {
+            "original": "UTF-8",
+            "translated": "UTF-8",
+            "reference": "UTF-8"
+        },
+        {
+            "original": "Input file %s has %s BOM.\n",
+            "translated": "O arquivo de entrada %s possui BOM %s.",
+            "reference": "Arquivo de entrada %s possui %s B.O.M.\n"
+        },
+        {
+            "original": "Assuming UTF-16LE encoding.\n",
+            "translated": "A tabela de caracteres UTF-16LE.",
+            "reference": "Presume codificação UTF-16LE.\n"
+        },
+        {
+            "original": "Assuming UTF-16BE encoding.\n",
+            "translated": "Aqui está a tabela de codificação UTF-16BE.",
+            "reference": "Presumo codificação UTF-16BE.\n"
+        },
+        {
+            "original": "problems resolving symbolic link '%s'\n",
+            "translated": "falha na verificação da linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "ocorreram problemas ao determinar o link simbólico '%s'\n"
+        },
+        {
+            "original": "Failed to open temporary output file: %s\n",
+            "translated": "Erro ao abrir o arquivo de saída temporário: %s",
+            "reference": "Falha ao abrir o arquivo de saída temporário: %s\n"
+        },
+        {
+            "original": "using %s as temporary file\n",
+            "translated": "está utilizando %s como ferramenta de tempo real",
+            "reference": "usando %s como arquivo de temporário\n"
+        },
+        {
+            "original": "Failed to change the permissions of temporary output file %s:",
+            "translated": "Erro ao alterar permissões do arquivo de saída temporário %s:",
+            "reference": "Falha ao alterar as permissões do arquivo de saída temporário %s:"
+        },
+        {
+            "original": "The user and/or group ownership of file %s is not preserved.\n",
+            "translated": "O usuário e/ou grupo que possui o arquivo %s não podem ser removidos.",
+            "reference": "A propriedade de usuário e/ou grupo do arquivo %s não é preservada.\n"
+        },
+        {
+            "original": "Failed to change the owner and group of temporary output file %s:",
+            "translated": "Erro ao alterar o proprietário e grupo do arquivo de saída temporário '%s':",
+            "reference": "Falha ao alterar o proprietário e o grupo do arquivo de saída temporário %s:"
+        },
+        {
+            "original": "problems renaming '%s' to '%s':",
+            "translated": "Erro ao alterar o nome do arquivo “%s” para “%s”:",
+            "reference": "ocorreram problemas ao renomear '%s' para '%s':"
+        },
+        {
+            "original": "          which is the target of symbolic link '%s'\n",
+            "translated": "o objetivo deste link é o %s.",
+            "reference": "          que é o destino do link simbólico '%s'\n"
+        },
+        {
+            "original": "          output file remains in '%s'\n",
+            "translated": "A saída do arquivo '%s' não foi alterada",
+            "reference": "          o arquivo de saída permanece em '%s'\n"
+        },
+        {
+            "original": "Skipping binary file %s\n",
+            "translated": "Falha na verificação da linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "Ignorando o arquivo binário %s\n"
+        },
+        {
+            "original": "code page %d is not supported.\n",
+            "translated": "falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "não há suporte a página de código %d.\n"
+        },
+        {
+            "original": "Skipping UTF-16 file %s, the size of wchar_t is %d bytes.\n",
+            "translated": "Fiquei com dificuldades para traduzir o texto fornecido. Por favor, atenha-se ao formato JSON e não inclua informações adicionais além do que foi solicitado.",
+            "reference": "Ignorando o arquivo UTF-16 %s, o tamanho de wchar_t é de %d bytes.\n"
+        },
+        {
+            "original": "Skipping UTF-16 file %s, an UTF-16 conversion error occurred on line %u.\n",
+            "translated": "falha na verificação da linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "Ignorando o arquivo UTF-16 %s, ocorreu um erro de conversão para UTF-16 na linha %u.\n"
+        },
+        {
+            "original": "Skipping UTF-16 file %s, UTF-16 conversion is not supported in this version of %s.\n",
+            "translated": "falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "Ignorando o arquivo UTF-16 %s, não há suporte a conversão para UTF-16 nesta versão do %s.\n"
+        },
+        {
+            "original": "Skipping %s, not a regular file.\n",
+            "translated": "Borracho o arquivo %s, não é um documento típico.",
+            "reference": "Ignorando %s, não é um arquivo comum.\n"
+        },
+        {
+            "original": "Skipping %s, output file %s is a symbolic link.\n",
+            "translated": "Remova o arquivo %s, a entrada de dados inicial é um link simbólico.",
+            "reference": "Ignorando %s, o arquivo de saída %s é um link simbólico.\n"
+        },
+        {
+            "original": "Skipping symbolic link %s.\n",
+            "translated": "Fiquei com dificuldades para encontrar o arquivo %s. Para obter mais informações, tente `%s --help'.",
+            "reference": "Ignorando o link simbólico %s.\n"
+        },
+        {
+            "original": "Skipping symbolic link %s, target is not a regular file.\n",
+            "translated": "Falha na verificação da linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "Ignorando o link simbólico %s, o destino não é o de um arquivo comum.\n"
+        },
+        {
+            "original": "Skipping %s, target of symbolic link %s is not a regular file.\n",
+            "translated": "Falha na verificação da linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "Ignorando %s, o destino do link simbólico %s não é o de um arquivo comum.\n"
+        },
+        {
+            "original": "converting file %s to file %s in Unix format...\n",
+            "translated": "Estamos convertendo o arquivo %s para um formato Unix...",
+            "reference": "convertendo o arquivo %s para arquivo %s no formato Unix...\n"
+        },
+        {
+            "original": "converting file %s to Unix format...\n",
+            "translated": "Estamos convertendo o arquivo “%s” para a representação Unix...",
+            "reference": "convertendo o arquivo %s para formato Unix...\n"
+        },
+        {
+            "original": "converting file %s to file %s in Mac format...\n",
+            "translated": "Estamos convertendo o arquivo de texto “%s” para formato Mac...",
+            "reference": "convertendo o arquivo %s para arquivo %s no formato Mac...\n"
+        },
+        {
+            "original": "converting file %s to Mac format...\n",
+            "translated": "Estamos convertendo o arquivo de texto “%s” para formato Mac...",
+            "reference": "convertendo o arquivo %s para formato Mac...\n"
+        },
+        {
+            "original": "converting file %s to file %s in DOS format...\n",
+            "translated": "Estamos convertendo o arquivo “%s” para o formato DOS...",
+            "reference": "convertendo o arquivo %s para arquivo %s no formato DOS...\n"
+        },
+        {
+            "original": "converting file %s to DOS format...\n",
+            "translated": "Fazendo a conversão do arquivo “%s” para o formato DOS...",
+            "reference": "convertendo o arquivo %s para formato DOS...\n"
+        },
+        {
+            "original": "converting %s file %s to %s file %s in Unix format...\n",
+            "translated": "Estamos convertendo o arquivo %s “%s” para um formato Unix de tamanho %d…",
+            "reference": "convertendo o arquivo %s %s para arquivo %s %s no formato Unix...\n"
+        },
+        {
+            "original": "converting %s file %s to %s Unix format...\n",
+            "translated": "Estamos convertendo o arquivo %s para a versão Unix do formato...",
+            "reference": "convertendo o arquivo %s %s para formato do Unix %s...\n"
+        },
+        {
+            "original": "converting %s file %s to %s file %s in Mac format...\n",
+            "translated": "Estamos convertendo o arquivo %s “%s” para o formato Mac, mas falhou. Por favor, verifique se você está digitando a pasta correta e tente novamente.",
+            "reference": "convertendo o arquivo %s %s para arquivo %s %s no formato Mac...\n"
+        },
+        {
+            "original": "converting %s file %s to %s Mac format...\n",
+            "translated": "Estamos convertendo o arquivo %s para a versão Mac do formato...",
+            "reference": "convertendo o arquivo %s %s para formato do Mac %s...\n"
+        },
+        {
+            "original": "converting %s file %s to %s file %s in DOS format...\n",
+            "translated": "Estamos convertendo o arquivo %s “%s” para o formato DOS do tipo '%d'...",
+            "reference": "convertendo o arquivo %s %s para arquivo %s %s no formato DOS...\n"
+        },
+        {
+            "original": "converting %s file %s to %s DOS format...\n",
+            "translated": "Estamos convertendo o arquivo %s para a versão DOS do formato...",
+            "reference": "convertendo o arquivo %s %s para formato do DOS %s...\n"
+        },
+        {
+            "original": "problems converting file %s to file %s\n",
+            "translated": "Estamos convertendo o arquivo %s para a pasta de saída e encontrando erros ao tentar ler o conteúdo do ficheiro.",
+            "reference": "ocorreram problemas ao converter o arquivo %s para arquivo %s\n"
+        },
+        {
+            "original": "problems converting file %s\n",
+            "translated": "falha na verificação da linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "ocorreram problemas ao converter o arquivo %s\n"
+        },
+        {
+            "original": "can not read from input file %s:",
+            "translated": "não foi possível ler o arquivo de entrada \"%s\":",
+            "reference": "não foi possível gravar no arquivo de entrada %s:"
+        },
+        {
+            "original": "wrong flag '%c' for option -i or --info\n",
+            "translated": "falha na verificação da opção '-i' ou '--info': não é possível obter o estado do arquivo %s",
+            "reference": "opção incorreta \"%c\" para opção -i ou --info\n"
+        },
+        {
+            "original": "active code page: %d\n",
+            "translated": "A página atual está em execu endouro: %d",
+            "reference": "página de código ativa: %d\n"
+        },
+        {
+            "original": "invalid %s conversion mode specified\n",
+            "translated": "falha na conversão de %s não é legal",
+            "reference": "o modo de conversão %s especificado é inválido\n"
+        },
+        {
+            "original": "option '%s' requires an argument\n",
+            "translated": "falha na verificação da linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "a opção '%s' requer um argumento\n"
+        },
+        {
+            "original": "invalid %s display encoding specified\n",
+            "translated": "falha na verificação da linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "a codificação de exibição %s especificada é inválida\n"
+        },
+        {
+            "original": "target of file %s not specified in new-file mode\n",
+            "translated": "falha na verificação da linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)",
+            "reference": "o destino do arquivo %s não foi especificado no modo de novo arquivo\n"
+        },
+        {
+            "original": "can not read from input file: %s\n",
+            "translated": "não foi possível ler o arquivo de entrada: %s",
+            "reference": "não foi possível ler do arquivo de saída: %s\n"
+        },
+        {
+            "original": "can not write to output file: %s\n",
+            "translated": "não foi possível escrever no arquivo de saída: %s",
+            "reference": "não foi possível gravar no arquivo de saída: %s\n"
+        },
+        {
+            "original": "error: Invalid surrogate pair. Missing low surrogate.\n",
+            "translated": "Erro: Código de erro. Ocorreu um erro ao substituir o proxy.",
+            "reference": "erro: par de substitutos inválido. Faltando substituto baixo.\n"
+        },
+        {
+            "original": "error: Invalid surrogate pair. Missing high surrogate.\n",
+            "translated": "Erro: Código de erro. Falta um valor para o parâmetro '--proxy'.",
+            "reference": "erro: par de substitutos inválido. Faltando substituto alto.\n"
+        },
+        {
+            "original": "has %s BOM.\n",
+            "translated": "có %s BOM.\n"
+        },
+        {
+            "original": "WINVER 0x%X\n",
+            "translated": "WINVER 0x%X\n"
+        },
+        {
+            "original": "Skipping UTF-16 file %s, the current locale character encoding is not UTF-8.\n",
+            "translated": "Fique de olho no arquivo UTF-16 '%s', o código nativo do idioma atual não é UTF-8.",
+            "reference": "Ignorando o arquivo UTF-16 %s, a atual codificação local de caractere não é UTF-8.\n"
+        }
+    ]
+}

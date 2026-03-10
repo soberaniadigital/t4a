@@ -1,0 +1,510 @@
+{
+    "job_info": {
+        "input_file": "/Users/viniciuscandeia/development/TCC/data/translations_sample/aspell_v0.60.8.1/aspell-0.60.8.1.de.po",
+        "output_file": "/Users/viniciuscandeia/development/TCC/resultados/context_levels_sample/aspell_v0.60.8.1/aspell-0.60.8.1.pt_BR.llama.ctx-2.id-vi.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-10T02:47:01.495308",
+        "duration_seconds": 305.74,
+        "reference_file": "/Users/viniciuscandeia/development/TCC/data/translations_sample/aspell_v0.60.8.1/aspell-0.60.8.1.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": 8504559443697029588
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "VI",
+            "ID"
+        ],
+        "context_sentences_sample": {
+            "integer": {
+                "VI": "số nguyên",
+                "ID": "integer"
+            },
+            "main configuration file": {
+                "VI": "tập tin cấu hình chính",
+                "ID": "berkas konfigurasi utama"
+            },
+            "location of main configuration file": {
+                "VI": "vị trí của tập tin cấu hình chính",
+                "ID": "lokasi dari berkas konfigurasi utama"
+            },
+            "location of language data files": {
+                "VI": "vị trí của những tập tin dữ liệụ ngôn ngữ",
+                "ID": "lokasi dari berkas data bahasa"
+            },
+            "location of the main word list": {
+                "VI": "vị trí của danh sách từ chính",
+                "ID": "lokasi dari daftar kata utama"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 89,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct  9 2025, 16:16:55) [Clang 17.0.0 (clang-1700.6.3.2)]"
+    },
+    "translations": [
+        {
+            "original": "integer",
+            "translated": "número inteiro",
+            "reference": "inteiro"
+        },
+        {
+            "original": "main configuration file",
+            "translated": "arquivo de configuração principal",
+            "reference": "arquivo de configuração principal"
+        },
+        {
+            "original": "location of main configuration file",
+            "translated": "locação da tabela de sinalização principal",
+            "reference": "local do arquivo de configuração principal"
+        },
+        {
+            "original": "location of language data files",
+            "translated": "locais das arquivos de dados linguísticos",
+            "reference": "local dos arquivos de idiomas"
+        },
+        {
+            "original": "location of the main word list",
+            "translated": "Nome da lista principal de palavras",
+            "reference": "local do vocabulário principal"
+        },
+        {
+            "original": "encoding to expect data to be in",
+            "translated": "codificação, na qual os dados são esperados para ocorrer",
+            "reference": "codificação de entrada"
+        },
+        {
+            "original": "add or removes a filter",
+            "translated": "adiciona ou remove um filtro",
+            "reference": "adiciona ou remove um filtro"
+        },
+        {
+            "original": "path(s) aspell looks for filters",
+            "translated": "Caminhos(es) nos quais aspell procura filtros.",
+            "reference": "caminho(s) para aspell buscar filtros"
+        },
+        {
+            "original": "extra dictionaries to use",
+            "translated": "từ điển thêm cần dùng",
+            "reference": "dicionários adicionais"
+        },
+        {
+            "original": "ignore words <= n chars",
+            "translated": "bora quitar palavras com <= n caracteres",
+            "reference": "ignora palavras com menos de n caracteres"
+        },
+        {
+            "original": "ignore commands to store replacement pairs",
+            "translated": "ignore comandos, pares de substituição para serem salvos.",
+            "reference": "ignora comandos de substituição"
+        },
+        {
+            "original": "prefix directory",
+            "translated": "diretório de prefixo",
+            "reference": "prefixo do diretório"
+        },
+        {
+            "original": "replacements list file name",
+            "translated": "Nome do arquivo de substituição da lista",
+            "reference": "nome de arquivo da lista de substituições"
+        },
+        {
+            "original": "maximum number that can be strung together",
+            "translated": "soma máxima de palavras compostas",
+            "reference": "número máximo quem podem ser colocadas juntas"
+        },
+        {
+            "original": "minimal length of interior words",
+            "translated": "mínima extensão das palavras internas",
+            "reference": "tamanho mínimo de palavras interior"
+        },
+        {
+            "original": "set the prefix based on executable location",
+            "translated": "fix prefix based on the program's name set up",
+            "reference": "define o prefixo baseado na localização do executável"
+        },
+        {
+            "original": "no longer used",
+            "translated": "não é mais utilizado",
+            "reference": "não mais usado"
+        },
+        {
+            "original": "use replacement tables, override sug-mode default",
+            "translated": "utilize tabelas de substituição em vez do modo sugestivo para obter maior influência sobre a definição padrão.",
+            "reference": "usa tabelas de substituição, sobrescrevendo o padrão \"sug-mode\""
+        },
+        {
+            "original": "characters to insert when a word is split",
+            "translated": "um caractere para ser inserido quando uma palavra é dividida",
+            "reference": "caracteres para inserir quando a palavra é dividida"
+        },
+        {
+            "original": "indicator for affix flags in word lists -- CURRENTLY IGNORED",
+            "translated": "Indicador para flags de terminação em listas de palavras -- MODAISMO NÃO DEVERIA HAVER ESTADOS",
+            "reference": "indicador para sinais de afixo em listas de palavras -- ATUALMENTE IGNORADO"
+        },
+        {
+            "original": "use affix compression when creating dictionaries",
+            "translated": "Endungen beim Erzeugen von Wörterbüchern komprimieren",
+            "reference": "usa compressão de afixos ao criar dicionários"
+        },
+        {
+            "original": "remove invalid affix flags",
+            "translated": "remover flags de terminação inválidos",
+            "reference": "remove sinais inválidos de afixos"
+        },
+        {
+            "original": "partially expand affixes for better suggestions",
+            "translated": "Parte parcialmente ampliar anexos para melhores sugestões, a fim de contribuir mais eficazemente.",
+            "reference": "expande parcialmente afixos para sugestões melhores"
+        },
+        {
+            "original": "skip invalid words",
+            "translated": "palavras inválidas são puladas",
+            "reference": "ignora palavras inválidas"
+        },
+        {
+            "original": "create missing root/affix combinations",
+            "translated": "erigem combinações de sufixos e prefixos ausentes do radical",
+            "reference": "cria combinações raiz/afixo em falta"
+        },
+        {
+            "original": "suggest possible replacements",
+            "translated": "possíveis substituições propostas",
+            "reference": "sugere substituições possíveis"
+        },
+        {
+            "original": "The Unicode code point U+%04X is unsupported.",
+            "translated": "Onde está o ponto de código Unicode U+%04X não é suportado.",
+            "reference": "O ponto de código Unicode U+%04X não é suportado."
+        },
+        {
+            "original": "Invalid UTF-8 sequence at position %ld.",
+            "translated": "Sequência UTF-8 inválida na posição %ld.",
+            "reference": "Sequência UTF-8 inválida na posição %ld."
+        },
+        {
+            "original": "The file \"%file:1\" can not be opened",
+            "translated": "A tabela de dados »%file:1« não pode ser aberta.",
+            "reference": "O arquivo \"%file:1\" não pode ser aberto"
+        },
+        {
+            "original": "The file \"%file:1\" can not be opened for writing.",
+            "translated": "A tabela de conexão '###' não pode ser aberta para escrever.",
+            "reference": "O arquivo \"%file:1\" não pode ser aberto para escrita."
+        },
+        {
+            "original": "The key \"%key:1\" is not an integer.",
+            "translated": "O chave \"%key:1\" não é um número inteiro.",
+            "reference": "A chave \"%key:1\" não é um inteiro."
+        },
+        {
+            "original": "The key \"%key:1\" is not a list.",
+            "translated": "O chave \"%key:1\" não é uma lista.",
+            "reference": "A chave \"%key:1\" não é uma lista."
+        },
+        {
+            "original": "The key \"%key:1\" does not take any parameters when prefixed by a \"reset-\".",
+            "translated": "O chave \"%key:1\" não pode aceitar parâmetros quando precedida por um 'reset-'.",
+            "reference": "A chave \"%key:1\" não leva parâmetros quando prefixada por um \"reset-\"."
+        },
+        {
+            "original": "The key \"%key:1\" does not take any parameters when prefixed by an \"enable-\".",
+            "translated": "Olá! O código a seguir é um exemplo de como traduzir strings em .po (Portable Object) files para o português brasileiro, utilizando as regras e restrições fornecidas. Aqui está uma tradução que respeita todas as especificações:",
+            "reference": "A chave \"%key:1\" não leva parâmetros quando prefixada por um \"enable-\"."
+        },
+        {
+            "original": "The language \"%lang:1\" is not known.",
+            "translated": "A linguagem \"%lang:1\" é desconhecida.",
+            "reference": "O idioma \"%lang:1\" é desconhecido."
+        },
+        {
+            "original": "Expected language \"%lang:1\" but got \"%prev:2\".",
+            "translated": "Linguagem esperada é '%lang:1', mas recebida foi '%prev:2'.",
+            "reference": "Idioma \"%lang:1\" esperado, mas \"%prev:2\" obtido."
+        },
+        {
+            "original": "The word \"%word:1\" is invalid.",
+            "translated": "O termo \"%word:1\" não é válido.",
+            "reference": "A palavra \"%word:1\" é inválida."
+        },
+        {
+            "original": "The affix flag '%aff:1' is invalid for word \"%word:2\".",
+            "translated": "O uso do termo de aférese 'C%aff:1' é inválido para o sujeito '%word:2', pois não segue as regras gramaticais.",
+            "reference": "O sinal de afixo '%aff:1' é inválido para a palavra \"%word:2\"."
+        },
+        {
+            "original": "The affix flag '%aff:1' can not be applied to word \"%word:2\".",
+            "translated": "O prefixo afixo '%aff:1' não pode ser aplicado ao termo '%word:2'.",
+            "reference": "O sinal de afixo '%aff:1' não pode ser aplicado à palavra \"%word:2\"."
+        },
+        {
+            "original": "dlopen returned \"%return:1\".",
+            "translated": "lệnh dlopen trả lời \"%return:1\".",
+            "reference": "dlopen retornou \"%return:1\"."
+        },
+        {
+            "original": "The filter \"%filter:1\" does not exist.",
+            "translated": "O filtro \"%filter:1\" não existe.",
+            "reference": "O filtro \"%filter:1\" não existe."
+        },
+        {
+            "original": "Aspell version does not match filter's requirement.",
+            "translated": "Aspell-Version não atende aos requisitos do filtro.",
+            "reference": "A versão do Aspell não atende às necessidades do filtro."
+        },
+        {
+            "original": "Filter option already exists.",
+            "translated": "A opção de filtro já existe.",
+            "reference": "Esta opção de filtro já existe."
+        },
+        {
+            "original": "Unknown mode description key \"%key:1\".",
+            "translated": "Khóa mô tả chế độ desconhecido \"%key:1\".",
+            "reference": "A chave de descrição \"%key:1\" possui modo desconhecido."
+        },
+        {
+            "original": "\"%mode:1\": no range for magic search given for magic \"%magic:2\".",
+            "translated": "»%mode:1«: Não há seção para pesquisa de mãe magica »%magic:2«.",
+            "reference": "\"%mode:1\": nenhum intervalo para a pesquisa mágica fornecida pela mágica \"%magic:2\"."
+        },
+        {
+            "original": "\"%mode:1\": no magic expression available for magic \"%magic:2\".",
+            "translated": "»%mode:1«: nenhuma expressão mágica para \"%magic:2\" disponível.",
+            "reference": "\"%mode:1\": nenhuma expressão mágica disponível para a mágica \"%magic:2\"."
+        },
+        {
+            "original": "Error: %s\n",
+            "translated": "Lỗi: %s",
+            "reference": "Erro: %s\n"
+        },
+        {
+            "original": "Error: ",
+            "translated": "Lỗi: %s ID",
+            "reference": "Erro: "
+        },
+        {
+            "original": "enter Email mode.",
+            "translated": "vou para o modo de envio eletrônico.",
+            "reference": "entra no modo Email."
+        },
+        {
+            "original": "Invalid Option: %s",
+            "translated": "Opção inválida: %s",
+            "reference": "Opção inválida: %s"
+        },
+        {
+            "original": "Time to load word list: ",
+            "translated": "Tempo para carregar a lista de palavras: ",
+            "reference": "Carregar vocabulário"
+        },
+        {
+            "original": "Only one file name may be specified.",
+            "translated": "Só pode haver um (%s) dado.",
+            "reference": "Apenas um nome de arquivo deve ser especificado."
+        },
+        {
+            "original": "Invalid keymapping: %s",
+            "translated": "Ungültige Tastaturbelegung: %s",
+            "reference": "Mapa de teclado inválido: %s"
+        },
+        {
+            "original": "Could not open the file \"%s\" for writing. File not saved.",
+            "translated": "Não foi possível abrir a tabela de dados »%s« para escrita. Dados não foram salvos.",
+            "reference": "Impossível abrir arquivo \"%s\" para gravar. Não salvo."
+        },
+        {
+            "original": "Replace",
+            "translated": "substituir",
+            "reference": "Substituir"
+        },
+        {
+            "original": "Abort",
+            "translated": "Hủy bỏ",
+            "reference": "Abortar"
+        },
+        {
+            "original": "Are you sure you want to abort (y/n)? ",
+            "translated": "Está certo que deseja sair (s/n)?\n",
+            "reference": "Você tem certeza de que deseja cancelar (s/n)?"
+        },
+        {
+            "original": "Yy",
+            "translated": "Jj",
+            "reference": "SsYy"
+        },
+        {
+            "original": "Sorry that is an invalid choice!",
+            "translated": "Desculpe, mas isso é uma escolha inválida!",
+            "reference": "A seleção não é válida!"
+        },
+        {
+            "original": "Sorry \"create/merge personal\" is currently unimplemented.\n",
+            "translated": "Desculpe, a funcionalidade de criação/união da lista pessoal ainda não foi implementada.",
+            "reference": "Perdão, \"create/merge personal\" não implementado ainda.\n"
+        },
+        {
+            "original": "\"%s\" is not a valid flag for the \"munch-list\" command.",
+            "translated": "«%s» não é uma opção válida para o comando 'munch-list'.",
+            "reference": "\"%s\" não é um sinal válido para o comando \"munch-list\"."
+        },
+        {
+            "original": "Usage: aspell [options] <command>",
+            "translated": "Aufruf: aspell [Opções] <comando>",
+            "reference": "Uso: aspell [opções] <comando>"
+        },
+        {
+            "original": "  help             display a detailed help message",
+            "translated": "Este é um texto de ajuda detalhado para assistência.",
+            "reference": "  help             exibe uma mensagem detalhada de ajuda"
+        },
+        {
+            "original": "  [dump] config    dumps the current configuration to stdout",
+            "translated": "Gère a configuração atual do sistema para saída padrão.",
+            "reference": "  [dump] config    despeja a configuração atual à saída padrão stdout"
+        },
+        {
+            "original": "  munch            generate possible root words and affixes",
+            "translated": "geração de raízes possíveis e sufixos para palavras com base em padrões (conhecidos como _munch_)",
+            "reference": "  munch            cria as possíveis raízes e afixos da palavra"
+        },
+        {
+            "original": "  expand [1-4]     expands affix flags",
+            "translated": "expandir [1-4]     Código de terminação expandido",
+            "reference": "  expand [1-4]     expande sinais de afixos"
+        },
+        {
+            "original": "  munch-list [simple] [single|multi] [keep]",
+            "translated": "munch-list [simple] [single|multi] [keep] (lista de munch, simples, única ou várias, mantendo)",
+            "reference": "  munch-list [simple] [single|multi] [keep]"
+        },
+        {
+            "original": "Enter",
+            "translated": "Pressione Enter",
+            "reference": "Enter"
+        },
+        {
+            "original": "Accept Changes",
+            "translated": "Champeão Mundial da Copa do Mundo FIFA",
+            "reference": "Aceita alterações"
+        },
+        {
+            "original": "Backspace",
+            "translated": "Limpa tecla",
+            "reference": "Backspace"
+        },
+        {
+            "original": "Delete the previous character",
+            "translated": "Limpe o carácter anterior",
+            "reference": "Exclui o caractere anterior"
+        },
+        {
+            "original": "Control-B",
+            "translated": "Control B",
+            "reference": "Control-B"
+        },
+        {
+            "original": "Right",
+            "translated": "direito",
+            "reference": "Right"
+        },
+        {
+            "original": "Control-F",
+            "translated": "Control + F",
+            "reference": "Control-F"
+        },
+        {
+            "original": "End",
+            "translated": "Fim",
+            "reference": "Fim"
+        },
+        {
+            "original": "Delete",
+            "translated": "Excluir",
+            "reference": "Delete"
+        },
+        {
+            "original": "Control-K",
+            "translated": "Controlar com 'Ctrl+K'",
+            "reference": "Control-K"
+        },
+        {
+            "original": "Abort This Operation",
+            "translated": "Hủy bổ sung thao tác này",
+            "reference": "Cancelar esta operação"
+        },
+        {
+            "original": "Warning: %s Skipping word.\n",
+            "translated": "Cairição: »%s«: Pule a palavra.",
+            "reference": "Alerta: %s ignorando palavra.\n"
+        },
+        {
+            "original": "one of ultra, fast, normal, slow, or bad-spellers",
+            "translated": "um dos de 'ultra', 'rápido', 'normal', 'devagar' ou 'mal-escritores'.",
+            "reference": "um de ultra, fast, normal, slow, ou bad-spellers"
+        },
+        {
+            "original": "a string of 'o','O','p',or 'P'",
+            "translated": "Uma cadeia de caracteres que consiste nas letras 'o', 'O', 'p' ou 'P'.",
+            "reference": "uma string de 'o','O','p',ou 'P'"
+        },
+        {
+            "original": "HTML attributes to always check",
+            "translated": "atributo HTML que sempre deve ser verificado",
+            "reference": "sempre verifica estes atributos HTML"
+        },
+        {
+            "original": "filter for dealing with generic SGML/XML documents",
+            "translated": "bônus de filtragem, para tratar documentos SGML/XML genéricos",
+            "reference": "filtro para manipular documentos SGML/XML genéricos"
+        },
+        {
+            "original": "SGML attributes to always check",
+            "translated": "o atributo SGML, que sempre deve ser verificado",
+            "reference": "sempre verifica estes atributos SGML"
+        },
+        {
+            "original": "check TeX comments",
+            "translated": "verificar comentários sobre TeX",
+            "reference": "verifica comentários TeX"
+        },
+        {
+            "original": "filter to skip URL like constructs",
+            "translated": "filtro, para pulverizar URLs que se assemelham a estruturas complexas",
+            "reference": "filtro para ignorar construtores tipo URL"
+        },
+        {
+            "original": "mode for skipping quoted text in email messages",
+            "translated": "Modus, um zitierten Text em Emails para passar rapidamente sem ler",
+            "reference": "modo para ignorar citações de texto em mensagens de e-mail"
+        },
+        {
+            "original": "mode to disable all filters",
+            "translated": "Modus para desabilitar todos os filtros.",
+            "reference": "modo para desabilitar todos os filtros"
+        },
+        {
+            "original": "mode for checking Nroff documents",
+            "translated": "Modus, um número de folha para verificar documentos Nroff.",
+            "reference": "modo para verificar documentos Nroff"
+        }
+    ]
+}

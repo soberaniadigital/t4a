@@ -1,0 +1,630 @@
+{
+    "job_info": {
+        "input_file": "/Users/viniciuscandeia/development/TCC/data/translations_sample/gstreamer_v1.27.90/gstreamer-1.27.90.de.po",
+        "output_file": "/Users/viniciuscandeia/development/TCC/resultados/context_levels_sample/gstreamer_v1.27.90/gstreamer-1.27.90.pt_BR.llama.ctx-2.es-ru.po",
+        "strategy_name": "LLAMA",
+        "execution_date": "2026-02-10T09:54:36.042355",
+        "duration_seconds": 302.9,
+        "reference_file": "/Users/viniciuscandeia/development/TCC/data/translations_sample/gstreamer_v1.27.90/gstreamer-1.27.90.pt_BR.po"
+    },
+    "model_config": {
+        "provider": "Ollama (Local)",
+        "model": "phi3",
+        "library_version": "0.6.1",
+        "generation_config": {
+            "temperature": 0.1,
+            "top_p": 0.1,
+            "top_k": 20,
+            "num_predict": 2048,
+            "seed": 42
+        },
+        "system_instruction_hash": 8504559443697029588
+    },
+    "prompt_info": {
+        "templates": {
+            "system_instruction": "\n### ROLE & OBJECTIVE\nYou are a Senior Technical Localizer specializing in GNU/Linux environments and CLI utilities.\nYour task is to translate specific text strings (msgid) from English to Brazilian Portuguese (pt-BR) for usage in .po (Portable Object) files.\n\n### 1. CRITICAL TECHNICAL CONSTRAINTS (ZERO TOLERANCE)\n* **Variable Preservation:** You MUST preserve ALL format specifiers (e.g., %s, %d, %-10s, %<PRIuMAX>, ${var}) EXACTLY as they appear.\n    * *Reasoning:* Altering these causes software crashes (segmentation faults).\n    * *Ordering:* Do not reorder variables unless strictly required by Portuguese grammar. If reordered, ensure the logic holds (or use explicit positioning like %1$s if supported by the input format).\n* **Escape Characters:** Treat `\n`, `\t`, `\r`, `\"` as functional code tokens. They must remain in the exact same position relative to the text logic.\n* **Mnemonics/Accelerators:** If the input string contains UI accelerators (e.g., `&File`, `_Open`, `~Save`), preserve the symbol prefix attached to the translated letter (e.g., `&Arquivo`, `_Abrir`).\n\n### 2. LINGUISTIC STYLE GUIDE (pt-BR)\n* **Tone:** Formal, concise, and impersonal (Standard Technical).\n    * *Bad:* \"Você não tem permissão\" (Too personal)\n    * *Good:* \"Permissão negada\" (Passive/State-based)\n* **Voice:** Use the infinitive for actions (buttons/menus) and passive voice for errors.\n    * \"Edit\" -> \"Editar\"\n    * \"File not found\" -> \"Arquivo não encontrado\"\n* **Terminology Glossary (Strict Adherence):**\n    * \"field\" -> \"campo\"\n    * \"line\" -> \"linha\"\n    * \"option\" -> \"opção\"\n    * \"socket\" -> \"soquete\" (or keep \"socket\" if context implies low-level networking)\n    * \"thread\" -> \"thread\" (do not use \"fio\" or \"linha de execução\" unless extremely formal context)\n    * \"directory\" -> \"diretório\" (not \"pasta\")\n    * \"standard input/output\" -> \"entrada/saída padrão\" (stdin/stdout)\n    * \"parse/parsing\" -> \"análise/analisando\"\n    * \"deprecated\" -> \"obsoleto\"\n\n### 3. FORMATTING & QUOTING RULES\n* **GNU Quoting:** If the input uses distinct quoting (e.g., ` `file' ` or `'file'`), adapt to standard Portuguese quoting if natural, or maintain single quotes `'arquivo'` depending on the variable wrapper.\n* **Whitespace:** Leading and trailing whitespace MUST be preserved perfectly.\n    * Input: `\"  Error \"` -> Output: `\"  Erro \"`\n\n### 4. OUTPUT PROTOCOL\n* **Format:** STRICT valid JSON only. No markdown, no conversational filler.\n* **Schema:** `{\"translation\": \"YOUR_TRANSLATION_HERE\"}`\n* **CRITICAL JSON RULES:**\n    * **Escape Double Quotes:** You MUST escape double quotes `\"` inside the value with `\"`. \n      Example: `Press \"Enter\"` becomes `Press \"Enter\"`.\n    * **No Literal Newlines:** Do NOT break lines inside the JSON string. Use `\n` (two characters: backslash + n) for newlines.\n    * **Backslashes:** A literal backslash `\\` must be escaped as `\\`.\n\n### 5. EDGE CASE HANDLING (Chain of Thought)\nBefore generating output, verify:\n1.  Did I accidentally translate a command-line flag (e.g., `--help`, `-v`)? -> *Correction: Keep flags in English.*\n2.  Did I break the JSON structure by not escaping a quote? -> *Correction: Escape it.*\n3.  Is the grammar natural for a native Brazilian developer?\n\n---\n\n### EXAMPLES (Few-Shot Learning)\n\nInput: \"check failed: line %<PRIuMAX> has %<PRIuMAX> fields (expecting %<PRIuMAX>)\"\nOutput: {\"translation\": \"falha na verificação: a linha %<PRIuMAX> possui %<PRIuMAX> campos (esperado %<PRIuMAX>)\"}\n\nInput: \"invalid option -- '%c'\"\nOutput: {\"translation\": \"opção inválida -- '%c'\"}\n\nInput: \"%s: option '%s%s' doesn't allow an argument\\n\"\nOutput: {\"translation\": \"%s: a opção '%s%s' não permite argumento\\n\"}\n\nInput: \"Try `%s --help' for more information.\\n\"\nOutput: {\"translation\": \"Tente `%s --help' para mais informações.\\n\"}\n\nInput: \"_Cancel\"\nOutput: {\"translation\": \"_Cancelar\"}\n\nInput: \"unable to stat file %s\"\nOutput: {\"translation\": \"não foi possível obter estado (stat) do arquivo %s\"}\n",
+            "user_template": "\nTRANSLATION TASK:\nOriginal (English): \"$original_text\"\n\n$context_section\n\nCRITICAL REMINDERS:\n- Preserve ALL variables (%s, %d, %<PRIuMAX>, etc.) in their exact form\n- Use formal Brazilian Portuguese\n- Maintain technical terminology consistency\n- Output ONLY: {\"translation\": \"your translation here\"}\n\nJSON Response:\n",
+            "explanation": "O prompt final é formado por: SYSTEM_INSTRUCTION + USER_TEMPLATE preenchido com original_text e context_section"
+        },
+        "context_files": [
+            "ES",
+            "RU"
+        ],
+        "context_sentences_sample": {
+            "Print the GStreamer version": {
+                "ES": "Imprimir la versión de GStreamer",
+                "RU": "Показать версию GStreamer"
+            },
+            "Default debug level from 1 (only error) to 9 (anything) or 0 for no output": {
+                "ES": "Nivel de depuración predeterminado desde 1 (sólo error) hasta 9 (todo) o 0 sin salida",
+                "RU": "Уровень отладки по умолчанию: от 1 (только ошибки) до 9 (всё), или 0 (ничего не печатать)"
+            },
+            "Disable debugging": {
+                "ES": "Desactivar depuración",
+                "RU": "Отключить отладку"
+            },
+            "Colon-separated paths containing plugins": {
+                "ES": "Rutas separadas por punto y coma conteniendo los complementos",
+                "RU": "Список путей поиска модулей, разделённых двоеточиями"
+            },
+            "Disable spawning a helper process while scanning the registry": {
+                "ES": "Desactivar el lanzamiento de un proceso de ayuda al escanear el registro",
+                "RU": "Отключить создание вспомогательного процесса, пока происходит сканирование реестра"
+            }
+        }
+    },
+    "translation_stats": {
+        "total_entries": 113,
+        "reference_available": true
+    },
+    "environment": {
+        "python_version": "3.11.14 (main, Oct  9 2025, 16:16:55) [Clang 17.0.0 (clang-1700.6.3.2)]"
+    },
+    "translations": [
+        {
+            "original": "Print the GStreamer version",
+            "translated": "Imprimir a versão do GStreamer",
+            "reference": "Exibe a versão do GStreamer"
+        },
+        {
+            "original": "Default debug level from 1 (only error) to 9 (anything) or 0 for no output",
+            "translated": "Nível de depuração predeterminado desde 1 (só errores) até 9 (tudo), ou 0 para nenhuma saída.",
+            "reference": "Níveis de depuração predefinidos de 1 (apenas erros) até 9 (tudo) ou 0 para nenhuma saída"
+        },
+        {
+            "original": "Disable debugging",
+            "translated": "Desativar diagnóstico de erros",
+            "reference": "Desabilita depuração"
+        },
+        {
+            "original": "Colon-separated paths containing plugins",
+            "translated": "Por meio de pontos e vírgula, separados por ponto final, contêm os plugins.",
+            "reference": "Caminhos, separados por dois-pontos, de plug-ins"
+        },
+        {
+            "original": "Disable spawning a helper process while scanning the registry",
+            "translated": "Desactivar o processo auxiliar ao ler a Registry desabilitada.",
+            "reference": "Desabilita a criação de um processo auxiliar durante a análise do registro"
+        },
+        {
+            "original": "Internal GStreamer error: event problem.",
+            "translated": "Erro interno de GStreamer: problema com os eventos.",
+            "reference": "Erro interno no GStreamer: problema no evento."
+        },
+        {
+            "original": "Internal GStreamer error: caps problem.",
+            "translated": "Erro interno de GStreamer: problema com as capacidades.",
+            "reference": "Erro interno no GStreamer: problema no Caps."
+        },
+        {
+            "original": "Internal GStreamer error: tag problem.",
+            "translated": "Erro interno de GStreamer: problema com as etiquetas.",
+            "reference": "Erro interno no GStreamer: problema na etiqueta."
+        },
+        {
+            "original": "Your GStreamer installation is missing a plug-in.",
+            "translated": "Sua instalação de GStreamer fica com um complemento ausente.",
+            "reference": "Sua instalação do GStreamer está com um plug-in faltando."
+        },
+        {
+            "original": "GStreamer error: clock problem.",
+            "translated": "Erro de GStreamer: problema com o relógio.",
+            "reference": "Erro no GStreamer: problema no temporizador."
+        },
+        {
+            "original": "GStreamer encountered a general supporting library error.",
+            "translated": "Erro do GStreamer da Internet: Problema com a biblioteca de suporte. Por favor, envie um relatório de erro.",
+            "reference": "O GStreamer encontrou um erro geral na biblioteca de suporte."
+        },
+        {
+            "original": "Could not initialize supporting library.",
+            "translated": "A biblioteca de suporte não pôde ser inicializada.",
+            "reference": "Não foi possível iniciar a biblioteca de suporte."
+        },
+        {
+            "original": "Could not close supporting library.",
+            "translated": "A biblioteca de suporte não pôde ser fechada.",
+            "reference": "Não foi possível fechar a biblioteca de suporte."
+        },
+        {
+            "original": "Encoding error.",
+            "translated": "Erro de codificação.",
+            "reference": "Erro de codificação."
+        },
+        {
+            "original": "Resource not found.",
+            "translated": "Recurso não encontrado.",
+            "reference": "Recurso não encontrado."
+        },
+        {
+            "original": "Could not open resource for writing.",
+            "translated": "A fonte não pôde ser aberta para escrita.",
+            "reference": "Não foi possível abrir o recurso para escrita."
+        },
+        {
+            "original": "Could not perform seek on resource.",
+            "translated": "Não foi possível executar uma busca no recurso.",
+            "reference": "Não foi possível realizar uma busca no recurso."
+        },
+        {
+            "original": "Could not synchronize on resource.",
+            "translated": "A fonte não pôde ser sincronizada.",
+            "reference": "Não foi possível sincronizar no recurso."
+        },
+        {
+            "original": "Could not get/set settings from/on resource.",
+            "translated": "Os ajustes não puderam ser lidos ou gravados na fonte de recursos.",
+            "reference": "Não foi possível obter/definir configurações para/do recurso."
+        },
+        {
+            "original": "Element doesn't implement handling of this stream. Please file a bug.",
+            "translated": "O elemento não pode processar este fluxo de dados. Por favor, envie um relatório de erro.",
+            "reference": "O elemento não implementa a manipulação desse fluxo. Por favor, relate o erro."
+        },
+        {
+            "original": "Could not determine type of stream.",
+            "translated": "Não foi possível determinar o tipo de fluxo.",
+            "reference": "Não foi possível determinar o tipo do fluxo."
+        },
+        {
+            "original": "There is no codec present that can handle the stream's type.",
+            "translated": "Não há um codec disponível que possa processar esse tipo de fluxo.",
+            "reference": "Não há um CODEC presente que possa manipular esse tipo de fluxo."
+        },
+        {
+            "original": "Could not multiplex stream.",
+            "translated": "O fluxo de dados não pôde ser multiplexado.",
+            "reference": "Não foi possível multiplexar o fluxo."
+        },
+        {
+            "original": "The stream is encrypted and can't be decrypted because no suitable key has been supplied.",
+            "translated": "O fluxo de dados está criptografado e não pode ser descriptografado porque nenhum chave adequada foi fornecida.",
+            "reference": "O fluxo está criptografado e não pôde ser descriptografado porque nenhuma chave apropriada foi fornecida."
+        },
+        {
+            "original": "No error message for domain %s.",
+            "translated": "Não há mensagem de erro para o domínio %s.",
+            "reference": "Nenhuma mensagem de erro para o domínio %s."
+        },
+        {
+            "original": "Selected clock cannot be used in pipeline.",
+            "translated": "O relógio selecionado não pode ser utilizado na linha.",
+            "reference": "O temporizador selecionado não pôde ser usado na fila de processamento."
+        },
+        {
+            "original": "title sortname",
+            "translated": "Nome de Ordenação do Título",
+            "reference": "título para ordenação"
+        },
+        {
+            "original": "album containing this data",
+            "translated": "el álbum que contém esses dados",
+            "reference": "álbum contendo esses dados"
+        },
+        {
+            "original": "The artist of the entire album, as it should be displayed",
+            "translated": "O artista do álbum inteiro, como se deveria ser apresentado",
+            "reference": "O artista de todo álbum, como ele deveria ser exibido"
+        },
+        {
+            "original": "The artist of the entire album, as it should be sorted",
+            "translated": "O artista do álbum inteiro, como deve ser classificado",
+            "reference": "O artista de todo álbum, como ele deveria ser ordenado"
+        },
+        {
+            "original": "comment",
+            "translated": "comentário",
+            "reference": "comentário"
+        },
+        {
+            "original": "extended comment",
+            "translated": "Comentário ampliado",
+            "reference": "comentário prolongado"
+        },
+        {
+            "original": "track count",
+            "translated": "número de títulos",
+            "reference": "número de faixas"
+        },
+        {
+            "original": "count of tracks inside collection this track belongs to",
+            "translated": "Número de títulos na coleção, à qual pertence este item",
+            "reference": "número de faixas dentro da coleção que esta faixa pertence"
+        },
+        {
+            "original": "disc count",
+            "translated": "número de discos",
+            "reference": "número de discos"
+        },
+        {
+            "original": "count of discs inside collection this disc belongs to",
+            "translated": "Número de discos na coleção à qual pertence este disco",
+            "reference": "número de discos dentro da coleção que este disco pertence"
+        },
+        {
+            "original": "short text describing the content of the data",
+            "translated": "Uma breve descrição do conteúdo dos dados",
+            "reference": "texto pequeno descrevendo o conteúdo dos dados"
+        },
+        {
+            "original": "version",
+            "translated": "versão",
+            "reference": "versão"
+        },
+        {
+            "original": "International Standard Recording Code - see http://www.ifpi.org/isrc/",
+            "translated": "Código Internacional de Gravação - consulte http://www.ifpi.org/isrc/",
+            "reference": "Código de Gravação Padrão Internacional (ISRC) - consulte http://www.ifpi.org/isrc/"
+        },
+        {
+            "original": "copyright notice of the data",
+            "translated": "Anotação de direitos autorais dos dados",
+            "reference": "informação de direitos autorais dos dados"
+        },
+        {
+            "original": "URI to the copyright notice of the data",
+            "translated": "URI a la nota de direitos autorais dos dados",
+            "reference": "URI para a informação de direitos autorais dos dados"
+        },
+        {
+            "original": "contact information",
+            "translated": "Informações de contato",
+            "reference": "informação de contato"
+        },
+        {
+            "original": "license",
+            "translated": "Licença",
+            "reference": "licença"
+        },
+        {
+            "original": "license of data",
+            "translated": "Licença dos dados",
+            "reference": "licença dos dados"
+        },
+        {
+            "original": "license uri",
+            "translated": "URI de licenciamento",
+            "reference": "URI da licença"
+        },
+        {
+            "original": "performer",
+            "translated": "ator",
+            "reference": "participação"
+        },
+        {
+            "original": "person(s) performing",
+            "translated": "a(s) pessoa(s) interpretando o/ela peça",
+            "reference": "pessoa(s) participante(s)"
+        },
+        {
+            "original": "codec",
+            "translated": "Codificador/Decodificador",
+            "reference": "CODEC"
+        },
+        {
+            "original": "codec the data is stored in",
+            "translated": "formato de dados, no qual os dados estão armazenados",
+            "reference": "CODEC utilizado nos dados"
+        },
+        {
+            "original": "container format",
+            "translated": "formato do container",
+            "reference": "formato do contêiner"
+        },
+        {
+            "original": "encoder",
+            "translated": "códificador",
+            "reference": "codificador"
+        },
+        {
+            "original": "serial number of track",
+            "translated": "número de série do título",
+            "reference": "número de série da faixa"
+        },
+        {
+            "original": "track gain in dB",
+            "translated": "nível de título em dB",
+            "reference": "ganho da faixa em decibéis"
+        },
+        {
+            "original": "album gain in dB",
+            "translated": "nível de gravação do álbum em dB",
+            "reference": "ganho do álbum em decibéis"
+        },
+        {
+            "original": "peak of the album",
+            "translated": "pico do álbum",
+            "reference": "pico do álbum"
+        },
+        {
+            "original": "language code for this stream, conforming to ISO-639-1 or ISO-639-2",
+            "translated": "código de idioma para este fluxo, ajustando-se ao ISO-639-1 ou ISO-639-2.",
+            "reference": "código da língua deste fluxo, conforme o ISO-639-1 ou ISO-639-2"
+        },
+        {
+            "original": "file attached to this stream",
+            "translated": "arquivo anexado a este fluxo de dados",
+            "reference": "arquivo anexado a este fluxo"
+        },
+        {
+            "original": "comma separated keywords describing the content",
+            "translated": "palavras chave separadas por vírgula, que descrevem o conteúdo",
+            "reference": "palavras-chave separadas por vírgula descrevendo o conteúdo"
+        },
+        {
+            "original": "geo longitude location of where the media has been recorded or produced in degrees according to WGS84 (zero at the prime meridian in Greenwich/UK,  negative values for western longitudes)",
+            "translated": "geográfico grau longitud do local em grados conforme WGS84 (0 para o meridiano principal através de Greenwich/Reino Unido, valores negativos para os graus ocidentais)",
+            "reference": "longitude da localização geográfica de onde a mídia foi gravada ou produzida em graus de acordo com WGS84 (zero corresponde ao meridiano de Greenwich/RU e valores negativos a latitudes ao oeste)"
+        },
+        {
+            "original": "geo location movement direction",
+            "translated": "direção de movimento geolocalizado",
+            "reference": "direção de movimento na localização geográfica"
+        },
+        {
+            "original": "geo location capture direction",
+            "translated": "direcção de captura geográfica",
+            "reference": "direção de captura na localização geográfica"
+        },
+        {
+            "original": "show name",
+            "translated": "nome do programa",
+            "reference": "nome do programa"
+        },
+        {
+            "original": "show sortname",
+            "translated": "Nome de Ordenação do Programa mostrar",
+            "reference": "programa para ordenação"
+        },
+        {
+            "original": "lyrics",
+            "translated": "letras de música",
+            "reference": "letras de música"
+        },
+        {
+            "original": "grouping",
+            "translated": "agrupamento",
+            "reference": "parte"
+        },
+        {
+            "original": "device manufacturer",
+            "translated": "Fabricante do dispositivo",
+            "reference": "fabricante do dispositivo"
+        },
+        {
+            "original": "device model",
+            "translated": "Modelo do Geräte",
+            "reference": "modelo do dispositivo"
+        },
+        {
+            "original": "Application used to create the media",
+            "translated": "Aplicação usada para criar este meio",
+            "reference": "Aplicativo utilizado para criar a mídia"
+        },
+        {
+            "original": "Arbitrary application data to be serialized into the media",
+            "translated": "Dados arbitrários da aplicação para serializar no meio",
+            "reference": "Dados arbitrários do aplicativo para ser serializado na mídia"
+        },
+        {
+            "original": "interpreted-by",
+            "translated": "interpretado por",
+            "reference": "interpretado-por"
+        },
+        {
+            "original": "Midi note number of the audio track.",
+            "translated": "Número de nota midi da trilha sonora.",
+            "reference": "Número MIDI da nota da trilha de áudio."
+        },
+        {
+            "original": ", ",
+            "translated": ", ",
+            "reference": ", "
+        },
+        {
+            "original": "No URI handler for the %s protocol found",
+            "translated": "Não foi possível encontrar um handler de URI para o protocolo %s.",
+            "reference": "Nenhum manipulador URI para o protocolo %s foi encontrado"
+        },
+        {
+            "original": "link has no sink [source=%s@%p]",
+            "translated": "Vínculo não possui alvo [sink=%s@%p]",
+            "reference": "não há consumidor no link [source=%s@%p]"
+        },
+        {
+            "original": "Element \"%s\" is not a GstPreset",
+            "translated": "O elemento \"%s\" não é um GstPreset",
+            "reference": "O elemento \"%s\" não é um GstPreset"
+        },
+        {
+            "original": "could not link %s to %s, %s can't handle caps %s",
+            "translated": "%s não pode ser associado a %s, pois ele não suporta as capacidades %s.",
+            "reference": "não foi possível vincular %s em %s, %s não consegue manipular Caps %s"
+        },
+        {
+            "original": "could not link %s to %s",
+            "translated": "%s não foi possível enlazar %s a %s",
+            "reference": "não foi possível vincular %s em %s"
+        },
+        {
+            "original": "no sink element for URI \"%s\"",
+            "translated": "não existe elemento sumidero para o URI «%s»",
+            "reference": "nenhum elemento consumidor para o URI \"%s\""
+        },
+        {
+            "original": "no source element for URI \"%s\"",
+            "translated": "Kein Quellelement für URI »%s«",
+            "reference": "nenhum elemento fonte para o URI \"%s\""
+        },
+        {
+            "original": "Internal data flow problem.",
+            "translated": "Problema interno no fluxo de dados.",
+            "reference": "Problema interno no fluxo de dados."
+        },
+        {
+            "original": "Internal data flow error.",
+            "translated": "Erro interno no fluxo de dados.",
+            "reference": "Erro interno no fluxo de dados."
+        },
+        {
+            "original": "Internal clock error.",
+            "translated": "Erro de Tempo Interno.",
+            "reference": "Erro interno no temporizador."
+        },
+        {
+            "original": "Caps Change Mode",
+            "translated": "Modo de cambio das capacidades do sistema operacional",
+            "reference": "Modo de Alteração do Caps"
+        },
+        {
+            "original": "Error while writing to download file.",
+            "translated": "Erro ao escrever na arquiv de download.",
+            "reference": "Erro ao escrever no arquivo baixado."
+        },
+        {
+            "original": "Could not open file \"%s\" for writing.",
+            "translated": "A pasta »%s« não pôde ser aberta para escrita.",
+            "reference": "Não foi possível abrir o arquivo \"%s\" para escrita."
+        },
+        {
+            "original": "Error while seeking in file \"%s\".",
+            "translated": "Erro ao pesquisar dados no arquivo '###'.",
+            "reference": "Erro ao buscar no arquivo \"%s\"."
+        },
+        {
+            "original": "File \"%s\" is a socket.",
+            "translated": "A ficheiro »%s« é um soquete.",
+            "reference": "O arquivo \"%s\" é um soquete."
+        },
+        {
+            "original": "caps",
+            "translated": "capacidades",
+            "reference": "Caps"
+        },
+        {
+            "original": "minimum",
+            "translated": "mínimo",
+            "reference": "mínimo"
+        },
+        {
+            "original": "force caps",
+            "translated": "forçar as capacidades",
+            "reference": "forçar Caps"
+        },
+        {
+            "original": "Stream contains no data.",
+            "translated": "O fluxo de dados não contém nenhum dado.",
+            "reference": "O fluxo não contém dados."
+        },
+        {
+            "original": "writable",
+            "translated": "escríbile",
+            "reference": "gravável"
+        },
+        {
+            "original": "changeable only in NULL, READY or PAUSED state",
+            "translated": "alterável apenas entre os estados NULL, READY ou PAUSED",
+            "reference": "estado alterável apenas para NULO, PRONTO ou PAUSADO"
+        },
+        {
+            "original": "Print all elements",
+            "translated": "Imprimir todos os elementos",
+            "reference": "Exibir todos elementos"
+        },
+        {
+            "original": "Print list of blacklisted files",
+            "translated": "Imprimir arquivos da lista negra",
+            "reference": "Exibir lista dos arquivos na lista negra"
+        },
+        {
+            "original": "List the plugin contents",
+            "translated": "Listar os conteúdos do plugin",
+            "reference": "Listar o conteúdo do plugin"
+        },
+        {
+            "original": "A slashes ('/') separated list of types of elements (also known as klass) to list. (unordered)",
+            "translated": "Uma lista separada por barras ('/') de tipos de elementos (também conhecidos como 'klass'), que não está ordenada.",
+            "reference": "Uma lista de tipos de elementos separados por barras, \"/\", (também conhecidos como klass) para lista (não-ordenada)."
+        },
+        {
+            "original": "When checking if an element or plugin exists, also check that its version is at least the version specified",
+            "translated": "Al verificar se existe um elemento ou plugin, também é necessário garantir que a versão corresponda ao mínimo especificado.",
+            "reference": "Ao verificar se um elemento ou plug-in existe, também verificar se a versão é no mínimo a especificada"
+        },
+        {
+            "original": "Could not load plugin file: %s\n",
+            "translated": "O arquivo de extensão do plugin não pôde ser carregado: %s",
+            "reference": "Não foi possível carregar o arquivo do plug-in: %s\n"
+        },
+        {
+            "original": "Index statistics",
+            "translated": "Índice estatístico",
+            "reference": "Tabela de estatísticas"
+        },
+        {
+            "original": "Got EOS from element \"%s\".\n",
+            "translated": "O EOS foi recebido do elemento «%s».",
+            "reference": "Obtido o final do fluxo do elemento \"%s\".\n"
+        },
+        {
+            "original": "FOUND TAG      : found by pad \"%s:%s\".\n",
+            "translated": "ENCONTRADO PADDING: encontrado por la celda «%s:%s».",
+            "reference": "ETIQ. ENCONTR. : encontrada pelo Pad \"%s:%s\".\n"
+        },
+        {
+            "original": "FOUND TAG\n",
+            "translated": "KENNZEICHEN GEFUNDEN",
+            "reference": "ETIQUETA ENCONTRADA\n"
+        },
+        {
+            "original": "FOUND TOC      : found by element \"%s\".\n",
+            "translated": "TOC GEFUNDEN: encontrado por Element »%s«.",
+            "reference": "TOC ENCONTR.   : encontrada pelo elemento \"%s\".\n"
+        },
+        {
+            "original": "WARNING: from element %s: %s\n",
+            "translated": "ADVERTENCIA: do elemento %s: %s\n",
+            "reference": "AVISO: do elemento %s: %s\n"
+        },
+        {
+            "original": "Prerolled, waiting for buffering to finish...\n",
+            "translated": "Vorgelaufen, aguardando o fim do carregamento no buffer para concluir…",
+            "reference": "Preparado, esperando o preenchimento do buffer para finalizar...\n"
+        },
+        {
+            "original": "Redistribute latency...\n",
+            "translated": "Redistribuir latência…",
+            "reference": "Redistribuição de latência...\n"
+        },
+        {
+            "original": "Interrupt while waiting for EOS - stopping pipeline...\n",
+            "translated": "Interrupção ao esperar EOS - parando a ligação ...",
+            "reference": "Interrupção recebida enquanto a finalização do fluxo estava sendo aguardada - parando a fila de processamento...\n"
+        },
+        {
+            "original": "Do not output status information for the specified property if verbose output is enabled (can be used multiple times)",
+            "translated": "Não será exibida nenhuma informação de estado para a propriedade especificada se a saída detalhada estiver ativada (isso pode ser repetido várias vezes)",
+            "reference": "Não exibe informações de status para a propriedade especificada se o modo detalhado de saída estiver ativado (pode ser usado várias vezes)"
+        },
+        {
+            "original": "PROGRAM-NAME",
+            "translated": "NOMBRE-PROGRAMA",
+            "reference": "NOME-PROGRAMA"
+        },
+        {
+            "original": "WARNING: erroneous pipeline: %s\n",
+            "translated": "AVISO: condução incorreta: %s",
+            "reference": "AVISO: fila de processamento com erros: %s\n"
+        },
+        {
+            "original": "ERROR: the 'pipeline' element wasn't found.\n",
+            "translated": "ERRO: O elemento 'Leitung' não foi encontrado.",
+            "reference": "ERRO: o elemento de \"fila de processamento\" não foi encontrado.\n"
+        },
+        {
+            "original": "Failed to set pipeline to PAUSED.\n",
+            "translated": "Falhou ao definir a condutividade em PAUSA.",
+            "reference": "Falha ao definir a fila de processamento para PAUSADO...\n"
+        }
+    ]
+}
