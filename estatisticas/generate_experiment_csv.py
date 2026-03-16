@@ -33,7 +33,7 @@ def parse_filename(filename):
     Filename pattern: {name}.pt_BR.llama.ctx-{level}[.{lang1}[-{lang2}]].po.meta.csv
 
     Returns:
-        (treatment_type, pivot_config) tuple
+        (treatment_type, context_config) tuple
     """
     match = re.search(r'\.ctx-(\d+)(?:\.([^.]+(?:-[^.]+)?))?\.po\.meta\.csv$', filename)
     if not match:
@@ -46,10 +46,10 @@ def parse_filename(filename):
         return "direct", "none"
     elif level == 1:
         lang = langs_str.lower()
-        return "single_pivot", lang
+        return "single_context", lang
     elif level == 2:
         parts = sorted(langs_str.lower().split("-"))
-        return "dual_pivot", "_".join(parts)
+        return "dual_context", "_".join(parts)
     else:
         return None, None
 
@@ -113,7 +113,7 @@ def main():
 
         # Process each condition CSV
         for csv_file in metric_csvs:
-            treatment_type, pivot_config = parse_filename(csv_file.name)
+            treatment_type, context_config = parse_filename(csv_file.name)
             if treatment_type is None:
                 validation_issues.append(
                     f"  {project_name}: Could not parse filename {csv_file.name}"
@@ -150,9 +150,9 @@ def main():
 
                 all_rows.append({
                     "sentence_id": sid,
-                    "source": project_name,
+                    "source_project": project_name,
                     "treatment_type": treatment_type,
-                    "pivot_config": pivot_config,
+                    "context_config": context_config,
                     "score": bleu,
                 })
 
@@ -169,7 +169,7 @@ def main():
 
     # Write output CSV
     with open(OUTPUT_FILE, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=["sentence_id", "source", "treatment_type", "pivot_config", "score"])
+        writer = csv.DictWriter(f, fieldnames=["sentence_id", "source_project", "treatment_type", "context_config", "score"])
         writer.writeheader()
         writer.writerows(all_rows)
 
@@ -204,9 +204,9 @@ def main():
     # Cross-tabulation: treatment_type x pivot_config
     cross_tab = defaultdict(lambda: defaultdict(int))
     for row in all_rows:
-        cross_tab[row["treatment_type"]][row["pivot_config"]] += 1
-    print("\nCross-tabulation (treatment_type x pivot_config):")
-    for ttype in ["direct", "single_pivot", "dual_pivot"]:
+        cross_tab[row["treatment_type"]][row["context_config"]] += 1
+    print("\nCross-tabulation (treatment_type x context_config):")
+    for ttype in ["direct", "single_context", "dual_context"]:
         configs = sorted(cross_tab[ttype].keys())
         print(f"  {ttype}:")
         for config in configs:
@@ -216,14 +216,14 @@ def main():
     seen = set()
     duplicates = 0
     for row in all_rows:
-        key = (row["sentence_id"], row["pivot_config"])
+        key = (row["sentence_id"], row["context_config"])
         if key in seen:
             duplicates += 1
         seen.add(key)
     if duplicates:
-        print(f"\nWARNING: {duplicates} duplicate sentence_id x pivot_config combinations!")
+        print(f"\nWARNING: {duplicates} duplicate sentence_id x context_config combinations!")
     else:
-        print("\nNo duplicate sentence_id x pivot_config combinations.")
+        print("\nNo duplicate sentence_id x context_config combinations.")
 
 
 if __name__ == "__main__":

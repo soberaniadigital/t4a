@@ -1,20 +1,20 @@
 # =============================================================================
-# Analysis of Pivot Translation Experiment
+# Analysis of Multi-Source Translation with Small Language Models
 # =============================================================================
 #
 # Design: Nested within-subjects (repeated measures)
-#   - Fixed factor A: treatment_type (3 levels: direct, single_pivot, dual_pivot)
-#   - Fixed factor B(A): pivot_config, nested within treatment_type
+#   - Fixed factor A: treatment_type (3 levels: direct, single_context, dual_context)
+#   - Fixed factor B(A): context_config, nested within treatment_type
 #       - direct:       1 level  ("none")
-#       - single_pivot: 7 levels (one per pivot language)
-#       - dual_pivot:  21 levels (one per pair of pivot languages)
-#   - Random factor: sentence nested within source (blocking)
+#       - single_context: 7 levels (one per context language)
+#       - dual_context:  21 levels (one per pair of context languages)
+#   - Random factor: sentence nested within source_project (blocking)
 #   - Every sentence is observed under all 29 conditions
 #
 # Research questions:
-#   Q1: Do treatment types differ (direct vs single-pivot vs dual-pivot)?
-#   Q2: Do pivot languages differ within the single-pivot treatment?
-#   Q3: Do pivot-language pairs differ within the dual-pivot treatment?
+#   Q1: Do treatment types differ (direct vs single-context vs dual-context)?
+#   Q2: Do context languages differ within the single-context treatment?
+#   Q3: Do context-language pairs differ within the dual-context treatment?
 #
 # CSV file format (see end of script for details)
 # =============================================================================
@@ -61,12 +61,12 @@ out <- function(filename) file.path(script_dir, filename)
 df <- read.csv(out("experiment_data.csv"), stringsAsFactors = FALSE)
 
 # Ensure factors are properly encoded.
-# sentence_id and source must be factors for the random effects.
-# treatment_type and pivot_config must be factors for the fixed effects.
+# sentence_id and source_project must be factors for the random effects.
+# treatment_type and context_config must be factors for the fixed effects.
 df$sentence_id <- as.factor(df$sentence_id)
-df$source <- as.factor(df$source)
+df$source_project <- as.factor(df$source_project)
 df$treatment_type <- as.factor(df$treatment_type)
-df$pivot_config <- as.factor(df$pivot_config)
+df$context_config <- as.factor(df$context_config)
 
 # Set the reference level for treatment_type to "direct" so that
 # model coefficients are interpreted relative to direct translation.
@@ -76,25 +76,25 @@ df$treatment_type <- relevel(df$treatment_type, ref = "direct")
 cat("=== Data summary ===\n")
 cat("Total rows:", nrow(df), "\n")
 cat("Unique sentences:", nlevels(df$sentence_id), "\n")
-cat("Unique sources:", nlevels(df$source), "\n")
+cat("Unique sources:", nlevels(df$source_project), "\n")
 cat("Conditions per sentence:", nrow(df) / nlevels(df$sentence_id), "\n\n")
 
 cat("=== Observations per treatment type ===\n")
 print(table(df$treatment_type))
 cat("\n")
 
-cat("=== Observations per pivot_config ===\n")
-print(table(df$treatment_type, df$pivot_config))
+cat("=== Observations per context_config ===\n")
+print(table(df$treatment_type, df$context_config))
 cat("\n")
 
-cat("=== Sentences per source ===\n")
-print(table(df$source))
+cat("=== Sentences per source_project ===\n")
+print(table(df$source_project))
 cat("\n")
 
 # Verify the design is complete: every sentence should appear in all 29 conditions.
 conditions_per_sentence <- df %>%
   group_by(sentence_id) %>%
-  summarise(n_conditions = n_distinct(pivot_config))
+  summarise(n_conditions = n_distinct(context_config))
 
 if (any(conditions_per_sentence$n_conditions != 29)) {
   warning("DESIGN NOT COMPLETE: some sentences are missing conditions!")
@@ -122,10 +122,10 @@ desc_type <- df %>%
 print(desc_type)
 cat("\n")
 
-cat("=== Descriptive statistics by pivot_config (single-pivot) ===\n")
+cat("=== Descriptive statistics by context_config (single-context) ===\n")
 desc_single <- df %>%
-  filter(treatment_type == "single_pivot") %>%
-  group_by(pivot_config) %>%
+  filter(treatment_type == "single_context") %>%
+  group_by(context_config) %>%
   summarise(
     mean   = mean(score),
     sd     = sd(score),
@@ -136,10 +136,10 @@ desc_single <- df %>%
 print(desc_single)
 cat("\n")
 
-cat("=== Descriptive statistics by pivot_config (dual-pivot) ===\n")
+cat("=== Descriptive statistics by context_config (dual-context) ===\n")
 desc_dual <- df %>%
-  filter(treatment_type == "dual_pivot") %>%
-  group_by(pivot_config) %>%
+  filter(treatment_type == "dual_context") %>%
+  group_by(context_config) %>%
   summarise(
     mean   = mean(score),
     sd     = sd(score),
@@ -157,18 +157,19 @@ cat("\n")
 
 # Model specification:
 #   - treatment_type: main fixed effect (3 levels)
-#   - treatment_type:pivot_config: pivot configuration nested within treatment type
-#   - (1 | source): random intercept for source (blocking factor — some software
-#     programs are systematically harder to translate)
-#   - (1 | source:sentence_id): random intercept for sentence nested within source
+#   - treatment_type:context_config: context configuration nested within treatment type
+#   - (1 | source_project): random intercept for source_project (blocking factor —
+#     some software programs are systematically harder to translate)
+#   - (1 | source_project:sentence_id): random intercept for sentence nested within
+#     source_project
 #     (accounts for repeated measures — each sentence is measured 29 times)
 #
 # REML = TRUE (default) is preferred for inference on fixed effects.
 # Satterthwaite degrees of freedom are used (loaded via lmerTest).
 
 model <- lmer(
-  score ~ treatment_type + treatment_type:pivot_config +
-    (1 | source) + (1 | source:sentence_id),
+  score ~ treatment_type + treatment_type:context_config +
+    (1 | source_project) + (1 | source_project:sentence_id),
   data = df
 )
 
@@ -177,13 +178,13 @@ print(summary(model))
 cat("\n")
 
 # Variance components: inspect how much variance is attributable to
-# source vs sentence-within-source vs residual.
+# source_project vs sentence-within-source_project vs residual.
 cat("=== Variance components ===\n")
 print(VarCorr(model))
 cat("\n")
 
-# The source variance tells you whether software programs differ in
-# translation difficulty. If it is near zero, source-level blocking
+# The source_project variance tells you whether software programs differ in
+# translation difficulty. If it is near zero, source_project-level blocking
 # contributes little, but it costs nothing to include it.
 
 
@@ -194,8 +195,8 @@ cat("\n")
 # Type III tests with Satterthwaite degrees of freedom.
 # This gives F-tests for:
 #   - treatment_type: do the three treatment types differ?
-#   - treatment_type:pivot_config: do pivot configurations differ within types?
-#     (pooled across single-pivot and dual-pivot; direct contributes 0 df)
+#   - treatment_type:context_config: do context configurations differ within types?
+#     (pooled across single-context and dual-context; direct contributes 0 df)
 
 cat("=== Type III ANOVA ===\n")
 anova_table <- anova(model, type = "III", ddf = "Satterthwaite")
@@ -246,8 +247,8 @@ cat("Saved: diagnostics_residual_hist.png\n")
 # 6d. Random effects diagnostics
 # Check that random effects are approximately normal.
 png(out("diagnostics_ranef_source.png"), width = 800, height = 600)
-qqnorm(ranef(model)$source[, 1], main = "QQ Plot of Source Random Effects")
-qqline(ranef(model)$source[, 1], col = "red")
+qqnorm(ranef(model)$source_project[, 1], main = "QQ Plot of Source Random Effects")
+qqline(ranef(model)$source_project[, 1], col = "red")
 dev.off()
 cat("Saved: diagnostics_ranef_source.png\n")
 
@@ -265,14 +266,14 @@ cat("  - Or use a non-parametric bootstrap (see Section 9)\n\n")
 # -----------------------------------------------------------------------------
 # Q1: Do treatment types differ?
 # -----------------------------------------------------------------------------
-# emmeans with the nesting declaration so it knows pivot_config lives inside
-# treatment_type. This lets it properly average over pivot_configs.
+# emmeans with the nesting declaration so it knows context_config lives inside
+# treatment_type. This lets it properly average over context_configs.
 
 cat("=== Q1: Treatment type comparison ===\n\n")
 
 emm_type <- emmeans(model, ~treatment_type,
   weights = "equal",
-  nesting = list(pivot_config = "treatment_type")
+  nesting = list(context_config = "treatment_type")
 )
 cat("Estimated marginal means per treatment type:\n")
 print(summary(emm_type))
@@ -297,24 +298,24 @@ cat("\n")
 
 
 # -----------------------------------------------------------------------------
-# Q2: Do pivot languages differ (single-pivot)?
+# Q2: Do context languages differ (single-context)?
 # -----------------------------------------------------------------------------
-# Fit a sub-model on single-pivot data only. This avoids the nesting
-# complexity and gives a clean comparison among the 7 pivot languages.
+# Fit a sub-model on single-context data only. This avoids the nesting
+# complexity and gives a clean comparison among the 7 context languages.
 # The random-effects structure is identical to the main model.
 
-cat("=== Q2: Single-pivot configuration comparison ===\n\n")
+cat("=== Q2: Single-context configuration comparison ===\n\n")
 
-df_single <- df %>% filter(treatment_type == "single_pivot")
-df_single$pivot_config <- droplevels(df_single$pivot_config)
+df_single <- df %>% filter(treatment_type == "single_context")
+df_single$context_config <- droplevels(df_single$context_config)
 
 model_single <- lmer(
-  score ~ pivot_config + (1 | source) + (1 | source:sentence_id),
+  score ~ context_config + (1 | source_project) + (1 | source_project:sentence_id),
   data = df_single
 )
 
-emm_single <- emmeans(model_single, ~pivot_config)
-cat("Estimated marginal means per pivot language:\n")
+emm_single <- emmeans(model_single, ~context_config)
+cat("Estimated marginal means per context language:\n")
 print(summary(emm_single))
 cat("\n")
 
@@ -333,22 +334,22 @@ cat("\n")
 
 
 # -----------------------------------------------------------------------------
-# Q3: Do pivot-language pairs differ (dual-pivot)?
+# Q3: Do context-language pairs differ (dual-context)?
 # -----------------------------------------------------------------------------
-# Same approach: fit a sub-model on dual-pivot data only.
+# Same approach: fit a sub-model on dual-context data only.
 
-cat("=== Q3: Dual-pivot configuration comparison ===\n\n")
+cat("=== Q3: Dual-context configuration comparison ===\n\n")
 
-df_dual <- df %>% filter(treatment_type == "dual_pivot")
-df_dual$pivot_config <- droplevels(df_dual$pivot_config)
+df_dual <- df %>% filter(treatment_type == "dual_context")
+df_dual$context_config <- droplevels(df_dual$context_config)
 
 model_dual <- lmer(
-  score ~ pivot_config + (1 | source) + (1 | source:sentence_id),
+  score ~ context_config + (1 | source_project) + (1 | source_project:sentence_id),
   data = df_dual
 )
 
-emm_dual <- emmeans(model_dual, ~pivot_config)
-cat("Estimated marginal means per pivot-language pair:\n")
+emm_dual <- emmeans(model_dual, ~context_config)
+cat("Estimated marginal means per context-language pair:\n")
 print(summary(emm_dual))
 cat("\n")
 
@@ -359,7 +360,7 @@ cat("Pairwise comparisons (Tukey-adjusted, 210 comparisons):\n")
 print(pairs_dual)
 cat("\n")
 
-# Compact letter display for dual-pivot
+# Compact letter display for dual-context
 cat("Compact letter display:\n")
 cld_dual <- cld(emm_dual, Letters = letters, adjust = "tukey")
 print(cld_dual)
@@ -369,8 +370,8 @@ cat("\n")
 # (Dunnett-style). This is more interpretable for the paper.
 dual_summary <- summary(emm_dual)
 best_idx <- which.max(dual_summary$emmean)
-best_config <- as.character(dual_summary$pivot_config[best_idx])
-cat("Best dual-pivot configuration:", best_config, "\n\n")
+best_config <- as.character(dual_summary$context_config[best_idx])
+cat("Best dual-context configuration:", best_config, "\n\n")
 
 # Dunnett comparisons against the best
 cat("Dunnett-style comparisons against the best configuration:\n")
@@ -418,8 +419,8 @@ n_boot <- 10000
 
 # Pivot data to wide format: one row per sentence, one column per condition
 wide <- df %>%
-  select(sentence_id, treatment_type, pivot_config, score) %>%
-  unite("condition", treatment_type, pivot_config, sep = "::") %>%
+  select(sentence_id, treatment_type, context_config, score) %>%
+  unite("condition", treatment_type, context_config, sep = "::") %>%
   pivot_wider(names_from = condition, values_from = score)
 
 sentence_ids <- wide$sentence_id
@@ -427,11 +428,11 @@ score_matrix <- as.matrix(wide[, -1]) # Remove sentence_id column
 n_sentences <- nrow(score_matrix)
 
 # Identify column indices for each treatment type.
-# Column names are "treatment_type::pivot_config".
+# Column names are "treatment_type::context_config".
 col_names <- colnames(score_matrix)
 direct_cols <- grep("^direct::", col_names)
-single_cols <- grep("^single_pivot::", col_names)
-dual_cols <- grep("^dual_pivot::", col_names)
+single_cols <- grep("^single_context::", col_names)
+dual_cols <- grep("^dual_context::", col_names)
 
 # Bootstrap: resample sentences with replacement
 # Note: na.rm = TRUE handles the 876 sentences from diffutils/nano
@@ -492,49 +493,49 @@ p1 <- ggplot(emm_type_df, aes(x = treatment_type, y = emmean)) +
 ggsave(out("plot_q1_treatment_types.png"), p1, width = 8, height = 6)
 cat("Saved: plot_q1_treatment_types.png\n")
 
-# 10b. Single-pivot ranking
+# 10b. Single-context ranking
 cld_single_df <- normalize_ci(as.data.frame(cld_single))
 cld_single_df$.group <- trimws(cld_single_df$.group)
 cld_single_df <- cld_single_df %>% arrange(desc(emmean))
 
 p2 <- ggplot(
   cld_single_df,
-  aes(x = reorder(pivot_config, emmean), y = emmean)
+  aes(x = reorder(context_config, emmean), y = emmean)
 ) +
   geom_point(size = 3) +
   geom_errorbar(aes(ymin = lower.CL, ymax = upper.CL), width = 0.2) +
   geom_text(aes(label = .group), vjust = -1, size = 4) +
   labs(
-    title = "Q2: Single-Pivot Language Ranking",
+    title = "Q2: Single-context Language Ranking",
     subtitle = "Shared letters = not significantly different (Tukey)",
-    x = "Pivot Language", y = "Score"
+    x = "Context Language", y = "Score"
   ) +
   theme_minimal(base_size = 14) +
   coord_flip()
-ggsave(out("plot_q2_single_pivot.png"), p2, width = 8, height = 6)
-cat("Saved: plot_q2_single_pivot.png\n")
+ggsave(out("plot_q2_single_context.png"), p2, width = 8, height = 6)
+cat("Saved: plot_q2_single_context.png\n")
 
-# 10c. Dual-pivot ranking (top 10 for readability)
+# 10c. Dual-context ranking (top 10 for readability)
 cld_dual_df <- normalize_ci(as.data.frame(cld_dual))
 cld_dual_df$.group <- trimws(cld_dual_df$.group)
 cld_dual_df <- cld_dual_df %>% arrange(desc(emmean))
 
 p3 <- ggplot(
   cld_dual_df %>% head(10),
-  aes(x = reorder(pivot_config, emmean), y = emmean)
+  aes(x = reorder(context_config, emmean), y = emmean)
 ) +
   geom_point(size = 3) +
   geom_errorbar(aes(ymin = lower.CL, ymax = upper.CL), width = 0.2) +
   geom_text(aes(label = .group), vjust = -1, size = 4) +
   labs(
-    title = "Q3: Top 10 Dual-Pivot Pairs",
+    title = "Q3: Top 10 Dual-Context Pairs",
     subtitle = "Shared letters = not significantly different (Tukey)",
-    x = "Pivot Language Pair", y = "Score"
+    x = "Context Language Pair", y = "Score"
   ) +
   theme_minimal(base_size = 14) +
   coord_flip()
-ggsave(out("plot_q3_dual_pivot_top10.png"), p3, width = 10, height = 6)
-cat("Saved: plot_q3_dual_pivot_top10.png\n")
+ggsave(out("plot_q3_dual_context_top10.png"), p3, width = 10, height = 6)
+cat("Saved: plot_q3_dual_context_top10.png\n")
 
 
 # =============================================================================
@@ -552,12 +553,12 @@ write.csv(as.data.frame(pairs_type),
 )
 
 write.csv(cld_single_df,
-  out("results_q2_single_pivot_cld.csv"),
+  out("results_q2_single_context_cld.csv"),
   row.names = FALSE
 )
 
 write.csv(cld_dual_df,
-  out("results_q3_dual_pivot_cld.csv"),
+  out("results_q3_dual_context_cld.csv"),
   row.names = FALSE
 )
 
@@ -567,6 +568,30 @@ write.csv(as.data.frame(dunnett_dual),
 )
 
 cat("\nAll result tables saved as CSV files.\n")
+
+cat("\n=== Generated files ===\n")
+generated <- c(
+  "diagnostics_qqplot.png",
+  "diagnostics_residuals_vs_fitted.png",
+  "diagnostics_residual_hist.png",
+  "diagnostics_ranef_source.png",
+  "plot_q1_treatment_types.png",
+  "plot_q2_single_context.png",
+  "plot_q3_dual_context_top10.png",
+  "results_q1_treatment_means.csv",
+  "results_q1_pairwise.csv",
+  "results_q2_single_context_cld.csv",
+  "results_q3_dual_context_cld.csv",
+  "results_q3_dunnett_vs_best.csv"
+)
+for (f in generated) {
+  path <- out(f)
+  if (file.exists(path)) {
+    cat(sprintf("  %s (%s)\n", f, format(file.size(path), big.mark = ",")))
+  } else {
+    cat(sprintf("  %s (MISSING)\n", f))
+  }
+}
 
 
 # =============================================================================
@@ -580,14 +605,14 @@ cat("\nAll result tables saved as CSV files.\n")
 #
 # Columns:
 #   sentence_id    - Unique identifier for each sentence (e.g., "s00001")
-#   source         - Software program the sentence comes from (e.g.,
+#   source_project - Software program the sentence comes from (e.g.,
 #                    "aspell_v0.60.8.1", "wget_v1.25.0"). Blocking factor.
-#   treatment_type - One of: "direct", "single_pivot", "dual_pivot"
-#   pivot_config   - Specific configuration within the treatment type:
+#   treatment_type - One of: "direct", "single_context", "dual_context"
+#   context_config   - Specific configuration within the treatment type:
 #                      - "none" for direct translation
-#                      - Language code for single-pivot (e.g., "ru", "fr", "de",
+#                      - Language code for single-context (e.g., "ru", "fr", "de",
 #                        "es", "id", "vi", "zh_cn")
-#                      - Language pair for dual-pivot, sorted alphabetically and
+#                      - Language pair for dual-context, sorted alphabetically and
 #                        joined with underscore (e.g., "de_fr", "es_zh_cn")
 #                        IMPORTANT: always use the same order (alphabetical) so
 #                        that "ru_fr" and "fr_ru" are not treated as different
