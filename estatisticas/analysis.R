@@ -42,7 +42,24 @@ library(performance) # Model diagnostics
 # 2. LOAD AND PREPARE DATA
 # =============================================================================
 
-df <- read.csv("experiment_data.csv", stringsAsFactors = FALSE)
+# Resolve paths relative to this script's location so output files
+# always land in the project root regardless of the working directory.
+# Works with Rscript, source(), and RStudio.
+get_script_dir <- function() {
+  # Rscript via commandArgs
+  args <- commandArgs(trailingOnly = FALSE)
+  file_arg <- grep("^--file=", args, value = TRUE)
+  if (length(file_arg) > 0) return(dirname(normalizePath(sub("^--file=", "", file_arg[1]))))
+  # source()
+  if (!is.null(sys.frame(1)$ofile)) return(dirname(normalizePath(sys.frame(1)$ofile)))
+  # fallback: working directory
+  return(getwd())
+}
+script_dir <- get_script_dir()
+project_root <- normalizePath(file.path(script_dir, ".."))
+out <- function(filename) file.path(project_root, filename)
+
+df <- read.csv(out("experiment_data.csv"), stringsAsFactors = FALSE)
 
 # Ensure factors are properly encoded.
 # sentence_id and source must be factors for the random effects.
@@ -197,7 +214,7 @@ cat("\n")
 # If you are using BLEU scores, expect right-skew and zero-inflation.
 # COMET scores are generally better-behaved.
 
-png("diagnostics_qqplot.png", width = 800, height = 600)
+png(out("diagnostics_qqplot.png"), width = 800, height = 600)
 qqnorm(resid(model), main = "QQ Plot of Residuals")
 qqline(resid(model), col = "red")
 dev.off()
@@ -207,7 +224,7 @@ cat("Saved: diagnostics_qqplot.png\n")
 # Look for a fan shape or systematic pattern. If present, consider
 # a variance-stabilizing transformation (log, logit for bounded scores).
 
-png("diagnostics_residuals_vs_fitted.png", width = 800, height = 600)
+png(out("diagnostics_residuals_vs_fitted.png"), width = 800, height = 600)
 plot(fitted(model), resid(model),
      xlab = "Fitted values", ylab = "Residuals",
      main = "Residuals vs Fitted Values",
@@ -217,7 +234,7 @@ dev.off()
 cat("Saved: diagnostics_residuals_vs_fitted.png\n")
 
 # 6c. Distribution of residuals (histogram)
-png("diagnostics_residual_hist.png", width = 800, height = 600)
+png(out("diagnostics_residual_hist.png"), width = 800, height = 600)
 hist(resid(model), breaks = 100,
      main = "Distribution of Residuals",
      xlab = "Residual", col = "steelblue", border = "white")
@@ -226,7 +243,7 @@ cat("Saved: diagnostics_residual_hist.png\n")
 
 # 6d. Random effects diagnostics
 # Check that random effects are approximately normal.
-png("diagnostics_ranef_source.png", width = 800, height = 600)
+png(out("diagnostics_ranef_source.png"), width = 800, height = 600)
 qqnorm(ranef(model)$source[, 1], main = "QQ Plot of Source Random Effects")
 qqline(ranef(model)$source[, 1], col = "red")
 dev.off()
@@ -462,7 +479,7 @@ p1 <- ggplot(emm_type_df, aes(x = treatment_type, y = emmean)) +
        subtitle = "Estimated marginal means with 95% CIs",
        x = "Treatment Type", y = "Score") +
   theme_minimal(base_size = 14)
-ggsave("plot_q1_treatment_types.png", p1, width = 8, height = 6)
+ggsave(out("plot_q1_treatment_types.png"), p1, width = 8, height = 6)
 cat("Saved: plot_q1_treatment_types.png\n")
 
 # 10b. Single-pivot ranking
@@ -480,7 +497,7 @@ p2 <- ggplot(cld_single_df,
        x = "Pivot Language", y = "Score") +
   theme_minimal(base_size = 14) +
   coord_flip()
-ggsave("plot_q2_single_pivot.png", p2, width = 8, height = 6)
+ggsave(out("plot_q2_single_pivot.png"), p2, width = 8, height = 6)
 cat("Saved: plot_q2_single_pivot.png\n")
 
 # 10c. Dual-pivot ranking (top 10 for readability)
@@ -498,7 +515,7 @@ p3 <- ggplot(cld_dual_df %>% head(10),
        x = "Pivot Language Pair", y = "Score") +
   theme_minimal(base_size = 14) +
   coord_flip()
-ggsave("plot_q3_dual_pivot_top10.png", p3, width = 10, height = 6)
+ggsave(out("plot_q3_dual_pivot_top10.png"), p3, width = 10, height = 6)
 cat("Saved: plot_q3_dual_pivot_top10.png\n")
 
 
@@ -507,19 +524,19 @@ cat("Saved: plot_q3_dual_pivot_top10.png\n")
 # =============================================================================
 
 write.csv(emm_type_df,
-          "results_q1_treatment_means.csv", row.names = FALSE)
+          out("results_q1_treatment_means.csv"), row.names = FALSE)
 
 write.csv(as.data.frame(pairs_type),
-          "results_q1_pairwise.csv", row.names = FALSE)
+          out("results_q1_pairwise.csv"), row.names = FALSE)
 
 write.csv(cld_single_df,
-          "results_q2_single_pivot_cld.csv", row.names = FALSE)
+          out("results_q2_single_pivot_cld.csv"), row.names = FALSE)
 
 write.csv(cld_dual_df,
-          "results_q3_dual_pivot_cld.csv", row.names = FALSE)
+          out("results_q3_dual_pivot_cld.csv"), row.names = FALSE)
 
 write.csv(as.data.frame(dunnett_dual),
-          "results_q3_dunnett_vs_best.csv", row.names = FALSE)
+          out("results_q3_dunnett_vs_best.csv"), row.names = FALSE)
 
 cat("\nAll result tables saved as CSV files.\n")
 
