@@ -1,0 +1,182 @@
+Usage: fuser [-fIMuvw] [-a|-s] [-4|-6] [-c|-m|-n SPACE]	Usage: fuser [-fIMuvw] [-a-a-a-s] [-4 a-a-6] [-c-a-m-a-n SPACE]
+[-k [-i] [-SIGNAL]] NAME...	[k [-i] [-SIGNAL] NOME...
+fuser -l	fuser -l
+fuser -V	fuser -V
+Show which processes use the named files, sockets, or filesystems.	Mostre quais processos usam os arquivos nomeados, soquetes ou sistemas de arquivos.
+-a,--all              display unused files too	-a,--todos exibem arquivos não usados também
+-i,--interactive      ask before killing (ignored without -k)	-i,--interativo perguntar antes de matar (ignorado sem -k)
+-I,--inode            use always inodes to compare files	-I,--inode use always inodes para comparar arquivos
+-k,--kill             kill processes accessing the named file	-k,--kill kill processos acessando o arquivo nomeado
+-l,--list-signals     list available signal names	-l,--lista de sinais lista de nomes de sinais disponíveis
+-m,--mount            show all processes using the named filesystems or	-m,--mount mostra todos os processos usando os sistemas de arquivos nomeados ou
+block device	dispositivo de bloqueio de blocos
+-M,--ismountpoint     fulfill request only if NAME is a mount point	-M,--ismountpoint fulfill request only if NAME is a mount point
+-n,--namespace SPACE  search in this name space (file, udp, or tcp)	-n,--namespace SPACE search in this name space (file, udp, or tcp)
+-s,--silent           silent operation	-s,--silent silent operation
+-SIGNAL               send this signal instead of SIGKILL	-SIGNAL envia este sinal em vez de SIGKILL
+-u,--user             display user IDs	-u,--user exibe IDs de usuário
+-v,--verbose          verbose output	-v,--verbose verbose output
+-w,--writeonly        kill only processes with write access	-w,--writeonly kill only processes with write access
+-V,--version          display version information	-V,--version displays version information
+-4,--ipv4             search IPv4 sockets only	4,--ipv4 search - sockets IPv4 only
+-6,--ipv6             search IPv6 sockets only	6,--ipv6 search - sockets IPv6 only
+udp/tcp names: [local_port][,[rmt_host][,[rmt_port]]]	udp/tcp names: [local_port][,[rmt_host][,[rmt_port]]]
+fuser (PSmisc) %s	fuser (PSmisc) %s
+Copyright (C) 1993-2024 Werner Almesberger and Craig Small	Copyright (C) 1993-2024 Werner Almesberger e Craig Small
+PSmisc comes with ABSOLUTELY NO WARRANTY.	PSmisc vem com absolutamente nenhuma garantia.
+This is free software, and you are welcome to redistribute it under	Este é um software livre, e você é bem-vindo para redistribuí-lo sob.
+the terms of the GNU General Public License.	os termos da Licença Pública Geral GNU.
+For more information about these matters, see the files named COPYING.	Para mais informações sobre esses assuntos, consulte os arquivos denominados COPYING.
+Cannot open /proc directory: %s	Não pode abrir o diretório /proc: %s
+Cannot allocate memory for matched proc: %s	Não pode atribuir memória para proc correspondente: %s
+Specified filename %s does not exist.	O nome de arquivo especificado %s não existe.
+Cannot stat %s: %s	Não pode indicar %s: %s.
+Cannot resolve local port %s: %s	Não conseguiu resolver o porto local %s: %s
+Unknown local port AF %d	Porto local desconhecido AF %d
+Cannot open protocol file "%s": %s	Não pode abrir o arquivo de protocolo "%s": %s
+Specified filename %s is not a mountpoint.	O nome de arquivo especificado %s não é um ponto de montagem.
+%s: Invalid option %s	%s: Opção inválida %s
+Namespace option requires an argument.	A opção namespace requer um argumento.
+Invalid namespace name	Nome de espaço de nomes inválido
+You can only use files with mountpoint options	Você só pode usar arquivos com opções de ponto de montagem
+No process specification given	Não foi dada nenhuma especificação de processo.
+all option cannot be used with silent option.	todas as opções não podem ser usadas com a opção silenciosa.
+You cannot search for only IPv4 and only IPv6 sockets at the same time	Você não pode procurar somente IPv4 e somente soquetes IPv6 ao mesmo tempo
+%*s USER        PID ACCESS COMMAND	%*s USER PID ACCESS COMMAND
+(unknown)	(desconhecido)
+Cannot stat file %s: %s	Não pode fazer o arquivo de estat %s: %s.
+Cannot open /proc/net/unix: %s	Não pode abrir /proc/net/unix: %s
+Kill process %d ? (y/N)	O processo de matança %d ? (y/N)
+Could not kill process %d: %s	Não conseguiu matar o processo %d: %s.
+Cannot open a network socket.	Não pode abrir uma tomada de rede.
+Cannot find socket's device number.	Não conseguiu encontrar o número do dispositivo da tomada.
+Kill %s(%s%d) ? (y/N)	Matar %s(%s%d) ? (y/N)
+Signal %s(%s%d) ? (y/N)	Signal %s(%s%d) ? (y/N)
+killall: Cannot get UID from process status	killall: Não pode obter UID do status de processo
+killall: Bad regular expression: %s	killall: Má expressão regular: %s
+killall: skipping partial match %s(%d)	killall: saltando partial match %s(%d)
+Killed %s(%s%d) with signal %d	Matado %s(%s%d) com o sinal %d
+%s: no process found	%s: nenhum processo encontrado
+Usage: killall [OPTION]... [--] NAME...	Usage: killall [OPTION]... [--] NAME...
+killall -l, --list	-l, --lista de assassinos
+killall -V, --version	killall -V, --version
+-e,--exact          require exact match for very long names	-e,--exact requerem a correspondência exacta para nomes muito longos
+-I,--ignore-case    case insensitive process name match	-I,--ignore-case case insensitive process name match
+-g,--process-group  kill process group instead of process	-g,--process-group kill process group em vez de process
+-y,--younger-than   kill processes younger than TIME	-y,--younger-than kill processos mais jovens do que o tempo
+-o,--older-than     kill processes older than TIME	-o,--older-than kill processos mais antigos do que o TIME
+-i,--interactive    ask for confirmation before killing	-i,--interativo pedir confirmação antes de matar
+-l,--list           list all known signal names	-l,--lista lista de todos os nomes de sinais conhecidos
+-q,--quiet          don't print complaints	-q,--quiet don't print complaints
+-r,--regexp         interpret NAME as an extended regular expression	-r,--regexp interpretar NAME como uma expressão regular prolongada
+-s,--signal SIGNAL  send this signal instead of SIGTERM	-s,--signal SIGNAL envia este sinal em vez de SIGTERM
+-u,--user USER      kill only process(es) running as USER	-u,--user USER kill only process(es) executando como USER
+-v,--verbose        report if the signal was successfully sent	-v,--verbose relatório se o sinal foi enviado com sucesso
+-V,--version        display version information	-V,--version displays version information
+-w,--wait           wait for processes to die	-w,--esperam que os processos morram
+-n,--ns PID         match processes that belong to the same namespaces	-n,--ns PID coincide com processos que pertencem aos mesmos namespaces
+as PID	Como PID
+-Z,--context REGEXP kill only process(es) having context	-Z,--context REGEXP kill only process(es) having context
+(must precede other arguments)	(deve preceder outros argumentos)
+Invalid time format	O formato de tempo inválido
+Cannot find user %s	Não conseguiu encontrar o usuário %s.
+Invalid namespace PID	namespace inválido PID
+Bad regular expression: %s	Má expressão regular: %s
+killall: Maximum number of names is %d	killall: O número máximo de nomes é %d
+killall: %s lacks process entries (not mounted ?)	killall: %s carece de entradas de processo (não montado ?)
+Error attaching to pid %i	Erro no anexamento ao pid %i
+peekfd (PSmisc) %s	peekfd (PSmisc) %s
+Copyright (C) 2007 Trent Waddington	Copyright (C) 2007 Trent Waddington
+Usage: peekfd [-8] [-n] [-c] [-d] [-V] [-h] <pid> [<fd> ..]	Usage: peekfd [-8] [-n] [-c] [-d] [-V] [-h] <pid> [<fd> ..]
+-8, --eight-bit-clean        output 8 bit clean streams.	-8, --eight-bit-clean output 8 bit clean streams.
+-n, --no-headers             don't display read/write from fd headers.	-n, --no-headers não exibem leitura/escritura a partir de cabeçalhos fd.
+-c, --follow                 peek at any new child processes too.	-c, --follow peek at any new child processes também.
+-t, --tgid                   peek at all threads where tgid equals <pid>.	-t, --tgid peek em todos os fios onde tgid é igual a <pid>.
+-d, --duplicates-removed     remove duplicate read/writes from the output.	-d, --duplicates-removed remove duplicate read/writes from the output.
+-V, --version                prints version info.	-V, --version imprime informações de versão.
+-h, --help                   prints this help.	-h, --help imprime esta ajuda.
+Press CTRL-C to end output.	Pressione o CTRL-C para terminar a saída.
+Usage: prtstat [options] PID ...	Usage: prtstat [options] PID ...
+prtstat -V	prtstat -V
+Print information about a process	Imprimir informações sobre um processo
+-r,--raw       Raw display of information	-r,--raw Raw display of information
+-V,--version   Display version information and exit	-V,--version Display informações de versão e saída
+prtstat (PSmisc) %s	prtstat (PSmisc) %s
+Copyright (C) 2009-2024 Craig Small	Copyright (C) 2009-2024 Craig Small
+running	 running running running
+sleeping	dormindo
+disk sleep	Dormir o disco de disco.
+zombie	Os zumbis são zumbis.
+traced	traced traced
+paging	Paging paging
+unknown	desconhecido
+Process: %-14s		State: %c (%s)	Processo: %-14s Estado: %c (%s)
+CPU#:  %-3d		TTY: %s	Threads: %ld	CPU#: %-3d TTY: %s Threads: %ld
+Process, Group and Session IDs	Processos, ID de grupo e ID de sessão
+Process ID: %d		  Parent ID: %d	ID de processo: %d ID de pai: %d
+Group ID: %d		 Session ID: %d	ID de grupo: %d ID de sessão: %d
+T Group ID: %d	ID de grupo: %d T
+Page Faults	Falhas de página
+This Process    (minor major): %8lu  %8lu	This Process (minor principal): %8lu %8lu
+Child Processes (minor major): %8lu  %8lu	Processos infantis (minor maior): %8lu %8lu
+CPU Times	Times  CPU CPU 
+This Process    (user system guest blkio): %6.2f %6.2f %6.2f %6.2f	This Process (user system guest blkio): %6.2f %6.2f %6.2f %6.2f %6.2f %6.2f
+Child processes (user system guest):       %6.2f %6.2f %6.2f	Processos infantis (guestão do sistema de usuários): %6,2f %6,2f %6,2f %6,2f
+Memory	Memória  Memória
+Vsize:       %-10s	Todosze: %-10s
+RSS:         %-10s 		 RSS Limit: %s	RSS: %-10s RSS Limites: %s
+Code Start:  %#-10lx		 Code Stop:  %#-10lx	Código Start: %#-10lx Código Stop: %#-10lx
+Stack Start: %#-10lx	Iniciação da pilha: %#-10lx
+Stack Pointer (ESP): %#10lx	 Inst Pointer (EIP): %#10lx	Pointer Stack (ESP): %#10lx Inst Pointer (EIP): %#10lx
+Scheduling	Programação
+Policy: %s	Política: %s
+Nice:   %ld 		 RT Priority: %ld %s	Nice: %ld RT Prioridade: %ld %s
+asprintf in print_stat failed.	Asprintf em print_stat falhou.
+Process with pid %d does not exist.	Processos com pid %d não existem.
+Unable to open stat file for pid %d (%s)	Incapaz de abrir o arquivo de estat para pid %d (%s)
+Unable to allocate memory for proc_info	Incapaz de atribuir memória para proc_info
+Unable to scan stat file	Incapaz de escanear o arquivo estat
+Invalid option	Opção inválida
+You must provide at least one PID.	Você deve fornecer pelo menos um PID.
+/proc is not mounted, cannot stat /proc/self/stat.	/proc não está montado, não pode stat /proc/self/stat.
+%s is empty (not mounted ?)	%s está vazio (não montado ?)
+Usage: pstree [-acglpsStTuZ] [ -h | -H PID ] [ -n | -N type ]	Usage: pstree [-acglpsStTuZ] [ -h ̊ -H PID ] [ -n ̊ -N tipo ]
+[ -A | -G | -U ] [ PID | USER ]	- [A-G-U] [Usuário]
+or: pstree -V	ou: pstree -V
+Display a tree of processes.	Mostre uma árvore de processos.
+-a, --arguments     show command line arguments	-a, --arguments show command line arguments
+-A, --ascii         use ASCII line drawing characters	-A, --ascii usam caracteres de desenho de linha ASCII
+-c, --compact-not   don't compact identical subtrees	-c, --compact-not don't compact identical subtrees
+-C, --color=TYPE    color process by attribute	-C, --color=TYPE processo de cor por atributo
+(age)	(idade)
+-g, --show-pgids    show process group ids; implies -c	-g, --show-pgids mostram ids de grupos de processos; implica -c.
+-G, --vt100         use VT100 line drawing characters	G, --vt100 use -T100 line drawing characters
+-h, --highlight-all highlight current process and its ancestors	-h, --highlight-all destacam o processo atual e seus antepassados
+-H PID, --highlight-pid=PID	-H PID, --highlight-pid=PID
+highlight this process and its ancestors	Destaque este processo e seus antepassados
+-l, --long          don't truncate long lines	-l, --long não truncate long lines
+-n, --numeric-sort  sort output by PID	-n, --numeric-sort sort output by PID
+-N TYPE, --ns-sort=TYPE	-N TYPE, --ns-sort=TYPE
+sort output by this namespace type	A saída por este tipo de namespace é ordenada.
+(cgroup, ipc, mnt, net, pid, time, user, uts)	(grupo, ipc, mnt, net, pid, time, user, uts)
+-p, --show-pids     show PIDs; implies -c	-p, --show-pids mostram PIDs; implica -c
+-s, --show-parents  show parents of the selected process	-s, --show-parents mostram os pais do processo selecionado
+-S, --ns-changes    show namespace transitions	-S, --ns-changes mostram transições no espaço de nomes
+-t, --thread-names  show full thread names	-t, --thread-names show full thread names
+-T, --hide-threads  hide threads, show only processes	-T, --hide-threads escondem fios, mostram apenas processos
+-u, --uid-changes   show uid transitions	-u, --uid-changes show uid transitions -u, --uid-changes show uid transitions
+-U, --unicode       use UTF-8 (Unicode) line drawing characters	U, --unicode use UTF-8 (Unicode) line drawing characters -
+-V, --version       display version information	-V, --version display version information
+-Z, --security-context	-Z, --security-context
+show security attributes	Mostre atributos de segurança
+PID    start at this PID; default is 1 (init)	O PID começa neste PID; o padrão é 1 (init)
+USER   show only trees rooted at processes of this user	O USUÁRIO mostra somente árvores enraizadas em processos desse usuário
+pstree (PSmisc) %s	pstree (PSmisc) %s
+TERM is not set	O TERM não é definido como TER.
+Can't get terminal capabilities	Não pode obter capacidades do terminal
+procfs file for %s namespace not available	O arquivo procfs para o espaço de nomes %s não está disponível
+No such user name: %s	Não há esse nome de usuário: %s
+Process %d not found.	Processos %d não encontrados.
+No processes found.	Não foram encontrados processos.
+Press return to close	Press return to close
+%s: unknown signal; %s -l lists signals.	%s: sinal desconhecido; %s -l lista sinais.
