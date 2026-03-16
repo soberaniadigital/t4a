@@ -24,17 +24,13 @@
 # 1. REQUIRED PACKAGES
 # =============================================================================
 
-# Install if needed (uncomment):
-# install.packages(c("lme4", "lmerTest", "emmeans", "multcomp", "ggplot2",
-#                     "dplyr", "tidyr", "performance"))
-
-library(lme4)       # Mixed-effects models
-library(lmerTest)    # Satterthwaite degrees of freedom & p-values for lmer
-library(emmeans)     # Estimated marginal means and contrasts
-library(multcomp)    # Compact letter displays
-library(ggplot2)     # Plots
-library(dplyr)       # Data manipulation
-library(tidyr)       # pivot_wider / unite (used in bootstrap section)
+library(lme4) # Mixed-effects models
+library(lmerTest) # Satterthwaite degrees of freedom & p-values for lmer
+library(emmeans) # Estimated marginal means and contrasts
+library(multcomp) # Compact letter displays
+library(ggplot2) # Plots
+library(dplyr) # Data manipulation
+library(tidyr) # pivot_wider / unite (used in bootstrap section)
 library(performance) # Model diagnostics
 
 
@@ -49,9 +45,13 @@ get_script_dir <- function() {
   # Rscript via commandArgs
   args <- commandArgs(trailingOnly = FALSE)
   file_arg <- grep("^--file=", args, value = TRUE)
-  if (length(file_arg) > 0) return(dirname(normalizePath(sub("^--file=", "", file_arg[1]))))
+  if (length(file_arg) > 0) {
+    return(dirname(normalizePath(sub("^--file=", "", file_arg[1]))))
+  }
   # source()
-  if (!is.null(sys.frame(1)$ofile)) return(dirname(normalizePath(sys.frame(1)$ofile)))
+  if (!is.null(sys.frame(1)$ofile)) {
+    return(dirname(normalizePath(sys.frame(1)$ofile)))
+  }
   # fallback: working directory
   return(getwd())
 }
@@ -64,10 +64,10 @@ df <- read.csv(out("experiment_data.csv"), stringsAsFactors = FALSE)
 # Ensure factors are properly encoded.
 # sentence_id and source must be factors for the random effects.
 # treatment_type and pivot_config must be factors for the fixed effects.
-df$sentence_id    <- as.factor(df$sentence_id)
-df$source         <- as.factor(df$source)
+df$sentence_id <- as.factor(df$sentence_id)
+df$source <- as.factor(df$source)
 df$treatment_type <- as.factor(df$treatment_type)
-df$pivot_config   <- as.factor(df$pivot_config)
+df$pivot_config <- as.factor(df$pivot_config)
 
 # Set the reference level for treatment_type to "direct" so that
 # model coefficients are interpreted relative to direct translation.
@@ -226,18 +226,21 @@ cat("Saved: diagnostics_qqplot.png\n")
 
 png(out("diagnostics_residuals_vs_fitted.png"), width = 800, height = 600)
 plot(fitted(model), resid(model),
-     xlab = "Fitted values", ylab = "Residuals",
-     main = "Residuals vs Fitted Values",
-     pch = ".", col = rgb(0, 0, 0, 0.1))
+  xlab = "Fitted values", ylab = "Residuals",
+  main = "Residuals vs Fitted Values",
+  pch = ".", col = rgb(0, 0, 0, 0.1)
+)
 abline(h = 0, col = "red", lty = 2)
 dev.off()
 cat("Saved: diagnostics_residuals_vs_fitted.png\n")
 
 # 6c. Distribution of residuals (histogram)
 png(out("diagnostics_residual_hist.png"), width = 800, height = 600)
-hist(resid(model), breaks = 100,
-     main = "Distribution of Residuals",
-     xlab = "Residual", col = "steelblue", border = "white")
+hist(resid(model),
+  breaks = 100,
+  main = "Distribution of Residuals",
+  xlab = "Residual", col = "steelblue", border = "white"
+)
 dev.off()
 cat("Saved: diagnostics_residual_hist.png\n")
 
@@ -268,8 +271,10 @@ cat("  - Or use a non-parametric bootstrap (see Section 9)\n\n")
 
 cat("=== Q1: Treatment type comparison ===\n\n")
 
-emm_type <- emmeans(model, ~ treatment_type, weights = "equal",
-                     nesting = list(pivot_config = "treatment_type"))
+emm_type <- emmeans(model, ~treatment_type,
+  weights = "equal",
+  nesting = list(pivot_config = "treatment_type")
+)
 cat("Estimated marginal means per treatment type:\n")
 print(summary(emm_type))
 cat("\n")
@@ -309,7 +314,7 @@ model_single <- lmer(
   data = df_single
 )
 
-emm_single <- emmeans(model_single, ~ pivot_config)
+emm_single <- emmeans(model_single, ~pivot_config)
 cat("Estimated marginal means per pivot language:\n")
 print(summary(emm_single))
 cat("\n")
@@ -343,7 +348,7 @@ model_dual <- lmer(
   data = df_dual
 )
 
-emm_dual <- emmeans(model_dual, ~ pivot_config)
+emm_dual <- emmeans(model_dual, ~pivot_config)
 cat("Estimated marginal means per pivot-language pair:\n")
 print(summary(emm_dual))
 cat("\n")
@@ -370,8 +375,10 @@ cat("Best dual-pivot configuration:", best_config, "\n\n")
 
 # Dunnett comparisons against the best
 cat("Dunnett-style comparisons against the best configuration:\n")
-dunnett_dual <- contrast(emm_dual, method = "trt.vs.ctrl", ref = best_idx,
-                          adjust = "dunnett")
+dunnett_dual <- contrast(emm_dual,
+  method = "trt.vs.ctrl", ref = best_idx,
+  adjust = "dunnett"
+)
 print(dunnett_dual)
 cat("\n")
 
@@ -407,7 +414,7 @@ cat("matters for your application.\n\n")
 cat("=== Bootstrap confidence intervals (resampling sentences) ===\n")
 cat("This may take a few minutes...\n\n")
 
-set.seed(42)  # Reproducibility
+set.seed(42) # Reproducibility
 n_boot <- 10000
 
 # Pivot data to wide format: one row per sentence, one column per condition
@@ -417,15 +424,15 @@ wide <- df %>%
   pivot_wider(names_from = condition, values_from = score)
 
 sentence_ids <- wide$sentence_id
-score_matrix <- as.matrix(wide[, -1])  # Remove sentence_id column
-n_sentences  <- nrow(score_matrix)
+score_matrix <- as.matrix(wide[, -1]) # Remove sentence_id column
+n_sentences <- nrow(score_matrix)
 
 # Identify column indices for each treatment type.
 # Column names are "treatment_type::pivot_config".
-col_names     <- colnames(score_matrix)
-direct_cols   <- grep("^direct::", col_names)
-single_cols   <- grep("^single_pivot::", col_names)
-dual_cols     <- grep("^dual_pivot::", col_names)
+col_names <- colnames(score_matrix)
+direct_cols <- grep("^direct::", col_names)
+single_cols <- grep("^single_pivot::", col_names)
+dual_cols <- grep("^dual_pivot::", col_names)
 
 # Bootstrap: resample sentences with replacement
 # Note: na.rm = TRUE handles the 876 sentences from diffutils/nano
@@ -440,7 +447,7 @@ for (b in 1:n_boot) {
   # Marginal means per treatment type (equal weight across configs)
   mean_direct <- mean(boot_sample[, direct_cols], na.rm = TRUE)
   mean_single <- mean(rowMeans(boot_sample[, single_cols], na.rm = TRUE), na.rm = TRUE)
-  mean_dual   <- mean(rowMeans(boot_sample[, dual_cols], na.rm = TRUE), na.rm = TRUE)
+  mean_dual <- mean(rowMeans(boot_sample[, dual_cols], na.rm = TRUE), na.rm = TRUE)
 
   boot_diffs[b, 1] <- mean_direct - mean_single
   boot_diffs[b, 2] <- mean_direct - mean_dual
@@ -451,8 +458,10 @@ for (b in 1:n_boot) {
 cat("Bootstrap 95% CIs for treatment-type differences:\n")
 for (j in 1:3) {
   ci <- quantile(boot_diffs[, j], probs = c(0.025, 0.975))
-  cat(sprintf("  %s: mean = %.4f, 95%% CI = [%.4f, %.4f]\n",
-              colnames(boot_diffs)[j], mean(boot_diffs[, j]), ci[1], ci[2]))
+  cat(sprintf(
+    "  %s: mean = %.4f, 95%% CI = [%.4f, %.4f]\n",
+    colnames(boot_diffs)[j], mean(boot_diffs[, j]), ci[1], ci[2]
+  ))
 }
 cat("\n")
 
@@ -475,9 +484,11 @@ emm_type_df <- normalize_ci(as.data.frame(summary(emm_type)))
 p1 <- ggplot(emm_type_df, aes(x = treatment_type, y = emmean)) +
   geom_point(size = 3) +
   geom_errorbar(aes(ymin = lower.CL, ymax = upper.CL), width = 0.2) +
-  labs(title = "Q1: Treatment Type Comparison",
-       subtitle = "Estimated marginal means with 95% CIs",
-       x = "Treatment Type", y = "Score") +
+  labs(
+    title = "Q1: Treatment Type Comparison",
+    subtitle = "Estimated marginal means with 95% CIs",
+    x = "Treatment Type", y = "Score"
+  ) +
   theme_minimal(base_size = 14)
 ggsave(out("plot_q1_treatment_types.png"), p1, width = 8, height = 6)
 cat("Saved: plot_q1_treatment_types.png\n")
@@ -487,14 +498,18 @@ cld_single_df <- normalize_ci(as.data.frame(cld_single))
 cld_single_df$.group <- trimws(cld_single_df$.group)
 cld_single_df <- cld_single_df %>% arrange(desc(emmean))
 
-p2 <- ggplot(cld_single_df,
-             aes(x = reorder(pivot_config, emmean), y = emmean)) +
+p2 <- ggplot(
+  cld_single_df,
+  aes(x = reorder(pivot_config, emmean), y = emmean)
+) +
   geom_point(size = 3) +
   geom_errorbar(aes(ymin = lower.CL, ymax = upper.CL), width = 0.2) +
   geom_text(aes(label = .group), vjust = -1, size = 4) +
-  labs(title = "Q2: Single-Pivot Language Ranking",
-       subtitle = "Shared letters = not significantly different (Tukey)",
-       x = "Pivot Language", y = "Score") +
+  labs(
+    title = "Q2: Single-Pivot Language Ranking",
+    subtitle = "Shared letters = not significantly different (Tukey)",
+    x = "Pivot Language", y = "Score"
+  ) +
   theme_minimal(base_size = 14) +
   coord_flip()
 ggsave(out("plot_q2_single_pivot.png"), p2, width = 8, height = 6)
@@ -505,14 +520,18 @@ cld_dual_df <- normalize_ci(as.data.frame(cld_dual))
 cld_dual_df$.group <- trimws(cld_dual_df$.group)
 cld_dual_df <- cld_dual_df %>% arrange(desc(emmean))
 
-p3 <- ggplot(cld_dual_df %>% head(10),
-             aes(x = reorder(pivot_config, emmean), y = emmean)) +
+p3 <- ggplot(
+  cld_dual_df %>% head(10),
+  aes(x = reorder(pivot_config, emmean), y = emmean)
+) +
   geom_point(size = 3) +
   geom_errorbar(aes(ymin = lower.CL, ymax = upper.CL), width = 0.2) +
   geom_text(aes(label = .group), vjust = -1, size = 4) +
-  labs(title = "Q3: Top 10 Dual-Pivot Pairs",
-       subtitle = "Shared letters = not significantly different (Tukey)",
-       x = "Pivot Language Pair", y = "Score") +
+  labs(
+    title = "Q3: Top 10 Dual-Pivot Pairs",
+    subtitle = "Shared letters = not significantly different (Tukey)",
+    x = "Pivot Language Pair", y = "Score"
+  ) +
   theme_minimal(base_size = 14) +
   coord_flip()
 ggsave(out("plot_q3_dual_pivot_top10.png"), p3, width = 10, height = 6)
@@ -524,19 +543,29 @@ cat("Saved: plot_q3_dual_pivot_top10.png\n")
 # =============================================================================
 
 write.csv(emm_type_df,
-          out("results_q1_treatment_means.csv"), row.names = FALSE)
+  out("results_q1_treatment_means.csv"),
+  row.names = FALSE
+)
 
 write.csv(as.data.frame(pairs_type),
-          out("results_q1_pairwise.csv"), row.names = FALSE)
+  out("results_q1_pairwise.csv"),
+  row.names = FALSE
+)
 
 write.csv(cld_single_df,
-          out("results_q2_single_pivot_cld.csv"), row.names = FALSE)
+  out("results_q2_single_pivot_cld.csv"),
+  row.names = FALSE
+)
 
 write.csv(cld_dual_df,
-          out("results_q3_dual_pivot_cld.csv"), row.names = FALSE)
+  out("results_q3_dual_pivot_cld.csv"),
+  row.names = FALSE
+)
 
 write.csv(as.data.frame(dunnett_dual),
-          out("results_q3_dunnett_vs_best.csv"), row.names = FALSE)
+  out("results_q3_dunnett_vs_best.csv"),
+  row.names = FALSE
+)
 
 cat("\nAll result tables saved as CSV files.\n")
 
