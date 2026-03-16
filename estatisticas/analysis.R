@@ -56,8 +56,7 @@ get_script_dir <- function() {
   return(getwd())
 }
 script_dir <- get_script_dir()
-project_root <- normalizePath(file.path(script_dir, ".."))
-out <- function(filename) file.path(project_root, filename)
+out <- function(filename) file.path(script_dir, filename)
 
 df <- read.csv(out("experiment_data.csv"), stringsAsFactors = FALSE)
 

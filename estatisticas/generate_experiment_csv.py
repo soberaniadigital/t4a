@@ -4,7 +4,7 @@ Transform per-segment CSV files from metrics_csv/ into a single
 experiment_data.csv suitable for R mixed-effects model analysis.
 
 Input:  metrics_csv/<project>/*.csv  (29 CSVs per project, one per condition)
-Output: experiment_data.csv          (single file at project root)
+Output: estatisticas/experiment_data.csv
 
 Usage:
     python estatisticas/generate_experiment_csv.py
@@ -18,7 +18,7 @@ from collections import defaultdict
 from pathlib import Path
 
 METRICS_DIR = Path(__file__).resolve().parent.parent / "metrics_csv"
-OUTPUT_FILE = Path(__file__).resolve().parent.parent / "experiment_data.csv"
+OUTPUT_FILE = Path(__file__).resolve().parent / "experiment_data.csv"
 
 # All 7 pivot languages used in the experiment
 ALL_LANGUAGES = ["de", "es", "fr", "id", "ru", "vi", "zh_cn"]
