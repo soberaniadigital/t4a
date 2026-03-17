@@ -211,6 +211,14 @@ cat("\n")
 # translation difficulty. If it is near zero, source_project-level blocking
 # contributes little, but it costs nothing to include it.
 
+# R² (Nakagawa & Schielzeth, 2013):
+#   - Marginal R²:    variance explained by fixed effects alone
+#   - Conditional R²: variance explained by fixed + random effects
+cat("=== R² (Nakagawa) ===\n")
+r2 <- r2_nakagawa(model)
+print(r2)
+cat("\n")
+
 
 # =============================================================================
 # 5. TYPE III ANOVA TABLE
