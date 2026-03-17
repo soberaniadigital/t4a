@@ -164,11 +164,48 @@ Rscript estatisticas/analysis.R
 
 ## Arquivos gerados em `estatisticas/`
 
+### Dados
+
 | Arquivo | Descrição |
 |---------|-----------|
 | `experiment_data.csv` | Dados transformados para o R (112K linhas) |
-| `diagnostics_*.png` | QQ plot, resíduos vs fitted, histograma, ranef |
-| `plot_q1_treatment_types.png` | Comparação dos tipos de tratamento |
-| `plot_q2_single_pivot.png` | Ranking dos idiomas pivot (single) |
-| `plot_q3_dual_pivot_top10.png` | Top 10 pares de idiomas (dual) |
-| `results_*.csv` | Tabelas de resultados para inclusão no paper |
+
+### Estatísticas descritivas
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `desc_by_treatment_type.csv` | Média, SD, mediana por tipo de tratamento |
+| `desc_by_single_context.csv` | Média, SD, mediana por idioma de contexto (single) |
+| `desc_by_dual_context.csv` | Média, SD, mediana por par de idiomas (dual) |
+| `desc_by_source_project.csv` | Média, SD, mediana por projeto |
+
+### Diagnósticos do modelo
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `diagnostics_qqplot.png` | QQ plot dos resíduos |
+| `diagnostics_residuals_vs_fitted.png` | Resíduos vs valores ajustados |
+| `diagnostics_residual_hist.png` | Histograma dos resíduos |
+| `diagnostics_ranef_source.png` | QQ plot dos efeitos aleatórios (source project) |
+
+### Gráficos
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `plot_q1_treatment_types.png` | Comparação dos tipos de tratamento (EMMs + CIs) |
+| `plot_q2_single_context.png` | Ranking dos idiomas de contexto (single) |
+| `plot_q3_dual_context_top10.png` | Top 10 pares de idiomas (dual) |
+| `plot_dist_treatment_type.png` | Boxplot por tipo de tratamento |
+| `plot_dist_single_context.png` | Boxplot por idioma de contexto (single) |
+| `plot_dist_source_project.png` | Boxplot por projeto |
+| `plot_hist_treatment_type.png` | Histograma facetado por tipo de tratamento |
+
+### Resultados para o paper
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `results_q1_treatment_means.csv` | EMMs por tipo de tratamento |
+| `results_q1_pairwise.csv` | Comparações pareadas entre tipos de tratamento |
+| `results_q2_single_context_cld.csv` | Ranking single-context (compact letter display) |
+| `results_q3_dual_context_cld.csv` | Ranking dual-context (compact letter display) |
+| `results_q3_dunnett_vs_best.csv` | Comparações Dunnett contra o melhor par |
