@@ -150,6 +150,30 @@ desc_dual <- df %>%
 print(desc_dual)
 cat("\n")
 
+cat("=== Descriptive statistics by source_project ===\n")
+desc_source <- df %>%
+  group_by(source_project) %>%
+  summarise(
+    mean       = mean(score),
+    sd         = sd(score),
+    median     = median(score),
+    min        = min(score),
+    max        = max(score),
+    n          = n(),
+    n_sentences = n_distinct(sentence_id)
+  ) %>%
+  arrange(desc(mean))
+print(desc_source)
+cat("\n")
+
+# Export descriptive statistics to CSV
+write.csv(desc_type, out("desc_by_treatment_type.csv"), row.names = FALSE)
+write.csv(desc_single, out("desc_by_single_context.csv"), row.names = FALSE)
+write.csv(desc_dual, out("desc_by_dual_context.csv"), row.names = FALSE)
+write.csv(desc_source, out("desc_by_source_project.csv"), row.names = FALSE)
+cat("Saved: desc_by_treatment_type.csv, desc_by_single_context.csv,\n")
+cat("       desc_by_dual_context.csv, desc_by_source_project.csv\n\n")
+
 
 # =============================================================================
 # 4. FIT THE LINEAR MIXED-EFFECTS MODEL
@@ -408,8 +432,54 @@ cat("matters for your application.\n\n")
 # a non-parametric bootstrap that does not rely on LMM normality assumptions.
 # It complements the parametric analysis above.
 #
-# This resamples sentences (the unit of observation) with replacement,
-# respecting the within-subjects structure.
+# HOW THE BOOTSTRAP WORKS
+#
+# The bootstrap is a resampling technique for estimating the sampling
+# distribution of a statistic without relying on parametric assumptions
+# (Efron and Tibshirani, 1993). The core idea is simple: if the observed
+# sample is the best available approximation of the population, then
+# drawing repeated samples *from the observed data itself* (with
+# replacement) simulates what would happen if the experiment were
+# repeated many times.
+#
+# In this experiment, the unit of resampling is the sentence (not the
+# individual score). Each sentence has 29 scores (one per condition),
+# and all 29 scores travel together when a sentence is resampled. This
+# preserves the within-subjects (repeated-measures) pairing: every
+# bootstrap sample compares the same sentences under different
+# treatments, just as the original experiment does. This is why it is
+# called a "paired" bootstrap — the pairing of scores within sentences
+# is maintained.
+#
+# STEP-BY-STEP PROCEDURE
+#
+# 1. Reshape the data to wide format: one row per sentence, one column
+#    per condition (29 columns). This creates a 3,896 x 29 score matrix.
+#
+# 2. For each bootstrap iteration (10,000 total):
+#    a. Draw a random sample of 3,896 sentences WITH REPLACEMENT from
+#       the 3,896 original sentences. Some sentences will appear
+#       multiple times, others not at all — this is intentional and is
+#       what generates sampling variability.
+#    b. For the resampled set, compute the mean score for each treatment
+#       type. Within single-context and dual-context, each context
+#       configuration is weighted equally (by computing per-sentence
+#       row means first, then averaging across sentences), matching the
+#       equal-weight approach used by emmeans in the LMM analysis.
+#    c. Compute the three pairwise differences between treatment-type
+#       means and store them.
+#
+# 3. After all 10,000 iterations, the stored differences form the
+#    bootstrap sampling distribution. The 2.5th and 97.5th percentiles
+#    of this distribution give the 95% bootstrap confidence interval.
+#
+# INTERPRETATION
+#
+# If the 95% CI for a difference excludes zero, the difference is
+# statistically significant at the 5% level. The bootstrap CI is
+# analogous to the parametric CI from the LMM but makes no assumptions
+# about the shape of the score distribution. When both methods agree
+# (as they do here), this strengthens confidence in the results.
 
 cat("=== Bootstrap confidence intervals (resampling sentences) ===\n")
 cat("This may take a few minutes...\n\n")
@@ -537,6 +607,65 @@ p3 <- ggplot(
 ggsave(out("plot_q3_dual_context_top10.png"), p3, width = 10, height = 6)
 cat("Saved: plot_q3_dual_context_top10.png\n")
 
+# 10d. Score distribution by treatment type (boxplot)
+# Order: direct, single_context, dual_context
+df$treatment_type <- factor(df$treatment_type,
+  levels = c("direct", "single_context", "dual_context"))
+p4 <- ggplot(df, aes(x = treatment_type, y = score, fill = treatment_type)) +
+  geom_boxplot(outlier.size = 0.3, outlier.alpha = 0.2) +
+  labs(
+    title = "Score Distribution by Treatment Type",
+    x = "Treatment Type", y = "BLEU Score"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "none")
+ggsave(out("plot_dist_treatment_type.png"), p4, width = 8, height = 6)
+cat("Saved: plot_dist_treatment_type.png\n")
+
+# 10e. Score distribution by context language (single-context only)
+# Alphabetical order
+p5 <- ggplot(
+  df %>% filter(treatment_type == "single_context"),
+  aes(x = context_config, y = score, fill = context_config)
+) +
+  geom_boxplot(outlier.size = 0.3, outlier.alpha = 0.2) +
+  labs(
+    title = "Score Distribution by Context Language (Single-Context)",
+    x = "Context Language", y = "BLEU Score"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "none") +
+  coord_flip()
+ggsave(out("plot_dist_single_context.png"), p5, width = 8, height = 6)
+cat("Saved: plot_dist_single_context.png\n")
+
+# 10f. Score distribution by source project (alphabetical order)
+p6 <- ggplot(df, aes(x = source_project, y = score, fill = source_project)) +
+  geom_boxplot(outlier.size = 0.3, outlier.alpha = 0.2) +
+  labs(
+    title = "Score Distribution by Source Project",
+    x = "Source Project", y = "BLEU Score"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "none") +
+  coord_flip()
+ggsave(out("plot_dist_source_project.png"), p6, width = 10, height = 8)
+cat("Saved: plot_dist_source_project.png\n")
+
+# 10g. Score histogram faceted by treatment type
+# Order: direct, single_context, dual_context
+p7 <- ggplot(df, aes(x = score, fill = treatment_type)) +
+  geom_histogram(binwidth = 2, boundary = 0, color = "white", linewidth = 0.1) +
+  facet_wrap(~treatment_type, ncol = 1, scales = "free_y") +
+  labs(
+    title = "Score Histogram by Treatment Type",
+    x = "BLEU Score", y = "Count"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "none")
+ggsave(out("plot_hist_treatment_type.png"), p7, width = 8, height = 8)
+cat("Saved: plot_hist_treatment_type.png\n")
+
 
 # =============================================================================
 # 11. EXPORT RESULTS TO CSV (for inclusion in paper tables)
@@ -571,6 +700,10 @@ cat("\nAll result tables saved as CSV files.\n")
 
 cat("\n=== Generated files ===\n")
 generated <- c(
+  "desc_by_treatment_type.csv",
+  "desc_by_single_context.csv",
+  "desc_by_dual_context.csv",
+  "desc_by_source_project.csv",
   "diagnostics_qqplot.png",
   "diagnostics_residuals_vs_fitted.png",
   "diagnostics_residual_hist.png",
@@ -578,6 +711,10 @@ generated <- c(
   "plot_q1_treatment_types.png",
   "plot_q2_single_context.png",
   "plot_q3_dual_context_top10.png",
+  "plot_dist_treatment_type.png",
+  "plot_dist_single_context.png",
+  "plot_dist_source_project.png",
+  "plot_hist_treatment_type.png",
   "results_q1_treatment_means.csv",
   "results_q1_pairwise.csv",
   "results_q2_single_context_cld.csv",

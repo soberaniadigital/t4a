@@ -300,6 +300,66 @@ is standard practice in the machine translation community. The LMM
 results are reported alongside as a complementary analysis.
 
 
+9.1 Paired Bootstrap Resampling
+................................
+
+The bootstrap (Efron and Tibshirani, 1993) is a resampling method for
+estimating the sampling distribution of a statistic without relying on
+parametric assumptions about the data's distribution.
+
+The core idea is straightforward: the observed sample is treated as
+the best available approximation of the population. By drawing
+repeated samples from the observed data itself — with replacement —
+the procedure simulates what would happen if the experiment were
+repeated many times. Each resampled dataset produces a value of the
+statistic of interest (here, the difference in mean BLEU between two
+treatment types), and the collection of these values across many
+resamples approximates the sampling distribution of that statistic.
+
+In this experiment the resampling unit is the sentence, not the
+individual score. Each sentence carries all 29 of its scores (one per
+condition) as a single bundle. When a sentence is selected during
+resampling, all 29 of its scores are included together. This preserves
+the within-subjects pairing: every bootstrap sample compares the same
+sentences across treatments, exactly as the original experiment does.
+This is why the procedure is called a "paired" bootstrap — the pairing
+of scores within sentences is maintained throughout.
+
+The procedure works as follows:
+
+  1. Reshape the data to wide format: one row per sentence, one column
+     per condition (29 columns total), producing a matrix of 3,896 rows
+     by 29 columns.
+
+  2. Repeat the following 10,000 times:
+     a. Draw a sample of 3,896 rows from the matrix with replacement.
+        Some sentences will appear more than once, others not at all.
+        This is intentional: it is what introduces sampling variability
+        and allows the procedure to estimate uncertainty.
+     b. For the resampled matrix, compute the mean score for each
+        treatment type. Within single-context and double-context
+        treatments, each context configuration receives equal weight:
+        per-sentence row means are computed first (averaging across
+        the 7 or 21 context configurations for that sentence), then
+        the grand mean is taken across sentences. This matches the
+        equal-weight approach used in the LMM analysis.
+     c. Compute the three pairwise differences between treatment-type
+        means (direct vs. single-context, direct vs. double-context,
+        single-context vs. double-context) and store them.
+
+  3. After all 10,000 iterations, the 2.5th and 97.5th percentiles of
+     each stored difference give the 95% confidence interval. If this
+     interval excludes zero, the difference is statistically significant
+     at the 5% level.
+
+The bootstrap confidence interval is analogous to the confidence
+interval from the LMM, but makes no assumptions about normality,
+homoscedasticity, or the shape of the error distribution. When both
+methods agree — as they do in this analysis — confidence in the
+findings is strengthened, because the conclusions do not depend on
+any single set of statistical assumptions.
+
+
 10. Research Questions
 ----------------------
 
@@ -350,6 +410,9 @@ for the within-type comparisons (Q2 and Q3).
 12. References
 --------------
 
+Efron, B. and Tibshirani, R. J. (1993). An Introduction to the
+Bootstrap. Chapman and Hall/CRC.
+
 Koehn, P. (2004). Statistical Significance Tests for Machine
 Translation Evaluation. In Proceedings of the 2004 Conference on
 Empirical Methods in Natural Language Processing, pages 388-395.
@@ -377,4 +440,7 @@ Zoph, B. and Knight, K. (2016). Multi-Source Neural Translation. In
 Proceedings of the 2016 Conference of the North American Chapter of the
 Association for Computational Linguistics: Human Language Technologies,
 pages 30-34. Association for Computational Linguistics.
+
+---
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 
