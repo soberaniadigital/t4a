@@ -1,84 +1,84 @@
-original,translated,reference,context_languages,strategy,comet,chrf,bleu,ter,bertscore
-invalid argument %s for %s,o argumento '%s' para %s não é válido,argumento inválido para %s: %s,"ID,DE",LLAMA,80.41661381721497,51.16883135116067,15.851165692617148,100.0,79.23716306686401
-ambiguous argument %s for %s,argumento %s para %s é ambíguo,argumento ambíguo %s para %s,"ID,DE",LLAMA,92.82330870628357,79.17853055133047,56.234132519034915,40.0,91.19064211845398
-Valid arguments are:,Argumentos válidos são:,Argumentos válidos são:,"ID,DE",LLAMA,99.36556220054626,100.0,100.00000000000004,0.0,100.0
-regular empty file,conjunto de dados vazio,arquivo comum vazio,"ID,DE",LLAMA,89.29869532585144,19.81667091047207,15.97357760615681,100.0,74.34540390968323
-regular file,arquivo regular,arquivo comum,"ID,DE",LLAMA,88.75275254249573,40.10318686471661,49.99999999999999,50.0,92.16135144233704
-directory,diretório,diretório,"ID,DE",LLAMA,98.74996542930603,100.0,100.00000000000004,0.0,99.99997019767761
-symbolic link,simbolica associação tautológica,link simbólico,"ID,DE",LLAMA,55.556267499923706,15.987783860959542,0.0,100.0,73.14286828041077
-message queue,fila de mensagens do antrãni,fila de mensagem,"ID,DE",LLAMA,70.42748928070068,70.70963101863566,21.3643503198117,100.0,83.72837901115417
-semaphore,semafor,semáforo,"ID,DE",LLAMA,91.90604090690613,24.319684583790227,0.0,100.0,82.66353607177734
-shared memory object,objeto de memória associado,objeto em memória compartilhada,"ID,DE",LLAMA,78.7726104259491,34.12763716809461,18.99589214128981,50.0,84.99959707260132
-typed memory object,tipo de objeto em memória,objeto de memória tipificada,"ID,DE",LLAMA,77.70159244537354,42.39669384268737,14.058533129758727,100.0,83.74801278114319
-block special file,conjunto especial de blocos para arquivos,arquivo especial de bloco,"ID,DE",LLAMA,85.63201427459717,68.89845831686563,16.233395773754953,100.0,81.89266324043274
-character special file,conjunto de caracteres especiais,arquivo especial de caractere,"ID,DE",LLAMA,81.45223259925842,44.44373281011771,15.97357760615681,100.0,74.75275993347168
-contiguous data,dados sequenciais,dados contíguos,"ID,DE",LLAMA,77.605801820755,24.23055771016755,49.99999999999999,50.0,81.2840461730957
-fifo,FIFO,fifo,"ID,DE",LLAMA,87.90188431739807,0.0,0.0,0.0,77.31239795684814
-door,porta,porta,"ID,DE",LLAMA,98.45395088195801,100.0,100.00000000000004,0.0,100.00004768371582
-multiplexed block special file,bloco especial de arquivo multiplamente indexado,arquivo multiplexado especial de bloco,"ID,DE",LLAMA,81.18691444396973,67.91302307421127,19.304869754804482,80.0,82.92632699012756
-multiplexed character special file,arquivo especial de caracteres especiais multilíngue,arquivo multiplexado especial de caractere,"ID,DE",LLAMA,76.74686908721924,60.02579385043612,17.965205598154213,80.0,81.7647933959961
-multiplexed file,Arquivo de múltiplas datas,arquivo multiplexado,"ID,DE",LLAMA,53.36971879005432,27.94039537609972,0.0,100.0,74.42722916603088
-named file,capa de arquivo,arquivo nomeado,"ID,DE",LLAMA,66.83099865913391,39.33621349870472,27.516060407455225,100.0,79.16762828826904
-network special file,arquivo especial de rede,arquivo especial de rede,"ID,DE",LLAMA,98.93332123756409,100.0,100.00000000000004,0.0,99.99997019767761
-migrated file with data,arquivo termigravado com dados,arquivo migrado com dados,"ID,DE",LLAMA,76.9146978855133,68.62402040004402,35.35533905932737,25.0,91.25425219535828
-migrated file without data,ficheiro termigradado sem data,arquivo migrado sem dados,"ID,DE",LLAMA,55.07557988166809,38.765681027781,15.97357760615681,75.0,80.85901737213135
-port,porta,porta,"ID,DE",LLAMA,98.39173555374146,100.0,100.00000000000004,0.0,100.00004768371582
-socket,soquete,soquete,"ID,DE",LLAMA,98.11131954193115,100.0,100.00000000000004,0.0,100.0
-whiteout,desenvolvimento em branco,whiteout,"ID,DE",LLAMA,54.55318093299866,5.194805194805194,0.0,100.0,78.91062498092651
-weird file,arquivo desconhecido,arquivo estranho,"ID,DE",LLAMA,85.47058701515198,36.500605694385186,49.99999999999999,50.0,78.59992980957031
-program error,Erro do programa,erro do programa,"ID,DE",LLAMA,71.86307311058044,82.91201853701854,55.03212081491043,0.0,94.65303421020508
-stack overflow,stack de pilha,estouro de pilha,"ID,DE",LLAMA,63.338977098464966,46.7735096132452,55.03212081491043,33.33333333333333,90.04178047180176
-Try '%s --help' for more information.,Coba '%s --help' para mais informações.,"Tente ""%s --help"" para mais informações.","ID,DE",LLAMA,95.30158638954163,67.71932505235715,31.76215203205584,50.0,87.63776421546936
-Unknown system error,Erro não reconhecido no sistema,Erro desconhecido de sistema,"ID,DE",LLAMA,87.03323006629944,46.97988561884552,12.703318703865365,75.0,89.78915810585022
+original,translated,reference,context_languages,strategy,bleu
+invalid argument %s for %s,o argumento '%s' para %s não é válido,argumento inválido para %s: %s,"ID,DE",LLAMA,15.851165692617148
+ambiguous argument %s for %s,argumento %s para %s é ambíguo,argumento ambíguo %s para %s,"ID,DE",LLAMA,56.234132519034915
+Valid arguments are:,Argumentos válidos são:,Argumentos válidos são:,"ID,DE",LLAMA,100.00000000000004
+regular empty file,conjunto de dados vazio,arquivo comum vazio,"ID,DE",LLAMA,15.97357760615681
+regular file,arquivo regular,arquivo comum,"ID,DE",LLAMA,49.99999999999999
+directory,diretório,diretório,"ID,DE",LLAMA,100.00000000000004
+symbolic link,simbolica associação tautológica,link simbólico,"ID,DE",LLAMA,0.0
+message queue,fila de mensagens do antrãni,fila de mensagem,"ID,DE",LLAMA,21.3643503198117
+semaphore,semafor,semáforo,"ID,DE",LLAMA,0.0
+shared memory object,objeto de memória associado,objeto em memória compartilhada,"ID,DE",LLAMA,18.99589214128981
+typed memory object,tipo de objeto em memória,objeto de memória tipificada,"ID,DE",LLAMA,14.058533129758727
+block special file,conjunto especial de blocos para arquivos,arquivo especial de bloco,"ID,DE",LLAMA,16.233395773754953
+character special file,conjunto de caracteres especiais,arquivo especial de caractere,"ID,DE",LLAMA,15.97357760615681
+contiguous data,dados sequenciais,dados contíguos,"ID,DE",LLAMA,49.99999999999999
+fifo,FIFO,fifo,"ID,DE",LLAMA,0.0
+door,porta,porta,"ID,DE",LLAMA,100.00000000000004
+multiplexed block special file,bloco especial de arquivo multiplamente indexado,arquivo multiplexado especial de bloco,"ID,DE",LLAMA,19.304869754804482
+multiplexed character special file,arquivo especial de caracteres especiais multilíngue,arquivo multiplexado especial de caractere,"ID,DE",LLAMA,17.965205598154213
+multiplexed file,Arquivo de múltiplas datas,arquivo multiplexado,"ID,DE",LLAMA,0.0
+named file,capa de arquivo,arquivo nomeado,"ID,DE",LLAMA,27.516060407455225
+network special file,arquivo especial de rede,arquivo especial de rede,"ID,DE",LLAMA,100.00000000000004
+migrated file with data,arquivo termigravado com dados,arquivo migrado com dados,"ID,DE",LLAMA,35.35533905932737
+migrated file without data,ficheiro termigradado sem data,arquivo migrado sem dados,"ID,DE",LLAMA,15.97357760615681
+port,porta,porta,"ID,DE",LLAMA,100.00000000000004
+socket,soquete,soquete,"ID,DE",LLAMA,100.00000000000004
+whiteout,desenvolvimento em branco,whiteout,"ID,DE",LLAMA,0.0
+weird file,arquivo desconhecido,arquivo estranho,"ID,DE",LLAMA,49.99999999999999
+program error,Erro do programa,erro do programa,"ID,DE",LLAMA,55.03212081491043
+stack overflow,stack de pilha,estouro de pilha,"ID,DE",LLAMA,55.03212081491043
+Try '%s --help' for more information.,Coba '%s --help' para mais informações.,"Tente ""%s --help"" para mais informações.","ID,DE",LLAMA,31.76215203205584
+Unknown system error,Erro não reconhecido no sistema,Erro desconhecido de sistema,"ID,DE",LLAMA,12.703318703865365
 "%s: option '%s%s' is ambiguous
 ",%s: opção '%s%s' é ambígua,"%s: a opção ""%s%s"" é ambígua
-","ID,DE",LLAMA,95.28328776359558,49.53354391213163,22.890706658304286,33.33333333333333,86.54462099075317
-%s: option '%s%s' is ambiguous; possibilities:,%s: opção '%s%s' ambígua; possibilidades:,"%s: a opção ""%s%s"" é ambígua; possibilidades:","ID,DE",LLAMA,93.56788396835327,66.36073013259269,29.059394092519575,42.857142857142854,85.91348528862
+","ID,DE",LLAMA,22.890706658304286
+%s: option '%s%s' is ambiguous; possibilities:,%s: opção '%s%s' ambígua; possibilidades:,"%s: a opção ""%s%s"" é ambígua; possibilidades:","ID,DE",LLAMA,29.059394092519575
 "%s: unrecognized option '%s%s'
 ",%s: pilihan tidak dikenal '%s%s',"%s: opção desconhecida ""%s%s""
-","ID,DE",LLAMA,87.85931468009949,19.572603387717745,23.462350320527996,100.0,84.73360538482666
+","ID,DE",LLAMA,23.462350320527996
 "%s: option '%s%s' doesn't allow an argument
 ","%s: pilihan '%s%s' não permite argumento
 ","%s: a opção ""%s%s"" não permite argumento
-","ID,DE",LLAMA,90.03222584724426,57.616679946182195,24.323985223235592,42.857142857142854,82.20736980438232
+","ID,DE",LLAMA,24.323985223235592
 "%s: option '%s%s' requires an argument
 ","%s: opção '%s%s' requer um argumento. 
 ","%s: a opção ""%s%s"" exige um argumento
-","ID,DE",LLAMA,95.42199969291687,45.7873711291767,20.953980708003318,57.14285714285714,91.26047492027283
+","ID,DE",LLAMA,20.953980708003318
 "%s: invalid option -- '%c'
 ",%s: opção -- '%c' inválida,"%s: opção inválida -- ""%c""
-","ID,DE",LLAMA,94.87003684043884,59.6658563744477,30.719343730842187,40.0,90.695059299469
+","ID,DE",LLAMA,30.719343730842187
 "%s: option requires an argument -- '%c'
 ","%s: pilihan -- '%c' membutuhkan sebuah argumen
 ","%s: a opção exige um argumento -- ""%c""
-","ID,DE",LLAMA,80.64921498298645,25.93125137003115,13.215955651112736,87.5,82.29535222053528
-`,ID,“,"ID,DE",LLAMA,73.45160841941833,0.0,0.0,100.0,78.16147208213806
-',ID,”,"ID,DE",LLAMA,72.05376029014587,0.0,0.0,100.0,78.16147208213806
-Success,Sucesso,Sucesso,"ID,DE",LLAMA,99.38357472419739,100.0,100.00000000000004,0.0,99.99999403953552
-No match,Não é adequado.,Nenhuma ocorrência do padrão,"ID,DE",LLAMA,64.0748679637909,8.45313099027501,0.0,100.0,69.79118585586548
-Invalid regular expression,Expressão regular não é válida.,Expressão regular inválida,"ID,DE",LLAMA,79.26669716835022,70.20634957443733,16.233395773754953,100.0,81.55887126922607
-Invalid collation character,Caracter de identificação inválido.,caractere de combinação inválido,"ID,DE",LLAMA,77.95887589454651,47.67337827895261,12.703318703865365,75.0,84.31174755096436
-Invalid character class name,Nome da classe caracter não é válido.,Nome inválido da classe de caracteres,"ID,DE",LLAMA,80.5993378162384,51.811821188416076,12.22307556087252,83.33333333333334,78.31587195396423
-Trailing backslash,Akhiran backslash,Barra invertida no final,"ID,DE",LLAMA,46.87181115150452,5.690823108384457,0.0,100.0,67.79927015304565
-Invalid back reference,Referência de volta inválida.,Retrorreferência inválida,"ID,DE",LLAMA,82.43496417999268,51.29894245076477,10.682175159905848,100.0,82.61861205101013
-"Unmatched [, [^, [:, [., or [=","ID ou DE, atau [= sem pasangan.","[, [^, [:, [. ou [= sem correspondente","ID,DE",LLAMA,48.0315625667572,21.390603244047337,11.266342182414927,75.0,73.4804093837738
-Unmatched ( or \(,( ou ( sem parângente),( ou \( sem correspondente,"ID,DE",LLAMA,72.00863361358643,31.217903314826266,22.957488466614336,40.0,81.42821788787842
-Unmatched \{,sem parceiro,\{ sem correspondente,"ID,DE",LLAMA,63.81606459617615,12.27911231344217,18.393972058572114,66.66666666666666,71.88571691513062
-Invalid content of \{\},O conteúdo dentro de \{\} não é válido.,Conteúdo inválido de \{\},"ID,DE",LLAMA,81.27602934837341,55.087235771190755,31.702331385234313,100.0,75.8148729801178
-Invalid range end,O Akhir rentang não é válido.,Fim do intervalo inválido,"ID,DE",LLAMA,48.71131777763367,17.778372962713043,0.0,100.0,66.58703088760376
-Memory exhausted,Falta de memória,Memória esgotada,"ID,DE",LLAMA,70.17696499824524,27.28264722553007,0.0,100.0,74.85833764076233
-Invalid preceding regular expression,Expressão regular que impede a validação inválida.,A expressão regular precedente é inválida,"ID,DE",LLAMA,56.224507093429565,44.80340825936119,6.567274736060395,83.33333333333334,73.40621948242188
-Premature end of regular expression,Expressão regular termina prematuramente.,Fim prematuro da expressão regular,"ID,DE",LLAMA,80.39291501045227,50.144838355100006,10.682175159905848,80.0,69.72923874855042
-Regular expression too big,Expressão regular é muito grande.,Expressão regular grande demais,"ID,DE",LLAMA,82.99676179885864,62.523892367494526,17.965205598154213,75.0,85.83534359931946
-Unmatched ) or \),"ou sem parênteses ("") ou without parentheses",) ou \) sem correspondente,"ID,DE",LLAMA,45.94040513038635,23.98055304706074,10.552670315936318,100.0,69.92628574371338
-No previous regular expression,Não há expressões regulares prévias.,Nenhuma expressão regular anterior,"ID,DE",LLAMA,74.29410219192505,27.088225255301634,0.0,100.0,74.35640096664429
+","ID,DE",LLAMA,13.215955651112736
+`,ID,“,"ID,DE",LLAMA,0.0
+',ID,”,"ID,DE",LLAMA,0.0
+Success,Sucesso,Sucesso,"ID,DE",LLAMA,100.00000000000004
+No match,Não é adequado.,Nenhuma ocorrência do padrão,"ID,DE",LLAMA,0.0
+Invalid regular expression,Expressão regular não é válida.,Expressão regular inválida,"ID,DE",LLAMA,16.233395773754953
+Invalid collation character,Caracter de identificação inválido.,caractere de combinação inválido,"ID,DE",LLAMA,12.703318703865365
+Invalid character class name,Nome da classe caracter não é válido.,Nome inválido da classe de caracteres,"ID,DE",LLAMA,12.22307556087252
+Trailing backslash,Akhiran backslash,Barra invertida no final,"ID,DE",LLAMA,0.0
+Invalid back reference,Referência de volta inválida.,Retrorreferência inválida,"ID,DE",LLAMA,10.682175159905848
+"Unmatched [, [^, [:, [., or [=","ID ou DE, atau [= sem pasangan.","[, [^, [:, [. ou [= sem correspondente","ID,DE",LLAMA,11.266342182414927
+Unmatched ( or \(,( ou ( sem parângente),( ou \( sem correspondente,"ID,DE",LLAMA,22.957488466614336
+Unmatched \{,sem parceiro,\{ sem correspondente,"ID,DE",LLAMA,18.393972058572114
+Invalid content of \{\},O conteúdo dentro de \{\} não é válido.,Conteúdo inválido de \{\},"ID,DE",LLAMA,31.702331385234313
+Invalid range end,O Akhir rentang não é válido.,Fim do intervalo inválido,"ID,DE",LLAMA,0.0
+Memory exhausted,Falta de memória,Memória esgotada,"ID,DE",LLAMA,0.0
+Invalid preceding regular expression,Expressão regular que impede a validação inválida.,A expressão regular precedente é inválida,"ID,DE",LLAMA,6.567274736060395
+Premature end of regular expression,Expressão regular termina prematuramente.,Fim prematuro da expressão regular,"ID,DE",LLAMA,10.682175159905848
+Regular expression too big,Expressão regular é muito grande.,Expressão regular grande demais,"ID,DE",LLAMA,17.965205598154213
+Unmatched ) or \),"ou sem parênteses ("") ou without parentheses",) ou \) sem correspondente,"ID,DE",LLAMA,10.552670315936318
+No previous regular expression,Não há expressões regulares prévias.,Nenhuma expressão regular anterior,"ID,DE",LLAMA,0.0
 "Packaged by %s (%s)
 ",Dipaketkan oleh %s (%s),"Empacotado por %s (%s)
-","ID,DE",LLAMA,73.45588207244873,34.866959969710024,68.037493331712,50.0,90.33644199371338
+","ID,DE",LLAMA,68.037493331712
 "Packaged by %s
 ",Pacote enviado por %s,"Empacotado por %s
-","ID,DE",LLAMA,67.72825121879578,56.083173659222254,39.76353643835252,66.66666666666666,85.599684715271
-(C),(C),(C),"ID,DE",LLAMA,99.15798902511597,100.0,100.00000000000004,0.0,100.0
+","ID,DE",LLAMA,39.76353643835252
+(C),(C),(C),"ID,DE",LLAMA,100.00000000000004
 "License GPLv3+: GNU GPL version 3 or later <%s>.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
@@ -87,38 +87,38 @@ Este é um software livre: você está autorizado a modificá-lo e distribuí-lo
 Não há garantia, salvo por lei.","Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>.
 Este é um software livre: você é livre para alterá-lo e redistribuí-lo.
 NÃO HÁ QUALQUER GARANTIA, na máxima extensão permitida em lei.
-","ID,DE",LLAMA,83.09260606765747,52.020882473617,45.684813427425105,41.935483870967744,84.91707444190979
+","ID,DE",LLAMA,45.684813427425105
 "Written by %s.
 ",Ditulis oleh %s.,"Escrito por %s.
-","ID,DE",LLAMA,93.57377290725708,21.240498449516135,39.76353643835252,66.66666666666666,89.56480026245117
+","ID,DE",LLAMA,39.76353643835252
 "Written by %s and %s.
 ",Ditulis oleh %s dan %s.,"Escrito por %s e %s.
-","ID,DE",LLAMA,90.66513180732727,22.93105534391604,25.848657697858535,60.0,91.77953004837036
+","ID,DE",LLAMA,25.848657697858535
 "Written by %s, %s, and %s.
 ","Ditulis oleh %s, %s e dan %s.","Escrito por %s, %s e %s.
-","ID,DE",LLAMA,90.20863175392151,38.84555745309212,53.107253497886994,50.0,89.24731016159058
+","ID,DE",LLAMA,53.107253497886994
 "Written by %s, %s, %s,
 and %s.
 ","Ditulis oleh %s, %s, %s, dan %s. 
 ","Escrito por %s, %s, %s
 e %s.
-","ID,DE",LLAMA,92.79335141181946,38.50059523917228,57.02822264405544,57.14285714285714,92.61909127235413
+","ID,DE",LLAMA,57.02822264405544
 "Written by %s, %s, %s,
 %s, and %s.
 ","Ditulis oleh %s, %s, %s, %d, dan %d. 
 ","Escrito por %s, %s, %s
 %s e %s.
-","ID,DE",LLAMA,89.74411487579346,31.46530386673524,42.11335370528481,75.0,91.26718640327454
+","ID,DE",LLAMA,42.11335370528481
 "Written by %s, %s, %s,
 %s, %s, and %s.
 ","Ditulis oleh %s, %s, %s, %d, %d e dan %d.","Escrito por %s, %s, %s
 %s, %s e %s.
-","ID,DE",LLAMA,85.64278483390808,35.04623559153774,45.29852871970909,77.77777777777779,90.56161642074585
+","ID,DE",LLAMA,45.29852871970909
 "Written by %s, %s, %s,
 %s, %s, %s, and %s.
 ","Ditulis oleh %s, %s, %s, %d, %d, %d e dan %d.","Escrito por %s, %s, %s
 %s, %s, %s e %s.
-","ID,DE",LLAMA,85.38454174995422,36.315489974204944,43.29440137460168,80.0,90.39546251296997
+","ID,DE",LLAMA,43.29440137460168
 "Written by %s, %s, %s,
 %s, %s, %s, %s,
 and %s.
@@ -128,7 +128,7 @@ and %s.
 ","Escrito por %s, %s, %s
 %s, %s, %s, %s
 e %s.
-","ID,DE",LLAMA,89.33526277542114,34.840638921156206,38.69268249993604,81.81818181818183,91.07398986816406
+","ID,DE",LLAMA,38.69268249993604
 "Written by %s, %s, %s,
 %s, %s, %s, %s,
 %s, and %s.
@@ -138,7 +138,7 @@ e %s.
 ","Escrito por %s, %s, %s
 %s, %s, %s, %s
 %s e %s.
-","ID,DE",LLAMA,84.85918045043945,30.606644067785222,36.033217429111204,83.33333333333334,89.83801007270813
+","ID,DE",LLAMA,36.033217429111204
 "Written by %s, %s, %s,
 %s, %s, %s, %s,
 %s, %s, and others.
@@ -147,181 +147,181 @@ e %s.
 %d, %d e outros.","Escrito por %s, %s, %s
 %s, %s, %s, %s,
 %s, %s e outros.
-","ID,DE",LLAMA,87.3162031173706,40.993600354982156,40.73370162765063,69.23076923076923,92.06215143203735
+","ID,DE",LLAMA,40.73370162765063
 "Report bugs to: %s
 ",Laporkan kutu ke: %s,"Relate erros para: %s
 Relate erros de tradução para <http://translationproject.org/team/pt_BR.html>
-","ID,DE",LLAMA,47.71914780139923,8.522460700906702,0.7723098754885949,90.0,63.73857259750366
+","ID,DE",LLAMA,0.7723098754885949
 "Report %s bugs to: %s
 ",Laporkan kutu %s ke: %s,"Relate os erros do %s para: %s
-","ID,DE",LLAMA,75.85468292236328,19.692757102815182,20.130954856436926,71.42857142857143,71.35412096977234
+","ID,DE",LLAMA,20.130954856436926
 "%s home page: <%s>
 ",%s halaman rumah: <%s>.,"Página do %s: <%s>
-","ID,DE",LLAMA,85.87090969085693,18.867780471738147,45.180100180492246,100.0,85.52678227424622
+","ID,DE",LLAMA,45.180100180492246
 "General help using GNU software: <%s>
 ",Bantuan umum menggunakan perangkat lunak GNU: <%s>,"Ajuda em geral no uso de software GNU: <%s>
-","ID,DE",LLAMA,91.19604229927063,26.16261368366465,38.49742634318482,77.77777777777779,85.89317202568054
-memory exhausted,identificador de memória,memória esgotada,"ID,DE",LLAMA,67.68931746482849,33.81144377841749,27.516060407455225,100.0,76.07848048210144
-stdin,entrada padrão,entrada padrão (stdin),"ID,DE",LLAMA,80.85261583328247,60.56139623226653,22.31301601484299,33.33333333333333,87.039315700531
-stdout,saída padrão,saída padrão (stdout),"ID,DE",LLAMA,76.01630091667175,54.22424772329658,22.31301601484299,33.33333333333333,84.25339460372925
-stderr,fluxo de erro padrão (stderr),erro padrão (stderr),"ID,DE",LLAMA,85.03500819206238,91.16654972803967,61.47881529512643,66.66666666666666,89.18724060058594
-unknown stream,fluxo não reconhecido,fluxo desconhecido,"ID,DE",LLAMA,88.94979357719421,50.36507002850791,27.516060407455225,100.0,92.29035973548889
-failed to reopen %s with mode %s,falha ao reabrir o arquivo %s com modo %s,falha ao reabrir %s com modo %s,"ID,DE",LLAMA,83.36672782897949,84.2120819645488,58.77283725105324,28.57142857142857,93.30514669418335
+","ID,DE",LLAMA,38.49742634318482
+memory exhausted,identificador de memória,memória esgotada,"ID,DE",LLAMA,27.516060407455225
+stdin,entrada padrão,entrada padrão (stdin),"ID,DE",LLAMA,22.31301601484299
+stdout,saída padrão,saída padrão (stdout),"ID,DE",LLAMA,22.31301601484299
+stderr,fluxo de erro padrão (stderr),erro padrão (stderr),"ID,DE",LLAMA,61.47881529512643
+unknown stream,fluxo não reconhecido,fluxo desconhecido,"ID,DE",LLAMA,27.516060407455225
+failed to reopen %s with mode %s,falha ao reabrir o arquivo %s com modo %s,falha ao reabrir %s com modo %s,"ID,DE",LLAMA,58.77283725105324
 "Files %s and %s differ
 ",Berkas %s dan %s berbeda.,"Os arquivos %s e %s são diferentes
-","ID,DE",LLAMA,76.58495903015137,17.474777427869803,13.784336590962209,71.42857142857143,84.52157378196716
+","ID,DE",LLAMA,13.784336590962209
 "Binary files %s and %s differ
 ",Berkas biner %s dan %s berbeda.,"Os arquivos binários %s e %s são diferentes
-","ID,DE",LLAMA,75.03887414932251,18.04795532818709,12.067008283523638,75.0,83.31673741340637
-No newline at end of file,Não há linhas adicionais no final do arquivo.,Nenhum caractere de nova linha no final do arquivo,"ID,DE",LLAMA,82.27676749229431,43.45891970848441,29.84745896009822,66.66666666666666,80.0239622592926
-Torbjorn Granlund,Torbjörn Granlund,Torbjorn Granlund,"ID,DE",LLAMA,95.60715556144714,60.2508429070929,49.99999999999999,50.0,92.68086552619934
-David MacKenzie,David MacKenzie,David MacKenzie,"ID,DE",LLAMA,99.05179738998413,100.0,100.00000000000004,0.0,100.00002384185791
-invalid --ignore-initial value %s,nilai %s --ignore-initial não é válido,valor inválido --ignore-initial %s,"ID,DE",LLAMA,80.42819499969482,59.48303549671584,14.535768424205482,100.0,76.31410956382751
-options -l and -s are incompatible,A opção '-l' e a opção '-s' não são compatíveis.,as opções -l e -s são incompatíveis,"ID,DE",LLAMA,80.97087740898132,33.33630253062761,4.456882760699063,100.0,81.42843246459961
-write failed,erro de digitação.,erro de escrita,"ID,DE",LLAMA,88.06874752044678,41.72446770742609,31.947155212313625,33.33333333333333,83.73270034790039
-standard output,standar keluaran,saída padrão,"ID,DE",LLAMA,84.42321419715881,7.513468445356593,0.0,100.0,81.59172534942627
-"-b, --print-bytes          print differing bytes","-b, --print-bytes          tampilhar bytes diferentes.","-b, --print-bytes          imprime os bytes diferentes","ID,DE",LLAMA,80.18801212310791,69.60367478211198,30.739407647563215,50.0,89.96583819389343
-"-i, --ignore-initial=SKIP         skip first SKIP bytes of both inputs","-i, --ignore-initial=SKIP         leva SKIP bytes iniciais dos dois dados de entrada.","-i, --ignore-initial=SALTO        ignora os primeiros SALTO bytes da entrada","ID,DE",LLAMA,77.92782187461853,43.48664223364307,18.20705281109213,100.0,85.57928800582886
+","ID,DE",LLAMA,12.067008283523638
+No newline at end of file,Não há linhas adicionais no final do arquivo.,Nenhum caractere de nova linha no final do arquivo,"ID,DE",LLAMA,29.84745896009822
+Torbjorn Granlund,Torbjörn Granlund,Torbjorn Granlund,"ID,DE",LLAMA,49.99999999999999
+David MacKenzie,David MacKenzie,David MacKenzie,"ID,DE",LLAMA,100.00000000000004
+invalid --ignore-initial value %s,nilai %s --ignore-initial não é válido,valor inválido --ignore-initial %s,"ID,DE",LLAMA,14.535768424205482
+options -l and -s are incompatible,A opção '-l' e a opção '-s' não são compatíveis.,as opções -l e -s são incompatíveis,"ID,DE",LLAMA,4.456882760699063
+write failed,erro de digitação.,erro de escrita,"ID,DE",LLAMA,31.947155212313625
+standard output,standar keluaran,saída padrão,"ID,DE",LLAMA,0.0
+"-b, --print-bytes          print differing bytes","-b, --print-bytes          tampilhar bytes diferentes.","-b, --print-bytes          imprime os bytes diferentes","ID,DE",LLAMA,30.739407647563215
+"-i, --ignore-initial=SKIP         skip first SKIP bytes of both inputs","-i, --ignore-initial=SKIP         leva SKIP bytes iniciais dos dois dados de entrada.","-i, --ignore-initial=SALTO        ignora os primeiros SALTO bytes da entrada","ID,DE",LLAMA,18.20705281109213
 "-i, --ignore-initial=SKIP1:SKIP2  skip first SKIP1 bytes of FILE1 and
                                       first SKIP2 bytes of FILE2","-i, --ignore-initial=SKIP1:%d:SKIP2
          Ignorar os primeiros %<PRIuMAX> bytes de FILE1 e dos primeiros %<PRIuMAX> bytes de FILE2.","-i, --ignore-initial=SALTO1:SALTO2
                                   ignora os primeiros SALTO1 bytes do ARQUIVO1
-                                    e os primeiros SALTO2 bytes do ARQUIVO2","ID,DE",LLAMA,69.75405216217041,43.19946618169635,10.389889377420037,56.25,79.3622076511383
+                                    e os primeiros SALTO2 bytes do ARQUIVO2","ID,DE",LLAMA,10.389889377420037
 "-l, --verbose              output byte numbers and differing byte values","-l --verbose              imprime todos os bytes e seus valores, incluindo aqueles que são diferentes.","-l, --verbose              emite os números de bytes e os valores de
-                             todos os bytes diferentes","ID,DE",LLAMA,73.0804979801178,48.34924807938392,13.259061490238889,80.0,85.46981811523438
-"-n, --bytes=LIMIT          compare at most LIMIT bytes","-n, --bytes=LIMIT          bandar o maior LIMIT byte.","-n, --bytes=LIMITE         compara no máximo LIMITE bytes","ID,DE",LLAMA,78.91311645507812,43.67911357904522,23.462350320528007,85.71428571428571,86.59998774528503
+                             todos os bytes diferentes","ID,DE",LLAMA,13.259061490238889
+"-n, --bytes=LIMIT          compare at most LIMIT bytes","-n, --bytes=LIMIT          bandar o maior LIMIT byte.","-n, --bytes=LIMITE         compara no máximo LIMITE bytes","ID,DE",LLAMA,23.462350320528007
 "-s, --quiet, --silent      suppress all normal output","-s --quiet, --silent      cegah todas as saídas normais
-","-s, --quiet, --silent      suprime todas saídas normais","ID,DE",LLAMA,81.00671768188477,66.06935602241352,24.274588585366175,42.857142857142854,87.81972527503967
-    --help                 display this help and exit,    --help                 mostrar ajuda deste e encerrar.,    --help                 mostra esta ajuda e sai,"ID,DE",LLAMA,60.35914421081543,49.60701267194976,8.643019616048525,66.66666666666666,80.21948337554932
-"-v, --version              output version information and exit","-v, --version              Mostrar informações de versão e sair.","-v, --version              mostra informação sobre a versão e sai","ID,DE",LLAMA,84.22608971595764,57.41836598597092,19.64073254502565,55.55555555555556,87.42187023162842
+","-s, --quiet, --silent      suprime todas saídas normais","ID,DE",LLAMA,24.274588585366175
+    --help                 display this help and exit,    --help                 mostrar ajuda deste e encerrar.,    --help                 mostra esta ajuda e sai,"ID,DE",LLAMA,8.643019616048525
+"-v, --version              output version information and exit","-v, --version              Mostrar informações de versão e sair.","-v, --version              mostra informação sobre a versão e sai","ID,DE",LLAMA,19.64073254502565
 "Usage: %s [OPTION]... FILE1 [FILE2 [SKIP1 [SKIP2]]]
 ",Penggunaan: %s [PILIHAN]... BERKAS1 [BERKAS2 [SKIP1 [SKIP2]]],"Uso: %s [OPÇÃO]... ARQUIVO1 [ARQUIVO2 [SALTO1 [SALTO2]]]
-","ID,DE",LLAMA,78.31383347511292,22.252260925933236,31.327681146619366,85.71428571428571,88.15990090370178
-Compare two files byte by byte.,Bandingkan dua berkas byte per byte.,Compara dois arquivos byte por byte.,"ID,DE",LLAMA,81.45511150360107,28.208670783754208,14.535768424205482,66.66666666666666,85.34154295921326
+","ID,DE",LLAMA,31.327681146619366
+Compare two files byte by byte.,Bandingkan dua berkas byte per byte.,Compara dois arquivos byte por byte.,"ID,DE",LLAMA,14.535768424205482
 "The optional SKIP1 and SKIP2 specify the number of bytes to skip
 at the beginning of each file (zero by default).",SKIP1 dan SKIP2 adalah jumlah byte yang harus dilewati di awal setiap berkas (nilai baku adalah nol).,"Os argumentos opcionais SALTO1 e SALTO2 especificam o número de
-bytes para ignorar no começo de cada arquivo (zero por padrão).","ID,DE",LLAMA,69.76390480995178,9.19260844622649,3.4695461193621018,100.0,78.66413593292236
+bytes para ignorar no começo de cada arquivo (zero por padrão).","ID,DE",LLAMA,3.4695461193621018
 "Mandatory arguments to long options are mandatory for short options too.
 ",Os argumentos necessários para opções longas também são obrigatórios para as opções curtas.,"Argumentos obrigatórios para opções longas também o são para opções curtas.
-","ID,DE",LLAMA,92.28765368461609,75.80025166755506,29.420957081163703,45.45454545454545,90.2183473110199
+","ID,DE",LLAMA,29.420957081163703
 "SKIP values may be followed by the following multiplicative suffixes:
 kB 1000, K 1024, MB 1,000,000, M 1,048,576,
 GB 1,000,000,000, G 1,073,741,824, and so on for T, P, E, Z, Y.","Nilai SKIP dapat seringmente adotar os multiplicadores seguintes: kB 1000, K 1024, MB 1.000.000, M 1.048.576, GB 1.000.000.000, G 1.073.741.824 e assim por diante para T, P, E, Z, Y.","Os valores do SALTO podem ser seguidos por sufixos multiplicativos a seguir:
 kB 1000, K 1024, MB 1,000,000, M 1,048,576,
 GB 1,000,000,000, G 1,073,741,824,
-e assim por diante para T, P, E, Z, Y.","ID,DE",LLAMA,76.07106566429138,51.94962181871403,48.81656152012042,47.05882352941176,89.79663252830505
-"If a FILE is '-' or missing, read standard input.","Se o arquivo for '-' ou não existir, lê a entrada padrão.","Se ARQUIVO for igual a ""-"" ou for omitido, ler da entrada padrão.","ID,DE",LLAMA,74.32597279548645,34.114061117771456,10.903051505700674,61.53846153846154,80.61764240264893
-"Exit status is 0 if inputs are the same, 1 if different, 2 if trouble.","Status de saída é 0 se as entradas forem idênticas, 1 caso contrário e 2 em caso de erro.","Status de saída é 0 se as entradas forem iguais, 1 se diferente e 2 se problema.","ID,DE",LLAMA,85.96237301826477,58.10780624665553,44.980624668364484,41.17647058823529,88.68451118469238
-invalid --bytes value %s,nilai %s --byte não é um valor válido,valor inválido de --bytes %s,"ID,DE",LLAMA,72.5670576095581,41.277406358020365,10.552670315936318,100.0,74.42683577537537
-missing operand after %s,não há operando após %s,faltando operando após %s,"ID,DE",LLAMA,79.98104691505432,65.38594837454168,50.81327481546149,50.0,90.96258878707886
-extra operand %s,operando extra %s,operando extra %s,"ID,DE",LLAMA,98.58306050300598,100.0,100.00000000000004,0.0,99.99998807907104
+e assim por diante para T, P, E, Z, Y.","ID,DE",LLAMA,48.81656152012042
+"If a FILE is '-' or missing, read standard input.","Se o arquivo for '-' ou não existir, lê a entrada padrão.","Se ARQUIVO for igual a ""-"" ou for omitido, ler da entrada padrão.","ID,DE",LLAMA,10.903051505700674
+"Exit status is 0 if inputs are the same, 1 if different, 2 if trouble.","Status de saída é 0 se as entradas forem idênticas, 1 caso contrário e 2 em caso de erro.","Status de saída é 0 se as entradas forem iguais, 1 se diferente e 2 se problema.","ID,DE",LLAMA,44.980624668364484
+invalid --bytes value %s,nilai %s --byte não é um valor válido,valor inválido de --bytes %s,"ID,DE",LLAMA,10.552670315936318
+missing operand after %s,não há operando após %s,faltando operando após %s,"ID,DE",LLAMA,50.81327481546149
+extra operand %s,operando extra %s,operando extra %s,"ID,DE",LLAMA,100.00000000000004
 "%s %s differ: byte %<PRIdMAX>, line %<PRIdMAX>
 ","%s %s berbeda byte %<PRIdMAX>, linha %<PRIdMAX>","%s e %s são diferentes: byte %<PRIdMAX>, linha %<PRIdMAX>
-","ID,DE",LLAMA,77.41554379463196,65.20325151049181,61.18576264043317,33.33333333333333,88.98037075996399
+","ID,DE",LLAMA,61.18576264043317
 "%s %s differ: byte %<PRIdMAX>, line %<PRIdMAX> is %3o %s %3o %s
 ","%s %s berbeda: byte %<PRIdMAX>, baris %<PRIdMAX> adalah %3o %s %3o %s","%s e %s são diferentes: byte %<PRIdMAX>, linha %<PRIdMAX> é %3o %s %3o %s
-","ID,DE",LLAMA,88.82652521133423,58.11793598480575,57.62561149247233,35.714285714285715,93.86477470397949
+","ID,DE",LLAMA,57.62561149247233
 "cmp: EOF on %s which is empty
 ",cmp: EOF pada %s que está vazia.,"cmp: Fim de arquivo (EOF) em %s que está vazio
-","ID,DE",LLAMA,64.53784108161926,41.304456878521144,21.763141204756337,60.0,82.88862109184265
+","ID,DE",LLAMA,21.763141204756337
 "cmp: EOF on %s after byte %<PRIdMAX>
 ",cmp: EOF pada %s setelah byte %<PRIdMAX>,"cmp: Fim de arquivo (EOF) em %s após byte %<PRIdMAX>
-","ID,DE",LLAMA,77.64431834220886,40.92659867848445,27.505242667436654,60.0,89.73919749259949
+","ID,DE",LLAMA,27.505242667436654
 "cmp: EOF on %s after byte %<PRIdMAX>, line %<PRIdMAX>
 ","cmp: EOF pada %s setelah byte %<PRIdMAX>, linha %<PRIdMAX>","cmp: Fim de arquivo (EOF) em %s após byte %<PRIdMAX>, linha %<PRIdMAX>
-","ID,DE",LLAMA,78.484445810318,56.89893165957049,49.89280353629998,50.0,91.00508689880371
+","ID,DE",LLAMA,49.89280353629998
 "cmp: EOF on %s after byte %<PRIdMAX>, in line %<PRIdMAX>
 ","cmp: EOF pada %s sete após byte %<PRIdMAX>, na linha %<PRIdMAX>","cmp: Fim de arquivo (EOF) em %s após byte %<PRIdMAX>, na linha %<PRIdMAX>
-","ID,DE",LLAMA,77.9991090297699,64.7210515825752,57.208841644552194,46.15384615384615,90.90539216995239
-Paul Eggert,Paul Eggert,Paul Eggert,"ID,DE",LLAMA,98.89376163482666,100.0,100.00000000000004,0.0,99.99995231628418
-Mike Haertel,Mike Haertel,Mike Haertel,"ID,DE",LLAMA,99.20860528945923,100.0,100.00000000000004,0.0,99.99995231628418
-David Hayes,David Hayes,David Hayes,"ID,DE",LLAMA,98.90812039375305,100.0,100.00000000000004,0.0,100.00003576278687
-Richard Stallman,Richard Stallman,Richard Stallman,"ID,DE",LLAMA,99.33696389198303,100.0,100.00000000000004,0.0,100.0
-Len Tower,Len Tower,Len Tower,"ID,DE",LLAMA,99.01577830314636,100.0,100.00000000000004,0.0,99.99998807907104
-invalid context length %s,a panjang do contexto %s não é válido,o comprimento do contexto não é válido %s,"ID,DE",LLAMA,75.88469982147217,54.97877652165173,26.084743001221455,37.5,89.61554765701294
-pagination not supported on this host,paginasi não é suportada neste host.,sem suporte a paginação neste computador,"ID,DE",LLAMA,72.6822555065155,28.365822059819084,6.567274736060395,83.33333333333334,78.8594663143158
-too many file label options,existe muito mais opções de rótulo do que é necessário.,número excessivo de opções de rótulo de arquivo,"ID,DE",LLAMA,62.43794560432434,40.714125356933465,13.950796967929138,87.5,74.966961145401
-invalid width %s,o valor '%s' para o campo 'ID' não é válido.,largura inválida %s,"ID,DE",LLAMA,39.42336142063141,17.155481916078273,3.0890553181566975,100.0,66.0266101360321
-conflicting width options,opções de largura conflitantes,opções de largura conflitantes,"ID,DE",LLAMA,97.56914377212524,100.0,100.00000000000004,0.0,99.99996423721313
-invalid horizon length %s,a medida do horizonte %s não é válida,comprimento do horizonte inválido %s,"ID,DE",LLAMA,64.23421502113342,43.91942999584996,13.485111859503691,100.0,81.03158473968506
-invalid tabsize %s,ukuran tab %s não é válido,tamanho de tabulação inválido %s,"ID,DE",LLAMA,65.51803946495056,25.273713192967644,13.134549472120788,100.0,72.69709706306458
-conflicting tabsize options,conflicto de opções tabsize.,opções de tamanho de tabulação conflitantes,"ID,DE",LLAMA,52.99640893936157,25.315641257685545,10.400597689005304,83.33333333333334,73.16401600837708
---from-file and --to-file both specified,--from-file dan --to-file keduanya disebutkan,ambos --from-file e --to-file especificados,"ID,DE",LLAMA,91.94123148918152,44.40783808590126,12.703318703865365,80.0,85.78488826751709
-    --normal                  output a normal diff (the default),    --normal                  exibir diff normal (básico),    --normal                  cria um diff no formato normal (padrão),"ID,DE",LLAMA,67.20960736274719,36.263149531342215,10.759051250985632,62.5,81.49111866950989
+","ID,DE",LLAMA,57.208841644552194
+Paul Eggert,Paul Eggert,Paul Eggert,"ID,DE",LLAMA,100.00000000000004
+Mike Haertel,Mike Haertel,Mike Haertel,"ID,DE",LLAMA,100.00000000000004
+David Hayes,David Hayes,David Hayes,"ID,DE",LLAMA,100.00000000000004
+Richard Stallman,Richard Stallman,Richard Stallman,"ID,DE",LLAMA,100.00000000000004
+Len Tower,Len Tower,Len Tower,"ID,DE",LLAMA,100.00000000000004
+invalid context length %s,a panjang do contexto %s não é válido,o comprimento do contexto não é válido %s,"ID,DE",LLAMA,26.084743001221455
+pagination not supported on this host,paginasi não é suportada neste host.,sem suporte a paginação neste computador,"ID,DE",LLAMA,6.567274736060395
+too many file label options,existe muito mais opções de rótulo do que é necessário.,número excessivo de opções de rótulo de arquivo,"ID,DE",LLAMA,13.950796967929138
+invalid width %s,o valor '%s' para o campo 'ID' não é válido.,largura inválida %s,"ID,DE",LLAMA,3.0890553181566975
+conflicting width options,opções de largura conflitantes,opções de largura conflitantes,"ID,DE",LLAMA,100.00000000000004
+invalid horizon length %s,a medida do horizonte %s não é válida,comprimento do horizonte inválido %s,"ID,DE",LLAMA,13.485111859503691
+invalid tabsize %s,ukuran tab %s não é válido,tamanho de tabulação inválido %s,"ID,DE",LLAMA,13.134549472120788
+conflicting tabsize options,conflicto de opções tabsize.,opções de tamanho de tabulação conflitantes,"ID,DE",LLAMA,10.400597689005304
+--from-file and --to-file both specified,--from-file dan --to-file keduanya disebutkan,ambos --from-file e --to-file especificados,"ID,DE",LLAMA,12.703318703865365
+    --normal                  output a normal diff (the default),    --normal                  exibir diff normal (básico),    --normal                  cria um diff no formato normal (padrão),"ID,DE",LLAMA,10.759051250985632
 "-q, --brief                   report only when files differ","-q, --brief                   laporkan hanya ketika berkas berbeda
-","-q, --brief                   indica apenas se os arquivos forem diferentes","ID,DE",LLAMA,56.995171308517456,27.07054726584241,16.009559139455188,77.77777777777779,81.58569931983948
-"-s, --report-identical-files  report when two files are the same","-s, --report-identical_files   relatar quando duas pastas são idênticas.","-s, --report-identical-files  indica quando dois arquivos forem o idênticos","ID,DE",LLAMA,82.16130137443542,47.10528727159782,7.495553473355845,77.77777777777779,85.95097064971924
-"-c, -C NUM, --context[=NUM]   output NUM (default 3) lines of copied context","-c, -C NUM, --context[=NUM]   keluarkan NUM (baku 3) baris dari konteks yang disalin.","-c, -C NÚM, --context[=NÚM]   cria NÚM (padrão 3) linhas de contexto copiado","ID,DE",LLAMA,74.16177988052368,34.80241792605185,18.325671805686518,83.33333333333334,82.78428316116333
-"-u, -U NUM, --unified[=NUM]   output NUM (default 3) lines of unified context","-u, -U NUM, --unified[=NUM]   excluir %d (baku 3) linhas do contexto unificado.","-u, -U NÚM, --unified[=NÚM]   cria NÚM (padrão 3) linhas de contexto unificado","ID,DE",LLAMA,65.54048657417297,57.45913326717967,22.475693988901025,58.333333333333336,84.92265343666077
-"-e, --ed                      output an ed script","-e, --ed                      excluir um script ed.","-e, --ed                      cria um script para o editor ed","ID,DE",LLAMA,65.5734121799469,42.57358425959237,21.069764742263047,55.55555555555556,84.48064923286438
-"-n, --rcs                     output an RCS format diff","-n, --rcs                     keluaran RCS em diferença de versão do sistema (diff)","-n, --rcs                     cria um diff no formato RCS","ID,DE",LLAMA,64.26185965538025,34.52996048371895,12.011055432195764,100.0,83.55347514152527
-"-y, --side-by-side            output in two columns","-y, --side-by-side            keluaran dalam dua kolom","-y, --side-by-side            cria em duas colunas","ID,DE",LLAMA,71.35792374610901,52.496145857539545,24.446151121745054,66.66666666666666,90.11542797088623
-"-W, --width=NUM               output at most NUM (default 130) print columns","-W, --width=NUM               keluarkan paling banyak NUM (baku 130) kolom cetak.","-W, --width=NÚM               limita a saída a NÚM colunas por linha (padrão 130)","ID,DE",LLAMA,58.49093794822693,29.828083403274302,17.775955083125037,91.66666666666666,80.15961050987244
+","-q, --brief                   indica apenas se os arquivos forem diferentes","ID,DE",LLAMA,16.009559139455188
+"-s, --report-identical-files  report when two files are the same","-s, --report-identical_files   relatar quando duas pastas são idênticas.","-s, --report-identical-files  indica quando dois arquivos forem o idênticos","ID,DE",LLAMA,7.495553473355845
+"-c, -C NUM, --context[=NUM]   output NUM (default 3) lines of copied context","-c, -C NUM, --context[=NUM]   keluarkan NUM (baku 3) baris dari konteks yang disalin.","-c, -C NÚM, --context[=NÚM]   cria NÚM (padrão 3) linhas de contexto copiado","ID,DE",LLAMA,18.325671805686518
+"-u, -U NUM, --unified[=NUM]   output NUM (default 3) lines of unified context","-u, -U NUM, --unified[=NUM]   excluir %d (baku 3) linhas do contexto unificado.","-u, -U NÚM, --unified[=NÚM]   cria NÚM (padrão 3) linhas de contexto unificado","ID,DE",LLAMA,22.475693988901025
+"-e, --ed                      output an ed script","-e, --ed                      excluir um script ed.","-e, --ed                      cria um script para o editor ed","ID,DE",LLAMA,21.069764742263047
+"-n, --rcs                     output an RCS format diff","-n, --rcs                     keluaran RCS em diferença de versão do sistema (diff)","-n, --rcs                     cria um diff no formato RCS","ID,DE",LLAMA,12.011055432195764
+"-y, --side-by-side            output in two columns","-y, --side-by-side            keluaran dalam dua kolom","-y, --side-by-side            cria em duas colunas","ID,DE",LLAMA,24.446151121745054
+"-W, --width=NUM               output at most NUM (default 130) print columns","-W, --width=NUM               keluarkan paling banyak NUM (baku 130) kolom cetak.","-W, --width=NÚM               limita a saída a NÚM colunas por linha (padrão 130)","ID,DE",LLAMA,17.775955083125037
     --left-column             output only the left column of common lines,    --left-column             apenas exibe a coluna esquerda das linhas que são idênticas.,"    --left-column             emite apenas a coluna da esquerda das linhas
-                                idênticas","ID,DE",LLAMA,84.52553153038025,67.86129110969053,17.827531042796263,60.0,90.90176820755005
-    --suppress-common-lines   do not output common lines,    --suppress-common-lines   não mostre linhas comuns.,    --suppress-common-lines   não exibe as linhas idênticas,"ID,DE",LLAMA,81.95543885231018,57.84643420967426,17.965205598154213,50.0,88.67769837379456
-"-p, --show-c-function         show which C function each change is in","-p, --show-c-function         menitkan di dentro da função C para onde cada perda de dados irá","-p, --show-c-function         mostra em qual função C está cada alteração","ID,DE",LLAMA,61.520516872406006,47.40280467464603,11.980914528565991,100.0,85.14541387557983
+                                idênticas","ID,DE",LLAMA,17.827531042796263
+    --suppress-common-lines   do not output common lines,    --suppress-common-lines   não mostre linhas comuns.,    --suppress-common-lines   não exibe as linhas idênticas,"ID,DE",LLAMA,17.965205598154213
+"-p, --show-c-function         show which C function each change is in","-p, --show-c-function         menitkan di dentro da função C para onde cada perda de dados irá","-p, --show-c-function         mostra em qual função C está cada alteração","ID,DE",LLAMA,11.980914528565991
 "-F, --show-function-line=RE   show the most recent line matching RE","-F, --show-function-line=RE   mostra a linha de função que corresponde ao padrão RE
-","-F, --show-function-line=ER   mostra a linha mais recente correspondendo à ER","ID,DE",LLAMA,86.19276881217957,59.433689120141686,23.793665482062607,80.0,90.46105742454529
+","-F, --show-function-line=ER   mostra a linha mais recente correspondendo à ER","ID,DE",LLAMA,23.793665482062607
 "    --label LABEL             use LABEL instead of file name and timestamp
                                 (can be repeated)","    --label LABEL             pakai LABEL bukan nama berkas dan stempel waktu
                                 (dapat diulang)","    --label RÓTULO            usa RÓTULO ao invés do nome do arquivo e
-                                carimbo de tempo (pode ser repetido)","ID,DE",LLAMA,55.05768060684204,14.801492321154724,2.6149826893840222,94.11764705882352,75.87859630584717
-"-t, --expand-tabs             expand tabs to spaces in output","-t, --expand-tabs             ekspansi tab ke spasi dalam keluaran","-t, --expand-tabs             expande as tabulações para espaços na saída","ID,DE",LLAMA,76.85335874557495,40.96325171734956,15.881076016027917,77.77777777777779,79.01502847671509
+                                carimbo de tempo (pode ser repetido)","ID,DE",LLAMA,2.6149826893840222
+"-t, --expand-tabs             expand tabs to spaces in output","-t, --expand-tabs             ekspansi tab ke spasi dalam keluaran","-t, --expand-tabs             expande as tabulações para espaços na saída","ID,DE",LLAMA,15.881076016027917
 "-T, --initial-tab             make tabs line up by prepending a tab","-T, --inicial-tab             criar tabulação reta com inserção de tabs na frente do tabulador.","-T, --initial-tab             alinha tabulações introduzindo uma
-                                tabulação no início","ID,DE",LLAMA,77.5059461593628,35.33061924098075,5.816635421147513,100.0,80.09200096130371
+                                tabulação no início","ID,DE",LLAMA,5.816635421147513
     --tabsize=NUM             tab stops every NUM (default 8) print columns,    --tabsize=NUM             tab stop adalah setiap NUM (baku 8) kolom cetak,"    --tabsize=NÚM             paradas de tabulação a cada NÚM colunas
-                                (padrão=8)","ID,DE",LLAMA,55.857670307159424,23.597957429476836,7.907608126112009,100.0,79.62291836738586
+                                (padrão=8)","ID,DE",LLAMA,7.907608126112009
     --suppress-blank-empty    suppress space or tab before empty output lines,    --suppress-blank-empty    cegah espaços ou tabuladores antes de linhas em branco na saída.,"    --suppress-blank-empty    suprime espaço ou tabulação antes de linhas
-                                vazias na saída","ID,DE",LLAMA,77.04419493675232,60.05585607114236,15.727800941615351,54.54545454545454,86.32090091705322
-"-l, --paginate                pass output through 'pr' to paginate it",-l --paginate                   Forneça sorte para 'pr' ao serem gerados os resultados.,"-l, --paginate                passa a saída por meio de ""pr"" para paginá-la","ID,DE",LLAMA,56.54756426811218,24.685477247366155,3.7726698069117846,90.9090909090909,75.00593066215515
+                                vazias na saída","ID,DE",LLAMA,15.727800941615351
+"-l, --paginate                pass output through 'pr' to paginate it",-l --paginate                   Forneça sorte para 'pr' ao serem gerados os resultados.,"-l, --paginate                passa a saída por meio de ""pr"" para paginá-la","ID,DE",LLAMA,3.7726698069117846
 "-r, --recursive                 recursively compare any subdirectories found","-r, --recursive                 membandação recursiva de subdiretórios.","-r, --recursive                 compara recursivamente os subdiretórios
-                                  encontrados","ID,DE",LLAMA,58.58645439147949,51.827876191814696,22.089591134157878,71.42857142857143,84.65725779533386
-    --no-dereference            don't follow symbolic links,    --no-dereference            Não siga simbolicamente as referências.,    --no-dereference            não interpreta links simbólicos,"ID,DE",LLAMA,71.28849625587463,40.64574850449327,6.567274736060395,80.0,84.7317099571228
-"-N, --new-file                  treat absent files as empty","-N, --new-file                   Não aceitar arquivos vazios.","-N, --new-file                  considera os arquivos ausentes como vazios","ID,DE",LLAMA,79.87682819366455,46.473924550828876,20.612390921238426,62.5,85.85273623466492
+                                  encontrados","ID,DE",LLAMA,22.089591134157878
+    --no-dereference            don't follow symbolic links,    --no-dereference            Não siga simbolicamente as referências.,    --no-dereference            não interpreta links simbólicos,"ID,DE",LLAMA,6.567274736060395
+"-N, --new-file                  treat absent files as empty","-N, --new-file                   Não aceitar arquivos vazios.","-N, --new-file                  considera os arquivos ausentes como vazios","ID,DE",LLAMA,20.612390921238426
     --unidirectional-new-file   treat absent first files as empty,    --unidirectional-new-file   adiciona o primeiro arquivo sem conteúdo como vazio.,"    --unidirectional-new-file   considera os primeiros arquivos ausentes
-                                  como vazios","ID,DE",LLAMA,77.98518538475037,52.83644508179205,4.990049701936832,87.5,88.38499784469604
+                                  como vazios","ID,DE",LLAMA,4.990049701936832
     --ignore-file-name-case     ignore case when comparing file names,    --ignora-nome-do-arquivo-de-letras     ignore diferenças entre maiúsculas e minúsculas ao comparar o nome do arquivo.,"    --ignore-file-name-case     não faz distinção entre letras maiúsculas e
-                                  minúsculas nos nomes dos arquivos","ID,DE",LLAMA,66.26421213150024,42.4354041358895,11.359354890271161,84.61538461538461,80.7500958442688
+                                  minúsculas nos nomes dos arquivos","ID,DE",LLAMA,11.359354890271161
     --no-ignore-file-name-case  consider case when comparing file names,    --no-ignore-file-name-case  pertimbangque grandes pequenos ao comparar nomes de arquivos.,"    --no-ignore-file-name-case  faz distinção entre letras maiúsculas e
-                                  minúsculas nos nomes dos arquivos","ID,DE",LLAMA,54.162031412124634,38.7804543131789,4.521356896113449,83.33333333333334,79.29840683937073
-"-x, --exclude=PAT               exclude files that match PAT","-x, --exclude=PAT               sem arquivos que correspondam ao padrão PAT.","-x, --exclude=PADRÃO            exclui arquivos correspondendo a PADRÃO","ID,DE",LLAMA,72.44216799736023,47.231451954844424,20.448007360218387,85.71428571428571,83.36207270622253
+                                  minúsculas nos nomes dos arquivos","ID,DE",LLAMA,4.521356896113449
+"-x, --exclude=PAT               exclude files that match PAT","-x, --exclude=PAT               sem arquivos que correspondam ao padrão PAT.","-x, --exclude=PADRÃO            exclui arquivos correspondendo a PADRÃO","ID,DE",LLAMA,20.448007360218387
 "-X, --exclude-from=FILE         exclude files that match any pattern in FILE","-X, --exclude-from=FILE         exclua as pastas que se encaixam nos padrões do arquivo FILE.","-X, --exclude-from=ARQUIVO      exclui arquivos com correspondam a qualquer
-                                  padrão contido em ARQUIVO","ID,DE",LLAMA,73.59402775764465,31.735924054949606,14.317123154555068,91.66666666666666,82.58227705955505
-"-S, --starting-file=FILE        start with FILE when comparing directories","-S, --starting-file=FILE        comece com FILE ao comparar diretórios.","-S, --starting-file=ARQUIVO     inicia por ARQUIVO ao comparar diretórios","ID,DE",LLAMA,79.61388826370239,57.160573249823344,30.66148710292676,62.5,90.30459523200989
+                                  padrão contido em ARQUIVO","ID,DE",LLAMA,14.317123154555068
+"-S, --starting-file=FILE        start with FILE when comparing directories","-S, --starting-file=FILE        comece com FILE ao comparar diretórios.","-S, --starting-file=ARQUIVO     inicia por ARQUIVO ao comparar diretórios","ID,DE",LLAMA,30.66148710292676
 "    --from-file=FILE1           compare FILE1 to all operands;
                                   FILE1 can be a directory","    --from-file=FILE1           bandar FILE1 para todos os operandos; 
                                   FILE1 pode ser um diretório.","    --from-file=ARQUIVO1        compara ARQUIVO1 com todos os operandos;
-                                  ARQUIVO1 pode ser um diretório","ID,DE",LLAMA,69.44636702537537,55.444235663428366,33.64932442330151,50.0,87.04441785812378
+                                  ARQUIVO1 pode ser um diretório","ID,DE",LLAMA,33.64932442330151
 "    --to-file=FILE2             compare all operands to FILE2;
                                   FILE2 can be a directory","    --to-file=FILE2             bandar todos os operandos com FILE2; 
                                   FILE2 pode ser um diretório.","    --to-file=ARQUIVO2          compara todos os operandos com ARQUIVO2;
-                                  ARQUIVO2 pode ser um diretório","ID,DE",LLAMA,69.54882144927979,56.899524465151565,34.46073377034663,41.66666666666667,88.53164315223694
+                                  ARQUIVO2 pode ser um diretório","ID,DE",LLAMA,34.46073377034663
 "-i, --ignore-case               ignore case differences in file contents","-i, --ignore-case               abaixa diferenças entre letras maiúsculas e minúsculas no conteúdo do arquivo.","-i, --ignore-case               não faz distinção entre letras maiúsculas e
-                                  minúsculas no conteúdo do arquivo","ID,DE",LLAMA,83.61066579818726,79.46733303180665,64.75445426291287,28.57142857142857,92.50435829162598
+                                  minúsculas no conteúdo do arquivo","ID,DE",LLAMA,64.75445426291287
 "-E, --ignore-tab-expansion      ignore changes due to tab expansion","-E, --ignore-tab-expansion      abaixa as alterações decorrentes da expansão do tabulador.","-E, --ignore-tab-expansion      ignora as diferenças causadas pela expansão
-                                  da tabulação","ID,DE",LLAMA,77.11365222930908,51.61467347757672,14.991106946711685,60.0,86.12216711044312
-"-Z, --ignore-trailing-space     ignore white space at line end","-Z, --ignore-trailing-space     Ignorar espaços em branco no final da linha.","-Z, --ignore-trailing-space     ignora espaços em branco no fim das linhas","ID,DE",LLAMA,82.72157907485962,72.60826951023938,30.66148710292676,40.0,90.38699269294739
+                                  da tabulação","ID,DE",LLAMA,14.991106946711685
+"-Z, --ignore-trailing-space     ignore white space at line end","-Z, --ignore-trailing-space     Ignorar espaços em branco no final da linha.","-Z, --ignore-trailing-space     ignora espaços em branco no fim das linhas","ID,DE",LLAMA,30.66148710292676
 "-b, --ignore-space-change       ignore changes in the amount of white space","-b, --ignore-space-change       abaixa as alterações no número de espaços em branco.","-b, --ignore-space-change       ignora as diferenças na quantidade de espaços
-                                  em branco","ID,DE",LLAMA,83.56669545173645,59.02754586325116,28.917849332325716,45.45454545454545,90.12653827667236
-"-w, --ignore-all-space          ignore all white space","-W, --ignore-all-space          abaixa sem todas as espaçamentos em branco","-w, --ignore-all-space          ignora todos os espaços em branco","ID,DE",LLAMA,71.26578092575073,55.59560413234755,11.868405219520975,62.5,85.32595038414001
-"-B, --ignore-blank-lines        ignore changes where lines are all blank","-B, --ignore-blank-lines        abaixa as alterações em linhas vazias","-B, --ignore-blank-lines        ignora diferenças onde as linhas estão vazias","ID,DE",LLAMA,78.35226655006409,50.788468185604174,18.88588859215946,55.55555555555556,88.91807794570923
+                                  em branco","ID,DE",LLAMA,28.917849332325716
+"-w, --ignore-all-space          ignore all white space","-W, --ignore-all-space          abaixa sem todas as espaçamentos em branco","-w, --ignore-all-space          ignora todos os espaços em branco","ID,DE",LLAMA,11.868405219520975
+"-B, --ignore-blank-lines        ignore changes where lines are all blank","-B, --ignore-blank-lines        abaixa as alterações em linhas vazias","-B, --ignore-blank-lines        ignora diferenças onde as linhas estão vazias","ID,DE",LLAMA,18.88588859215946
 "-I, --ignore-matching-lines=RE  ignore changes where all lines match RE","-I, --ignore-matching-lines=RE Abaixo das linhas que se adequam ao padrão RE serão ignoradas.","-I, --ignore-matching-lines=ER  ignora as diferenças nas linhas que
-                                  correspondem à expressão regular ER","ID,DE",LLAMA,71.35934233665466,43.046732214890426,17.02602472176709,84.61538461538461,82.32647180557251
-"-a, --text                      treat all files as text","-a, --text                      perlacupe todas as blocas como texto.","-a, --text                      trata todos os arquivos como texto","ID,DE",LLAMA,63.74374032020569,46.503704614280004,19.64073254502565,62.5,87.88246512413025
+                                  correspondem à expressão regular ER","ID,DE",LLAMA,17.02602472176709
+"-a, --text                      treat all files as text","-a, --text                      perlacupe todas as blocas como texto.","-a, --text                      trata todos os arquivos como texto","ID,DE",LLAMA,19.64073254502565
     --strip-trailing-cr         strip trailing carriage return on input,    --strip-trailing-cr         apagar retorno de carro no final da linha ao inserir.,"    --strip-trailing-cr         remove o caractere de retorno de carro
-                                  (CR) ao final da linha na entrada","ID,DE",LLAMA,69.34897303581238,53.63415374117265,15.018527368048874,53.333333333333336,86.84162497520447
-    --binary                    read and write data in binary mode,    --binary                    baca dan tulis data dalam mode biner.,    --binary                    lê e escreve os dados em modo binário,"ID,DE",LLAMA,77.12855935096741,25.28546012438927,4.767707020457095,88.88888888888889,77.00541019439697
+                                  (CR) ao final da linha na entrada","ID,DE",LLAMA,15.018527368048874
+    --binary                    read and write data in binary mode,    --binary                    baca dan tulis data dalam mode biner.,    --binary                    lê e escreve os dados em modo binário,"ID,DE",LLAMA,4.767707020457095
 "-D, --ifdef=NAME                output merged file with '#ifdef NAME' diffs","-D, --ifdef=NAME                ekskluzifikan berkas yang tergabung dengan diff '#ifdef NAME'","-D, --ifdef=NOME                exibe o arquivo mesclado incluindo
-                                  ""#ifndef NOME"" nas diferenças","ID,DE",LLAMA,68.76549124717712,25.465898383645424,15.224337726639417,90.9090909090909,82.07972645759583
-    --GTYPE-group-format=GFMT   format GTYPE input groups with GFMT,    --GTYPE-group-format=GFMT   formatar grupo de entrada GTYPE com o formato GFMT,    --GTYPE-group-format=GFMT   formata grupos de entrada GTYPE com GFMT,"ID,DE",LLAMA,92.32894778251648,77.25508319967707,31.702331385234313,50.0,93.8256025314331
+                                  ""#ifndef NOME"" nas diferenças","ID,DE",LLAMA,15.224337726639417
+    --GTYPE-group-format=GFMT   format GTYPE input groups with GFMT,    --GTYPE-group-format=GFMT   formatar grupo de entrada GTYPE com o formato GFMT,    --GTYPE-group-format=GFMT   formata grupos de entrada GTYPE com GFMT,"ID,DE",LLAMA,31.702331385234313
     --line-format=LFMT          format all input lines with LFMT,"    --line-format=LFMT          format semua baris masukan denga LFMT
-",    --line-format=LFMT          formata todas as linhas de entrada com LFMT,"ID,DE",LLAMA,79.5855700969696,44.004927217512616,15.270725349716185,77.77777777777779,87.35302090644836
-    --LTYPE-line-format=LFMT    format LTYPE input lines with LFMT,    --LTYPE-line-format=LFMT    formatar linhas com LFMT para entrada do tipo LTYPE.,    --LTYPE-line-format=LFMT    formata linhas de entrada LTYPE com LFMT,"ID,DE",LLAMA,87.23138570785522,68.71834433910138,16.26170171519489,75.0,88.1654441356659
+",    --line-format=LFMT          formata todas as linhas de entrada com LFMT,"ID,DE",LLAMA,15.270725349716185
+    --LTYPE-line-format=LFMT    format LTYPE input lines with LFMT,    --LTYPE-line-format=LFMT    formatar linhas com LFMT para entrada do tipo LTYPE.,    --LTYPE-line-format=LFMT    formata linhas de entrada LTYPE com LFMT,"ID,DE",LLAMA,16.26170171519489
 "  These format options provide fine-grained control over the output
     of diff, generalizing -D/--ifdef.","Opsi format inicial oferece controle suave sobre a diferença de saída, generalizando -D/--ifdef.","  Essa opções de formatação fornece um controle refinado sobre a saída
-    das diferenças, generalizando -D/--ifdef.","ID,DE",LLAMA,75.18619298934937,50.08747701004942,30.506387132353463,66.66666666666666,88.16463947296143
-"  LTYPE is 'old', 'new', or 'unchanged'.  GTYPE is LTYPE or 'changed'.","LTYPE pode ser 'antigo', 'novo' ou 'inalterado'. GTYPE é LTYPE ou 'modificado'.","  LTYPE pode ser ""old"", ""new"" ou ""unchanged"". GTYPE é LTYPE ou ""changed"".","ID,DE",LLAMA,83.99400115013123,44.02911578878182,20.902526547184642,33.33333333333333,92.17895269393921
+    das diferenças, generalizando -D/--ifdef.","ID,DE",LLAMA,30.506387132353463
+"  LTYPE is 'old', 'new', or 'unchanged'.  GTYPE is LTYPE or 'changed'.","LTYPE pode ser 'antigo', 'novo' ou 'inalterado'. GTYPE é LTYPE ou 'modificado'.","  LTYPE pode ser ""old"", ""new"" ou ""unchanged"". GTYPE é LTYPE ou ""changed"".","ID,DE",LLAMA,20.902526547184642
 "  GFMT (only) may contain:
     %<  lines from FILE1
     %>  lines from FILE2
@@ -357,7 +357,7 @@ conflicting tabsize options,conflicto de opções tabsize.,opções de tamanho d
         N  número de linhas = L-F+1
         E  F-1
         M  L+1
-    %(A=B?T:E)  se A igual B, então T; senão E","ID,DE",LLAMA,74.43169951438904,40.96276712473642,30.84924249092133,73.33333333333333,83.0773413181305
+    %(A=B?T:E)  se A igual B, então T; senão E","ID,DE",LLAMA,30.84924249092133
 "  LFMT (only) may contain:
     %L  contents of line
     %l  contents of line, excluding any trailing newline
@@ -368,7 +368,7 @@ conflicting tabsize options,conflicto de opções tabsize.,opções de tamanho d
     %L  conteúdo da linha
     %l  conteúdo da linha, excluindo o caractere final de nova linha
     %[-][LARGURA][.[PREC]]{doxX}n  especificação estilo printf() do número
-                                   da linha da utilizando","ID,DE",LLAMA,68.1386411190033,43.36811602089169,28.455961801057615,72.41379310344827,84.16523933410645
+                                   da linha da utilizando","ID,DE",LLAMA,28.455961801057615
 "  Both GFMT and LFMT may contain:
     %%  %
     %c'C'  the single character C
@@ -382,89 +382,89 @@ de caractere com código octal \u005eO","  GFMT ou LFMT pode conter:
     %%  %
     %c'C'  o caractere C
     %c'\OOO'  o caractere com código octal OOO
-    C    o caractere C (outros caracteres representam a si próprios)","ID,DE",LLAMA,72.72540926933289,43.940170433929254,24.66209819379408,64.28571428571429,85.12662649154663
+    C    o caractere C (outros caracteres representam a si próprios)","ID,DE",LLAMA,24.66209819379408
 "-d, --minimal            try hard to find a smaller set of changes","-d, --minimal             Intensificação para busca de pequenas alterações no conjunto.","-d, --minimal            se esforça para localizar o menor conjunto
-                           de diferenças","ID,DE",LLAMA,67.85436868667603,38.593376034429554,14.991106946711685,72.72727272727273,82.19882845878601
+                           de diferenças","ID,DE",LLAMA,14.991106946711685
     --horizon-lines=NUM  keep NUM lines of the common prefix and suffix,"    --horizon-lines=NUM  pertângem NUM barras prefixo e sufixo comuns
-",    --horizon-lines=NÚM  mantém NÚM linhas de prefixo e sufixo idênticos,"ID,DE",LLAMA,62.55740523338318,46.45168901896653,17.771669724375847,66.66666666666666,80.90964555740356
+",    --horizon-lines=NÚM  mantém NÚM linhas de prefixo e sufixo idênticos,"ID,DE",LLAMA,17.771669724375847
     --speed-large-files  assume large files and many scattered small changes,    --speed-large-files   Assumem grandes arquivos com muitas pequenas alterações dispersas.,"    --speed-large-files  assume arquivos grandes e muitas alterações
-                           pequenas espalhadas","ID,DE",LLAMA,81.6660463809967,60.78084838655185,6.567274736060395,55.55555555555556,85.83728075027466
+                           pequenas espalhadas","ID,DE",LLAMA,6.567274736060395
 "    --color[=WHEN]       color output; WHEN is 'never', 'always', or 'auto';
                            plain --color means --color='auto'","    --color[=WHEN]       keluaran warnai; Quando é 'sempre', 'jamais' ou 'automático';
                            --color polos significa `--color='automático'""","    --color[=QUANDO]     colore a saída; QUANDO pode ser ""never"", ""always"",
-                           ou ""auto""; só --color resulta em --color=""auto""","ID,DE",LLAMA,62.760382890701294,25.917398136140296,6.042502361773561,81.25,78.33195924758911
+                           ou ""auto""; só --color resulta em --color=""auto""","ID,DE",LLAMA,6.042502361773561
 "    --palette=PALETTE    the colors to use when --color is active; PALETTE is
                            a colon-separated list of terminfo capabilities","    --palette=PALETTE    cor de fundo que é utilizada quando o --color está ativo; PALETTE é uma lista separada por dois pontos, consistindo em capacidades terminfo.","    --palette=PALETA     as cores para usar quando --color está ativa;
                            PALETA é uma lista de capacidades de terminfo
-                           separadas por caractere de dois pontos","ID,DE",LLAMA,76.14805698394775,52.09845707560577,9.006053687681236,82.6086956521739,85.45534014701843
-    --help               display this help and exit,    --help                 mostrar ajuda deste e encerrar.,    --help               mostra esta ajuda e sai,"ID,DE",LLAMA,60.35914421081543,49.60701267194976,8.643019616048525,66.66666666666666,80.21948337554932
-"-v, --version            output version information and exit","-v, --version            Mostrar informações de versão e sair.","-v, --version            mostra as informações da versão e sai","ID,DE",LLAMA,84.26524996757507,65.95988769939652,20.556680845025987,44.44444444444444,88.22090029716492
-FILES are 'FILE1 FILE2' or 'DIR1 DIR2' or 'DIR FILE' or 'FILE DIR'.,FILES adalah 'FILE1 FILE2' ou 'DIR1 DIR2' ou 'DIR FILE' ou 'FILE DIR'.,"ARQUIVOS são ""ARQUIVO1 ARQUIVO2"", ""DIR1 DIR2"", ""DIR ARQUIVO"" ou ""ARQUIVO DIR"".","ID,DE",LLAMA,72.17764258384705,13.806664495595511,1.9071414280313312,100.0,84.60797667503357
-"If --from-file or --to-file is given, there are no restrictions on FILE(s).","Bila --from-file ou --to-file diri, não há limites para arquivos.","Se --from-file ou --to-file for especificado, não há restrição em ARQUIVO(s).","ID,DE",LLAMA,69.12676692008972,44.523702888397004,15.787761984571144,54.54545454545454,81.09039664268494
-"If a FILE is '-', read standard input.","Se o arquivo for '-', ler de entrada padrão.","Se um ARQUIVO for igual a ""-"", lê da entrada padrão.","ID,DE",LLAMA,70.59003710746765,35.77770360016401,11.532706802722437,54.54545454545454,83.31423997879028
+                           separadas por caractere de dois pontos","ID,DE",LLAMA,9.006053687681236
+    --help               display this help and exit,    --help                 mostrar ajuda deste e encerrar.,    --help               mostra esta ajuda e sai,"ID,DE",LLAMA,8.643019616048525
+"-v, --version            output version information and exit","-v, --version            Mostrar informações de versão e sair.","-v, --version            mostra as informações da versão e sai","ID,DE",LLAMA,20.556680845025987
+FILES are 'FILE1 FILE2' or 'DIR1 DIR2' or 'DIR FILE' or 'FILE DIR'.,FILES adalah 'FILE1 FILE2' ou 'DIR1 DIR2' ou 'DIR FILE' ou 'FILE DIR'.,"ARQUIVOS são ""ARQUIVO1 ARQUIVO2"", ""DIR1 DIR2"", ""DIR ARQUIVO"" ou ""ARQUIVO DIR"".","ID,DE",LLAMA,1.9071414280313312
+"If --from-file or --to-file is given, there are no restrictions on FILE(s).","Bila --from-file ou --to-file diri, não há limites para arquivos.","Se --from-file ou --to-file for especificado, não há restrição em ARQUIVO(s).","ID,DE",LLAMA,15.787761984571144
+"If a FILE is '-', read standard input.","Se o arquivo for '-', ler de entrada padrão.","Se um ARQUIVO for igual a ""-"", lê da entrada padrão.","ID,DE",LLAMA,11.532706802722437
 "Usage: %s [OPTION]... FILES
 ",Penggunaan: %s [OPTION]... BERKAS,"Uso: %s [OPÇÃO]... ARQUIVOS
-","ID,DE",LLAMA,80.33682107925415,30.23431718915994,46.92470064105599,75.0,89.77558016777039
-Compare FILES line by line.,Bandar FILE baris por linha.,Compara ARQUIVOS linha por linha.,"ID,DE",LLAMA,38.56603801250458,33.74977605164973,30.213753973567677,60.0,72.9451835155487
-conflicting %s option value %s,"Valor inválido para a opção %1s, conflito com o valor padrão.",opção %s com valor conflitante %s,"ID,DE",LLAMA,69.91251111030579,33.206555591676754,6.754312828675707,100.0,75.33719539642334
-conflicting output style options,Conflicto de opções para o estilo do resultado.,opções conflitantes de estilo de saída,"ID,DE",LLAMA,55.072492361068726,35.333862585148196,6.27465531099474,100.0,77.62914896011353
-invalid color %s,A cor %s não é válida,cor inválida %s,"ID,DE",LLAMA,59.40359830856323,43.805991325973494,14.535768424205482,100.0,72.81774878501892
--D option not supported with directories,-D option not supported by directories (directories),Sem suporte à opção -D com diretórios,"ID,DE",LLAMA,57.24322199821472,22.560598703236572,4.767707020457095,100.0,75.29152035713196
+","ID,DE",LLAMA,46.92470064105599
+Compare FILES line by line.,Bandar FILE baris por linha.,Compara ARQUIVOS linha por linha.,"ID,DE",LLAMA,30.213753973567677
+conflicting %s option value %s,"Valor inválido para a opção %1s, conflito com o valor padrão.",opção %s com valor conflitante %s,"ID,DE",LLAMA,6.754312828675707
+conflicting output style options,Conflicto de opções para o estilo do resultado.,opções conflitantes de estilo de saída,"ID,DE",LLAMA,6.27465531099474
+invalid color %s,A cor %s não é válida,cor inválida %s,"ID,DE",LLAMA,14.535768424205482
+-D option not supported with directories,-D option not supported by directories (directories),Sem suporte à opção -D com diretórios,"ID,DE",LLAMA,4.767707020457095
 "Common subdirectories: %s and %s
 ",Subdirektori sama: %s dan %s.,"Subdiretórios idênticos: %s e %s
-","ID,DE",LLAMA,76.13936066627502,29.395395736451675,22.31618068926665,80.0,82.77214765548706
+","ID,DE",LLAMA,22.31618068926665
 "Only in %s: %s
 ","Hanya dalam %s: %s. 
 ","Somente em %s: %s
-","ID,DE",LLAMA,76.99466347694397,28.484790773948344,51.697315395717055,75.0,85.85377931594849
+","ID,DE",LLAMA,51.697315395717055
 "File %s is a %s while file %s is a %s
 ",Berkas %s adalah %d sementara berkas %s adalah %<PRIuMAX>.,"O arquivo %s é %s, enquanto o arquivo %s é %s
-","ID,DE",LLAMA,60.47855615615845,13.546630342334367,7.655122720591221,81.81818181818183,78.47769856452942
+","ID,DE",LLAMA,7.655122720591221
 "Symbolic links %s -> %s and %s -> %s differ
 ",Taut simbolis %s -> %s dan %s -> %s berbeda.,"Os links simbólicos %s -> %s e %s -> %s são diferentes
-","ID,DE",LLAMA,82.9838752746582,37.49605907229769,53.13269403996457,50.0,89.89400863647461
-cannot compare '-' to a directory,não é possível comparar o caractere '-' com diretório.,"não é possível comparar ""-"" com um diretório","ID,DE",LLAMA,84.28893685340881,65.84710058082472,29.071536848410968,62.5,88.83079886436462
+","ID,DE",LLAMA,53.13269403996457
+cannot compare '-' to a directory,não é possível comparar o caractere '-' com diretório.,"não é possível comparar ""-"" com um diretório","ID,DE",LLAMA,29.071536848410968
 "Files %s and %s are identical
 ",Berkas %s dan %s identik.,"Os aquivos %s e %s são idênticos
-","ID,DE",LLAMA,71.89225554466248,19.105215205316746,13.784336590962209,71.42857142857143,82.17509388923645
-Randy Smith,Randy Smith,Randy Smith,"ID,DE",LLAMA,98.84698987007141,100.0,100.00000000000004,0.0,100.0
-incompatible options,opção não compatível.,opções incompatíveis,"ID,DE",LLAMA,76.6579806804657,33.805024202663525,0.0,100.0,86.15882992744446
-'-' specified for more than one input file,'--' especifica mais de uma blocos de entrada para o programa.,"""-"" especificado para mais de um arquivo de entrada","ID,DE",LLAMA,60.8646035194397,50.89150598482255,10.127993013562818,77.77777777777779,85.0551187992096
-read failed,falha na leitura do arquivo.,falha de leitura,"ID,DE",LLAMA,75.46207308769226,45.66007619409066,9.652434877402245,100.0,81.4709722995758
+","ID,DE",LLAMA,13.784336590962209
+Randy Smith,Randy Smith,Randy Smith,"ID,DE",LLAMA,100.00000000000004
+incompatible options,opção não compatível.,opções incompatíveis,"ID,DE",LLAMA,0.0
+'-' specified for more than one input file,'--' especifica mais de uma blocos de entrada para o programa.,"""-"" especificado para mais de um arquivo de entrada","ID,DE",LLAMA,10.127993013562818
+read failed,falha na leitura do arquivo.,falha de leitura,"ID,DE",LLAMA,9.652434877402245
 "-A, --show-all              output all changes, bracketing conflicts","-A, --show-all              exiba todas as alterações e conflitos no termo de curtida (conflict in the courier)","-A, --show-all              exibe todas as diferenças, com os conflitos
-                              entre parênteses","ID,DE",LLAMA,53.45330834388733,44.318117074009265,9.917720727091444,100.0,79.26989793777466
+                              entre parênteses","ID,DE",LLAMA,9.917720727091444
 "-e, --ed                    output ed script incorporating changes
                                 from OLDFILE to YOURFILE into MYFILE","-e, --ed                    excluir script ed que contém alterações de OLDFILE para YOURFILE em MYFILE.","-e, --ed                    cria um script de ed para incorporar as
                               diferenças entre ARQUIVO1 e ARQUIVO2
-                              em ARQUIVO3","ID,DE",LLAMA,54.2252242565155,23.74160864302867,10.266325485253054,70.58823529411765,76.15814805030823
-"-E, --show-overlap          like -e, but bracket conflicts","-E --mostrar-superposicao          semelhante ao -e, mas apit conflito na caixa de entrada.","-E, --show-overlap          similar a -e, mas exibe conflitos entre parênteses","ID,DE",LLAMA,56.2643826007843,28.59707450074232,11.359354890271161,100.0,76.14692449569702
+                              em ARQUIVO3","ID,DE",LLAMA,10.266325485253054
+"-E, --show-overlap          like -e, but bracket conflicts","-E --mostrar-superposicao          semelhante ao -e, mas apit conflito na caixa de entrada.","-E, --show-overlap          similar a -e, mas exibe conflitos entre parênteses","ID,DE",LLAMA,11.359354890271161
 "-3, --easy-only             like -e, but incorporate only nonoverlapping changes","-3, --easy-only             semelhante a -e, mas apenas envolve alterações que não se sobrepõem","-3, --easy-only             similar a -e, mas incorpora apenas as alterações
-                              que não se sobreponham","ID,DE",LLAMA,87.51428127288818,62.9567313182917,38.70605144677149,28.57142857142857,94.53935027122498
+                              que não se sobreponham","ID,DE",LLAMA,38.70605144677149
 "-x, --overlap-only          like -e, but incorporate only overlapping changes","-x, --overlap-only          se semelhante a -e, mas apenas conter alterações que tenham sobreposição.","-x, --overlap-only          similar a -e, mas incorpora apenas as alterações
-                              que se sobrepõem","ID,DE",LLAMA,78.73808741569519,58.8318585838993,25.947507140745756,46.15384615384615,88.4804904460907
-"-X                          like -x, but bracket conflicts","-X                          seperti -x, tapi apit konflik dalam kurung","-X                          similar a -x, mas exibe conflitos entre parentes","ID,DE",LLAMA,51.34788155555725,22.003181264572756,9.442944296079734,77.77777777777779,78.08418273925781
--i                          append 'w' and 'q' commands to ed scripts,-i                          imbuhkan perintah 'w' dan 'q' ke skrip ed,"-i                          anexa os comandos ""w"" e ""q"" aos scripts de ed","ID,DE",LLAMA,75.14159083366394,12.802951612055164,2.910967817713898,81.81818181818183,74.7288167476654
+                              que se sobrepõem","ID,DE",LLAMA,25.947507140745756
+"-X                          like -x, but bracket conflicts","-X                          seperti -x, tapi apit konflik dalam kurung","-X                          similar a -x, mas exibe conflitos entre parentes","ID,DE",LLAMA,9.442944296079734
+-i                          append 'w' and 'q' commands to ed scripts,-i                          imbuhkan perintah 'w' dan 'q' ke skrip ed,"-i                          anexa os comandos ""w"" e ""q"" aos scripts de ed","ID,DE",LLAMA,2.910967817713898
 "-m, --merge                 output actual merged file, according to
                                 -A if no other options are given","--merge                   Mergida de arquivos reais, conforme -A sem opções alternativas.","-m, --merge                 emite arquivo mesclado atual, conforme
-                              -A se nenhuma outra opções for fornecida","ID,DE",LLAMA,48.01485538482666,37.952963040927926,10.262981915281355,71.42857142857143,78.17078232765198
-"-a, --text                  treat all files as text","-a, --text                   Aplique a todos os arquivos como texto.","-a, --text                  trata todos os arquivos como texto","ID,DE",LLAMA,80.21215200424194,79.86192011339459,46.92470064105599,37.5,91.41848683357239
+                              -A se nenhuma outra opções for fornecida","ID,DE",LLAMA,10.262981915281355
+"-a, --text                  treat all files as text","-a, --text                   Aplique a todos os arquivos como texto.","-a, --text                  trata todos os arquivos como texto","ID,DE",LLAMA,46.92470064105599
     --strip-trailing-cr     strip trailing carriage return on input,"    --strip-trailing-cr     apagar retorno de linha no final do input
 ","    --strip-trailing-cr     remove o caractere de retorno de carro
-                              (CR) ao final da linha na entrada","ID,DE",LLAMA,64.54262137413025,41.42782633919847,4.929297364398415,73.33333333333333,87.12415099143982
+                              (CR) ao final da linha na entrada","ID,DE",LLAMA,4.929297364398415
 "-T, --initial-tab           make tabs line up by prepending a tab","-T, --inicial-tab            Inicie uma linha tabulada reta com preenchimento à frente do primeiro caractere de tabulação.","-T, --initial-tab           alinha tabulações introduzindo uma
-                              tabulação no início.","ID,DE",LLAMA,72.31958508491516,41.301098813465295,5.401157445454033,100.0,78.87023091316223
+                              tabulação no início.","ID,DE",LLAMA,5.401157445454033
     --diff-program=PROGRAM  use PROGRAM to compare files,"    --diff-program=PROGRAM  utilize PROGRAM para comparar arquivos
-",    --diff-program=PROGRAMA  usa o PROGRAMA para comparar os arquivos,"ID,DE",LLAMA,91.2493646144867,61.36177677366048,12.862534787413374,62.5,94.78039741516113
+",    --diff-program=PROGRAMA  usa o PROGRAMA para comparar os arquivos,"ID,DE",LLAMA,12.862534787413374
 "-L, --label=LABEL           use LABEL instead of file name
                                 (can be repeated up to three times)","-L,--label=LABEL           pakai LABEL sebagai pengganti nama berkas
                                 (dapat diulang sampai dengan tiga kali)","-L, --label RÓTULO          usa RÓTULO ao invés do nome do arquivo
-                                (pode ser repetido até três vezes)","ID,DE",LLAMA,67.78766512870789,15.763773071748549,8.123368307125363,100.0,78.46510410308838
-    --help                  display this help and exit,    --help                  Mostrar ajuda deste assistente e sair.,    --help                  mostra esta ajuda e sai,"ID,DE",LLAMA,72.0823884010315,40.938708118336756,7.267884212102741,83.33333333333334,81.6888153553009
-"-v, --version               output version information and exit","-v, --version               Mostrar informações de versão e sair.","-v, --version               mostra informação da versão e sai","ID,DE",LLAMA,84.94886755943298,61.54902854111569,19.64073254502565,50.0,88.72013688087463
+                                (pode ser repetido até três vezes)","ID,DE",LLAMA,8.123368307125363
+    --help                  display this help and exit,    --help                  Mostrar ajuda deste assistente e sair.,    --help                  mostra esta ajuda e sai,"ID,DE",LLAMA,7.267884212102741
+"-v, --version               output version information and exit","-v, --version               Mostrar informações de versão e sair.","-v, --version               mostra informação da versão e sai","ID,DE",LLAMA,19.64073254502565
 "Usage: %s [OPTION]... MYFILE OLDFILE YOURFILE
 ",Pemakaian: %s [OPTION]... MYFILE OLDFILE YOURFILE,"Uso: %s [OPÇÃO]... ARQUIVO1 ARQUIVO2 ARQUIVO3
-","ID,DE",LLAMA,56.793177127838135,21.00023434032541,38.67706276352344,83.33333333333334,76.7575740814209
-Compare three files line by line.,Bandicote três blocos de linhas por linha.,Compara três arquivos linha por linha.,"ID,DE",LLAMA,41.10029637813568,38.37710444261714,22.089591134157878,66.66666666666666,81.0619592666626
+","ID,DE",LLAMA,38.67706276352344
+Compare three files line by line.,Bandicote três blocos de linhas por linha.,Compara três arquivos linha por linha.,"ID,DE",LLAMA,22.089591134157878
 "
 The default output format is a somewhat human-readable representation of
 the changes.
@@ -485,58 +485,58 @@ um script de ed seja criado, ao invés do padrão.
 Finalmente, a opção -m (--merge) faz com que diff3 faça a mesclagem
 internalmente e emite o arquivo mesclado atual. Para entradas incomuns,
 isto é mais robusto do que usar o ed.
-","ID,DE",LLAMA,69.40920948982239,51.16987356469031,29.799885224218983,69.56521739130434,82.148277759552
-"Exit status is 0 if successful, 1 if conflicts, 2 if trouble.","Status keluaran adalah 0 se caso de sucesso, 1 no caso de conflito e 2 para o caso do programa ter problemas.","Status de saída é 0 se houver sucesso, 1 se conflitos e 2 se problema.","ID,DE",LLAMA,72.5666880607605,43.26429579147638,9.410489957951636,100.0,82.46452808380127
-internal error: screwup in format of diff blocks,Erro interno de sintaxe: format para bloco diff está desordenado.,erro interno: confusão no formato dos blocos diff,"ID,DE",LLAMA,74.57051277160645,33.73075187420733,4.456882760699063,100.0,78.14018726348877
-%s: diff failed: ,%s: diferença não foi possível concluir: ,%s: diff falhou: ,"ID,DE",LLAMA,55.308371782302856,29.95279563679735,19.070828081828378,100.0,75.44523477554321
-internal error: invalid diff type in process_diff,Erro interno de tipo difícil em process_diff: tipe diff não é válido.,erro interno: tipo de diff inválido em process_diff,"ID,DE",LLAMA,75.34518241882324,58.70685753399465,18.751144583834648,100.0,80.03127574920654
-invalid diff format; invalid change separator,O formato de diferença (format diff) não é válido; o separador de alterações (separator perubahio) também não é válido.,formato de diff inválido; separador de diferença inválido,"ID,DE",LLAMA,65.52965641021729,54.83045624641254,5.422591452069786,100.0,73.65903854370117
-invalid diff format; incomplete last line,formato de diferença entre arquivos não é válido; a linha final está incompleta.,formato de diff inválido; última linha incompleta,"ID,DE",LLAMA,69.55344080924988,51.38776088810238,6.608973813188645,100.0,74.3229866027832
-subsidiary program %s could not be invoked,program subsider %s não pode ser chamado.,o programa subsidiário %s não pôde ser invocado,"ID,DE",LLAMA,68.02845597267151,40.777838919852314,19.070828081828378,62.5,77.57325172424316
-invalid diff format; incorrect leading line chars,formato de diferença não é válido; caractere líder na linha não está correto.,formato de diff inválido; caracteres incorretos na linha de início,"ID,DE",LLAMA,62.90520429611206,52.33215185058625,7.8594386815106,90.0,75.77490210533142
-internal error: invalid diff type passed to output,Erro interno de tipo inválido inserido na saída,erro interno: tipo de diff inválido passado para a saída,"ID,DE",LLAMA,66.90514087677002,40.834346725179365,5.67557355463946,60.0,82.53973126411438
-input file shrank,o arquivo de entrada se contraiu involuntariamente.,o arquivo de entrada diminuiu,"ID,DE",LLAMA,56.363701820373535,62.39111577377952,34.57207846419409,60.0,83.05307030677795
-cannot compare file names %s and %s,não é possível comparar o nome do arquivo %s e %s.,não foi possível comparar os nomes dos arquivos %s e %s,"ID,DE",LLAMA,91.28223061561584,52.94943941734386,31.61487584488944,54.54545454545454,93.15276145935059
-%s: recursive directory loop,%s: loop direto recursivo em diretório,%s: loop de diretório recursivo,"ID,DE",LLAMA,90.82939028739929,71.05534943485507,38.260294162784454,60.0,91.84280633926392
-Thomas Lord,Thomas Lord,Thomas Lord,"ID,DE",LLAMA,99.1402804851532,100.0,100.00000000000004,0.0,100.00002384185791
-"-o, --output=FILE            operate interactively, sending output to FILE","-o, --output=FILE            operar de forma interativa, enviar saída para FILE.","-o, --output=ARQUIVO         age interativamente, enviando a saída para ARQUIVO","ID,DE",LLAMA,76.4011800289154,44.78204397102023,20.333448190047886,77.77777777777779,85.67867875099182
+","ID,DE",LLAMA,29.799885224218983
+"Exit status is 0 if successful, 1 if conflicts, 2 if trouble.","Status keluaran adalah 0 se caso de sucesso, 1 no caso de conflito e 2 para o caso do programa ter problemas.","Status de saída é 0 se houver sucesso, 1 se conflitos e 2 se problema.","ID,DE",LLAMA,9.410489957951636
+internal error: screwup in format of diff blocks,Erro interno de sintaxe: format para bloco diff está desordenado.,erro interno: confusão no formato dos blocos diff,"ID,DE",LLAMA,4.456882760699063
+%s: diff failed: ,%s: diferença não foi possível concluir: ,%s: diff falhou: ,"ID,DE",LLAMA,19.070828081828378
+internal error: invalid diff type in process_diff,Erro interno de tipo difícil em process_diff: tipe diff não é válido.,erro interno: tipo de diff inválido em process_diff,"ID,DE",LLAMA,18.751144583834648
+invalid diff format; invalid change separator,O formato de diferença (format diff) não é válido; o separador de alterações (separator perubahio) também não é válido.,formato de diff inválido; separador de diferença inválido,"ID,DE",LLAMA,5.422591452069786
+invalid diff format; incomplete last line,formato de diferença entre arquivos não é válido; a linha final está incompleta.,formato de diff inválido; última linha incompleta,"ID,DE",LLAMA,6.608973813188645
+subsidiary program %s could not be invoked,program subsider %s não pode ser chamado.,o programa subsidiário %s não pôde ser invocado,"ID,DE",LLAMA,19.070828081828378
+invalid diff format; incorrect leading line chars,formato de diferença não é válido; caractere líder na linha não está correto.,formato de diff inválido; caracteres incorretos na linha de início,"ID,DE",LLAMA,7.8594386815106
+internal error: invalid diff type passed to output,Erro interno de tipo inválido inserido na saída,erro interno: tipo de diff inválido passado para a saída,"ID,DE",LLAMA,5.67557355463946
+input file shrank,o arquivo de entrada se contraiu involuntariamente.,o arquivo de entrada diminuiu,"ID,DE",LLAMA,34.57207846419409
+cannot compare file names %s and %s,não é possível comparar o nome do arquivo %s e %s.,não foi possível comparar os nomes dos arquivos %s e %s,"ID,DE",LLAMA,31.61487584488944
+%s: recursive directory loop,%s: loop direto recursivo em diretório,%s: loop de diretório recursivo,"ID,DE",LLAMA,38.260294162784454
+Thomas Lord,Thomas Lord,Thomas Lord,"ID,DE",LLAMA,100.00000000000004
+"-o, --output=FILE            operate interactively, sending output to FILE","-o, --output=FILE            operar de forma interativa, enviar saída para FILE.","-o, --output=ARQUIVO         age interativamente, enviando a saída para ARQUIVO","ID,DE",LLAMA,20.333448190047886
 "-i, --ignore-case            consider upper- and lower-case to be the same","-i, --ignore-case            ignora diferenças entre maiúsculas e minúsculas.","-i, --ignore-case            não faz distinção entre letras maiúsculas
-                              e minúsculas","ID,DE",LLAMA,75.82126259803772,61.507924162242155,24.70315512339778,50.0,88.35002183914185
+                              e minúsculas","ID,DE",LLAMA,24.70315512339778
 "-E, --ignore-tab-expansion   ignore changes due to tab expansion","-E, --ignore-tab-expansion   abaixa as alterações decorrentes da expansão do tabulador.","-E, --ignore-tab-expansion   ignorar as diferenças causadas pela expansão
-                               da tabulação","ID,DE",LLAMA,75.38520097732544,50.994633093755525,14.991106946711685,60.0,84.5654845237732
-"-Z, --ignore-trailing-space  ignore white space at line end","-Z, --ignore-trailing-space abaixo de cada linha ignorar espaços em branco ao final.","-Z, --ignore-trailing-space  ignora espaços em branco no fim das linhas","ID,DE",LLAMA,78.75025272369385,65.85256900426921,17.77835117834348,90.0,87.09527850151062
+                               da tabulação","ID,DE",LLAMA,14.991106946711685
+"-Z, --ignore-trailing-space  ignore white space at line end","-Z, --ignore-trailing-space abaixo de cada linha ignorar espaços em branco ao final.","-Z, --ignore-trailing-space  ignora espaços em branco no fim das linhas","ID,DE",LLAMA,17.77835117834348
 "-b, --ignore-space-change    ignore changes in the amount of white space","-b, --ignore-space-change    ignorar alterações na quantidade de espaços em branco.","-b, --ignore-space-change    ignora as diferenças na quantidade de espaços
-                               em branco","ID,DE",LLAMA,86.52499318122864,79.34673817576898,53.107253497886994,36.36363636363637,92.41428971290588
+                               em branco","ID,DE",LLAMA,53.107253497886994
 "-W, --ignore-all-space       ignore all white space","-W, --ignore-all-space       abaixar todas as white spaces
-","-W, --ignore-all-space       ignora todos os espaços em branco","ID,DE",LLAMA,69.15733814239502,46.325003400252214,18.141207173155518,75.0,85.01230478286743
-"-B, --ignore-blank-lines     ignore changes whose lines are all blank","-B,--ignore-blank-lines     abaixar as alterações em linhas vazias.","-B, --ignore-blank-lines     ignora diferenças onde as linhas estão vazias","ID,DE",LLAMA,73.80926609039307,43.52524255998572,18.575057999133595,88.88888888888889,85.16812920570374
+","-W, --ignore-all-space       ignora todos os espaços em branco","ID,DE",LLAMA,18.141207173155518
+"-B, --ignore-blank-lines     ignore changes whose lines are all blank","-B,--ignore-blank-lines     abaixar as alterações em linhas vazias.","-B, --ignore-blank-lines     ignora diferenças onde as linhas estão vazias","ID,DE",LLAMA,18.575057999133595
 "-I, --ignore-matching-lines=RE  ignore changes all whose lines match RE","-I, --ignore-matching-lines=RE Abaixo das linhas que correspondem ao padrão RE serão ignoradas.","-I, --ignore-matching-lines=ER  ignora as diferenças em linhas que correspondem
-                                  à Expressão Regular","ID,DE",LLAMA,72.6695716381073,54.349767382758195,22.14250071345737,83.33333333333334,84.00325775146484
+                                  à Expressão Regular","ID,DE",LLAMA,22.14250071345737
     --strip-trailing-cr      strip trailing carriage return on input,    --strip-trailing-cr      apagar retorno de linha no final do input.,"    --strip-trailing-cr      remove o caractere de retorno de carro
-                               (CR) ao final da linha na entrada","ID,DE",LLAMA,63.36960196495056,41.23471974307968,5.240300994649826,73.33333333333333,86.44253015518188
-"-a, --text                   treat all files as text","-a, --text                   perlacupe todas as blocs como texto.","-a, --text                   trata todos os arquivos como texto","ID,DE",LLAMA,61.7875874042511,46.69139234922757,19.64073254502565,62.5,87.19593286514282
-"-w, --width=NUM              output at most NUM (default 130) print columns","-w, --width=NUM              kelihatan paling banyak NUM (baku 130) kolom cetak.","-w, --width=NÚM              emite no máximo NÚM (padrão 130) colunas linhas","ID,DE",LLAMA,57.426005601882935,31.342215258580048,18.92240568795936,80.0,82.9868495464325
+                               (CR) ao final da linha na entrada","ID,DE",LLAMA,5.240300994649826
+"-a, --text                   treat all files as text","-a, --text                   perlacupe todas as blocs como texto.","-a, --text                   trata todos os arquivos como texto","ID,DE",LLAMA,19.64073254502565
+"-w, --width=NUM              output at most NUM (default 130) print columns","-w, --width=NUM              kelihatan paling banyak NUM (baku 130) kolom cetak.","-w, --width=NÚM              emite no máximo NÚM (padrão 130) colunas linhas","ID,DE",LLAMA,18.92240568795936
 "-l, --left-column            output only the left column of common lines","-l, --left-column            hanya tampilkan kolom kiri baris yang sama","-l, --left-column            emite apenas a coluna da esquerda das linhas
-                               idênticas","ID,DE",LLAMA,68.32984685897827,31.03053687031354,12.788328485625525,81.81818181818183,81.93366527557373
-"-s, --suppress-common-lines  do not output common lines","-s, --suppress-common-lines Não exiba linhas comuns.","-s, --suppress-common-lines  não emite as linhas idênticas","ID,DE",LLAMA,80.68912625312805,56.96560337981946,22.089591134157878,42.857142857142854,86.72471642494202
-"-t, --expand-tabs            expand tabs to spaces in output","-t, --expand-tabs            Ekspansione do tabulador para espaços na saída.","-t, --expand-tabs            expande as tabulações para espaços na saída","ID,DE",LLAMA,84.14461016654968,66.41885128014736,33.932513407933634,44.44444444444444,86.92045211791992
+                               idênticas","ID,DE",LLAMA,12.788328485625525
+"-s, --suppress-common-lines  do not output common lines","-s, --suppress-common-lines Não exiba linhas comuns.","-s, --suppress-common-lines  não emite as linhas idênticas","ID,DE",LLAMA,22.089591134157878
+"-t, --expand-tabs            expand tabs to spaces in output","-t, --expand-tabs            Ekspansione do tabulador para espaços na saída.","-t, --expand-tabs            expande as tabulações para espaços na saída","ID,DE",LLAMA,33.932513407933634
     --tabsize=NUM            tab stops at every NUM (default 8) print columns,    --tabsize=NUM            tab stop adalah setiap NUM (baku 8) kolom cetak,"    --tabsize=NÚM            paradas de tabulação a cada NÚM colunas
-                               (padrão=8)","ID,DE",LLAMA,56.042832136154175,23.597957429476836,7.907608126112009,100.0,79.62291836738586
+                               (padrão=8)","ID,DE",LLAMA,7.907608126112009
 "-d, --minimal                try hard to find a smaller set of changes","-d, --minimal                usaçao keras para procurar conjuntos de alterações mínimas.","-d, --minimal                se esforça para localizar o menor conjunto
-                               de diferenças","ID,DE",LLAMA,67.57391691207886,38.48658658600118,14.323145079400492,72.72727272727273,83.82147550582886
+                               de diferenças","ID,DE",LLAMA,14.323145079400492
 "-H, --speed-large-files      assume large files, many scattered small changes","-H, --speed-large-files      assume large files with many small changes dispersed.","-H, --speed-large-files      assume arquivos grandes e muitas alterações
-                               pequenas espalhadas","ID,DE",LLAMA,70.99221348762512,42.40986465748555,21.200626759025184,70.0,85.0287675857544
+                               pequenas espalhadas","ID,DE",LLAMA,21.200626759025184
     --diff-program=PROGRAM   use PROGRAM to compare files,"    --diff-program=PROGRAM   utilize PROGRAM para comparar arquivos
-",    --diff-program=PROGRAMA  usa o PROGRAMA para comparar os arquivos,"ID,DE",LLAMA,91.2493646144867,61.36177677366048,12.862534787413374,62.5,94.78039741516113
-    --help                   display this help and exit,    --help                   Mostrar ajuda deste assistente e sair.,    --help                   mostra esta ajuda e sai,"ID,DE",LLAMA,72.0823884010315,40.938708118336756,7.267884212102741,83.33333333333334,81.6888153553009
-"-v, --version                output version information and exit","-v, --version                Mostrar informações de versão e sair.","-v, --version                mostra informação da versão e sai","ID,DE",LLAMA,84.94886755943298,61.54902854111569,19.64073254502565,50.0,88.72013688087463
+",    --diff-program=PROGRAMA  usa o PROGRAMA para comparar os arquivos,"ID,DE",LLAMA,12.862534787413374
+    --help                   display this help and exit,    --help                   Mostrar ajuda deste assistente e sair.,    --help                   mostra esta ajuda e sai,"ID,DE",LLAMA,7.267884212102741
+"-v, --version                output version information and exit","-v, --version                Mostrar informações de versão e sair.","-v, --version                mostra informação da versão e sai","ID,DE",LLAMA,19.64073254502565
 "Usage: %s [OPTION]... FILE1 FILE2
 ","Pemakaian: %s [OPTION]... FILE1 FILE2
 ","Uso: %s [OPÇÃO]... ARQUIVO1 ARQUIVO2
-","ID,DE",LLAMA,79.01234030723572,24.392380393454253,42.40125351805035,80.0,86.69275045394897
-Side-by-side merge of differences between FILE1 and FILE2.,Penggabungan bersisian dari perbedaan antara FILE1 dan FILE2.,Mesclagem lado a lado das diferenças entre ARQUIVO1 e ARQUIVO2.,"ID,DE",LLAMA,57.57946968078613,8.614950252722425,3.817681337429047,100.0,79.56885099411011
-cannot interactively merge standard input,não é possível juntar a entrada padrão de forma interativa.,não foi possível mesclar interativamente a entrada padrão,"ID,DE",LLAMA,84.78747010231018,53.4404279270714,15.851165692617148,75.0,88.02022933959961
-both files to be compared are directories,As duas pastas que estão sendo comparadas são diretórios.,os dois arquivos a serem comparados são diretórios,"ID,DE",LLAMA,82.95785784721375,40.459669848398875,8.392229812593097,100.0,86.56290173530579
+","ID,DE",LLAMA,42.40125351805035
+Side-by-side merge of differences between FILE1 and FILE2.,Penggabungan bersisian dari perbedaan antara FILE1 dan FILE2.,Mesclagem lado a lado das diferenças entre ARQUIVO1 e ARQUIVO2.,"ID,DE",LLAMA,3.817681337429047
+cannot interactively merge standard input,não é possível juntar a entrada padrão de forma interativa.,não foi possível mesclar interativamente a entrada padrão,"ID,DE",LLAMA,15.851165692617148
+both files to be compared are directories,As duas pastas que estão sendo comparadas são diretórios.,os dois arquivos a serem comparados são diretórios,"ID,DE",LLAMA,8.392229812593097
 "ed:	Edit then use both versions, each decorated with a header.
 eb:	Edit then use both versions.
 el or e1:	Edit then use the left version.
@@ -566,6 +566,6 @@ r ou 2:	Usa a versão da direita.
 s:	Inclui silenciosamente as linhas idênticas.
 v:	Inclui verbosamente as linhas idênticas.
 q:	Sai.
-","ID,DE",LLAMA,71.68073654174805,49.181013780166666,29.858053374640587,65.38461538461539,76.43256783485413
-unrecognized prefix: %s,prefiks tidak dikenal: %s,prefixo desconhecido: %s,"ID,DE",LLAMA,90.06428718566895,29.846211752877227,30.213753973567677,100.0,88.65441083908081
-unparsable value for --palette,valor que não pode ser calculado para --palette,valor não analisável para --palette,"ID,DE",LLAMA,84.53665375709534,50.80126103593861,13.134549472120788,80.0,89.52201008796692
+","ID,DE",LLAMA,29.858053374640587
+unrecognized prefix: %s,prefiks tidak dikenal: %s,prefixo desconhecido: %s,"ID,DE",LLAMA,30.213753973567677
+unparsable value for --palette,valor que não pode ser calculado para --palette,valor não analisável para --palette,"ID,DE",LLAMA,13.134549472120788

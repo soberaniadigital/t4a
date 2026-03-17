@@ -1,482 +1,482 @@
-original,translated,reference,context_languages,strategy,comet,chrf,bleu,ter,bertscore
-Print the GStreamer version,A versão do GStreamer é exibida,Exibe a versão do GStreamer,,LLAMA,86.49888634681702,68.89179869538351,30.213753973567677,60.0,88.23325037956238
-Make all warnings fatal,Tratamento de todas as advertências como erros,Trata todos avisos como fatais,,LLAMA,73.1929361820221,24.344498720571785,6.567274736060395,100.0,77.63649225234985
-Print available debug categories and exit,Exibição de categorias de diagnóstico de erros disponíveis e encerramento do programa.,Exibe as categorias de depuração disponíveis e sair,,LLAMA,63.34114670753479,48.06351515496175,8.73716785171588,100.0,76.60114169120789
-Default debug level from 1 (only error) to 9 (anything) or 0 for no output,Vorgegeben Fehlerdiagnóstico de nível %d (somente erros) até %d (todo o sistema) ou 0 para não produzir saída.,Níveis de depuração predefinidos de 1 (apenas erros) até 9 (tudo) ou 0 para nenhuma saída,,LLAMA,51.8404483795166,33.98100371086309,15.268470848781108,81.25,76.80503726005554
-LEVEL,Estragado (Falha),NÍVEL,,LLAMA,41.485682129859924,2.314814814814815,0.0,100.0,72.75618314743042
-"Comma-separated list of category_name:level pairs to set specific levels for the individual categories. Example: GST_AUTOPLUG:5,GST_ELEMENT_*:3","Lista separada por vírgulas de pares 'Categoria_Name:Nível' para atribuir níveis específicos a cada categoria. Exemplo: GST_AUTOPLUG:5,GST_ELEMENT_*:3","Lista de ""categoria_nome:nível"" separados por vírgulas, para definir níveis específicos para as categorias individuais. Exemplo: GST_AUTOPLUG:5,GST_ELEMENT_*:3",,LLAMA,86.2450659275055,58.4611524300978,47.47086886341709,68.75,92.19655990600586
-LIST,LISTA,LISTA,,LLAMA,97.4169671535492,100.0,100.00000000000004,0.0,99.99999403953552
-Disable colored debugging output,Desabilitar a exibição de erros coloridos da diagnose de cores do sistema operacional,Desabilita saída de depuração colorida,,LLAMA,59.39704775810242,32.449131949545695,3.0890553181566975,100.0,78.41521501541138
-"Changes coloring mode of the debug log. Possible modes: off, on, disable, auto, unix","Alterar o modo de cores do protocolo de diagnóstico de erro. Modos possíveis: off (desligado), on (ligado), disable (deactivado), auto e Unix.","Altera o modo de cor do log de depuração. Modos possíveis: off (desligado), on (ligado), disable (desabilitado), auto (automático) e unix",,LLAMA,86.25582456588745,64.01512715024664,54.5837166588529,42.857142857142854,88.47112655639648
-Disable debugging,Desabilitar diagnóstico de erros,Desabilita depuração,,LLAMA,69.14196610450745,33.631422090756494,0.0,100.0,78.38130593299866
-Colon-separated paths containing plugins,"Por meio de dois pontos, separados por espaços, acessam os plugins.","Caminhos, separados por dois-pontos, de plug-ins",,LLAMA,60.91262698173523,48.393385095838255,12.011055432195764,100.0,74.1712749004364
-PATHS,PFADE,CAMINHOS,,LLAMA,66.26448035240173,2.2522522522522523,0.0,100.0,79.02510166168213
-Comma-separated list of plugins to preload in addition to the list stored in environment variable GST_PLUGIN_PATH,"Lista separada por vírgulas de plugins, que além dos presentes na variável GST_PLUGIN_PATH serão carregados","Lista, separada por vírgulas, de plug-ins para pré-carregar além da lista armazenada na variável de ambiente GST_PLUGIN_PATH",,LLAMA,69.76352334022522,48.50723653518646,24.66372035680361,64.70588235294117,82.41329193115234
-PLUGINS,PLUGINS,PLUG-INS,,LLAMA,94.59076523780823,33.69366486881799,0.0,100.0,83.98151993751526
-Disable trapping of segmentation faults during plugin loading,Monitoramento de falhas de acesso ao armazenamento durante o carregamento de plugins desabilitado.,Desabilita intercepção das falhas de segmentação durante o carregamento do plug-in,,LLAMA,67.98059344291687,49.26130164677202,13.292417883329383,81.81818181818183,82.58602619171143
-Disable updating the registry,Actualização da Registry desabilitada,Desabilita atualização do registro,,LLAMA,73.88948798179626,47.46181910101686,0.0,100.0,80.53889870643616
-Disable spawning a helper process while scanning the registry,Desligue o processo auxiliar ao ler a Registry desativada.,Desabilita a criação de um processo auxiliar durante a análise do registro,,LLAMA,46.2762326002121,32.77353576597769,7.603985612048923,83.33333333333334,76.683109998703
-GStreamer Options,Opções do GStreamer,Opções do GStreamer,,LLAMA,98.38070869445801,100.0,100.00000000000004,0.0,99.99998807907104
-Show GStreamer Options,"Para visualizar as opções de GStreamer, digite 'gst-option --list'",Exibe opções do GStreamer,,LLAMA,63.14952373504639,36.18395328167059,4.990049701936832,100.0,76.7936110496521
-Unknown option,opção desconhecida,Opção desconhecida,,LLAMA,96.42961621284485,76.00406027795734,49.99999999999999,0.0,95.57121992111206
-GStreamer encountered a general core library error.,GStreamer detectou um erro genérico na biblioteca padrão.,O GStreamer encontrou um erro geral na biblioteca principal.,,LLAMA,90.74202179908752,51.84813059930637,13.354339892249618,44.44444444444444,93.7864601612091
-GStreamer developers were too lazy to assign an error code to this error.,"Os desenvolvedores de GStreamer foram considerados preguiçosos, não atribuindo um número a este erro.",Os desenvolvedores do GStreamer são muito preguiçosos para definir um código de erro para esse erro.,,LLAMA,79.84700202941895,46.039947141987184,7.727578693391118,68.75,84.48941111564636
-Internal GStreamer error: code not implemented.,Erro interno do GStreamer: Código não implementado.,Erro interno no GStreamer: código não implementado.,,LLAMA,95.93406319618225,78.35638411503413,26.084743001221455,14.285714285714285,97.1477210521698
-GStreamer error: state change failed and some element failed to post a proper error message with the reason for the failure.,Erro GStreamer: Falha no estado de transição e alguns elementos não enviaram a mensagem correta com uma justificativa para o erro.,Erro no GStreamer: falha ao alterar estado e algum elemento falhou ao enviar uma mensagem de erro apropriada com a razão da falha.,,LLAMA,81.35259747505188,39.808407212305156,4.820572866895475,73.91304347826086,81.41841292381287
-Internal GStreamer error: pad problem.,Erro interno do GStreamer: Problema de preenchimento.,Erro interno no GStreamer: problema no Pad.,,LLAMA,71.39020562171936,56.847539845531735,14.25876976452075,42.857142857142854,83.76808166503906
-Internal GStreamer error: thread problem.,Erro interno do GStreamer: Problema de thread.,Erro interno no GStreamer: problema na thread.,,LLAMA,89.95290398597717,64.50460817237133,16.51582159006904,28.57142857142857,94.89910006523132
-GStreamer error: negotiation problem.,Erro GStreamer: Problemas de negociação.,Erro no GStreamer: problema de negociação.,,LLAMA,94.10752654075623,69.26055029524102,27.890014303843827,33.33333333333333,93.75643134117126
-Internal GStreamer error: event problem.,Erro interno do GStreamer: problema de eventos.,Erro interno no GStreamer: problema no evento.,,LLAMA,87.9723608493805,69.68397182775789,23.356898886410015,42.857142857142854,94.81714367866516
-Internal GStreamer error: seek problem.,Erro interno do GStreamer: problema de busca.,Erro interno no GStreamer: problema na busca.,,LLAMA,93.30578446388245,74.16809886043634,26.084743001221455,28.57142857142857,96.65666818618774
-Internal GStreamer error: caps problem.,Erro interno do GStreamer: Problema de permissão.,Erro interno no GStreamer: problema no Caps.,,LLAMA,85.00935435295105,55.15640548279887,14.25876976452075,42.857142857142854,86.1786961555481
-Internal GStreamer error: tag problem.,Erro interno do GStreamer: problema de marcação.,Erro interno no GStreamer: problema na etiqueta.,,LLAMA,84.62914824485779,61.48737287256222,23.356898886410015,42.857142857142854,92.11550951004028
-Your GStreamer installation is missing a plug-in.,Sua instalação de GStreamer fica com um plugin ausente.,Sua instalação do GStreamer está com um plug-in faltando.,,LLAMA,85.98688244819641,52.71918831488489,13.134549472120794,44.44444444444444,91.64845943450928
-GStreamer error: clock problem.,Erro GStreamer: problema de tempo.,Erro no GStreamer: problema no temporizador.,,LLAMA,85.84270477294922,56.65424595313814,24.0785655451027,50.0,90.51946997642517
-This application is trying to use GStreamer functionality that has been disabled.,Esta aplicação tenta utilizar a funcionalidade de GStreamer que foi desabilitada.,Este aplicativo está tentando usar uma funcionalidade do GStreamer que foi desabilitada.,,LLAMA,90.58347940444946,58.4892803025693,30.527785817943403,58.333333333333336,94.22365427017212
-GStreamer encountered a general supporting library error.,"Erro do GStreamer da Internet: Problema com a biblioteca de suporte. Por favor, envie um relatório de erro.",O GStreamer encontrou um erro geral na biblioteca de suporte.,,LLAMA,74.87277388572693,49.24466594440786,12.436722085116983,100.0,81.36082291603088
-Could not initialize supporting library.,A biblioteca de suporte não pôde ser inicializada.,Não foi possível iniciar a biblioteca de suporte.,,LLAMA,90.79298377037048,49.825201241265724,19.070828081828378,75.0,88.27040791511536
-Could not close supporting library.,A biblioteca de suporte não pôde ser fechada.,Não foi possível fechar a biblioteca de suporte.,,LLAMA,88.32808136940002,48.85015888091823,19.070828081828378,75.0,88.37781548500061
-Could not configure supporting library.,A biblioteca de suporte não pôde ser configurada.,Não foi possível configurar a biblioteca de suporte.,,LLAMA,90.2409017086029,52.21492568925541,19.070828081828378,75.0,89.70282077789307
-Encoding error.,Erro de codificação.,Erro de codificação.,,LLAMA,98.7744390964508,100.0,100.00000000000004,0.0,99.99997615814209
-GStreamer encountered a general resource error.,GStreamer detectou um erro de recursos gerais.,O GStreamer encontrou um erro geral nos recursos.,,LLAMA,90.44192433357239,47.11818732809258,12.256200970377108,62.5,90.29746055603027
-Resource not found.,Recurso não encontrado.,Recurso não encontrado.,,LLAMA,99.06704425811768,100.0,100.00000000000004,0.0,100.00002384185791
-Resource busy or not available.,Recurso em uso ou não disponível.,O recurso está ocupado ou não disponível.,,LLAMA,74.30830597877502,58.18736409024895,35.64026463354184,42.857142857142854,84.07968878746033
-Could not open resource for reading.,A recurso não pôde ser aberto para leitura.,Não foi possível abrir o recurso para leitura.,,LLAMA,86.85757517814636,43.353880898006345,19.070828081828378,75.0,86.4478349685669
-Could not open resource for writing.,A fonte de dados não pôde ser aberta para escrita.,Não foi possível abrir o recurso para escrita.,,LLAMA,77.96688675880432,32.24706042023807,13.950796967929138,100.0,81.88713788986206
-Could not open resource for reading and writing.,A fonte de dados não pôde ser aberta para leitura e escrita.,Não foi possível abrir o recurso para leitura e escrita.,,LLAMA,85.30487418174744,44.51701538153929,28.917849332325716,80.0,84.47538018226624
-Could not close resource.,A recurso não pôde ser fechado.,Não foi possível fechar o recurso.,,LLAMA,89.30171132087708,27.713344503973385,7.809849842300637,100.0,84.54917669296265
-Could not read from resource.,Não foi possível ler da fonte.,Não foi possível ler do recurso.,,LLAMA,85.5771005153656,64.70252988693264,43.47208719449914,33.33333333333333,95.84251046180725
-Could not write to resource.,Não foi possível escrever na recurso.,Não foi possível escrever no recurso.,,LLAMA,93.4881329536438,84.8664838687607,48.892302243490086,16.666666666666664,98.09642434120178
-Could not perform seek on resource.,"Na recurso, não foi possível executar o laço de pesquisa.",Não foi possível realizar uma busca no recurso.,,LLAMA,57.91992545127869,40.32906746207462,8.054496384843702,87.5,84.68453288078308
-Could not synchronize on resource.,A fonte de dados não pôde ser sincronizada.,Não foi possível sincronizar no recurso.,,LLAMA,82.47432112693787,24.82384370311803,4.767707020457095,100.0,81.37863278388977
-Could not get/set settings from/on resource.,As configurações não podem ser lidas nem escritas na recurso.,Não foi possível obter/definir configurações para/do recurso.,,LLAMA,62.34502196311951,34.87562248107488,7.574347133041985,100.0,79.99722361564636
-No space left on the resource.,Não há mais espaço na recurso.,Não foi deixado espaço no recurso.,,LLAMA,58.94520878791809,41.51176703260873,15.619699684601283,50.0,86.83424592018127
-Not authorized to access resource.,Permissão negada ao acesso à recurso.,O acesso ao recurso não foi autorizado.,,LLAMA,86.30295395851135,32.35506096133148,8.051153633013374,85.71428571428571,79.63190078735352
-GStreamer encountered a general stream error.,GStreamer detectou um erro de fluxo geral.,O GStreamer encontrou um erro geral no fluxo.,,LLAMA,90.68486094474792,48.96746459665244,12.827770611048305,62.5,92.04630255699158
-Element doesn't implement handling of this stream. Please file a bug.,"O elemento não pode processar este fluxo de dados. Por favor, envie um relatório de erro.","O elemento não implementa a manipulação desse fluxo. Por favor, relate o erro.",,LLAMA,80.95880150794983,46.503553828825964,20.973425791310696,76.92307692307693,87.55844831466675
-Could not determine type of stream.,A natureza do fluxo de dados não pôde ser determinada.,Não foi possível determinar o tipo do fluxo.,,LLAMA,88.34735155105591,32.2811377075331,8.29519350710986,100.0,82.89943933486938
-The stream is of a different type than handled by this element.,O fluxo de dados é da mesma espécie que o processado por este elemento.,O fluxo é de um tipo diferente do que o manipulado por esse elemento.,,LLAMA,76.36594772338867,41.43908921300829,10.074708078532293,50.0,89.07641768455505
-There is no codec present that can handle the stream's type.,Não há nenhum codec disponível que possa processar esse tipo de fluxo de dados.,Não há um CODEC presente que possa manipular esse tipo de fluxo.,,LLAMA,85.21553874015808,49.31486882039279,22.894156860669913,50.0,88.2672131061554
-Could not decode stream.,O fluxo de dados não pôde ser decodificado.,Não foi possível decodificar o fluxo.,,LLAMA,92.41645336151123,32.72965900800567,5.669791110976001,100.0,84.7556471824646
-Could not encode stream.,O fluxo de dados não pôde ser codificado.,Não foi possível codificar o fluxo.,,LLAMA,92.05613136291504,29.432248217457413,5.669791110976001,100.0,84.53004956245422
-Could not demultiplex stream.,O fluxo de dados não pôde ser multiplexado.,Não foi possível demultiplexar o fluxo.,,LLAMA,77.79979705810547,32.40109914379173,5.669791110976001,100.0,80.28542995452881
-Could not multiplex stream.,O fluxo de dados não pôde ser multiplexado.,Não foi possível multiplexar o fluxo.,,LLAMA,86.7555320262909,32.72965900800567,5.669791110976001,100.0,84.27631258964539
-The stream is in the wrong format.,O fluxo de dados tem o formato errado.,Esse fluxo está com um formato errado.,,LLAMA,88.97563219070435,47.81061793019018,19.070828081828378,71.42857142857143,87.67783641815186
-The stream is encrypted and decryption is not supported.,"O fluxo de dados está criptografado, mas a descriptografia não é suportada.",O fluxo está criptografado e não há suporte a descriptografia.,,LLAMA,93.21761727333069,63.76972665111198,10.571070857151541,90.0,92.09869503974915
-The stream is encrypted and can't be decrypted because no suitable key has been supplied.,"O fluxo de dados está criptografado, mas não pode ser descriptografado porque nenhum chave apropriada está presente.",O fluxo está criptografado e não pôde ser descriptografado porque nenhuma chave apropriada foi fornecida.,,LLAMA,90.24742245674133,65.9926942947205,13.11246738393144,53.333333333333336,92.54940748214722
-No error message for domain %s.,Não há mensagem de erro para o campo %s.,Nenhuma mensagem de erro para o domínio %s.,,LLAMA,90.21838307380676,60.7814863086381,46.92470064105599,37.5,91.17369055747986
-No standard error message for domain %s and code %d.,Não há mensagem padrão de erro para o segmento %s e código de erro %d.,Nenhuma mensagem de erro predefinida para o domínio %s e código %d.,,LLAMA,81.54528737068176,48.17083798035797,24.202875575621302,58.333333333333336,87.26444244384766
-Selected clock cannot be used in pipeline.,O sinal selecionado do referencial de tempo não pode ser utilizado na linha.,O temporizador selecionado não pôde ser usado na fila de processamento.,,LLAMA,66.94539189338684,38.70133903210398,4.6192151051305474,81.81818181818183,86.3125205039978
-Error writing registry cache to %s: %s,Erro ao escrever o cache intermediário da Registry após %s: %s,Erro ao escrever o cache de registro em %s: %s,,LLAMA,85.18661856651306,66.36091304352554,53.16967153331756,40.0,92.02985167503357
-title,Título,título,,LLAMA,91.6094183921814,50.71428571428571,0.0,0.0,76.8248200416565
-commonly used title,Título comum,título normalmente utilizado,,LLAMA,84.18788313865662,10.864104467361061,0.0,66.66666666666666,79.13838624954224
-title sortname,Nome do título para ordenação,título para ordenação,,LLAMA,80.19991517066956,91.62523245497327,39.76353643835252,66.66666666666666,89.87767696380615
-commonly used title for sorting purposes,Título comum para fins de ordenação,"título normalmente utilizado, para ordenação",,LLAMA,67.03631281852722,28.933968393205443,9.652434877402245,80.0,80.12191653251648
-artist,artista,artista,,LLAMA,98.64298701286316,100.0,100.00000000000004,0.0,100.00001192092896
-person(s) responsible for the recording,Für die Aufnahme verantwortliche Person(en),pessoa(s) responsável(is) pela gravação,,LLAMA,71.17455005645752,9.295577285490227,5.11459870708889,100.0,68.45555901527405
-artist sortname,Nome do Artista,artista para ordenação,,LLAMA,60.4688823223114,18.325867073041334,0.0,100.0,71.22488617897034
-person(s) responsible for the recording for sorting purposes,"Para fins de ordenação, a pessoa responsável pela gravação é","pessoa(s) responsável(is) pela gravação, para ordenação",,LLAMA,68.21963787078857,53.84737147719454,8.224725028069482,100.0,75.18099546432495
-album,Álbum,álbum,,LLAMA,71.11009359359741,45.27777777777778,0.0,0.0,80.05870580673218
-album containing this data,Album que contém estas informações.,álbum contendo esses dados,,LLAMA,86.28191351890564,16.245716356826705,0.0,100.0,80.51509261131287
-album sortname,Nome do Álbum para Ordem,álbum para ordenação,,LLAMA,59.62380766868591,34.72856002111271,10.682175159905848,100.0,74.71027970314026
-album containing this data for sorting purposes,"O álbum que contém esses dados, para fins de ordenação","álbum contendo esses dados, para ordenação",,LLAMA,89.14355635643005,63.84697682189903,25.965358893403383,83.33333333333334,86.88902258872986
-album artist,Criadores do álbum,artista do álbum,,LLAMA,91.44912958145142,47.40497027682858,55.03212081491043,33.33333333333333,78.92425656318665
-"The artist of the entire album, as it should be displayed","O artista do álbum inteiro, assim como ele dever ser apresentado","O artista de todo álbum, como ele deveria ser exibido",,LLAMA,79.3275535106659,50.543804769890954,11.016798394984653,60.0,86.12212538719177
-album artist sortname,Nome do Artista da Gravação,artista do álbum para ordenação,,LLAMA,57.29284882545471,26.209396341480762,10.682175159905848,80.0,73.30671548843384
-"The artist of the entire album, as it should be sorted","O artista do álbum inteiro, assim como ele deve ser organizado","O artista de todo álbum, como ele deveria ser ordenado",,LLAMA,75.32878518104553,51.25783631526328,11.016798394984653,60.0,88.74964714050293
-date,Dado,data,,LLAMA,66.86897873878479,10.0,0.0,100.0,81.0300350189209
-date the data was created (as a GDate structure),Dados gerados em data de criação (como GDateStrutura),data que os dados foram criados (estrutura GDate),,LLAMA,76.88837051391602,31.431681111342414,5.522397783539471,100.0,78.76635193824768
-datetime,Data e Hora,data hora,,LLAMA,92.16148257255554,20.123699400015187,0.0,50.0,78.44136357307434
-date and time the data was created (as a GstDateTime structure),Data e hora em que foram geradas as informações (como GstDateTimeStructure),data e hora que os dados foram criados (estrutura GstDateTime),,LLAMA,90.9544289112091,39.56441786404225,8.130850857597444,70.0,89.92477655410767
-genre,Gênero,gênero,,LLAMA,70.07772326469421,50.71428571428571,0.0,0.0,74.07693266868591
-genre this data belongs to,Gênero a qual esses dados pertencem,gênero que este dado pertence,,LLAMA,81.77093267440796,33.281392362541474,0.0,100.0,76.56693458557129
-comment,Comentário,comentário,,LLAMA,93.48698258399963,73.63378684807256,0.0,0.0,90.32537341117859
-free text commenting the data,Um texto livre que descreve os dados,texto livre comentando os dados,,LLAMA,89.59757685661316,52.1973590509545,18.575057999133602,60.0,86.63637638092041
-extended comment,Comentário ampliado,comentário prolongado,,LLAMA,81.29187822341919,33.280714788876914,0.0,50.0,85.57053804397583
-free text commenting the data in key=value or key[en]=comment form,"Um texto qualquer que descreva os dados, na forma 'Chave=Valor' ou 'Chave[de]=Comentário'","texto livre comentando os dados, usando o formato chave=valor ou chave[pt_BR]=comentário",,LLAMA,74.62678551673889,33.95667010812144,9.87398498012017,81.81818181818183,77.40249037742615
-track number,Número de título,número da faixa,,LLAMA,76.62990689277649,23.187945598055233,0.0,66.66666666666666,80.4580569267273
-track number inside a collection,Número de título dentro da coleção,número da faixa dentro da coleção,,LLAMA,86.64990663528442,57.48509599375764,30.213753973567677,33.33333333333333,90.00700116157532
-track count,Número de títulos,número de faixas,,LLAMA,78.13109755516052,32.87651480108346,27.516060407455225,33.33333333333333,86.76540851593018
-count of tracks inside collection this track belongs to,"Número de títulos na coleção, à qual pertence este item",número de faixas dentro da coleção que esta faixa pertence,,LLAMA,73.84671568870544,33.96583523371254,4.9323515694897075,80.0,83.19362998008728
-disc number,Número da fita,número do disco,,LLAMA,71.27888798713684,25.03310293076431,0.0,66.66666666666666,77.1919310092926
-disc number inside a collection,Número da placa dentro da coleção,número do disco dentro da coleção,,LLAMA,91.2419855594635,58.289895993700334,30.213753973567677,33.33333333333333,93.11481714248657
-disc count,Número de discos,número de discos,,LLAMA,96.0669457912445,82.91201853701854,55.03212081491043,0.0,94.19259428977966
-count of discs inside collection this disc belongs to,"Número de discos na coleção à qual pertence este disco, ou seja, o número total dentro dessa determinada amostra da biblioteca digital.",número de discos dentro da coleção que este disco pertence,,LLAMA,77.00007557868958,54.777232298442755,5.217592866832707,100.0,79.92004156112671
-location,Ortamento de arquivos,local,,LLAMA,61.838752031326294,4.273504273504273,0.0,100.0,68.47342252731323
-"Origin of media as a URI (location, where the original of the file or stream is hosted)",Origem do meio como URI (local onde o original da ficheira ou fluxo de dados está pronto para uso),A origem da mídia como um URI (localização onde o arquivo ou fluxo original está hospedado),,LLAMA,79.83434200286865,42.4453677434092,7.320439219592829,81.25,84.6724808216095
-homepage,Página da internet,página inicial,,LLAMA,61.092329025268555,21.27829703371466,0.0,100.0,74.95298981666565
-Homepage for this media (i.e. artist or movie homepage),"Página da internet desse meio (por exemplo, página do artista ou de filme)",Página inicial desta mídia (página inicial do artista ou filme),,LLAMA,80.53463101387024,42.11079131049185,12.874330508144842,80.0,82.60753154754639
-description,Descrição do arquivo,descrição,,LLAMA,75.89399814605713,57.14385129410818,0.0,100.0,76.17508172988892
-short text describing the content of the data,Uma breve descrição do conteúdo,texto pequeno descrevendo o conteúdo dos dados,,LLAMA,81.57646059989929,26.068508544575486,7.16047614494885,85.71428571428571,79.96715307235718
-version,Versão,versão,,LLAMA,81.90621733665466,50.71428571428571,0.0,0.0,85.31295657157898
-version of this data,Versão destas informações,versão destes dados,,LLAMA,88.57883810997009,34.68874764210229,0.0,66.66666666666666,86.69065237045288
-ISRC,ISRC,ISRC,,LLAMA,99.14849400520325,100.0,100.00000000000004,0.0,99.99998807907104
-International Standard Recording Code - see http://www.ifpi.org/isrc/,Código Internacional de Registro Fonográfico - veja http://www.ifpi.org/isrc/,Código de Gravação Padrão Internacional (ISRC) - consulte http://www.ifpi.org/isrc/,,LLAMA,88.75463008880615,50.673478348991175,54.85512750395746,55.55555555555556,85.60202717781067
-organization,Organização,organização,,LLAMA,93.15311908721924,75.1922284065141,0.0,0.0,85.29731035232544
-copyright,Copyright (C) 2023 Your Name or Entity. Todos os direitos reservados.,direitos autorais,,LLAMA,41.818296909332275,26.00592909590921,2.627961710408444,100.0,71.07444405555725
-copyright notice of the data,Agradecimento pela cópia de direitos sobre os dados.,informação de direitos autorais dos dados,,LLAMA,75.87195038795471,38.47019359656871,10.552670315936318,100.0,79.61452007293701
-copyright uri,Derechos de URIs,URI dos direitos autorais,,LLAMA,65.20891785621643,10.095557894241264,0.0,100.0,78.55375409126282
-URI to the copyright notice of the data,URI para a citação de direitos autorais dos dados,URI para a informação de direitos autorais dos dados,,LLAMA,90.50740599632263,81.14447866761215,59.694917920196445,11.11111111111111,95.85151076316833
-encoded by,codificado por,codificado por,,LLAMA,98.9886999130249,100.0,100.00000000000004,0.0,100.00002384185791
-name of the encoding person or organization,O nome da pessoa ou organização que está codificando,nome da pessoa ou organização que codificou o arquivo,,LLAMA,89.04877305030823,69.73822389858061,58.73949094699213,33.33333333333333,85.77736020088196
-contact,Contato,contato,,LLAMA,81.4721405506134,62.959183673469376,0.0,0.0,81.2937319278717
-contact information,Informações de contato,informação de contato,,LLAMA,96.0569441318512,62.91948383469636,55.03212081491043,33.33333333333333,89.22713994979858
-license,Licença,licença,,LLAMA,97.34359383583069,62.959183673469376,0.0,0.0,91.27265214920044
-license of data,Licença para dados,licença dos dados,,LLAMA,86.75015568733215,38.34467176802178,27.516060407455225,33.33333333333333,89.65741395950317
-license uri,URI da Lizência,URI da licença,,LLAMA,83.29958319664001,36.19928684608739,55.03212081491043,33.33333333333333,86.73118948936462
-URI to the license of the data,URI para licenciamento dos dados,URI para a licença dos dados,,LLAMA,92.75088906288147,60.100412149867175,24.736929544091932,33.33333333333333,91.63647294044495
-performer,ator,participação,,LLAMA,54.58579659461975,7.692307692307692,0.0,100.0,71.25958800315857
-person(s) performing,A pessoa que está interpretando o peça teatral.,pessoa(s) participante(s),,LLAMA,50.76512098312378,17.30236395290782,4.767707020457095,100.0,64.12625908851624
-composer,Compositor,compositor,,LLAMA,86.99421286582947,73.63378684807256,0.0,0.0,76.24349594116211
-person(s) who composed the recording,Für die Aufnahme verantwortliche Person(en),pessoa(s) que compôs(useram) a gravação,,LLAMA,53.11903357505798,8.888945118963822,4.513617516969122,100.0,67.49903559684753
-conductor,direção,maestro,,LLAMA,70.3822910785675,6.122448979591837,0.0,100.0,73.61685037612915
-conductor/performer refinement,Detaillização do diretor/ator,maestro/músico de afinação,,LLAMA,40.55468738079071,11.93366267759851,10.682175159905848,100.0,72.7109432220459
-duration,Duração,duração,,LLAMA,86.55239939689636,62.959183673469376,0.0,0.0,76.63482427597046
-length in GStreamer time units (nanoseconds),Comprimento do fragmento em unidades de tempo GStreamer (nanosegundos),comprimento em unidades de tempo do GStreamer (nanosegundos),,LLAMA,91.4461076259613,85.30449639314219,48.326978309062206,25.0,88.18510174751282
-codec,Codificador/Decodificador,CODEC,,LLAMA,46.202534437179565,3.7037037037037033,0.0,100.0,67.40898489952087
-codec the data is stored in,"Formato de dados, no qual os dados estão armazenados",CODEC utilizado nos dados,,LLAMA,60.857075452804565,22.012309952998688,4.196114906296549,100.0,71.36247158050537
-video codec,Codificador de vídeo,CODEC de vídeo,,LLAMA,78.90164256095886,46.38175256658029,55.03212081491043,33.33333333333333,82.62737989425659
-codec the video data is stored in,"Formato de dados, no qual os dados do vídeo são armazenados",CODEC de vídeo utilizado nos dados,,LLAMA,71.54071927070618,27.778540331535712,4.456882760699063,100.0,75.45750141143799
-audio codec,Codificador de áudio,CODEC de áudio,,LLAMA,78.20613980293274,46.38175256658029,55.03212081491043,33.33333333333333,82.94682502746582
-codec the audio data is stored in,"Formato de dados, no qual os dados de áudio são armazenados",CODEC de áudio utilizado nos dados,,LLAMA,71.04218602180481,33.599233201304244,7.495553473355845,100.0,75.68289637565613
-subtitle codec,Codificador de subtítulos,CODEC de legenda,,LLAMA,56.164783239364624,9.870661612524273,27.516060407455225,66.66666666666666,66.3648784160614
-codec the subtitle data is stored in,Dados em formato no qual os subtítulos são armazenados,CODEC de legenda utilizado nos dados,,LLAMA,53.885841369628906,12.727970342136475,0.0,100.0,68.92307996749878
-container format,Contêiner de Formato,formato do contêiner,,LLAMA,83.81437659263611,42.92265944839474,0.0,100.0,76.6724169254303
-container format the data is stored in,"Contêiner de Formato, no qual os dados são armazenados.",formato do contêiner onde os dados são armazenados,,LLAMA,82.95237421989441,61.91226618218446,23.462350320528007,75.0,82.10132122039795
-bitrate,Bitrate,taxa de bits,,LLAMA,64.35202956199646,9.299881180879261,0.0,100.0,73.34093451499939
-exact or average bitrate in bits/s,exatamente ou média de taxa de bits em bits por segundo,"taxa de bits exata ou média, em bits/s",,LLAMA,81.47754669189453,57.27694888545764,20.504572236241867,100.0,82.82323479652405
-nominal bitrate,Taxa de Bitânorma,taxa de bits nominal,,LLAMA,56.2069296836853,21.78892816520552,19.716118825581447,50.0,66.46850109100342
-nominal bitrate in bits/s,"Ao variar o bitrate, uma média de bits por segundo é apropriada.","taxa de bits nominal, em bits/s",,LLAMA,67.26860404014587,24.437296482406644,6.285596338261262,100.0,74.22343492507935
-minimum bitrate,Taxa de bit média mínima,taxa de bits mínima,,LLAMA,87.85179257392883,51.658993522149935,12.703318703865365,50.0,90.51846861839294
-minimum bitrate in bits/s,Bitrate mínima em bits por segundo,"taxa de bits mínima, em bits/s",,LLAMA,88.03300261497498,31.326931421184817,10.89644800332157,83.33333333333334,81.74296617507935
-maximum bitrate,Bitrate máximo,taxa de bits máxima,,LLAMA,88.49886059761047,18.36970528427659,0.0,100.0,78.22415828704834
-maximum bitrate in bits/s,Bitrate máxima em bits por segundo,"taxa de bits máxima, em bits/s",,LLAMA,88.84191513061523,31.326931421184817,10.89644800332157,83.33333333333334,81.85580968856812
-encoder,Codificador,codificador,,LLAMA,95.19588351249695,75.1922284065141,0.0,0.0,87.13780641555786
-encoder used to encode this stream,Codificador para este fluxo de dados,codificador utilizado pelo fluxo,,LLAMA,85.17205715179443,34.16351039164382,8.116697886877475,100.0,79.7320544719696
-encoder version,Versão dos Codificadores,versão do codificador,,LLAMA,80.04875779151917,51.645465382856045,0.0,66.66666666666666,80.7208776473999
-version of the encoder used to encode this stream,Versão dos Codificadores para este fluxo de dados,versão do codificador utilizado pelo fluxo,,LLAMA,76.9391119480133,35.13972065848525,5.522397783539471,100.0,78.14337015151978
-serial,número de série,série,,LLAMA,76.30606293678284,65.19368509752411,27.516060407455225,100.0,73.09980392456055
-serial number of track,Número de série do título,número de série da faixa,,LLAMA,88.24927806854248,52.3315448858589,21.3643503198117,40.0,87.82528638839722
-replaygain track gain,Ajuste de volume do título padrão,ganho da faixa (ReplayGain),,LLAMA,49.69904124736786,3.0241935483870965,0.0,100.0,72.18084335327148
-track gain in dB,Título de pressão sonora em dB,ganho da faixa em decibéis,,LLAMA,71.3066041469574,12.127479798080765,8.116697886877475,100.0,71.97163105010986
-r128 track gain,Título de Piso R128,ganho da faixa (r128),,LLAMA,53.43031883239746,7.321712189416029,0.0,100.0,76.37786865234375
-track gain in dB (r128),Título de pressão sonora em dB (R128),ganho da faixa em decibéis (r128),,LLAMA,73.62868189811707,16.50803376936609,6.27465531099474,83.33333333333334,78.47675681114197
-replaygain track peak,Ajuste de volume do pico de saída,pico da faixa (ReplayGain),,LLAMA,51.42166614532471,13.346206848533408,6.567274736060395,100.0,71.88755869865417
-peak of the track,Pico do título,pico da faixa,,LLAMA,62.15120553970337,12.382758566180938,0.0,66.66666666666666,80.85262179374695
-replaygain album gain,Ajuste de volume do álbum,ganho do álbum (ReplayGain),,LLAMA,61.15766167640686,25.49648055985555,17.491650626361256,100.0,76.29122734069824
-album gain in dB,Pontuação de gravações em dB,ganho do álbum em decibéis,,LLAMA,52.93169617652893,12.14822542779006,10.682175159905848,80.0,72.75344133377075
-r128 album gain,níveis de pressão dos álbuns R128,ganho do álbum (r128),,LLAMA,60.11613607406616,15.61959397517258,0.0,100.0,77.80499458312988
-album gain in dB (r128),Pontuação do álbum em dB (R128),ganho do álbum em decibéis (r128),,LLAMA,77.81795859336853,42.549624067283645,23.356898886410015,33.33333333333333,84.15011167526245
-replaygain album peak,Ajuste de volume do pico da montanha Albense,pico do álbum (ReplayGain),,LLAMA,41.56285226345062,18.507064330969587,6.567274736060395,100.0,69.25051212310791
-peak of the album,Pico do álbum,pico do álbum,,LLAMA,92.4849808216095,80.37653318903318,55.03212081491043,0.0,95.22777199745178
-replaygain reference level,referência de nível para ajuste de volume da áudio,nível de referência (ReplayGain),,LLAMA,62.91235685348511,35.424592838201434,6.27465531099474,100.0,71.73952460289001
-reference level of track and album gain values,Referência para ajustes de nível dos parâmetros do título e álbum,nível de referência dos valores de ganho da faixa e do álbum,,LLAMA,68.85843873023987,33.33528621925838,5.35587222083487,66.66666666666666,79.02210354804993
-language code,Código de linguagem,código da língua,,LLAMA,90.57031273841858,30.697589346695263,0.0,66.66666666666666,89.97786045074463
-"language code for this stream, conforming to ISO-639-1 or ISO-639-2","Código de linguagem para este fornecedor elétrico, conforme ISO-639-1 ou ISO-639-2.","código da língua deste fluxo, conforme o ISO-639-1 ou ISO-639-2",,LLAMA,85.66641211509705,54.63239278555184,38.53856918030314,80.0,88.00879716873169
-language name,Nome da Lingua,nome do idioma,,LLAMA,85.26254296302795,14.589646464646467,0.0,66.66666666666666,81.14700317382812
-freeform name of the language this stream is in,Nome da linguagem em que o fluxo de dados está,"nome, em formato livre, do idioma do fluxo",,LLAMA,69.49376463890076,19.230031541986207,4.990049701936832,100.0,72.93667197227478
-image,imagem,imagem,,LLAMA,98.54742884635925,100.0,100.00000000000004,0.0,99.99993443489075
-image related to this stream,imagem para este fluxo de dados,imagem relacionada a este fluxo,,LLAMA,74.28588271141052,47.399522378759116,17.965205598154213,80.0,86.52828931808472
-preview image,Projeto de visão preliminar,miniatura,,LLAMA,58.600062131881714,12.3685679376108,0.0,100.0,70.587819814682
-preview image related to this stream,Vorschau para este fluxo de dados,miniatura relacionada a este fluxo,,LLAMA,54.24588322639465,34.36594992478838,16.233395773754953,100.0,77.40011215209961
-attachment,anexo,anexo,,LLAMA,98.4926164150238,100.0,100.00000000000004,0.0,100.00004768371582
-file attached to this stream,Esta arquivo está anexado a este fluxo de dados.,arquivo anexado a este fluxo,,LLAMA,84.50540900230408,75.29477333577788,27.77619034011791,80.0,84.45733189582825
-beats per minute,Golpes por minuto,batidas por minuto,,LLAMA,69.25026774406433,56.3320064047854,55.03212081491043,33.33333333333333,87.15764880180359
-number of beats per minute in audio,Número de batidas por minuto no encontro sonoro,número de batidas por minuto no áudio,,LLAMA,81.72122836112976,73.1819502993798,51.697315395717055,28.57142857142857,88.7105643749237
-keywords,palavras-chave,palavras-chave,,LLAMA,99.25430417060852,100.0,100.00000000000004,0.0,100.0
-comma separated keywords describing the content,"Por meio de chaves separadas por vírgula, que descrevem o conteúdo",palavras-chave separadas por vírgula descrevendo o conteúdo,,LLAMA,75.46935677528381,61.02968018701726,15.851165692617148,100.0,86.66497468948364
-geo location name,local geológico,nome da localização geográfica,,LLAMA,53.39422821998596,13.903165517805308,0.0,100.0,67.07830429077148
-human readable descriptive location of where the media has been recorded or produced,Descrição clara do local onde o meio foi gravado ou produzido.,descrição legível da localização de onde a mídia foi gravada ou produzida,,LLAMA,80.93860149383545,36.23543499488957,4.456882760699063,66.66666666666666,84.05388593673706
-geo location latitude,grau geográfico de latitude,latitude da localização geográfica,,LLAMA,86.72043085098267,37.16704678041466,15.97357760615681,100.0,79.43427562713623
-"geo latitude location of where the media has been recorded or produced in degrees according to WGS84 (zero at the equator, negative values for southern latitudes)","grau geográfico de latitude do local em graus após o sistema WGS84 (0 no equador, valores negativos para os grades sulinos), onde foi gravado ou produzido o meio",latitude da localização geográfica de onde a mídia foi gravada ou produzida em graus de acordo com WGS84 (zero corresponde ao equador e valores negativos a latitudes ao sul),,LLAMA,66.78451299667358,41.99853481140925,4.875126887748425,89.65517241379311,80.41659593582153
-geo location longitude,grau geográfico de longitude,longitude da localização geográfica,,LLAMA,82.50824213027954,38.649111654348026,15.97357760615681,100.0,77.21399664878845
-"geo longitude location of where the media has been recorded or produced in degrees according to WGS84 (zero at the prime meridian in Greenwich/UK,  negative values for western longitudes)","grau de longitude geográfica do local em graus após o sistema WGS84 (0 para o meridiano principal por Greenwich/Reino Unido, valores negativos para os grades leste da América Latina)",longitude da localização geográfica de onde a mídia foi gravada ou produzida em graus de acordo com WGS84 (zero corresponde ao meridiano de Greenwich/RU e valores negativos a latitudes ao oeste),,LLAMA,63.742220401763916,38.984370519771716,4.862672384805388,87.09677419354838,80.5627167224884
-geo location elevation,altitude geográfica,elevação da localização geográfica,,LLAMA,75.11703372001648,27.62310204679314,18.393972058572114,75.0,81.30079507827759
-geo elevation of where the media has been recorded or produced in meters according to WGS84 (zero is average sea level),a altitude geográfica do local em metros após o sistema WGS84 (altura zero corresponde ao nível do mar),elevação geográfica de onde a mídia foi gravada ou produzida em metros de acordo com WGS84 (zero é a média do nível do mar),,LLAMA,70.09208798408508,38.140569555677736,13.277940285229619,70.83333333333334,82.73196816444397
-geo location country,terreno geográfico,localização geográfica do país,,LLAMA,81.26877546310425,25.21553663270708,0.0,100.0,73.2833981513977
-country (english name) where the media has been recorded or produced,O país (nome em inglês) onde o meio foi gravado ou produzido,"país, em inglês, onde a mídia foi gravada ou produzida",,LLAMA,87.54605650901794,46.756342178005575,7.474875887495341,80.0,83.7873637676239
-geo location city,cidade geográfica,localização geográfica da cidade,,LLAMA,91.65370464324951,40.88100758615219,26.013004751144457,75.0,75.37495493888855
-city (english name) where the media has been recorded or produced,"A cidade (nome em inglês), na qual o meio foi gravado ou produzido","cidade, em inglês, onde a mídia foi gravada ou produzida",,LLAMA,86.03541851043701,44.24889322368037,6.437165254072419,100.0,86.03381514549255
-geo location sublocation,bairro geográfico,sublocalização geográfica,,LLAMA,85.86674928665161,30.157862022398312,0.0,100.0,73.15781116485596
-a location within a city where the media has been produced or created (e.g. the neighborhood),"um local dentro de uma cidade, onde o meio foi gravado ou produzido (por exemplo, um bairro)",localização numa cidade onde a mídia foi produzida ou criada (ex: bairro),,LLAMA,78.75820398330688,35.25124670779542,4.968018039415939,100.0,85.8792781829834
-geo location horizontal error,Erro de horizontalidade geográfica,desvio horizontal da localização geográfica,,LLAMA,83.73470902442932,37.94557389592485,12.44023474812678,80.0,78.67492437362671
-expected error of the horizontal positioning measures (in meters),Erro esperado na medição horizontal da posição (em metros),desvio esperado nas medidas de posicionamento horizontal (em metros),,LLAMA,83.86651873588562,50.143139602672825,25.965358893403383,66.66666666666666,87.0669424533844
-geo location movement speed,velocidade geométrica de movimento geográfico,velocidade de movimento na localização geográfica,,LLAMA,79.41471934318542,53.61008492308176,19.3576934939088,66.66666666666666,77.00700759887695
-movement speed of the capturing device while performing the capture in m/s,velocidade de movimentação do dispositivo de gravação durante a gravação em m/s,"velocidade de movimento do  dispositivo de captura ao realizar a captura, em m/s",,LLAMA,87.24930882453918,53.80722585882717,25.504377483159427,38.46153846153847,91.08225703239441
-geo location movement direction,direção geográfica de movimento,direção de movimento na localização geográfica,,LLAMA,91.86143279075623,58.35866259300858,23.04318198457308,50.0,86.0552728176117
-"indicates the movement direction of the device performing the capture of a media. It is represented as degrees in floating point representation, 0 means the geographic north, and increases clockwise",Exibe a direção de movimento do dispositivo de gravação durante o registro de um meio. A representação é em graus como número real. 0 corresponde ao norte geográfico e a medida aumenta no sentido horário,"indica a direção de movimento do dispositivo ao realizar a captura de uma mídia. É representado como graus em representação fracionária, 0 indica Norte e incrementa-se no sentido do relógio",,LLAMA,82.33382105827332,43.53941854154939,16.909799330291364,76.66666666666667,80.94120621681213
-geo location capture direction,direção geográfica de registro,direção de captura na localização geográfica,,LLAMA,79.21361327171326,39.707240630123884,12.750736437345598,66.66666666666666,80.77772259712219
-"indicates the direction the device is pointing to when capturing  a media. It is represented as degrees in floating point  representation, 0 means the geographic north, and increases clockwise",Exibe a direção do dispositivo durante o registro de um meio. A representação é em graus como número real. 0 corresponde ao norte geográfico e a medida aumenta no sentido horário,"indica a direção que o dispositivo estava apontando quando capturava uma mídia. É representado como graus em representação fracionária, 0 indica Norte e incrementa-se no sentido do relógio",,LLAMA,79.19074892997742,34.556696358636984,4.344905092294316,78.57142857142857,78.12285423278809
-show name,Exibir o nome do usuário.,nome do programa,,LLAMA,66.97689890861511,34.63963181545658,16.233395773754953,100.0,78.26313376426697
-Name of the tv/podcast/series show the media is from,"Nome do meio de transmissão (TV, Podcast ou Série), da qual o conteúdo origina","Nome do programa de TV, do podcast ou da série de onde a mídia tem origem",,LLAMA,84.95250344276428,28.282733023548584,6.986768364373987,68.75,80.0115168094635
-show sortname,Nome do arquivo mostrado,programa para ordenação,,LLAMA,50.53648352622986,7.202380952380952,0.0,100.0,71.19027376174927
-"Name of the tv/podcast/series show the media is from, for sorting purposes","Nome do conteúdo (TV, Podcast ou série) e da plataforma de onde ele se origina para a organização","Nome do programa de TV, do podcast ou da série de onde a mídia tem origem, para ordenação",,LLAMA,78.14403772354126,35.589688472598795,7.320439219592829,61.111111111111114,81.07143640518188
-episode number,Número da sequência,número do episódio,,LLAMA,78.92404198646545,21.3553919272218,0.0,66.66666666666666,73.76668453216553
-The episode number in the season the media is part of,"A sequência da série, do qual o meio possui um fragmento, é a nº de episódios.",O número do episódio da temporada que a mídia faz parte,,LLAMA,58.72611999511719,21.167670076510475,2.6643211213888947,100.0,69.9346125125885
-season number,Número da série,número da temporada,,LLAMA,83.49973559379578,29.594491529210803,27.516060407455225,33.33333333333333,91.3691759109497
-The season number of the show the media is part of,"A numeração da série da transmissão, do meio em que ocorre",O número da temporada da série que a mídia faz parte,,LLAMA,67.02799201011658,24.40759023727971,8.054496384843702,81.81818181818183,74.72454905509949
-lyrics,Lendo texto falso,letras de música,,LLAMA,45.411112904548645,6.161971830985916,0.0,100.0,74.0147352218628
-"The lyrics of the media, commonly used for songs","O texto do meio, normalmente utilizado para músicas","As letras de música da mídia, normalmente para músicas",,LLAMA,74.1983950138092,42.10413808466874,12.067008283523638,77.77777777777779,85.76570153236389
-composer sortname,Nome do Compositor para Orquestração,compositor para ordenação,,LLAMA,59.826260805130005,46.05344326351801,10.682175159905848,100.0,75.07299780845642
-"person(s) who composed the recording, for sorting purposes","Para a realização da gravação, responsável(s) pessoal(is), para fins de classificação","pessoa(s) que compôs(useram) a gravação, para ordenação",,LLAMA,62.347233295440674,35.625243950395586,11.7942240532671,100.0,76.81908011436462
-grouping,agrupar,parte,,LLAMA,61.132222414016724,21.756337040376714,0.0,100.0,74.5538055896759
-"Groups related media that spans multiple tracks, like the different pieces of a concerto. It is a higher level than a track, but lower than an album","Medium de grupo, que inclui vários títulos como em um concerto com diversas peças musicais. É uma categoria intermediária entre o título e o álbum.","Partes da mídia que se estende em várias faixas, como diferentes partes de um concerto. Tem um nível acima da faixa, mas abaixo do álbum",,LLAMA,65.70709943771362,24.817028656611868,3.889818545474848,96.0,75.35410523414612
-user rating,Avaliação do usuário,avaliação do usuário,,LLAMA,96.91293835639954,84.6846158335129,55.03212081491043,0.0,91.62124395370483
-"Rating attributed by a user. The higher the rank, the more the user likes this media","Avaliado por um usuário. Quanto maior a avaliação, mais popular o meio para esse usuário.","Avaliação atribuída pelo usuário. Quanto melhor a avaliação, mais o usuário gosta da mídia",,LLAMA,81.54170513153076,49.83124141264772,20.706193828327603,64.28571428571429,80.78576922416687
-device manufacturer,Fabricante de dispositivos eletrônicos,fabricante do dispositivo,,LLAMA,71.64409756660461,52.35564595647896,0.0,100.0,71.96952104568481
-Manufacturer of the device used to create this media,O fabricante do dispositivo para criação deste meio digitalizado.,Fabricante do dispositivo utilizado para criar esta mídia,,LLAMA,77.31202244758606,54.37856594596091,9.287528999566801,75.0,81.0313880443573
-device model,Modelo de dispositivo,modelo do dispositivo,,LLAMA,95.31919956207275,57.670117389060884,27.516060407455225,33.33333333333333,89.09828662872314
-Model of the device used to create this media,Do modelo do dispositivo para a criação deste meio digital,Modelo do dispositivo utilizado para criar esta mídia,,LLAMA,75.6122887134552,45.35178376796341,9.287528999566801,87.5,79.584401845932
-application name,Nome do Aplicativo,nome do aplicativo,,LLAMA,89.80741500854492,52.52050033300033,27.516060407455225,0.0,74.22553300857544
-Application used to create the media,A aplicação utilizada para a criação deste meio,Aplicativo utilizado para criar a mídia,,LLAMA,83.29084515571594,35.890871350898266,6.567274736060395,100.0,77.05981135368347
-application data,Dados de aplicação,dados do aplicativo,,LLAMA,82.3337972164154,30.47922024915661,0.0,66.66666666666666,82.57527947425842
-Arbitrary application data to be serialized into the media,Dados de qualquer aplicação para serialização no meio,Dados arbitrários do aplicativo para ser serializado na mídia,,LLAMA,62.657809257507324,32.19568327269327,5.795599612995366,77.77777777777779,80.42009472846985
-image orientation,orientação de imagem,orientação de imagem,,LLAMA,98.34603667259216,100.0,100.00000000000004,0.0,99.99998211860657
-How the image should be rotated or flipped before display,Como obrigar a ser girado ou espelhado antes da apresentação do imagem?,Como a imagem deveria ser rotacionada ou invertida antes da exibição,,LLAMA,59.50841307640076,31.821266166548018,8.450310992782928,72.72727272727273,79.10482883453369
-publisher,editora/autora,editora,,LLAMA,90.52367806434631,64.44584191598756,27.516060407455225,100.0,82.00386166572571
-Name of the label or publisher,Nome do Label ou do Editor/Autor,Nome da gravadora ou editora,,LLAMA,81.57797455787659,26.121659273175325,6.567274736060395,80.0,81.74843788146973
-interpreted-by,interpretado por,interpretado-por,,LLAMA,89.87703919410706,66.48804019707805,0.0,100.0,86.82315349578857
-Information about the people behind a remix and similar interpretations,Informações sobre as pessoas por trás de um remix e interpretações semelhantes.,Informações sobre a pessoa detrás de um remix ou interpretações similares,,LLAMA,82.74140357971191,61.76526282489437,15.133218633429316,54.54545454545454,90.08415937423706
-midi-base-note,nota base do midi,nota-base-midi,,LLAMA,67.9672122001648,33.1739688882546,0.0,100.0,83.81643891334534
-Midi note number of the audio track.,Midi-Notenzahl da Tonspur.,Número MIDI da nota da trilha de áudio.,,LLAMA,39.289721846580505,11.877279699984637,5.4424142191183185,87.5,71.19833827018738
-private-data,Dados Pessoais,dados-privados,,LLAMA,82.2663962841034,15.373954542689471,0.0,100.0,76.25824213027954
-Private data,Dados privados,Dados privados,,LLAMA,98.95771741867065,100.0,100.00000000000004,0.0,99.99999403953552
-", ",", ",", ",,LLAMA,97.24280834197998,100.0,100.00000000000004,0.0,100.00003576278687
-No URI handler for the %s protocol found,Não foi possível encontrar um handler de endereço para o protocolo %s.,Nenhum manipulador URI para o protocolo %s foi encontrado,,LLAMA,88.64461779594421,42.72677070473328,27.824623288353134,100.0,81.81291818618774
-URI scheme '%s' not supported,O schema de endereço '%s' não é suportado.,"Não há suporte para o esquema URI ""%s""",,LLAMA,89.46145176887512,16.279422013808187,3.7477767366779213,100.0,81.6478967666626
+original,translated,reference,context_languages,strategy,bleu
+Print the GStreamer version,A versão do GStreamer é exibida,Exibe a versão do GStreamer,,LLAMA,30.213753973567677
+Make all warnings fatal,Tratamento de todas as advertências como erros,Trata todos avisos como fatais,,LLAMA,6.567274736060395
+Print available debug categories and exit,Exibição de categorias de diagnóstico de erros disponíveis e encerramento do programa.,Exibe as categorias de depuração disponíveis e sair,,LLAMA,8.73716785171588
+Default debug level from 1 (only error) to 9 (anything) or 0 for no output,Vorgegeben Fehlerdiagnóstico de nível %d (somente erros) até %d (todo o sistema) ou 0 para não produzir saída.,Níveis de depuração predefinidos de 1 (apenas erros) até 9 (tudo) ou 0 para nenhuma saída,,LLAMA,15.268470848781108
+LEVEL,Estragado (Falha),NÍVEL,,LLAMA,0.0
+"Comma-separated list of category_name:level pairs to set specific levels for the individual categories. Example: GST_AUTOPLUG:5,GST_ELEMENT_*:3","Lista separada por vírgulas de pares 'Categoria_Name:Nível' para atribuir níveis específicos a cada categoria. Exemplo: GST_AUTOPLUG:5,GST_ELEMENT_*:3","Lista de ""categoria_nome:nível"" separados por vírgulas, para definir níveis específicos para as categorias individuais. Exemplo: GST_AUTOPLUG:5,GST_ELEMENT_*:3",,LLAMA,47.47086886341709
+LIST,LISTA,LISTA,,LLAMA,100.00000000000004
+Disable colored debugging output,Desabilitar a exibição de erros coloridos da diagnose de cores do sistema operacional,Desabilita saída de depuração colorida,,LLAMA,3.0890553181566975
+"Changes coloring mode of the debug log. Possible modes: off, on, disable, auto, unix","Alterar o modo de cores do protocolo de diagnóstico de erro. Modos possíveis: off (desligado), on (ligado), disable (deactivado), auto e Unix.","Altera o modo de cor do log de depuração. Modos possíveis: off (desligado), on (ligado), disable (desabilitado), auto (automático) e unix",,LLAMA,54.5837166588529
+Disable debugging,Desabilitar diagnóstico de erros,Desabilita depuração,,LLAMA,0.0
+Colon-separated paths containing plugins,"Por meio de dois pontos, separados por espaços, acessam os plugins.","Caminhos, separados por dois-pontos, de plug-ins",,LLAMA,12.011055432195764
+PATHS,PFADE,CAMINHOS,,LLAMA,0.0
+Comma-separated list of plugins to preload in addition to the list stored in environment variable GST_PLUGIN_PATH,"Lista separada por vírgulas de plugins, que além dos presentes na variável GST_PLUGIN_PATH serão carregados","Lista, separada por vírgulas, de plug-ins para pré-carregar além da lista armazenada na variável de ambiente GST_PLUGIN_PATH",,LLAMA,24.66372035680361
+PLUGINS,PLUGINS,PLUG-INS,,LLAMA,0.0
+Disable trapping of segmentation faults during plugin loading,Monitoramento de falhas de acesso ao armazenamento durante o carregamento de plugins desabilitado.,Desabilita intercepção das falhas de segmentação durante o carregamento do plug-in,,LLAMA,13.292417883329383
+Disable updating the registry,Actualização da Registry desabilitada,Desabilita atualização do registro,,LLAMA,0.0
+Disable spawning a helper process while scanning the registry,Desligue o processo auxiliar ao ler a Registry desativada.,Desabilita a criação de um processo auxiliar durante a análise do registro,,LLAMA,7.603985612048923
+GStreamer Options,Opções do GStreamer,Opções do GStreamer,,LLAMA,100.00000000000004
+Show GStreamer Options,"Para visualizar as opções de GStreamer, digite 'gst-option --list'",Exibe opções do GStreamer,,LLAMA,4.990049701936832
+Unknown option,opção desconhecida,Opção desconhecida,,LLAMA,49.99999999999999
+GStreamer encountered a general core library error.,GStreamer detectou um erro genérico na biblioteca padrão.,O GStreamer encontrou um erro geral na biblioteca principal.,,LLAMA,13.354339892249618
+GStreamer developers were too lazy to assign an error code to this error.,"Os desenvolvedores de GStreamer foram considerados preguiçosos, não atribuindo um número a este erro.",Os desenvolvedores do GStreamer são muito preguiçosos para definir um código de erro para esse erro.,,LLAMA,7.727578693391118
+Internal GStreamer error: code not implemented.,Erro interno do GStreamer: Código não implementado.,Erro interno no GStreamer: código não implementado.,,LLAMA,26.084743001221455
+GStreamer error: state change failed and some element failed to post a proper error message with the reason for the failure.,Erro GStreamer: Falha no estado de transição e alguns elementos não enviaram a mensagem correta com uma justificativa para o erro.,Erro no GStreamer: falha ao alterar estado e algum elemento falhou ao enviar uma mensagem de erro apropriada com a razão da falha.,,LLAMA,4.820572866895475
+Internal GStreamer error: pad problem.,Erro interno do GStreamer: Problema de preenchimento.,Erro interno no GStreamer: problema no Pad.,,LLAMA,14.25876976452075
+Internal GStreamer error: thread problem.,Erro interno do GStreamer: Problema de thread.,Erro interno no GStreamer: problema na thread.,,LLAMA,16.51582159006904
+GStreamer error: negotiation problem.,Erro GStreamer: Problemas de negociação.,Erro no GStreamer: problema de negociação.,,LLAMA,27.890014303843827
+Internal GStreamer error: event problem.,Erro interno do GStreamer: problema de eventos.,Erro interno no GStreamer: problema no evento.,,LLAMA,23.356898886410015
+Internal GStreamer error: seek problem.,Erro interno do GStreamer: problema de busca.,Erro interno no GStreamer: problema na busca.,,LLAMA,26.084743001221455
+Internal GStreamer error: caps problem.,Erro interno do GStreamer: Problema de permissão.,Erro interno no GStreamer: problema no Caps.,,LLAMA,14.25876976452075
+Internal GStreamer error: tag problem.,Erro interno do GStreamer: problema de marcação.,Erro interno no GStreamer: problema na etiqueta.,,LLAMA,23.356898886410015
+Your GStreamer installation is missing a plug-in.,Sua instalação de GStreamer fica com um plugin ausente.,Sua instalação do GStreamer está com um plug-in faltando.,,LLAMA,13.134549472120794
+GStreamer error: clock problem.,Erro GStreamer: problema de tempo.,Erro no GStreamer: problema no temporizador.,,LLAMA,24.0785655451027
+This application is trying to use GStreamer functionality that has been disabled.,Esta aplicação tenta utilizar a funcionalidade de GStreamer que foi desabilitada.,Este aplicativo está tentando usar uma funcionalidade do GStreamer que foi desabilitada.,,LLAMA,30.527785817943403
+GStreamer encountered a general supporting library error.,"Erro do GStreamer da Internet: Problema com a biblioteca de suporte. Por favor, envie um relatório de erro.",O GStreamer encontrou um erro geral na biblioteca de suporte.,,LLAMA,12.436722085116983
+Could not initialize supporting library.,A biblioteca de suporte não pôde ser inicializada.,Não foi possível iniciar a biblioteca de suporte.,,LLAMA,19.070828081828378
+Could not close supporting library.,A biblioteca de suporte não pôde ser fechada.,Não foi possível fechar a biblioteca de suporte.,,LLAMA,19.070828081828378
+Could not configure supporting library.,A biblioteca de suporte não pôde ser configurada.,Não foi possível configurar a biblioteca de suporte.,,LLAMA,19.070828081828378
+Encoding error.,Erro de codificação.,Erro de codificação.,,LLAMA,100.00000000000004
+GStreamer encountered a general resource error.,GStreamer detectou um erro de recursos gerais.,O GStreamer encontrou um erro geral nos recursos.,,LLAMA,12.256200970377108
+Resource not found.,Recurso não encontrado.,Recurso não encontrado.,,LLAMA,100.00000000000004
+Resource busy or not available.,Recurso em uso ou não disponível.,O recurso está ocupado ou não disponível.,,LLAMA,35.64026463354184
+Could not open resource for reading.,A recurso não pôde ser aberto para leitura.,Não foi possível abrir o recurso para leitura.,,LLAMA,19.070828081828378
+Could not open resource for writing.,A fonte de dados não pôde ser aberta para escrita.,Não foi possível abrir o recurso para escrita.,,LLAMA,13.950796967929138
+Could not open resource for reading and writing.,A fonte de dados não pôde ser aberta para leitura e escrita.,Não foi possível abrir o recurso para leitura e escrita.,,LLAMA,28.917849332325716
+Could not close resource.,A recurso não pôde ser fechado.,Não foi possível fechar o recurso.,,LLAMA,7.809849842300637
+Could not read from resource.,Não foi possível ler da fonte.,Não foi possível ler do recurso.,,LLAMA,43.47208719449914
+Could not write to resource.,Não foi possível escrever na recurso.,Não foi possível escrever no recurso.,,LLAMA,48.892302243490086
+Could not perform seek on resource.,"Na recurso, não foi possível executar o laço de pesquisa.",Não foi possível realizar uma busca no recurso.,,LLAMA,8.054496384843702
+Could not synchronize on resource.,A fonte de dados não pôde ser sincronizada.,Não foi possível sincronizar no recurso.,,LLAMA,4.767707020457095
+Could not get/set settings from/on resource.,As configurações não podem ser lidas nem escritas na recurso.,Não foi possível obter/definir configurações para/do recurso.,,LLAMA,7.574347133041985
+No space left on the resource.,Não há mais espaço na recurso.,Não foi deixado espaço no recurso.,,LLAMA,15.619699684601283
+Not authorized to access resource.,Permissão negada ao acesso à recurso.,O acesso ao recurso não foi autorizado.,,LLAMA,8.051153633013374
+GStreamer encountered a general stream error.,GStreamer detectou um erro de fluxo geral.,O GStreamer encontrou um erro geral no fluxo.,,LLAMA,12.827770611048305
+Element doesn't implement handling of this stream. Please file a bug.,"O elemento não pode processar este fluxo de dados. Por favor, envie um relatório de erro.","O elemento não implementa a manipulação desse fluxo. Por favor, relate o erro.",,LLAMA,20.973425791310696
+Could not determine type of stream.,A natureza do fluxo de dados não pôde ser determinada.,Não foi possível determinar o tipo do fluxo.,,LLAMA,8.29519350710986
+The stream is of a different type than handled by this element.,O fluxo de dados é da mesma espécie que o processado por este elemento.,O fluxo é de um tipo diferente do que o manipulado por esse elemento.,,LLAMA,10.074708078532293
+There is no codec present that can handle the stream's type.,Não há nenhum codec disponível que possa processar esse tipo de fluxo de dados.,Não há um CODEC presente que possa manipular esse tipo de fluxo.,,LLAMA,22.894156860669913
+Could not decode stream.,O fluxo de dados não pôde ser decodificado.,Não foi possível decodificar o fluxo.,,LLAMA,5.669791110976001
+Could not encode stream.,O fluxo de dados não pôde ser codificado.,Não foi possível codificar o fluxo.,,LLAMA,5.669791110976001
+Could not demultiplex stream.,O fluxo de dados não pôde ser multiplexado.,Não foi possível demultiplexar o fluxo.,,LLAMA,5.669791110976001
+Could not multiplex stream.,O fluxo de dados não pôde ser multiplexado.,Não foi possível multiplexar o fluxo.,,LLAMA,5.669791110976001
+The stream is in the wrong format.,O fluxo de dados tem o formato errado.,Esse fluxo está com um formato errado.,,LLAMA,19.070828081828378
+The stream is encrypted and decryption is not supported.,"O fluxo de dados está criptografado, mas a descriptografia não é suportada.",O fluxo está criptografado e não há suporte a descriptografia.,,LLAMA,10.571070857151541
+The stream is encrypted and can't be decrypted because no suitable key has been supplied.,"O fluxo de dados está criptografado, mas não pode ser descriptografado porque nenhum chave apropriada está presente.",O fluxo está criptografado e não pôde ser descriptografado porque nenhuma chave apropriada foi fornecida.,,LLAMA,13.11246738393144
+No error message for domain %s.,Não há mensagem de erro para o campo %s.,Nenhuma mensagem de erro para o domínio %s.,,LLAMA,46.92470064105599
+No standard error message for domain %s and code %d.,Não há mensagem padrão de erro para o segmento %s e código de erro %d.,Nenhuma mensagem de erro predefinida para o domínio %s e código %d.,,LLAMA,24.202875575621302
+Selected clock cannot be used in pipeline.,O sinal selecionado do referencial de tempo não pode ser utilizado na linha.,O temporizador selecionado não pôde ser usado na fila de processamento.,,LLAMA,4.6192151051305474
+Error writing registry cache to %s: %s,Erro ao escrever o cache intermediário da Registry após %s: %s,Erro ao escrever o cache de registro em %s: %s,,LLAMA,53.16967153331756
+title,Título,título,,LLAMA,0.0
+commonly used title,Título comum,título normalmente utilizado,,LLAMA,0.0
+title sortname,Nome do título para ordenação,título para ordenação,,LLAMA,39.76353643835252
+commonly used title for sorting purposes,Título comum para fins de ordenação,"título normalmente utilizado, para ordenação",,LLAMA,9.652434877402245
+artist,artista,artista,,LLAMA,100.00000000000004
+person(s) responsible for the recording,Für die Aufnahme verantwortliche Person(en),pessoa(s) responsável(is) pela gravação,,LLAMA,5.11459870708889
+artist sortname,Nome do Artista,artista para ordenação,,LLAMA,0.0
+person(s) responsible for the recording for sorting purposes,"Para fins de ordenação, a pessoa responsável pela gravação é","pessoa(s) responsável(is) pela gravação, para ordenação",,LLAMA,8.224725028069482
+album,Álbum,álbum,,LLAMA,0.0
+album containing this data,Album que contém estas informações.,álbum contendo esses dados,,LLAMA,0.0
+album sortname,Nome do Álbum para Ordem,álbum para ordenação,,LLAMA,10.682175159905848
+album containing this data for sorting purposes,"O álbum que contém esses dados, para fins de ordenação","álbum contendo esses dados, para ordenação",,LLAMA,25.965358893403383
+album artist,Criadores do álbum,artista do álbum,,LLAMA,55.03212081491043
+"The artist of the entire album, as it should be displayed","O artista do álbum inteiro, assim como ele dever ser apresentado","O artista de todo álbum, como ele deveria ser exibido",,LLAMA,11.016798394984653
+album artist sortname,Nome do Artista da Gravação,artista do álbum para ordenação,,LLAMA,10.682175159905848
+"The artist of the entire album, as it should be sorted","O artista do álbum inteiro, assim como ele deve ser organizado","O artista de todo álbum, como ele deveria ser ordenado",,LLAMA,11.016798394984653
+date,Dado,data,,LLAMA,0.0
+date the data was created (as a GDate structure),Dados gerados em data de criação (como GDateStrutura),data que os dados foram criados (estrutura GDate),,LLAMA,5.522397783539471
+datetime,Data e Hora,data hora,,LLAMA,0.0
+date and time the data was created (as a GstDateTime structure),Data e hora em que foram geradas as informações (como GstDateTimeStructure),data e hora que os dados foram criados (estrutura GstDateTime),,LLAMA,8.130850857597444
+genre,Gênero,gênero,,LLAMA,0.0
+genre this data belongs to,Gênero a qual esses dados pertencem,gênero que este dado pertence,,LLAMA,0.0
+comment,Comentário,comentário,,LLAMA,0.0
+free text commenting the data,Um texto livre que descreve os dados,texto livre comentando os dados,,LLAMA,18.575057999133602
+extended comment,Comentário ampliado,comentário prolongado,,LLAMA,0.0
+free text commenting the data in key=value or key[en]=comment form,"Um texto qualquer que descreva os dados, na forma 'Chave=Valor' ou 'Chave[de]=Comentário'","texto livre comentando os dados, usando o formato chave=valor ou chave[pt_BR]=comentário",,LLAMA,9.87398498012017
+track number,Número de título,número da faixa,,LLAMA,0.0
+track number inside a collection,Número de título dentro da coleção,número da faixa dentro da coleção,,LLAMA,30.213753973567677
+track count,Número de títulos,número de faixas,,LLAMA,27.516060407455225
+count of tracks inside collection this track belongs to,"Número de títulos na coleção, à qual pertence este item",número de faixas dentro da coleção que esta faixa pertence,,LLAMA,4.9323515694897075
+disc number,Número da fita,número do disco,,LLAMA,0.0
+disc number inside a collection,Número da placa dentro da coleção,número do disco dentro da coleção,,LLAMA,30.213753973567677
+disc count,Número de discos,número de discos,,LLAMA,55.03212081491043
+count of discs inside collection this disc belongs to,"Número de discos na coleção à qual pertence este disco, ou seja, o número total dentro dessa determinada amostra da biblioteca digital.",número de discos dentro da coleção que este disco pertence,,LLAMA,5.217592866832707
+location,Ortamento de arquivos,local,,LLAMA,0.0
+"Origin of media as a URI (location, where the original of the file or stream is hosted)",Origem do meio como URI (local onde o original da ficheira ou fluxo de dados está pronto para uso),A origem da mídia como um URI (localização onde o arquivo ou fluxo original está hospedado),,LLAMA,7.320439219592829
+homepage,Página da internet,página inicial,,LLAMA,0.0
+Homepage for this media (i.e. artist or movie homepage),"Página da internet desse meio (por exemplo, página do artista ou de filme)",Página inicial desta mídia (página inicial do artista ou filme),,LLAMA,12.874330508144842
+description,Descrição do arquivo,descrição,,LLAMA,0.0
+short text describing the content of the data,Uma breve descrição do conteúdo,texto pequeno descrevendo o conteúdo dos dados,,LLAMA,7.16047614494885
+version,Versão,versão,,LLAMA,0.0
+version of this data,Versão destas informações,versão destes dados,,LLAMA,0.0
+ISRC,ISRC,ISRC,,LLAMA,100.00000000000004
+International Standard Recording Code - see http://www.ifpi.org/isrc/,Código Internacional de Registro Fonográfico - veja http://www.ifpi.org/isrc/,Código de Gravação Padrão Internacional (ISRC) - consulte http://www.ifpi.org/isrc/,,LLAMA,54.85512750395746
+organization,Organização,organização,,LLAMA,0.0
+copyright,Copyright (C) 2023 Your Name or Entity. Todos os direitos reservados.,direitos autorais,,LLAMA,2.627961710408444
+copyright notice of the data,Agradecimento pela cópia de direitos sobre os dados.,informação de direitos autorais dos dados,,LLAMA,10.552670315936318
+copyright uri,Derechos de URIs,URI dos direitos autorais,,LLAMA,0.0
+URI to the copyright notice of the data,URI para a citação de direitos autorais dos dados,URI para a informação de direitos autorais dos dados,,LLAMA,59.694917920196445
+encoded by,codificado por,codificado por,,LLAMA,100.00000000000004
+name of the encoding person or organization,O nome da pessoa ou organização que está codificando,nome da pessoa ou organização que codificou o arquivo,,LLAMA,58.73949094699213
+contact,Contato,contato,,LLAMA,0.0
+contact information,Informações de contato,informação de contato,,LLAMA,55.03212081491043
+license,Licença,licença,,LLAMA,0.0
+license of data,Licença para dados,licença dos dados,,LLAMA,27.516060407455225
+license uri,URI da Lizência,URI da licença,,LLAMA,55.03212081491043
+URI to the license of the data,URI para licenciamento dos dados,URI para a licença dos dados,,LLAMA,24.736929544091932
+performer,ator,participação,,LLAMA,0.0
+person(s) performing,A pessoa que está interpretando o peça teatral.,pessoa(s) participante(s),,LLAMA,4.767707020457095
+composer,Compositor,compositor,,LLAMA,0.0
+person(s) who composed the recording,Für die Aufnahme verantwortliche Person(en),pessoa(s) que compôs(useram) a gravação,,LLAMA,4.513617516969122
+conductor,direção,maestro,,LLAMA,0.0
+conductor/performer refinement,Detaillização do diretor/ator,maestro/músico de afinação,,LLAMA,10.682175159905848
+duration,Duração,duração,,LLAMA,0.0
+length in GStreamer time units (nanoseconds),Comprimento do fragmento em unidades de tempo GStreamer (nanosegundos),comprimento em unidades de tempo do GStreamer (nanosegundos),,LLAMA,48.326978309062206
+codec,Codificador/Decodificador,CODEC,,LLAMA,0.0
+codec the data is stored in,"Formato de dados, no qual os dados estão armazenados",CODEC utilizado nos dados,,LLAMA,4.196114906296549
+video codec,Codificador de vídeo,CODEC de vídeo,,LLAMA,55.03212081491043
+codec the video data is stored in,"Formato de dados, no qual os dados do vídeo são armazenados",CODEC de vídeo utilizado nos dados,,LLAMA,4.456882760699063
+audio codec,Codificador de áudio,CODEC de áudio,,LLAMA,55.03212081491043
+codec the audio data is stored in,"Formato de dados, no qual os dados de áudio são armazenados",CODEC de áudio utilizado nos dados,,LLAMA,7.495553473355845
+subtitle codec,Codificador de subtítulos,CODEC de legenda,,LLAMA,27.516060407455225
+codec the subtitle data is stored in,Dados em formato no qual os subtítulos são armazenados,CODEC de legenda utilizado nos dados,,LLAMA,0.0
+container format,Contêiner de Formato,formato do contêiner,,LLAMA,0.0
+container format the data is stored in,"Contêiner de Formato, no qual os dados são armazenados.",formato do contêiner onde os dados são armazenados,,LLAMA,23.462350320528007
+bitrate,Bitrate,taxa de bits,,LLAMA,0.0
+exact or average bitrate in bits/s,exatamente ou média de taxa de bits em bits por segundo,"taxa de bits exata ou média, em bits/s",,LLAMA,20.504572236241867
+nominal bitrate,Taxa de Bitânorma,taxa de bits nominal,,LLAMA,19.716118825581447
+nominal bitrate in bits/s,"Ao variar o bitrate, uma média de bits por segundo é apropriada.","taxa de bits nominal, em bits/s",,LLAMA,6.285596338261262
+minimum bitrate,Taxa de bit média mínima,taxa de bits mínima,,LLAMA,12.703318703865365
+minimum bitrate in bits/s,Bitrate mínima em bits por segundo,"taxa de bits mínima, em bits/s",,LLAMA,10.89644800332157
+maximum bitrate,Bitrate máximo,taxa de bits máxima,,LLAMA,0.0
+maximum bitrate in bits/s,Bitrate máxima em bits por segundo,"taxa de bits máxima, em bits/s",,LLAMA,10.89644800332157
+encoder,Codificador,codificador,,LLAMA,0.0
+encoder used to encode this stream,Codificador para este fluxo de dados,codificador utilizado pelo fluxo,,LLAMA,8.116697886877475
+encoder version,Versão dos Codificadores,versão do codificador,,LLAMA,0.0
+version of the encoder used to encode this stream,Versão dos Codificadores para este fluxo de dados,versão do codificador utilizado pelo fluxo,,LLAMA,5.522397783539471
+serial,número de série,série,,LLAMA,27.516060407455225
+serial number of track,Número de série do título,número de série da faixa,,LLAMA,21.3643503198117
+replaygain track gain,Ajuste de volume do título padrão,ganho da faixa (ReplayGain),,LLAMA,0.0
+track gain in dB,Título de pressão sonora em dB,ganho da faixa em decibéis,,LLAMA,8.116697886877475
+r128 track gain,Título de Piso R128,ganho da faixa (r128),,LLAMA,0.0
+track gain in dB (r128),Título de pressão sonora em dB (R128),ganho da faixa em decibéis (r128),,LLAMA,6.27465531099474
+replaygain track peak,Ajuste de volume do pico de saída,pico da faixa (ReplayGain),,LLAMA,6.567274736060395
+peak of the track,Pico do título,pico da faixa,,LLAMA,0.0
+replaygain album gain,Ajuste de volume do álbum,ganho do álbum (ReplayGain),,LLAMA,17.491650626361256
+album gain in dB,Pontuação de gravações em dB,ganho do álbum em decibéis,,LLAMA,10.682175159905848
+r128 album gain,níveis de pressão dos álbuns R128,ganho do álbum (r128),,LLAMA,0.0
+album gain in dB (r128),Pontuação do álbum em dB (R128),ganho do álbum em decibéis (r128),,LLAMA,23.356898886410015
+replaygain album peak,Ajuste de volume do pico da montanha Albense,pico do álbum (ReplayGain),,LLAMA,6.567274736060395
+peak of the album,Pico do álbum,pico do álbum,,LLAMA,55.03212081491043
+replaygain reference level,referência de nível para ajuste de volume da áudio,nível de referência (ReplayGain),,LLAMA,6.27465531099474
+reference level of track and album gain values,Referência para ajustes de nível dos parâmetros do título e álbum,nível de referência dos valores de ganho da faixa e do álbum,,LLAMA,5.35587222083487
+language code,Código de linguagem,código da língua,,LLAMA,0.0
+"language code for this stream, conforming to ISO-639-1 or ISO-639-2","Código de linguagem para este fornecedor elétrico, conforme ISO-639-1 ou ISO-639-2.","código da língua deste fluxo, conforme o ISO-639-1 ou ISO-639-2",,LLAMA,38.53856918030314
+language name,Nome da Lingua,nome do idioma,,LLAMA,0.0
+freeform name of the language this stream is in,Nome da linguagem em que o fluxo de dados está,"nome, em formato livre, do idioma do fluxo",,LLAMA,4.990049701936832
+image,imagem,imagem,,LLAMA,100.00000000000004
+image related to this stream,imagem para este fluxo de dados,imagem relacionada a este fluxo,,LLAMA,17.965205598154213
+preview image,Projeto de visão preliminar,miniatura,,LLAMA,0.0
+preview image related to this stream,Vorschau para este fluxo de dados,miniatura relacionada a este fluxo,,LLAMA,16.233395773754953
+attachment,anexo,anexo,,LLAMA,100.00000000000004
+file attached to this stream,Esta arquivo está anexado a este fluxo de dados.,arquivo anexado a este fluxo,,LLAMA,27.77619034011791
+beats per minute,Golpes por minuto,batidas por minuto,,LLAMA,55.03212081491043
+number of beats per minute in audio,Número de batidas por minuto no encontro sonoro,número de batidas por minuto no áudio,,LLAMA,51.697315395717055
+keywords,palavras-chave,palavras-chave,,LLAMA,100.00000000000004
+comma separated keywords describing the content,"Por meio de chaves separadas por vírgula, que descrevem o conteúdo",palavras-chave separadas por vírgula descrevendo o conteúdo,,LLAMA,15.851165692617148
+geo location name,local geológico,nome da localização geográfica,,LLAMA,0.0
+human readable descriptive location of where the media has been recorded or produced,Descrição clara do local onde o meio foi gravado ou produzido.,descrição legível da localização de onde a mídia foi gravada ou produzida,,LLAMA,4.456882760699063
+geo location latitude,grau geográfico de latitude,latitude da localização geográfica,,LLAMA,15.97357760615681
+"geo latitude location of where the media has been recorded or produced in degrees according to WGS84 (zero at the equator, negative values for southern latitudes)","grau geográfico de latitude do local em graus após o sistema WGS84 (0 no equador, valores negativos para os grades sulinos), onde foi gravado ou produzido o meio",latitude da localização geográfica de onde a mídia foi gravada ou produzida em graus de acordo com WGS84 (zero corresponde ao equador e valores negativos a latitudes ao sul),,LLAMA,4.875126887748425
+geo location longitude,grau geográfico de longitude,longitude da localização geográfica,,LLAMA,15.97357760615681
+"geo longitude location of where the media has been recorded or produced in degrees according to WGS84 (zero at the prime meridian in Greenwich/UK,  negative values for western longitudes)","grau de longitude geográfica do local em graus após o sistema WGS84 (0 para o meridiano principal por Greenwich/Reino Unido, valores negativos para os grades leste da América Latina)",longitude da localização geográfica de onde a mídia foi gravada ou produzida em graus de acordo com WGS84 (zero corresponde ao meridiano de Greenwich/RU e valores negativos a latitudes ao oeste),,LLAMA,4.862672384805388
+geo location elevation,altitude geográfica,elevação da localização geográfica,,LLAMA,18.393972058572114
+geo elevation of where the media has been recorded or produced in meters according to WGS84 (zero is average sea level),a altitude geográfica do local em metros após o sistema WGS84 (altura zero corresponde ao nível do mar),elevação geográfica de onde a mídia foi gravada ou produzida em metros de acordo com WGS84 (zero é a média do nível do mar),,LLAMA,13.277940285229619
+geo location country,terreno geográfico,localização geográfica do país,,LLAMA,0.0
+country (english name) where the media has been recorded or produced,O país (nome em inglês) onde o meio foi gravado ou produzido,"país, em inglês, onde a mídia foi gravada ou produzida",,LLAMA,7.474875887495341
+geo location city,cidade geográfica,localização geográfica da cidade,,LLAMA,26.013004751144457
+city (english name) where the media has been recorded or produced,"A cidade (nome em inglês), na qual o meio foi gravado ou produzido","cidade, em inglês, onde a mídia foi gravada ou produzida",,LLAMA,6.437165254072419
+geo location sublocation,bairro geográfico,sublocalização geográfica,,LLAMA,0.0
+a location within a city where the media has been produced or created (e.g. the neighborhood),"um local dentro de uma cidade, onde o meio foi gravado ou produzido (por exemplo, um bairro)",localização numa cidade onde a mídia foi produzida ou criada (ex: bairro),,LLAMA,4.968018039415939
+geo location horizontal error,Erro de horizontalidade geográfica,desvio horizontal da localização geográfica,,LLAMA,12.44023474812678
+expected error of the horizontal positioning measures (in meters),Erro esperado na medição horizontal da posição (em metros),desvio esperado nas medidas de posicionamento horizontal (em metros),,LLAMA,25.965358893403383
+geo location movement speed,velocidade geométrica de movimento geográfico,velocidade de movimento na localização geográfica,,LLAMA,19.3576934939088
+movement speed of the capturing device while performing the capture in m/s,velocidade de movimentação do dispositivo de gravação durante a gravação em m/s,"velocidade de movimento do  dispositivo de captura ao realizar a captura, em m/s",,LLAMA,25.504377483159427
+geo location movement direction,direção geográfica de movimento,direção de movimento na localização geográfica,,LLAMA,23.04318198457308
+"indicates the movement direction of the device performing the capture of a media. It is represented as degrees in floating point representation, 0 means the geographic north, and increases clockwise",Exibe a direção de movimento do dispositivo de gravação durante o registro de um meio. A representação é em graus como número real. 0 corresponde ao norte geográfico e a medida aumenta no sentido horário,"indica a direção de movimento do dispositivo ao realizar a captura de uma mídia. É representado como graus em representação fracionária, 0 indica Norte e incrementa-se no sentido do relógio",,LLAMA,16.909799330291364
+geo location capture direction,direção geográfica de registro,direção de captura na localização geográfica,,LLAMA,12.750736437345598
+"indicates the direction the device is pointing to when capturing  a media. It is represented as degrees in floating point  representation, 0 means the geographic north, and increases clockwise",Exibe a direção do dispositivo durante o registro de um meio. A representação é em graus como número real. 0 corresponde ao norte geográfico e a medida aumenta no sentido horário,"indica a direção que o dispositivo estava apontando quando capturava uma mídia. É representado como graus em representação fracionária, 0 indica Norte e incrementa-se no sentido do relógio",,LLAMA,4.344905092294316
+show name,Exibir o nome do usuário.,nome do programa,,LLAMA,16.233395773754953
+Name of the tv/podcast/series show the media is from,"Nome do meio de transmissão (TV, Podcast ou Série), da qual o conteúdo origina","Nome do programa de TV, do podcast ou da série de onde a mídia tem origem",,LLAMA,6.986768364373987
+show sortname,Nome do arquivo mostrado,programa para ordenação,,LLAMA,0.0
+"Name of the tv/podcast/series show the media is from, for sorting purposes","Nome do conteúdo (TV, Podcast ou série) e da plataforma de onde ele se origina para a organização","Nome do programa de TV, do podcast ou da série de onde a mídia tem origem, para ordenação",,LLAMA,7.320439219592829
+episode number,Número da sequência,número do episódio,,LLAMA,0.0
+The episode number in the season the media is part of,"A sequência da série, do qual o meio possui um fragmento, é a nº de episódios.",O número do episódio da temporada que a mídia faz parte,,LLAMA,2.6643211213888947
+season number,Número da série,número da temporada,,LLAMA,27.516060407455225
+The season number of the show the media is part of,"A numeração da série da transmissão, do meio em que ocorre",O número da temporada da série que a mídia faz parte,,LLAMA,8.054496384843702
+lyrics,Lendo texto falso,letras de música,,LLAMA,0.0
+"The lyrics of the media, commonly used for songs","O texto do meio, normalmente utilizado para músicas","As letras de música da mídia, normalmente para músicas",,LLAMA,12.067008283523638
+composer sortname,Nome do Compositor para Orquestração,compositor para ordenação,,LLAMA,10.682175159905848
+"person(s) who composed the recording, for sorting purposes","Para a realização da gravação, responsável(s) pessoal(is), para fins de classificação","pessoa(s) que compôs(useram) a gravação, para ordenação",,LLAMA,11.7942240532671
+grouping,agrupar,parte,,LLAMA,0.0
+"Groups related media that spans multiple tracks, like the different pieces of a concerto. It is a higher level than a track, but lower than an album","Medium de grupo, que inclui vários títulos como em um concerto com diversas peças musicais. É uma categoria intermediária entre o título e o álbum.","Partes da mídia que se estende em várias faixas, como diferentes partes de um concerto. Tem um nível acima da faixa, mas abaixo do álbum",,LLAMA,3.889818545474848
+user rating,Avaliação do usuário,avaliação do usuário,,LLAMA,55.03212081491043
+"Rating attributed by a user. The higher the rank, the more the user likes this media","Avaliado por um usuário. Quanto maior a avaliação, mais popular o meio para esse usuário.","Avaliação atribuída pelo usuário. Quanto melhor a avaliação, mais o usuário gosta da mídia",,LLAMA,20.706193828327603
+device manufacturer,Fabricante de dispositivos eletrônicos,fabricante do dispositivo,,LLAMA,0.0
+Manufacturer of the device used to create this media,O fabricante do dispositivo para criação deste meio digitalizado.,Fabricante do dispositivo utilizado para criar esta mídia,,LLAMA,9.287528999566801
+device model,Modelo de dispositivo,modelo do dispositivo,,LLAMA,27.516060407455225
+Model of the device used to create this media,Do modelo do dispositivo para a criação deste meio digital,Modelo do dispositivo utilizado para criar esta mídia,,LLAMA,9.287528999566801
+application name,Nome do Aplicativo,nome do aplicativo,,LLAMA,27.516060407455225
+Application used to create the media,A aplicação utilizada para a criação deste meio,Aplicativo utilizado para criar a mídia,,LLAMA,6.567274736060395
+application data,Dados de aplicação,dados do aplicativo,,LLAMA,0.0
+Arbitrary application data to be serialized into the media,Dados de qualquer aplicação para serialização no meio,Dados arbitrários do aplicativo para ser serializado na mídia,,LLAMA,5.795599612995366
+image orientation,orientação de imagem,orientação de imagem,,LLAMA,100.00000000000004
+How the image should be rotated or flipped before display,Como obrigar a ser girado ou espelhado antes da apresentação do imagem?,Como a imagem deveria ser rotacionada ou invertida antes da exibição,,LLAMA,8.450310992782928
+publisher,editora/autora,editora,,LLAMA,27.516060407455225
+Name of the label or publisher,Nome do Label ou do Editor/Autor,Nome da gravadora ou editora,,LLAMA,6.567274736060395
+interpreted-by,interpretado por,interpretado-por,,LLAMA,0.0
+Information about the people behind a remix and similar interpretations,Informações sobre as pessoas por trás de um remix e interpretações semelhantes.,Informações sobre a pessoa detrás de um remix ou interpretações similares,,LLAMA,15.133218633429316
+midi-base-note,nota base do midi,nota-base-midi,,LLAMA,0.0
+Midi note number of the audio track.,Midi-Notenzahl da Tonspur.,Número MIDI da nota da trilha de áudio.,,LLAMA,5.4424142191183185
+private-data,Dados Pessoais,dados-privados,,LLAMA,0.0
+Private data,Dados privados,Dados privados,,LLAMA,100.00000000000004
+", ",", ",", ",,LLAMA,100.00000000000004
+No URI handler for the %s protocol found,Não foi possível encontrar um handler de endereço para o protocolo %s.,Nenhum manipulador URI para o protocolo %s foi encontrado,,LLAMA,27.824623288353134
+URI scheme '%s' not supported,O schema de endereço '%s' não é suportado.,"Não há suporte para o esquema URI ""%s""",,LLAMA,3.7477767366779213
 "ERROR: from element %s: %s
 ","ERRO: De elemento %s: %s
 ","ERRO: do elemento %s: %s
-",,LLAMA,91.99835658073425,74.66730551869871,66.06328636027612,20.0,95.32207250595093
+",,LLAMA,66.06328636027612
 "Additional debug info:
 %s
 ","Informações adicionais para diagnóstico de erros: 
 %s
 ","Informação adicional de depuração:
 %s
-",,LLAMA,77.9514729976654,41.2962233684064,19.070828081828378,100.0,83.51181745529175
-link has no source [sink=%s@%p],A ligação não possui fonte [sink=%s@%p],não há elemento fonte no link [sink=%s@%p],,LLAMA,91.4929211139679,39.03018728679039,58.31101839887756,85.71428571428571,92.21323132514954
-link has no sink [source=%s@%p],A ligação não possui alvo [sink=%s@%p],não há consumidor no link [source=%s@%p],,LLAMA,71.50529623031616,23.06592960119824,46.0462862587273,100.0,84.59242582321167
-"no property ""%s"" in element ""%s""","Nenhuma propriedade ""%s"" no elemento ""%s"".","nenhuma propriedade ""%s"" no elemento ""%s""",,LLAMA,95.43019533157349,87.27961981002372,82.4236750264605,16.666666666666664,90.10582566261292
-"Element ""%s"" is not a GstPreset",Element »%s« não é um GstPreset,"O elemento ""%s"" não é um GstPreset",,LLAMA,95.76066136360168,61.04585824139932,28.46946938149361,42.857142857142854,93.34042072296143
-"could not set preset ""%s"" in element ""%s""",A configuração padrão '%s' não pode ser definida no elemento '%s',"não foi possível definir o valor ""%s"" no elemento ""%s""",,LLAMA,84.80109572410583,29.23503538888176,6.1827411661290235,90.0,86.01115942001343
-"no element ""%s""",Nenhum elemento encontrado para o símbolo %s.,"nenhum elemento ""%s""",,LLAMA,81.37492537498474,44.645690066149854,10.552670315936318,100.0,76.61253809928894
-"could not set property ""%s"" in element ""%s"" to ""%s""","A propriedade ""%s"" no elemento ""%s"" não pôde ser definida para ""%s"".","não foi possível definir a propriedade ""%s"" no elemento ""%s"" para o valor ""%s""",,LLAMA,83.7028980255127,54.83107314784095,56.77534942306638,64.28571428571429,88.34624886512756
-"could not set property ""%s"" in child of element ""%s"" to ""%s""","A propriedade ""%s"" no nó interno do elemento ""%s"" não pôde ser definida para ""%s""","não foi possível definir a propriedade ""%s"" no filho do elemento ""%s"" para o valor ""%s""",,LLAMA,76.55174136161804,52.21954578050272,48.28782093626148,62.5,89.51437473297119
-Delayed linking failed.,O vínculo atrasado falhou.,Falha no vínculo postergado.,,LLAMA,83.1623911857605,29.23864492264623,12.703318703865365,100.0,82.29789733886719
-"could not link %s to %s, %s can't handle caps %s",%s não pode ser associado a %s. Ela não oferece suporte à capacidade de associação.,"não foi possível vincular %s em %s, %s não consegue manipular Caps %s",,LLAMA,71.80151343345642,18.356824965706533,9.917720727091444,100.0,74.82503652572632
-"could not link %s to %s, neither element can handle caps %s",%s não pode ser associado ao %s. Ambos os elementos não possuem a capacidade de %s.,"não foi possível vincular %s em %s, nenhum elemento consegue manipular Caps %s",,LLAMA,68.54638457298279,21.427583586451213,6.5382794375545075,100.0,74.62981939315796
-could not link %s to %s with caps %s,%s não pode ser associado ao %s usando a capacidade %s.,não foi possível vincular %s em %s com Caps %s,,LLAMA,72.82982468605042,19.196244490154303,9.46120284397968,90.0,77.5370180606842
-could not link %s to %s,%s não pode ser associado a %s,não foi possível vincular %s em %s,,LLAMA,84.66427326202393,22.197665735367043,14.25876976452075,71.42857142857143,83.92258286476135
-"unexpected reference ""%s"" - ignoring",referência não esperada - será ignorada,"referência inesperada ""%s"" - ignorando",,LLAMA,66.90753102302551,45.120712147484134,6.916271812933183,80.0,76.42301917076111
-"unexpected pad-reference ""%s"" - ignoring",referência de padrao não esperada - será ignorada.,"referência ao Pad inesperada ""%s"" - ignorando",,LLAMA,63.63515257835388,39.29332140463797,5.0735520042259505,85.71428571428571,74.20704364776611
-"could not parse caps ""%s""","As capacidades de ""%s"" não puderam ser processadas.","não foi possível analisar o Caps ""%s""",,LLAMA,73.07679057121277,19.024768305882837,22.416933501922287,100.0,80.3573727607727
-"no sink element for URI ""%s""",Não há elemento de destino para URI %s.,"nenhum elemento consumidor para o URI ""%s""",,LLAMA,77.51750349998474,26.798193993280496,10.552670315936318,85.71428571428571,80.67359328269958
-"no source element for URI ""%s""",Nenhuma componente de URI para %s.,"nenhum elemento fonte para o URI ""%s""",,LLAMA,77.14030146598816,24.698996947554402,10.229197414177778,85.71428571428571,81.38531446456909
-syntax error,Erro de sintaxe,erro de sintaxe,,LLAMA,94.44385766983032,82.24237567987568,55.03212081491043,0.0,93.00175905227661
-"specified empty bin ""%s"", not allowed",Contêiner vazio especificado como '%s' -- proibido.,"o Bin ""%s"" está vazio, operação não permitida",,LLAMA,62.806206941604614,15.762578868696176,4.085507150363302,100.0,73.34110736846924
-"no bin ""%s"", unpacking elements",Nenhum recipiente - Elementos serão desempacotados.,"nenhum Bin ""%s"", descarregando elementos",,LLAMA,49.436333775520325,23.225363456403223,0.0,100.0,69.7482705116272
-empty pipeline not allowed,A condução vazia não é permitida.,não é permitido que a fila de processamento seja vazia,,LLAMA,60.80271601676941,30.367177238657955,9.469167282754096,80.0,77.92718410491943
-A lot of buffers are being dropped.,São descartados muitos buffers.,Uma grande quantidade de buffers está sendo descartada.,,LLAMA,80.23528456687927,26.799113296037547,5.70796903405875,100.0,86.28860712051392
-Internal data flow problem.,Problema interno no fluxo de dados.,Problema interno no fluxo de dados.,,LLAMA,98.19549918174744,100.0,100.00000000000004,0.0,100.00002384185791
-Internal data flow error.,Erro interno no fluxo de dados.,Erro interno no fluxo de dados.,,LLAMA,97.96573519706726,100.0,100.00000000000004,0.0,99.99998807907104
-Internal clock error.,Erro interno de tempo.,Erro interno no temporizador.,,LLAMA,68.02411675453186,48.43146461004352,23.643540225079384,50.0,85.92686653137207
-Failed to map buffer.,A alocação de buffer falhou.,Falha ao mapear o buffer.,,LLAMA,79.28455471992493,24.48557526926009,9.652434877402245,100.0,80.60322999954224
-Filter caps,capacidades de filtragem,Filtro Caps,,LLAMA,70.44523358345032,15.191441577280079,0.0,100.0,65.8259630203247
-Restrict the possible allowed capabilities (NULL means ANY). Setting this property takes a reference to the supplied GstCaps object.,Limita as possíveis funcionalidades de filtragem (NULL significa todos). Essa característica se refere a um objeto GstCaps adicionado.,Restrinja as possíveis capacidades permitidas (NULL = ANY). Definindo essa propriedade é levada uma referência ao objeto GstCaps fornecido.,,LLAMA,75.15860199928284,34.07797721665487,6.799172773166644,73.68421052631578,82.29519128799438
-Caps Change Mode,Modo de modificação das habilidades,Modo de Alteração do Caps,,LLAMA,66.11427068710327,32.095101862479794,21.3643503198117,60.0,84.82586741447449
-Filter caps change behaviour,Modo de alteração das capacidades filtradoras,Comportamento de alteração do filtro Caps,,LLAMA,71.38157486915588,38.92538925744445,16.233395773754953,66.66666666666666,80.30325770378113
-No Temp directory specified.,Nenhum diretório temporário especificado.,Nenhum diretório temporário especificado.,,LLAMA,98.58573079109192,100.0,100.00000000000004,0.0,100.00001192092896
-"Could not create temp file ""%s"".","A pasta temporária ""%s"" não pôde ser criada.","Não foi possível criar o arquivo temporário ""%s"".",,LLAMA,85.6851577758789,23.21919214924117,22.416933501922287,100.0,85.55623292922974
-"Could not open file ""%s"" for reading.","A ficheira ""%s"" não pode ser aberta para leitura.","Não foi possível abrir o arquivo ""%s"" para leitura.",,LLAMA,89.87444043159485,35.70836665531048,27.968424579665367,77.77777777777779,87.33885884284973
-Error while writing to download file.,Erro ao escrever na pasta de download.,Erro ao escrever no arquivo baixado.,,LLAMA,86.31840944290161,47.553784680310294,22.089591134157878,66.66666666666666,87.66683340072632
-No file name specified for writing.,Nenhum nome de arquivo para escrita especificado.,Nenhum nome de arquivo especificado para escrita.,,LLAMA,95.84940075874329,85.099530604184,44.17918226831576,42.857142857142854,96.84272408485413
-"Could not open file ""%s"" for writing.",Arquivo '%s' não pode ser aberto para escrita.,"Não foi possível abrir o arquivo ""%s"" para escrita.",,LLAMA,91.80092215538025,35.41397333621273,12.498879161997976,77.77777777777779,87.38376498222351
-"Error closing file ""%s"".",Erro ao fechar o arquivo '###'.,"Erro ao fechar o arquivo ""%s"".",,LLAMA,90.17120599746704,77.26938012467089,36.72056269893591,16.666666666666664,92.65276193618774
-"Error while seeking in file ""%s"".",Erro ao pesquisar dados '\%s'.,"Erro ao buscar no arquivo ""%s"".",,LLAMA,67.14183688163757,26.331546682431338,10.147104008451905,66.66666666666666,85.01287698745728
-"Error while writing to file ""%s"".",Erro ao escrever dados '###'.,"Erro ao escrever no arquivo ""%s"".",,LLAMA,69.81003284454346,47.938072230830954,16.784459625186194,50.0,83.08812975883484
-No file name specified for reading.,Nenhum nome de arquivo para leitura especificado.,Nenhum nome de arquivo especificado para leitura.,,LLAMA,96.95184826850891,85.099530604184,44.17918226831576,42.857142857142854,97.36549258232117
-"Could not get info on ""%s"".",Informações sobre »%s« não puderam ser lidas.,"Não foi possível obter informações em ""%s"".",,LLAMA,73.31717610359192,25.281406668183937,4.515183688171633,100.0,82.15386867523193
-"""%s"" is a directory.",O diretório %s é um local.,"""%s"" é um diretório.",,LLAMA,73.64321947097778,48.68819300693162,17.286039232097043,100.0,89.12364840507507
-"File ""%s"" is a socket.",A pasta de arquivo %s é um soquete.,"O arquivo ""%s"" é um soquete.",,LLAMA,78.96825075149536,58.77760773954775,32.46679154750989,66.66666666666666,87.60687708854675
-Failed after iterations as requested.,falha ao concluir o processo. Como desejado.,Falha após as interações requeridas.,,LLAMA,53.793805837631226,13.838518360901233,4.767707020457095,100.0,76.89005732536316
-caps,Habilidades,Caps,,LLAMA,66.21686816215515,7.407407407407408,0.0,100.0,79.71951365470886
-detected capabilities in stream,Capacidades reconhecidas no fluxo de dados,capacidades detectadas no fluxo,,LLAMA,73.69256615638733,53.997010295861315,16.233395773754953,75.0,84.82760190963745
-minimum,mínimo,mínimo,,LLAMA,99.19702410697937,100.0,100.00000000000004,0.0,99.99997019767761
-force caps,forçar habilidades,forçar Caps,,LLAMA,75.16846060752869,36.64750313812134,49.99999999999999,50.0,83.30091834068298
-force caps without doing a typefind,forçar a execução sem busca de tipos das capacidades,forçar Caps sem usar o typefind,,LLAMA,53.75731587409973,21.763496164238898,5.669791110976001,100.0,72.96333312988281
-Stream doesn't contain enough data.,O fluxo de dados não contém quantidade suficiente de dados.,O fluxo não contém dados suficientes.,,LLAMA,91.56914949417114,59.358617444711534,11.731175160263996,100.0,90.72404503822327
-Stream contains no data.,O fluxo de dados não contém nenhum dado.,O fluxo não contém dados.,,LLAMA,93.73405575752258,62.42475281345927,14.923729480049115,80.0,92.12672710418701
+",,LLAMA,19.070828081828378
+link has no source [sink=%s@%p],A ligação não possui fonte [sink=%s@%p],não há elemento fonte no link [sink=%s@%p],,LLAMA,58.31101839887756
+link has no sink [source=%s@%p],A ligação não possui alvo [sink=%s@%p],não há consumidor no link [source=%s@%p],,LLAMA,46.0462862587273
+"no property ""%s"" in element ""%s""","Nenhuma propriedade ""%s"" no elemento ""%s"".","nenhuma propriedade ""%s"" no elemento ""%s""",,LLAMA,82.4236750264605
+"Element ""%s"" is not a GstPreset",Element »%s« não é um GstPreset,"O elemento ""%s"" não é um GstPreset",,LLAMA,28.46946938149361
+"could not set preset ""%s"" in element ""%s""",A configuração padrão '%s' não pode ser definida no elemento '%s',"não foi possível definir o valor ""%s"" no elemento ""%s""",,LLAMA,6.1827411661290235
+"no element ""%s""",Nenhum elemento encontrado para o símbolo %s.,"nenhum elemento ""%s""",,LLAMA,10.552670315936318
+"could not set property ""%s"" in element ""%s"" to ""%s""","A propriedade ""%s"" no elemento ""%s"" não pôde ser definida para ""%s"".","não foi possível definir a propriedade ""%s"" no elemento ""%s"" para o valor ""%s""",,LLAMA,56.77534942306638
+"could not set property ""%s"" in child of element ""%s"" to ""%s""","A propriedade ""%s"" no nó interno do elemento ""%s"" não pôde ser definida para ""%s""","não foi possível definir a propriedade ""%s"" no filho do elemento ""%s"" para o valor ""%s""",,LLAMA,48.28782093626148
+Delayed linking failed.,O vínculo atrasado falhou.,Falha no vínculo postergado.,,LLAMA,12.703318703865365
+"could not link %s to %s, %s can't handle caps %s",%s não pode ser associado a %s. Ela não oferece suporte à capacidade de associação.,"não foi possível vincular %s em %s, %s não consegue manipular Caps %s",,LLAMA,9.917720727091444
+"could not link %s to %s, neither element can handle caps %s",%s não pode ser associado ao %s. Ambos os elementos não possuem a capacidade de %s.,"não foi possível vincular %s em %s, nenhum elemento consegue manipular Caps %s",,LLAMA,6.5382794375545075
+could not link %s to %s with caps %s,%s não pode ser associado ao %s usando a capacidade %s.,não foi possível vincular %s em %s com Caps %s,,LLAMA,9.46120284397968
+could not link %s to %s,%s não pode ser associado a %s,não foi possível vincular %s em %s,,LLAMA,14.25876976452075
+"unexpected reference ""%s"" - ignoring",referência não esperada - será ignorada,"referência inesperada ""%s"" - ignorando",,LLAMA,6.916271812933183
+"unexpected pad-reference ""%s"" - ignoring",referência de padrao não esperada - será ignorada.,"referência ao Pad inesperada ""%s"" - ignorando",,LLAMA,5.0735520042259505
+"could not parse caps ""%s""","As capacidades de ""%s"" não puderam ser processadas.","não foi possível analisar o Caps ""%s""",,LLAMA,22.416933501922287
+"no sink element for URI ""%s""",Não há elemento de destino para URI %s.,"nenhum elemento consumidor para o URI ""%s""",,LLAMA,10.552670315936318
+"no source element for URI ""%s""",Nenhuma componente de URI para %s.,"nenhum elemento fonte para o URI ""%s""",,LLAMA,10.229197414177778
+syntax error,Erro de sintaxe,erro de sintaxe,,LLAMA,55.03212081491043
+"specified empty bin ""%s"", not allowed",Contêiner vazio especificado como '%s' -- proibido.,"o Bin ""%s"" está vazio, operação não permitida",,LLAMA,4.085507150363302
+"no bin ""%s"", unpacking elements",Nenhum recipiente - Elementos serão desempacotados.,"nenhum Bin ""%s"", descarregando elementos",,LLAMA,0.0
+empty pipeline not allowed,A condução vazia não é permitida.,não é permitido que a fila de processamento seja vazia,,LLAMA,9.469167282754096
+A lot of buffers are being dropped.,São descartados muitos buffers.,Uma grande quantidade de buffers está sendo descartada.,,LLAMA,5.70796903405875
+Internal data flow problem.,Problema interno no fluxo de dados.,Problema interno no fluxo de dados.,,LLAMA,100.00000000000004
+Internal data flow error.,Erro interno no fluxo de dados.,Erro interno no fluxo de dados.,,LLAMA,100.00000000000004
+Internal clock error.,Erro interno de tempo.,Erro interno no temporizador.,,LLAMA,23.643540225079384
+Failed to map buffer.,A alocação de buffer falhou.,Falha ao mapear o buffer.,,LLAMA,9.652434877402245
+Filter caps,capacidades de filtragem,Filtro Caps,,LLAMA,0.0
+Restrict the possible allowed capabilities (NULL means ANY). Setting this property takes a reference to the supplied GstCaps object.,Limita as possíveis funcionalidades de filtragem (NULL significa todos). Essa característica se refere a um objeto GstCaps adicionado.,Restrinja as possíveis capacidades permitidas (NULL = ANY). Definindo essa propriedade é levada uma referência ao objeto GstCaps fornecido.,,LLAMA,6.799172773166644
+Caps Change Mode,Modo de modificação das habilidades,Modo de Alteração do Caps,,LLAMA,21.3643503198117
+Filter caps change behaviour,Modo de alteração das capacidades filtradoras,Comportamento de alteração do filtro Caps,,LLAMA,16.233395773754953
+No Temp directory specified.,Nenhum diretório temporário especificado.,Nenhum diretório temporário especificado.,,LLAMA,100.00000000000004
+"Could not create temp file ""%s"".","A pasta temporária ""%s"" não pôde ser criada.","Não foi possível criar o arquivo temporário ""%s"".",,LLAMA,22.416933501922287
+"Could not open file ""%s"" for reading.","A ficheira ""%s"" não pode ser aberta para leitura.","Não foi possível abrir o arquivo ""%s"" para leitura.",,LLAMA,27.968424579665367
+Error while writing to download file.,Erro ao escrever na pasta de download.,Erro ao escrever no arquivo baixado.,,LLAMA,22.089591134157878
+No file name specified for writing.,Nenhum nome de arquivo para escrita especificado.,Nenhum nome de arquivo especificado para escrita.,,LLAMA,44.17918226831576
+"Could not open file ""%s"" for writing.",Arquivo '%s' não pode ser aberto para escrita.,"Não foi possível abrir o arquivo ""%s"" para escrita.",,LLAMA,12.498879161997976
+"Error closing file ""%s"".",Erro ao fechar o arquivo '###'.,"Erro ao fechar o arquivo ""%s"".",,LLAMA,36.72056269893591
+"Error while seeking in file ""%s"".",Erro ao pesquisar dados '\%s'.,"Erro ao buscar no arquivo ""%s"".",,LLAMA,10.147104008451905
+"Error while writing to file ""%s"".",Erro ao escrever dados '###'.,"Erro ao escrever no arquivo ""%s"".",,LLAMA,16.784459625186194
+No file name specified for reading.,Nenhum nome de arquivo para leitura especificado.,Nenhum nome de arquivo especificado para leitura.,,LLAMA,44.17918226831576
+"Could not get info on ""%s"".",Informações sobre »%s« não puderam ser lidas.,"Não foi possível obter informações em ""%s"".",,LLAMA,4.515183688171633
+"""%s"" is a directory.",O diretório %s é um local.,"""%s"" é um diretório.",,LLAMA,17.286039232097043
+"File ""%s"" is a socket.",A pasta de arquivo %s é um soquete.,"O arquivo ""%s"" é um soquete.",,LLAMA,32.46679154750989
+Failed after iterations as requested.,falha ao concluir o processo. Como desejado.,Falha após as interações requeridas.,,LLAMA,4.767707020457095
+caps,Habilidades,Caps,,LLAMA,0.0
+detected capabilities in stream,Capacidades reconhecidas no fluxo de dados,capacidades detectadas no fluxo,,LLAMA,16.233395773754953
+minimum,mínimo,mínimo,,LLAMA,100.00000000000004
+force caps,forçar habilidades,forçar Caps,,LLAMA,49.99999999999999
+force caps without doing a typefind,forçar a execução sem busca de tipos das capacidades,forçar Caps sem usar o typefind,,LLAMA,5.669791110976001
+Stream doesn't contain enough data.,O fluxo de dados não contém quantidade suficiente de dados.,O fluxo não contém dados suficientes.,,LLAMA,11.731175160263996
+Stream contains no data.,O fluxo de dados não contém nenhum dado.,O fluxo não contém dados.,,LLAMA,14.923729480049115
 "%sImplemented Interfaces%s:
 ",%sImplemente as interfaces necessárias%s:,"%sInterfaces implementadas%s:
-",,LLAMA,84.25653576850891,48.338853106956755,22.089591134157878,100.0,83.85295867919922
-readable,leiavel,legível,,LLAMA,57.36868977546692,20.20408163265306,0.0,100.0,74.14889335632324
-writable,escritível,gravável,,LLAMA,50.27879476547241,12.897224939109755,0.0,100.0,79.48083281517029
-deprecated,obsoleto,obsoleto,,LLAMA,99.22608137130737,100.0,100.00000000000004,0.0,100.0
-controllable,regulável,controlável,,LLAMA,88.23385834693909,24.951894950802096,0.0,100.0,89.09685015678406
-conditionally available,disponível com reservas,condicionalmente disponível,,LLAMA,81.19948506355286,34.20475156326066,27.516060407455225,100.0,80.60019016265869
-"changeable in NULL, READY, PAUSED or PLAYING state","alterável no status NULL, REISSADO, PAUSA ou ABSOLVIDO","estado alterável para NULO, PRONTO, PAUSADO ou REPRODUZINDO",,LLAMA,70.57048082351685,29.54948626391407,5.934202609760488,87.5,85.56830286979675
-"changeable only in NULL, READY or PAUSED state","alterável apenas no status NULL, READY ou PAUSED","estado alterável apenas para NULO, PRONTO ou PAUSADO",,LLAMA,77.41971611976624,40.84977566466193,11.339582221952005,75.0,86.53039336204529
-changeable only in NULL or READY state,modificável apenas em 'STATUS' NULL ou BEREIT.,estado alterável apenas para NULO ou PRONTO,,LLAMA,73.59845638275146,23.978253590775697,6.567274736060395,85.71428571428571,81.32224678993225
-Blacklisted files:,Arquivos na lista negra:,Arquivos colocados na lista negra:,,LLAMA,88.9969527721405,69.41164199409964,57.89300674674101,20.0,89.78909254074097
-%sTotal count%s: %s,%sTotal%s: %s,%sContagem total%s: %s,,LLAMA,95.5018937587738,44.39623895708029,55.780028607687655,66.66666666666666,88.39825987815857
-Print all elements,Exibir todos os elementos,Exibir todos elementos,,LLAMA,89.1679048538208,86.15704019780746,35.35533905932737,33.33333333333333,97.22017645835876
-Print list of blacklisted files,Arquivos na lista negra serão exibidos.,Exibir lista dos arquivos na lista negra,,LLAMA,86.65708303451538,55.48186985128767,24.446151121745054,71.42857142857143,77.98518538475037
+",,LLAMA,22.089591134157878
+readable,leiavel,legível,,LLAMA,0.0
+writable,escritível,gravável,,LLAMA,0.0
+deprecated,obsoleto,obsoleto,,LLAMA,100.00000000000004
+controllable,regulável,controlável,,LLAMA,0.0
+conditionally available,disponível com reservas,condicionalmente disponível,,LLAMA,27.516060407455225
+"changeable in NULL, READY, PAUSED or PLAYING state","alterável no status NULL, REISSADO, PAUSA ou ABSOLVIDO","estado alterável para NULO, PRONTO, PAUSADO ou REPRODUZINDO",,LLAMA,5.934202609760488
+"changeable only in NULL, READY or PAUSED state","alterável apenas no status NULL, READY ou PAUSED","estado alterável apenas para NULO, PRONTO ou PAUSADO",,LLAMA,11.339582221952005
+changeable only in NULL or READY state,modificável apenas em 'STATUS' NULL ou BEREIT.,estado alterável apenas para NULO ou PRONTO,,LLAMA,6.567274736060395
+Blacklisted files:,Arquivos na lista negra:,Arquivos colocados na lista negra:,,LLAMA,57.89300674674101
+%sTotal count%s: %s,%sTotal%s: %s,%sContagem total%s: %s,,LLAMA,55.780028607687655
+Print all elements,Exibir todos os elementos,Exibir todos elementos,,LLAMA,35.35533905932737
+Print list of blacklisted files,Arquivos na lista negra serão exibidos.,Exibir lista dos arquivos na lista negra,,LLAMA,24.446151121745054
 "Print a machine-parsable list of features the specified plugin or all plugins provide.
                                        Useful in connection with external automatic plugin installation mechanisms","Uma lista de características liscíveis por máquinas, que o sistema ou todos os plugins disponíveis estão prontos para fornecer. 
 
 Utilizável em conjunto com mecanismos externos para a instalação automática dos plugins.","Exibir uma lista, legível para máquina, de recursos que o plug-in especificado ou todos os plug-ins fornecem.
-                                       Útil na conexão com mecanismos externos de instalação automática de plug-ins",,LLAMA,68.31902265548706,46.37916383541882,9.482754235376444,78.57142857142857,80.63320517539978
-List the plugin contents,Listagem dos conteúdos do plugin,Listar o conteúdo do plugin,,LLAMA,93.63625645637512,54.66222170545348,21.3643503198117,60.0,91.98787212371826
-A slashes ('/') separated list of types of elements (also known as klass) to list. (unordered),"Uma lista separada por barras inclinadas '//' de tipos de elementos (também conhecidos como classes), que será listada sem ordenação.","Uma lista de tipos de elementos separados por barras, ""/"", (também conhecidos como klass) para lista (não-ordenada).",,LLAMA,73.94518256187439,59.020684160238815,22.205108445785452,64.70588235294117,85.69696545600891
-Check if the specified element or plugin exists,Verifique se o elemento ou plugin especificado está presente.,Verificar se o elemento ou plug-in especificado existe,,LLAMA,92.59902238845825,63.90613718006205,27.77619034011791,50.0,88.20260167121887
-"When checking if an element or plugin exists, also check that its version is at least the version specified","Verificem se um elemento ou plugin está presente e, além disso, se a versão é igual ou superior à especificada.","Ao verificar se um elemento ou plug-in existe, também verificar se a versão é no mínimo a especificada",,LLAMA,88.5183036327362,47.4762142123319,21.800193956058234,72.22222222222221,80.96773624420166
-"Print supported URI schemes, with the elements that implement them","Suporte para URI com esquemas suportados, exibindo elementos que eles implementam.","Exibir esquemas URI com suporte, com os elementos que os implementam",,LLAMA,86.37178540229797,54.48925305910032,10.04916995660316,63.63636363636363,86.74442172050476
+                                       Útil na conexão com mecanismos externos de instalação automática de plug-ins",,LLAMA,9.482754235376444
+List the plugin contents,Listagem dos conteúdos do plugin,Listar o conteúdo do plugin,,LLAMA,21.3643503198117
+A slashes ('/') separated list of types of elements (also known as klass) to list. (unordered),"Uma lista separada por barras inclinadas '//' de tipos de elementos (também conhecidos como classes), que será listada sem ordenação.","Uma lista de tipos de elementos separados por barras, ""/"", (também conhecidos como klass) para lista (não-ordenada).",,LLAMA,22.205108445785452
+Check if the specified element or plugin exists,Verifique se o elemento ou plugin especificado está presente.,Verificar se o elemento ou plug-in especificado existe,,LLAMA,27.77619034011791
+"When checking if an element or plugin exists, also check that its version is at least the version specified","Verificem se um elemento ou plugin está presente e, além disso, se a versão é igual ou superior à especificada.","Ao verificar se um elemento ou plug-in existe, também verificar se a versão é no mínimo a especificada",,LLAMA,21.800193956058234
+"Print supported URI schemes, with the elements that implement them","Suporte para URI com esquemas suportados, exibindo elementos que eles implementam.","Exibir esquemas URI com suporte, com os elementos que os implementam",,LLAMA,10.04916995660316
 "Could not load plugin file: %s
 ","Ao tentar carregar a arquivo de extensão do plugin, foi encontrada uma falha. A causa pode estar relacionada ao caminho especificado como argumento para o parâmetro '%s'. Por favor, verifique se este é um diretório válido e que contém os arquivos necessários.","Não foi possível carregar o arquivo do plug-in: %s
-",,LLAMA,70.3468382358551,23.49499098936337,1.1652512227907519,100.0,72.70756959915161
+",,LLAMA,1.1652512227907519
 "No such element or plugin '%s'
 ","Nenhum desses elementos ou plugins ""%s""","Nenhum elemento ou plug-in ""%s""
-",,LLAMA,87.03842759132385,51.75552238253851,33.03164318013809,60.0,87.77799606323242
-Index statistics,Estatísticas de índices,Tabela de estatísticas,,LLAMA,80.57746291160583,42.975308868876475,27.516060407455225,66.66666666666666,77.05450057983398
+",,LLAMA,33.03164318013809
+Index statistics,Estatísticas de índices,Tabela de estatísticas,,LLAMA,27.516060407455225
 "Setting pipeline to PLAYING ...
 ",A condução será colocada em modo ABSPIELEN ...,"Definindo a fila de processamento para REPRODUZINDO...
-",,LLAMA,47.54136800765991,9.438764751350053,15.619699684601283,100.0,76.99301838874817
+",,LLAMA,15.619699684601283
 "ERROR: pipeline doesn't want to play.
 ",Erro de ligação. A conexão não está funcionando.,"ERRO: a fila de processamento não quer reproduzir.
-",,LLAMA,70.88518142700195,15.023279738880834,5.522397783539471,87.5,75.8103609085083
-"Got message #%u from element ""%s"" (%s): ","Nachricht #%u foi recebida pelo elemento '»%s«' (%s): ""","Obtida a mensagem #%u do elemento ""%s"" (%s): ",,LLAMA,76.06921792030334,34.19024295784865,31.007120066002052,87.5,82.7622652053833
-"Got message #%u from pad ""%s:%s"" (%s): ","Mensagem #%u foi recebida por Padding '##s:%s' (%s): ""Nachricht %u wurde von Padding »%s:%s« (%s) erhalten: ""","Obtida a mensagem #%u do Pad ""%s:%s"" (%s): ",,LLAMA,68.41309666633606,32.73873897041292,18.731107713279094,100.0,75.33645033836365
-"Got message #%u from object ""%s"" (%s): ","Mensagem #%u foi recebida pelo objeto '###' (###): ""Nachricht wurde von Objekt ### erhalten""","Obtida a mensagem #%u do objeto ""%s"" (%s): ",,LLAMA,63.708120584487915,32.760420934451126,6.976059189487863,100.0,71.87219858169556
-Got message #%u (%s): ,Nachricht #%u (%s) foi recebida:,Obtida a mensagem #%u (%s): ,,LLAMA,85.29362678527832,28.89224549318486,59.00468726392806,100.0,84.37860608100891
+",,LLAMA,5.522397783539471
+"Got message #%u from element ""%s"" (%s): ","Nachricht #%u foi recebida pelo elemento '»%s«' (%s): ""","Obtida a mensagem #%u do elemento ""%s"" (%s): ",,LLAMA,31.007120066002052
+"Got message #%u from pad ""%s:%s"" (%s): ","Mensagem #%u foi recebida por Padding '##s:%s' (%s): ""Nachricht %u wurde von Padding »%s:%s« (%s) erhalten: ""","Obtida a mensagem #%u do Pad ""%s:%s"" (%s): ",,LLAMA,18.731107713279094
+"Got message #%u from object ""%s"" (%s): ","Mensagem #%u foi recebida pelo objeto '###' (###): ""Nachricht wurde von Objekt ### erhalten""","Obtida a mensagem #%u do objeto ""%s"" (%s): ",,LLAMA,6.976059189487863
+Got message #%u (%s): ,Nachricht #%u (%s) foi recebida:,Obtida a mensagem #%u (%s): ,,LLAMA,59.00468726392806
 "Got EOS from element ""%s"".
 ",EOS foi recebido pela entidade Elemento »%s«.,"Obtido o final do fluxo do elemento ""%s"".
-",,LLAMA,56.90961480140686,20.665726189874047,4.085507150363302,87.5,77.35009789466858
+",,LLAMA,4.085507150363302
 "EOS received - stopping pipeline...
 ",EOS obtido - Linha de comunicação interrompida …,"Final do fluxo encontrado - parando a fila de processamento...
-",,LLAMA,61.8054986000061,11.852313070944977,3.515208856700362,90.0,72.2651481628418
+",,LLAMA,3.515208856700362
 "FOUND TAG      : found by element ""%s"".
 ",Elemento encontrado por KENNZEICHEN: Elemento »%s«.,"ETIQ. ENCONTR. : encontrada pelo elemento ""%s"".
-",,LLAMA,65.54118990898132,28.67434019834043,4.091092899898373,85.71428571428571,76.13720893859863
+",,LLAMA,4.091092899898373
 "FOUND TAG      : found by pad ""%s:%s"".
 ",Fundos do Kennzeichen encontrados por Padding em '%s:%s'.,"ETIQ. ENCONTR. : encontrada pelo Pad ""%s:%s"".
-",,LLAMA,57.51962661743164,21.55258354695298,16.295846120958622,100.0,74.39286708831787
+",,LLAMA,16.295846120958622
 "FOUND TAG      : found by object ""%s"".
 ",KENNZEICHEN GEFUNDEN: Encontrado o objeto '\,"ETIQ. ENCONTR. : encontrada pelo objeto ""%s"".
-",,LLAMA,49.40580427646637,25.458577614078852,3.515208856700362,85.71428571428571,72.3238468170166
+",,LLAMA,3.515208856700362
 "FOUND TAG
 ",Fundação Kennzeichens,"ETIQUETA ENCONTRADA
-",,LLAMA,39.04672563076019,0.0,0.0,100.0,58.70152711868286
+",,LLAMA,0.0
 "FOUND TOC      : found by element ""%s"".
 ",TOC GEFUNDEN: Encontrado através do elemento '\u003c%s\u003e'.,"TOC ENCONTR.   : encontrada pelo elemento ""%s"".
-",,LLAMA,52.26486325263977,33.0586614271674,6.917184228205472,71.42857142857143,79.69415187835693
+",,LLAMA,6.917184228205472
 "FOUND TOC      : found by object ""%s"".
 ","TOC GEFUNDEN: Encontrado através do objeto ""%s"".","TOC ENCONTR.   : encontrada pelo objeto ""%s"".
-",,LLAMA,72.38472104072571,45.50107888922372,44.833867003844595,57.14285714285714,88.00013661384583
+",,LLAMA,44.833867003844595
 "FOUND TOC
 ",TOC GEFUNDEN,"TOC ENCONTRADA
-",,LLAMA,71.38580083847046,17.62505931653355,49.99999999999999,50.0,87.93236017227173
+",,LLAMA,49.99999999999999
 "INFO:
 %s
 ","INFO:
 %s
 ","INFORMAÇÃO:
 %s
-",,LLAMA,96.5100646018982,40.66205636650566,59.460355750136046,50.0,83.21706056594849
+",,LLAMA,59.460355750136046
 "WARNING: from element %s: %s
 ","AVISO: Do elemento %s: %s
 ","AVISO: do elemento %s: %s
-",,LLAMA,92.12710857391357,79.90540075679394,66.06328636027612,0.0,97.39070534706116
+",,LLAMA,66.06328636027612
 "Pipeline is PREROLLED ...
 ",A condução está concluída ...,"A fila de processamento foi PREPARADA...
-",,LLAMA,63.329607248306274,10.944690493329928,19.740631366145518,83.33333333333334,75.30477643013
+",,LLAMA,19.740631366145518
 "Prerolled, waiting for buffering to finish...
 ","Vorgelaufen, aguarde ao final do carregamento em cache ...","Preparado, esperando o preenchimento do buffer para finalizar...
-",,LLAMA,50.47670006752014,19.881366018859744,14.323145079400492,100.0,77.6316225528717
+",,LLAMA,14.323145079400492
 "Prerolled, waiting for progress to finish...
 ","Vorgelaufen, aguarde o fim do carregamento em cache ...","Preparado, esperando o progresso para finalizar...
-",,LLAMA,47.87319004535675,14.919176114742957,14.323145079400492,100.0,75.36004185676575
-buffering...,Armazenamento intermediário em ...,preenchendo buffer...,,LLAMA,47.32564091682434,14.565882141741257,30.213753973567677,100.0,71.9937264919281
+",,LLAMA,14.323145079400492
+buffering...,Armazenamento intermediário em ...,preenchendo buffer...,,LLAMA,30.213753973567677
 "Done buffering, setting pipeline to PLAYING ...
 ","Armazenamento concluído, fio será desconectado ...","Preenchimento do buffer completo, definindo a fila de processamento para REPRODUZIR...
-",,LLAMA,47.147151827812195,14.755325805261954,9.791289611338179,100.0,69.91844177246094
+",,LLAMA,9.791289611338179
 "Buffering, setting pipeline to PAUSED ...
 ","Armazenamento temporário, a linha de comunicação será colocada em PAUSI.","Preenchendo buffer, definindo a fila de processamento para PAUSADO...
-",,LLAMA,50.23712515830994,19.514316333727706,4.406306339938217,100.0,71.451735496521
+",,LLAMA,4.406306339938217
 "Redistribute latency...
 ",Redistribuir com atraso …,"Redistribuição de latência...
-",,LLAMA,53.2264769077301,29.777674166636942,0.0,100.0,74.20814633369446
+",,LLAMA,0.0
 "Setting state to %s as requested by %s...
 ","O status será definido como de %s, conforme desejado por %s...","Definindo estado de %s como requerido por %s...
-",,LLAMA,84.71737504005432,41.8243989335626,36.821398145189974,100.0,83.23476314544678
+",,LLAMA,36.821398145189974
 "Interrupt: Stopping pipeline ...
 ",Interrupção: Linha de comando foi interrompida ...,"Interrupção: Parando a fila de processamento...
-",,LLAMA,79.64422702789307,36.64423499702276,20.556680845025987,100.0,84.55564379692078
+",,LLAMA,20.556680845025987
 "Interrupt while waiting for EOS - stopping pipeline...
 ",Interrupção durante o espera para EOS - Linha de comunicação será interrompida ...,"Interrupção recebida enquanto a finalização do fluxo estava sendo aguardada - parando a fila de processamento...
-",,LLAMA,58.83362293243408,21.865113092341286,8.910251805984952,93.75,78.15887331962585
+",,LLAMA,8.910251805984952
 "EOS on shutdown enabled -- Forcing EOS on the pipeline
 ","Ao encerrar, o EOS está ligado -- O EOS é imposto na linha
 ","Finalizar fluxo ao sair habilitado -- Forçando finalização do fluxo na fila de processamento
-",,LLAMA,43.32775175571442,14.122053673592836,3.377156414337854,92.85714285714286,72.3117470741272
+",,LLAMA,3.377156414337854
 "Waiting for EOS...
 ",Aguardando na EOS…,"Esperando pelo final do fluxo...
-",,LLAMA,56.97306990623474,8.528483650232888,0.0,100.0,72.54048585891724
+",,LLAMA,0.0
 "Progress: (%s) %s
 ","Progresso: (%s) %s
 ","Progresso: (%s) %s
-",,LLAMA,99.02744889259338,100.0,100.00000000000004,0.0,99.99999403953552
+",,LLAMA,100.00000000000004
 "Missing element: %s
 ",Elemento ausente »%s«,"Elemento faltando: %s
-",,LLAMA,54.88894581794739,31.257667868268125,12.703318703865365,66.66666666666666,80.82154393196106
+",,LLAMA,12.703318703865365
 "Got context from element '%s': %s=%s
 ","Contexto do elemento '###Element Name' obtido: valor='###Value1', valor2='###Value2'","Contexto obtido do elemento ""%s"": %s=%s
-",,LLAMA,67.10103154182434,41.387727361706304,3.802351022611669,100.0,70.82213759422302
+",,LLAMA,3.802351022611669
 "ERROR: pipeline doesn't want to preroll.
 ",Erro de operação do sistema. A linha não está funcionando.,"ERRO: a fila de processamento não quer preparar.
-",,LLAMA,61.81432604789734,15.120326955328267,4.456882760699063,100.0,73.83566498756409
+",,LLAMA,4.456882760699063
 "An error happened while waiting for EOS
 ",Um erro ocorreu durante a espera para EOS.,"Um erro ocorreu ao esperar pelo final do fluxo
-",,LLAMA,82.14817643165588,40.11352662804495,17.747405280050266,66.66666666666666,78.6981463432312
-Output tags (also known as metadata),Exibição de chave (também conhecida como metadados),Exibe etiquetas (metadados),,LLAMA,68.05729866027832,31.460420205540323,10.552670315936318,100.0,79.55735921859741
-Output TOC (chapters and editions),Saiba o tocante (capítulos e edições),Exibe TOC (capítulos e edições),,LLAMA,74.59254860877991,66.96258482528282,51.697315395717055,60.0,81.26742243766785
-Output status information and property notifications,Informações sobre o estado e as propriedades do sistema devem ser exibidas.,Exibe informações de status e notificações de propriedade,,LLAMA,71.51632905006409,33.501529331575696,3.0890553181566975,100.0,76.99907422065735
-Do not print any progress information,Não há informações de progresso a serem exibidas,Não imprime nenhuma informação de progresso,,LLAMA,88.5587990283966,41.9457791479746,12.22307556087252,100.0,79.93568778038025
-Output messages,notificação de saída,Exibir mensagens,,LLAMA,52.70299315452576,5.66387477687766,0.0,100.0,72.17909097671509
-Do not output status information for the specified property if verbose output is enabled (can be used multiple times),"Não será exibida nenhuma informação de status para a propriedade especificada, se estiver habilitado o modo detalhado (possível uso repetido)",Não exibe informações de status para a propriedade especificada se o modo detalhado de saída estiver ativado (pode ser usado várias vezes),,LLAMA,79.79104518890381,54.968228148807995,27.611945855109962,68.18181818181817,84.92947220802307
-PROPERTY-NAME,EIGENSCHAFTNAME,NOME-PROPRIEDADE,,LLAMA,82.03476071357727,7.294367444490681,0.0,100.0,76.44236087799072
-PROGRAM-NAME,PROGRAMM-NAME,NOME-PROGRAMA,,LLAMA,90.11179804801941,42.061272061272064,0.0,100.0,89.54492211341858
-Do not install a fault handler,Nenhuma rotina de tratamento para erros instalada.,Não instala um manipulador de falhas,,LLAMA,68.62406134605408,21.61141425140451,5.522397783539471,100.0,76.76080465316772
-Force EOS on sources before shutting the pipeline down,EOS imposto na fonte antes da interrupção da linha de transmissão,Força finalização do fluxo nos elementos fonte antes de desligar a fila de processamento,,LLAMA,48.84425401687622,23.354206106973336,6.315134024688132,78.57142857142857,79.09672856330872
-Gather and print index statistics,Sincronizar e exibir estatísticas de índice.,Reúne e imprime a tabela de estatísticas,,LLAMA,71.04420065879822,31.813194312462024,8.643019616048525,71.42857142857143,75.64892768859863
+",,LLAMA,17.747405280050266
+Output tags (also known as metadata),Exibição de chave (também conhecida como metadados),Exibe etiquetas (metadados),,LLAMA,10.552670315936318
+Output TOC (chapters and editions),Saiba o tocante (capítulos e edições),Exibe TOC (capítulos e edições),,LLAMA,51.697315395717055
+Output status information and property notifications,Informações sobre o estado e as propriedades do sistema devem ser exibidas.,Exibe informações de status e notificações de propriedade,,LLAMA,3.0890553181566975
+Do not print any progress information,Não há informações de progresso a serem exibidas,Não imprime nenhuma informação de progresso,,LLAMA,12.22307556087252
+Output messages,notificação de saída,Exibir mensagens,,LLAMA,0.0
+Do not output status information for the specified property if verbose output is enabled (can be used multiple times),"Não será exibida nenhuma informação de status para a propriedade especificada, se estiver habilitado o modo detalhado (possível uso repetido)",Não exibe informações de status para a propriedade especificada se o modo detalhado de saída estiver ativado (pode ser usado várias vezes),,LLAMA,27.611945855109962
+PROPERTY-NAME,EIGENSCHAFTNAME,NOME-PROPRIEDADE,,LLAMA,0.0
+PROGRAM-NAME,PROGRAMM-NAME,NOME-PROGRAMA,,LLAMA,0.0
+Do not install a fault handler,Nenhuma rotina de tratamento para erros instalada.,Não instala um manipulador de falhas,,LLAMA,5.522397783539471
+Force EOS on sources before shutting the pipeline down,EOS imposto na fonte antes da interrupção da linha de transmissão,Força finalização do fluxo nos elementos fonte antes de desligar a fila de processamento,,LLAMA,6.315134024688132
+Gather and print index statistics,Sincronizar e exibir estatísticas de índice.,Reúne e imprime a tabela de estatísticas,,LLAMA,8.643019616048525
 "ERROR: pipeline could not be constructed: %s.
 ",Erro de conexão com a linha %s. A construção da mesma não foi possível.,"ERRO: não foi possível construir a fila de processamento: %s.
-",,LLAMA,67.17427372932434,40.2857692272609,15.384750052099497,100.0,76.3289213180542
+",,LLAMA,15.384750052099497
 "ERROR: pipeline could not be constructed.
 ",Erro de conexão: a ligação não pôde ser estabelecida.,"ERRO: não foi possível construir a fila de processamento.
-",,LLAMA,76.36571526527405,16.90946072280413,5.604233375480572,100.0,75.70170760154724
+",,LLAMA,5.604233375480572
 "WARNING: erroneous pipeline: %s
 ",AVISO: Erro de conexão com o soquete '%s'.,"AVISO: fila de processamento com erros: %s
-",,LLAMA,64.1854465007782,25.093274112122494,8.516593018819643,71.42857142857143,79.46029305458069
+",,LLAMA,8.516593018819643
 "ERROR: the 'pipeline' element wasn't found.
 ",Erro: O elemento de referência 'Linha' não foi encontrado.,"ERRO: o elemento de ""fila de processamento"" não foi encontrado.
-",,LLAMA,84.8606288433075,46.11453364152367,22.07606996260255,30.0,85.04067063331604
+",,LLAMA,22.07606996260255
 "Setting pipeline to PAUSED ...
 ",A liderança será colocada em pausa ...,"Definindo a fila de processamento para PAUSADO...
-",,LLAMA,53.69035601615906,12.379416118021211,15.881076016027917,100.0,73.1467068195343
+",,LLAMA,15.881076016027917
 "Failed to set pipeline to PAUSED.
 ",O encaminhamento para o modo PAUSIENTE falhou.,"Falha ao definir a fila de processamento para PAUSADO...
-",,LLAMA,63.20856213569641,23.783281579328243,3.983253478176822,100.0,76.20038390159607
+",,LLAMA,3.983253478176822
 "Pipeline is live and does not need PREROLL ...
 ",A ligação está ativa e não requer VORLAUF ...,"A fila de processamento está executando e não necessita de PREPARAÇÃO...
-",,LLAMA,54.688841104507446,16.84820024568094,14.526870992951157,63.63636363636363,82.07508325576782
+",,LLAMA,14.526870992951157
 "Pipeline is PREROLLING ...
 ",A condução está em execução ...,"A fila de processamento está PREPARANDO...
-",,LLAMA,53.68867516517639,16.834748137608745,20.612390921238426,83.33333333333334,76.89531445503235
-Execution ended after %,execução encerrada após %s minutos,Execução finalizada depois de %,,LLAMA,74.00545477867126,22.89765826855486,8.116697886877475,80.0,86.37304306030273
+",,LLAMA,20.612390921238426
+Execution ended after %,execução encerrada após %s minutos,Execução finalizada depois de %,,LLAMA,8.116697886877475
 "Setting pipeline to NULL ...
 ",A Leitura será definida como NULL ...,"Definindo a fila de processamento para NULO...
-",,LLAMA,59.577542543411255,16.246180721886603,15.881076016027917,100.0,81.44664764404297
+",,LLAMA,15.881076016027917
 "Freeing pipeline ...
 ",A válvula foi descarregada ...,"Liberando a fila de processamento...
-",,LLAMA,60.65041422843933,13.175785519586839,21.191828141393902,100.0,75.9415864944458
+",,LLAMA,21.191828141393902
