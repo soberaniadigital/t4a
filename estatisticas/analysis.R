@@ -39,7 +39,7 @@ library(performance) # Model diagnostics
 # =============================================================================
 
 # Resolve paths relative to this script's location so output files
-# always land in the project root regardless of the working directory.
+# always land in estatisticas/ regardless of the working directory.
 # Works with Rscript, source(), and RStudio.
 get_script_dir <- function() {
   # Rscript via commandArgs
