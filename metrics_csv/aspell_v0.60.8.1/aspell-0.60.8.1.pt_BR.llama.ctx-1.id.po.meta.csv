@@ -1,13 +1,13 @@
-original,translated,reference,context_languages,strategy,comet,chrf,bleu,ter,bertscore
-a number between 0 and 1,uma fração entre zero e um,um número entre 0 e 1,ID,LLAMA,89.73644375801086,32.94639784966196,10.682175159905853,66.66666666666666,86.1130952835083
-"in the form ""<name> <value>""",Dalám em forma '<nome> <valor>',"na forma ""<nome> <valor>""",ID,LLAMA,76.32756233215332,55.84524772565843,47.987820666906615,100.0,85.65195202827454
-string,cadeia de caracteres,texto,ID,LLAMA,48.940932750701904,6.922257720979766,0.0,100.0,73.10819029808044
-integer,número inteiro,inteiro,ID,LLAMA,86.93409562110901,78.71683270862103,49.99999999999999,100.0,80.97739219665527
-boolean,Valor de verdade,booleano,ID,LLAMA,51.88365578651428,6.211180124223602,0.0,100.0,71.7932641506195
-list,lista,lista,ID,LLAMA,98.76866340637207,100.0,100.00000000000004,0.0,100.00002384185791
-"either ""true"" or ""false""","eita ""true"" (verdadeiro) ou eita ""false"" (falso)","tanto ""true"" ou ""false""",ID,LLAMA,82.78136849403381,43.95438427445476,17.098323692758395,100.0,80.56250810623169
-a positive integer,uma número inteiro positivo,um inteiro positivo,ID,LLAMA,84.9684476852417,74.37948569301466,31.947155212313625,66.66666666666666,92.59970784187317
-# default: ,# Valor padrão: ,# padrão: ,ID,LLAMA,92.27064251899719,69.49961123396763,35.35533905932737,50.0,88.63930702209473
+original,translated,reference,context_languages,strategy,bleu
+a number between 0 and 1,uma fração entre zero e um,um número entre 0 e 1,ID,LLAMA,10.682175159905853
+"in the form ""<name> <value>""",Dalám em forma '<nome> <valor>',"na forma ""<nome> <valor>""",ID,LLAMA,47.987820666906615
+string,cadeia de caracteres,texto,ID,LLAMA,0.0
+integer,número inteiro,inteiro,ID,LLAMA,49.99999999999999
+boolean,Valor de verdade,booleano,ID,LLAMA,0.0
+list,lista,lista,ID,LLAMA,100.00000000000004
+"either ""true"" or ""false""","eita ""true"" (verdadeiro) ou eita ""false"" (falso)","tanto ""true"" ou ""false""",ID,LLAMA,17.098323692758395
+a positive integer,uma número inteiro positivo,um inteiro positivo,ID,LLAMA,31.947155212313625
+# default: ,# Valor padrão: ,# padrão: ,ID,LLAMA,35.35533905932737
 "
 #######################################################################
 #
@@ -28,227 +28,227 @@ Diconfigura para o seguinte:
 #
 # foi configurado deste modo:
 
-",ID,LLAMA,29.945042729377747,15.350846875657759,0.018335775174127964,84.61538461538461,63.88731598854065
-ASPELL_CONF env var,ASPELL_CONF Umgebungsvariable,ASPELL_CONF env var,ID,LLAMA,74.24242496490479,48.4263774211422,46.30777161991026,66.66666666666666,82.43657350540161
-main configuration file,arquivo de configuração principal,arquivo de configuração principal,ID,LLAMA,98.5811710357666,100.0,100.00000000000004,0.0,100.0
-location of main configuration file,Nome da principal configuração de arquivo,local do arquivo de configuração principal,ID,LLAMA,87.89870142936707,55.4666530960009,11.478744233307168,83.33333333333334,84.4525158405304
-location of language data files,Nome das linguagens de dados,local dos arquivos de idiomas,ID,LLAMA,62.8741979598999,14.812833713268287,10.682175159905848,80.0,74.61057305335999
-create dictionary aliases,gerar alias de palavras no dicionário,cria apelidos de dicionário,ID,LLAMA,68.43685507774353,37.697559987538675,9.652434877402245,100.0,76.7143726348877
-location of the main word list,Nome da lista de palavras principais,local do vocabulário principal,ID,LLAMA,70.16554474830627,21.49917671808648,0.0,100.0,74.89092350006104
-encoding to expect data to be in,"codificação, na qual os dados são esperados para estar presentes",codificação de entrada,ID,LLAMA,53.74588966369629,36.13101810138034,3.7477767366779213,100.0,75.44902563095093
-add or removes a filter,adiciona ou remove um filtro,adiciona ou remove um filtro,ID,LLAMA,99.05539751052856,100.0,100.00000000000004,0.0,100.0
-path(s) aspell looks for filters,Caminhos(es) nos quais aspell procura filtros para palavras,caminho(s) para aspell buscar filtros,ID,LLAMA,72.88328409194946,38.792818263034526,5.604233375480572,100.0,80.24232387542725
-filter mode,modo de filtragem,modo filtro,ID,LLAMA,90.39251208305359,38.10126597542846,27.516060407455225,100.0,84.1145932674408
-extra dictionaries to use,zusätzliche palavras-chave para uso adicional,dicionários adicionais,ID,LLAMA,39.29954469203949,21.534783052821574,0.0,100.0,68.68114471435547
-location for personal files,Nome para arquivos pessoais,local dos arquivos pessoais,ID,LLAMA,83.47076177597046,58.37332337761399,31.947155212313625,50.0,85.91479063034058
-ignore words <= n chars,abaixe kata com <= n caracteres,ignora palavras com menos de n caracteres,ID,LLAMA,71.44115567207336,32.68408848983565,14.535768424205482,57.14285714285714,66.98420643806458
-ignore accents when checking words -- CURRENTLY IGNORED,ignoriere Akzente beim Überprüfen -- SAAT INI DIABAIKAN,ignora acentuação ao verificar palavras -- ATUALMENTE IGNORADO,ID,LLAMA,56.69538974761963,14.741660267378368,5.522397783539471,100.0,79.07562255859375
-ignore case when checking words,abaixe a diferença de maiúsculas e minúsculas ao verificar,ignora case ao verificar palavras,ID,LLAMA,47.27509319782257,34.75948917592411,9.535414040914192,100.0,67.88812279701233
-ignore commands to store replacement pairs,"abaixe os comandos, pares de substituição para armazenar.",ignora comandos de substituição,ID,LLAMA,51.41933560371399,57.19179476074431,9.287528999566801,100.0,78.54912281036377
-extra information for the word list,informação adicional para a lista de palavras,informação extra para o vocabulário,ID,LLAMA,83.1697404384613,31.7275841654581,7.809849842300637,100.0,82.55460262298584
-keyboard definition to use for typo analysis,Definição de teclado para análise dos erros de digitação (também conhecidos como tippfehler),definição de teclado para uso em analise tipográfica,ID,LLAMA,68.69738698005676,43.1982435138857,9.78237574896145,100.0,78.84721755981445
-language code,Código linguístico,código do idioma,ID,LLAMA,86.08939051628113,17.693950095631617,0.0,66.66666666666666,79.19496893882751
-"deprecated, use lang instead","obsoleto, utilizem 'lang' em vez disso.","obsoleto, use lang",ID,LLAMA,52.98777222633362,48.67112617300871,11.044795567078939,100.0,78.56422662734985
-location of local language data files,nome dos arquivos de dados da localidade linguística,localização dos arquivos locais de dados de idioma,ID,LLAMA,83.76196026802063,48.071242598054184,15.619699684601276,62.5,81.43271207809448
-base name of the main dictionary to use,Nome do principal dicionário,nome base do dicionário principal para usar,ID,LLAMA,86.25697493553162,44.29361733719321,9.930283522141846,57.14285714285714,82.91592001914978
-set module name,Nome do módulo definir para Modulname,define o nome do módulo,ID,LLAMA,80.02703785896301,52.0603026797804,16.233395773754953,100.0,79.54044938087463
-search order for modules,Suchreihenfolge für Module,ordem de busca por módulos,ID,LLAMA,64.42891359329224,7.919370444930389,0.0,100.0,74.94722604751587
-enable Unicode normalization,Ativar normalização de codificação Unicode unicodenormalizando,habilita normalização Unicode,ID,LLAMA,74.81618523597717,50.046340538757015,9.652434877402245,100.0,78.18215489387512
-Unicode normalization required for current lang,A normalização de codificação unicórnica é necessária para a língua atual.,normalização Unicode necessária para o idioma atual,ID,LLAMA,77.64552235603333,52.45137653617841,8.054496384843702,100.0,82.9802393913269
-"Unicode normalization form: none, nfd, nfc, comp","ID da Unicodenormalisasi: none, nfd, nfc, comp","forma de normalização Unicode: none, nfd, nfc, comp",ID,LLAMA,84.0061604976654,65.0917186275527,61.96760459608335,50.0,92.07431674003601
-avoid lossy conversions when normalization,Evite conversões de perda ao normalizar para evitar a introdução de artefatos,evita conversões com perdas na normalização,ID,LLAMA,63.74235153198242,38.850490070134995,3.3864985683445354,100.0,79.63300347328186
-personal configuration file,arquivos de configuração pessoal,arquivo de configuração pessoal,ID,LLAMA,95.33558487892151,84.46358013814883,59.460355750136046,25.0,97.77684211730957
-personal dictionary file name,Nome do meu dicionário pessoal,arquivo de dicionário pessoal,ID,LLAMA,74.3169367313385,58.490195415616896,21.3643503198117,75.0,81.98875188827515
-prefix directory,diretório de prefixo,prefixo do diretório,ID,LLAMA,85.99494099617004,61.78872189901602,34.66806371753173,100.0,82.54125118255615
-replacements list file name,Nome do arquivo para substituição,nome de arquivo da lista de substituições,ID,LLAMA,84.30784344673157,34.84454956658135,7.16047614494885,71.42857142857143,80.53427338600159
-consider run-together words legal,aceitar palavras compostas,considera palavras aglutinadas como válidas,ID,LLAMA,71.09787464141846,23.410052278887623,14.127216461522432,80.0,75.31142234802246
-maximum number that can be strung together,quantidade máxima de palavras compostas,número máximo quem podem ser colocadas juntas,ID,LLAMA,67.564457654953,17.36779041837382,0.0,100.0,75.04627108573914
-minimal length of interior words,mínima extensão das palavras internas,tamanho mínimo de palavras interior,ID,LLAMA,73.99820685386658,39.43936542154422,10.682175159905848,80.0,80.86277842521667
-consider camel case words legal,aceitando palavras em CamelCase como válidas.,considera palavras CamelCase como válidas,ID,LLAMA,85.57397723197937,66.33483034710615,26.269098944241588,60.0,89.40563797950745
-save replacement pairs on save all,"para todos os arquivos, salve não apenas o backup 'Alle speichern' mas também as pares de substituição armazenados.","salva substituições quando for comando ""save all""",ID,LLAMA,53.338366746902466,21.12308774105936,0.0,100.0,66.77082777023315
-set the prefix based on executable location,Pré-fixo baseado no nome do programa definido,define o prefixo baseado na localização do executável,ID,LLAMA,65.83170294761658,28.607832807000932,6.770186228657864,87.5,76.31652355194092
-size of the word list,tamanho da lista de palavras,tamanho do vocabulário,ID,LLAMA,75.98244547843933,28.816512237568475,10.682175159905848,100.0,81.63573145866394
-no longer used,não é mais utilizado,não mais usado,ID,LLAMA,97.21394777297974,36.311808664422635,18.99589214128981,66.66666666666666,91.56798720359802
-suggestion mode,Modo de sugestão,modo de sugestão,ID,LLAMA,90.45253992080688,82.91201853701854,55.03212081491043,0.0,93.34529638290405
-"use typo analysis, override sug-mode default",Realizar análise de erros típicos em vez do modo sugerido,"usa análise de erro de digitação, sobrescrevendo o padrão ""sug-mode""",ID,LLAMA,55.641716718673706,25.73992770151548,6.217116757317285,80.0,70.4302966594696
-"use replacement tables, override sug-mode default",utilize tabelas de substituição em vez do modo de sugestão padrão,"usa tabelas de substituição, sobrescrevendo o padrão ""sug-mode""",ID,LLAMA,71.1557149887085,45.98252624208655,14.991106946711685,100.0,79.00780439376831
-characters to insert when a word is split,caracter para ser inserido quando a palavra é separada,caracteres para inserir quando a palavra é dividida,ID,LLAMA,69.00449395179749,56.16103354691996,31.55984539112946,50.0,90.21870493888855
-"use personal, replacement & session dictionaries",use personal replacement and session dictionaries (livros de substituição e dicionários dos sessões),"usa dicionários pessoais, de substituição & sessão.",ID,LLAMA,67.1417772769928,40.892237551221314,5.816635421147513,100.0,69.02857422828674
-search path for word list information files,Caminho para arquivos de informações sobre listas de palavras,caminho de busca pelos arquivos de informação,ID,LLAMA,62.13364005088806,46.67369797270193,10.552670315936318,85.71428571428571,79.91594076156616
-enable warnings,ativa as avisões,habilita alertas,ID,LLAMA,57.14445114135742,9.41295142217961,0.0,100.0,69.2615807056427
-indicator for affix flags in word lists -- CURRENTLY IGNORED,Indicador para flags de terminação em listas de palavras -- Estado sem efeito imediato,indicador para sinais de afixo em listas de palavras -- ATUALMENTE IGNORADO,ID,LLAMA,57.23960995674133,49.60951476120844,28.917849332325716,50.0,78.43765020370483
-use affix compression when creating dictionaries,Endungen beim Erzeugen von Wörterbüchern komprimieren,usa compressão de afixos ao criar dicionários,ID,LLAMA,44.009968638420105,8.06779777021836,0.0,100.0,73.11134338378906
-remove invalid affix flags,remover flags de terminação inválidos,remove sinais inválidos de afixos,ID,LLAMA,68.05993914604187,38.414728368883125,12.703318703865365,80.0,82.14892148971558
-attempts to clean words so that they are valid,palavras limpas para que sejam válidas,tenta limpar palavras para que se tornem válidas,ID,LLAMA,76.54294967651367,52.002403443167,13.83254362586636,62.5,85.2150022983551
-compute soundslike on demand rather than storing,calcular o Wortklang em vez de armazená-lo,computa pronúncia sob demanda ao invés de armazená-la,ID,LLAMA,57.56222605705261,24.100695145057344,5.693025330278465,87.5,78.94299626350403
-partially expand affixes for better suggestions,"Para melhores sugestões, estendemos parcialmente os anexos.",expande parcialmente afixos para sugestões melhores,ID,LLAMA,69.07613277435303,48.93334000754842,6.27465531099474,100.0,74.20898079872131
-skip invalid words,palavras inválidas puladas,ignora palavras inválidas,ID,LLAMA,77.26793885231018,67.50802304299913,55.03212081491043,66.66666666666666,83.49376320838928
-check if affix flags are valid,verifique se os flags de finalização são válidos.,verifica se sinais de afixo são válidos,ID,LLAMA,75.59849619865417,44.25240406120023,11.339582221952005,71.42857142857143,86.20394468307495
-check if words are valid,verifique se as palavras são válidas.,verifica se palavras são válidas,ID,LLAMA,94.97529864311218,71.02177344616692,26.269098944241588,60.0,93.25477480888367
-"create a backup file by appending "".bak""",Backupi com a extensão '.bak' do arquivo atualizado.,"cria um arquivo de backup acrescentando extensão "".bak""",ID,LLAMA,73.61517548561096,29.447330276514727,4.9323515694897075,100.0,79.59537506103516
-use byte offsets instead of character offsets,Use byte offsets instead of character offsets.,usa deslocamentos de bytes ao invés de caracteres,ID,LLAMA,64.30802941322327,19.190120551519634,0.0,100.0,74.8792052268982
-create missing root/affix combinations,eram eras de combinação faltando a terminação raiz/afixo,cria combinações raiz/afixo em falta,ID,LLAMA,69.03550624847412,39.52806630441793,15.619699684601283,100.0,80.67983984947205
+",ID,LLAMA,0.018335775174127964
+ASPELL_CONF env var,ASPELL_CONF Umgebungsvariable,ASPELL_CONF env var,ID,LLAMA,46.30777161991026
+main configuration file,arquivo de configuração principal,arquivo de configuração principal,ID,LLAMA,100.00000000000004
+location of main configuration file,Nome da principal configuração de arquivo,local do arquivo de configuração principal,ID,LLAMA,11.478744233307168
+location of language data files,Nome das linguagens de dados,local dos arquivos de idiomas,ID,LLAMA,10.682175159905848
+create dictionary aliases,gerar alias de palavras no dicionário,cria apelidos de dicionário,ID,LLAMA,9.652434877402245
+location of the main word list,Nome da lista de palavras principais,local do vocabulário principal,ID,LLAMA,0.0
+encoding to expect data to be in,"codificação, na qual os dados são esperados para estar presentes",codificação de entrada,ID,LLAMA,3.7477767366779213
+add or removes a filter,adiciona ou remove um filtro,adiciona ou remove um filtro,ID,LLAMA,100.00000000000004
+path(s) aspell looks for filters,Caminhos(es) nos quais aspell procura filtros para palavras,caminho(s) para aspell buscar filtros,ID,LLAMA,5.604233375480572
+filter mode,modo de filtragem,modo filtro,ID,LLAMA,27.516060407455225
+extra dictionaries to use,zusätzliche palavras-chave para uso adicional,dicionários adicionais,ID,LLAMA,0.0
+location for personal files,Nome para arquivos pessoais,local dos arquivos pessoais,ID,LLAMA,31.947155212313625
+ignore words <= n chars,abaixe kata com <= n caracteres,ignora palavras com menos de n caracteres,ID,LLAMA,14.535768424205482
+ignore accents when checking words -- CURRENTLY IGNORED,ignoriere Akzente beim Überprüfen -- SAAT INI DIABAIKAN,ignora acentuação ao verificar palavras -- ATUALMENTE IGNORADO,ID,LLAMA,5.522397783539471
+ignore case when checking words,abaixe a diferença de maiúsculas e minúsculas ao verificar,ignora case ao verificar palavras,ID,LLAMA,9.535414040914192
+ignore commands to store replacement pairs,"abaixe os comandos, pares de substituição para armazenar.",ignora comandos de substituição,ID,LLAMA,9.287528999566801
+extra information for the word list,informação adicional para a lista de palavras,informação extra para o vocabulário,ID,LLAMA,7.809849842300637
+keyboard definition to use for typo analysis,Definição de teclado para análise dos erros de digitação (também conhecidos como tippfehler),definição de teclado para uso em analise tipográfica,ID,LLAMA,9.78237574896145
+language code,Código linguístico,código do idioma,ID,LLAMA,0.0
+"deprecated, use lang instead","obsoleto, utilizem 'lang' em vez disso.","obsoleto, use lang",ID,LLAMA,11.044795567078939
+location of local language data files,nome dos arquivos de dados da localidade linguística,localização dos arquivos locais de dados de idioma,ID,LLAMA,15.619699684601276
+base name of the main dictionary to use,Nome do principal dicionário,nome base do dicionário principal para usar,ID,LLAMA,9.930283522141846
+set module name,Nome do módulo definir para Modulname,define o nome do módulo,ID,LLAMA,16.233395773754953
+search order for modules,Suchreihenfolge für Module,ordem de busca por módulos,ID,LLAMA,0.0
+enable Unicode normalization,Ativar normalização de codificação Unicode unicodenormalizando,habilita normalização Unicode,ID,LLAMA,9.652434877402245
+Unicode normalization required for current lang,A normalização de codificação unicórnica é necessária para a língua atual.,normalização Unicode necessária para o idioma atual,ID,LLAMA,8.054496384843702
+"Unicode normalization form: none, nfd, nfc, comp","ID da Unicodenormalisasi: none, nfd, nfc, comp","forma de normalização Unicode: none, nfd, nfc, comp",ID,LLAMA,61.96760459608335
+avoid lossy conversions when normalization,Evite conversões de perda ao normalizar para evitar a introdução de artefatos,evita conversões com perdas na normalização,ID,LLAMA,3.3864985683445354
+personal configuration file,arquivos de configuração pessoal,arquivo de configuração pessoal,ID,LLAMA,59.460355750136046
+personal dictionary file name,Nome do meu dicionário pessoal,arquivo de dicionário pessoal,ID,LLAMA,21.3643503198117
+prefix directory,diretório de prefixo,prefixo do diretório,ID,LLAMA,34.66806371753173
+replacements list file name,Nome do arquivo para substituição,nome de arquivo da lista de substituições,ID,LLAMA,7.16047614494885
+consider run-together words legal,aceitar palavras compostas,considera palavras aglutinadas como válidas,ID,LLAMA,14.127216461522432
+maximum number that can be strung together,quantidade máxima de palavras compostas,número máximo quem podem ser colocadas juntas,ID,LLAMA,0.0
+minimal length of interior words,mínima extensão das palavras internas,tamanho mínimo de palavras interior,ID,LLAMA,10.682175159905848
+consider camel case words legal,aceitando palavras em CamelCase como válidas.,considera palavras CamelCase como válidas,ID,LLAMA,26.269098944241588
+save replacement pairs on save all,"para todos os arquivos, salve não apenas o backup 'Alle speichern' mas também as pares de substituição armazenados.","salva substituições quando for comando ""save all""",ID,LLAMA,0.0
+set the prefix based on executable location,Pré-fixo baseado no nome do programa definido,define o prefixo baseado na localização do executável,ID,LLAMA,6.770186228657864
+size of the word list,tamanho da lista de palavras,tamanho do vocabulário,ID,LLAMA,10.682175159905848
+no longer used,não é mais utilizado,não mais usado,ID,LLAMA,18.99589214128981
+suggestion mode,Modo de sugestão,modo de sugestão,ID,LLAMA,55.03212081491043
+"use typo analysis, override sug-mode default",Realizar análise de erros típicos em vez do modo sugerido,"usa análise de erro de digitação, sobrescrevendo o padrão ""sug-mode""",ID,LLAMA,6.217116757317285
+"use replacement tables, override sug-mode default",utilize tabelas de substituição em vez do modo de sugestão padrão,"usa tabelas de substituição, sobrescrevendo o padrão ""sug-mode""",ID,LLAMA,14.991106946711685
+characters to insert when a word is split,caracter para ser inserido quando a palavra é separada,caracteres para inserir quando a palavra é dividida,ID,LLAMA,31.55984539112946
+"use personal, replacement & session dictionaries",use personal replacement and session dictionaries (livros de substituição e dicionários dos sessões),"usa dicionários pessoais, de substituição & sessão.",ID,LLAMA,5.816635421147513
+search path for word list information files,Caminho para arquivos de informações sobre listas de palavras,caminho de busca pelos arquivos de informação,ID,LLAMA,10.552670315936318
+enable warnings,ativa as avisões,habilita alertas,ID,LLAMA,0.0
+indicator for affix flags in word lists -- CURRENTLY IGNORED,Indicador para flags de terminação em listas de palavras -- Estado sem efeito imediato,indicador para sinais de afixo em listas de palavras -- ATUALMENTE IGNORADO,ID,LLAMA,28.917849332325716
+use affix compression when creating dictionaries,Endungen beim Erzeugen von Wörterbüchern komprimieren,usa compressão de afixos ao criar dicionários,ID,LLAMA,0.0
+remove invalid affix flags,remover flags de terminação inválidos,remove sinais inválidos de afixos,ID,LLAMA,12.703318703865365
+attempts to clean words so that they are valid,palavras limpas para que sejam válidas,tenta limpar palavras para que se tornem válidas,ID,LLAMA,13.83254362586636
+compute soundslike on demand rather than storing,calcular o Wortklang em vez de armazená-lo,computa pronúncia sob demanda ao invés de armazená-la,ID,LLAMA,5.693025330278465
+partially expand affixes for better suggestions,"Para melhores sugestões, estendemos parcialmente os anexos.",expande parcialmente afixos para sugestões melhores,ID,LLAMA,6.27465531099474
+skip invalid words,palavras inválidas puladas,ignora palavras inválidas,ID,LLAMA,55.03212081491043
+check if affix flags are valid,verifique se os flags de finalização são válidos.,verifica se sinais de afixo são válidos,ID,LLAMA,11.339582221952005
+check if words are valid,verifique se as palavras são válidas.,verifica se palavras são válidas,ID,LLAMA,26.269098944241588
+"create a backup file by appending "".bak""",Backupi com a extensão '.bak' do arquivo atualizado.,"cria um arquivo de backup acrescentando extensão "".bak""",ID,LLAMA,4.9323515694897075
+use byte offsets instead of character offsets,Use byte offsets instead of character offsets.,usa deslocamentos de bytes ao invés de caracteres,ID,LLAMA,0.0
+create missing root/affix combinations,eram eras de combinação faltando a terminação raiz/afixo,cria combinações raiz/afixo em falta,ID,LLAMA,15.619699684601283
 "keymapping for check mode: ""aspell"" or ""ispell""","Taxa de tamanho do arquivo %s
-","mapa de tecla p/ verificação: ""aspell"" ou ""ispell""",ID,LLAMA,42.063912749290466,8.565184568425192,2.4159653599212296,87.5,66.77734851837158
-reverse the order of the suggest list,Reihenfolge der Vorschlagsliste umdrehen,inverte ordem da lista de sugestões,ID,LLAMA,50.901997089385986,14.147254668922727,0.0,100.0,72.09697365760803
-suggest possible replacements,sugerições para substituição possíveis,sugere substituições possíveis,ID,LLAMA,85.54932475090027,56.96463164943771,15.97357760615681,100.0,85.80828309059143
-time load time and suggest time in pipe mode,medir o tempo de carregamento e suggerência no modo pipe,tempo de carregamento e sugestão em modo pipe,ID,LLAMA,82.47157335281372,69.33869764883143,31.239399369202552,50.0,90.71958065032959
-"This could also mean that the file ""%s"" could not be opened for reading or does not exist.","Poderia também significar que a pasta de dados ""%s"" não pôde ser aberta para leitura ou simplesmente não existe.","Isto também pode significar que o arquivo ""%s"" não pode ser aberto para leitura ou não existe.",ID,LLAMA,90.93645811080933,58.31520165838165,28.231469873854905,52.94117647058824,90.28242826461792
-The Unicode code point U+%04X is unsupported.,O código Unicode na posição U+%04X não é suportado.,O ponto de código Unicode U+%04X não é suportado.,ID,LLAMA,90.01628160476685,72.56786329633329,62.628449627654696,33.33333333333333,94.95480060577393
-Invalid UTF-8 sequence at position %ld.,Sequência UTF-8 inválida na posição %ld.,Sequência UTF-8 inválida na posição %ld.,ID,LLAMA,97.21119999885559,100.0,100.00000000000004,0.0,100.00001192092896
-Operation Not Supported: %what:1,Operação não suportada: %what:1,Não há suporte à operação: %what:1,ID,LLAMA,86.71495318412781,47.826137926886844,40.26190971287384,83.33333333333334,87.818044424057
-"The method ""%what:1"" is unimplemented in ""%where:2"".","A metodologia denominada ""%what:1"" não foi implementada no local especificado como '%where:2'.","O método ""%what:1"" não está implementado em ""%where:2"".",ID,LLAMA,80.70765733718872,45.21742988471675,33.11822752222957,100.0,90.22959470748901
-%file:1:,%file:1:,%file:1:,ID,LLAMA,99.0307867527008,100.0,100.00000000000004,0.0,99.99996423721313
-"The file ""%file:1"" can not be opened","A ficheiro ""%file:1"" não pode ser aberto","O arquivo ""%file:1"" não pode ser aberto",ID,LLAMA,96.33726477622986,76.41466783329066,80.70557274927978,28.57142857142857,95.01568675041199
-"The file ""%file:1"" can not be opened for reading.","A pasta de arquivo ""%file:1"" não pode ser aberta para leitura.","O arquivo ""%file:1"" não pode ser aberto para leitura.",ID,LLAMA,94.8808491230011,83.07478279896125,63.019085559238604,44.44444444444444,94.40624117851257
-"The file ""%file:1"" can not be opened for writing.","A pasta de arquivo ""%file:1"" não pode ser aberta para escrita.","O arquivo ""%file:1"" não pode ser aberto para escrita.",ID,LLAMA,94.50941681861877,83.07478279896125,63.019085559238604,44.44444444444444,94.43943500518799
-"The file name ""%file:1"" is invalid.",O nome do arquivo '%%file:1' não é válido.,"O nome de arquivo ""%file:1"" é inválido.",ID,LLAMA,92.29158163070679,49.53639525055713,14.949751774990691,57.14285714285714,90.65554141998291
-"The file ""%file:1"" is not in the proper format.",A pasta de arquivo %file:1% não possui o formato correto.,"O arquivo ""%file:1"" não está no formato apropriado.",ID,LLAMA,90.32596349716187,36.944899651246594,19.56475149792291,87.5,85.21553874015808
-"The directory ""%dir:1"" can not be opened for reading.",O diretório '\%dir:1' não pode ser aberto para leitura.,"O diretório ""%dir:1"" não pode ser aberto para leitura.",ID,LLAMA,95.4188883304596,81.37288507452357,53.03624596095554,11.11111111111111,96.5115487575531
-"The key ""%key:1"" is unknown.","O chave ""%key:1"" não é conhecida.","A chave ""%key:1"" é desconhecida.",ID,LLAMA,92.72183775901794,65.69457186819427,54.91004867761124,60.0,91.23592376708984
-"The value for option ""%key:1"" can not be changed.","O valor da opção ""%key:1"" não pode ser alterado.","O valor para opção ""%key:1"" não pode ser aberto.",ID,LLAMA,93.73411536216736,72.35981898810847,68.65890479690394,22.22222222222222,94.91552114486694
-"The key ""%key:1"" is not %accepted:2 and is thus invalid.","O chave ""%key:1"" não é aceita e portanto inválida.","A chave ""%key:1"" não é %accepted:2 e não é válida.",ID,LLAMA,84.69091057777405,51.2701827449779,44.39000107308936,50.0,88.08295726776123
-"The value ""%value:2"" is not %accepted:3 and is thus invalid for the key ""%key:1"".","O valor ""%value:2"" não é aceito, pois este %accepted:3 e portanto inválido para o campo '%key:1'.","O valor ""%value:2"" não é %accepted:3 e não é válido para a chave ""%key:1"".",ID,LLAMA,83.04343223571777,59.923239039714936,47.11139785755011,64.28571428571429,89.3997311592102
-"The key ""%key:1"" is not a string.","O chave ""%key:1"" não é uma cadeia de caracteres.","A chave ""%key:1"" não é uma string.",ID,LLAMA,85.22230386734009,65.82032219066149,64.1386525898168,57.14285714285714,94.48078870773315
-"The key ""%key:1"" is not an integer.","O chave ""%key:1"" não é um inteiro.","A chave ""%key:1"" não é um inteiro.",ID,LLAMA,92.17109084129333,94.09413875174742,91.21679090703874,14.285714285714285,98.6267626285553
-"The key ""%key:1"" is not a boolean.","O chave ""%key:1"" não é um valor de verdade.","A chave ""%key:1"" não é um booleano.",ID,LLAMA,75.20644068717957,63.379298208178405,64.1386525898168,57.14285714285714,91.56580567359924
-"The key ""%key:1"" is not a list.","O chave ""%key:1"" não é uma lista.","A chave ""%key:1"" não é uma lista.",ID,LLAMA,93.83718371391296,93.9723855049942,91.21679090703874,14.285714285714285,98.9585280418396
-"The key ""%key:1"" does not take any parameters when prefixed by a ""reset-"".",O chave 'Tombol %key:1' não pode ter parâmetros quando precedida por um 'reset-'.,"A chave ""%key:1"" não leva parâmetros quando prefixada por um ""reset-"".",ID,LLAMA,81.93783760070801,48.96086032003465,12.160935380276085,63.63636363636363,92.51638650894165
-"The key ""%key:1"" does not take any parameters when prefixed by an ""enable-"".","Der Schlüssel »%key:1« kann keine Parameter haben, wenn ein »enable-« vorangestellt ist.","A chave ""%key:1"" não leva parâmetros quando prefixada por um ""enable-"".",ID,LLAMA,75.33072233200073,17.021301154608917,8.126515341447273,100.0,82.44936466217041
-"The key ""%key:1"" does not take any parameters when prefixed by a ""dont-"" or ""disable-"".","O chave ""%key:1"" não pode conter parâmetros quando precedida por 'não permitir' ou 'desabilitar'.","A chave ""%key:1"" não leva parâmetros quando prefixada por um ""dont-"" ou ""disable-"".",ID,LLAMA,83.2387387752533,48.72237846151745,34.83519295294709,53.84615384615385,87.08306550979614
-"The key ""%key:1"" does not take any parameters when prefixed by a ""clear-"".",O chave '\%key:1' não pode ter parâmetros quando precedida por um 'clear-'.,"A chave ""%key:1"" não leva parâmetros quando prefixada por um ""clear-"".",ID,LLAMA,82.82588124275208,49.49044204377125,12.151974811408735,54.54545454545454,92.95055866241455
-"The language ""%lang:1"" is not known.","A linguagem ""%lang:1"" é desconhecida.","O idioma ""%lang:1"" é desconhecido.",ID,LLAMA,93.11280846595764,62.24246423369419,59.00468726392806,60.0,93.92396807670593
-"The soundslike ""%sl:2"" is not known.",O som do termo '%sl:2' não é conhecido.,"A pronúncia ""%sl:2"" é desconhecida.",ID,LLAMA,69.79828476905823,26.991219933969635,13.065113298388567,100.0,85.07670760154724
-"The language ""%lang:1"" is not supported.","A linguagem ""%lang:1"" não é suportada.","O idioma ""%lang:1"" não é suportado.",ID,LLAMA,95.24369239807129,64.1047315927289,63.15552371794033,50.0,97.62980341911316
-"No word lists can be found for the language ""%lang:1"".","Não há daftar kata yang dapat menyelesaikan bahasa ""%lang:1"".","Nenhum vocabulário foi localizado para o idioma ""%lang:1"".",ID,LLAMA,65.55469632148743,22.813545210161205,40.016016019225006,100.0,83.35655331611633
-"Expected language ""%lang:1"" but got ""%prev:2"".",Linguagem esperada '%lang:1' mas recebida '%prev:2'.,"Idioma ""%lang:1"" esperado, mas ""%prev:2"" obtido.",ID,LLAMA,87.82925009727478,30.844955468212042,14.474135198680736,83.33333333333334,81.05812668800354
-Affix '%aff:1' is corrupt.,Endung »%aff:1« está danificada.,Afixo '%aff:1' está corrompido.,ID,LLAMA,69.64409351348877,21.98371822842502,20.164945583740657,75.0,81.33732676506042
-"The condition ""%cond:1"" is invalid.","A condição ""%cond:1"" não é válida.","A condição ""%cond:1"" é inválida.",ID,LLAMA,93.81160736083984,75.33245110170498,64.84115071397645,40.0,94.68313455581665
-"The condition ""%cond:1"" does not guarantee that ""%strip:2"" can always be stripped.","A condição ""%cond:1"" não garante que a remoção de %strip:2 seja sempre possível.","A condição ""%cond:1"" não garante que ""%strip:2"" sempre possa ser eliminada.",ID,LLAMA,86.4101231098175,65.49784098807712,59.415598205628065,63.63636363636363,91.28394722938538
-"The file ""%file:1"" is not in the proper format. Expected the file to be in ""%exp:2"" not ""%got:3"".","A pasta de arquivo ""%file:1"" não possui o formato correto. Acredita-se que esteja em ""%exp:2"", e não em ""%got:3"".","O arquivo ""%file:1"" não está no formato apropriado. Esperava-se o arquivo estar em ""%exp:2"" e não em ""%got:3"".",ID,LLAMA,88.15101981163025,52.33285978284179,58.62741927825989,61.111111111111114,91.09314680099487
-"The encoding ""%encod:1"" is not known.","A codificação '""%encod:1""' não é reconhecida.","Codificação ""%encod:1"" desconhecida.",ID,LLAMA,91.42882227897644,53.75194810945371,36.362270465000705,100.0,86.60498857498169
-"The encoding ""%encod:1"" is not supported.","A codificação '""%encod:1""' não é suportada.","Codificação ""%encod:1"" não suportada.",ID,LLAMA,94.14068460464478,62.17415550779525,40.52587697205425,75.0,88.81322741508484
-"The conversion from ""%encod:1"" to ""%encod2:2"" is not supported.","A conversão de ""%encod:1"" para ""%encod:2"" não é suportada.","Conversão de ""%encod:1"" para ""%encod2:2"" não suportada.",ID,LLAMA,93.7734305858612,79.54565790770208,61.50523394042868,42.857142857142854,93.6403751373291
-"The string ""%str:1"" is invalid.","A cadeia de caracteres ""%str:1"" não é válida.","A string ""%str:1"" é inválida.",ID,LLAMA,83.54758024215698,42.62329635706198,38.720157050710164,100.0,87.95945644378662
-"The word ""%word:1"" is invalid.",O termo 'Kata %word:1' não é válido.,"A palavra ""%word:1"" é inválida.",ID,LLAMA,76.55574679374695,26.351008379774182,15.851165692617148,100.0,82.83214569091797
-"The affix flag '%aff:1' is invalid for word ""%word:2"".",O prefixo de terminação 'affix %aff:1' não é válido para o sufixo '%word:2'.,"O sinal de afixo '%aff:1' é inválido para a palavra ""%word:2"".",ID,LLAMA,72.33636379241943,38.284626992988414,20.090239552893994,81.81818181818183,85.27892231941223
-"The affix flag '%aff:1' can not be applied to word ""%word:2"".",O prefixo de terminação 'affix %aff:1' não pode ser aplicado ao termo '%word:2'.,"O sinal de afixo '%aff:1' não pode ser aplicado à palavra ""%word:2"".",ID,LLAMA,79.88488674163818,52.69754358870683,41.69080559564967,58.333333333333336,90.31848311424255
-not a version number,Esta não é uma versão da nossa aplicação.,não é um número de versão,ID,LLAMA,63.3883535861969,35.141555609053974,10.552670315936318,100.0,75.3699541091919
-"dlopen returned ""%return:1"".","dlopen mengembalikan ""%return:1"".","dlopen retornou ""%return:1"".",ID,LLAMA,89.51544165611267,53.78870146449982,75.06238537503395,33.33333333333333,88.89662623405457
-"The file ""%filter:1"" does not contain any filters.","A pasta de arquivo ""%filter:1"" não contém nenhum filtro.","O arquivo ""%filter:1"" não contém nenhum filtro.",ID,LLAMA,94.48265433311462,91.54212881847498,77.60114635728617,42.857142857142854,95.43351531028748
-"The filter ""%filter:1"" does not exist.","O filtro ""%filter:1"" não existe.","O filtro ""%filter:1"" não existe.",ID,LLAMA,98.40977787971497,100.0,100.00000000000004,0.0,99.99998807907104
-Confused by version control.,Confuso pela controle de versão.,Confundido pelo controle de versão.,ID,LLAMA,90.66635966300964,65.41815511454786,50.81327481546149,40.0,94.57853436470032
-Aspell version does not match filter's requirement.,Versão aspell não atende aos requisitos do filtro.,A versão do Aspell não atende às necessidades do filtro.,ID,LLAMA,76.94130539894104,48.329650135408926,17.869400568145597,40.0,88.00440430641174
-Filter option already exists.,A opção de filtro já existe.,Esta opção de filtro já existe.,ID,LLAMA,95.32976746559143,84.97908316568936,80.91067115702207,16.666666666666664,94.96684074401855
-Use option modifiers only within named option.,Utilize apenas modificadores de opções dentro das próprias opções nomeadas.,Use modificadores de opções apenas em opções nomeadas.,ID,LLAMA,84.69310402870178,69.65124697390623,24.384183193426086,62.5,91.28287434577942
-Option modifier unknown.,Pemodifikasi opsi desconhecida.,Modificador de opção desconhecido.,ID,LLAMA,44.093725085258484,33.98839345242988,12.44023474812678,100.0,72.88050055503845
-Error setting filter description.,Erro ao definir a descrição do filtro.,Ocorreu erro ao definir a descrição do filtro.,ID,LLAMA,91.71048998832703,80.43992555742705,74.20884818558928,12.5,90.04025459289551
-Empty option specifier.,Opcções vazias.,Especificador de opção vazio.,ID,LLAMA,67.05229878425598,11.972226144708419,14.127216461522432,100.0,79.65962290763855
-"Option ""%option:1"" possibly specified prior to filter.",A opção '%option:1' pode ter sido especificada antes do filtro.,"Possivelmente a opção ""%option:1"" foi especificada antes que o filtro.",ID,LLAMA,92.00071096420288,47.24741482763759,13.907243442679686,70.0,93.10973882675171
-"Unknown mode description key ""%key:1"".",Descrição do Modulo não encontrada para o identificador '%key:1'.,"A chave de descrição ""%key:1"" possui modo desconhecido.",ID,LLAMA,69.89613175392151,23.193166267825763,11.359354890271161,100.0,80.9516429901123
-"Expecting ""%modekey:1"" key.","Menduga chave ""%modekey:1"".","Espera-se chave ""%modekey:1"".",ID,LLAMA,85.54193377494812,66.76396431632743,86.33400213704509,33.33333333333333,87.91971206665039
-"Version specifier missing key: ""aspell"".","Penspesifikasi versi hilang kunci: ""aspell"".","Falta chave especificador da versão: ""aspell"".",ID,LLAMA,58.61292481422424,32.41178503278226,39.93879176377876,83.33333333333334,79.65667843818665
-Aspell version does not match mode's requirement.,Versão aspell não atende aos requisitos do filtro.,A versão do Aspell não atende às necessidades do modo.,ID,LLAMA,65.71453809738159,35.5759353599671,9.080027618567454,50.0,84.55080986022949
-Missing magic mode expression.,Oração de expressão do modo 'Magic' está faltando.,Falta a expressão de modo mágico.,ID,LLAMA,62.553924322128296,41.96760922155659,6.742555929751843,100.0,76.25679969787598
-Empty extension at char %char:1.,Ekstensi kosong di char %char:1.,Extensão vazia no caractere %char:1.,ID,LLAMA,76.10787749290466,28.60173147760245,44.63236137853326,80.0,82.66664147377014
-"""%mode:1"" error",Erro de modo %mode:1,"erro ""%mode:1""",ID,LLAMA,83.41768980026245,35.44124319694274,41.11336169005198,100.0,80.68942427635193
-"Unknown mode: ""%mode:1"".",Modo desconhecido: »%mode:1«.,"Modo desconhecido: ""%mode:1"".",ID,LLAMA,97.66842722892761,74.42619477945566,27.75806054476853,33.33333333333333,95.56991457939148
-"""%mode:1"" error while extend Aspell modes. (out of memory?)",%mode:1 error when extending Aspell options. (Not enough memory?),"erro ""%mode:1"" ao estender módulos do Aspell. (sem memória?)",ID,LLAMA,71.37923836708069,27.118486654438566,18.801961527567503,100.0,80.62864542007446
-"""%mode:1"": no start for magic search given for magic ""%magic:2"".","%mode:1"": não há começo para a busca de magia por meio da magic '%magic:2'.","""%mode:1"": nenhum começo para a pesquisa mágica fornecida pela mágica ""%magic:2"".",ID,LLAMA,76.98994278907776,37.07479651914834,30.145280436636924,100.0,83.54102373123169
-"""%mode:1"": no range for magic search given for magic ""%magic:2"".","%mode:1"": nenhum campo para busca mágica foi especificado para a pesquisa de magia '%magic:2'.","""%mode:1"": nenhum intervalo para a pesquisa mágica fornecida pela mágica ""%magic:2"".",ID,LLAMA,77.87240147590637,50.656468271737275,35.8234211912872,90.9090909090909,85.17976999282837
-"""%mode:1"": no magic expression available for magic ""%magic:2"".","%mode:1"": não há expressões mágicas disponíveis para a magia '%magic:2'.","""%mode:1"": nenhuma expressão mágica disponível para a mágica ""%magic:2"".",ID,LLAMA,87.0805025100708,45.86290112927324,31.732160565044758,88.88888888888889,87.08688020706177
-"""%mode:1"": Magic ""%magic:2"": bad regular expression after location specifier; regexp reports: ""%regerr:3"".",%mode:1%magic:2Ekspresi regular buruk seteletos após penspesifikasi local; regexp melaporkan:%regerr:3.,"""%mode:1"": Mágica ""%magic:2"": expressão regular ruim após especificador de local; regexp informa: ""%regerr:3"".",ID,LLAMA,62.26280331611633,37.251996992969,20.55605628632693,76.92307692307693,74.65499639511108
-"""%expression:1"" is not a valid regular expression.",%expression:1 ist kein gültiger regulärer Ausdruck.,"""%expression:1"" não é uma expressão regular válida.",ID,LLAMA,80.06359934806824,27.65589687530458,20.57710790508287,100.0,81.66190981864929
-Unhandled Error: ,Erro não têm sido tratado: ,Erro não previsto: ,ID,LLAMA,80.6966483592987,39.59563882763561,17.965205598154213,100.0,82.87900686264038
+","mapa de tecla p/ verificação: ""aspell"" ou ""ispell""",ID,LLAMA,2.4159653599212296
+reverse the order of the suggest list,Reihenfolge der Vorschlagsliste umdrehen,inverte ordem da lista de sugestões,ID,LLAMA,0.0
+suggest possible replacements,sugerições para substituição possíveis,sugere substituições possíveis,ID,LLAMA,15.97357760615681
+time load time and suggest time in pipe mode,medir o tempo de carregamento e suggerência no modo pipe,tempo de carregamento e sugestão em modo pipe,ID,LLAMA,31.239399369202552
+"This could also mean that the file ""%s"" could not be opened for reading or does not exist.","Poderia também significar que a pasta de dados ""%s"" não pôde ser aberta para leitura ou simplesmente não existe.","Isto também pode significar que o arquivo ""%s"" não pode ser aberto para leitura ou não existe.",ID,LLAMA,28.231469873854905
+The Unicode code point U+%04X is unsupported.,O código Unicode na posição U+%04X não é suportado.,O ponto de código Unicode U+%04X não é suportado.,ID,LLAMA,62.628449627654696
+Invalid UTF-8 sequence at position %ld.,Sequência UTF-8 inválida na posição %ld.,Sequência UTF-8 inválida na posição %ld.,ID,LLAMA,100.00000000000004
+Operation Not Supported: %what:1,Operação não suportada: %what:1,Não há suporte à operação: %what:1,ID,LLAMA,40.26190971287384
+"The method ""%what:1"" is unimplemented in ""%where:2"".","A metodologia denominada ""%what:1"" não foi implementada no local especificado como '%where:2'.","O método ""%what:1"" não está implementado em ""%where:2"".",ID,LLAMA,33.11822752222957
+%file:1:,%file:1:,%file:1:,ID,LLAMA,100.00000000000004
+"The file ""%file:1"" can not be opened","A ficheiro ""%file:1"" não pode ser aberto","O arquivo ""%file:1"" não pode ser aberto",ID,LLAMA,80.70557274927978
+"The file ""%file:1"" can not be opened for reading.","A pasta de arquivo ""%file:1"" não pode ser aberta para leitura.","O arquivo ""%file:1"" não pode ser aberto para leitura.",ID,LLAMA,63.019085559238604
+"The file ""%file:1"" can not be opened for writing.","A pasta de arquivo ""%file:1"" não pode ser aberta para escrita.","O arquivo ""%file:1"" não pode ser aberto para escrita.",ID,LLAMA,63.019085559238604
+"The file name ""%file:1"" is invalid.",O nome do arquivo '%%file:1' não é válido.,"O nome de arquivo ""%file:1"" é inválido.",ID,LLAMA,14.949751774990691
+"The file ""%file:1"" is not in the proper format.",A pasta de arquivo %file:1% não possui o formato correto.,"O arquivo ""%file:1"" não está no formato apropriado.",ID,LLAMA,19.56475149792291
+"The directory ""%dir:1"" can not be opened for reading.",O diretório '\%dir:1' não pode ser aberto para leitura.,"O diretório ""%dir:1"" não pode ser aberto para leitura.",ID,LLAMA,53.03624596095554
+"The key ""%key:1"" is unknown.","O chave ""%key:1"" não é conhecida.","A chave ""%key:1"" é desconhecida.",ID,LLAMA,54.91004867761124
+"The value for option ""%key:1"" can not be changed.","O valor da opção ""%key:1"" não pode ser alterado.","O valor para opção ""%key:1"" não pode ser aberto.",ID,LLAMA,68.65890479690394
+"The key ""%key:1"" is not %accepted:2 and is thus invalid.","O chave ""%key:1"" não é aceita e portanto inválida.","A chave ""%key:1"" não é %accepted:2 e não é válida.",ID,LLAMA,44.39000107308936
+"The value ""%value:2"" is not %accepted:3 and is thus invalid for the key ""%key:1"".","O valor ""%value:2"" não é aceito, pois este %accepted:3 e portanto inválido para o campo '%key:1'.","O valor ""%value:2"" não é %accepted:3 e não é válido para a chave ""%key:1"".",ID,LLAMA,47.11139785755011
+"The key ""%key:1"" is not a string.","O chave ""%key:1"" não é uma cadeia de caracteres.","A chave ""%key:1"" não é uma string.",ID,LLAMA,64.1386525898168
+"The key ""%key:1"" is not an integer.","O chave ""%key:1"" não é um inteiro.","A chave ""%key:1"" não é um inteiro.",ID,LLAMA,91.21679090703874
+"The key ""%key:1"" is not a boolean.","O chave ""%key:1"" não é um valor de verdade.","A chave ""%key:1"" não é um booleano.",ID,LLAMA,64.1386525898168
+"The key ""%key:1"" is not a list.","O chave ""%key:1"" não é uma lista.","A chave ""%key:1"" não é uma lista.",ID,LLAMA,91.21679090703874
+"The key ""%key:1"" does not take any parameters when prefixed by a ""reset-"".",O chave 'Tombol %key:1' não pode ter parâmetros quando precedida por um 'reset-'.,"A chave ""%key:1"" não leva parâmetros quando prefixada por um ""reset-"".",ID,LLAMA,12.160935380276085
+"The key ""%key:1"" does not take any parameters when prefixed by an ""enable-"".","Der Schlüssel »%key:1« kann keine Parameter haben, wenn ein »enable-« vorangestellt ist.","A chave ""%key:1"" não leva parâmetros quando prefixada por um ""enable-"".",ID,LLAMA,8.126515341447273
+"The key ""%key:1"" does not take any parameters when prefixed by a ""dont-"" or ""disable-"".","O chave ""%key:1"" não pode conter parâmetros quando precedida por 'não permitir' ou 'desabilitar'.","A chave ""%key:1"" não leva parâmetros quando prefixada por um ""dont-"" ou ""disable-"".",ID,LLAMA,34.83519295294709
+"The key ""%key:1"" does not take any parameters when prefixed by a ""clear-"".",O chave '\%key:1' não pode ter parâmetros quando precedida por um 'clear-'.,"A chave ""%key:1"" não leva parâmetros quando prefixada por um ""clear-"".",ID,LLAMA,12.151974811408735
+"The language ""%lang:1"" is not known.","A linguagem ""%lang:1"" é desconhecida.","O idioma ""%lang:1"" é desconhecido.",ID,LLAMA,59.00468726392806
+"The soundslike ""%sl:2"" is not known.",O som do termo '%sl:2' não é conhecido.,"A pronúncia ""%sl:2"" é desconhecida.",ID,LLAMA,13.065113298388567
+"The language ""%lang:1"" is not supported.","A linguagem ""%lang:1"" não é suportada.","O idioma ""%lang:1"" não é suportado.",ID,LLAMA,63.15552371794033
+"No word lists can be found for the language ""%lang:1"".","Não há daftar kata yang dapat menyelesaikan bahasa ""%lang:1"".","Nenhum vocabulário foi localizado para o idioma ""%lang:1"".",ID,LLAMA,40.016016019225006
+"Expected language ""%lang:1"" but got ""%prev:2"".",Linguagem esperada '%lang:1' mas recebida '%prev:2'.,"Idioma ""%lang:1"" esperado, mas ""%prev:2"" obtido.",ID,LLAMA,14.474135198680736
+Affix '%aff:1' is corrupt.,Endung »%aff:1« está danificada.,Afixo '%aff:1' está corrompido.,ID,LLAMA,20.164945583740657
+"The condition ""%cond:1"" is invalid.","A condição ""%cond:1"" não é válida.","A condição ""%cond:1"" é inválida.",ID,LLAMA,64.84115071397645
+"The condition ""%cond:1"" does not guarantee that ""%strip:2"" can always be stripped.","A condição ""%cond:1"" não garante que a remoção de %strip:2 seja sempre possível.","A condição ""%cond:1"" não garante que ""%strip:2"" sempre possa ser eliminada.",ID,LLAMA,59.415598205628065
+"The file ""%file:1"" is not in the proper format. Expected the file to be in ""%exp:2"" not ""%got:3"".","A pasta de arquivo ""%file:1"" não possui o formato correto. Acredita-se que esteja em ""%exp:2"", e não em ""%got:3"".","O arquivo ""%file:1"" não está no formato apropriado. Esperava-se o arquivo estar em ""%exp:2"" e não em ""%got:3"".",ID,LLAMA,58.62741927825989
+"The encoding ""%encod:1"" is not known.","A codificação '""%encod:1""' não é reconhecida.","Codificação ""%encod:1"" desconhecida.",ID,LLAMA,36.362270465000705
+"The encoding ""%encod:1"" is not supported.","A codificação '""%encod:1""' não é suportada.","Codificação ""%encod:1"" não suportada.",ID,LLAMA,40.52587697205425
+"The conversion from ""%encod:1"" to ""%encod2:2"" is not supported.","A conversão de ""%encod:1"" para ""%encod:2"" não é suportada.","Conversão de ""%encod:1"" para ""%encod2:2"" não suportada.",ID,LLAMA,61.50523394042868
+"The string ""%str:1"" is invalid.","A cadeia de caracteres ""%str:1"" não é válida.","A string ""%str:1"" é inválida.",ID,LLAMA,38.720157050710164
+"The word ""%word:1"" is invalid.",O termo 'Kata %word:1' não é válido.,"A palavra ""%word:1"" é inválida.",ID,LLAMA,15.851165692617148
+"The affix flag '%aff:1' is invalid for word ""%word:2"".",O prefixo de terminação 'affix %aff:1' não é válido para o sufixo '%word:2'.,"O sinal de afixo '%aff:1' é inválido para a palavra ""%word:2"".",ID,LLAMA,20.090239552893994
+"The affix flag '%aff:1' can not be applied to word ""%word:2"".",O prefixo de terminação 'affix %aff:1' não pode ser aplicado ao termo '%word:2'.,"O sinal de afixo '%aff:1' não pode ser aplicado à palavra ""%word:2"".",ID,LLAMA,41.69080559564967
+not a version number,Esta não é uma versão da nossa aplicação.,não é um número de versão,ID,LLAMA,10.552670315936318
+"dlopen returned ""%return:1"".","dlopen mengembalikan ""%return:1"".","dlopen retornou ""%return:1"".",ID,LLAMA,75.06238537503395
+"The file ""%filter:1"" does not contain any filters.","A pasta de arquivo ""%filter:1"" não contém nenhum filtro.","O arquivo ""%filter:1"" não contém nenhum filtro.",ID,LLAMA,77.60114635728617
+"The filter ""%filter:1"" does not exist.","O filtro ""%filter:1"" não existe.","O filtro ""%filter:1"" não existe.",ID,LLAMA,100.00000000000004
+Confused by version control.,Confuso pela controle de versão.,Confundido pelo controle de versão.,ID,LLAMA,50.81327481546149
+Aspell version does not match filter's requirement.,Versão aspell não atende aos requisitos do filtro.,A versão do Aspell não atende às necessidades do filtro.,ID,LLAMA,17.869400568145597
+Filter option already exists.,A opção de filtro já existe.,Esta opção de filtro já existe.,ID,LLAMA,80.91067115702207
+Use option modifiers only within named option.,Utilize apenas modificadores de opções dentro das próprias opções nomeadas.,Use modificadores de opções apenas em opções nomeadas.,ID,LLAMA,24.384183193426086
+Option modifier unknown.,Pemodifikasi opsi desconhecida.,Modificador de opção desconhecido.,ID,LLAMA,12.44023474812678
+Error setting filter description.,Erro ao definir a descrição do filtro.,Ocorreu erro ao definir a descrição do filtro.,ID,LLAMA,74.20884818558928
+Empty option specifier.,Opcções vazias.,Especificador de opção vazio.,ID,LLAMA,14.127216461522432
+"Option ""%option:1"" possibly specified prior to filter.",A opção '%option:1' pode ter sido especificada antes do filtro.,"Possivelmente a opção ""%option:1"" foi especificada antes que o filtro.",ID,LLAMA,13.907243442679686
+"Unknown mode description key ""%key:1"".",Descrição do Modulo não encontrada para o identificador '%key:1'.,"A chave de descrição ""%key:1"" possui modo desconhecido.",ID,LLAMA,11.359354890271161
+"Expecting ""%modekey:1"" key.","Menduga chave ""%modekey:1"".","Espera-se chave ""%modekey:1"".",ID,LLAMA,86.33400213704509
+"Version specifier missing key: ""aspell"".","Penspesifikasi versi hilang kunci: ""aspell"".","Falta chave especificador da versão: ""aspell"".",ID,LLAMA,39.93879176377876
+Aspell version does not match mode's requirement.,Versão aspell não atende aos requisitos do filtro.,A versão do Aspell não atende às necessidades do modo.,ID,LLAMA,9.080027618567454
+Missing magic mode expression.,Oração de expressão do modo 'Magic' está faltando.,Falta a expressão de modo mágico.,ID,LLAMA,6.742555929751843
+Empty extension at char %char:1.,Ekstensi kosong di char %char:1.,Extensão vazia no caractere %char:1.,ID,LLAMA,44.63236137853326
+"""%mode:1"" error",Erro de modo %mode:1,"erro ""%mode:1""",ID,LLAMA,41.11336169005198
+"Unknown mode: ""%mode:1"".",Modo desconhecido: »%mode:1«.,"Modo desconhecido: ""%mode:1"".",ID,LLAMA,27.75806054476853
+"""%mode:1"" error while extend Aspell modes. (out of memory?)",%mode:1 error when extending Aspell options. (Not enough memory?),"erro ""%mode:1"" ao estender módulos do Aspell. (sem memória?)",ID,LLAMA,18.801961527567503
+"""%mode:1"": no start for magic search given for magic ""%magic:2"".","%mode:1"": não há começo para a busca de magia por meio da magic '%magic:2'.","""%mode:1"": nenhum começo para a pesquisa mágica fornecida pela mágica ""%magic:2"".",ID,LLAMA,30.145280436636924
+"""%mode:1"": no range for magic search given for magic ""%magic:2"".","%mode:1"": nenhum campo para busca mágica foi especificado para a pesquisa de magia '%magic:2'.","""%mode:1"": nenhum intervalo para a pesquisa mágica fornecida pela mágica ""%magic:2"".",ID,LLAMA,35.8234211912872
+"""%mode:1"": no magic expression available for magic ""%magic:2"".","%mode:1"": não há expressões mágicas disponíveis para a magia '%magic:2'.","""%mode:1"": nenhuma expressão mágica disponível para a mágica ""%magic:2"".",ID,LLAMA,31.732160565044758
+"""%mode:1"": Magic ""%magic:2"": bad regular expression after location specifier; regexp reports: ""%regerr:3"".",%mode:1%magic:2Ekspresi regular buruk seteletos após penspesifikasi local; regexp melaporkan:%regerr:3.,"""%mode:1"": Mágica ""%magic:2"": expressão regular ruim após especificador de local; regexp informa: ""%regerr:3"".",ID,LLAMA,20.55605628632693
+"""%expression:1"" is not a valid regular expression.",%expression:1 ist kein gültiger regulärer Ausdruck.,"""%expression:1"" não é uma expressão regular válida.",ID,LLAMA,20.57710790508287
+Unhandled Error: ,Erro não têm sido tratado: ,Erro não previsto: ,ID,LLAMA,17.965205598154213
 "Error: %s
 ","Erro: %s
 ","Erro: %s
-",ID,LLAMA,98.95887970924377,100.0,100.00000000000004,0.0,100.00003576278687
-Error: ,Erro: ,Erro: ,ID,LLAMA,98.90965819358826,100.0,100.00000000000004,0.0,99.99997019767761
-enter Email mode.,"Em modo de email, altere para o ID.",entra no modo Email.,ID,LLAMA,77.43586897850037,23.901497321948902,4.990049701936832,100.0,76.62628293037415
-enter HTML mode.,"Em modo HTML, mude para o ID.",entra no modo HTML.,ID,LLAMA,80.65404295921326,40.55174384607421,10.552670315936318,100.0,80.063396692276
-enter TeX mode.,Em modo TeX.,entra no modo TeX.,ID,LLAMA,82.46623277664185,49.483629195666964,46.30777161991026,50.0,89.24677968025208
-enter Nroff mode.,no text provided for translation.,entra no modo Nroff.,ID,LLAMA,41.03098809719086,19.525236288008657,9.652434877402245,100.0,67.51785278320312
-enter Markdown mode.,"Em modo Markdown, mude para o ID.",entra no modo Markdown.,ID,LLAMA,80.31708002090454,50.12174397391613,10.552670315936318,100.0,82.87262916564941
-Invalid Option: %s,Opsi inválida: %s,Opção inválida: %s,ID,LLAMA,87.00650930404663,69.28835387432808,66.87403049764218,33.33333333333333,87.03096508979797
-'%s' does not take any parameters.,'%s' não aceita nenhum parâmetro.,"""%s"" não recebe nenhum parâmetro.",ID,LLAMA,87.70270943641663,54.62907088122605,20.612390921238426,40.0,95.00857591629028
-"You must specify a parameter for ""%s"".","Sua vez, você precisa especificar um parâmetro para '%s'.","Você deve especificar um parâmetro para ""%s"".",ID,LLAMA,85.48149466514587,62.25492223411177,21.401603033752977,57.14285714285714,92.60724186897278
-You must specify an action,Mandam que especifiquem uma ação.,É necessário especificar um ação,ID,LLAMA,83.6704969406128,26.85746855164193,8.116697886877475,100.0,81.47598505020142
-Unknown Action: %s,Ação não identificada: %s,Ação Desconhecida: %s,ID,LLAMA,90.74351191520691,37.1605303835014,32.46679154750991,66.66666666666666,89.35365080833435
+",ID,LLAMA,100.00000000000004
+Error: ,Erro: ,Erro: ,ID,LLAMA,100.00000000000004
+enter Email mode.,"Em modo de email, altere para o ID.",entra no modo Email.,ID,LLAMA,4.990049701936832
+enter HTML mode.,"Em modo HTML, mude para o ID.",entra no modo HTML.,ID,LLAMA,10.552670315936318
+enter TeX mode.,Em modo TeX.,entra no modo TeX.,ID,LLAMA,46.30777161991026
+enter Nroff mode.,no text provided for translation.,entra no modo Nroff.,ID,LLAMA,9.652434877402245
+enter Markdown mode.,"Em modo Markdown, mude para o ID.",entra no modo Markdown.,ID,LLAMA,10.552670315936318
+Invalid Option: %s,Opsi inválida: %s,Opção inválida: %s,ID,LLAMA,66.87403049764218
+'%s' does not take any parameters.,'%s' não aceita nenhum parâmetro.,"""%s"" não recebe nenhum parâmetro.",ID,LLAMA,20.612390921238426
+"You must specify a parameter for ""%s"".","Sua vez, você precisa especificar um parâmetro para '%s'.","Você deve especificar um parâmetro para ""%s"".",ID,LLAMA,21.401603033752977
+You must specify an action,Mandam que especifiquem uma ação.,É necessário especificar um ação,ID,LLAMA,8.116697886877475
+Unknown Action: %s,Ação não identificada: %s,Ação Desconhecida: %s,ID,LLAMA,32.46679154750991
 "Error: You must specify at least %d parameters for ""%s"".
 ",Erro: É necessário especificar pelo menos %d parâmetros para '»%s«'.,"Erro: Você deve especificar ao menos %d parâmetros para ""%s"".
-",ID,LLAMA,88.86564373970032,60.508842154914646,28.939523428407796,40.0,92.07601547241211
-Invalid Input,Entrada inválida,Entrada Inválida,ID,LLAMA,95.49657702445984,58.39785214785215,49.99999999999999,0.0,96.20930552482605
+",ID,LLAMA,28.939523428407796
+Invalid Input,Entrada inválida,Entrada Inválida,ID,LLAMA,49.99999999999999
 "WARNING: Unable to enter Nroff mode: %s
 ",PERINGATAN: Não é possível entrar no modo nroff: %s,"ALERTA: Não é possível entrar no modo Nroff: %s
-",ID,LLAMA,80.06502389907837,76.1507596040031,63.40466277046863,11.11111111111111,92.61111617088318
-Time to load word list: ,Tempo para carregar a lista de palavras:,Carregar vocabulário,ID,LLAMA,56.785959005355835,21.44153551219665,0.0,100.0,66.90468192100525
+",ID,LLAMA,63.40466277046863
+Time to load word list: ,Tempo para carregar a lista de palavras:,Carregar vocabulário,ID,LLAMA,0.0
 "Suggestion Time: %f
 ",Waktu Saran: %f,"Tempo da sugestão: %f
-",ID,LLAMA,90.15093445777893,18.49324540795761,32.555630133216134,75.0,78.63397002220154
-You must specify a file name.,"Sua senhora, por favor, especifique um nome de arquivo.",Especifique o nome do arquivo.,ID,LLAMA,72.24214673042297,49.34295877596376,7.495553473355845,100.0,81.05325102806091
-Only one file name may be specified.,Só pode haver um nome de arquivo (%s).,Apenas um nome de arquivo deve ser especificado.,ID,LLAMA,74.90655779838562,42.17236302176304,22.416933501922287,75.0,82.62093663215637
-"Could not open the file ""%s"" for reading",não foi possível abrir bkz '%s' para leitura,"Impossível abrir o arquivo ""%s"" para leitura",ID,LLAMA,76.77666544914246,48.432874642769576,9.980099403873663,85.71428571428571,83.61525535583496
-Invalid keymapping: %s,Pemetação kunci inválida: %s,Mapa de teclado inválido: %s,ID,LLAMA,63.269710540771484,32.398664452415,25.57539057896621,80.0,81.41933083534241
-"""%s"" is not a regular file",%s ist keine normale Datei,"""%s"" não é uma expressão regular válida",ID,LLAMA,62.44620680809021,6.940238666391482,8.334503290277123,100.0,80.02369999885559
-"Could not open the file ""%s"" for writing. File not saved.",Não foi possível abrir a pasta de arquivo '%s' para escrita. Arquivo não salvo.,"Impossível abrir arquivo ""%s"" para gravar. Não salvo.",ID,LLAMA,85.1731538772583,47.31781304461899,6.0745880708766835,100.0,84.03813242912292
-Ignore,ignorado,Ignorar,ID,LLAMA,83.74630212783813,38.66229747168189,0.0,100.0,73.72860908508301
-Ignore all,Abaixo de tudo,Ignorar todos,ID,LLAMA,55.117613077163696,7.481060606060606,0.0,100.0,77.4809181690216
-Replace,substituir,Substituir,ID,LLAMA,83.96947979927063,73.63378684807256,0.0,0.0,72.78361916542053
-Replace all,Ganti todos os IDs,Substituir todos,ID,LLAMA,55.569446086883545,24.64624863927762,15.97357760615681,100.0,72.96602129936218
-Add,Adicionar,Adicionar,ID,LLAMA,98.88977408409119,100.0,100.00000000000004,0.0,99.99996423721313
-Add Lower,Adicionar em letras minusculas,Adicionar minúsculas,ID,LLAMA,71.6334879398346,49.527586684896164,15.97357760615681,100.0,80.65615892410278
-Abort,Cancelar,Abortar,ID,LLAMA,64.89315629005432,6.272509003601439,0.0,100.0,84.37662720680237
-Exit,Sair,Sair,ID,LLAMA,98.24683666229248,100.0,100.00000000000004,0.0,100.00002384185791
-Are you sure you want to abort (y/n)? ,Está certo que deseiam interromper (j/n)? ,Você tem certeza de que deseja cancelar (s/n)?,ID,LLAMA,61.52418851852417,23.10844246344672,21.648693746244412,87.5,83.8661253452301
-Yy,Yj,SsYy,ID,LLAMA,79.22894358634949,9.259259259259258,0.0,100.0,80.95278143882751
-With: ,Dengan: %s,Com: ,ID,LLAMA,62.865787744522095,10.284810126582279,15.97357760615681,100.0,77.72772312164307
-Sorry that is an invalid choice!,"Desculpe, mas isso é uma escolha inválida!",A seleção não é válida!,ID,LLAMA,72.14730381965637,25.428852096462844,5.669791110976001,100.0,75.21995902061462
-Can't merge a master word list yet. Sorry.,"Desculpe, não é possível unir a lista de palavras-chave master.",Impossível mesclar um vocabulário principal.,ID,LLAMA,48.96770119667053,21.31774882414052,3.3864985683445354,100.0,75.81593990325928
+",ID,LLAMA,32.555630133216134
+You must specify a file name.,"Sua senhora, por favor, especifique um nome de arquivo.",Especifique o nome do arquivo.,ID,LLAMA,7.495553473355845
+Only one file name may be specified.,Só pode haver um nome de arquivo (%s).,Apenas um nome de arquivo deve ser especificado.,ID,LLAMA,22.416933501922287
+"Could not open the file ""%s"" for reading",não foi possível abrir bkz '%s' para leitura,"Impossível abrir o arquivo ""%s"" para leitura",ID,LLAMA,9.980099403873663
+Invalid keymapping: %s,Pemetação kunci inválida: %s,Mapa de teclado inválido: %s,ID,LLAMA,25.57539057896621
+"""%s"" is not a regular file",%s ist keine normale Datei,"""%s"" não é uma expressão regular válida",ID,LLAMA,8.334503290277123
+"Could not open the file ""%s"" for writing. File not saved.",Não foi possível abrir a pasta de arquivo '%s' para escrita. Arquivo não salvo.,"Impossível abrir arquivo ""%s"" para gravar. Não salvo.",ID,LLAMA,6.0745880708766835
+Ignore,ignorado,Ignorar,ID,LLAMA,0.0
+Ignore all,Abaixo de tudo,Ignorar todos,ID,LLAMA,0.0
+Replace,substituir,Substituir,ID,LLAMA,0.0
+Replace all,Ganti todos os IDs,Substituir todos,ID,LLAMA,15.97357760615681
+Add,Adicionar,Adicionar,ID,LLAMA,100.00000000000004
+Add Lower,Adicionar em letras minusculas,Adicionar minúsculas,ID,LLAMA,15.97357760615681
+Abort,Cancelar,Abortar,ID,LLAMA,0.0
+Exit,Sair,Sair,ID,LLAMA,100.00000000000004
+Are you sure you want to abort (y/n)? ,Está certo que deseiam interromper (j/n)? ,Você tem certeza de que deseja cancelar (s/n)?,ID,LLAMA,21.648693746244412
+Yy,Yj,SsYy,ID,LLAMA,0.0
+With: ,Dengan: %s,Com: ,ID,LLAMA,15.97357760615681
+Sorry that is an invalid choice!,"Desculpe, mas isso é uma escolha inválida!",A seleção não é válida!,ID,LLAMA,5.669791110976001
+Can't merge a master word list yet. Sorry.,"Desculpe, não é possível unir a lista de palavras-chave master.",Impossível mesclar um vocabulário principal.,ID,LLAMA,3.3864985683445354
 "Sorry ""create/merge personal"" is currently unimplemented.
 ","Desculpe, a funcionalidade para criar ou unir sua lista pessoal ainda não foi implementada.","Perdão, ""create/merge personal"" não implementado ainda.
-",ID,LLAMA,77.5833010673523,29.629715340528804,3.4585921141027365,100.0,77.49789357185364
-"Sorry I won't overwrite ""%s""","Sinto muito, mas eu não vou substituir '%s'","Perdão, não sobrescreverei ""%s""",ID,LLAMA,65.17770290374756,12.24465543321406,4.9323515694897075,100.0,76.94917321205139
+",ID,LLAMA,3.4585921141027365
+"Sorry I won't overwrite ""%s""","Sinto muito, mas eu não vou substituir '%s'","Perdão, não sobrescreverei ""%s""",ID,LLAMA,4.9323515694897075
 "Sorry ""create/merge repl"" is currently unimplemented.
 ","Desculpe, a lista de substituição ainda não foi implementada.","Perdão, ""create/merge repl"" não implementado ainda.
-",ID,LLAMA,67.57989525794983,30.877088118745867,4.839576869824698,100.0,74.76136684417725
-"""%s"" is not a valid flag for the ""munch-list"" command.",%s ist keine gültige Option für den »munch-list«-Befehl.,"""%s"" não é um sinal válido para o comando ""munch-list"".",ID,LLAMA,75.48080086708069,18.595408551099638,5.097103985522972,100.0,84.87042784690857
-Usage: aspell [options] <command>,Penggunaan: aspell [opsi] <perintah>,Uso: aspell [opções] <comando>,ID,LLAMA,83.0260694026947,34.954929290310034,23.356898886410015,75.0,85.48997044563293
-<command> is one of:,<perintah> salah satu dari:,<comando> é um de:,ID,LLAMA,73.1100082397461,10.220125786163523,8.643019616048525,100.0,82.13013410568237
-  -?|usage         display a brief usage message, -?|usage         Mostrar um texto de ajuda curto,  -?|usage         exibe uma breve mensagem de uso,ID,LLAMA,79.6650230884552,24.933683397264254,27.77619034011791,85.71428571428571,84.13023948669434
-  help             display a detailed help message,tampilque seua mensagem de auxílio completa,  help             exibe uma mensagem detalhada de ajuda,ID,LLAMA,67.08585619926453,29.652241875650372,8.170609724417774,85.71428571428571,70.99515795707703
+",ID,LLAMA,4.839576869824698
+"""%s"" is not a valid flag for the ""munch-list"" command.",%s ist keine gültige Option für den »munch-list«-Befehl.,"""%s"" não é um sinal válido para o comando ""munch-list"".",ID,LLAMA,5.097103985522972
+Usage: aspell [options] <command>,Penggunaan: aspell [opsi] <perintah>,Uso: aspell [opções] <comando>,ID,LLAMA,23.356898886410015
+<command> is one of:,<perintah> salah satu dari:,<comando> é um de:,ID,LLAMA,8.643019616048525
+  -?|usage         display a brief usage message, -?|usage         Mostrar um texto de ajuda curto,  -?|usage         exibe uma breve mensagem de uso,ID,LLAMA,27.77619034011791
+  help             display a detailed help message,tampilque seua mensagem de auxílio completa,  help             exibe uma mensagem detalhada de ajuda,ID,LLAMA,8.170609724417774
   -c|check <file>  spellchecks a file," -c|check <file> Verificação da ortografia de uma pasta
-",  -c|check <arq>   verifica a ortografia de um arquivo,ID,LLAMA,90.32791256904602,54.362427977004025,26.20251007173262,62.5,85.35209894180298
-"  -a|pipe          ""ispell -a"" compatibility mode",ID -a|pipe Modo compatibilidade para 'ispell -a',"  -a|pipe          modo de compatibilidade ""ispell -a""",ID,LLAMA,75.30331015586853,57.90100917192108,17.0653267718276,83.33333333333334,88.3005678653717
-  [dump] config    dumps the current configuration to stdout,Gibt die aktuelle Konfiguration auf der Standardausgabe aus.,  [dump] config    despeja a configuração atual à saída padrão stdout,ID,LLAMA,47.950926423072815,15.654764213800238,0.0,100.0,70.88564038276672
-  config <key>     prints the current value of an option,config <key>   Mostrar o valor atual de uma opção,  config <chave>   exibe o valor atual de uma opção,ID,LLAMA,90.15717506408691,64.9404746579669,53.48259312838876,22.22222222222222,92.30688214302063
-  [dump] dicts | filters | modes, [dump] dicionários | filtros | modos,  [dump] dicio | filtros | modos,ID,LLAMA,87.66805529594421,82.03167835972266,50.000000000000014,16.666666666666664,92.01616048812866
-    lists available dictionaries / filters / filter modes,    Lista disponíveis dicionários / filtros / modos de filtro em,"    lista dicionários, filtros e modos de filtros disponíveis",ID,LLAMA,86.58967614173889,63.998766209912816,10.552670315936318,75.0,88.01494836807251
-[options] is any of the following:,[opções] são opções adicionais que podem ser usadas independentemente das seguintes:,[opções] é quaisquer uma das seguintes:,ID,LLAMA,74.30636286735535,51.5551402581929,17.77835117834348,100.0,80.01806735992432
-  list             produce a list of misspelled words from standard input,Liste de palavras mal escritas provenientes da entrada padrão.,  list             produz uma lista de palavras escritas erradas na saída padrão,ID,LLAMA,70.38889527320862,39.342709480788244,9.030367376343264,81.81818181818183,83.69172811508179
-  soundslike       returns the sounds like equivalent for each word entered,mengembalikan sound like ekuivalen untuk setiap kata yang dimasukan,  soundslike       retorna o equivalente de pronúncia para cada palavra digitada,ID,LLAMA,58.46446752548218,17.583751280690223,0.0,100.0,73.54251146316528
-  munch            generate possible root words and affixes,possíveis raízes e terminações de palavras geradas,  munch            cria as possíveis raízes e afixos da palavra,ID,LLAMA,71.94899320602417,45.22683767063198,18.370727471078336,77.77777777777779,80.0443947315216
-  expand [1-4]     expands affix flags,expandir [1-4] Endungskennzeichen,  expand [1-4]     expande sinais de afixos,ID,LLAMA,65.00294804573059,25.29003769073549,40.04970149398301,83.33333333333334,77.09041833877563
-  clean [strict]   cleans a word list so that every line is a valid word,"limpar [estrito]   Wortliste, para que cada linha seja um palavra válida",  clean [strict]   limpa uma lista de palavras para que cada linha seja uma palavra válida,ID,LLAMA,72.45814204216003,51.761502946501295,26.279464298691586,53.333333333333336,83.42573642730713
-  -v|version       prints a version line,-v|versão       Mostrar uma linha com informações de versão,  -v|version       mostra a versão do programa,ID,LLAMA,83.42974781990051,31.563957235158092,9.287528999566801,100.0,83.7367594242096
-  munch-list [simple] [single|multi] [keep],munch-list [simples] [único|mais de um] [manter],  munch-list [simple] [single|multi] [keep],ID,LLAMA,67.17551350593567,42.11899627353694,10.571070857151541,100.0,89.593905210495
-    reduce the size of a word list via affix compression,reduzir o tamanho de uma lista de palavras com compressão sufixal,    reduz o tamanho de uma lista de palavras através de compressão de afixo,ID,LLAMA,71.27130031585693,64.21609020086626,49.19533018641346,38.46153846153847,87.59766817092896
-  conv <from> <to> [<norm-form>],conv <von> <nach> [<Normalform>],  conv <de> <para> [<norm-form>],ID,LLAMA,86.77362203598022,33.43813698231286,20.86130724305753,75.0,90.19045233726501
-    converts from one encoding to another,converteu de uma codificação para outra,    converte de uma codificação para outra,ID,LLAMA,94.79917287826538,88.569390198621,75.98356856515926,16.666666666666664,98.31380248069763
-  norm (<norm-map> | <from> <norm-map> <to>) [<norm-form>],norm (<norm-map> | <von> <norm-map> <nach>) [<Normalform>],  norm (<norm-map> | <de> <norm-map> <para>) [<norm-form>],ID,LLAMA,88.33557963371277,62.92350704686489,59.19783121240429,42.857142857142854,94.7719395160675
-    perform Unicode normalization,Ativar a normalização de codificação Unicode unicodenormalizando,    efetua normalização Unicode,ID,LLAMA,70.35642862319946,53.11298827856245,7.809849842300637,100.0,78.44735980033875
-  dump|create|merge master|personal|repl [<name>],dumpar|criar|mesclar master|personal|repl [<nama>],  dump|create|merge master|personal|repl [<nome>],ID,LLAMA,77.81090140342712,49.659350916609654,46.56334880525637,66.66666666666666,90.05688428878784
+",  -c|check <arq>   verifica a ortografia de um arquivo,ID,LLAMA,26.20251007173262
+"  -a|pipe          ""ispell -a"" compatibility mode",ID -a|pipe Modo compatibilidade para 'ispell -a',"  -a|pipe          modo de compatibilidade ""ispell -a""",ID,LLAMA,17.0653267718276
+  [dump] config    dumps the current configuration to stdout,Gibt die aktuelle Konfiguration auf der Standardausgabe aus.,  [dump] config    despeja a configuração atual à saída padrão stdout,ID,LLAMA,0.0
+  config <key>     prints the current value of an option,config <key>   Mostrar o valor atual de uma opção,  config <chave>   exibe o valor atual de uma opção,ID,LLAMA,53.48259312838876
+  [dump] dicts | filters | modes, [dump] dicionários | filtros | modos,  [dump] dicio | filtros | modos,ID,LLAMA,50.000000000000014
+    lists available dictionaries / filters / filter modes,    Lista disponíveis dicionários / filtros / modos de filtro em,"    lista dicionários, filtros e modos de filtros disponíveis",ID,LLAMA,10.552670315936318
+[options] is any of the following:,[opções] são opções adicionais que podem ser usadas independentemente das seguintes:,[opções] é quaisquer uma das seguintes:,ID,LLAMA,17.77835117834348
+  list             produce a list of misspelled words from standard input,Liste de palavras mal escritas provenientes da entrada padrão.,  list             produz uma lista de palavras escritas erradas na saída padrão,ID,LLAMA,9.030367376343264
+  soundslike       returns the sounds like equivalent for each word entered,mengembalikan sound like ekuivalen untuk setiap kata yang dimasukan,  soundslike       retorna o equivalente de pronúncia para cada palavra digitada,ID,LLAMA,0.0
+  munch            generate possible root words and affixes,possíveis raízes e terminações de palavras geradas,  munch            cria as possíveis raízes e afixos da palavra,ID,LLAMA,18.370727471078336
+  expand [1-4]     expands affix flags,expandir [1-4] Endungskennzeichen,  expand [1-4]     expande sinais de afixos,ID,LLAMA,40.04970149398301
+  clean [strict]   cleans a word list so that every line is a valid word,"limpar [estrito]   Wortliste, para que cada linha seja um palavra válida",  clean [strict]   limpa uma lista de palavras para que cada linha seja uma palavra válida,ID,LLAMA,26.279464298691586
+  -v|version       prints a version line,-v|versão       Mostrar uma linha com informações de versão,  -v|version       mostra a versão do programa,ID,LLAMA,9.287528999566801
+  munch-list [simple] [single|multi] [keep],munch-list [simples] [único|mais de um] [manter],  munch-list [simple] [single|multi] [keep],ID,LLAMA,10.571070857151541
+    reduce the size of a word list via affix compression,reduzir o tamanho de uma lista de palavras com compressão sufixal,    reduz o tamanho de uma lista de palavras através de compressão de afixo,ID,LLAMA,49.19533018641346
+  conv <from> <to> [<norm-form>],conv <von> <nach> [<Normalform>],  conv <de> <para> [<norm-form>],ID,LLAMA,20.86130724305753
+    converts from one encoding to another,converteu de uma codificação para outra,    converte de uma codificação para outra,ID,LLAMA,75.98356856515926
+  norm (<norm-map> | <from> <norm-map> <to>) [<norm-form>],norm (<norm-map> | <von> <norm-map> <nach>) [<Normalform>],  norm (<norm-map> | <de> <norm-map> <para>) [<norm-form>],ID,LLAMA,59.19783121240429
+    perform Unicode normalization,Ativar a normalização de codificação Unicode unicodenormalizando,    efetua normalização Unicode,ID,LLAMA,7.809849842300637
+  dump|create|merge master|personal|repl [<name>],dumpar|criar|mesclar master|personal|repl [<nama>],  dump|create|merge master|personal|repl [<nome>],ID,LLAMA,46.56334880525637
 "    dumps, creates or merges a master, personal, or replacement dictionary.","    Haupt- (master), persönliche (personal) oder Ersetzungs- (replacement)-
-    Wortliste ausgeben (dump), erzeugen (create) oder mischen (merge).","    mostra, cria ou mescla um dicionário mestre, pessoal ou de substituição.",ID,LLAMA,40.96153676509857,14.363041130646323,1.633898440122165,100.0,63.405925035476685
+    Wortliste ausgeben (dump), erzeugen (create) oder mischen (merge).","    mostra, cria ou mescla um dicionário mestre, pessoal ou de substituição.",ID,LLAMA,1.633898440122165
 "  <norm-form>      normalization form to use, either none, internal, or strict","ID
-     Para utilizar a normalização de forma adequada, use o formato 'none', 'internal' ou 'strict'","  <norm-form>      forma de normalização a usar, podendo ser ""none"", ""internal"", ou ""strict""",ID,LLAMA,78.64828705787659,34.67862510637305,2.613677874373997,100.0,80.02877235412598
+     Para utilizar a normalização de forma adequada, use o formato 'none', 'internal' ou 'strict'","  <norm-form>      forma de normalização a usar, podendo ser ""none"", ""internal"", ou ""strict""",ID,LLAMA,2.613677874373997
 "
 Aspell %s.  Copyright 2000-2023 by Kevin Atkinson.
 
 ","Aspel %s. Há copyright de 2000 a 2023 por Kevin Atkinson.
 ","
 Aspell %s.  Copyright 2000-2023 por Kevin Atkinson.
-",ID,LLAMA,77.04976201057434,65.89041228727436,36.6192636299943,85.71428571428571,85.07087826728821
+",ID,LLAMA,36.6192636299943
 "Available Dictionaries:
     Dictionaries can be selected directly via the ""-d"" or ""master""
     option.  They can also be selected indirectly via the ""lang"",
@@ -259,18 +259,18 @@ Aspell %s.  Copyright 2000-2023 por Kevin Atkinson.
     Dicionários podem ser selecionados diretamente da opção ""-d""
     ou ""master"". Podem ser selecionados indiretamente via opções
     ""lang"", ""variety"", e ""size"".
-",ID,LLAMA,76.35627388954163,29.88457093986768,30.451841356571126,100.0,85.25009155273438
+",ID,LLAMA,30.451841356571126
 "Available Filters (and associated options):
     Filters can be added or removed via the ""filter"" option.
 ",Verfügbare Filter (und zugehörige Optionen): Sie können Filter mit der »filter«-Option hinzufügen oder entfernen.,"Filtros disponíveis (e opções associadas):
     Filtros podem ser adicionados ou removidos via opção ""filter"".
-",ID,LLAMA,76.89387202262878,13.524142539603758,4.570928117310813,100.0,77.69420742988586
+",ID,LLAMA,4.570928117310813
 "
   %s filter: %s
 ","%s filtro de ID: %s
 ","
   %s filtro: %s
-",ID,LLAMA,93.22457909584045,71.0605210519386,34.57207846419412,100.0,91.52997732162476
+",ID,LLAMA,34.57207846419412
 "Available Filter Modes:
     Filter Modes are reconfigured combinations of filters optimized for
     files of a specific type. A mode is selected via the ""mode"" option.
@@ -283,101 +283,101 @@ Este comportamento é implícito se Aspell conseguir identificar automaticamente
     arquivos de tipo específico. Modo é selecionado via opção ""mode"".
     Acontecerá implicitamente se Aspell for apto a identificar o tipo do
     arquivo a partir da extensão e, de certo, os conteúdos do arquivo.
-",ID,LLAMA,84.61155295372009,49.37143950576519,8.533654358875632,74.46808510638297,82.81933069229126
-Error: Stdin not a terminal.,Erro: Entrada padrão não é um terminal.,Erro: Stdin não é um terminal.,ID,LLAMA,89.69289064407349,67.00089156684965,51.33450480401705,33.33333333333333,89.89037871360779
-Enter,Pressione Enter,Enter,ID,LLAMA,81.36752247810364,66.34490679250591,49.99999999999999,100.0,85.61015129089355
-Accept Changes,Aceita as alterações,Aceita alterações,ID,LLAMA,94.73084807395935,74.15365845671023,34.66806371753173,50.0,90.32375812530518
-Backspace,Limpa a tela,Backspace,ID,LLAMA,49.88919198513031,7.95337617866842,0.0,100.0,70.7114577293396
-Control-H,CTRL-H,Control-H,ID,LLAMA,64.5273745059967,7.033248081841431,0.0,100.0,82.90912508964539
-Delete the previous character,eliminar o carácter anterior,Exclui o caractere anterior,ID,LLAMA,81.10975623130798,38.31173895557046,18.99589214128981,50.0,78.5659909248352
-Left,Links,Left,ID,LLAMA,67.67849326133728,4.761904761904763,0.0,100.0,86.77691221237183
-Control-B,CTLR-B,Control-B,ID,LLAMA,73.03704619407654,7.033248081841431,0.0,100.0,82.28619694709778
-Move Back one space,mover um espaço para a esquerda,Move um espaço para trás,ID,LLAMA,80.77810406684875,55.81148673272837,30.213753973567677,60.0,83.1942617893219
-Right,direito,Right,ID,LLAMA,72.7394163608551,6.17283950617284,0.0,100.0,82.7555775642395
-Control-F,CTRL-F,Control-F,ID,LLAMA,75.43196082115173,7.033248081841431,0.0,100.0,83.39136242866516
-Move Forward one space,um passo para a direita,Move um espaço para frente,ID,LLAMA,64.51292634010315,20.90647159303816,12.703318703865365,80.0,79.4080913066864
-Home,Pos1,Home,ID,LLAMA,53.93856167793274,5.0,0.0,100.0,75.45605897903442
-Control-A,CTRL-A,Control-A,ID,LLAMA,69.9029803276062,7.033248081841431,0.0,100.0,83.64099860191345
-Move to the beginning of the line,Pindah para o início da linha,Move ao início da linha,ID,LLAMA,71.05416655540466,66.54294693834674,30.213753973567677,60.0,86.57273650169373
-End,Fim,Fim,ID,LLAMA,98.53989481925964,100.0,100.00000000000004,0.0,99.99998807907104
-Control-E,CTRL-E,Control-E,ID,LLAMA,59.85845923423767,7.033248081841431,0.0,100.0,83.58098864555359
-Move to the end of the line,Pindah para o final da linha,Move ao final da linha,ID,LLAMA,68.88561844825745,65.20923961479964,30.213753973567677,60.0,85.48383712768555
-Delete,Excluir,Delete,ID,LLAMA,52.0773708820343,2.304147465437788,0.0,100.0,70.36802768707275
-Control-D,CTRL-D,Control-D,ID,LLAMA,75.21568536758423,7.033248081841431,0.0,100.0,83.9358925819397
-Delete the next character,eliminar o próximo caractere,Exclui o próximo caractere,ID,LLAMA,86.40268445014954,70.67477829421401,59.460355750136046,25.0,88.34007382392883
-Control-K,CTRL-K,Control-K,ID,LLAMA,69.09156441688538,7.033248081841431,0.0,100.0,83.40495228767395
-Kill all characters to the EOL,Remover todos os caracteres até o final da linha.,Elimina todos os caracteres ao fim da linha,ID,LLAMA,86.10448241233826,60.556423505901016,19.64073254502565,62.5,89.59174752235413
-Control-C,CTRL-C,Control-C,ID,LLAMA,73.86137843132019,7.033248081841431,0.0,100.0,83.01645517349243
-Abort This Operation,Batalque a operação atual,Cancelar esta operação,ID,LLAMA,81.16784691810608,34.427388807024265,15.97357760615681,100.0,72.13107347488403
-This is probably because: ,O motivo provável é o seguinte:,Isto provavelmente é porque:,ID,LLAMA,86.0112190246582,23.16782434935753,7.809849842300637,100.0,74.04317259788513
-"The required field ""name"" is missing.",O campo necessário 'name' está ausente.,"O campo ""name"" requerido está faltando",ID,LLAMA,93.94930005073547,27.126994242421198,12.600736402830258,50.0,83.67028832435608
-Empty string.,String vazia.,String vazia.,ID,LLAMA,96.95531725883484,100.0,100.00000000000004,0.0,100.00003576278687
-The character '%s' (U+%02X) may not appear at the beginning of a word.,O caractere '\%s' (U+%02X) não deve aparecer no início de uma palavra.,O caractere '%s' (U+%02X) pode não aparecer no início da palavra.,ID,LLAMA,87.84540891647339,71.07951783840132,48.82066497822451,45.45454545454545,96.33952975273132
-The character '%s' (U+%02X) must be followed by an alphabetic character.,"Após o caractere '\u{%02X}' (U+%02X), deve seguir um caractere alfabético.",O caractere '%s' (U+%02X) deve ser seguido por um caractere alfabético.,ID,LLAMA,82.68995881080627,60.448851300098674,32.998954725277926,54.54545454545454,88.90104293823242
-Does not contain any alphabetic characters.,Não contém nenhum caractere alfabético.,Não contém quaisquer caracteres alfabéticos.,ID,LLAMA,95.88362574577332,51.45496985549827,17.965205598154213,60.0,88.98540735244751
-The character '%s' (U+%02X) may not appear in the middle of a word.,O caractere '\%s' (U+%02X) não deve aparecer no meio de um palavra.,O caractere '%s' (U+%02X) pode não aparecer no meio da palavra.,ID,LLAMA,87.02528476715088,69.05804557119164,48.82066497822451,45.45454545454545,95.97229957580566
-The character '\r' (U+0D) may not appear at the end of a word. This probably means means that the file is using MS-DOS EOL instead of Unix EOL.,O caractere '\r' (U+0D) não deve aparecer no final de uma palavra. Isso pode indicar que o arquivo utiliza EOL do MS-DOS em vez da EOL Unix.,O caractere '\r' (U+0D) pode não aparecer ao final da palavra. Isto significa que provavelmente o arquivo usa fim de linha MS-DOS ao invés de Unix.,ID,LLAMA,83.84976983070374,49.04445690598878,33.658317962638016,57.692307692307686,92.15967655181885
-The character '%s' (U+%02X) may not appear at the end of a word.,O caractere '\%s' (U+%02X) não deve aparecer no final de uma palavra.,O caractere '%s' (U+%02X) pode não aparecer no final da palavra.,ID,LLAMA,87.70169019699097,70.7038432769747,48.82066497822451,45.45454545454545,96.31693959236145
+",ID,LLAMA,8.533654358875632
+Error: Stdin not a terminal.,Erro: Entrada padrão não é um terminal.,Erro: Stdin não é um terminal.,ID,LLAMA,51.33450480401705
+Enter,Pressione Enter,Enter,ID,LLAMA,49.99999999999999
+Accept Changes,Aceita as alterações,Aceita alterações,ID,LLAMA,34.66806371753173
+Backspace,Limpa a tela,Backspace,ID,LLAMA,0.0
+Control-H,CTRL-H,Control-H,ID,LLAMA,0.0
+Delete the previous character,eliminar o carácter anterior,Exclui o caractere anterior,ID,LLAMA,18.99589214128981
+Left,Links,Left,ID,LLAMA,0.0
+Control-B,CTLR-B,Control-B,ID,LLAMA,0.0
+Move Back one space,mover um espaço para a esquerda,Move um espaço para trás,ID,LLAMA,30.213753973567677
+Right,direito,Right,ID,LLAMA,0.0
+Control-F,CTRL-F,Control-F,ID,LLAMA,0.0
+Move Forward one space,um passo para a direita,Move um espaço para frente,ID,LLAMA,12.703318703865365
+Home,Pos1,Home,ID,LLAMA,0.0
+Control-A,CTRL-A,Control-A,ID,LLAMA,0.0
+Move to the beginning of the line,Pindah para o início da linha,Move ao início da linha,ID,LLAMA,30.213753973567677
+End,Fim,Fim,ID,LLAMA,100.00000000000004
+Control-E,CTRL-E,Control-E,ID,LLAMA,0.0
+Move to the end of the line,Pindah para o final da linha,Move ao final da linha,ID,LLAMA,30.213753973567677
+Delete,Excluir,Delete,ID,LLAMA,0.0
+Control-D,CTRL-D,Control-D,ID,LLAMA,0.0
+Delete the next character,eliminar o próximo caractere,Exclui o próximo caractere,ID,LLAMA,59.460355750136046
+Control-K,CTRL-K,Control-K,ID,LLAMA,0.0
+Kill all characters to the EOL,Remover todos os caracteres até o final da linha.,Elimina todos os caracteres ao fim da linha,ID,LLAMA,19.64073254502565
+Control-C,CTRL-C,Control-C,ID,LLAMA,0.0
+Abort This Operation,Batalque a operação atual,Cancelar esta operação,ID,LLAMA,15.97357760615681
+This is probably because: ,O motivo provável é o seguinte:,Isto provavelmente é porque:,ID,LLAMA,7.809849842300637
+"The required field ""name"" is missing.",O campo necessário 'name' está ausente.,"O campo ""name"" requerido está faltando",ID,LLAMA,12.600736402830258
+Empty string.,String vazia.,String vazia.,ID,LLAMA,100.00000000000004
+The character '%s' (U+%02X) may not appear at the beginning of a word.,O caractere '\%s' (U+%02X) não deve aparecer no início de uma palavra.,O caractere '%s' (U+%02X) pode não aparecer no início da palavra.,ID,LLAMA,48.82066497822451
+The character '%s' (U+%02X) must be followed by an alphabetic character.,"Após o caractere '\u{%02X}' (U+%02X), deve seguir um caractere alfabético.",O caractere '%s' (U+%02X) deve ser seguido por um caractere alfabético.,ID,LLAMA,32.998954725277926
+Does not contain any alphabetic characters.,Não contém nenhum caractere alfabético.,Não contém quaisquer caracteres alfabéticos.,ID,LLAMA,17.965205598154213
+The character '%s' (U+%02X) may not appear in the middle of a word.,O caractere '\%s' (U+%02X) não deve aparecer no meio de um palavra.,O caractere '%s' (U+%02X) pode não aparecer no meio da palavra.,ID,LLAMA,48.82066497822451
+The character '\r' (U+0D) may not appear at the end of a word. This probably means means that the file is using MS-DOS EOL instead of Unix EOL.,O caractere '\r' (U+0D) não deve aparecer no final de uma palavra. Isso pode indicar que o arquivo utiliza EOL do MS-DOS em vez da EOL Unix.,O caractere '\r' (U+0D) pode não aparecer ao final da palavra. Isto significa que provavelmente o arquivo usa fim de linha MS-DOS ao invés de Unix.,ID,LLAMA,33.658317962638016
+The character '%s' (U+%02X) may not appear at the end of a word.,O caractere '\%s' (U+%02X) não deve aparecer no final de uma palavra.,O caractere '%s' (U+%02X) pode não aparecer no final da palavra.,ID,LLAMA,48.82066497822451
 "Warning: Removing invalid affix '%s' from word %s.
 ","Peringatan: Remova o affixo '%s' não válido do termo %s. 
 ","Alerta: removendo afixo inválido '%s' da palavra %s.
-",ID,LLAMA,65.82466959953308,31.312580533923285,17.098323692758395,100.0,80.7841956615448
+",ID,LLAMA,17.098323692758395
 "Warning: Removing inapplicable affix '%s' from word %s.
 ","Peringatan: Remova não aplicável sufixo '%s' do termo 'correio'.
 ","Alerta: removendo afixo não aplicável '%s' da palavra %s.
-",ID,LLAMA,59.90382432937622,36.713165442455306,14.563331524569785,77.77777777777779,80.24296760559082
+",ID,LLAMA,14.563331524569785
 "Warning: %s Skipping string.
 ","Peringatan: %s Meleuatrar string. 
 ","Alerta: %s ignorando string.
-",ID,LLAMA,52.063482999801636,40.02877087451305,30.739407647563215,50.0,78.27170491218567
-The total length is larger than 240 characters.,O termo é de mais de 240 caracteres.,O comprimento total é maior que 240 caracteres.,ID,LLAMA,72.68062233924866,40.972247288383535,20.164945583740657,62.5,84.57057476043701
+",ID,LLAMA,30.739407647563215
+The total length is larger than 240 characters.,O termo é de mais de 240 caracteres.,O comprimento total é maior que 240 caracteres.,ID,LLAMA,20.164945583740657
 "Warning: %s Skipping word.
 ",Peringatan: %s Meleuatram Kata.,"Alerta: %s ignorando palavra.
-",ID,LLAMA,55.992311239242554,24.287159601626147,26.269098944241588,75.0,75.47690272331238
-Possibly incorrect count.,Possível número incorreto.,Provável contagem incorreta.,ID,LLAMA,86.11828684806824,28.09524034930466,15.97357760615681,100.0,81.37204647064209
-Incompatible hash function.,Fungui hash yang não é compatível.,Função hash incompatível.,ID,LLAMA,64.07958269119263,45.80879469516334,7.809849842300637,100.0,81.35711550712585
-Wrong endian order.,Pengurutan endiano incorreto.,Ordem endian incorreta.,ID,LLAMA,54.205113649368286,39.39248933503138,15.97357760615681,100.0,81.86205625534058
-Wrong soundslike.,Falta de harmonia fonética.,Pronúncia incorreta.,ID,LLAMA,65.56385159492493,14.472218044007834,10.682175159905848,100.0,71.2604284286499
-Wrong soundslike version.,Versão de falso sotaque.,Versão incorreta de pronúncia.,ID,LLAMA,58.84069800376892,23.841850683433165,14.058533129758727,75.0,80.20024299621582
-Affix flags found in word but no affix file given.,"Endungsflags im Wort gefunden, aber keine Endungsdatei angegeben.",Sinais de afixos na palavra mas sem arquivo de afixo fornecido.,ID,LLAMA,47.94003069400787,9.21740867740852,3.435488317233919,100.0,70.99825739860535
-"The total word length, with soundslike data, is larger than 240 characters.","A extensão total do termo, incluindo dados de somatório, é maior que 240 caracteres.",Comprimento total da palavra com dados de pronúncia maior que 240 caracteres.,ID,LLAMA,75.70369243621826,49.12686394160023,25.459845316736796,58.333333333333336,82.93705582618713
-"There must be at least one ""add"" line.",É necessário que haja pelo menos uma linha de adição.,"Deve existir ao menos uma linha ""add"".",ID,LLAMA,74.85874891281128,40.74002146122559,14.991106946711685,100.0,82.92993307113647
-"one of ultra, fast, normal, slow, or bad-spellers","um dos seguidos de ultra, fast, normal, slow ou bad-spellers","um de ultra, fast, normal, slow, ou bad-spellers",ID,LLAMA,83.93970727920532,82.69337093346473,62.628449627654696,37.5,93.25550198554993
-is not one of the allowed types,não pertence a nenhum dos tipos permitidos.,não é um dos tipos permitidos,ID,LLAMA,91.18818640708923,69.76239743217285,22.089591134157878,66.66666666666666,86.73515319824219
-The personal word list is unavailable.,A lista de palavras pessoais não está disponível.,A lista pessoal de palavras não está disponível.,ID,LLAMA,93.82638335227966,78.23043660194786,40.32989116748136,25.0,96.03655934333801
-The session word list is unavailable.,A lista de palavras para a sessão não está disponível.,A lista de palavras da sessão não está disponível.,ID,LLAMA,92.59893298149109,87.72361732561085,58.77283725105324,22.22222222222222,97.60205149650574
-The main word list is unavailable.,A principal lista de palavras não está disponível.,A lista principal de palavras não está disponível.,ID,LLAMA,96.42933011054993,84.20471617599345,65.00593260343696,12.5,98.21301698684692
-"a string of 'o','O','p',or 'P'","uma cadeia de caracteres da letra 'o', 'O' ou 'p' (ou 'P')","uma string de 'o','O','p',ou 'P'",ID,LLAMA,77.52876877784729,31.13563585729174,13.834368456410946,100.0,89.58831429481506
-experimental filter for hiding delimited contexts,"Experimental Filter, to hide limited context sections",filtro experimental p/ ocultar contextos delimitados,ID,LLAMA,65.71919918060303,33.4901741374269,0.0,100.0,67.93052554130554
-context delimiters (separated by spaces),Kontextbegrenzer (durch Leerzeichen getrennt),delimitadores de contexto (separados por espaços),ID,LLAMA,74.90500807762146,14.179977323401221,6.916271812933183,100.0,74.83099699020386
-swaps visible and invisible text,Texto trocado entre visível e não visível,troca texto visível e invisível,ID,LLAMA,81.18954300880432,50.44491630699501,13.134549472120788,100.0,80.09370565414429
-filter for skipping quoted text in email messages,"Filtrar, para passar em branco zitierten Texts nas Mensagens de Email.",filtro para ignorar citações de texto em mensagens de e-mail,ID,LLAMA,51.0239839553833,28.573578702643204,4.065425428798724,80.0,73.01011085510254
-email quote characters,caracter de citação para e-mail,caracteres de citações de e-mail,ID,LLAMA,71.26715779304504,44.17127469594169,12.703318703865365,60.0,90.37268161773682
-num chars that can appear before the quote char,quantidade de caracteres que podem aparecer antes do sinal de aspas,número de caracteres que podem aparecer antes da citação,ID,LLAMA,86.58575415611267,67.34956614231767,46.17366309441026,55.55555555555556,89.65886235237122
-filter for dealing with HTML documents,"filtro, para tratar documentos HTML",filtro para manipular documentos HTML,ID,LLAMA,89.7364616394043,59.05166952472938,19.304869754804482,40.0,89.81654644012451
-HTML attributes to always check,atributo HTML para sempre ser verificado,sempre verifica estes atributos HTML,ID,LLAMA,87.9048764705658,45.45374558562172,9.652434877402245,100.0,80.77532052993774
-HTML tags to always skip the contents of,Tags HTML cujo conteúdo é sempre ignorado.,sempre ignora o conteúdo de etiquetas HTML,ID,LLAMA,79.3373703956604,47.20198042272171,7.267884212102741,85.71428571428571,76.97440981864929
-filter for Markdown/CommonMark documents,"filtro, para tratar documentos em Markdown/CommonMark",filtro para documentos Markdown/CommonMark,ID,LLAMA,86.96045875549316,67.72075786586208,21.10534063187263,75.0,87.99317479133606
-filter for dealing with Nroff documents,"filtro, para tratar documentos Nroff",filtro para manipular documentos Nroff,ID,LLAMA,80.44237494468689,59.992197813808815,19.304869754804482,40.0,90.09913206100464
-filter for dealing with generic SGML/XML documents,"filtro, para lidar com documentos SGML/XML genéricos",filtro para manipular documentos SGML/XML genéricos,ID,LLAMA,89.01858925819397,67.1042069531268,42.7287006396234,50.0,92.34182834625244
-SGML attributes to always check,atributo SGML para sempre ser verificado,sempre verifica estes atributos SGML,ID,LLAMA,85.54137349128723,45.45374558562172,9.652434877402245,100.0,80.48899173736572
-SGML tags to always skip the contents of,Tags SGML cujo conteúdo é sempre ignorado.,sempre ignora o conteúdo de etiquetas SGML,ID,LLAMA,74.03033375740051,47.20198042272171,7.267884212102741,85.71428571428571,77.57453918457031
-filter for dealing with TeX/LaTeX documents,Penyaring para reconhecer comandos TeX/LaTeX.,filtro para manipular documentos TeX/LaTeX,ID,LLAMA,71.67404294013977,31.885974634493913,22.089591134157878,80.0,82.61356949806213
-check TeX comments,verificação dos comentários em TeX,verifica comentários TeX,ID,LLAMA,82.56438374519348,59.76859767519749,12.703318703865365,100.0,87.72640228271484
-TeX commands,comando TeX,comandos TeX,ID,LLAMA,93.15914511680603,52.803473967044766,49.99999999999999,50.0,92.91751384735107
-filter for dealing with Texinfo documents,"filtro, para tratar documentos Texinfo",filtro para manipular documentos Texinfo,ID,LLAMA,82.71409869194031,61.698730216525,19.304869754804482,40.0,91.37164354324341
-Texinfo commands to ignore the parameters of,Perintah Texinfo para ignorar parâmetros,ignora os parâmetros de comandos Texinfo,ID,LLAMA,61.34769320487976,40.43487491086634,10.400597689005304,100.0,81.48244619369507
-Texinfo environments to ignore,linguagem Texinfo para ignorar,Texinfo de ambiente a ignorar,ID,LLAMA,68.45150589942932,39.831881936175506,14.794015674776452,80.0,85.12631058692932
-filter to skip URL like constructs,"filtro, para pulverizar URLs como construções artísticas",filtro para ignorar construtores tipo URL,ID,LLAMA,63.24607729911804,31.26853580534999,6.567274736060395,100.0,78.0148983001709
-mode for checking C++ comments and string literals,Modus para verificação de comentários C++ e literais de string,modo para verificar comentários C++ e strings literais,ID,LLAMA,87.05076575279236,65.66829934620606,34.48444257953326,75.0,89.98042345046997
-mode to check any lines starting with a #,"Modus, para verificar todas as linhas que começam com '##', use o seguinte comando:",modo para verificar quaisquer linhas começando com uma #,ID,LLAMA,69.75865960121155,41.34707592681486,4.814971807094068,100.0,77.34966278076172
-mode for skipping quoted text in email messages,Modus para passar por cima de um texto citado em emails.,modo para ignorar citações de texto em mensagens de e-mail,ID,LLAMA,65.1026964187622,25.087945211694063,4.789232204309912,90.0,77.48805284500122
-mode for checking HTML documents,Modus para a verificação de documentos HTML.,modo para verificar documentos HTML,ID,LLAMA,86.37839555740356,59.493052721717675,12.22307556087252,100.0,86.4469051361084
-mode for checking Markdown/CommonMark documents,Modus para a verificação de documentos Markdown/CommonMark.,modo para verificar documentos Markdown/CommonMark,ID,LLAMA,89.79372382164001,68.06976297192645,27.77619034011791,100.0,90.15757441520691
-mode to disable all filters,Modo para desabilitar todos os filtros,modo para desabilitar todos os filtros,ID,LLAMA,95.43977975845337,92.94989826057332,75.98356856515926,0.0,95.88369727134705
-mode for checking Nroff documents,Modus para verificação de documentos Nroff,modo para verificar documentos Nroff,ID,LLAMA,88.90178203582764,65.5142720329658,17.965205598154213,60.0,90.05674123764038
-mode for checking Perl comments and string literals,Modus para verificação de comentários Perl e literais de string,modo para verificar comentários Perl e strings literais,ID,LLAMA,87.25314736366272,64.52613645073276,17.747405280050266,75.0,89.81637954711914
-mode for checking generic SGML/XML documents,Modus para a verificação geral de documentos SGML/XML,modo para verificar documentos SGML/XML genéricos,ID,LLAMA,88.69730234146118,52.59263463708878,27.77619034011791,100.0,88.41811418533325
-mode for checking TeX/LaTeX documents,Modo de filtragem para documentos TeX/LaTeX,modo para verificar documentos TeX/LaTeX,ID,LLAMA,84.62395071983337,54.66804283967859,36.55552228545123,60.0,91.48090481758118
-mode for checking Texinfo documents,Modus para a verificação de documentos Texinfo.,modo para verificar documentos Texinfo,ID,LLAMA,88.42177391052246,61.849182600717526,12.22307556087252,100.0,87.24567890167236
-mode to skip URL like constructs (default mode),"Modus, para pular URLs artísticas (modo básico)",modo para ignorar construtores tipo URL (modo padrão),ID,LLAMA,65.57918190956116,21.94791521826464,9.980099403873663,75.0,78.80113124847412
+",ID,LLAMA,26.269098944241588
+Possibly incorrect count.,Possível número incorreto.,Provável contagem incorreta.,ID,LLAMA,15.97357760615681
+Incompatible hash function.,Fungui hash yang não é compatível.,Função hash incompatível.,ID,LLAMA,7.809849842300637
+Wrong endian order.,Pengurutan endiano incorreto.,Ordem endian incorreta.,ID,LLAMA,15.97357760615681
+Wrong soundslike.,Falta de harmonia fonética.,Pronúncia incorreta.,ID,LLAMA,10.682175159905848
+Wrong soundslike version.,Versão de falso sotaque.,Versão incorreta de pronúncia.,ID,LLAMA,14.058533129758727
+Affix flags found in word but no affix file given.,"Endungsflags im Wort gefunden, aber keine Endungsdatei angegeben.",Sinais de afixos na palavra mas sem arquivo de afixo fornecido.,ID,LLAMA,3.435488317233919
+"The total word length, with soundslike data, is larger than 240 characters.","A extensão total do termo, incluindo dados de somatório, é maior que 240 caracteres.",Comprimento total da palavra com dados de pronúncia maior que 240 caracteres.,ID,LLAMA,25.459845316736796
+"There must be at least one ""add"" line.",É necessário que haja pelo menos uma linha de adição.,"Deve existir ao menos uma linha ""add"".",ID,LLAMA,14.991106946711685
+"one of ultra, fast, normal, slow, or bad-spellers","um dos seguidos de ultra, fast, normal, slow ou bad-spellers","um de ultra, fast, normal, slow, ou bad-spellers",ID,LLAMA,62.628449627654696
+is not one of the allowed types,não pertence a nenhum dos tipos permitidos.,não é um dos tipos permitidos,ID,LLAMA,22.089591134157878
+The personal word list is unavailable.,A lista de palavras pessoais não está disponível.,A lista pessoal de palavras não está disponível.,ID,LLAMA,40.32989116748136
+The session word list is unavailable.,A lista de palavras para a sessão não está disponível.,A lista de palavras da sessão não está disponível.,ID,LLAMA,58.77283725105324
+The main word list is unavailable.,A principal lista de palavras não está disponível.,A lista principal de palavras não está disponível.,ID,LLAMA,65.00593260343696
+"a string of 'o','O','p',or 'P'","uma cadeia de caracteres da letra 'o', 'O' ou 'p' (ou 'P')","uma string de 'o','O','p',ou 'P'",ID,LLAMA,13.834368456410946
+experimental filter for hiding delimited contexts,"Experimental Filter, to hide limited context sections",filtro experimental p/ ocultar contextos delimitados,ID,LLAMA,0.0
+context delimiters (separated by spaces),Kontextbegrenzer (durch Leerzeichen getrennt),delimitadores de contexto (separados por espaços),ID,LLAMA,6.916271812933183
+swaps visible and invisible text,Texto trocado entre visível e não visível,troca texto visível e invisível,ID,LLAMA,13.134549472120788
+filter for skipping quoted text in email messages,"Filtrar, para passar em branco zitierten Texts nas Mensagens de Email.",filtro para ignorar citações de texto em mensagens de e-mail,ID,LLAMA,4.065425428798724
+email quote characters,caracter de citação para e-mail,caracteres de citações de e-mail,ID,LLAMA,12.703318703865365
+num chars that can appear before the quote char,quantidade de caracteres que podem aparecer antes do sinal de aspas,número de caracteres que podem aparecer antes da citação,ID,LLAMA,46.17366309441026
+filter for dealing with HTML documents,"filtro, para tratar documentos HTML",filtro para manipular documentos HTML,ID,LLAMA,19.304869754804482
+HTML attributes to always check,atributo HTML para sempre ser verificado,sempre verifica estes atributos HTML,ID,LLAMA,9.652434877402245
+HTML tags to always skip the contents of,Tags HTML cujo conteúdo é sempre ignorado.,sempre ignora o conteúdo de etiquetas HTML,ID,LLAMA,7.267884212102741
+filter for Markdown/CommonMark documents,"filtro, para tratar documentos em Markdown/CommonMark",filtro para documentos Markdown/CommonMark,ID,LLAMA,21.10534063187263
+filter for dealing with Nroff documents,"filtro, para tratar documentos Nroff",filtro para manipular documentos Nroff,ID,LLAMA,19.304869754804482
+filter for dealing with generic SGML/XML documents,"filtro, para lidar com documentos SGML/XML genéricos",filtro para manipular documentos SGML/XML genéricos,ID,LLAMA,42.7287006396234
+SGML attributes to always check,atributo SGML para sempre ser verificado,sempre verifica estes atributos SGML,ID,LLAMA,9.652434877402245
+SGML tags to always skip the contents of,Tags SGML cujo conteúdo é sempre ignorado.,sempre ignora o conteúdo de etiquetas SGML,ID,LLAMA,7.267884212102741
+filter for dealing with TeX/LaTeX documents,Penyaring para reconhecer comandos TeX/LaTeX.,filtro para manipular documentos TeX/LaTeX,ID,LLAMA,22.089591134157878
+check TeX comments,verificação dos comentários em TeX,verifica comentários TeX,ID,LLAMA,12.703318703865365
+TeX commands,comando TeX,comandos TeX,ID,LLAMA,49.99999999999999
+filter for dealing with Texinfo documents,"filtro, para tratar documentos Texinfo",filtro para manipular documentos Texinfo,ID,LLAMA,19.304869754804482
+Texinfo commands to ignore the parameters of,Perintah Texinfo para ignorar parâmetros,ignora os parâmetros de comandos Texinfo,ID,LLAMA,10.400597689005304
+Texinfo environments to ignore,linguagem Texinfo para ignorar,Texinfo de ambiente a ignorar,ID,LLAMA,14.794015674776452
+filter to skip URL like constructs,"filtro, para pulverizar URLs como construções artísticas",filtro para ignorar construtores tipo URL,ID,LLAMA,6.567274736060395
+mode for checking C++ comments and string literals,Modus para verificação de comentários C++ e literais de string,modo para verificar comentários C++ e strings literais,ID,LLAMA,34.48444257953326
+mode to check any lines starting with a #,"Modus, para verificar todas as linhas que começam com '##', use o seguinte comando:",modo para verificar quaisquer linhas começando com uma #,ID,LLAMA,4.814971807094068
+mode for skipping quoted text in email messages,Modus para passar por cima de um texto citado em emails.,modo para ignorar citações de texto em mensagens de e-mail,ID,LLAMA,4.789232204309912
+mode for checking HTML documents,Modus para a verificação de documentos HTML.,modo para verificar documentos HTML,ID,LLAMA,12.22307556087252
+mode for checking Markdown/CommonMark documents,Modus para a verificação de documentos Markdown/CommonMark.,modo para verificar documentos Markdown/CommonMark,ID,LLAMA,27.77619034011791
+mode to disable all filters,Modo para desabilitar todos os filtros,modo para desabilitar todos os filtros,ID,LLAMA,75.98356856515926
+mode for checking Nroff documents,Modus para verificação de documentos Nroff,modo para verificar documentos Nroff,ID,LLAMA,17.965205598154213
+mode for checking Perl comments and string literals,Modus para verificação de comentários Perl e literais de string,modo para verificar comentários Perl e strings literais,ID,LLAMA,17.747405280050266
+mode for checking generic SGML/XML documents,Modus para a verificação geral de documentos SGML/XML,modo para verificar documentos SGML/XML genéricos,ID,LLAMA,27.77619034011791
+mode for checking TeX/LaTeX documents,Modo de filtragem para documentos TeX/LaTeX,modo para verificar documentos TeX/LaTeX,ID,LLAMA,36.55552228545123
+mode for checking Texinfo documents,Modus para a verificação de documentos Texinfo.,modo para verificar documentos Texinfo,ID,LLAMA,12.22307556087252
+mode to skip URL like constructs (default mode),"Modus, para pular URLs artísticas (modo básico)",modo para ignorar construtores tipo URL (modo padrão),ID,LLAMA,9.980099403873663

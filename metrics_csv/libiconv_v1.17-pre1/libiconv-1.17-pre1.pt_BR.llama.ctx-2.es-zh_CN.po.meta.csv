@@ -1,78 +1,78 @@
-original,translated,reference,context_languages,strategy,comet,chrf,bleu,ter,bertscore
-Usage: iconv [-c] [-s] [-f fromcode] [-t tocode] [file ...],Modo de uso: iconv [-c] [-s] [-f codificação_entrada] [-t codificação_saída] [arquivo ...],Uso: iconv [-c] [-s] [-f fromcode] [-t tocode] [arquivo ...],"ZH_CN,ES",LLAMA,83.17657113075256,63.70875218100562,55.05244657427051,40.0,87.58683800697327
+original,translated,reference,context_languages,strategy,bleu
+Usage: iconv [-c] [-s] [-f fromcode] [-t tocode] [file ...],Modo de uso: iconv [-c] [-s] [-f codificação_entrada] [-t codificação_saída] [arquivo ...],Uso: iconv [-c] [-s] [-f fromcode] [-t tocode] [arquivo ...],"ZH_CN,ES",LLAMA,55.05244657427051
 or:    iconv -l,"ou:
-iconv -l",ou:  iconv -l,"ZH_CN,ES",LLAMA,98.44396710395813,100.0,100.00000000000004,0.0,99.99999403953552
+iconv -l",ou:  iconv -l,"ZH_CN,ES",LLAMA,100.00000000000004
 "Try '%s --help' for more information.
 ",Tente `%s --help' para mais informações.,"Tente ""%s --help"" para mais informações.
-","ZH_CN,ES",LLAMA,96.02932929992676,74.35736293539898,33.010083098515025,33.33333333333333,90.98200798034668
+","ZH_CN,ES",LLAMA,33.010083098515025
 "Usage: %s [OPTION...] [-f ENCODING] [-t ENCODING] [INPUTFILE...]
 ",Modo de uso: %s [OPÇÃO...] [-f CODIFICAÇÃO] [-t CODIFICAÇÃO] [ARQUIVOENTRADA...],"Uso: %s [OPÇÃO...] [-f CODIFICAÇÃO] [-t CODIFICAÇÃO] [ENTRADA...]
-","ZH_CN,ES",LLAMA,81.4857006072998,87.6937971271207,77.09002428237393,37.5,96.55200839042664
+","ZH_CN,ES",LLAMA,77.09002428237393
 "or:    %s -l
 ",ou seja: %s -l,"ou:    %s -l
-","ZH_CN,ES",LLAMA,92.48669743537903,57.6155975252361,53.7284965911771,66.66666666666666,89.22917246818542
+","ZH_CN,ES",LLAMA,53.7284965911771
 "Converts text from one encoding to another encoding.
 ",Converta o texto de uma codificação para outra.,"Converte texto de uma codificação para outra.
-","ZH_CN,ES",LLAMA,93.52784156799316,88.37257458573171,72.59795291154772,28.57142857142857,95.34764289855957
+","ZH_CN,ES",LLAMA,72.59795291154772
 "Options controlling the input and output format:
 ",Opções para controlar o formato de entrada e saída:,"Opções para controlar os formatos de entrada e saída:
-","ZH_CN,ES",LLAMA,96.13057971000671,81.31383771763122,52.53819788848316,22.22222222222222,97.60348200798035
+","ZH_CN,ES",LLAMA,52.53819788848316
 "  -f ENCODING, --from-code=ENCODING
                               the encoding of the input
 ","  -f ENCODING, --from-code=ENCODING
                                Codificação de entrada","  -f CODIFICAÇÃO, --from-code=CODIFICAÇÃO
                               a codificação de entrada
-","ZH_CN,ES",LLAMA,79.81602549552917,54.61896874414746,20.90067144241745,42.857142857142854,82.75381326675415
+","ZH_CN,ES",LLAMA,20.90067144241745
 "  -t ENCODING, --to-code=ENCODING
                               the encoding of the output
 ","  -t ENCODING, --to_code=ENCODING
                                Codificação de saída","  -t CODIFICAÇÃO, --to-code=CODIFICAÇÃO
                               a codificação da saída
-","ZH_CN,ES",LLAMA,72.64981865882874,38.65247650580958,5.300156689756295,57.14285714285714,80.33039569854736
+","ZH_CN,ES",LLAMA,5.300156689756295
 "Options controlling conversion problems:
 ",Opciones para controlar los problemas de conversión:,"Opções para controlar problemas de conversão:
-","ZH_CN,ES",LLAMA,94.52618956565857,68.31454626953409,16.515821590069027,50.0,93.24519634246826
+","ZH_CN,ES",LLAMA,16.515821590069027
 "  -c                          discard unconvertible characters
 ", -c                           ignorar caracteres não convertíveis,"  -c                          descarta caracteres não conversíveis
-","ZH_CN,ES",LLAMA,88.55285048484802,60.06056847003245,23.643540225079384,40.0,87.76586055755615
+","ZH_CN,ES",LLAMA,23.643540225079384
 "  --unicode-subst=FORMATSTRING
                               substitution for unconvertible Unicode characters
 ","--unicode-subst=FORMATSTRING
                               Substitui caracteres Unicode não convertíveis.","  --unicode-subst=TEXTOFORMATO
                               substituição de caracteres Unicode no conversíveis
-","ZH_CN,ES",LLAMA,80.19147515296936,55.03848124935913,13.485111859503691,71.42857142857143,84.63385701179504
+","ZH_CN,ES",LLAMA,13.485111859503691
 "  --byte-subst=FORMATSTRING   substitution for unconvertible bytes
 ",--byte-subst=FORMATSTRING    Substitui bytes não convertíveis para a string de formato especificada.,"  --byte-subst=TEXTOFORMATO   substituição para bytes não conversíveis
-","ZH_CN,ES",LLAMA,81.46675229072571,49.80580913734895,8.493098745313148,100.0,83.13748836517334
+","ZH_CN,ES",LLAMA,8.493098745313148
 "  --widechar-subst=FORMATSTRING
                               substitution for unconvertible wide characters
 ","--widechar-subst=FORMATSTRING
                               Substituição para caracteres anchos não convertíveis.","  --widechar-subst=TEXTOFORMATO
                               substituição para caracteres amplos não conversíveis
-","ZH_CN,ES",LLAMA,82.40188956260681,61.26390108188965,12.549310621989482,42.857142857142854,87.18060851097107
+","ZH_CN,ES",LLAMA,12.549310621989482
 "Options controlling error output:
 ","Opciones para controlar a saída de erros: 
 	'--verbose': Imprime mensagens detalhadas (opcional); 
 	'--log-to=FILENAME': Escreve logs em um arquivo específico;","Opções para controlar saída de erro:
-","ZH_CN,ES",LLAMA,53.95964980125427,41.33921566993447,3.9936381761886635,100.0,70.56665420532227
+","ZH_CN,ES",LLAMA,3.9936381761886635
 "  -s, --silent                suppress error messages about conversion problems
 "," -s, --silent                 não exibir mensagens relacionadas a erros de conversão
 ","  -s, --silent                suprime mensagens de erro sobre problemas de conversão
-","ZH_CN,ES",LLAMA,84.3865692615509,50.882964935727074,18.36028134946796,60.0,89.37878608703613
+","ZH_CN,ES",LLAMA,18.36028134946796
 "Informative output:
 ",Saída de informações:,"Saída informativa:
-","ZH_CN,ES",LLAMA,94.27075386047363,42.253423214950686,18.99589214128981,100.0,87.31756806373596
+","ZH_CN,ES",LLAMA,18.99589214128981
 "  -l, --list                  list the supported encodings
 ","  -l, --list                   lista de codificações suportadas","  -l, --list                  lista das codificações com suporte
-","ZH_CN,ES",LLAMA,93.52040886878967,70.61814345782493,37.68499164492418,42.857142857142854,95.79730033874512
+","ZH_CN,ES",LLAMA,37.68499164492418
 "  --help                      display this help and exit
 "," --help                       Mostra esta ajuda e sai
 ","  --help                      exibe esta ajuda e sai
-","ZH_CN,ES",LLAMA,91.6483223438263,66.803115000004,53.7284965911771,16.666666666666664,89.58691358566284
+","ZH_CN,ES",LLAMA,53.7284965911771
 "  --version                   output version information and exit
 ","--versao                    Mostra versão e sai
 ","  --version                   exibe informação da versão e sai
-","ZH_CN,ES",LLAMA,68.29137206077576,40.44672679607093,26.65429557589628,57.14285714285714,78.68133783340454
+","ZH_CN,ES",LLAMA,26.65429557589628
 "License GPLv3+: GNU GPL version 3 or later <%s>
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
@@ -81,29 +81,29 @@ Este software é livre: você pode modificá-lo e redistribuí-lo dentro dos lim
 Nenhuma garantia será feita, salvo o que a lei permite.","Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>
 Este é um software livre: você é livre para alterá-lo e redistribuí-lo.
 NÃO HÁ QUALQUER GARANTIA, na máxima extensão permitida em lei.
-","ZH_CN,ES",LLAMA,85.16014218330383,48.456873880517584,18.94621249412973,67.74193548387096,78.73701453208923
+","ZH_CN,ES",LLAMA,18.94621249412973
 "Written by %s.
 ",Escrito por %s.,"Escrito por %s.
-","ZH_CN,ES",LLAMA,98.86448979377747,100.0,100.00000000000004,0.0,100.00001192092896
-%s argument: A format directive with a variable width is not allowed here.,%s Parâmetro: Não é permitido o uso de formatos com tamanhos variáveis.,argumento de %s: Uma diretiva de formato com uma variável de largura não permitida aqui.,"ZH_CN,ES",LLAMA,72.91259169578552,27.08005565429394,5.663311452337806,93.33333333333333,74.48213696479797
-%s argument: A format directive with a variable precision is not allowed here.,%s Parâmetro: Não é permitido o uso de um especificador de formato com precisão variável.,argumento de %s: Uma diretiva de formato com uma variável de precisão não permitida aqui.,"ZH_CN,ES",LLAMA,77.073073387146,39.96800311489013,11.954726580677509,80.0,78.33784222602844
-%s argument: A format directive with a size is not allowed here.,%s Parâmetro: Não é permitido o uso de um especificador de formato que inclua tamanho.,argumento de %s: Uma diretiva de formato com um tamanho não permitida aqui.,"ZH_CN,ES",LLAMA,78.92252802848816,34.32082818117932,7.439820585622744,100.0,75.01657605171204
-%s argument: The string ends in the middle of a directive.,%s parâmetro: a string termina no meio de um especificador.,argumento de %s: A string termina no meio de uma diretiva.,"ZH_CN,ES",LLAMA,80.05240559577942,50.57585632467793,32.79475209724913,45.45454545454545,85.27658581733704
-%s argument: The character '%c' is not a valid conversion specifier.,%s 参数: 字符‘%c’不是有效的转义符。,"argumento de %s: O caractere ""%c"" não é uma especificação de conversão válida.","ZH_CN,ES",LLAMA,69.98392343521118,2.454268801294559,2.8129878312564873,100.0,73.97541999816895
-%s argument: The character that terminates the format directive is not a valid conversion specifier.,%s parâmetro: Caracter que termina o formato para interromper não é um especificador de conversão válido.,argumento de %s: O caractere que termina a diretiva de formato não é uma especificação de conversão válida.,"ZH_CN,ES",LLAMA,81.33779168128967,46.426492152325025,7.89272027377738,66.66666666666666,87.5601053237915
-cannot convert byte substitution to Unicode: %s,não foi possível converter os bytes para Unicode: %s,não foi possível converter substituição de bytes para Unicode: %s,"ZH_CN,ES",LLAMA,89.2060935497284,74.57187136542395,64.07117598241614,20.0,96.09947204589844
-cannot convert unicode substitution to target encoding: %s,Não foi possível converter os caracteres unicode para a codificação alvo: %s,não foi possível converter unicode para codificação desejada: %s,"ZH_CN,ES",LLAMA,91.24988913536072,69.15675551619054,20.80375826108923,44.44444444444444,88.5337769985199
-cannot convert byte substitution to wide string: %s,não foi possível converter os bytes para uma string aninhada: %s,não foi possível converter substituição de bytes para texto amplo: %s,"ZH_CN,ES",LLAMA,81.70703053474426,54.97972681928927,31.170906522700683,45.45454545454545,89.43724036216736
-cannot convert widechar substitution to target encoding: %s,não é possível converter o carácter ancho para a codificação alvo: %s,não foi possível converter widechar para codificação desejada: %s,"ZH_CN,ES",LLAMA,80.23684620857239,51.88604572905703,14.949751774990691,66.66666666666666,85.2840006351471
-cannot convert byte substitution to target encoding: %s,não foi possível converter os bytes para a codificação alvo: %s,não foi possível converter substituição de bytes para codificação desejada: %s,"ZH_CN,ES",LLAMA,89.56528902053833,61.38522734478735,32.00286101270288,36.36363636363637,90.04725813865662
-%s:%u:%u: cannot convert,%s:%d:%d: não é possível converter,%s:%u:%u: impossível converter,"ZH_CN,ES",LLAMA,91.99404716491699,53.96595485629307,24.71244254525359,100.0,88.09772729873657
-%s:%u:%u: incomplete character or shift sequence,%s:%d:%d: sequência de caracteres ou substituição incompleta,%s:%u:%u: sequência de caracteres ou deslocamentos incompleta,"ZH_CN,ES",LLAMA,88.07467818260193,62.599242695442555,45.788313721339826,28.57142857142857,92.53603219985962
-%s:%u:%u,%s:%u:%u,%s:%u:%u,"ZH_CN,ES",LLAMA,99.44339394569397,100.0,100.00000000000004,0.0,99.99999403953552
-%s: I/O error,%s: erro de entrada/saída,%s: erro de E/S,"ZH_CN,ES",LLAMA,75.73990225791931,63.41556277848808,54.10822690539397,25.0,84.69858169555664
-conversion from %s unsupported,não é suportado a conversão de %s,não há suporte à conversão de %s,"ZH_CN,ES",LLAMA,88.84572982788086,59.862407055531854,36.55552228545123,42.857142857142854,95.24591565132141
-conversion to %s unsupported,não é suportado o conversor para %s,não há suporte à conversão para %s,"ZH_CN,ES",LLAMA,86.75017952919006,45.70089715028741,22.089591134157878,57.14285714285714,89.55565690994263
-conversion from %s to %s unsupported,não é suportado a conversão de %s para %s,não há suporte à conversão de %s para %s,"ZH_CN,ES",LLAMA,92.31137037277222,69.14714567483055,59.00468726392806,33.33333333333333,96.15522623062134
-try '%s -l' to get the list of supported encodings,Tente usar ‘%s -l’ para obter a lista de codificações suportadas.,"tente ""%s -l"" para obter a lista de codificações sem suporte","ZH_CN,ES",LLAMA,89.26176428794861,63.80618525410614,39.34995962231127,45.45454545454545,87.09845542907715
-(stdin),(entrada padrão),(stdin),"ZH_CN,ES",LLAMA,57.710760831832886,12.479026845637584,18.99589214128981,100.0,79.0259599685669
-%s,%s,%s,"ZH_CN,ES",LLAMA,99.3385374546051,100.0,100.00000000000004,0.0,99.99998211860657
-I/O error,erro de entrada/saída,erro de E/S,"ZH_CN,ES",LLAMA,68.12061071395874,46.573095580880455,23.643540225079384,33.33333333333333,79.1016161441803
+","ZH_CN,ES",LLAMA,100.00000000000004
+%s argument: A format directive with a variable width is not allowed here.,%s Parâmetro: Não é permitido o uso de formatos com tamanhos variáveis.,argumento de %s: Uma diretiva de formato com uma variável de largura não permitida aqui.,"ZH_CN,ES",LLAMA,5.663311452337806
+%s argument: A format directive with a variable precision is not allowed here.,%s Parâmetro: Não é permitido o uso de um especificador de formato com precisão variável.,argumento de %s: Uma diretiva de formato com uma variável de precisão não permitida aqui.,"ZH_CN,ES",LLAMA,11.954726580677509
+%s argument: A format directive with a size is not allowed here.,%s Parâmetro: Não é permitido o uso de um especificador de formato que inclua tamanho.,argumento de %s: Uma diretiva de formato com um tamanho não permitida aqui.,"ZH_CN,ES",LLAMA,7.439820585622744
+%s argument: The string ends in the middle of a directive.,%s parâmetro: a string termina no meio de um especificador.,argumento de %s: A string termina no meio de uma diretiva.,"ZH_CN,ES",LLAMA,32.79475209724913
+%s argument: The character '%c' is not a valid conversion specifier.,%s 参数: 字符‘%c’不是有效的转义符。,"argumento de %s: O caractere ""%c"" não é uma especificação de conversão válida.","ZH_CN,ES",LLAMA,2.8129878312564873
+%s argument: The character that terminates the format directive is not a valid conversion specifier.,%s parâmetro: Caracter que termina o formato para interromper não é um especificador de conversão válido.,argumento de %s: O caractere que termina a diretiva de formato não é uma especificação de conversão válida.,"ZH_CN,ES",LLAMA,7.89272027377738
+cannot convert byte substitution to Unicode: %s,não foi possível converter os bytes para Unicode: %s,não foi possível converter substituição de bytes para Unicode: %s,"ZH_CN,ES",LLAMA,64.07117598241614
+cannot convert unicode substitution to target encoding: %s,Não foi possível converter os caracteres unicode para a codificação alvo: %s,não foi possível converter unicode para codificação desejada: %s,"ZH_CN,ES",LLAMA,20.80375826108923
+cannot convert byte substitution to wide string: %s,não foi possível converter os bytes para uma string aninhada: %s,não foi possível converter substituição de bytes para texto amplo: %s,"ZH_CN,ES",LLAMA,31.170906522700683
+cannot convert widechar substitution to target encoding: %s,não é possível converter o carácter ancho para a codificação alvo: %s,não foi possível converter widechar para codificação desejada: %s,"ZH_CN,ES",LLAMA,14.949751774990691
+cannot convert byte substitution to target encoding: %s,não foi possível converter os bytes para a codificação alvo: %s,não foi possível converter substituição de bytes para codificação desejada: %s,"ZH_CN,ES",LLAMA,32.00286101270288
+%s:%u:%u: cannot convert,%s:%d:%d: não é possível converter,%s:%u:%u: impossível converter,"ZH_CN,ES",LLAMA,24.71244254525359
+%s:%u:%u: incomplete character or shift sequence,%s:%d:%d: sequência de caracteres ou substituição incompleta,%s:%u:%u: sequência de caracteres ou deslocamentos incompleta,"ZH_CN,ES",LLAMA,45.788313721339826
+%s:%u:%u,%s:%u:%u,%s:%u:%u,"ZH_CN,ES",LLAMA,100.00000000000004
+%s: I/O error,%s: erro de entrada/saída,%s: erro de E/S,"ZH_CN,ES",LLAMA,54.10822690539397
+conversion from %s unsupported,não é suportado a conversão de %s,não há suporte à conversão de %s,"ZH_CN,ES",LLAMA,36.55552228545123
+conversion to %s unsupported,não é suportado o conversor para %s,não há suporte à conversão para %s,"ZH_CN,ES",LLAMA,22.089591134157878
+conversion from %s to %s unsupported,não é suportado a conversão de %s para %s,não há suporte à conversão de %s para %s,"ZH_CN,ES",LLAMA,59.00468726392806
+try '%s -l' to get the list of supported encodings,Tente usar ‘%s -l’ para obter a lista de codificações suportadas.,"tente ""%s -l"" para obter a lista de codificações sem suporte","ZH_CN,ES",LLAMA,39.34995962231127
+(stdin),(entrada padrão),(stdin),"ZH_CN,ES",LLAMA,18.99589214128981
+%s,%s,%s,"ZH_CN,ES",LLAMA,100.00000000000004
+I/O error,erro de entrada/saída,erro de E/S,"ZH_CN,ES",LLAMA,23.643540225079384
