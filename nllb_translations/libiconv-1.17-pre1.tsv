@@ -1,0 +1,50 @@
+Usage: iconv [-c] [-s] [-f fromcode] [-t tocode] [file ...]	Usage: iconv [-c] [-s] [-f fromcode] [-t tocode] [file ...]
+or:    iconv -l	ou: iconv -l
+Try '%s --help' for more information.	Tente '%s --help' para mais informações.
+Usage: %s [OPTION...] [-f ENCODING] [-t ENCODING] [INPUTFILE...]	Utilização: %s [OPTION...] [-f ENCODING] [-t ENCODING] [INPUTFILE...]
+or:    %s -l	ou: %s -l
+Converts text from one encoding to another encoding.	Converte texto de uma codificação para outra.
+Options controlling the input and output format:	Opções para controlar o formato de entrada e saída:
+-f ENCODING, --from-code=ENCODING	-f ENCODING, --from-code=ENCODING
+the encoding of the input	a codificação da entrada
+-t ENCODING, --to-code=ENCODING	-t ENCODING, --to-code=ENCODING
+the encoding of the output	a codificação da saída
+Options controlling conversion problems:	Opções para controlar problemas de conversão:
+-c                          discard unconvertible characters	-c descartar caracteres não convertíveis
+--unicode-subst=FORMATSTRING	--unicode-subst=FORMATSTRING --unicode-subst=FORMATSTRING --
+substitution for unconvertible Unicode characters	Substituição para caracteres Unicode não convertíveis
+--byte-subst=FORMATSTRING   substitution for unconvertible bytes	--byte-subst=FORMATSTRING substituição para bytes não convertíveis --byte-subst=FORMATSTRING substituição para bytes não convertíveis --
+--widechar-subst=FORMATSTRING	--char-wide-subst=FORMATSTRING
+substitution for unconvertible wide characters	Substituição para caracteres largos não convertíveis
+Options controlling error output:	Opções de controle de saída de erro:
+-s, --silent                suppress error messages about conversion problems	-s, --silent suppress error messages about conversion problems
+Informative output:	A saída informativa:
+-l, --list                  list the supported encodings	-l, --list list the supported encodings
+--help                      display this help and exit	--help exibe esta ajuda e saída
+--version                   output version information and exit	A versão de saída da versão de informação e saída --version output --
+License GPLv3+: GNU GPL version 3 or later <%s>	Licença GPLv3+: GNU GPL versão 3 ou posterior <%s>
+This is free software: you are free to change and redistribute it.	Este é um software livre: você é livre para alterá-lo e redistribuí-lo.
+There is NO WARRANTY, to the extent permitted by law.	Não há garantia, na medida em que a lei o permite.
+Written by %s.	Escrito por %s.
+%s argument: A format directive with a variable width is not allowed here.	Argumento %s: Uma diretriz de formato com largura variável não é permitida aqui.
+%s argument: A format directive with a variable precision is not allowed here.	Argumento %s: Uma diretriz de formato com precisão variável não é permitida aqui.
+%s argument: A format directive with a size is not allowed here.	Argumento %s: Uma diretriz de formato com um tamanho não é permitida aqui.
+%s argument: The string ends in the middle of a directive.	Argumento %s: A cadeia termina no meio de uma diretiva.
+%s argument: The character '%c' is not a valid conversion specifier.	Argumento %s: O caracter '%c' não é um especificador de conversão válido.
+%s argument: The character that terminates the format directive is not a valid conversion specifier.	Argumento %s: O caracter que encerra a diretriz de formato não é um especificador de conversão válido.
+cannot convert byte substitution to Unicode: %s	Não pode converter substituição de byte para Unicode: %s.
+cannot convert unicode substitution to target encoding: %s	Não pode converter a substituição de unicode em codificação alvo: %s
+cannot convert byte substitution to wide string: %s	Não pode converter substituição de byte para cadeia ampla: %s
+cannot convert widechar substitution to target encoding: %s	Não pode converter a substituição de widechar para codificação-alvo: %s
+cannot convert byte substitution to target encoding: %s	Não pode converter substituição de byte para codificação alvo: %s
+%s:%u:%u: cannot convert	%s:%u:%u: não pode converter
+%s:%u:%u: incomplete character or shift sequence	%s:%u:%u: sequência incompleta de caracteres ou de mudanças.
+%s:%u:%u	%s:%u:%u
+%s: I/O error	%s: erro de I/O
+conversion from %s unsupported	conversão de %s não suportada
+conversion to %s unsupported	conversão para %s não suportada
+conversion from %s to %s unsupported	conversão de %s para %s não suportada
+try '%s -l' to get the list of supported encodings	Tente '%s -l' para obter a lista de codificações suportadas
+(stdin)	(stdin)
+%s	%s
+I/O error	Erro de I/O

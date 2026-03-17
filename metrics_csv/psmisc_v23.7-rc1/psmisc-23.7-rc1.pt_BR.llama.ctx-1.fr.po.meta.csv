@@ -1,4 +1,4 @@
-original,translated,reference,context_languages,strategy,comet,chrf,bleu,ter,bertscore
+original,translated,reference,context_languages,strategy,bleu
 "Usage: fuser [-fIMuvw] [-a|-s] [-4|-6] [-c|-m|-n SPACE]
              [-k [-i] [-SIGNAL]] NAME...
        fuser -l
@@ -44,30 +44,30 @@ Mostra quais processos usam os arquivos, sockets ou sistema de arquivos especifi
   -v,--verbose          saída detalhada
   -w,--writeonly        mata apenas processos com acesso de gravação
   -V,--version          exibe informações de versão
-",FR,LLAMA,48.155638575553894,10.789656614577318,2.5475595780356297,97.5609756097561,70.01833915710449
+",FR,LLAMA,2.5475595780356297
 "  -4,--ipv4             search IPv4 sockets only
   -6,--ipv6             search IPv6 sockets only
 ","  -4,--ipv4             procura por soquetes IPv4 apenas
   -6,--ipv6             procura por soquetes IPv6 apenas
 ","  -4,--ipv4             pesquisa apenas sockets IPv4
   -6,--ipv6             pesquisa apenas sockets IPv6
-",FR,LLAMA,84.94598269462585,45.43291609108075,17.395797375642235,80.0,90.77388644218445
+",FR,LLAMA,17.395797375642235
 "  udp/tcp names: [local_port][,[rmt_host][,[rmt_port]]]
 
 ","CÁC TEN CUOI UDP/TCP: [CORO_LOCAL][,[HÔTE_DISTANTE][,[PORT_DISTANTE]]]","  -                     redefine opções
 
   nomes udp/tcp: [porta_local][,[maq_rmt][,[porta_rmt]]]
 
-",FR,LLAMA,63.60411047935486,9.456935736600993,22.793108217457682,83.33333333333334,74.27232265472412
+",FR,LLAMA,22.793108217457682
 "fuser (PSmisc) %s
 ","fuser (PSmisc) %s
 ","fuser (PSmisc) %s
-",FR,LLAMA,97.82291650772095,100.0,100.00000000000004,0.0,100.0
+",FR,LLAMA,100.00000000000004
 "Copyright (C) 1993-2024 Werner Almesberger and Craig Small
 
 ",Privacidade reservada por Werner Almesberger e Craig Small. Copyright &copy; 1993-2024.,"Copyright (C) 1993-2020 Werner Almesberger and Craig Small
 
-",FR,LLAMA,78.54655385017395,56.70612585514069,8.233514927922947,100.0,79.6159029006958
+",FR,LLAMA,8.233514927922947
 "PSmisc comes with ABSOLUTELY NO WARRANTY.
 This is free software, and you are welcome to redistribute it under
 the terms of the GNU General Public License.
@@ -76,87 +76,87 @@ For more information about these matters, see the files named COPYING.
 Este é um software livre, e você é bem-vindo em redistribuí-lo dentro
 dos termos da Licença Pública Geral GNU (GPL).
 Para mais informações a respeito, veja os arquivos com o nome COPYING.
-",FR,LLAMA,78.47686409950256,54.18819596635252,35.571887311579,55.26315789473685,85.63095331192017
+",FR,LLAMA,35.571887311579
 "Cannot open /proc directory: %s
 ",Não é possível abrir o diretório /proc: %s,"Não foi possível abrir o diretório /proc: %s
-",FR,LLAMA,94.89278197288513,85.72148431768495,80.70557274927978,12.5,98.9594578742981
+",FR,LLAMA,80.70557274927978
 "Cannot allocate memory for matched proc: %s
 ",Não é possível alocar memória para o processo associado a esta linha de montagem: %s,"Não foi possível alocar memória ao proc equiparado: %s
-",FR,LLAMA,80.38760423660278,54.702329641932124,14.879641171245488,100.0,84.87648367881775
+",FR,LLAMA,14.879641171245488
 "Specified filename %s does not exist.
 ",O nome do arquivo %s não existe.,"O nome de arquivo especificado %s não existe.
-",FR,LLAMA,94.86939907073975,59.24064445413596,47.49549533009781,25.0,92.81150698661804
+",FR,LLAMA,47.49549533009781
 "Cannot stat %s: %s
 ",Não é possível obter as estatísticas do %s: %s,"Não foi possível analisar %s: %s
-",FR,LLAMA,88.4138286113739,41.232718097873686,34.48444257953326,83.33333333333334,89.55013155937195
+",FR,LLAMA,34.48444257953326
 "Cannot resolve local port %s: %s
 ",Não foi possível encontrar o nome do módulo de unidade local %s: %s,"Não foi possível resolver a porta local %s: %s
-",FR,LLAMA,74.0477204322815,55.17280186873889,38.35193624233828,77.77777777777779,88.48811984062195
+",FR,LLAMA,38.35193624233828
 "Unknown local port AF %d
 ","Não é possível determinar o código do AF local %d
 ","Família de endereços da porta local %d desconhecida
-",FR,LLAMA,62.279337644577026,23.343559745342233,13.950796967929138,100.0,72.97970652580261
+",FR,LLAMA,13.950796967929138
 "Cannot open protocol file ""%s"": %s
 ",Não é possível abrir o arquivo protocolo '%s': %s,"Não foi possível abrir o arquivo de protocolo ""%s"": %s
-",FR,LLAMA,93.52399706840515,64.41017363918768,26.216756368962884,30.0,94.50259208679199
+",FR,LLAMA,26.216756368962884
 "Specified filename %s is not a mountpoint.
 ",O nome do arquivo %s não é um ponto de montagem.,"O nome de arquivo especificado %s não é um ponto de montagem.
-",FR,LLAMA,91.04891419410706,70.48713925432965,66.3944339660576,16.666666666666664,94.75017786026001
+",FR,LLAMA,66.3944339660576
 "%s: Invalid option %s
 ",%s: Opção %s incorreta,"%s: Opção inválida %s
-",FR,LLAMA,91.88229441642761,48.496469489905245,48.892302243490086,50.0,86.1718237400055
-Namespace option requires an argument.,Selecione um dos seguintes nomes de região para obter o número correspondente.,"A opção de ""--namespace"" requer um argumento.",FR,LLAMA,44.92456614971161,17.435170208774046,4.065425428798724,100.0,70.93631029129028
-Invalid namespace name,Tên miền tên không hợp lệ,Nome de espaço de nomes inválido,FR,LLAMA,44.963276386260986,2.9296875000000004,0.0,100.0,69.1351592540741
-You can only use files with mountpoint options,Você pode utilizar apenas arquivos com as opções de ponto de montagem _lắp,Você pode apenas usar arquivos com opções de pontos de montagem,FR,LLAMA,73.38988184928894,67.07522701355848,11.69881298948059,45.45454545454545,90.36132097244263
-No process specification given,Não foi possível inserir o identificador do processo definido.,Nenhuma especificação de processo fornecida,FR,LLAMA,63.96413445472717,25.19243100661836,4.196114906296549,100.0,73.75459671020508
-all option cannot be used with silent option.,todos os valores de opção não podem ser utilizados com a opção 'quente'.,"a opção ""--all"" não pode ser usada com a opção ""--silent"".",FR,LLAMA,52.61363387107849,36.86871137432314,11.325857976105244,72.72727272727273,82.68120884895325
-You cannot search for only IPv4 and only IPv6 sockets at the same time,Não é permitido que você procure simultaneamente e exclusivamente os endereços de soquetes IPv4 e IPv6.,Você não pode pesquisar apenas por sockets IPv4 e IPv6 ao mesmo tempo,FR,LLAMA,81.4568817615509,24.83554446527044,8.513012360883549,100.0,79.23784852027893
+",FR,LLAMA,48.892302243490086
+Namespace option requires an argument.,Selecione um dos seguintes nomes de região para obter o número correspondente.,"A opção de ""--namespace"" requer um argumento.",FR,LLAMA,4.065425428798724
+Invalid namespace name,Tên miền tên không hợp lệ,Nome de espaço de nomes inválido,FR,LLAMA,0.0
+You can only use files with mountpoint options,Você pode utilizar apenas arquivos com as opções de ponto de montagem _lắp,Você pode apenas usar arquivos com opções de pontos de montagem,FR,LLAMA,11.69881298948059
+No process specification given,Não foi possível inserir o identificador do processo definido.,Nenhuma especificação de processo fornecida,FR,LLAMA,4.196114906296549
+all option cannot be used with silent option.,todos os valores de opção não podem ser utilizados com a opção 'quente'.,"a opção ""--all"" não pode ser usada com a opção ""--silent"".",FR,LLAMA,11.325857976105244
+You cannot search for only IPv4 and only IPv6 sockets at the same time,Não é permitido que você procure simultaneamente e exclusivamente os endereços de soquetes IPv4 e IPv6.,Você não pode pesquisar apenas por sockets IPv4 e IPv6 ao mesmo tempo,FR,LLAMA,8.513012360883549
 "%*s USER        PID ACCESS COMMAND
 ","%*s NGƯỜI_DÙNG PID TRUY_CẬP LỆNH
 ","%*s USUÁRIO     PID ACESSO COMANDO
-",FR,LLAMA,56.24328255653381,17.428976137814704,14.991106946711685,60.0,79.44660782814026
-(unknown),(desconhecido),(desconhecido),FR,LLAMA,99.26609396934509,100.0,100.00000000000004,0.0,100.00001192092896
+",FR,LLAMA,14.991106946711685
+(unknown),(desconhecido),(desconhecido),FR,LLAMA,100.00000000000004
 "Cannot stat file %s: %s
 ",Não é possível obter as estatísticas do arquivo %s: %s,"Não foi possível analisar o arquivo %s: %s
-",FR,LLAMA,88.06641697883606,52.673634810903295,40.89601472043678,62.5,90.9303605556488
+",FR,LLAMA,40.89601472043678
 "Cannot open /proc/net/unix: %s
 ",Não é possível abrir o diretório /proc/net/unix : %s,"Não foi possível abrir /proc/net/unix: %s
-",FR,LLAMA,94.66908574104309,69.57102757455502,61.000344570143675,83.33333333333334,94.74772214889526
+",FR,LLAMA,61.000344570143675
 Kill process %d ? (y/N) ,"CÓ BUÓC KÊT THÚC TRIỈNH %d HẢNG? (Y/N) 
-(COM OBRIGADO/NÃO COM DESEMPLOAR)",Matar o processo %d? (y/N) ,FR,LLAMA,42.411306500434875,8.32935088290337,9.449865252803164,100.0,68.45517158508301
+(COM OBRIGADO/NÃO COM DESEMPLOAR)",Matar o processo %d? (y/N) ,FR,LLAMA,9.449865252803164
 "Could not kill process %d: %s
 ",Não é possível encerrar o processo %d : %s,"Não foi possível matar o processo %d: %s
-",FR,LLAMA,87.75154948234558,61.063095823239685,60.767958081376904,50.0,94.02621984481812
+",FR,LLAMA,60.767958081376904
 "Cannot open a network socket.
 ",Não é possível abrir um soquete de rede.,"Não foi possível abrir um socket de rede.
-",FR,LLAMA,88.1657361984253,64.57418969656644,31.02016197007,25.0,94.97589468955994
+",FR,LLAMA,31.02016197007
 "Cannot find socket's device number.
 ",Não foi possível encontrar o número do dispositivo de socket.,"Não foi possível localizar o número de dispositivo do socket.
-",FR,LLAMA,93.82423758506775,68.01716743645831,22.416933501922287,30.0,95.62357068061829
-Kill %s(%s%d) ? (y/N) ,CÓBUOC KET THÚC %s(%s%d) KHÔNG? (c/K) (Y/N) ,Matar %s(%s%d)? (y/N) ,FR,LLAMA,63.93260955810547,29.283157590350683,38.25188992413084,100.0,81.96620345115662
+",FR,LLAMA,22.416933501922287
+Kill %s(%s%d) ? (y/N) ,CÓBUOC KET THÚC %s(%s%d) KHÔNG? (c/K) (Y/N) ,Matar %s(%s%d)? (y/N) ,FR,LLAMA,38.25188992413084
 Signal %s(%s%d) ? (y/N) ,"Você recebeu o sinal %s(%s%d) ? (sim/não) 
-(Y/N)(c/K)",Enviar sinal para %s(%s%d)? (y/N) ,FR,LLAMA,81.60508871078491,33.19285214805346,37.48491492665401,100.0,86.56400442123413
+(Y/N)(c/K)",Enviar sinal para %s(%s%d)? (y/N) ,FR,LLAMA,37.48491492665401
 "killall: Cannot get UID from process status
 ","killall: Não é possível obter o UID a partir do estado atual do processo
 ","killall: Não foi possível obter UID do status do processo
-",FR,LLAMA,87.73770928382874,61.16152473804413,15.310245441182436,60.0,92.7520215511322
+",FR,LLAMA,15.310245441182436
 "killall: Bad regular expression: %s
 ",killall: Expressão regular inválida : %s,"killall: Expressão regular inválida: %s
-",FR,LLAMA,92.97921061515808,100.0,100.00000000000004,40.0,100.0
+",FR,LLAMA,100.00000000000004
 "killall: skipping partial match %s(%d)
 ","killall: Ignore a correspondência parcial %s(%d) 
 ","killall: ignorando ocorrência parcial %s(%d)
-",FR,LLAMA,70.26165723800659,63.72144995274912,57.067457770559976,60.0,90.13575315475464
+",FR,LLAMA,57.067457770559976
 "Killed %s(%s%d) with signal %d
 ","Moro com o fim %s(%s%d) por meio do sinal %d
 ","%s(%s%d) morto com o sinal %d
-",FR,LLAMA,74.80189800262451,59.57791757908345,49.89070972910272,100.0,88.6766254901886
+",FR,LLAMA,49.89070972910272
 "%s: no process found
 ",%s: nenhum processo encontrado,"%s: nenhum processo localizado
-",FR,LLAMA,98.69816303253174,67.38909721518417,75.98356856515926,25.0,98.1546700000763
+",FR,LLAMA,75.98356856515926
 "Usage: killall [OPTION]... [--] NAME...
 ",CÓDIGO DE UTILIZAÇÃO: killall [OPTION]... -- NOMÉRIS...,"Uso:   killall [OPÇÃO]... [--] NOME...
-",FR,LLAMA,68.19906830787659,37.99361366445248,28.977907494497117,100.0,83.52970480918884
+",FR,LLAMA,28.977907494497117
 "       killall -l, --list
        killall -V, --version
 
@@ -212,40 +212,40 @@ Signal %s(%s%d) ? (y/N) ,"Você recebeu o sinal %s(%s%d) ? (sim/não)
   -w,--wait           espera que os processos morram
   -n,--ns PID         corresponde processos que pertencem aos mesmos
                       espaços de nomes que o PID
-",FR,LLAMA,67.07971692085266,54.536860104281374,21.21732169472905,75.60975609756098,80.38269281387329
+",FR,LLAMA,21.21732169472905
 "  -Z,--context REGEXP kill only process(es) having context
                       (must precede other arguments)
 ","  -Z,--context BIỂU_THỈC_CHÍNH _QUY chỉ buộc kết thúc những tiến trình có ngữ cảnh (phải đi trước các đối số khác) 
 ","  -Z,--context EXPREG mata apenas processo(s) tendo contexto
                       (precisa preceder outros argumentos)
-",FR,LLAMA,52.37666368484497,16.04728739901664,5.442133807846854,100.0,76.62118077278137
-Invalid time format,Formato de tempo inválido,Formato de tempo inválido,FR,LLAMA,97.18213081359863,100.0,100.00000000000004,0.0,99.99998807907104
+",FR,LLAMA,5.442133807846854
+Invalid time format,Formato de tempo inválido,Formato de tempo inválido,FR,LLAMA,100.00000000000004
 "Cannot find user %s
 ",Utilizador de %s introuvable,"Não foi possível localizar o usuário %s
-",FR,LLAMA,57.702624797821045,16.305015133454315,11.725004053101795,100.0,71.72555327415466
-Invalid namespace PID,ID do processo não está no espaço de nomes válido.,PID de espaço de nomes inválido,FR,LLAMA,65.49742221832275,52.24586020002797,13.950796967929138,100.0,80.23955225944519
+",FR,LLAMA,11.725004053101795
+Invalid namespace PID,ID do processo não está no espaço de nomes válido.,PID de espaço de nomes inválido,FR,LLAMA,13.950796967929138
 "Bad regular expression: %s
 ",Biểu thức chính quy sai: %s,"Expressão regular inválida: %s
-",FR,LLAMA,67.63913035392761,16.510733803862607,20.556680845025987,100.0,79.54601049423218
+",FR,LLAMA,20.556680845025987
 "killall: Maximum number of names is %d
 ","killall: Número máximo de nomes é %d
 ","killall: O número máximo de nomes é %d
-",FR,LLAMA,93.5967743396759,82.0272855452788,59.11602603314155,12.5,96.86625003814697
+",FR,LLAMA,59.11602603314155
 "killall: %s lacks process entries (not mounted ?)
 ","killall: %s n'ha perdeu nenhum processo (não montado?)
 ","killall: %s não possui entradas de processos (não montado?)
-",FR,LLAMA,66.64459109306335,54.95112566563035,44.85608472663125,55.55555555555556,89.03160095214844
+",FR,LLAMA,44.85608472663125
 "Error attaching to pid %i
 ",Erro ao conectar a thread %i,"Erro ao anexar ao PID %i
-",FR,LLAMA,68.9440131187439,34.990169326677545,18.575057999133602,50.0,85.29313206672668
+",FR,LLAMA,18.575057999133602
 "peekfd (PSmisc) %s
 ",peekfd (PSmisc) %s,"peekfd (PSmisc) %s
-",FR,LLAMA,97.98160195350647,100.0,100.00000000000004,0.0,100.0
+",FR,LLAMA,100.00000000000004
 "Copyright (C) 2007 Trent Waddington
 
 ",Técnica de localização do leitor - Copyright (C) 2007 Trent Waddington,"Copyright (C) 2007 Trent Waddington
 
-",FR,LLAMA,81.20216727256775,82.81149597511497,47.037095938668955,100.0,86.86206340789795
+",FR,LLAMA,47.037095938668955
 "Usage: peekfd [-8] [-n] [-c] [-d] [-V] [-h] <pid> [<fd> ..]
     -8, --eight-bit-clean        output 8 bit clean streams.
     -n, --no-headers             don't display read/write from fd headers.
@@ -274,7 +274,7 @@ Após pressionar CTRL+C você pode interromper o processo.","Uso: peekfd [-8] [-
     -h, --help                   exibe esta ajuda.
 
   Pressione CTRL+C para finalizar a saída.
-",FR,LLAMA,82.83982872962952,62.359836030819736,49.78683514111133,57.74647887323944,90.50304889678955
+",FR,LLAMA,49.78683514111133
 "Usage: prtstat [options] PID ...
        prtstat -V
 Print information about a process
@@ -289,29 +289,29 @@ Exibe informações sobre um processo:
 Exibe informações sobre um processo
     -r,--raw       Exibe informações sem utilizar formatação
     -V,--version   Exibe informações de versão e sai
-",FR,LLAMA,76.720529794693,61.605224374712385,46.843021131020976,60.0,83.53477716445923
+",FR,LLAMA,46.843021131020976
 "prtstat (PSmisc) %s
 ",prtstat (PSmisc) %s,"prtstat (PSmisc) %s
-",FR,LLAMA,98.80942106246948,100.0,100.00000000000004,0.0,99.99998807907104
+",FR,LLAMA,100.00000000000004
 "Copyright (C) 2009-2024 Craig Small
 
 ","Privacidade reservada (C) 2009-2024 Craig Small
 ","Copyright (C) 2009-2020 Craig Small
 
-",FR,LLAMA,86.12715601921082,52.80508151365425,45.180100180492246,60.0,84.36174988746643
-running,executando,executando,FR,LLAMA,98.39063882827759,100.0,100.00000000000004,0.0,100.0
-sleeping,está dormindo,suspenso,FR,LLAMA,59.55633521080017,6.493506493506494,0.0,100.0,71.45648002624512
-disk sleep,disco de dormir,suspenso por disco,FR,LLAMA,60.78152656555176,20.937943827574667,27.516060407455225,100.0,73.28487038612366
-zombie,zumbi,zumbi,FR,LLAMA,97.97195792198181,100.0,100.00000000000004,0.0,99.99999403953552
-traced,sob escuta,interrompido,FR,LLAMA,56.083714962005615,3.7593984962406015,0.0,100.0,72.56149053573608
-paging,nao esta no site,paginado,FR,LLAMA,68.76047849655151,9.723082641556188,0.0,100.0,75.47528147697449
-unknown,desconhecido,desconhecido,FR,LLAMA,99.39248561859131,100.0,100.00000000000004,0.0,100.00007152557373
+",FR,LLAMA,45.180100180492246
+running,executando,executando,FR,LLAMA,100.00000000000004
+sleeping,está dormindo,suspenso,FR,LLAMA,0.0
+disk sleep,disco de dormir,suspenso por disco,FR,LLAMA,27.516060407455225
+zombie,zumbi,zumbi,FR,LLAMA,100.00000000000004
+traced,sob escuta,interrompido,FR,LLAMA,0.0
+paging,nao esta no site,paginado,FR,LLAMA,0.0
+unknown,desconhecido,desconhecido,FR,LLAMA,100.00000000000004
 "Process: %-14s		State: %c (%s)
   CPU#:  %-3d		TTY: %s	Threads: %ld
 ","Tiên Trinh: %-14s 	Estado: %c (%s) 
 CPU#:  %-3d 	TYE: %s 	Threads: %ld","Processo: %-14s		Estado:  %c (%s)
    CPU#:  %-3d		TTY: %s	Threads: %ld
-",FR,LLAMA,86.32760047912598,78.92693914543258,81.20341702859794,27.27272727272727,93.6263382434845
+",FR,LLAMA,81.20341702859794
 "Process, Group and Session IDs
   Process ID: %d		  Parent ID: %d
     Group ID: %d		 Session ID: %d
@@ -327,7 +327,7 @@ CPU#:  %-3d 	TYE: %s 	Threads: %ld","Processo: %-14s		Estado:  %c (%s)
     ID grupo: %d		  ID sessão: %d
   ID grupo T: %d
 
-",FR,LLAMA,72.06918597221375,21.962269715176266,17.05295761594312,100.0,82.49124884605408
+",FR,LLAMA,17.05295761594312
 "Page Faults
   This Process    (minor major): %8lu  %8lu
   Child Processes (minor major): %8lu  %8lu
@@ -336,7 +336,7 @@ CPU#:  %-3d 	TYE: %s 	Threads: %ld","Processo: %-14s		Estado:  %c (%s)
     Ciclo filho em processo (pequeno grande): %8lu  %8lu","Faltas de página
   Este processo   (menor maior): %8lu  %8lu
   Processos filho (menor maior): %8lu  %8lu
-",FR,LLAMA,72.38653302192688,41.836520147624846,35.42398584300003,86.66666666666667,85.34693121910095
+",FR,LLAMA,35.42398584300003
 "CPU Times
   This Process    (user system guest blkio): %6.2f %6.2f %6.2f %6.2f
   Child processes (user system guest):       %6.2f %6.2f %6.2f
@@ -345,7 +345,7 @@ CPU#:  %-3d 	TYE: %s 	Threads: %ld","Processo: %-14s		Estado:  %c (%s)
     Filho desse processo (utilizador sistema invidado):       %6.2f %6.2f %6.2f","Tempo de CPU
   Este processo   (usu. sist. conv. blkio):  %6.2f %6.2f %6.2f %6.2f
   Processos filho (usu. sist. conv.):        %6.2f %6.2f %6.2f
-",FR,LLAMA,75.04962086677551,57.9940515480307,45.36652188471467,61.904761904761905,88.28943967819214
+",FR,LLAMA,45.36652188471467
 "Memory
   Vsize:       %-10s
   RSS:         %-10s 		 RSS Limit: %s
@@ -365,7 +365,7 @@ Pointeur inst. (EIP): %#10lx","Memória
   Início cód.: %#-10lx		 Fim cód. :  %#-10lx
   Início stack:%#-10lx
   Pont. stack (ESP): %#10lx		 Pont. Instr. (EIP): %#10lx
-",FR,LLAMA,76.90120339393616,60.79770366332836,56.93215116144436,60.0,88.28740119934082
+",FR,LLAMA,56.93215116144436
 "Scheduling
   Policy: %s
   Nice:   %ld 		 RT Priority: %ld %s
@@ -375,28 +375,28 @@ Pointeur inst. (EIP): %#10lx","Memória
      Mức ưu tiên: %ld 	Mức ưu tiên RT: %ld %s","Agendamento
   Política: %s
   Nice:     %ld 		Prioridade RT: %ld %s
-",FR,LLAMA,64.42872285842896,42.023054634759184,26.59147948472494,100.0,81.06622695922852
+",FR,LLAMA,26.59147948472494
 "asprintf in print_stat failed.
 ",falha ao usar asprintf dentro de print_stat.,"asprintf em print_stat falhou.
-",FR,LLAMA,86.26440167427063,49.35568989727717,17.747405280050266,100.0,84.01672840118408
+",FR,LLAMA,17.747405280050266
 "Process with pid %d does not exist.
 ",O processo com o PID %d não existe.,"O processo com PID %d não existe.
-",FR,LLAMA,93.67803931236267,89.31406239062973,65.80370064762461,14.285714285714285,97.78252840042114
+",FR,LLAMA,65.80370064762461
 "Unable to open stat file for pid %d (%s)
 ",Não é possível abrir o arquivo de estatísticas do PID %d (%s),"Não foi possível abrir o arquivo de análise para PID %d (%s)
-",FR,LLAMA,90.7514214515686,63.80368712452561,61.47881529512643,25.0,93.29414367675781
+",FR,LLAMA,61.47881529512643
 "Unable to allocate memory for proc_info
 ",Não é possível alocar memória para proc_info,"Não foi possível alocar memória para proc_info
-",FR,LLAMA,97.25508093833923,84.6368595549836,75.06238537503395,14.285714285714285,99.08192157745361
-Unable to scan stat file,Não é possível abrir o arquivo para análise estatística.,Não foi possível verificar arquivo de estado,FR,LLAMA,77.43710279464722,36.19649408289093,5.522397783539471,85.71428571428571,81.616872549057
-Invalid option,Opção inválida,Opção inválida,FR,LLAMA,99.29125308990479,100.0,100.00000000000004,0.0,99.99999403953552
-You must provide at least one PID.,É necessário fornecer o mínimo de um PID (mãe sinais).,Você precisa fornecer ao menos um PID.,FR,LLAMA,58.58778357505798,31.782078433968152,7.347053125977879,100.0,84.33546423912048
+",FR,LLAMA,75.06238537503395
+Unable to scan stat file,Não é possível abrir o arquivo para análise estatística.,Não foi possível verificar arquivo de estado,FR,LLAMA,5.522397783539471
+Invalid option,Opção inválida,Opção inválida,FR,LLAMA,100.00000000000004
+You must provide at least one PID.,É necessário fornecer o mínimo de um PID (mãe sinais).,Você precisa fornecer ao menos um PID.,FR,LLAMA,7.347053125977879
 "/proc is not mounted, cannot stat /proc/self/stat.
 ","Não é possível obter estatísticas sobre o arquivo /proc/self/stat, pois o diretório /proc não está montado.","/proc não está montado, impossível analisar /proc/self/stat.
-",FR,LLAMA,88.28990459442139,59.002884093377915,35.59739463323481,100.0,81.63928985595703
+",FR,LLAMA,35.59739463323481
 "%s is empty (not mounted ?)
 ",%s vazio (não montado?),"%s está vazio (não montado?)
-",FR,LLAMA,92.52544045448303,78.09116696721975,67.5291821812656,20.0,96.30041718482971
+",FR,LLAMA,67.5291821812656
 "Usage: pstree [-acglpsStTuZ] [ -h | -H PID ] [ -n | -N type ]
               [ -A | -G | -U ] [ PID | USER ]
    or: pstree -V
@@ -406,33 +406,33 @@ pstree [-acglpsStTuZ] [ -h | -H PID ] [ -n | -N tipo ]
 or: pstree -V","Uso: pstree [-acglpsStTuZ] [ -h | -H PID ] [ -n | -N tipo ]
             [ -A | -G | -U ] [ PID | USUÁRIO ]
  ou: pstree -V
-",FR,LLAMA,89.00299072265625,84.39911132298428,83.52181944199191,10.0,95.8389937877655
+",FR,LLAMA,83.52181944199191
 "
 Display a tree of processes.
 
 ",Exibindo um diagrama de fluxo dos processos.,"
 Exibe uma árvore de processos.
 
-",FR,LLAMA,80.78246712684631,38.69400340439773,12.22307556087252,100.0,83.06731581687927
+",FR,LLAMA,12.22307556087252
 "  -a, --arguments     show command line arguments
   -A, --ascii         use ASCII line drawing characters
   -c, --compact-not   don't compact identical subtrees
 ","[{'key': '-a, --arguments', 'value': 'montrer os argumentos da linha de comando'}, {'key': '-A, --ascii', 'value': 'utilizar caracteres ASCII para desenhar a linha'}, {'key0': '-c, --compact-not', 'value': 'não compactar subárbores idênticos'}]","  -a, --arguments     mostra argumentos de linha de comando
   -A, --ascii         usa caracteres ASCII no desenho de linhas
   -c, --compact-not   não comprime subárvores idênticas
-",FR,LLAMA,56.715571880340576,49.3892784690139,2.3554429934888765,100.0,71.61557078361511
+",FR,LLAMA,2.3554429934888765
 "  -C, --color=TYPE    color process by attribute
                       (age)
 ","  -C, --color=KIỂU    colorize process by attribute (age)
 ","  -C, --color=TIPO    colore processo por atributo
                       (age)
-",FR,LLAMA,81.82862401008606,50.23503490253476,30.66148710292676,71.42857142857143,87.78111934661865
+",FR,LLAMA,30.66148710292676
 "  -g, --show-pgids    show process group ids; implies -c
   -G, --vt100         use VT100 line drawing characters
 ","  -g, --show-pgids    exibir os ids de grupos de processos; implica -c
   -G, --vt100         utilizar caracteres gráficos do VT100 para desenhar o texto","  -g, --show-pgids    mostra ids de grupo de processos; implica em -c
   -G, --vt100         usa caracteres VT100 no desenho de linhas
-",FR,LLAMA,83.18321108818054,62.2935835840272,25.823077599534503,55.00000000000001,88.58293294906616
+",FR,LLAMA,25.823077599534503
 "  -h, --highlight-all highlight current process and its ancestors
   -H PID, --highlight-pid=PID
                       highlight this process and its ancestors
@@ -445,7 +445,7 @@ Exibe uma árvore de processos.
   -H PID, --highlight-pid=PID
                       realça este processo e seus ancestrais
   -l, --long          não trunca linhas longas
-",FR,LLAMA,65.34099578857422,37.22855274793016,17.25426982767168,100.0,83.33768248558044
+",FR,LLAMA,17.25426982767168
 "  -n, --numeric-sort  sort output by PID
   -N TYPE, --ns-sort=TYPE
                       sort output by this namespace type
@@ -460,7 +460,7 @@ Exibe uma árvore de processos.
                       ordena por este tipo de espaço de nomes
                               (cgroup, ipc, mnt, net, pid, time, user, uts)
   -p, --show-pids     mostra PIDs; implica em -c
-",FR,LLAMA,83.39995741844177,70.09658984071439,54.947012716501305,59.375,93.17123293876648
+",FR,LLAMA,54.947012716501305
 "  -s, --show-parents  show parents of the selected process
   -S, --ns-changes    show namespace transitions
   -t, --thread-names  show full thread names
@@ -469,20 +469,20 @@ Exibe uma árvore de processos.
   -S, --ns-changes    mostra transições de espaço de nomes
   -t, --thread-names  mostra nomes completos de threads
   -T, --hide-threads  oculta threads, mostra apenas processos
-",FR,LLAMA,63.67398500442505,51.270493887447564,4.827657579843388,100.0,71.0519015789032
+",FR,LLAMA,4.827657579843388
 "  -u, --uid-changes   show uid transitions
   -U, --unicode       use UTF-8 (Unicode) line drawing characters
   -V, --version       display version information
 ","[{'msgid': '-u, --uid-changes   hiển thị các thay đổi uid', 'msgstr': '--uid-changes\tMostrar as alterações de UID'}, {'msgid': '-U, --unicode       dùng UTF-8 (Unicode) để vẽ dòng ký tự', 'msgstr': '--unicode\tUtilizar o UTF-8 para desenhar as linhas'}, {'msgid': '-V, --version       hiển thị thông tin phiên bản', 'msgstr': '--versao\tMostrar informações da versão'}]","  -u, --uid-changes   mostra transições de uid
   -U, --unicode       usa caracteres UTF-8 (Unicode) no desenho de linhas
   -V, --version       exibe informações da versão
-",FR,LLAMA,60.20016074180603,46.03016563006964,4.801786000597676,100.0,68.32041144371033
+",FR,LLAMA,4.801786000597676
 "  -Z, --security-context
                       show security attributes
 ","  -Z, --security-context
       mostra atributos de segurança","  -Z, --security-context
                       mostra atributos de segurança
-",FR,LLAMA,97.26852774620056,100.0,100.00000000000004,0.0,99.99997615814209
+",FR,LLAMA,100.00000000000004
 "
   PID    start at this PID; default is 1 (init)
   USER   show only trees rooted at processes of this user
@@ -492,31 +492,31 @@ USER   mostra apenas os troncos de árvores que têm como raiz processos deste u
   PID    inicia deste PID; predefinido como 1 (init)
   USR    mostra apenas árvores originadas de processos deste usuário
 
-",FR,LLAMA,71.22297286987305,54.047862401614765,15.310245441182444,94.11764705882352,82.76926875114441
+",FR,LLAMA,15.310245441182444
 "pstree (PSmisc) %s
 ",pstree (PSmisc) %s,"pstree (PSmisc) %s
-",FR,LLAMA,98.09842705726624,100.0,100.00000000000004,0.0,99.99999403953552
+",FR,LLAMA,100.00000000000004
 "TERM is not set
 ",Não foi possível definir o termômetro,"TERM não está definido
-",FR,LLAMA,64.42274451255798,17.331452362562132,0.0,100.0,75.1882791519165
+",FR,LLAMA,0.0
 "Can't get terminal capabilities
 ",Não é possível obter as capacidades do dispositivo final,"Não foi possível obter as habilidades do terminal
-",FR,LLAMA,88.1992518901825,50.81809382511704,20.164945583740657,50.0,93.02730560302734
+",FR,LLAMA,20.164945583740657
 "procfs file for %s namespace not available
 ",teto de arquivo procfs indisponível para o espaço de nomes %s sem disponibilidade atual,"O arquivo procfs para o espaço de nomes %s não está disponível
-",FR,LLAMA,70.71937918663025,66.89621330249167,44.28500142691474,50.0,86.52688264846802
+",FR,LLAMA,44.28500142691474
 "No such user name: %s
 ",Não há nenhum utilizador com esse nome: %s,"Nome de usuário inexistente: %s
-",FR,LLAMA,76.91623568534851,23.857582330607265,15.619699684601283,100.0,75.66895484924316
+",FR,LLAMA,15.619699684601283
 "Process %d not found.
 ",Não foi possível encontrar o processo %d.,"Nenhum processo localizado.
-",FR,LLAMA,63.37546110153198,27.431279931939457,5.669791110976001,100.0,72.90026545524597
+",FR,LLAMA,5.669791110976001
 "No processes found.
 ",Não foi possível encontrar o processo.,"Nenhum processo localizado.
-",FR,LLAMA,85.115647315979,27.99431717047987,7.809849842300637,100.0,78.48840951919556
+",FR,LLAMA,7.809849842300637
 "Press return to close
 ",Basta pressionar a tecla Enter para fechar.,"Pressione Enter para fechar
-",FR,LLAMA,85.30834317207336,67.5063968846543,20.556680845025987,100.0,76.78358554840088
+",FR,LLAMA,20.556680845025987
 "%s: unknown signal; %s -l lists signals.
 ",%s: sinal desconhecido; %s -l lista os sinais.,"%s: sinal desconhecido; %s -l lista os sinais.
-",FR,LLAMA,96.89317345619202,100.0,100.00000000000004,0.0,100.00001192092896
+",FR,LLAMA,100.00000000000004

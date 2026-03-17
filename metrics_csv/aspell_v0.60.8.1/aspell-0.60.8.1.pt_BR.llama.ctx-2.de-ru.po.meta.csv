@@ -1,13 +1,13 @@
-original,translated,reference,context_languages,strategy,comet,chrf,bleu,ter,bertscore
-a number between 0 and 1,uma número entre 0 e 1,um número entre 0 e 1,"DE,RU",LLAMA,98.10201525688171,85.5602738337023,75.98356856515926,16.666666666666664,98.5132098197937
-"in the form ""<name> <value>""",Em forma de '\<Name> <Wert>'.,"na forma ""<nome> <valor>""","DE,RU",LLAMA,87.2463047504425,20.893119659857394,7.768562846380176,100.0,84.54286456108093
-string,cadeia de caracteres,texto,"DE,RU",LLAMA,48.940932750701904,6.922257720979766,0.0,100.0,73.10819029808044
-integer,número inteiro,inteiro,"DE,RU",LLAMA,86.93409562110901,78.71683270862103,49.99999999999999,100.0,80.97739219665527
-boolean,Valor de verdade,booleano,"DE,RU",LLAMA,51.88365578651428,6.211180124223602,0.0,100.0,71.7932641506195
-list,Liste,lista,"DE,RU",LLAMA,91.03890061378479,23.888888888888893,0.0,100.0,86.20383143424988
-"either ""true"" or ""false""",Entweder 'true' (verdadeiro) ou 'false' (falso),"tanto ""true"" ou ""false""","DE,RU",LLAMA,87.70867586135864,19.515831547812663,4.196114906296549,100.0,81.53199553489685
-a positive integer,uma número inteiro positivo,um inteiro positivo,"DE,RU",LLAMA,84.9684476852417,74.37948569301466,31.947155212313625,66.66666666666666,92.59970784187317
-# default: ,# Valor padrão: ,# padrão: ,"DE,RU",LLAMA,92.27064251899719,69.49961123396763,35.35533905932737,50.0,88.63930702209473
+original,translated,reference,context_languages,strategy,bleu
+a number between 0 and 1,uma número entre 0 e 1,um número entre 0 e 1,"DE,RU",LLAMA,75.98356856515926
+"in the form ""<name> <value>""",Em forma de '\<Name> <Wert>'.,"na forma ""<nome> <valor>""","DE,RU",LLAMA,7.768562846380176
+string,cadeia de caracteres,texto,"DE,RU",LLAMA,0.0
+integer,número inteiro,inteiro,"DE,RU",LLAMA,49.99999999999999
+boolean,Valor de verdade,booleano,"DE,RU",LLAMA,0.0
+list,Liste,lista,"DE,RU",LLAMA,0.0
+"either ""true"" or ""false""",Entweder 'true' (verdadeiro) ou 'false' (falso),"tanto ""true"" ou ""false""","DE,RU",LLAMA,4.196114906296549
+a positive integer,uma número inteiro positivo,um inteiro positivo,"DE,RU",LLAMA,31.947155212313625
+# default: ,# Valor padrão: ,# padrão: ,"DE,RU",LLAMA,35.35533905932737
 "
 #######################################################################
 #
@@ -28,223 +28,223 @@ Configurado da seguinte forma:
 #
 # foi configurado deste modo:
 
-","DE,RU",LLAMA,34.62548851966858,22.39255792850107,0.028959139606648254,76.92307692307693,64.91442918777466
-ASPELL_CONF env var,ASPELL_CONF Umgebungsvariable,ASPELL_CONF env var,"DE,RU",LLAMA,74.24240112304688,48.4263774211422,46.30777161991026,66.66666666666666,82.43657350540161
-main configuration file,arquivo de configuração principal,arquivo de configuração principal,"DE,RU",LLAMA,98.5811710357666,100.0,100.00000000000004,0.0,100.0
-location of main configuration file,Nome da principal arquivo de configuração,local do arquivo de configuração principal,"DE,RU",LLAMA,90.2303159236908,68.78118739844666,32.46679154750991,50.0,89.64792490005493
-location of language data files,Nome dos arquivos de dados linguísticos,local dos arquivos de idiomas,"DE,RU",LLAMA,75.03520846366882,50.54393536568118,30.213753973567677,60.0,73.02997708320618
-create dictionary aliases,criação de aliases para o dicionário,cria apelidos de dicionário,"DE,RU",LLAMA,85.01109480857849,40.56544680889856,9.652434877402245,100.0,76.1173963546753
-location of the main word list,Lista Principal de Palavras,local do vocabulário principal,"DE,RU",LLAMA,66.16776585578918,21.77316410285033,0.0,100.0,68.82688403129578
-encoding to expect data to be in,"Codificação, na qual os dados são esperados para ocorrer",codificação de entrada,"DE,RU",LLAMA,51.302069425582886,31.053321163464805,0.0,100.0,72.05982804298401
-add or removes a filter,adiciona ou remove um filtro,adiciona ou remove um filtro,"DE,RU",LLAMA,99.05539751052856,100.0,100.00000000000004,0.0,100.0
-path(s) aspell looks for filters,"Caminhos(es), nos quais aspell procura filtros",caminho(s) para aspell buscar filtros,"DE,RU",LLAMA,69.32637095451355,35.05991022144726,5.934202609760488,80.0,78.72139811515808
-filter mode,Modo de filtragem,modo filtro,"DE,RU",LLAMA,88.80608677864075,28.2126608931698,0.0,100.0,79.26476001739502
-extra dictionaries to use,zusätzliche palavras deveriam ser utilizadas como dicionários adicionais.,dicionários adicionais,"DE,RU",LLAMA,68.44406723976135,63.90778254747285,9.535414040914192,100.0,79.90356683731079
-location for personal files,Nome para arquivos pessoais,local dos arquivos pessoais,"DE,RU",LLAMA,83.47076177597046,58.37332337761399,31.947155212313625,50.0,85.91479063034058
-ignore words <= n chars,ignoriere Wörter mit <= n Zeichen,ignora palavras com menos de n caracteres,"DE,RU",LLAMA,68.62611174583435,14.406561513560026,6.567274736060395,85.71428571428571,81.2872588634491
-ignore accents when checking words -- CURRENTLY IGNORED,ignoriere Akzente beim Überprüfen -- MOMENTAN WIRKUNGSLOS,ignora acentuação ao verificar palavras -- ATUALMENTE IGNORADO,"DE,RU",LLAMA,57.25787281990051,17.297409316040234,5.693025330278465,87.5,80.01852035522461
-ignore case when checking words,ignoreieira diferença de maiúsculas e minúsculas na verificação das palavras.,ignora case ao verificar palavras,"DE,RU",LLAMA,46.595486998558044,35.18671868222492,3.7477767366779213,100.0,71.59770727157593
-ignore commands to store replacement pairs,"ignoriere comandos, pares de substituição para salvar",ignora comandos de substituição,"DE,RU",LLAMA,62.097811698913574,63.48123737254816,12.22307556087252,100.0,85.19514799118042
-extra information for the word list,informação adicional para a lista de palavras,informação extra para o vocabulário,"DE,RU",LLAMA,83.1697404384613,31.7275841654581,7.809849842300637,100.0,82.55460262298584
-keyboard definition to use for typo analysis,Definição de Teclado para análise de erros de digitação,definição de teclado para uso em analise tipográfica,"DE,RU",LLAMA,71.9328224658966,36.312746112002515,5.669791110976001,62.5,80.13981580734253
-language code,Código de idioma,código do idioma,"DE,RU",LLAMA,92.31245517730713,47.425629925629934,27.516060407455225,33.33333333333333,92.02234745025635
-"deprecated, use lang instead","obsoleto, utilize a opção 'lang' em vez disso.","obsoleto, use lang","DE,RU",LLAMA,56.037312746047974,45.84756389530088,8.392229812593097,100.0,76.04444622993469
-location of local language data files,Nome dos arquivos de dados linguísticos locais,localização dos arquivos locais de dados de idioma,"DE,RU",LLAMA,86.22526526451111,50.405678171098934,17.026116978186884,50.0,77.21789479255676
-base name of the main dictionary to use,Nome do principal dicionário de origem,nome base do dicionário principal para usar,"DE,RU",LLAMA,89.32862877845764,43.176016142113994,9.042266054940777,57.14285714285714,82.84352421760559
-set module name,nome do módulo definir,define o nome do módulo,"DE,RU",LLAMA,91.83712601661682,68.00951755569801,46.30777161991026,60.0,89.15178179740906
-search order for modules,Suchreihenfolge für Module,ordem de busca por módulos,"DE,RU",LLAMA,64.42891359329224,7.919370444930389,0.0,100.0,74.94722604751587
-enable Unicode normalization,Ativar normalização Unicórnio,habilita normalização Unicode,"DE,RU",LLAMA,52.49074697494507,47.64299981419547,27.516060407455225,66.66666666666666,73.2728660106659
-Unicode normalization required for current lang,A normalização Unicoden é necessária para a língua atual.,normalização Unicode necessária para o idioma atual,"DE,RU",LLAMA,88.75699639320374,64.32898084564943,9.980099403873663,85.71428571428571,86.24250888824463
-"Unicode normalization form: none, nfd, nfc, comp","Forma de normalização Unicode: none, nfd, nfc, comp","forma de normalização Unicode: none, nfd, nfc, comp","DE,RU",LLAMA,96.12761735916138,96.01167119654784,90.36020036098445,0.0,99.29238557815552
-avoid lossy conversions when normalization,Evite conversões de perda ao normalizar para evitar erros,evita conversões com perdas na normalização,"DE,RU",LLAMA,78.60080003738403,40.40346927355287,4.767707020457095,100.0,81.62586688995361
-personal configuration file,arquivos de configuração pessoal,arquivo de configuração pessoal,"DE,RU",LLAMA,95.33558487892151,84.46358013814883,59.460355750136046,25.0,97.77684211730957
-personal dictionary file name,Nome do meu dicionário pessoal,arquivo de dicionário pessoal,"DE,RU",LLAMA,74.3169367313385,58.490195415616896,21.3643503198117,75.0,81.98875188827515
-prefix directory,diretório de prefixo,prefixo do diretório,"DE,RU",LLAMA,85.994952917099,61.78872189901602,34.66806371753173,100.0,82.54125118255615
-replacements list file name,Nome do arquivo de substituição,nome de arquivo da lista de substituições,"DE,RU",LLAMA,89.44208025932312,43.33726920736628,8.51528917838043,57.14285714285714,81.58457279205322
-consider run-together words legal,aceitar palavras compostas,considera palavras aglutinadas como válidas,"DE,RU",LLAMA,71.09787464141846,23.410052278887623,14.127216461522432,80.0,75.31142234802246
-maximum number that can be strung together,número máximo de palavras compostas,número máximo quem podem ser colocadas juntas,"DE,RU",LLAMA,68.97274851799011,35.4696579751015,14.320952289897704,71.42857142857143,76.22678875923157
-minimal length of interior words,mínima extensão das palavras internas,tamanho mínimo de palavras interior,"DE,RU",LLAMA,73.99820685386658,39.43936542154422,10.682175159905848,80.0,80.86277842521667
-consider camel case words legal,palavras em CamelCase como válidas aceitarão.,considera palavras CamelCase como válidas,"DE,RU",LLAMA,69.81527805328369,66.00214064109383,26.269098944241588,60.0,86.27046942710876
-save replacement pairs on save all,salvar também as combinações de substituição ao salvar tudo.,"salva substituições quando for comando ""save all""","DE,RU",LLAMA,53.26983332633972,27.681991152187646,0.0,100.0,72.11127281188965
-set the prefix based on executable location,Préfixo baseado no nome do programa definir para DE,define o prefixo baseado na localização do executável,"DE,RU",LLAMA,54.36026453971863,28.274342649907013,5.669791110976001,100.0,78.94043326377869
-size of the word list,tamanho da lista de palavras,tamanho do vocabulário,"DE,RU",LLAMA,75.98244547843933,28.816512237568475,10.682175159905848,100.0,81.63573145866394
-no longer used,não é mais utilizado,não mais usado,"DE,RU",LLAMA,97.21394181251526,36.311808664422635,18.99589214128981,66.66666666666666,91.56798720359802
-suggestion mode,modo de sugestão,modo de sugestão,"DE,RU",LLAMA,98.21600914001465,100.0,100.00000000000004,0.0,100.0
-"use typo analysis, override sug-mode default",Realizar análise de erros típicos em vez do modo sugerido.,"usa análise de erro de digitação, sobrescrevendo o padrão ""sug-mode""","DE,RU",LLAMA,53.766655921936035,25.604569980271023,6.249439580998987,80.0,68.59890818595886
-"use replacement tables, override sug-mode default",Utilize tabelas de substituição em vez do modo sugestivo.,"usa tabelas de substituição, sobrescrevendo o padrão ""sug-mode""","DE,RU",LLAMA,61.99790835380554,38.89372668427124,14.133288733111716,87.5,76.39794945716858
-characters to insert when a word is split,caracteres adicionados quando uma palavra é dividida,caracteres para inserir quando a palavra é dividida,"DE,RU",LLAMA,87.10495829582214,58.77684572582288,24.0785655451027,37.5,89.74523544311523
-"use personal, replacement & session dictionaries","use personal, replacement and session wordbooks","usa dicionários pessoais, de substituição & sessão.","DE,RU",LLAMA,69.27830576896667,12.551777605233008,4.935157841536379,100.0,71.10452651977539
-search path for word list information files,Caminho de pesquisa para arquivos com informações sobre listas de palavras,caminho de busca pelos arquivos de informação,"DE,RU",LLAMA,76.23905539512634,40.32691112918101,4.9323515694897075,100.0,81.40251636505127
-enable warnings,ative as alertas,habilita alertas,"DE,RU",LLAMA,86.22254133224487,35.73293788176466,27.516060407455225,100.0,77.6729166507721
-indicator for affix flags in word lists -- CURRENTLY IGNORED,Indicador para flags de terminação em listas de palavras -- EM TEMPO DE REFRIGERAÇÃO MOMENTANA,indicador para sinais de afixo em listas de palavras -- ATUALMENTE IGNORADO,"DE,RU",LLAMA,50.132036209106445,52.19245427482071,26.760322756637922,58.333333333333336,83.5579514503479
-use affix compression when creating dictionaries,Comprimir endereços ao gerar dicionários,usa compressão de afixos ao criar dicionários,"DE,RU",LLAMA,67.49669909477234,35.280669117899144,8.51528917838043,71.42857142857143,81.81955814361572
-remove invalid affix flags,remover flags inválidos de terminação,remove sinais inválidos de afixos,"DE,RU",LLAMA,62.221938371658325,47.24600815372636,21.3643503198117,60.0,84.54304337501526
-attempts to clean words so that they are valid,"palavras tão limpas, que se tornem válidas",tenta limpar palavras para que se tornem válidas,"DE,RU",LLAMA,79.45101857185364,60.14134635295518,36.55552228545123,50.0,83.67921710014343
-compute soundslike on demand rather than storing,"Calcular o Wortklang em demanda, ao invés de armazená-lo.",computa pronúncia sob demanda ao invés de armazená-la,"DE,RU",LLAMA,55.78276515007019,48.50339245668248,14.991106946711685,75.0,81.09349012374878
-partially expand affixes for better suggestions,Parte dos anexos para melhorias sugeridas é parcialmente expandido.,expande parcialmente afixos para sugestões melhores,"DE,RU",LLAMA,61.23493313789368,42.46376697141919,4.990049701936832,100.0,75.8280098438263
-skip invalid words,palavras inválidas puladas,ignora palavras inválidas,"DE,RU",LLAMA,77.26804614067078,67.50802304299913,55.03212081491043,66.66666666666666,83.49376320838928
-check if affix flags are valid,Verificar se os flags de extensão são válidos.,verifica se sinais de afixo são válidos,"DE,RU",LLAMA,69.4719135761261,44.301235998637694,11.339582221952005,71.42857142857143,82.63937830924988
-check if words are valid,Verificar se as palavras são válidas.,verifica se palavras são válidas,"DE,RU",LLAMA,94.40333247184753,73.45224802757743,26.269098944241588,60.0,87.28519678115845
-"create a backup file by appending "".bak""",Criar backup com a extensão '.bak' adicionando ao arquivo atual.,"cria um arquivo de backup acrescentando extensão "".bak""","DE,RU",LLAMA,86.94743514060974,34.48011919716228,4.368583925857938,100.0,84.56511497497559
-use byte offsets instead of character offsets,Use byte offsets instead of character offsets.,usa deslocamentos de bytes ao invés de caracteres,"DE,RU",LLAMA,64.30802941322327,19.190120551519634,0.0,100.0,74.8792052268982
-create missing root/affix combinations,Erigem combinações de palavras sem terminação ou raiz,cria combinações raiz/afixo em falta,"DE,RU",LLAMA,65.50589203834534,30.940152193003673,6.567274736060395,100.0,75.78892111778259
-"keymapping for check mode: ""aspell"" or ""ispell""",Teclado de avaliação para modo de teste: 'aspell' ou 'ispell',"mapa de tecla p/ verificação: ""aspell"" ou ""ispell""","DE,RU",LLAMA,72.99088835716248,27.479322522608328,3.755001157177446,100.0,85.01778841018677
-reverse the order of the suggest list,Reihenfolge der Vorschlagsliste umdrehen,inverte ordem da lista de sugestões,"DE,RU",LLAMA,50.901997089385986,14.147254668922727,0.0,100.0,72.09697365760803
-suggest possible replacements,sugestões de substituições possíveis,sugere substituições possíveis,"DE,RU",LLAMA,92.3609972000122,75.97204753771612,31.947155212313625,66.66666666666666,89.81783390045166
-time load time and suggest time in pipe mode,medir o tempo de carregamento e sugerir no modo Pipe do GNU/Linux,tempo de carregamento e sugestão em modo pipe,"DE,RU",LLAMA,66.20681881904602,59.39281739348775,18.798317647335093,75.0,81.65807127952576
-"This could also mean that the file ""%s"" could not be opened for reading or does not exist.","Isso também pode significar que o arquivo ""%s"" não consegue ser aberto para leitura ou ele não existe.","Isto também pode significar que o arquivo ""%s"" não pode ser aberto para leitura ou não existe.","DE,RU",LLAMA,95.71459889411926,84.14461464853534,68.88074582865497,17.647058823529413,97.82266020774841
-The Unicode code point U+%04X is unsupported.,O Unicode caracter na posição U+%04X não é suportado.,O ponto de código Unicode U+%04X não é suportado.,"DE,RU",LLAMA,83.52764248847961,60.35010354585325,59.14601686848579,44.44444444444444,91.78006052970886
-Invalid UTF-8 sequence at position %ld.,Sequência UTF-8 inválida na posição %ld.,Sequência UTF-8 inválida na posição %ld.,"DE,RU",LLAMA,97.21119999885559,100.0,100.00000000000004,0.0,100.00001192092896
-Operation Not Supported: %what:1,Operação não suportada: %what:1,Não há suporte à operação: %what:1,"DE,RU",LLAMA,86.71495318412781,47.826137926886844,40.26190971287384,83.33333333333334,87.818044424057
-"The method ""%what:1"" is unimplemented in ""%where:2"".","A metodologia ""%what:1"" não está implementada na localização ""%where:2"".","O método ""%what:1"" não está implementado em ""%where:2"".","DE,RU",LLAMA,91.38217568397522,67.81616554217098,63.832403259199225,62.5,95.36200165748596
-%file:1:,%file:1:,%file:1:,"DE,RU",LLAMA,99.0307867527008,100.0,100.00000000000004,0.0,99.99996423721313
-"The file ""%file:1"" can not be opened","A ficheiro ""%file:1"" não pode ser aberto","O arquivo ""%file:1"" não pode ser aberto","DE,RU",LLAMA,96.33726477622986,76.41466783329066,80.70557274927978,28.57142857142857,95.01568675041199
-"The file ""%file:1"" can not be opened for reading.","A ficheiro ""%file:1"" não pode ser aberto para leitura.","O arquivo ""%file:1"" não pode ser aberto para leitura.","DE,RU",LLAMA,94.25119161605835,83.11506312965128,85.07331335123531,22.22222222222222,95.98671793937683
-"The file ""%file:1"" can not be opened for writing.","A ficheiro ""%file:1"" não pode ser aberto para escrita.","O arquivo ""%file:1"" não pode ser aberto para escrita.","DE,RU",LLAMA,93.36352944374084,83.11506312965128,85.07331335123531,22.22222222222222,95.77993154525757
-"The file name ""%file:1"" is invalid.",O nome do arquivo '%file:1' não é válido.,"O nome de arquivo ""%file:1"" é inválido.","DE,RU",LLAMA,93.69220733642578,49.8042602769995,16.26170171519489,57.14285714285714,91.26191735267639
-"The file ""%file:1"" is not in the proper format.","A ficheira ""%file:1"" não possui o formato correto.","O arquivo ""%file:1"" não está no formato apropriado.","DE,RU",LLAMA,93.21848154067993,41.21458881220538,46.0462862587273,62.5,90.66193103790283
-"The directory ""%dir:1"" can not be opened for reading.","O diretório ""%dir:1"" não pode ser aberto para leitura.","O diretório ""%dir:1"" não pode ser aberto para leitura.","DE,RU",LLAMA,97.86962866783142,100.0,100.00000000000004,0.0,99.99998807907104
-"The key ""%key:1"" is unknown.","O chaveiro ""%key:1"" é desconhecida.","A chave ""%key:1"" é desconhecida.","DE,RU",LLAMA,77.23386883735657,80.13459439273282,78.60753021519781,40.0,96.05352878570557
-"The value for option ""%key:1"" can not be changed.","O valor da opção ""%key:1"" não pode ser alterado.","O valor para opção ""%key:1"" não pode ser aberto.","DE,RU",LLAMA,93.73411536216736,72.35981898810847,68.65890479690394,22.22222222222222,94.91552114486694
-"The key ""%key:1"" is not %accepted:2 and is thus invalid.","O chave ""%key:1"" não é %accepted:2 e portanto está inválida.","A chave ""%key:1"" não é %accepted:2 e não é válida.","DE,RU",LLAMA,92.02976822853088,73.88798412997374,72.52761279126531,40.0,93.73619556427002
-"The value ""%value:2"" is not %accepted:3 and is thus invalid for the key ""%key:1"".","O valor ""%value:2"" não é %accepted:3 e portanto está incompatível para o chave ""%key:1"".","O valor ""%value:2"" não é %accepted:3 e não é válido para a chave ""%key:1"".","DE,RU",LLAMA,93.27690005302429,71.12110571062968,75.86640003071781,28.57142857142857,94.97703313827515
-"The key ""%key:1"" is not a string.","O chave ""%key:1"" não é uma sequência de caracteres.","A chave ""%key:1"" não é uma string.","DE,RU",LLAMA,85.7056975364685,67.51832211780021,64.1386525898168,57.14285714285714,95.05712985992432
-"The key ""%key:1"" is not an integer.","O chave ""%key:1"" não é um número inteiro.","A chave ""%key:1"" não é um inteiro.","DE,RU",LLAMA,89.1522228717804,81.47891132154055,72.72454093000138,28.57142857142857,96.34659886360168
-"The key ""%key:1"" is not a boolean.","O chave ""%key:1"" não é um valor de verdade.","A chave ""%key:1"" não é um booleano.","DE,RU",LLAMA,75.20644068717957,63.379298208178405,64.1386525898168,57.14285714285714,91.56580567359924
-"The key ""%key:1"" is not a list.","O chave ""%key:1"" não é uma lista.","A chave ""%key:1"" não é uma lista.","DE,RU",LLAMA,93.83718371391296,93.9723855049942,91.21679090703874,14.285714285714285,98.9585280418396
-"The key ""%key:1"" does not take any parameters when prefixed by a ""reset-"".","O chave ""%key:1"" não pode conter parâmetros quando precedida por 'reset-'.","A chave ""%key:1"" não leva parâmetros quando prefixada por um ""reset-"".","DE,RU",LLAMA,87.19314932823181,58.57694177329725,42.12671589240024,54.54545454545454,93.30499172210693
-"The key ""%key:1"" does not take any parameters when prefixed by an ""enable-"".","O chave ""%key:1"" não pode conter parâmetros quando precedida por 'enable-'.","A chave ""%key:1"" não leva parâmetros quando prefixada por um ""enable-"".","DE,RU",LLAMA,87.08996176719666,59.05822182760496,42.12671589240024,54.54545454545454,92.86834597587585
-"The key ""%key:1"" does not take any parameters when prefixed by a ""dont-"" or ""disable-"".","O chave ""%key:1"" não pode conter parâmetros quando precedida por 'não permitir' ou 'desabilitar'.","A chave ""%key:1"" não leva parâmetros quando prefixada por um ""dont-"" ou ""disable-"".","DE,RU",LLAMA,83.2387387752533,48.72237846151745,34.83519295294709,53.84615384615385,87.08306550979614
-"The key ""%key:1"" does not take any parameters when prefixed by a ""clear-"".","O chave ""%key:1"" não pode conter parâmetros quando precedida por 'clear-'.","A chave ""%key:1"" não leva parâmetros quando prefixada por um ""clear-"".","DE,RU",LLAMA,85.76387763023376,58.57694177329725,42.12671589240024,54.54545454545454,93.07196140289307
-"The language ""%lang:1"" is not known.","A linguagem ""%lang:1"" é desconhecida.","O idioma ""%lang:1"" é desconhecido.","DE,RU",LLAMA,93.11281442642212,62.24246423369419,59.00468726392806,60.0,93.92396807670593
-"The soundslike ""%sl:2"" is not known.",O som do termo '%sl:2' não é conhecido.,"A pronúncia ""%sl:2"" é desconhecida.","DE,RU",LLAMA,69.79828476905823,26.991219933969635,13.065113298388567,100.0,85.07670760154724
-"The language ""%lang:1"" is not supported.","A linguagem ""%lang:1"" não é suportada.","O idioma ""%lang:1"" não é suportado.","DE,RU",LLAMA,95.24369239807129,64.1047315927289,63.15552371794033,50.0,97.62980341911316
-"No word lists can be found for the language ""%lang:1"".","Para a língua ""%lang:1"" não são possíveis listas de palavras.","Nenhum vocabulário foi localizado para o idioma ""%lang:1"".","DE,RU",LLAMA,76.9395649433136,19.907710106052814,31.314224813827344,100.0,81.5902829170227
-"Expected language ""%lang:1"" but got ""%prev:2"".","Linguagem esperada >>%lang<<, mas recebida >>%prev<<.","Idioma ""%lang:1"" esperado, mas ""%prev:2"" obtido.","DE,RU",LLAMA,80.32702207565308,27.447834798434467,7.732130225986882,83.33333333333334,70.17069458961487
-Affix '%aff:1' is corrupt.,Ending »%aff:1« está danificado.,Afixo '%aff:1' está corrompido.,"DE,RU",LLAMA,69.51541304588318,23.823747171873613,20.164945583740657,75.0,83.99170637130737
-"The condition ""%cond:1"" is invalid.","A condição ""%cond:1"" é inválida.","A condição ""%cond:1"" é inválida.","DE,RU",LLAMA,97.86978960037231,100.0,100.00000000000004,0.0,99.99999403953552
-"The condition ""%cond:1"" does not guarantee that ""%strip:2"" can always be stripped.","A condição ""%cond:1"" não garante que ""%strip:2"" possa sempre ser separada.","A condição ""%cond:1"" não garante que ""%strip:2"" sempre possa ser eliminada.","DE,RU",LLAMA,84.34898853302002,78.0884338257907,79.6220307447893,18.181818181818183,97.57323265075684
-"The file ""%file:1"" is not in the proper format. Expected the file to be in ""%exp:2"" not ""%got:3"".","A ficheiro ""%file:1"" não possui o formato correto. Foi esperado que fosse encontrar no local de carga, e não na pasta %got:3.","O arquivo ""%file:1"" não está no formato apropriado. Esperava-se o arquivo estar em ""%exp:2"" e não em ""%got:3"".","DE,RU",LLAMA,72.70838022232056,33.61714740045868,26.636523579014288,94.44444444444444,82.728111743927
-"The encoding ""%encod:1"" is not known.",A codificação '\%encod:1' não é conhecida.,"Codificação ""%encod:1"" desconhecida.","DE,RU",LLAMA,88.20423483848572,49.678623236931095,13.545994273378144,100.0,83.25423002243042
-"The encoding ""%encod:1"" is not supported.","A codificação ""%encod:1"" não é suportada.","Codificação ""%encod:1"" não suportada.","DE,RU",LLAMA,95.38714289665222,82.43850760871706,57.067457770559976,50.0,89.55181241035461
-"The conversion from ""%encod:1"" to ""%encod2:2"" is not supported.",A conversão de '>%encod:1<' para '>%encod:2<' não é suportada.,"Conversão de ""%encod:1"" para ""%encod2:2"" não suportada.","DE,RU",LLAMA,90.37191867828369,49.73017292758845,14.728212724124628,57.14285714285714,83.42268466949463
-"The string ""%str:1"" is invalid.","A cadeia de caracteres ""%str:1"" é inválida.","A string ""%str:1"" é inválida.","DE,RU",LLAMA,88.01419138908386,66.85457823327302,66.52049901111006,60.0,93.09203028678894
-"The word ""%word:1"" is invalid.",O termo 'Das Wort »%word:1«' é inválido.,"A palavra ""%word:1"" é inválida.","DE,RU",LLAMA,83.74882340431213,33.0449106775572,14.323145079400492,100.0,74.79190230369568
-"The affix flag '%aff:1' is invalid for word ""%word:2"".",O flag de terminação '%aff:1' é inválido para o termo '%word:2'.,"O sinal de afixo '%aff:1' é inválido para a palavra ""%word:2"".","DE,RU",LLAMA,82.01064467430115,51.6445406830789,41.97770270893964,45.45454545454545,91.91474318504333
-"The affix flag '%aff:1' can not be applied to word ""%word:2"".",O fim de sinal '%aff:1' não pode ser aplicado ao termo '%word:2'.,"O sinal de afixo '%aff:1' não pode ser aplicado à palavra ""%word:2"".","DE,RU",LLAMA,81.97166323661804,58.89895012137665,45.85015057701145,41.66666666666667,92.92984008789062
-not a version number,Esta não é uma versão deste software.,não é um número de versão,"DE,RU",LLAMA,66.61811470985413,38.54218711506971,12.22307556087252,83.33333333333334,77.39171385765076
-"dlopen returned ""%return:1"".",dlopen gab »%return:1« de volta.,"dlopen retornou ""%return:1"".","DE,RU",LLAMA,81.03453516960144,38.43429727284395,17.747405280050266,100.0,75.0820517539978
-"The file ""%filter:1"" does not contain any filters.","A ferramenta de filtragem ""%filter:1"" não possui nenhum filtro.","O arquivo ""%filter:1"" não contém nenhum filtro.","DE,RU",LLAMA,87.02598810195923,56.58149535666607,49.202745153855076,71.42857142857143,91.11723303794861
-"The filter ""%filter:1"" does not exist.","O filtro ""%filter:1"" não existe.","O filtro ""%filter:1"" não existe.","DE,RU",LLAMA,98.40977787971497,100.0,100.00000000000004,0.0,99.99998807907104
-Confused by version control.,defeituoso ao entender o controle de versão.,Confundido pelo controle de versão.,"DE,RU",LLAMA,64.56275582313538,57.79415556820794,34.57207846419409,80.0,81.85189366340637
-Aspell version does not match filter's requirement.,A versão Aspell não atende aos requisitos do filtro.,A versão do Aspell não atende às necessidades do filtro.,"DE,RU",LLAMA,89.8585855960846,60.55044676662619,27.007097700389536,30.0,94.96632218360901
-Filter option already exists.,A opção de filtragem já existe.,Esta opção de filtro já existe.,"DE,RU",LLAMA,94.60628628730774,66.19581776918734,30.739407647563215,33.33333333333333,91.11469984054565
-Use option modifiers only within named option.,Utilize modificações de opções apenas dentro das opções nomeadas.,Use modificadores de opções apenas em opções nomeadas.,"DE,RU",LLAMA,89.33573365211487,67.98355191544215,26.269098944241577,50.0,91.55868887901306
-Option modifier unknown.,Modificador de opção desconhecido.,Modificador de opção desconhecido.,"DE,RU",LLAMA,98.34460616111755,100.0,100.00000000000004,0.0,100.00002384185791
-Error setting filter description.,Erro ao definir a descrição do filtro.,Ocorreu erro ao definir a descrição do filtro.,"DE,RU",LLAMA,91.71048998832703,80.43992555742705,74.20884818558928,12.5,90.04025459289551
-Empty option specifier.,Opção vazia.,Especificador de opção vazio.,"DE,RU",LLAMA,81.73027634620667,23.61409299073044,14.127216461522432,75.0,83.34452509880066
-"Option ""%option:1"" possibly specified prior to filter.",A opção »%option:1« pode ter sido especificada antes do filtro.,"Possivelmente a opção ""%option:1"" foi especificada antes que o filtro.","DE,RU",LLAMA,91.73283576965332,47.36398013179341,13.907243442679686,70.0,92.03636050224304
-"Unknown mode description key ""%key:1"".","Chave de descrição do modo desconhecida ""%key:1"".","A chave de descrição ""%key:1"" possui modo desconhecido.","DE,RU",LLAMA,76.88398957252502,58.62514660207051,41.90796141600666,62.5,87.25192546844482
-"Expecting ""%modekey:1"" key.","Chave ""%modekey:1"" esperada.","Espera-se chave ""%modekey:1"".","DE,RU",LLAMA,85.19739508628845,52.821615300253455,61.04735835807847,100.0,84.43295955657959
-"Version specifier missing key: ""aspell"".",A versão não foi especificada: »aspell«.,"Falta chave especificador da versão: ""aspell"".","DE,RU",LLAMA,69.89523768424988,37.04133059483133,5.660233915657916,100.0,84.45844054222107
-Aspell version does not match mode's requirement.,A versão Aspell não atende aos requisitos do filtro.,A versão do Aspell não atende às necessidades do modo.,"DE,RU",LLAMA,75.10001063346863,48.160959847267115,19.331263581394154,40.0,91.50617718696594
-Missing magic mode expression.,Oração do modo mágico faltante.,Falta a expressão de modo mágico.,"DE,RU",LLAMA,57.227081060409546,38.910951581187184,15.207218222740094,100.0,81.65873289108276
-Empty extension at char %char:1.,Estação sem tráfego ao caracter %char:1.,Extensão vazia no caractere %char:1.,"DE,RU",LLAMA,53.04569602012634,39.79891893477441,39.281465090051306,100.0,80.1899254322052
-"""%mode:1"" error",»%mode:1«: Erro,"erro ""%mode:1""","DE,RU",LLAMA,94.11200881004333,36.39077791285382,24.446151121745054,100.0,83.05684328079224
-"Unknown mode: ""%mode:1"".",Modo desconhecido: »%mode:1«.,"Modo desconhecido: ""%mode:1"".","DE,RU",LLAMA,97.66842722892761,74.42619477945566,27.75806054476853,33.33333333333333,95.56991457939148
-"""%mode:1"" error while extend Aspell modes. (out of memory?)",Erro '%mode:1' ao expandir as opções do Aspell. Falta de memória?,"erro ""%mode:1"" ao estender módulos do Aspell. (sem memória?)","DE,RU",LLAMA,79.08881306648254,38.03782014085294,15.796444447897139,77.77777777777779,86.25180721282959
-"""%mode:1"": no start for magic search given for magic ""%magic:2"".","»%mode:1«: Não há começo para pesquisa mágica de %magic:2.""","""%mode:1"": nenhum começo para a pesquisa mágica fornecida pela mágica ""%magic:2"".","DE,RU",LLAMA,80.36466240882874,43.142404999136744,19.209128546844177,72.72727272727273,80.92503547668457
-"""%mode:1"": no range for magic search given for magic ""%magic:2"".","»%mode:1«: Não há região para pesquisa de magic, definida para magic '%magic:2'.","""%mode:1"": nenhum intervalo para a pesquisa mágica fornecida pela mágica ""%magic:2"".","DE,RU",LLAMA,72.61167168617249,31.043170532860344,11.71291646655074,100.0,78.98631691932678
-"""%mode:1"": no magic expression available for magic ""%magic:2"".",»%mode:1«: Não há expressões mágicas disponíveis para %magic:2.,"""%mode:1"": nenhuma expressão mágica disponível para a mágica ""%magic:2"".","DE,RU",LLAMA,89.36215043067932,37.711491930253494,17.89117353466845,100.0,82.60381817817688
-"""%mode:1"": Magic ""%magic:2"": bad regular expression after location specifier; regexp reports: ""%regerr:3"".",»%mode:1«: Magic »%magic:2«: Expressão regular inválida após a localização; regexp retorna: »%regerr:3«.,"""%mode:1"": Mágica ""%magic:2"": expressão regular ruim após especificador de local; regexp informa: ""%regerr:3"".","DE,RU",LLAMA,84.2100441455841,40.11324864606009,11.5886696418503,69.23076923076923,83.62753987312317
-"""%expression:1"" is not a valid regular expression.",»%expression:1« não é um expressão regular válida.,"""%expression:1"" não é uma expressão regular válida.","DE,RU",LLAMA,93.69741082191467,75.85452914208372,31.440065102016753,28.57142857142857,92.82678365707397
-Unhandled Error: ,Erro não tratado: ,Erro não previsto: ,"DE,RU",LLAMA,88.12127709388733,42.092615657205016,35.35533905932737,33.33333333333333,94.38919425010681
+","DE,RU",LLAMA,0.028959139606648254
+ASPELL_CONF env var,ASPELL_CONF Umgebungsvariable,ASPELL_CONF env var,"DE,RU",LLAMA,46.30777161991026
+main configuration file,arquivo de configuração principal,arquivo de configuração principal,"DE,RU",LLAMA,100.00000000000004
+location of main configuration file,Nome da principal arquivo de configuração,local do arquivo de configuração principal,"DE,RU",LLAMA,32.46679154750991
+location of language data files,Nome dos arquivos de dados linguísticos,local dos arquivos de idiomas,"DE,RU",LLAMA,30.213753973567677
+create dictionary aliases,criação de aliases para o dicionário,cria apelidos de dicionário,"DE,RU",LLAMA,9.652434877402245
+location of the main word list,Lista Principal de Palavras,local do vocabulário principal,"DE,RU",LLAMA,0.0
+encoding to expect data to be in,"Codificação, na qual os dados são esperados para ocorrer",codificação de entrada,"DE,RU",LLAMA,0.0
+add or removes a filter,adiciona ou remove um filtro,adiciona ou remove um filtro,"DE,RU",LLAMA,100.00000000000004
+path(s) aspell looks for filters,"Caminhos(es), nos quais aspell procura filtros",caminho(s) para aspell buscar filtros,"DE,RU",LLAMA,5.934202609760488
+filter mode,Modo de filtragem,modo filtro,"DE,RU",LLAMA,0.0
+extra dictionaries to use,zusätzliche palavras deveriam ser utilizadas como dicionários adicionais.,dicionários adicionais,"DE,RU",LLAMA,9.535414040914192
+location for personal files,Nome para arquivos pessoais,local dos arquivos pessoais,"DE,RU",LLAMA,31.947155212313625
+ignore words <= n chars,ignoriere Wörter mit <= n Zeichen,ignora palavras com menos de n caracteres,"DE,RU",LLAMA,6.567274736060395
+ignore accents when checking words -- CURRENTLY IGNORED,ignoriere Akzente beim Überprüfen -- MOMENTAN WIRKUNGSLOS,ignora acentuação ao verificar palavras -- ATUALMENTE IGNORADO,"DE,RU",LLAMA,5.693025330278465
+ignore case when checking words,ignoreieira diferença de maiúsculas e minúsculas na verificação das palavras.,ignora case ao verificar palavras,"DE,RU",LLAMA,3.7477767366779213
+ignore commands to store replacement pairs,"ignoriere comandos, pares de substituição para salvar",ignora comandos de substituição,"DE,RU",LLAMA,12.22307556087252
+extra information for the word list,informação adicional para a lista de palavras,informação extra para o vocabulário,"DE,RU",LLAMA,7.809849842300637
+keyboard definition to use for typo analysis,Definição de Teclado para análise de erros de digitação,definição de teclado para uso em analise tipográfica,"DE,RU",LLAMA,5.669791110976001
+language code,Código de idioma,código do idioma,"DE,RU",LLAMA,27.516060407455225
+"deprecated, use lang instead","obsoleto, utilize a opção 'lang' em vez disso.","obsoleto, use lang","DE,RU",LLAMA,8.392229812593097
+location of local language data files,Nome dos arquivos de dados linguísticos locais,localização dos arquivos locais de dados de idioma,"DE,RU",LLAMA,17.026116978186884
+base name of the main dictionary to use,Nome do principal dicionário de origem,nome base do dicionário principal para usar,"DE,RU",LLAMA,9.042266054940777
+set module name,nome do módulo definir,define o nome do módulo,"DE,RU",LLAMA,46.30777161991026
+search order for modules,Suchreihenfolge für Module,ordem de busca por módulos,"DE,RU",LLAMA,0.0
+enable Unicode normalization,Ativar normalização Unicórnio,habilita normalização Unicode,"DE,RU",LLAMA,27.516060407455225
+Unicode normalization required for current lang,A normalização Unicoden é necessária para a língua atual.,normalização Unicode necessária para o idioma atual,"DE,RU",LLAMA,9.980099403873663
+"Unicode normalization form: none, nfd, nfc, comp","Forma de normalização Unicode: none, nfd, nfc, comp","forma de normalização Unicode: none, nfd, nfc, comp","DE,RU",LLAMA,90.36020036098445
+avoid lossy conversions when normalization,Evite conversões de perda ao normalizar para evitar erros,evita conversões com perdas na normalização,"DE,RU",LLAMA,4.767707020457095
+personal configuration file,arquivos de configuração pessoal,arquivo de configuração pessoal,"DE,RU",LLAMA,59.460355750136046
+personal dictionary file name,Nome do meu dicionário pessoal,arquivo de dicionário pessoal,"DE,RU",LLAMA,21.3643503198117
+prefix directory,diretório de prefixo,prefixo do diretório,"DE,RU",LLAMA,34.66806371753173
+replacements list file name,Nome do arquivo de substituição,nome de arquivo da lista de substituições,"DE,RU",LLAMA,8.51528917838043
+consider run-together words legal,aceitar palavras compostas,considera palavras aglutinadas como válidas,"DE,RU",LLAMA,14.127216461522432
+maximum number that can be strung together,número máximo de palavras compostas,número máximo quem podem ser colocadas juntas,"DE,RU",LLAMA,14.320952289897704
+minimal length of interior words,mínima extensão das palavras internas,tamanho mínimo de palavras interior,"DE,RU",LLAMA,10.682175159905848
+consider camel case words legal,palavras em CamelCase como válidas aceitarão.,considera palavras CamelCase como válidas,"DE,RU",LLAMA,26.269098944241588
+save replacement pairs on save all,salvar também as combinações de substituição ao salvar tudo.,"salva substituições quando for comando ""save all""","DE,RU",LLAMA,0.0
+set the prefix based on executable location,Préfixo baseado no nome do programa definir para DE,define o prefixo baseado na localização do executável,"DE,RU",LLAMA,5.669791110976001
+size of the word list,tamanho da lista de palavras,tamanho do vocabulário,"DE,RU",LLAMA,10.682175159905848
+no longer used,não é mais utilizado,não mais usado,"DE,RU",LLAMA,18.99589214128981
+suggestion mode,modo de sugestão,modo de sugestão,"DE,RU",LLAMA,100.00000000000004
+"use typo analysis, override sug-mode default",Realizar análise de erros típicos em vez do modo sugerido.,"usa análise de erro de digitação, sobrescrevendo o padrão ""sug-mode""","DE,RU",LLAMA,6.249439580998987
+"use replacement tables, override sug-mode default",Utilize tabelas de substituição em vez do modo sugestivo.,"usa tabelas de substituição, sobrescrevendo o padrão ""sug-mode""","DE,RU",LLAMA,14.133288733111716
+characters to insert when a word is split,caracteres adicionados quando uma palavra é dividida,caracteres para inserir quando a palavra é dividida,"DE,RU",LLAMA,24.0785655451027
+"use personal, replacement & session dictionaries","use personal, replacement and session wordbooks","usa dicionários pessoais, de substituição & sessão.","DE,RU",LLAMA,4.935157841536379
+search path for word list information files,Caminho de pesquisa para arquivos com informações sobre listas de palavras,caminho de busca pelos arquivos de informação,"DE,RU",LLAMA,4.9323515694897075
+enable warnings,ative as alertas,habilita alertas,"DE,RU",LLAMA,27.516060407455225
+indicator for affix flags in word lists -- CURRENTLY IGNORED,Indicador para flags de terminação em listas de palavras -- EM TEMPO DE REFRIGERAÇÃO MOMENTANA,indicador para sinais de afixo em listas de palavras -- ATUALMENTE IGNORADO,"DE,RU",LLAMA,26.760322756637922
+use affix compression when creating dictionaries,Comprimir endereços ao gerar dicionários,usa compressão de afixos ao criar dicionários,"DE,RU",LLAMA,8.51528917838043
+remove invalid affix flags,remover flags inválidos de terminação,remove sinais inválidos de afixos,"DE,RU",LLAMA,21.3643503198117
+attempts to clean words so that they are valid,"palavras tão limpas, que se tornem válidas",tenta limpar palavras para que se tornem válidas,"DE,RU",LLAMA,36.55552228545123
+compute soundslike on demand rather than storing,"Calcular o Wortklang em demanda, ao invés de armazená-lo.",computa pronúncia sob demanda ao invés de armazená-la,"DE,RU",LLAMA,14.991106946711685
+partially expand affixes for better suggestions,Parte dos anexos para melhorias sugeridas é parcialmente expandido.,expande parcialmente afixos para sugestões melhores,"DE,RU",LLAMA,4.990049701936832
+skip invalid words,palavras inválidas puladas,ignora palavras inválidas,"DE,RU",LLAMA,55.03212081491043
+check if affix flags are valid,Verificar se os flags de extensão são válidos.,verifica se sinais de afixo são válidos,"DE,RU",LLAMA,11.339582221952005
+check if words are valid,Verificar se as palavras são válidas.,verifica se palavras são válidas,"DE,RU",LLAMA,26.269098944241588
+"create a backup file by appending "".bak""",Criar backup com a extensão '.bak' adicionando ao arquivo atual.,"cria um arquivo de backup acrescentando extensão "".bak""","DE,RU",LLAMA,4.368583925857938
+use byte offsets instead of character offsets,Use byte offsets instead of character offsets.,usa deslocamentos de bytes ao invés de caracteres,"DE,RU",LLAMA,0.0
+create missing root/affix combinations,Erigem combinações de palavras sem terminação ou raiz,cria combinações raiz/afixo em falta,"DE,RU",LLAMA,6.567274736060395
+"keymapping for check mode: ""aspell"" or ""ispell""",Teclado de avaliação para modo de teste: 'aspell' ou 'ispell',"mapa de tecla p/ verificação: ""aspell"" ou ""ispell""","DE,RU",LLAMA,3.755001157177446
+reverse the order of the suggest list,Reihenfolge der Vorschlagsliste umdrehen,inverte ordem da lista de sugestões,"DE,RU",LLAMA,0.0
+suggest possible replacements,sugestões de substituições possíveis,sugere substituições possíveis,"DE,RU",LLAMA,31.947155212313625
+time load time and suggest time in pipe mode,medir o tempo de carregamento e sugerir no modo Pipe do GNU/Linux,tempo de carregamento e sugestão em modo pipe,"DE,RU",LLAMA,18.798317647335093
+"This could also mean that the file ""%s"" could not be opened for reading or does not exist.","Isso também pode significar que o arquivo ""%s"" não consegue ser aberto para leitura ou ele não existe.","Isto também pode significar que o arquivo ""%s"" não pode ser aberto para leitura ou não existe.","DE,RU",LLAMA,68.88074582865497
+The Unicode code point U+%04X is unsupported.,O Unicode caracter na posição U+%04X não é suportado.,O ponto de código Unicode U+%04X não é suportado.,"DE,RU",LLAMA,59.14601686848579
+Invalid UTF-8 sequence at position %ld.,Sequência UTF-8 inválida na posição %ld.,Sequência UTF-8 inválida na posição %ld.,"DE,RU",LLAMA,100.00000000000004
+Operation Not Supported: %what:1,Operação não suportada: %what:1,Não há suporte à operação: %what:1,"DE,RU",LLAMA,40.26190971287384
+"The method ""%what:1"" is unimplemented in ""%where:2"".","A metodologia ""%what:1"" não está implementada na localização ""%where:2"".","O método ""%what:1"" não está implementado em ""%where:2"".","DE,RU",LLAMA,63.832403259199225
+%file:1:,%file:1:,%file:1:,"DE,RU",LLAMA,100.00000000000004
+"The file ""%file:1"" can not be opened","A ficheiro ""%file:1"" não pode ser aberto","O arquivo ""%file:1"" não pode ser aberto","DE,RU",LLAMA,80.70557274927978
+"The file ""%file:1"" can not be opened for reading.","A ficheiro ""%file:1"" não pode ser aberto para leitura.","O arquivo ""%file:1"" não pode ser aberto para leitura.","DE,RU",LLAMA,85.07331335123531
+"The file ""%file:1"" can not be opened for writing.","A ficheiro ""%file:1"" não pode ser aberto para escrita.","O arquivo ""%file:1"" não pode ser aberto para escrita.","DE,RU",LLAMA,85.07331335123531
+"The file name ""%file:1"" is invalid.",O nome do arquivo '%file:1' não é válido.,"O nome de arquivo ""%file:1"" é inválido.","DE,RU",LLAMA,16.26170171519489
+"The file ""%file:1"" is not in the proper format.","A ficheira ""%file:1"" não possui o formato correto.","O arquivo ""%file:1"" não está no formato apropriado.","DE,RU",LLAMA,46.0462862587273
+"The directory ""%dir:1"" can not be opened for reading.","O diretório ""%dir:1"" não pode ser aberto para leitura.","O diretório ""%dir:1"" não pode ser aberto para leitura.","DE,RU",LLAMA,100.00000000000004
+"The key ""%key:1"" is unknown.","O chaveiro ""%key:1"" é desconhecida.","A chave ""%key:1"" é desconhecida.","DE,RU",LLAMA,78.60753021519781
+"The value for option ""%key:1"" can not be changed.","O valor da opção ""%key:1"" não pode ser alterado.","O valor para opção ""%key:1"" não pode ser aberto.","DE,RU",LLAMA,68.65890479690394
+"The key ""%key:1"" is not %accepted:2 and is thus invalid.","O chave ""%key:1"" não é %accepted:2 e portanto está inválida.","A chave ""%key:1"" não é %accepted:2 e não é válida.","DE,RU",LLAMA,72.52761279126531
+"The value ""%value:2"" is not %accepted:3 and is thus invalid for the key ""%key:1"".","O valor ""%value:2"" não é %accepted:3 e portanto está incompatível para o chave ""%key:1"".","O valor ""%value:2"" não é %accepted:3 e não é válido para a chave ""%key:1"".","DE,RU",LLAMA,75.86640003071781
+"The key ""%key:1"" is not a string.","O chave ""%key:1"" não é uma sequência de caracteres.","A chave ""%key:1"" não é uma string.","DE,RU",LLAMA,64.1386525898168
+"The key ""%key:1"" is not an integer.","O chave ""%key:1"" não é um número inteiro.","A chave ""%key:1"" não é um inteiro.","DE,RU",LLAMA,72.72454093000138
+"The key ""%key:1"" is not a boolean.","O chave ""%key:1"" não é um valor de verdade.","A chave ""%key:1"" não é um booleano.","DE,RU",LLAMA,64.1386525898168
+"The key ""%key:1"" is not a list.","O chave ""%key:1"" não é uma lista.","A chave ""%key:1"" não é uma lista.","DE,RU",LLAMA,91.21679090703874
+"The key ""%key:1"" does not take any parameters when prefixed by a ""reset-"".","O chave ""%key:1"" não pode conter parâmetros quando precedida por 'reset-'.","A chave ""%key:1"" não leva parâmetros quando prefixada por um ""reset-"".","DE,RU",LLAMA,42.12671589240024
+"The key ""%key:1"" does not take any parameters when prefixed by an ""enable-"".","O chave ""%key:1"" não pode conter parâmetros quando precedida por 'enable-'.","A chave ""%key:1"" não leva parâmetros quando prefixada por um ""enable-"".","DE,RU",LLAMA,42.12671589240024
+"The key ""%key:1"" does not take any parameters when prefixed by a ""dont-"" or ""disable-"".","O chave ""%key:1"" não pode conter parâmetros quando precedida por 'não permitir' ou 'desabilitar'.","A chave ""%key:1"" não leva parâmetros quando prefixada por um ""dont-"" ou ""disable-"".","DE,RU",LLAMA,34.83519295294709
+"The key ""%key:1"" does not take any parameters when prefixed by a ""clear-"".","O chave ""%key:1"" não pode conter parâmetros quando precedida por 'clear-'.","A chave ""%key:1"" não leva parâmetros quando prefixada por um ""clear-"".","DE,RU",LLAMA,42.12671589240024
+"The language ""%lang:1"" is not known.","A linguagem ""%lang:1"" é desconhecida.","O idioma ""%lang:1"" é desconhecido.","DE,RU",LLAMA,59.00468726392806
+"The soundslike ""%sl:2"" is not known.",O som do termo '%sl:2' não é conhecido.,"A pronúncia ""%sl:2"" é desconhecida.","DE,RU",LLAMA,13.065113298388567
+"The language ""%lang:1"" is not supported.","A linguagem ""%lang:1"" não é suportada.","O idioma ""%lang:1"" não é suportado.","DE,RU",LLAMA,63.15552371794033
+"No word lists can be found for the language ""%lang:1"".","Para a língua ""%lang:1"" não são possíveis listas de palavras.","Nenhum vocabulário foi localizado para o idioma ""%lang:1"".","DE,RU",LLAMA,31.314224813827344
+"Expected language ""%lang:1"" but got ""%prev:2"".","Linguagem esperada >>%lang<<, mas recebida >>%prev<<.","Idioma ""%lang:1"" esperado, mas ""%prev:2"" obtido.","DE,RU",LLAMA,7.732130225986882
+Affix '%aff:1' is corrupt.,Ending »%aff:1« está danificado.,Afixo '%aff:1' está corrompido.,"DE,RU",LLAMA,20.164945583740657
+"The condition ""%cond:1"" is invalid.","A condição ""%cond:1"" é inválida.","A condição ""%cond:1"" é inválida.","DE,RU",LLAMA,100.00000000000004
+"The condition ""%cond:1"" does not guarantee that ""%strip:2"" can always be stripped.","A condição ""%cond:1"" não garante que ""%strip:2"" possa sempre ser separada.","A condição ""%cond:1"" não garante que ""%strip:2"" sempre possa ser eliminada.","DE,RU",LLAMA,79.6220307447893
+"The file ""%file:1"" is not in the proper format. Expected the file to be in ""%exp:2"" not ""%got:3"".","A ficheiro ""%file:1"" não possui o formato correto. Foi esperado que fosse encontrar no local de carga, e não na pasta %got:3.","O arquivo ""%file:1"" não está no formato apropriado. Esperava-se o arquivo estar em ""%exp:2"" e não em ""%got:3"".","DE,RU",LLAMA,26.636523579014288
+"The encoding ""%encod:1"" is not known.",A codificação '\%encod:1' não é conhecida.,"Codificação ""%encod:1"" desconhecida.","DE,RU",LLAMA,13.545994273378144
+"The encoding ""%encod:1"" is not supported.","A codificação ""%encod:1"" não é suportada.","Codificação ""%encod:1"" não suportada.","DE,RU",LLAMA,57.067457770559976
+"The conversion from ""%encod:1"" to ""%encod2:2"" is not supported.",A conversão de '>%encod:1<' para '>%encod:2<' não é suportada.,"Conversão de ""%encod:1"" para ""%encod2:2"" não suportada.","DE,RU",LLAMA,14.728212724124628
+"The string ""%str:1"" is invalid.","A cadeia de caracteres ""%str:1"" é inválida.","A string ""%str:1"" é inválida.","DE,RU",LLAMA,66.52049901111006
+"The word ""%word:1"" is invalid.",O termo 'Das Wort »%word:1«' é inválido.,"A palavra ""%word:1"" é inválida.","DE,RU",LLAMA,14.323145079400492
+"The affix flag '%aff:1' is invalid for word ""%word:2"".",O flag de terminação '%aff:1' é inválido para o termo '%word:2'.,"O sinal de afixo '%aff:1' é inválido para a palavra ""%word:2"".","DE,RU",LLAMA,41.97770270893964
+"The affix flag '%aff:1' can not be applied to word ""%word:2"".",O fim de sinal '%aff:1' não pode ser aplicado ao termo '%word:2'.,"O sinal de afixo '%aff:1' não pode ser aplicado à palavra ""%word:2"".","DE,RU",LLAMA,45.85015057701145
+not a version number,Esta não é uma versão deste software.,não é um número de versão,"DE,RU",LLAMA,12.22307556087252
+"dlopen returned ""%return:1"".",dlopen gab »%return:1« de volta.,"dlopen retornou ""%return:1"".","DE,RU",LLAMA,17.747405280050266
+"The file ""%filter:1"" does not contain any filters.","A ferramenta de filtragem ""%filter:1"" não possui nenhum filtro.","O arquivo ""%filter:1"" não contém nenhum filtro.","DE,RU",LLAMA,49.202745153855076
+"The filter ""%filter:1"" does not exist.","O filtro ""%filter:1"" não existe.","O filtro ""%filter:1"" não existe.","DE,RU",LLAMA,100.00000000000004
+Confused by version control.,defeituoso ao entender o controle de versão.,Confundido pelo controle de versão.,"DE,RU",LLAMA,34.57207846419409
+Aspell version does not match filter's requirement.,A versão Aspell não atende aos requisitos do filtro.,A versão do Aspell não atende às necessidades do filtro.,"DE,RU",LLAMA,27.007097700389536
+Filter option already exists.,A opção de filtragem já existe.,Esta opção de filtro já existe.,"DE,RU",LLAMA,30.739407647563215
+Use option modifiers only within named option.,Utilize modificações de opções apenas dentro das opções nomeadas.,Use modificadores de opções apenas em opções nomeadas.,"DE,RU",LLAMA,26.269098944241577
+Option modifier unknown.,Modificador de opção desconhecido.,Modificador de opção desconhecido.,"DE,RU",LLAMA,100.00000000000004
+Error setting filter description.,Erro ao definir a descrição do filtro.,Ocorreu erro ao definir a descrição do filtro.,"DE,RU",LLAMA,74.20884818558928
+Empty option specifier.,Opção vazia.,Especificador de opção vazio.,"DE,RU",LLAMA,14.127216461522432
+"Option ""%option:1"" possibly specified prior to filter.",A opção »%option:1« pode ter sido especificada antes do filtro.,"Possivelmente a opção ""%option:1"" foi especificada antes que o filtro.","DE,RU",LLAMA,13.907243442679686
+"Unknown mode description key ""%key:1"".","Chave de descrição do modo desconhecida ""%key:1"".","A chave de descrição ""%key:1"" possui modo desconhecido.","DE,RU",LLAMA,41.90796141600666
+"Expecting ""%modekey:1"" key.","Chave ""%modekey:1"" esperada.","Espera-se chave ""%modekey:1"".","DE,RU",LLAMA,61.04735835807847
+"Version specifier missing key: ""aspell"".",A versão não foi especificada: »aspell«.,"Falta chave especificador da versão: ""aspell"".","DE,RU",LLAMA,5.660233915657916
+Aspell version does not match mode's requirement.,A versão Aspell não atende aos requisitos do filtro.,A versão do Aspell não atende às necessidades do modo.,"DE,RU",LLAMA,19.331263581394154
+Missing magic mode expression.,Oração do modo mágico faltante.,Falta a expressão de modo mágico.,"DE,RU",LLAMA,15.207218222740094
+Empty extension at char %char:1.,Estação sem tráfego ao caracter %char:1.,Extensão vazia no caractere %char:1.,"DE,RU",LLAMA,39.281465090051306
+"""%mode:1"" error",»%mode:1«: Erro,"erro ""%mode:1""","DE,RU",LLAMA,24.446151121745054
+"Unknown mode: ""%mode:1"".",Modo desconhecido: »%mode:1«.,"Modo desconhecido: ""%mode:1"".","DE,RU",LLAMA,27.75806054476853
+"""%mode:1"" error while extend Aspell modes. (out of memory?)",Erro '%mode:1' ao expandir as opções do Aspell. Falta de memória?,"erro ""%mode:1"" ao estender módulos do Aspell. (sem memória?)","DE,RU",LLAMA,15.796444447897139
+"""%mode:1"": no start for magic search given for magic ""%magic:2"".","»%mode:1«: Não há começo para pesquisa mágica de %magic:2.""","""%mode:1"": nenhum começo para a pesquisa mágica fornecida pela mágica ""%magic:2"".","DE,RU",LLAMA,19.209128546844177
+"""%mode:1"": no range for magic search given for magic ""%magic:2"".","»%mode:1«: Não há região para pesquisa de magic, definida para magic '%magic:2'.","""%mode:1"": nenhum intervalo para a pesquisa mágica fornecida pela mágica ""%magic:2"".","DE,RU",LLAMA,11.71291646655074
+"""%mode:1"": no magic expression available for magic ""%magic:2"".",»%mode:1«: Não há expressões mágicas disponíveis para %magic:2.,"""%mode:1"": nenhuma expressão mágica disponível para a mágica ""%magic:2"".","DE,RU",LLAMA,17.89117353466845
+"""%mode:1"": Magic ""%magic:2"": bad regular expression after location specifier; regexp reports: ""%regerr:3"".",»%mode:1«: Magic »%magic:2«: Expressão regular inválida após a localização; regexp retorna: »%regerr:3«.,"""%mode:1"": Mágica ""%magic:2"": expressão regular ruim após especificador de local; regexp informa: ""%regerr:3"".","DE,RU",LLAMA,11.5886696418503
+"""%expression:1"" is not a valid regular expression.",»%expression:1« não é um expressão regular válida.,"""%expression:1"" não é uma expressão regular válida.","DE,RU",LLAMA,31.440065102016753
+Unhandled Error: ,Erro não tratado: ,Erro não previsto: ,"DE,RU",LLAMA,35.35533905932737
 "Error: %s
 ",Erro: %s,"Erro: %s
-","DE,RU",LLAMA,98.95887970924377,100.0,100.00000000000004,0.0,100.00003576278687
-Error: ,Erro: ,Erro: ,"DE,RU",LLAMA,98.90965819358826,100.0,100.00000000000004,0.0,99.99995231628418
-enter Email mode.,No E-Mail Modo.,entra no modo Email.,"DE,RU",LLAMA,63.42431902885437,15.422342701101439,12.44023474812678,75.0,74.72128868103027
-enter HTML mode.,No HTML Modus.,entra no modo HTML.,"DE,RU",LLAMA,69.43008303642273,22.20245678987189,14.794015674776452,75.0,74.54339861869812
-enter TeX mode.,No TeX Modus.,entra no modo TeX.,"DE,RU",LLAMA,63.1797730922699,18.331077621619134,14.794015674776452,75.0,79.8024594783783
-enter Nroff mode.,No modo Nroff.,entra no modo Nroff.,"DE,RU",LLAMA,75.98311305046082,61.22382813079588,46.30777161991026,25.0,87.03636527061462
-enter Markdown mode.,"No modo Markdown, mude para o sistema de marcação.",entra no modo Markdown.,"DE,RU",LLAMA,85.67158579826355,47.30110338997625,8.29519350710986,100.0,83.34561586380005
-Invalid Option: %s,Opção inválida: %s,Opção inválida: %s,"DE,RU",LLAMA,99.18316006660461,100.0,100.00000000000004,0.0,99.99998807907104
-'%s' does not take any parameters.,»%s« não aceita nenhum parâmetro.,"""%s"" não recebe nenhum parâmetro.","DE,RU",LLAMA,82.90395736694336,55.02218210654021,20.612390921238426,40.0,91.87309741973877
-"You must specify a parameter for ""%s"".",Você deve especificar um parâmetro para '\u00ab%s\u00bb'.,"Você deve especificar um parâmetro para ""%s"".","DE,RU",LLAMA,69.42993998527527,82.00789785842298,40.52587697205425,14.285714285714285,88.92362117767334
-You must specify an action,Você deve especificar uma ação.,É necessário especificar um ação,"DE,RU",LLAMA,93.94494891166687,44.76409441470936,9.652434877402245,80.0,86.4560604095459
-Unknown Action: %s,Ação desconhecida: %s,Ação Desconhecida: %s,"DE,RU",LLAMA,97.17287421226501,75.24138164037545,42.72870063962342,0.0,95.76607346534729
+","DE,RU",LLAMA,100.00000000000004
+Error: ,Erro: ,Erro: ,"DE,RU",LLAMA,100.00000000000004
+enter Email mode.,No E-Mail Modo.,entra no modo Email.,"DE,RU",LLAMA,12.44023474812678
+enter HTML mode.,No HTML Modus.,entra no modo HTML.,"DE,RU",LLAMA,14.794015674776452
+enter TeX mode.,No TeX Modus.,entra no modo TeX.,"DE,RU",LLAMA,14.794015674776452
+enter Nroff mode.,No modo Nroff.,entra no modo Nroff.,"DE,RU",LLAMA,46.30777161991026
+enter Markdown mode.,"No modo Markdown, mude para o sistema de marcação.",entra no modo Markdown.,"DE,RU",LLAMA,8.29519350710986
+Invalid Option: %s,Opção inválida: %s,Opção inválida: %s,"DE,RU",LLAMA,100.00000000000004
+'%s' does not take any parameters.,»%s« não aceita nenhum parâmetro.,"""%s"" não recebe nenhum parâmetro.","DE,RU",LLAMA,20.612390921238426
+"You must specify a parameter for ""%s"".",Você deve especificar um parâmetro para '\u00ab%s\u00bb'.,"Você deve especificar um parâmetro para ""%s"".","DE,RU",LLAMA,40.52587697205425
+You must specify an action,Você deve especificar uma ação.,É necessário especificar um ação,"DE,RU",LLAMA,9.652434877402245
+Unknown Action: %s,Ação desconhecida: %s,Ação Desconhecida: %s,"DE,RU",LLAMA,42.72870063962342
 "Error: You must specify at least %d parameters for ""%s"".
 ",Erro: Você deve especificar pelo menos %d parâmetros para '\u00ab%s\u00bb'.,"Erro: Você deve especificar ao menos %d parâmetros para ""%s"".
-","DE,RU",LLAMA,76.10785365104675,78.91220442188892,41.682189465797684,20.0,90.10350108146667
-Invalid Input,Entrada inválida,Entrada Inválida,"DE,RU",LLAMA,95.49659490585327,58.39785214785215,49.99999999999999,0.0,96.20931148529053
+","DE,RU",LLAMA,41.682189465797684
+Invalid Input,Entrada inválida,Entrada Inválida,"DE,RU",LLAMA,49.99999999999999
 "WARNING: Unable to enter Nroff mode: %s
 ",AVISO: Não é possível alternar para o modo nroff: %s,"ALERTA: Não é possível entrar no modo Nroff: %s
-","DE,RU",LLAMA,85.85808873176575,52.0452593867623,28.917849332325716,44.44444444444444,89.7692322731018
-Time to load word list: ,Tempo para carregar a lista de palavras:,Carregar vocabulário,"DE,RU",LLAMA,56.785959005355835,21.44153551219665,0.0,100.0,66.90468192100525
+","DE,RU",LLAMA,28.917849332325716
+Time to load word list: ,Tempo para carregar a lista de palavras:,Carregar vocabulário,"DE,RU",LLAMA,0.0
 "Suggestion Time: %f
 ",Tempo de apresentação: %f,"Tempo da sugestão: %f
-","DE,RU",LLAMA,87.50231266021729,43.01103802973434,32.46679154750991,50.0,90.818190574646
-You must specify a file name.,Você deve especificar o nome do arquivo.,Especifique o nome do arquivo.,"DE,RU",LLAMA,93.56299042701721,69.81799427048261,51.697315395717055,60.0,86.81439757347107
-Only one file name may be specified.,Podemos especificar apenas um nome de arquivo.,Apenas um nome de arquivo deve ser especificado.,"DE,RU",LLAMA,92.93325543403625,64.09527429148143,32.260135189272866,75.0,87.21670508384705
-"Could not open the file ""%s"" for reading",Não foi possível abrir a pasta %s para leitura.,"Impossível abrir o arquivo ""%s"" para leitura","DE,RU",LLAMA,87.22307085990906,48.047600196306576,11.208466750961147,100.0,80.38317561149597
-Invalid keymapping: %s,Ungültige Tastaturbelegung: %s,Mapa de teclado inválido: %s,"DE,RU",LLAMA,58.18102955818176,17.969398865901585,26.65429557589628,80.0,76.82127952575684
-"""%s"" is not a regular file",»%s« não é uma arquivo normal,"""%s"" não é uma expressão regular válida","DE,RU",LLAMA,77.59208083152771,25.907316174342256,17.20339087300932,57.14285714285714,87.50942349433899
-"Could not open the file ""%s"" for writing. File not saved.","Não foi possível abrir a pasta de trabalho ""%s"" para escrita. Pastinha não salva.","Impossível abrir arquivo ""%s"" para gravar. Não salvo.","DE,RU",LLAMA,66.5628969669342,46.07765095525166,21.951524426618455,100.0,82.68294334411621
-Ignore,Ignorar,Ignorar,"DE,RU",LLAMA,99.10315871238708,100.0,100.00000000000004,0.0,99.99996423721313
-Ignore all,Alle ignorieren,Ignorar todos,"DE,RU",LLAMA,85.62324643135071,12.063937094821773,0.0,100.0,74.96009469032288
-Replace,Substituir,Substituir,"DE,RU",LLAMA,98.93774390220642,100.0,100.00000000000004,0.0,100.0
-Replace all,substitua todos os elementos,Substituir todos,"DE,RU",LLAMA,73.98840188980103,39.833764126634094,15.97357760615681,100.0,81.17376565933228
-Add,Adicionar,Adicionar,"DE,RU",LLAMA,98.88977408409119,100.0,100.00000000000004,0.0,99.99996423721313
-Add Lower,adicionar em letras minúsculas.,Adicionar minúsculas,"DE,RU",LLAMA,73.1962263584137,57.459027436283016,10.682175159905848,100.0,79.87544536590576
-Abort,Cancelar,Abortar,"DE,RU",LLAMA,64.89315629005432,6.272509003601439,0.0,100.0,84.37662124633789
-Exit,Terminar,Sair,"DE,RU",LLAMA,60.09601950645447,12.5,0.0,100.0,80.0299882888794
+","DE,RU",LLAMA,32.46679154750991
+You must specify a file name.,Você deve especificar o nome do arquivo.,Especifique o nome do arquivo.,"DE,RU",LLAMA,51.697315395717055
+Only one file name may be specified.,Podemos especificar apenas um nome de arquivo.,Apenas um nome de arquivo deve ser especificado.,"DE,RU",LLAMA,32.260135189272866
+"Could not open the file ""%s"" for reading",Não foi possível abrir a pasta %s para leitura.,"Impossível abrir o arquivo ""%s"" para leitura","DE,RU",LLAMA,11.208466750961147
+Invalid keymapping: %s,Ungültige Tastaturbelegung: %s,Mapa de teclado inválido: %s,"DE,RU",LLAMA,26.65429557589628
+"""%s"" is not a regular file",»%s« não é uma arquivo normal,"""%s"" não é uma expressão regular válida","DE,RU",LLAMA,17.20339087300932
+"Could not open the file ""%s"" for writing. File not saved.","Não foi possível abrir a pasta de trabalho ""%s"" para escrita. Pastinha não salva.","Impossível abrir arquivo ""%s"" para gravar. Não salvo.","DE,RU",LLAMA,21.951524426618455
+Ignore,Ignorar,Ignorar,"DE,RU",LLAMA,100.00000000000004
+Ignore all,Alle ignorieren,Ignorar todos,"DE,RU",LLAMA,0.0
+Replace,Substituir,Substituir,"DE,RU",LLAMA,100.00000000000004
+Replace all,substitua todos os elementos,Substituir todos,"DE,RU",LLAMA,15.97357760615681
+Add,Adicionar,Adicionar,"DE,RU",LLAMA,100.00000000000004
+Add Lower,adicionar em letras minúsculas.,Adicionar minúsculas,"DE,RU",LLAMA,10.682175159905848
+Abort,Cancelar,Abortar,"DE,RU",LLAMA,0.0
+Exit,Terminar,Sair,"DE,RU",LLAMA,0.0
 Are you sure you want to abort (y/n)? ,"Sinto-me apressado, mas estou certamente pronto para sair (s/n)?
-",Você tem certeza de que deseja cancelar (s/n)?,"DE,RU",LLAMA,39.86958861351013,21.749492625475302,32.37722713145643,100.0,76.43165588378906
-Yy,Jj,SsYy,"DE,RU",LLAMA,65.67321419715881,0.0,0.0,100.0,76.16962790489197
-With: ,Mit:,Com: ,"DE,RU",LLAMA,86.41307950019836,12.5,49.99999999999999,100.0,78.65748405456543
-Sorry that is an invalid choice!,"Desculpe, isto é uma escolha inválida!",A seleção não é válida!,"DE,RU",LLAMA,67.11066961288452,26.199183109174847,6.567274736060395,100.0,75.10408759117126
-Can't merge a master word list yet. Sorry.,"Desculpe, não é possível unir a lista de palavras principais.",Impossível mesclar um vocabulário principal.,"DE,RU",LLAMA,64.336758852005,29.076202384178647,3.3864985683445354,100.0,77.71943211555481
+",Você tem certeza de que deseja cancelar (s/n)?,"DE,RU",LLAMA,32.37722713145643
+Yy,Jj,SsYy,"DE,RU",LLAMA,0.0
+With: ,Mit:,Com: ,"DE,RU",LLAMA,49.99999999999999
+Sorry that is an invalid choice!,"Desculpe, isto é uma escolha inválida!",A seleção não é válida!,"DE,RU",LLAMA,6.567274736060395
+Can't merge a master word list yet. Sorry.,"Desculpe, não é possível unir a lista de palavras principais.",Impossível mesclar um vocabulário principal.,"DE,RU",LLAMA,3.3864985683445354
 "Sorry ""create/merge personal"" is currently unimplemented.
 ","Desculpe, a criação/fusão da sua lista pessoal ainda não foi implementada.","Perdão, ""create/merge personal"" não implementado ainda.
-","DE,RU",LLAMA,75.23651719093323,29.078142540244357,3.9297193407553004,100.0,77.18232870101929
-"Sorry I won't overwrite ""%s""","Desculpe, mas eu não vou sobrescrever '%s'","Perdão, não sobrescreverei ""%s""","DE,RU",LLAMA,74.78052973747253,35.462709266289096,5.522397783539471,100.0,83.83402228355408
+","DE,RU",LLAMA,3.9297193407553004
+"Sorry I won't overwrite ""%s""","Desculpe, mas eu não vou sobrescrever '%s'","Perdão, não sobrescreverei ""%s""","DE,RU",LLAMA,5.522397783539471
 "Sorry ""create/merge repl"" is currently unimplemented.
 ","Desculpe, a lista de substituição ainda não foi implementada.","Perdão, ""create/merge repl"" não implementado ainda.
-","DE,RU",LLAMA,67.57989525794983,30.877088118745867,4.839576869824698,100.0,74.76136684417725
-"""%s"" is not a valid flag for the ""munch-list"" command.",»%s« não é uma opção válida para o comando »munch-list«.,"""%s"" não é um sinal válido para o comando ""munch-list"".","DE,RU",LLAMA,88.50524425506592,50.824868810913536,12.486657525198936,50.0,93.93485188484192
-Usage: aspell [options] <command>,Acesso: aspell [Opções] <Comando>,Uso: aspell [opções] <comando>,"DE,RU",LLAMA,85.16994118690491,58.17942708485027,23.356898886410015,25.0,90.96373915672302
-<command> is one of:,"<команда> одна из: DE, RU",<comando> é um de:,"DE,RU",LLAMA,55.81974983215332,6.221719457013573,6.27465531099474,100.0,77.59768962860107
-  -?|usage         display a brief usage message, -?|usage         Mostrar um pequeno texto de ajuda,  -?|usage         exibe uma breve mensagem de uso,"DE,RU",LLAMA,80.98441958427429,26.175928361920693,27.77619034011791,71.42857142857143,86.74170970916748
-  help             display a detailed help message,Ajuda             Mostrar um texto de ajuda detalhado,  help             exibe uma mensagem detalhada de ajuda,"DE,RU",LLAMA,84.58248376846313,32.84276987217692,13.134549472120788,85.71428571428571,75.19439458847046
-  -c|check <file>  spellchecks a file, -c|check <arquivo> Verificação da ortografia de um arquivo,  -c|check <arq>   verifica a ortografia de um arquivo,"DE,RU",LLAMA,89.8485779762268,74.33801115151789,43.66835442847811,37.5,89.62922692298889
-"  -a|pipe          ""ispell -a"" compatibility mode","  -a|pipe          Modo de compatibilidade para ""ispell -a""","  -a|pipe          modo de compatibilidade ""ispell -a""","DE,RU",LLAMA,80.44423460960388,79.07781157062168,37.81790427652475,16.666666666666664,93.37740540504456
-  [dump] config    dumps the current configuration to stdout, [dump] config    Gera a saída padrão com a atual configuração do sistema,  [dump] config    despeja a configuração atual à saída padrão stdout,"DE,RU",LLAMA,84.63186621665955,57.444913628852134,23.397625978961173,70.0,85.4138970375061
-  config <key>     prints the current value of an option,config <key>     Gera o valor atual de uma opção,  config <chave>   exibe o valor atual de uma opção,"DE,RU",LLAMA,90.07108807563782,66.07931675759733,53.48259312838876,22.22222222222222,93.29803586006165
-  [dump] dicts | filters | modes, [dump] dicionários | filtros | modos,  [dump] dicio | filtros | modos,"DE,RU",LLAMA,87.66805529594421,82.03167835972266,50.000000000000014,16.666666666666664,92.01616048812866
-    lists available dictionaries / filters / filter modes,    Lista disponíveis de dicionários / filtros / modos de filtragem em,"    lista dicionários, filtros e modos de filtros disponíveis","DE,RU",LLAMA,85.54814457893372,60.88599378194973,9.425159511373677,87.5,85.93860268592834
-[options] is any of the following:,[opções] são qualquer número de as seguintes:,[opções] é quaisquer uma das seguintes:,"DE,RU",LLAMA,92.82087087631226,50.80278000772819,19.64073254502565,83.33333333333334,87.04778552055359
-  list             produce a list of misspelled words from standard input,Liste de palavras mal escritas da entrada padrão,  list             produz uma lista de palavras escritas erradas na saída padrão,"DE,RU",LLAMA,64.36024308204651,39.36628914732536,9.027235033938242,72.72727272727273,85.13827919960022
-  soundslike       returns the sounds like equivalent for each word entered,Somais semelhante       Gera o tom associado a cada palavra digitada.,  soundslike       retorna o equivalente de pronúncia para cada palavra digitada,"DE,RU",LLAMA,49.99043047428131,36.98372964435759,14.991106946711685,80.0,77.51456499099731
-  munch            generate possible root words and affixes,munch            geração de possíveis prefixos e sufixos de palavras,  munch            cria as possíveis raízes e afixos da palavra,"DE,RU",LLAMA,64.38550353050232,38.66517881618699,6.27465531099474,66.66666666666666,83.22486281394958
-  expand [1-4]     expands affix flags,expandir [1-4] Endungskennzeichen,  expand [1-4]     expande sinais de afixos,"DE,RU",LLAMA,65.00294804573059,25.29003769073549,40.04970149398301,83.33333333333334,77.09041833877563
-  clean [strict]   cleans a word list so that every line is a valid word,"limpar [estrito]   Lista de palavras, garantindo que cada linha contenha apenas um termo válido.",  clean [strict]   limpa uma lista de palavras para que cada linha seja uma palavra válida,"DE,RU",LLAMA,75.0905692577362,40.60679532556533,10.934883431625593,73.33333333333333,81.1152994632721
-  -v|version       prints a version line,  -v|version       Gera uma linha com informações de versão,  -v|version       mostra a versão do programa,"DE,RU",LLAMA,83.24386477470398,36.903724518394284,16.784459625186194,100.0,85.87751388549805
-  munch-list [simple] [single|multi] [keep],munch-list [simples] [único|mais de um] [manter],  munch-list [simple] [single|multi] [keep],"DE,RU",LLAMA,67.17551350593567,42.11899627353694,10.571070857151541,100.0,89.593905210495
-    reduce the size of a word list via affix compression,redução da Größe de uma Lista de Palavras com Compressão de Suffixe,    reduz o tamanho de uma lista de palavras através de compressão de afixo,"DE,RU",LLAMA,61.82406544685364,36.048572983919186,7.410494411527525,46.15384615384615,78.71593832969666
-  conv <from> <to> [<norm-form>],conv <von> <nach> [<Normalform>],  conv <de> <para> [<norm-form>],"DE,RU",LLAMA,86.77362203598022,33.43813698231286,20.86130724305753,75.0,90.19045233726501
-    converts from one encoding to another,Conversão de uma codificação para outra.,    converte de uma codificação para outra,"DE,RU",LLAMA,93.05024743080139,80.12946409975748,61.47881529512643,33.33333333333333,90.81864953041077
-  norm (<norm-map> | <from> <norm-map> <to>) [<norm-form>],norma (<mapa-normal> | <de> <mapa-normal> <para>) [<forma-normal>],  norm (<norm-map> | <de> <norm-map> <para>) [<norm-form>],"DE,RU",LLAMA,85.91122031211853,49.45624882934389,55.79745063955604,57.14285714285714,89.18997645378113
-    perform Unicode normalization,Ativar normalização de codificação unicórnica.,    efetua normalização Unicode,"DE,RU",LLAMA,55.722761154174805,38.89746017218894,8.116697886877475,100.0,76.15584135055542
-  dump|create|merge master|personal|repl [<name>],Dumpar|Criar|Fusão master|personal|repl [<Lista>],  dump|create|merge master|personal|repl [<nome>],"DE,RU",LLAMA,74.53188896179199,44.995870914298024,46.56334880525637,66.66666666666666,83.12066793441772
+","DE,RU",LLAMA,4.839576869824698
+"""%s"" is not a valid flag for the ""munch-list"" command.",»%s« não é uma opção válida para o comando »munch-list«.,"""%s"" não é um sinal válido para o comando ""munch-list"".","DE,RU",LLAMA,12.486657525198936
+Usage: aspell [options] <command>,Acesso: aspell [Opções] <Comando>,Uso: aspell [opções] <comando>,"DE,RU",LLAMA,23.356898886410015
+<command> is one of:,"<команда> одна из: DE, RU",<comando> é um de:,"DE,RU",LLAMA,6.27465531099474
+  -?|usage         display a brief usage message, -?|usage         Mostrar um pequeno texto de ajuda,  -?|usage         exibe uma breve mensagem de uso,"DE,RU",LLAMA,27.77619034011791
+  help             display a detailed help message,Ajuda             Mostrar um texto de ajuda detalhado,  help             exibe uma mensagem detalhada de ajuda,"DE,RU",LLAMA,13.134549472120788
+  -c|check <file>  spellchecks a file, -c|check <arquivo> Verificação da ortografia de um arquivo,  -c|check <arq>   verifica a ortografia de um arquivo,"DE,RU",LLAMA,43.66835442847811
+"  -a|pipe          ""ispell -a"" compatibility mode","  -a|pipe          Modo de compatibilidade para ""ispell -a""","  -a|pipe          modo de compatibilidade ""ispell -a""","DE,RU",LLAMA,37.81790427652475
+  [dump] config    dumps the current configuration to stdout, [dump] config    Gera a saída padrão com a atual configuração do sistema,  [dump] config    despeja a configuração atual à saída padrão stdout,"DE,RU",LLAMA,23.397625978961173
+  config <key>     prints the current value of an option,config <key>     Gera o valor atual de uma opção,  config <chave>   exibe o valor atual de uma opção,"DE,RU",LLAMA,53.48259312838876
+  [dump] dicts | filters | modes, [dump] dicionários | filtros | modos,  [dump] dicio | filtros | modos,"DE,RU",LLAMA,50.000000000000014
+    lists available dictionaries / filters / filter modes,    Lista disponíveis de dicionários / filtros / modos de filtragem em,"    lista dicionários, filtros e modos de filtros disponíveis","DE,RU",LLAMA,9.425159511373677
+[options] is any of the following:,[opções] são qualquer número de as seguintes:,[opções] é quaisquer uma das seguintes:,"DE,RU",LLAMA,19.64073254502565
+  list             produce a list of misspelled words from standard input,Liste de palavras mal escritas da entrada padrão,  list             produz uma lista de palavras escritas erradas na saída padrão,"DE,RU",LLAMA,9.027235033938242
+  soundslike       returns the sounds like equivalent for each word entered,Somais semelhante       Gera o tom associado a cada palavra digitada.,  soundslike       retorna o equivalente de pronúncia para cada palavra digitada,"DE,RU",LLAMA,14.991106946711685
+  munch            generate possible root words and affixes,munch            geração de possíveis prefixos e sufixos de palavras,  munch            cria as possíveis raízes e afixos da palavra,"DE,RU",LLAMA,6.27465531099474
+  expand [1-4]     expands affix flags,expandir [1-4] Endungskennzeichen,  expand [1-4]     expande sinais de afixos,"DE,RU",LLAMA,40.04970149398301
+  clean [strict]   cleans a word list so that every line is a valid word,"limpar [estrito]   Lista de palavras, garantindo que cada linha contenha apenas um termo válido.",  clean [strict]   limpa uma lista de palavras para que cada linha seja uma palavra válida,"DE,RU",LLAMA,10.934883431625593
+  -v|version       prints a version line,  -v|version       Gera uma linha com informações de versão,  -v|version       mostra a versão do programa,"DE,RU",LLAMA,16.784459625186194
+  munch-list [simple] [single|multi] [keep],munch-list [simples] [único|mais de um] [manter],  munch-list [simple] [single|multi] [keep],"DE,RU",LLAMA,10.571070857151541
+    reduce the size of a word list via affix compression,redução da Größe de uma Lista de Palavras com Compressão de Suffixe,    reduz o tamanho de uma lista de palavras através de compressão de afixo,"DE,RU",LLAMA,7.410494411527525
+  conv <from> <to> [<norm-form>],conv <von> <nach> [<Normalform>],  conv <de> <para> [<norm-form>],"DE,RU",LLAMA,20.86130724305753
+    converts from one encoding to another,Conversão de uma codificação para outra.,    converte de uma codificação para outra,"DE,RU",LLAMA,61.47881529512643
+  norm (<norm-map> | <from> <norm-map> <to>) [<norm-form>],norma (<mapa-normal> | <de> <mapa-normal> <para>) [<forma-normal>],  norm (<norm-map> | <de> <norm-map> <para>) [<norm-form>],"DE,RU",LLAMA,55.79745063955604
+    perform Unicode normalization,Ativar normalização de codificação unicórnica.,    efetua normalização Unicode,"DE,RU",LLAMA,8.116697886877475
+  dump|create|merge master|personal|repl [<name>],Dumpar|Criar|Fusão master|personal|repl [<Lista>],  dump|create|merge master|personal|repl [<nome>],"DE,RU",LLAMA,46.56334880525637
 "    dumps, creates or merges a master, personal, or replacement dictionary.","    Haupt- (master), persönliche (personal) oder Ersetzungs- (replacement)-
-    Wortliste ausgeben (dump), erzeugen (create) oder mischen (merge).","    mostra, cria ou mescla um dicionário mestre, pessoal ou de substituição.","DE,RU",LLAMA,40.96153676509857,14.363041130646323,1.633898440122165,100.0,63.405925035476685
-"  <norm-form>      normalization form to use, either none, internal, or strict","Forma normal <Normalform> utilizável para a normalização: none, internal ou strict.","  <norm-form>      forma de normalização a usar, podendo ser ""none"", ""internal"", ou ""strict""","DE,RU",LLAMA,73.62235188484192,33.40144015871701,2.7348980438452335,83.33333333333334,74.9161422252655
+    Wortliste ausgeben (dump), erzeugen (create) oder mischen (merge).","    mostra, cria ou mescla um dicionário mestre, pessoal ou de substituição.","DE,RU",LLAMA,1.633898440122165
+"  <norm-form>      normalization form to use, either none, internal, or strict","Forma normal <Normalform> utilizável para a normalização: none, internal ou strict.","  <norm-form>      forma de normalização a usar, podendo ser ""none"", ""internal"", ou ""strict""","DE,RU",LLAMA,2.7348980438452335
 "
 Aspell %s.  Copyright 2000-2023 by Kevin Atkinson.
 
 ",Aspel %s. Copyright 2000–2023 Kevin Atkinson.,"
 Aspell %s.  Copyright 2000-2023 por Kevin Atkinson.
-","DE,RU",LLAMA,87.39320039749146,69.82248912101565,30.93050784916862,42.857142857142854,86.17331981658936
+","DE,RU",LLAMA,30.93050784916862
 "Available Dictionaries:
     Dictionaries can be selected directly via the ""-d"" or ""master""
     option.  They can also be selected indirectly via the ""lang"",
@@ -253,17 +253,17 @@ Aspell %s.  Copyright 2000-2023 por Kevin Atkinson.
     Dicionários podem ser selecionados diretamente da opção ""-d""
     ou ""master"". Podem ser selecionados indiretamente via opções
     ""lang"", ""variety"", e ""size"".
-","DE,RU",LLAMA,75.85694193840027,30.487032742212033,2.8958366502168476,86.36363636363636,82.64972567558289
+","DE,RU",LLAMA,2.8958366502168476
 "Available Filters (and associated options):
     Filters can be added or removed via the ""filter"" option.
 ",Filtros disponíveis (sem opções associadas): Você pode adicionar ou remover filtros utilizando a opção 'filter'.,"Filtros disponíveis (e opções associadas):
     Filtros podem ser adicionados ou removidos via opção ""filter"".
-","DE,RU",LLAMA,90.23246169090271,56.24221381250829,19.011503241435708,64.28571428571429,88.51963877677917
+","DE,RU",LLAMA,19.011503241435708
 "
   %s filter: %s
 ",%s filtro: %s,"
   %s filtro: %s
-","DE,RU",LLAMA,99.15757179260254,100.0,100.00000000000004,0.0,99.99998807907104
+","DE,RU",LLAMA,100.00000000000004
 "Available Filter Modes:
     Filter Modes are reconfigured combinations of filters optimized for
     files of a specific type. A mode is selected via the ""mode"" option.
@@ -275,98 +275,98 @@ Aspell %s.  Copyright 2000-2023 por Kevin Atkinson.
     arquivos de tipo específico. Modo é selecionado via opção ""mode"".
     Acontecerá implicitamente se Aspell for apto a identificar o tipo do
     arquivo a partir da extensão e, de certo, os conteúdos do arquivo.
-","DE,RU",LLAMA,84.18534398078918,47.41773337415752,6.207048714397793,68.08510638297872,83.70100855827332
-Error: Stdin not a terminal.,Erro: Entrada padrão não é um terminal.,Erro: Stdin não é um terminal.,"DE,RU",LLAMA,89.69289064407349,67.00089156684965,51.33450480401705,33.33333333333333,89.89037871360779
-Enter,Pressione Enter,Enter,"DE,RU",LLAMA,81.36752247810364,66.34490679250591,49.99999999999999,100.0,85.61016321182251
-Accept Changes,aceitar alterações,Aceita alterações,"DE,RU",LLAMA,93.89029145240784,59.478425879475374,49.99999999999999,50.0,83.61848592758179
-Backspace,Löschtaste,Backspace,"DE,RU",LLAMA,52.072978019714355,6.211180124223603,0.0,100.0,72.42448329925537
-Control-H,Ctrl+H,Control-H,"DE,RU",LLAMA,61.35490536689758,10.434698980573188,0.0,100.0,71.90616726875305
-Delete the previous character,Remover o caractere anterior,Exclui o caractere anterior,"DE,RU",LLAMA,91.56314134597778,71.15022557190473,59.460355750136046,25.0,89.32244181632996
-Left,Links,Left,"DE,RU",LLAMA,67.67849326133728,4.761904761904763,0.0,100.0,86.77688837051392
-Control-B,Ctrl+B,Control-B,"DE,RU",LLAMA,62.77304291725159,10.434698980573188,0.0,100.0,74.57547783851624
-Move Back one space,Um caractere para a esquerda,Move um espaço para trás,"DE,RU",LLAMA,47.51862585544586,14.281736559430177,10.682175159905848,80.0,75.94377994537354
-Right,Direito,Right,"DE,RU",LLAMA,75.44459700584412,6.17283950617284,0.0,100.0,77.37740874290466
-Control-F,Ctrl+F,Control-F,"DE,RU",LLAMA,69.40636038780212,10.434698980573188,0.0,100.0,71.91522717475891
-Move Forward one space,Mover um caractere para a direita,Move um espaço para frente,"DE,RU",LLAMA,56.17416501045227,22.095478689518632,9.652434877402245,80.0,81.74288868904114
-Home,Pos1,Home,"DE,RU",LLAMA,53.93856167793274,5.0,0.0,100.0,75.45605897903442
-Control-A,A,Control-A,"DE,RU",LLAMA,71.5736985206604,6.756756756756757,0.0,100.0,80.23324608802795
-Move to the beginning of the line,Zum Zeilenanfang,Move ao início da linha,"DE,RU",LLAMA,50.52122473716736,4.807692307692308,0.0,100.0,67.95371770858765
-End,Fim,Fim,"DE,RU",LLAMA,98.53989481925964,100.0,100.00000000000004,0.0,99.99998807907104
-Control-E,Ctrl+E,Control-E,"DE,RU",LLAMA,57.40872621536255,10.434698980573188,0.0,100.0,73.93181324005127
-Move to the end of the line,Zum Zeilenende,Move ao final da linha,"DE,RU",LLAMA,42.691731452941895,4.411764705882352,0.0,100.0,65.17473459243774
-Delete,Excluir,Delete,"DE,RU",LLAMA,52.0773708820343,2.304147465437788,0.0,100.0,70.36802768707275
-Control-D,STRG-D,Control-D,"DE,RU",LLAMA,76.10475420951843,5.332480136511491,0.0,100.0,83.17025303840637
-Delete the next character,Remover o próximo caractere,Exclui o próximo caractere,"DE,RU",LLAMA,82.75538086891174,70.09490551220269,59.460355750136046,25.0,90.20044803619385
-Control-K,Ctrl+K,Control-K,"DE,RU",LLAMA,66.21286273002625,10.434698980573188,0.0,100.0,71.6700553894043
-Kill all characters to the EOL,todos os caracteres até o final da linha serão removidos.,Elimina todos os caracteres ao fim da linha,"DE,RU",LLAMA,81.66982531547546,58.70466720681825,17.542198478193427,75.0,82.49162435531616
-Control-C,Ctrl+C,Control-C,"DE,RU",LLAMA,62.29192018508911,10.434698980573188,0.0,100.0,73.69264960289001
-Abort This Operation,Cancelar esta ação,Cancelar esta operação,"DE,RU",LLAMA,95.05975246429443,63.904371972366,55.03212081491043,33.33333333333333,95.81087231636047
-This is probably because: ,O motivo provável é:,Isto provavelmente é porque:,"DE,RU",LLAMA,84.67736840248108,19.58143797046418,12.703318703865365,100.0,74.61326122283936
-"The required field ""name"" is missing.",O campo 'name' necessário não está presente.,"O campo ""name"" requerido está faltando","DE,RU",LLAMA,92.50579476356506,28.40843535904304,12.22307556087252,66.66666666666666,83.9529275894165
-Empty string.,Cadeia vazia.,String vazia.,"DE,RU",LLAMA,65.53764343261719,41.634199134199136,55.03212081491043,50.0,86.77203059196472
-The character '%s' (U+%02X) may not appear at the beginning of a word.,O caráter '\%s' (U+%02X) não deve aparecer no início de uma palavra.,O caractere '%s' (U+%02X) pode não aparecer no início da palavra.,"DE,RU",LLAMA,70.29268145561218,61.80841413098135,44.43530419831706,54.54545454545454,94.39097046852112
-The character '%s' (U+%02X) must be followed by an alphabetic character.,Após o caractere '\u%02X' (U+%02X) deve seguir um caractere alfabético.,O caractere '%s' (U+%02X) deve ser seguido por um caractere alfabético.,"DE,RU",LLAMA,83.48090052604675,68.96065601866128,45.30777803692813,45.45454545454545,91.30497574806213
-Does not contain any alphabetic characters.,Não contém nenhum caractere alfabético.,Não contém quaisquer caracteres alfabéticos.,"DE,RU",LLAMA,95.88362574577332,51.45496985549827,17.965205598154213,60.0,88.98540735244751
-The character '%s' (U+%02X) may not appear in the middle of a word.,O caráter '\%s' (U+%02X) não deve aparecer no meio de uma palavra.,O caractere '%s' (U+%02X) pode não aparecer no meio da palavra.,"DE,RU",LLAMA,65.14250636100769,60.74010074059023,44.43530419831706,54.54545454545454,94.16255950927734
-The character '\r' (U+0D) may not appear at the end of a word. This probably means means that the file is using MS-DOS EOL instead of Unix EOL.,O caractere '\r' (U+000D) não deve aparecer no final de uma palavra. Isso pode estar relacionado ao fato de que a arquivo utiliza o retorno de carro do MS-DOS em vez do UNIX.,O caractere '\r' (U+0D) pode não aparecer ao final da palavra. Isto significa que provavelmente o arquivo usa fim de linha MS-DOS ao invés de Unix.,"DE,RU",LLAMA,71.07555866241455,43.01166115925658,21.83040317272519,80.76923076923077,91.3280189037323
-The character '%s' (U+%02X) may not appear at the end of a word.,O caráter '\%s' (U+%02X) não deve aparecer no final de uma palavra.,O caractere '%s' (U+%02X) pode não aparecer no final da palavra.,"DE,RU",LLAMA,70.69211006164551,61.284727492517156,44.43530419831706,54.54545454545454,94.38162446022034
+","DE,RU",LLAMA,6.207048714397793
+Error: Stdin not a terminal.,Erro: Entrada padrão não é um terminal.,Erro: Stdin não é um terminal.,"DE,RU",LLAMA,51.33450480401705
+Enter,Pressione Enter,Enter,"DE,RU",LLAMA,49.99999999999999
+Accept Changes,aceitar alterações,Aceita alterações,"DE,RU",LLAMA,49.99999999999999
+Backspace,Löschtaste,Backspace,"DE,RU",LLAMA,0.0
+Control-H,Ctrl+H,Control-H,"DE,RU",LLAMA,0.0
+Delete the previous character,Remover o caractere anterior,Exclui o caractere anterior,"DE,RU",LLAMA,59.460355750136046
+Left,Links,Left,"DE,RU",LLAMA,0.0
+Control-B,Ctrl+B,Control-B,"DE,RU",LLAMA,0.0
+Move Back one space,Um caractere para a esquerda,Move um espaço para trás,"DE,RU",LLAMA,10.682175159905848
+Right,Direito,Right,"DE,RU",LLAMA,0.0
+Control-F,Ctrl+F,Control-F,"DE,RU",LLAMA,0.0
+Move Forward one space,Mover um caractere para a direita,Move um espaço para frente,"DE,RU",LLAMA,9.652434877402245
+Home,Pos1,Home,"DE,RU",LLAMA,0.0
+Control-A,A,Control-A,"DE,RU",LLAMA,0.0
+Move to the beginning of the line,Zum Zeilenanfang,Move ao início da linha,"DE,RU",LLAMA,0.0
+End,Fim,Fim,"DE,RU",LLAMA,100.00000000000004
+Control-E,Ctrl+E,Control-E,"DE,RU",LLAMA,0.0
+Move to the end of the line,Zum Zeilenende,Move ao final da linha,"DE,RU",LLAMA,0.0
+Delete,Excluir,Delete,"DE,RU",LLAMA,0.0
+Control-D,STRG-D,Control-D,"DE,RU",LLAMA,0.0
+Delete the next character,Remover o próximo caractere,Exclui o próximo caractere,"DE,RU",LLAMA,59.460355750136046
+Control-K,Ctrl+K,Control-K,"DE,RU",LLAMA,0.0
+Kill all characters to the EOL,todos os caracteres até o final da linha serão removidos.,Elimina todos os caracteres ao fim da linha,"DE,RU",LLAMA,17.542198478193427
+Control-C,Ctrl+C,Control-C,"DE,RU",LLAMA,0.0
+Abort This Operation,Cancelar esta ação,Cancelar esta operação,"DE,RU",LLAMA,55.03212081491043
+This is probably because: ,O motivo provável é:,Isto provavelmente é porque:,"DE,RU",LLAMA,12.703318703865365
+"The required field ""name"" is missing.",O campo 'name' necessário não está presente.,"O campo ""name"" requerido está faltando","DE,RU",LLAMA,12.22307556087252
+Empty string.,Cadeia vazia.,String vazia.,"DE,RU",LLAMA,55.03212081491043
+The character '%s' (U+%02X) may not appear at the beginning of a word.,O caráter '\%s' (U+%02X) não deve aparecer no início de uma palavra.,O caractere '%s' (U+%02X) pode não aparecer no início da palavra.,"DE,RU",LLAMA,44.43530419831706
+The character '%s' (U+%02X) must be followed by an alphabetic character.,Após o caractere '\u%02X' (U+%02X) deve seguir um caractere alfabético.,O caractere '%s' (U+%02X) deve ser seguido por um caractere alfabético.,"DE,RU",LLAMA,45.30777803692813
+Does not contain any alphabetic characters.,Não contém nenhum caractere alfabético.,Não contém quaisquer caracteres alfabéticos.,"DE,RU",LLAMA,17.965205598154213
+The character '%s' (U+%02X) may not appear in the middle of a word.,O caráter '\%s' (U+%02X) não deve aparecer no meio de uma palavra.,O caractere '%s' (U+%02X) pode não aparecer no meio da palavra.,"DE,RU",LLAMA,44.43530419831706
+The character '\r' (U+0D) may not appear at the end of a word. This probably means means that the file is using MS-DOS EOL instead of Unix EOL.,O caractere '\r' (U+000D) não deve aparecer no final de uma palavra. Isso pode estar relacionado ao fato de que a arquivo utiliza o retorno de carro do MS-DOS em vez do UNIX.,O caractere '\r' (U+0D) pode não aparecer ao final da palavra. Isto significa que provavelmente o arquivo usa fim de linha MS-DOS ao invés de Unix.,"DE,RU",LLAMA,21.83040317272519
+The character '%s' (U+%02X) may not appear at the end of a word.,O caráter '\%s' (U+%02X) não deve aparecer no final de uma palavra.,O caractere '%s' (U+%02X) pode não aparecer no final da palavra.,"DE,RU",LLAMA,44.43530419831706
 "Warning: Removing invalid affix '%s' from word %s.
 ",Aviso: Retire a terminação inválida '»%s«' do termo '»%s«'.,"Alerta: removendo afixo inválido '%s' da palavra %s.
-","DE,RU",LLAMA,64.33345675468445,22.482203471545365,3.716499092256817,100.0,82.31959342956543
+","DE,RU",LLAMA,3.716499092256817
 "Warning: Removing inapplicable affix '%s' from word %s.
 ",Aviso: Não remova a extensão de terminação '%s' do palavra '%s'. Acho que essa extensão não é aplicável.,"Alerta: removendo afixo não aplicável '%s' da palavra %s.
-","DE,RU",LLAMA,64.34287428855896,36.020262832759244,7.378790595215932,100.0,80.18000721931458
+","DE,RU",LLAMA,7.378790595215932
 "Warning: %s Skipping string.
 ",Aviso: »%s«: Pule a cadeia de caracteres.,"Alerta: %s ignorando string.
-","DE,RU",LLAMA,54.115599393844604,13.083114338383567,4.456882760699063,100.0,76.20112299919128
-The total length is larger than 240 characters.,O termo é geralmente mais longo do que 240 caracteres.,O comprimento total é maior que 240 caracteres.,"DE,RU",LLAMA,82.25212693214417,49.567799345997145,25.965358893403383,75.0,84.74909663200378
+","DE,RU",LLAMA,4.456882760699063
+The total length is larger than 240 characters.,O termo é geralmente mais longo do que 240 caracteres.,O comprimento total é maior que 240 caracteres.,"DE,RU",LLAMA,25.965358893403383
 "Warning: %s Skipping word.
 ",Aviso: »%s«: Pule a palavra.,"Alerta: %s ignorando palavra.
-","DE,RU",LLAMA,51.797717809677124,30.221178432865926,9.980099403873663,100.0,77.59079933166504
-Possibly incorrect count.,possivelmente número inválido.,Provável contagem incorreta.,"DE,RU",LLAMA,67.6254153251648,14.6415958131763,15.97357760615681,100.0,75.628662109375
-Incompatible hash function.,Função de hash não compatível.,Função hash incompatível.,"DE,RU",LLAMA,90.31137824058533,56.632569290942605,10.682175159905853,100.0,92.37467050552368
-Wrong endian order.,Ordem de Endian não correta.,Ordem endian incorreta.,"DE,RU",LLAMA,66.62827730178833,46.64047238229165,9.652434877402245,100.0,87.2450053691864
-Wrong soundslike.,Falso sentido da palavra.,Pronúncia incorreta.,"DE,RU",LLAMA,60.35253405570984,10.78557890307234,10.682175159905848,100.0,71.71875834465027
-Wrong soundslike version.,Falha de palavras com sonoridade errada.,Versão incorreta de pronúncia.,"DE,RU",LLAMA,61.32303476333618,18.441547520136936,7.809849842300637,100.0,73.56010675430298
-Affix flags found in word but no affix file given.,"Endungsflags encontrados no texto, mas sem arquivo de terminação especificado.",Sinais de afixos na palavra mas sem arquivo de afixo fornecido.,"DE,RU",LLAMA,55.92108368873596,35.96803134995301,22.416933501922287,63.63636363636363,79.82476353645325
-"The total word length, with soundslike data, is larger than 240 characters.","A extensão total do termo, incluindo dados de somatório sonoro, é maior que 240 caracteres.",Comprimento total da palavra com dados de pronúncia maior que 240 caracteres.,"DE,RU",LLAMA,77.14045643806458,48.82029128189094,23.909453161355017,66.66666666666666,81.99726939201355
-"There must be at least one ""add"" line.",É necessário que haja pelo menos uma linha com a opção 'add'.,"Deve existir ao menos uma linha ""add"".","DE,RU",LLAMA,91.41740202903748,39.931165285811396,12.35622127262679,100.0,86.37582659721375
-"one of ultra, fast, normal, slow, or bad-spellers","um dos seguidos de »ultra«, »rápido/fastaquele», »normal/comum/normaisseus» ou &lt;b&gt;bad-spellers&lt;/b&gt;","um de ultra, fast, normal, slow, ou bad-spellers","DE,RU",LLAMA,47.38659858703613,35.25826129514103,2.46233736722218,87.5,70.81039547920227
-is not one of the allowed types,não é permitido nenhum dos tipos listados.,não é um dos tipos permitidos,"DE,RU",LLAMA,84.18883681297302,62.2790421635068,15.619699684601276,50.0,83.17068815231323
-The personal word list is unavailable.,A lista de palavras pessoais não está disponível.,A lista pessoal de palavras não está disponível.,"DE,RU",LLAMA,93.82638335227966,78.23043660194786,40.32989116748136,25.0,96.03655934333801
-The session word list is unavailable.,A lista de palavras da sessão não está disponível.,A lista de palavras da sessão não está disponível.,"DE,RU",LLAMA,97.55786657333374,100.0,100.00000000000004,0.0,100.00001192092896
-The main word list is unavailable.,A principal lista de palavras não está disponível.,A lista principal de palavras não está disponível.,"DE,RU",LLAMA,96.42933011054993,84.20471617599345,65.00593260343696,12.5,98.21301698684692
-"a string of 'o','O','p',or 'P'","Uma cadeia de caracteres a partir do 'o', 'O', 'p' ou 'P'","uma string de 'o','O','p',ou 'P'","DE,RU",LLAMA,75.19029974937439,39.3337216135559,31.61487584488944,100.0,91.64443016052246
-experimental filter for hiding delimited contexts,"Filtro experimental, para ocultar seções limitadas.",filtro experimental p/ ocultar contextos delimitados,"DE,RU",LLAMA,83.17996859550476,44.32968983089676,6.567274736060395,66.66666666666666,76.96315050125122
-context delimiters (separated by spaces),Kontextbegrenzer (durch Leerzeichen getrennt),delimitadores de contexto (separados por espaços),"DE,RU",LLAMA,74.90500807762146,14.179977323401221,6.916271812933183,100.0,74.83099699020386
-swaps visible and invisible text,Texto trocado entre visível e não visível,troca texto visível e invisível,"DE,RU",LLAMA,81.18954300880432,50.44491630699501,13.134549472120788,100.0,80.09370565414429
-filter for skipping quoted text in email messages,"filtro, para passar em cima de um texto citado nas emails",filtro para ignorar citações de texto em mensagens de e-mail,"DE,RU",LLAMA,56.39265179634094,27.941056903474088,5.063996506781411,80.0,78.9279043674469
-email quote characters,Caracteres de citação para e-mail,caracteres de citações de e-mail,"DE,RU",LLAMA,79.55732941627502,54.16530274126005,12.703318703865365,40.0,86.8958592414856
-num chars that can appear before the quote char,Número de caracteres que podem aparecer antes do símbolo '},número de caracteres que podem aparecer antes da citação,"DE,RU",LLAMA,83.72874855995178,75.35534961686906,46.17366309441026,33.33333333333333,86.93974018096924
-filter for dealing with HTML documents,"filtro, para tratar documentos HTML",filtro para manipular documentos HTML,"DE,RU",LLAMA,89.7364616394043,59.05166952472938,19.304869754804482,40.0,89.81654644012451
-HTML attributes to always check,Atributo HTML que sempre é verificado.,sempre verifica estes atributos HTML,"DE,RU",LLAMA,81.53373599052429,42.94882099028875,7.809849842300637,100.0,79.53232526779175
-HTML tags to always skip the contents of,Tags HTML cujo conteúdo é sempre ignorado.,sempre ignora o conteúdo de etiquetas HTML,"DE,RU",LLAMA,79.3373703956604,47.20198042272171,7.267884212102741,85.71428571428571,76.97440981864929
-filter for Markdown/CommonMark documents,"filtro, para tratar documentos em Markdown/CommonMark",filtro para documentos Markdown/CommonMark,"DE,RU",LLAMA,86.96045875549316,67.72075786586208,21.10534063187263,75.0,87.99317479133606
-filter for dealing with Nroff documents,"Filtro, um documento nroff para tratar",filtro para manipular documentos Nroff,"DE,RU",LLAMA,53.36141586303711,33.77209381349453,6.567274736060395,100.0,72.98489212989807
-filter for dealing with generic SGML/XML documents,"Filtro, um gerador genérico de documentos SGML/XML para tratamento",filtro para manipular documentos SGML/XML genéricos,"DE,RU",LLAMA,76.77820324897766,50.36696988252133,22.416933501922287,100.0,81.97375535964966
-SGML attributes to always check,"Atributo SGML, que sempre é verificado.",sempre verifica estes atributos SGML,"DE,RU",LLAMA,70.63019275665283,42.581999100160054,6.567274736060395,100.0,78.89509201049805
-SGML tags to always skip the contents of,Tags SGML cujo conteúdo é sempre ignorado.,sempre ignora o conteúdo de etiquetas SGML,"DE,RU",LLAMA,74.03033375740051,47.20198042272171,7.267884212102741,85.71428571428571,77.57453918457031
-filter for dealing with TeX/LaTeX documents,"Filtro, comandos para trabalhar com documentos TeX/LaTeX",filtro para manipular documentos TeX/LaTeX,"DE,RU",LLAMA,81.89749121665955,53.16003126107851,27.77619034011791,80.0,89.02900815010071
-check TeX comments,verificação de comentários TeX,verifica comentários TeX,"DE,RU",LLAMA,85.09663939476013,75.10913375220768,31.947155212313625,66.66666666666666,94.21520829200745
-TeX commands,Comandos TeX,comandos TeX,"DE,RU",LLAMA,92.60868430137634,72.04319985569984,49.99999999999999,0.0,90.98314046859741
-filter for dealing with Texinfo documents,"Filtro, um documento Texinfo para tratar",filtro para manipular documentos Texinfo,"DE,RU",LLAMA,63.8839066028595,41.81356004082063,7.809849842300637,100.0,77.01362371444702
-Texinfo commands to ignore the parameters of,Comandos Texinfo cujos parâmetros são ignorados.,ignora os parâmetros de comandos Texinfo,"DE,RU",LLAMA,72.4391758441925,58.17372069623331,7.809849842300637,83.33333333333334,78.37432026863098
-Texinfo environments to ignore,Ambientes Texinfo ignorados,Texinfo de ambiente a ignorar,"DE,RU",LLAMA,75.00597834587097,43.92320916597096,14.127216461522432,100.0,83.08641314506531
-filter to skip URL like constructs,"filtro, para pulverizar construções semelhantes a URLs",filtro para ignorar construtores tipo URL,"DE,RU",LLAMA,76.87850594520569,32.45114525026665,6.567274736060395,100.0,81.29729628562927
-mode for checking C++ comments and string literals,Modus para verificar comentários C++ e literais de cadeia textual.,modo para verificar comentários C++ e strings literais,"DE,RU",LLAMA,82.64915347099304,67.80611194732849,48.63383168079942,62.5,86.48849725723267
-mode to check any lines starting with a #,"Modus de verificação, para todas as linhas que começam com '##'.",modo para verificar quaisquer linhas começando com uma #,"DE,RU",LLAMA,71.20645642280579,33.197449411163994,3.4585921141027365,100.0,79.71622347831726
-mode for skipping quoted text in email messages,Modus para pular zitados em emails.,modo para ignorar citações de texto em mensagens de e-mail,"DE,RU",LLAMA,36.51166558265686,14.741261689906956,5.08764122072739,80.0,77.61096358299255
-mode for checking HTML documents,"Modus de verificação, um documento HTML",modo para verificar documentos HTML,"DE,RU",LLAMA,71.14838361740112,39.327212199724606,6.567274736060395,100.0,82.44224190711975
-mode for checking Markdown/CommonMark documents,Modus para verificação de documentos Markdown/CommonMark.,modo para verificar documentos Markdown/CommonMark,"DE,RU",LLAMA,90.95774292945862,71.20072739512452,31.55984539112946,80.0,90.6548261642456
-mode to disable all filters,Modus de desativar todos os filtros,modo para desabilitar todos os filtros,"DE,RU",LLAMA,89.11569714546204,50.91850988305372,30.213753973567677,50.0,90.69661498069763
-mode for checking Nroff documents,Modus para verificar documentos Nroff.,modo para verificar documentos Nroff,"DE,RU",LLAMA,90.8017098903656,83.68750257358766,50.81327481546149,40.0,89.6567165851593
-mode for checking Perl comments and string literals,"Modo de execução, para verificar comentários Perl e literais de cadeia textual.",modo para verificar comentários Perl e strings literais,"DE,RU",LLAMA,74.1162121295929,64.66814326044948,27.824623288353134,75.0,82.4289858341217
-mode for checking generic SGML/XML documents,Modus para verificar documentos SGML/XML genéricos.,modo para verificar documentos SGML/XML genéricos,"DE,RU",LLAMA,92.07329154014587,87.69604855767362,72.59795291154772,33.33333333333333,92.64075756072998
-mode for checking TeX/LaTeX documents,"Regime de verificação, um documento TeX/LaTeX para inspecionar",modo para verificar documentos TeX/LaTeX,"DE,RU",LLAMA,76.52650475502014,46.56318055391998,14.991106946711685,100.0,84.34932231903076
-mode for checking Texinfo documents,Modus para a verificação de documentos Texinfo.,modo para verificar documentos Texinfo,"DE,RU",LLAMA,88.42176795005798,61.849182600717526,12.22307556087252,100.0,87.24567890167236
-mode to skip URL like constructs (default mode),"Modus, um URL articulado para evitar o tratamento de construções semelhantes (modo padrão)",modo para ignorar construtores tipo URL (modo padrão),"DE,RU",LLAMA,69.87544894218445,42.93814831421595,16.94357181593088,100.0,79.48445677757263
+","DE,RU",LLAMA,9.980099403873663
+Possibly incorrect count.,possivelmente número inválido.,Provável contagem incorreta.,"DE,RU",LLAMA,15.97357760615681
+Incompatible hash function.,Função de hash não compatível.,Função hash incompatível.,"DE,RU",LLAMA,10.682175159905853
+Wrong endian order.,Ordem de Endian não correta.,Ordem endian incorreta.,"DE,RU",LLAMA,9.652434877402245
+Wrong soundslike.,Falso sentido da palavra.,Pronúncia incorreta.,"DE,RU",LLAMA,10.682175159905848
+Wrong soundslike version.,Falha de palavras com sonoridade errada.,Versão incorreta de pronúncia.,"DE,RU",LLAMA,7.809849842300637
+Affix flags found in word but no affix file given.,"Endungsflags encontrados no texto, mas sem arquivo de terminação especificado.",Sinais de afixos na palavra mas sem arquivo de afixo fornecido.,"DE,RU",LLAMA,22.416933501922287
+"The total word length, with soundslike data, is larger than 240 characters.","A extensão total do termo, incluindo dados de somatório sonoro, é maior que 240 caracteres.",Comprimento total da palavra com dados de pronúncia maior que 240 caracteres.,"DE,RU",LLAMA,23.909453161355017
+"There must be at least one ""add"" line.",É necessário que haja pelo menos uma linha com a opção 'add'.,"Deve existir ao menos uma linha ""add"".","DE,RU",LLAMA,12.35622127262679
+"one of ultra, fast, normal, slow, or bad-spellers","um dos seguidos de »ultra«, »rápido/fastaquele», »normal/comum/normaisseus» ou &lt;b&gt;bad-spellers&lt;/b&gt;","um de ultra, fast, normal, slow, ou bad-spellers","DE,RU",LLAMA,2.46233736722218
+is not one of the allowed types,não é permitido nenhum dos tipos listados.,não é um dos tipos permitidos,"DE,RU",LLAMA,15.619699684601276
+The personal word list is unavailable.,A lista de palavras pessoais não está disponível.,A lista pessoal de palavras não está disponível.,"DE,RU",LLAMA,40.32989116748136
+The session word list is unavailable.,A lista de palavras da sessão não está disponível.,A lista de palavras da sessão não está disponível.,"DE,RU",LLAMA,100.00000000000004
+The main word list is unavailable.,A principal lista de palavras não está disponível.,A lista principal de palavras não está disponível.,"DE,RU",LLAMA,65.00593260343696
+"a string of 'o','O','p',or 'P'","Uma cadeia de caracteres a partir do 'o', 'O', 'p' ou 'P'","uma string de 'o','O','p',ou 'P'","DE,RU",LLAMA,31.61487584488944
+experimental filter for hiding delimited contexts,"Filtro experimental, para ocultar seções limitadas.",filtro experimental p/ ocultar contextos delimitados,"DE,RU",LLAMA,6.567274736060395
+context delimiters (separated by spaces),Kontextbegrenzer (durch Leerzeichen getrennt),delimitadores de contexto (separados por espaços),"DE,RU",LLAMA,6.916271812933183
+swaps visible and invisible text,Texto trocado entre visível e não visível,troca texto visível e invisível,"DE,RU",LLAMA,13.134549472120788
+filter for skipping quoted text in email messages,"filtro, para passar em cima de um texto citado nas emails",filtro para ignorar citações de texto em mensagens de e-mail,"DE,RU",LLAMA,5.063996506781411
+email quote characters,Caracteres de citação para e-mail,caracteres de citações de e-mail,"DE,RU",LLAMA,12.703318703865365
+num chars that can appear before the quote char,Número de caracteres que podem aparecer antes do símbolo '},número de caracteres que podem aparecer antes da citação,"DE,RU",LLAMA,46.17366309441026
+filter for dealing with HTML documents,"filtro, para tratar documentos HTML",filtro para manipular documentos HTML,"DE,RU",LLAMA,19.304869754804482
+HTML attributes to always check,Atributo HTML que sempre é verificado.,sempre verifica estes atributos HTML,"DE,RU",LLAMA,7.809849842300637
+HTML tags to always skip the contents of,Tags HTML cujo conteúdo é sempre ignorado.,sempre ignora o conteúdo de etiquetas HTML,"DE,RU",LLAMA,7.267884212102741
+filter for Markdown/CommonMark documents,"filtro, para tratar documentos em Markdown/CommonMark",filtro para documentos Markdown/CommonMark,"DE,RU",LLAMA,21.10534063187263
+filter for dealing with Nroff documents,"Filtro, um documento nroff para tratar",filtro para manipular documentos Nroff,"DE,RU",LLAMA,6.567274736060395
+filter for dealing with generic SGML/XML documents,"Filtro, um gerador genérico de documentos SGML/XML para tratamento",filtro para manipular documentos SGML/XML genéricos,"DE,RU",LLAMA,22.416933501922287
+SGML attributes to always check,"Atributo SGML, que sempre é verificado.",sempre verifica estes atributos SGML,"DE,RU",LLAMA,6.567274736060395
+SGML tags to always skip the contents of,Tags SGML cujo conteúdo é sempre ignorado.,sempre ignora o conteúdo de etiquetas SGML,"DE,RU",LLAMA,7.267884212102741
+filter for dealing with TeX/LaTeX documents,"Filtro, comandos para trabalhar com documentos TeX/LaTeX",filtro para manipular documentos TeX/LaTeX,"DE,RU",LLAMA,27.77619034011791
+check TeX comments,verificação de comentários TeX,verifica comentários TeX,"DE,RU",LLAMA,31.947155212313625
+TeX commands,Comandos TeX,comandos TeX,"DE,RU",LLAMA,49.99999999999999
+filter for dealing with Texinfo documents,"Filtro, um documento Texinfo para tratar",filtro para manipular documentos Texinfo,"DE,RU",LLAMA,7.809849842300637
+Texinfo commands to ignore the parameters of,Comandos Texinfo cujos parâmetros são ignorados.,ignora os parâmetros de comandos Texinfo,"DE,RU",LLAMA,7.809849842300637
+Texinfo environments to ignore,Ambientes Texinfo ignorados,Texinfo de ambiente a ignorar,"DE,RU",LLAMA,14.127216461522432
+filter to skip URL like constructs,"filtro, para pulverizar construções semelhantes a URLs",filtro para ignorar construtores tipo URL,"DE,RU",LLAMA,6.567274736060395
+mode for checking C++ comments and string literals,Modus para verificar comentários C++ e literais de cadeia textual.,modo para verificar comentários C++ e strings literais,"DE,RU",LLAMA,48.63383168079942
+mode to check any lines starting with a #,"Modus de verificação, para todas as linhas que começam com '##'.",modo para verificar quaisquer linhas começando com uma #,"DE,RU",LLAMA,3.4585921141027365
+mode for skipping quoted text in email messages,Modus para pular zitados em emails.,modo para ignorar citações de texto em mensagens de e-mail,"DE,RU",LLAMA,5.08764122072739
+mode for checking HTML documents,"Modus de verificação, um documento HTML",modo para verificar documentos HTML,"DE,RU",LLAMA,6.567274736060395
+mode for checking Markdown/CommonMark documents,Modus para verificação de documentos Markdown/CommonMark.,modo para verificar documentos Markdown/CommonMark,"DE,RU",LLAMA,31.55984539112946
+mode to disable all filters,Modus de desativar todos os filtros,modo para desabilitar todos os filtros,"DE,RU",LLAMA,30.213753973567677
+mode for checking Nroff documents,Modus para verificar documentos Nroff.,modo para verificar documentos Nroff,"DE,RU",LLAMA,50.81327481546149
+mode for checking Perl comments and string literals,"Modo de execução, para verificar comentários Perl e literais de cadeia textual.",modo para verificar comentários Perl e strings literais,"DE,RU",LLAMA,27.824623288353134
+mode for checking generic SGML/XML documents,Modus para verificar documentos SGML/XML genéricos.,modo para verificar documentos SGML/XML genéricos,"DE,RU",LLAMA,72.59795291154772
+mode for checking TeX/LaTeX documents,"Regime de verificação, um documento TeX/LaTeX para inspecionar",modo para verificar documentos TeX/LaTeX,"DE,RU",LLAMA,14.991106946711685
+mode for checking Texinfo documents,Modus para a verificação de documentos Texinfo.,modo para verificar documentos Texinfo,"DE,RU",LLAMA,12.22307556087252
+mode to skip URL like constructs (default mode),"Modus, um URL articulado para evitar o tratamento de construções semelhantes (modo padrão)",modo para ignorar construtores tipo URL (modo padrão),"DE,RU",LLAMA,16.94357181593088
