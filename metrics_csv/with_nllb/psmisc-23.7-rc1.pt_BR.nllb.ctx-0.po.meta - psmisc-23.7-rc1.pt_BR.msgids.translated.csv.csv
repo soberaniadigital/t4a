@@ -1,0 +1,530 @@
+original,translated,reference,context_languages,strategy,bleu
+"Usage: fuser [-fIMuvw] [-a|-s] [-4|-6] [-c|-m|-n SPACE]
+             [-k [-i] [-SIGNAL]] NAME...
+       fuser -l
+       fuser -V
+Show which processes use the named files, sockets, or filesystems.
+
+  -a,--all              display unused files too
+  -i,--interactive      ask before killing (ignored without -k)
+  -I,--inode            use always inodes to compare files
+  -k,--kill             kill processes accessing the named file
+  -l,--list-signals     list available signal names
+  -m,--mount            show all processes using the named filesystems or
+                        block device
+  -M,--ismountpoint     fulfill request only if NAME is a mount point
+  -n,--namespace SPACE  search in this name space (file, udp, or tcp)
+  -s,--silent           silent operation
+  -SIGNAL               send this signal instead of SIGKILL
+  -u,--user             display user IDs
+  -v,--verbose          verbose output
+  -w,--writeonly        kill only processes with write access
+  -V,--version          display version information
+","Utilização: fuser [f-fIMuvw] [a-i-i-s] [-4-i-i-6] [-c-i-i-m-i-i-n SPACE]
+[-k [-i] [-SIGNAL] Nome...
+fusor -l
+fusor -V
+Mostre quais processos utilizam os arquivos, sockets ou sistemas de arquivos nomeados.
+-A, -todos exibem arquivos não usados também
+-I,--interativo perguntar antes de matar (ignorado sem -k)
+- Eu, - inode usar sempre inodes para comparar arquivos
+- K, - matar processos de matança acessando o arquivo nomeado
+- Eu, - lista de sinais lista de sinais disponíveis nomes
+-m,-- montar mostrar todos os processos usando os sistemas de arquivos nomeados ou
+dispositivo de bloqueio
+-M,--ismountpoint satisfazer a solicitação somente se NAME é um ponto de montagem
+-n,-- namespace SPACE busca neste espaço de nomes (arquivo, udp, ou tcp)
+-s, - operação silenciosa silenciosa
+-SIGNAL Envia este sinal em vez de SIGKILL.
+-U,--o usuário exibe IDs de usuário
+- v, - verbose verbose saída
+-w,--excluir apenas processos com acesso de escrita
+- V, - versão de exibição de informações de versão","Uso:   fuser [-fMuv] [-a|-s] [-4|-6] [-c|-m|-n ESPAÇO]
+             [-k [-i] [-SINAL]] NOME...
+       fuser -l
+       fuser -V
+Mostra quais processos usam os arquivos, sockets ou sistema de arquivos especificados.
+
+  -a,--all              exibe também arquivos sem uso
+  -i,--interactive      pergunta antes de matar (ignorado sem -k)
+  -k,--kill             mata processos acessando o arquivo especificado
+  -l,--list-signals     lista os nomes de sinal disponíveis
+  -m,--mount            mostra todos processos usando o sistema de arquivos
+                        ou dispositivo de bloco especificado
+  -M,--ismountpoint     realiza solicitação apenas se NOME for um ponto
+                        de montagem
+  -n,--namespace ESPAÇO pesquisa neste espaço de nome (file, udp ou tcp)
+  -s,--silent           operação silenciosa
+  -SINAL                envia este sinal em vez de SIGKILL
+  -u,--user             exibe IDs de usuário
+  -v,--verbose          saída detalhada
+  -w,--writeonly        mata apenas processos com acesso de gravação
+  -V,--version          exibe informações de versão
+",,NLLB,24.66348314296743
+"  -4,--ipv4             search IPv4 sockets only
+  -6,--ipv6             search IPv6 sockets only
+","-4, -ipv4 busca sockets IPv4 apenas
+-6,--ipv6 busca sockets IPv6 apenas","  -4,--ipv4             pesquisa apenas sockets IPv4
+  -6,--ipv6             pesquisa apenas sockets IPv6
+",,NLLB,18.393816249638878
+"  udp/tcp names: [local_port][,[rmt_host][,[rmt_port]]]
+
+","nomes udp/tcp: [local_port][,[rmt_host][,[rmt_port]]]","  -                     redefine opções
+
+  nomes udp/tcp: [porta_local][,[maq_rmt][,[porta_rmt]]]
+
+",,NLLB,39.210006579352005
+"fuser (PSmisc) %s
+",fusor (PSmisc) %s,"fuser (PSmisc) %s
+",,NLLB,75.98356856515926
+"Copyright (C) 1993-2024 Werner Almesberger and Craig Small
+
+",Direitos autorais (C) 1993-2024 Werner Almesberger e Craig Small,"Copyright (C) 1993-2020 Werner Almesberger and Craig Small
+
+",,NLLB,37.06866381788036
+"PSmisc comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it under
+the terms of the GNU General Public License.
+For more information about these matters, see the files named COPYING.
+","O PSmisc vem com absolutamente nenhuma garantia.
+Este é um software livre, e pode redistribuí-lo
+os termos da Licença Pública Geral GNU.
+Para obter mais informações sobre estes assuntos, consulte os arquivos denominados COPYING.","PSmisc vem com ABSOLUTAMENTE NENHUMA GARANTIA.
+Este é um software livre, e você é bem-vindo em redistribuí-lo dentro
+dos termos da Licença Pública Geral GNU (GPL).
+Para mais informações a respeito, veja os arquivos com o nome COPYING.
+",,NLLB,32.8947880568675
+"Cannot open /proc directory: %s
+",Não pode abrir o diretório /proc: %s,"Não foi possível abrir o diretório /proc: %s
+",,NLLB,70.80735452207037
+"Cannot allocate memory for matched proc: %s
+",Não pode atribuir memória para proc correspondente: %s,"Não foi possível alocar memória ao proc equiparado: %s
+",,NLLB,16.807407519804237
+"Specified filename %s does not exist.
+",Nome de arquivo especificado %s não existe.,"O nome de arquivo especificado %s não existe.
+",,NLLB,77.25505949016376
+"Cannot stat %s: %s
+",Não pode indicar %s: %s,"Não foi possível analisar %s: %s
+",,NLLB,47.750342648354646
+"Cannot resolve local port %s: %s
+",Não pode resolver o porto local %s: %s,"Não foi possível resolver a porta local %s: %s
+",,NLLB,45.30516301576311
+"Unknown local port AF %d
+",Porto local desconhecido AF %d,"Família de endereços da porta local %d desconhecida
+",,NLLB,10.89644800332157
+"Cannot open protocol file ""%s"": %s
+","Não pode abrir o arquivo de protocolo ""%s"": %s","Não foi possível abrir o arquivo de protocolo ""%s"": %s
+",,NLLB,79.65485887268619
+"Specified filename %s is not a mountpoint.
+",Nome de arquivo especificado %s não é um ponto de montagem.,"O nome de arquivo especificado %s não é um ponto de montagem.
+",,NLLB,84.46319809857219
+"%s: Invalid option %s
+",%s: Opção inválida %s,"%s: Opção inválida %s
+",,NLLB,100.00000000000004
+Namespace option requires an argument.,A opção namespace requer um argumento.,"A opção de ""--namespace"" requer um argumento.",,NLLB,31.850355294022695
+Invalid namespace name,Nome inválido do espaço de nomes,Nome de espaço de nomes inválido,,NLLB,34.32945239845197
+You can only use files with mountpoint options,Você só pode usar arquivos com opções de ponto de montagem,Você pode apenas usar arquivos com opções de pontos de montagem,,NLLB,42.96943523820147
+No process specification given,Nenhuma especificação de processo dada,Nenhuma especificação de processo fornecida,,NLLB,66.87403049764218
+all option cannot be used with silent option.,Todas as opções não podem ser utilizadas com a opção silenciosa.,"a opção ""--all"" não pode ser usada com a opção ""--silent"".",,NLLB,10.74159750747916
+You cannot search for only IPv4 and only IPv6 sockets at the same time,Você não pode pesquisar apenas IPv4 e só sockets IPv6 ao mesmo tempo,Você não pode pesquisar apenas por sockets IPv4 e IPv6 ao mesmo tempo,,NLLB,53.82218220688943
+"%*s USER        PID ACCESS COMMAND
+",%*s USER PID ACESSO COMANDÃO,"%*s USUÁRIO     PID ACESSO COMANDO
+",,NLLB,30.739407647563215
+(unknown),(desconhecido),(desconhecido),,NLLB,100.00000000000004
+"Cannot stat file %s: %s
+",Não pode indicar o arquivo %s: %s,"Não foi possível analisar o arquivo %s: %s
+",,NLLB,59.77653345720247
+"Cannot open /proc/net/unix: %s
+",Não pode abrir /proc/net/unix: %s,"Não foi possível abrir /proc/net/unix: %s
+",,NLLB,76.04321823471474
+Kill process %d ? (y/N),Processo de extinção %d ? (y/N),Matar o processo %d? (y/N),,NLLB,67.86502681586727
+"Could not kill process %d: %s
+",Não conseguiu eliminar o processo %d: %s,"Não foi possível matar o processo %d: %s
+",,NLLB,59.77653345720247
+"Cannot open a network socket.
+",Não posso abrir uma tomada de rede.,"Não foi possível abrir um socket de rede.
+",,NLLB,20.612390921238415
+"Cannot find socket's device number.
+",Não consigo encontrar o número do dispositivo da tomada.,"Não foi possível localizar o número de dispositivo do socket.
+",,NLLB,9.993744303650718
+Kill %s(%s%d) ? (y/N),Matar %s(%s%d) ? (y/N),Matar %s(%s%d)? (y/N),,NLLB,100.00000000000004
+Signal %s(%s%d) ? (y/N),Segnale %s(%s%d) ? (y/N),Enviar sinal para %s(%s%d)? (y/N),,NLLB,80.98776716222615
+"killall: Cannot get UID from process status
+",Não consigo obter o UID do status do processo,"killall: Não foi possível obter UID do status do processo
+",,NLLB,38.87514204144019
+"killall: Bad regular expression: %s
+",Killall: Má expressão regular: %s,"killall: Expressão regular inválida: %s
+",,NLLB,23.356898886410004
+"killall: skipping partial match %s(%d)
+",Killall: saltando partial match %s(%d),"killall: ignorando ocorrência parcial %s(%d)
+",,NLLB,47.987820666906636
+"Killed %s(%s%d) with signal %d
+",Matado %s(%s%d) com o sinal %d,"%s(%s%d) morto com o sinal %d
+",,NLLB,78.25422900366438
+"%s: no process found
+",%s: nenhum processo encontrado,"%s: nenhum processo localizado
+",,NLLB,75.98356856515926
+"Usage: killall [OPTION]... [--] NAME...
+",Utilização: assassinato [OPTIÃO] ... [--] Nome...,"Uso:   killall [OPÇÃO]... [--] NOME...
+",,NLLB,47.92365811426397
+"       killall -l, --list
+       killall -V, --version
+
+  -e,--exact          require exact match for very long names
+  -I,--ignore-case    case insensitive process name match
+  -g,--process-group  kill process group instead of process
+  -y,--younger-than   kill processes younger than TIME
+  -o,--older-than     kill processes older than TIME
+  -i,--interactive    ask for confirmation before killing
+  -l,--list           list all known signal names
+  -q,--quiet          don't print complaints
+  -r,--regexp         interpret NAME as an extended regular expression
+  -s,--signal SIGNAL  send this signal instead of SIGTERM
+  -u,--user USER      kill only process(es) running as USER
+  -v,--verbose        report if the signal was successfully sent
+  -V,--version        display version information
+  -w,--wait           wait for processes to die
+  -n,--ns PID         match processes that belong to the same namespaces
+                      as PID
+","Vou matar-te, lista.
+-V, versão --versão
+- e, - exatamente exigem a correspondência exata para nomes muito longos
+- Eu, - caso inconsciente processo caso coincide com o nome
+- g, - processo-grupo matar processo grupo em vez de processo
+Processos mais jovens do que matar, mais jovens do que o tempo.
+Processos mais antigos do que matar, mais antigos do que o tempo.
+- Eu, - interativo pedir confirmação antes de matar
+- Eu, - lista todos os nomes de sinais conhecidos
+- Calma, não imprime queixas.
+-r,--regexp interpretar NAME como uma expressão regular prolongada
+-s,--sinal SIGNAL enviar este sinal em vez de SIGTERM
+-u,--user USER executar apenas processos ((es) executando como USER
+-V,--verbeze relatório se o sinal foi enviado com sucesso
+- V, - versão de exibição de informações de versão
+Esperem que os processos morram.
+-n,--n PID coincide com processos que pertencem aos mesmos espaços de nomes
+como PID","       killall -l, --list
+       killall -V, --version
+
+  -e,--exact          exige ocorrência exata para nomes muito longos
+  -I,--ignore-case    ignora maiusculização nos nomes de processo
+  -g,--process-group  mata o grupo de processo em vez do processo
+  -y,--younger-than   mata processos mais novos que TEMPO
+  -o,--older-than     mata processos mais velhos que TEMPO
+  -i,--interactive    exibe confirmação antes de matar
+  -l,--list           lista todos os nomes de sinal conhecidos
+  -q,--quiet          não exibe avisos
+  -r,--regexp         interpreta NOME como uma expressão regular estendida
+  -s,--signal SINAL   envia este sinal em vez de SIGTERM
+  -u,--user USUÁRIO   mata apenas processos sendo executados pelo USUÁRIO
+  -v,--verbose        relata se o sinal foi enviado com sucesso
+  -V,--version        exibe informações de versão
+  -w,--wait           espera que os processos morram
+  -n,--ns PID         corresponde processos que pertencem aos mesmos
+                      espaços de nomes que o PID
+",,NLLB,23.63342115980111
+"  -Z,--context REGEXP kill only process(es) having context
+                      (must precede other arguments)
+","-Z,--contexto REGEXP matar apenas processos ((es) tendo contexto 
+(deve preceder outros argumentos)
+","  -Z,--context EXPREG mata apenas processo(s) tendo contexto
+                      (precisa preceder outros argumentos)
+",,NLLB,29.153692299445225
+Invalid time format,Formatos de tempo inválidos,Formato de tempo inválido,,NLLB,31.947155212313625
+"Cannot find user %s
+",Não pode encontrar usuário %s,"Não foi possível localizar o usuário %s
+",,NLLB,23.263472697663286
+Invalid namespace PID,PID inválido do espaço de nomes,PID de espaço de nomes inválido,,NLLB,34.32945239845197
+"Bad regular expression: %s
+",Má expressão regular: %s,"Expressão regular inválida: %s
+",,NLLB,32.46679154750989
+"killall: Maximum number of names is %d
+",Killall: Número máximo de nomes é %d,"killall: O número máximo de nomes é %d
+",,NLLB,54.627576446464936
+"killall: %s lacks process entries (not mounted ?)
+",Killall: %s carece de entradas de processo (não instaladas ?),"killall: %s não possui entradas de processos (não montado?)
+",,NLLB,17.49380574555478
+"Error attaching to pid %i
+",Erro de ligação ao pid %i,"Erro ao anexar ao PID %i
+",,NLLB,15.619699684601283
+"peekfd (PSmisc) %s
+",peekfd (PSmisc) %s,"peekfd (PSmisc) %s
+",,NLLB,100.00000000000004
+"Copyright (C) 2007 Trent Waddington
+
+",Direitos autorais (C) 2007 Trent Waddington,"Copyright (C) 2007 Trent Waddington
+
+",,NLLB,68.037493331712
+"Usage: peekfd [-8] [-n] [-c] [-d] [-V] [-h] <pid> [<fd> ..]
+    -8, --eight-bit-clean        output 8 bit clean streams.
+    -n, --no-headers             don't display read/write from fd headers.
+    -c, --follow                 peek at any new child processes too.
+    -t, --tgid                   peek at all threads where tgid equals <pid>.
+    -d, --duplicates-removed     remove duplicate read/writes from the output.
+    -V, --version                prints version info.
+    -h, --help                   prints this help.
+
+  Press CTRL-C to end output.
+","Utilização: peekfd [-8] [-n] [-c] [-d] [-V] [-h] <pid> [<fd> ..]
+-8, --8 bits de saída limpa 8 bits de fluxos limpos.
+Os cabeçalhos sem cabeçalhos não mostram leitura/escritura de cabeçalhos de fd.
+- C, - acompanhar os novos processos infantis também.
+-t, --tgid olhe para todos os fios onde tgid é igual a <pid>.
+-d, --duplicados-removidos remover duplicados de leitura/escritura da saída.
+A versão imprime informações de versão.
+A ajuda imprime esta ajuda.
+Pressão CTRL-C para terminar a saída.","Uso: peekfd [-8] [-n] [-c] [-d] [-V] [-h] <pid> [<fd> ..]
+    -8, --eight-bit-clean        saída limpa com fluxos de 8 bits.
+    -n, --no-headers             não exibe leitura/gravação dos cabeçalhos fd.
+    -c, --follow                 espia qualquer novo processo filho também.
+    -t, --tgid                   espia threads em que tgid é igual a <pid>.
+    -d, --duplicates-removed     remove leitura/gravação duplicados da saída.
+    -V, --version                exibe informações de versão.
+    -h, --help                   exibe esta ajuda.
+
+  Pressione CTRL+C para finalizar a saída.
+",,NLLB,45.96353858431316
+"Usage: prtstat [options] PID ...
+       prtstat -V
+Print information about a process
+    -r,--raw       Raw display of information
+    -V,--version   Display version information and exit
+","Utilização: prtstat [opções] PID ...
+Prtstat - V
+Imprimir informações sobre um processo
+-r,--raw Raw exibição de informação
+-V,--versão Exibir informações de versão e saída","Uso:   prtstat [opções] PID ...
+       prtstat -V
+Exibe informações sobre um processo
+    -r,--raw       Exibe informações sem utilizar formatação
+    -V,--version   Exibe informações de versão e sai
+",,NLLB,48.38133462334844
+"prtstat (PSmisc) %s
+",prtstat (PSmisc) %s,"prtstat (PSmisc) %s
+",,NLLB,100.00000000000004
+"Copyright (C) 2009-2024 Craig Small
+
+",Direitos autorais (C) 2009-2024 Craig Small,"Copyright (C) 2009-2020 Craig Small
+
+",,NLLB,45.180100180492246
+running,correndo,executando,,NLLB,0.0
+sleeping,Dormir,suspenso,,NLLB,0.0
+disk sleep,disco de sono,suspenso por disco,,NLLB,27.516060407455225
+zombie,Zombies,zumbi,,NLLB,0.0
+traced,rastreado,interrompido,,NLLB,0.0
+paging,Pagamento,paginado,,NLLB,0.0
+unknown,desconhecido,desconhecido,,NLLB,100.00000000000004
+"Process: %-14s		State: %c (%s)
+  CPU#:  %-3d		TTY: %s	Threads: %ld
+","Processo: %-14s Estado: %c (%s)
+CPU#: %-3d TTY: %s Fios: %ld","Processo: %-14s		Estado:  %c (%s)
+   CPU#:  %-3d		TTY: %s	Threads: %ld
+",,NLLB,88.95260356363632
+"Process, Group and Session IDs
+  Process ID: %d		  Parent ID: %d
+    Group ID: %d		 Session ID: %d
+  T Group ID: %d
+
+","Identificação do processo, do grupo e da sessão
+ID do processo: %d ID dos pais: %d
+ID de grupo: %d ID de sessão: %d
+T Identificação de grupo: %d","IDs de processos, grupos e sessões
+ ID processo: %d		     ID pai: %d
+    ID grupo: %d		  ID sessão: %d
+  ID grupo T: %d
+
+",,NLLB,33.76598637026147
+"Page Faults
+  This Process    (minor major): %8lu  %8lu
+  Child Processes (minor major): %8lu  %8lu
+","Falhas de página
+Este processo (minor importante): %8lu %8lu
+Processos infantis (minor importante): %8lu %8lu","Faltas de página
+  Este processo   (menor maior): %8lu  %8lu
+  Processos filho (menor maior): %8lu  %8lu
+",,NLLB,56.42761727828355
+"CPU Times
+  This Process    (user system guest blkio): %6.2f %6.2f %6.2f %6.2f
+  Child processes (user system guest):       %6.2f %6.2f %6.2f
+","Tempo da CPU
+Este processo (cliente do sistema de usuário): %6.2f %6.2f %6.2f %6.2f %6.2f %6.2f
+Processos infantis (guest do sistema de usuários): %6.2f %6.2f %6.2f","Tempo de CPU
+  Este processo   (usu. sist. conv. blkio):  %6.2f %6.2f %6.2f %6.2f
+  Processos filho (usu. sist. conv.):        %6.2f %6.2f %6.2f
+",,NLLB,47.50311204499758
+"Memory
+  Vsize:       %-10s
+  RSS:         %-10s 		 RSS Limit: %s
+  Code Start:  %#-10lx		 Code Stop:  %#-10lx
+  Stack Start: %#-10lx
+  Stack Pointer (ESP): %#10lx	 Inst Pointer (EIP): %#10lx
+","Memória
+Todosze: %-10s
+RSS: %-10s RSS Limite: %s
+Código de início: %#-10lx Código de parada: %#-10lx
+Iniciação da pilha: %#-10lx
+Indicador de pilha (ESP): %#10lx Indicador de inst (EIP): %#10lx","Memória
+  Vsize:       %-10s
+  RSS:         %-10s 		Limite RSS: %s
+  Início cód.: %#-10lx		 Fim cód. :  %#-10lx
+  Início stack:%#-10lx
+  Pont. stack (ESP): %#10lx		 Pont. Instr. (EIP): %#10lx
+",,NLLB,46.20992041570491
+"Scheduling
+  Policy: %s
+  Nice:   %ld 		 RT Priority: %ld %s
+","Planejamento
+Política: %s
+Nice: %ld RT Prioridade: %ld %s","Agendamento
+  Política: %s
+  Nice:     %ld 		Prioridade RT: %ld %s
+",,NLLB,69.84502320788457
+"asprintf in print_stat failed.
+",Asprintf em print_stat falhou.,"asprintf em print_stat falhou.
+",,NLLB,80.91067115702207
+"Process with pid %d does not exist.
+",Processos com pid %d não existem.,"O processo com PID %d não existe.
+",,NLLB,20.612390921238415
+"Unable to open stat file for pid %d (%s)
+",Incapaz de abrir o arquivo estatístico para pid %d (%s),"Não foi possível abrir o arquivo de análise para PID %d (%s)
+",,NLLB,40.592153989989825
+"Unable to allocate memory for proc_info
+",Incapaz de atribuir memória para proc_info,"Não foi possível alocar memória para proc_info
+",,NLLB,45.62272070865924
+Unable to scan stat file,Incapaz de escanear arquivo estatístico,Não foi possível verificar arquivo de estado,,NLLB,8.515289178380433
+Invalid option,Opção inválida,Opção inválida,,NLLB,100.00000000000004
+You must provide at least one PID.,Tem de fornecer pelo menos uma PID.,Você precisa fornecer ao menos um PID.,,NLLB,13.134549472120788
+"/proc is not mounted, cannot stat /proc/self/stat.
+","/proc não está montado, não pode stat /proc/self/stat.","/proc não está montado, impossível analisar /proc/self/stat.
+",,NLLB,67.39047062564734
+"%s is empty (not mounted ?)
+",%s está vazio (não montado ?),"%s está vazio (não montado?)
+",,NLLB,100.00000000000004
+"Usage: pstree [-acglpsStTuZ] [ -h | -H PID ] [ -n | -N type ]
+              [ -A | -G | -U ] [ PID | USER ]
+   or: pstree -V
+","Utilização: pstree [-acglpsStTuZ] [ -h  -H PID ] [ -n  -N tipo ]
+O que é que eu quero dizer?
+ou: pstree -V","Uso: pstree [-acglpsStTuZ] [ -h | -H PID ] [ -n | -N tipo ]
+            [ -A | -G | -U ] [ PID | USUÁRIO ]
+ ou: pstree -V
+",,NLLB,37.10325447505482
+"
+Display a tree of processes.
+
+",Mostre uma árvore de processos.,"
+Exibe uma árvore de processos.
+
+",,NLLB,75.98356856515926
+"  -a, --arguments     show command line arguments
+  -A, --ascii         use ASCII line drawing characters
+  -c, --compact-not   don't compact identical subtrees
+","-a, --argumentos mostram argumentos de linha de comando
+-A, --ascii usar caracteres de desenho de linha ASCII
+-c, --compact-not não compact substrate idênticos","  -a, --arguments     mostra argumentos de linha de comando
+  -A, --ascii         usa caracteres ASCII no desenho de linhas
+  -c, --compact-not   não comprime subárvores idênticas
+",,NLLB,41.229744029518166
+"  -C, --color=TYPE    color process by attribute
+                      (age)
+","-C, --color=TYPE processo de cor por atributo
+(idade)","  -C, --color=TIPO    colore processo por atributo
+                      (age)
+",,NLLB,29.782017963590448
+"  -g, --show-pgids    show process group ids; implies -c
+  -G, --vt100         use VT100 line drawing characters
+","-g, --show-pgids mostram ids de grupo de processo; implica -c
+-G, --vt100 usar caracteres de desenho de linha VT100","  -g, --show-pgids    mostra ids de grupo de processos; implica em -c
+  -G, --vt100         usa caracteres VT100 no desenho de linhas
+",,NLLB,29.97541324360908
+"  -h, --highlight-all highlight current process and its ancestors
+  -H PID, --highlight-pid=PID
+                      highlight this process and its ancestors
+  -l, --long          don't truncate long lines
+","-H, --Highlight-all destacar o processo atual e seus antepassados
+-H PID, --highlight-pid=PID
+salientar este processo e os seus antepassados
+- Eu, - longa não cortar longas filas","  -h, --highlight-all realça o processo atual e seus ancestrais
+  -H PID, --highlight-pid=PID
+                      realça este processo e seus ancestrais
+  -l, --long          não trunca linhas longas
+",,NLLB,31.372117878126645
+"  -n, --numeric-sort  sort output by PID
+  -N TYPE, --ns-sort=TYPE
+                      sort output by this namespace type
+                              (cgroup, ipc, mnt, net, pid, time, user, uts)
+  -p, --show-pids     show PIDs; implies -c
+","-n, --numeric-sort sort output por PID
+- N TYPE, --ns-sort=TYPE
+classificar a saída por este tipo de espaço de nomes
+(cgroup, ipc, mnt, net, pid, time, user, uts)
+-p, --show-pids mostram PIDs; implica -c","  -n, --numeric-sort  ordena saída pelo PID
+  -N TIPO, --ns-sort=TIPO
+                      ordena por este tipo de espaço de nomes
+                              (cgroup, ipc, mnt, net, pid, time, user, uts)
+  -p, --show-pids     mostra PIDs; implica em -c
+",,NLLB,63.726888281588735
+"  -s, --show-parents  show parents of the selected process
+  -S, --ns-changes    show namespace transitions
+  -t, --thread-names  show full thread names
+  -T, --hide-threads  hide threads, show only processes
+","-s, --show-parents mostram os pais do processo selecionado
+-S, --ns mudanças mostram transições do espaço de nomes
+-t, --Nomes de fios mostram nomes completos de fios
+-T, os fios escondem os fios, mostram apenas processos","  -s, --show-parents  mostra os pais do processo selecionado
+  -S, --ns-changes    mostra transições de espaço de nomes
+  -t, --thread-names  mostra nomes completos de threads
+  -T, --hide-threads  oculta threads, mostra apenas processos
+",,NLLB,32.34262986694915
+"  -u, --uid-changes   show uid transitions
+  -U, --unicode       use UTF-8 (Unicode) line drawing characters
+  -V, --version       display version information
+","-u, -uid-mudanças mostram transições uid
+-U, --unicode usar caracteres de desenho de linha UTF-8 (Unicode)
+-V, --versão de exibição de informações de versão","  -u, --uid-changes   mostra transições de uid
+  -U, --unicode       usa caracteres UTF-8 (Unicode) no desenho de linhas
+  -V, --version       exibe informações da versão
+",,NLLB,22.970092088416937
+"  -Z, --security-context
+                      show security attributes
+","- Z, --contexto de segurança
+mostrar atributos de segurança","  -Z, --security-context
+                      mostra atributos de segurança
+",,NLLB,16.784459625186194
+"
+  PID    start at this PID; default is 1 (init)
+  USER   show only trees rooted at processes of this user
+
+","PID começa neste PID; padrão é 1 (init)
+O USUÁRIO mostra somente árvores enraizadas em processos deste usuário","
+  PID    inicia deste PID; predefinido como 1 (init)
+  USR    mostra apenas árvores originadas de processos deste usuário
+
+",,NLLB,19.692215902857168
+"pstree (PSmisc) %s
+",pstree (PSmisc) %s,"pstree (PSmisc) %s
+",,NLLB,100.00000000000004
+"TERM is not set
+",O TERM não está definido,"TERM não está definido
+",,NLLB,66.87403049764218
+"Can't get terminal capabilities
+",Não conseguimos capacidades do terminal.,"Não foi possível obter as habilidades do terminal
+",,NLLB,12.872632311973014
+"procfs file for %s namespace not available
+",arquivo procfs para o espaço de nomes %s não está disponível,"O arquivo procfs para o espaço de nomes %s não está disponível
+",,NLLB,92.00444146293236
+"No such user name: %s
+",Nenhum nome de usuário: %s,"Nome de usuário inexistente: %s
+",,NLLB,30.739407647563215
+"Process %d not found.
+",Processos %d não encontrados.,"Nenhum processo localizado.
+",,NLLB,8.116697886877475
+"No processes found.
+",Nenhum processo encontrado.,"Nenhum processo localizado.
+",,NLLB,35.35533905932737
+"Press return to close
+",Pressão de volta para fechar,"Pressione Enter para fechar
+",,NLLB,21.3643503198117
+"%s: unknown signal; %s -l lists signals.
+",%s: sinal desconhecido; %s -l lista os sinais.,"%s: sinal desconhecido; %s -l lista os sinais.
+",,NLLB,100.00000000000004
