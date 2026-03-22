@@ -120,3 +120,92 @@ Para cada métrica detectada no CSV, uma tabela no formato:
 | ctx-0 | 75.93 | 0.00       | nan        | ...             |
 | ctx-1 | 78.19 | +2.26      | +2.26      | ES (80.00)      |
 | ctx-2 | 79.03 | +3.10      | +0.84      | ES,RU (80.56)   |
+
+# Análise estatística (modelo misto linear)
+
+Análise usando modelo de efeitos mistos lineares (lmer) com design nested within-subjects e blocking.
+Responde três perguntas:
+
+- **Q1**: Os tipos de tratamento diferem (direto vs single-pivot vs dual-pivot)?
+- **Q2**: Os idiomas pivot diferem dentro do tratamento single-pivot?
+- **Q3**: Os pares de idiomas diferem dentro do tratamento dual-pivot?
+
+## Instalar R (Debian)
+
+```bash
+sudo apt update
+sudo apt install -y r-base r-base-dev
+```
+
+## Setup (Python + R)
+
+```bash
+make setup
+```
+
+Isso cria o venv Python (`.venv/`) e instala os pacotes R via renv (`renv/library/`).
+
+## Gerar dados e rodar análise
+
+```bash
+# Gerar experiment_data.csv a partir dos CSVs em metrics_csv/
+make experiment-data
+
+# Rodar análise completa (gera experiment_data.csv + roda o script R)
+make analysis
+```
+
+Ou rodar manualmente:
+
+```bash
+python3 estatisticas/generate_experiment_csv.py
+Rscript estatisticas/analysis.R
+```
+
+## Arquivos gerados em `estatisticas/`
+
+### Dados
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `experiment_data.csv` | Dados transformados para o R (112K linhas) |
+
+### Estatísticas descritivas
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `desc_by_treatment_type.csv` | Média, SD, mediana por tipo de tratamento |
+| `desc_by_single_context.csv` | Média, SD, mediana por idioma de contexto (single) |
+| `desc_by_dual_context.csv` | Média, SD, mediana por par de idiomas (dual) |
+| `desc_by_source_project.csv` | Média, SD, mediana por projeto |
+
+### Diagnósticos do modelo
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `diagnostics_qqplot.png` | QQ plot dos resíduos |
+| `diagnostics_residuals_vs_fitted.png` | Resíduos vs valores ajustados |
+| `diagnostics_residual_hist.png` | Histograma dos resíduos |
+| `diagnostics_ranef_source.png` | QQ plot dos efeitos aleatórios (source project) |
+
+### Gráficos
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `plot_q1_treatment_types.png` | Comparação dos tipos de tratamento (EMMs + CIs) |
+| `plot_q2_single_context.png` | Ranking dos idiomas de contexto (single) |
+| `plot_q3_dual_context_top10.png` | Top 10 pares de idiomas (dual) |
+| `plot_dist_treatment_type.png` | Boxplot por tipo de tratamento |
+| `plot_dist_single_context.png` | Boxplot por idioma de contexto (single) |
+| `plot_dist_source_project.png` | Boxplot por projeto |
+| `plot_hist_treatment_type.png` | Histograma facetado por tipo de tratamento |
+
+### Resultados para o paper
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `results_q1_treatment_means.csv` | EMMs por tipo de tratamento |
+| `results_q1_pairwise.csv` | Comparações pareadas entre tipos de tratamento |
+| `results_q2_single_context_cld.csv` | Ranking single-context (compact letter display) |
+| `results_q3_dual_context_cld.csv` | Ranking dual-context (compact letter display) |
+| `results_q3_dunnett_vs_best.csv` | Comparações Dunnett contra o melhor par |
