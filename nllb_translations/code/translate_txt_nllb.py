@@ -1,5 +1,6 @@
 from pathlib import Path
 import argparse
+import csv
 import torch
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
@@ -8,7 +9,7 @@ MODEL_DEFAULT = "facebook/nllb-200-distilled-600M"
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("input_dir", type=Path, help="Folder with .txt files (extracted msgids)")
-    ap.add_argument("output_dir", type=Path, help="Folder to write translated .txt files")
+    ap.add_argument("output_dir", type=Path, help="Folder to write translated .csv files")
     ap.add_argument("--model", default=MODEL_DEFAULT)
     ap.add_argument("--src-lang", default="eng_Latn")
     ap.add_argument("--tgt-lang", default="por_Latn")
@@ -33,22 +34,25 @@ def main():
         lines = txt_path.read_text(encoding="utf-8").splitlines()
 
         to_translate = []
-        map_idx = []
-        for i, line in enumerate(lines):
+        for line in lines:
             line = line.strip()
-            if not line:
-                continue
-            to_translate.append(line)
-            map_idx.append(i)
+            if line:
+                to_translate.append(line)
 
         if not to_translate:
             out_path = args.output_dir / txt_path.relative_to(args.input_dir)
+            out_path = out_path.with_suffix(".translated.csv")
             out_path.parent.mkdir(parents=True, exist_ok=True)
-            out_path.write_text("", encoding="utf-8")
+
+            # write empty CSV with header
+            with out_path.open("w", encoding="utf-8", newline="") as f:
+                w = csv.writer(f)
+                w.writerow(["original", "translated"])
+
             print(f"[SKIP] {txt_path.name} (empty) -> {out_path}")
             continue
 
-        # Translate in batches
+        #Translate in batches
         translations = [""] * len(to_translate)
         tokenizer.src_lang = args.src_lang
 
@@ -75,14 +79,16 @@ def main():
             decoded = tokenizer.batch_decode(out, skip_special_tokens=True)
             translations[start:start + len(decoded)] = decoded
 
-        out_lines = []
-        for src, tgt in zip(to_translate, translations):
-            out_lines.append(f"{src}\t{tgt}")
-
+        #Write CSV: original, translated
         out_path = args.output_dir / txt_path.relative_to(args.input_dir)
-        out_path = out_path.with_suffix(".translated.tsv")
+        out_path = out_path.with_suffix(".csv")
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        out_path.write_text("\n".join(out_lines), encoding="utf-8")
+
+        with out_path.open("w", encoding="utf-8", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["original", "translated"])
+            for src, tgt in zip(to_translate, translations):
+                w.writerow([src, tgt])
 
         print(f"[OK] {txt_path.name} -> {out_path} ({len(to_translate)} lines)")
 
